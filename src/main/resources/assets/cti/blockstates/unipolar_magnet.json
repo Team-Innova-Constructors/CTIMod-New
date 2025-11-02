@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "cti:block/unipolar_magnet",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "cti:block/unipolar_magnet",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cti:block/unipolar_magnet",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "cti:block/unipolar_magnet",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "cti:block/unipolar_magnet"
+    },
+    "facing=west": {
+      "model": "cti:block/unipolar_magnet",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

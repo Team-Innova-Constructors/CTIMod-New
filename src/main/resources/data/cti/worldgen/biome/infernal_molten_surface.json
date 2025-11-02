@@ -1,0 +1,46 @@
+{
+    "temperature": 43,
+    "downfall": 1,
+    "precipitation": "none",
+    "effects": {
+      "sky_color": -4044526,
+      "fog_color": -4044526,
+      "water_color": 4159204,
+      "water_fog_color": 329011,
+      "grass_color": 9551193,
+      "foliage_color": 7842607,
+      "particle": {
+        "options": {
+          "type": "minecraft:falling_dripstone_lava"
+        },
+        "probability": 0.0014
+      }
+    },
+    "creature_spawn_probability": 0,
+    "spawners": {},
+    "spawn_costs": {},
+    "carvers": {
+      "air": [
+        "minecraft:cave",
+        "minecraft:cave_extra_underground",
+        "minecraft:canyon"
+      ]
+    },
+    "features": [
+      [
+        "minecraft:amethyst_geode",
+        "minecraft:delta",
+        "minecraft:basalt_pillar",
+        "minecraft:basalt_blobs",
+        "minecraft:blackstone_blobs",
+        "minecraft:spring_delta",
+        "minecraft:patch_soul_fire",
+        "minecraft:ore_magma",
+        "minecraft:spring_closed_double",
+        "cti:infernal_fracture_silicon_geode_placed",
+        "cti:mercury_fracture_silicon_geode_placed",
+        "kubejs:infernal_pyrocrystal",
+        "kubejs:infernal_pyrocrystal_lava"
+      ]
+    ]
+  }

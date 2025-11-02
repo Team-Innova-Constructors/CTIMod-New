@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "ingredient": {
+    "item": "cti:stellar_manyullyn"
+  },
+  "value": 1,
+  "needed": 1,
+  "material": "cti:stellar_manyullyn"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cti:item/mek_upgrades/upgrade_speed_kit_1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cti:block/alloy_centrifuge"
+    },
+    "facing=south": {
+      "model": "cti:block/alloy_centrifuge",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "cti:block/alloy_centrifuge",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cti:block/alloy_centrifuge",
+      "y": -90
+    }
+  }
+}

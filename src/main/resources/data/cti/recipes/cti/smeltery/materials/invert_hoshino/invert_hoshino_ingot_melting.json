@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:invert_hoshino"},
+  "result": {
+    "fluid": "cti:molten_invert_hoshino",
+    "amount": 90
+  },
+  "temperature": 16384,
+  "time": 20
+}

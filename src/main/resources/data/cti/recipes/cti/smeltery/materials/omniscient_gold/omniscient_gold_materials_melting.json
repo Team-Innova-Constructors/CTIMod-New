@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "cti:omniscient_gold",
+  "temperature": 2851,
+  "result": {
+    "fluid": "cti:molten_omniscient_gold",
+    "amount": 90
+  }
+}

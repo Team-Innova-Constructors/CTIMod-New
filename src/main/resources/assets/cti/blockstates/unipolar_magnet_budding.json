@@ -1,0 +1,8 @@
+
+{
+  "variants": {
+    "": {
+      "model": "cti:block/unipolar_magnet_budding"
+    }
+  }
+}

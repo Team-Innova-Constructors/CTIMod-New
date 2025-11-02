@@ -1,0 +1,12 @@
+{
+    "type":"tconstruct:melting", 
+    "ingredient":{
+    	"item": "cti:roxy_ingot"
+    },
+    "temperature": 14930,
+    "time": 20,
+    "result":{
+      "fluid": "cti:molten_roxy",
+      "amount": 90
+    }
+}

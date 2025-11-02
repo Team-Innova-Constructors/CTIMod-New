@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cti:item/augments/upgrade_augment_5",
+    "layer1": "cti:item/augments/upgrade_augment_5_lights",
+    "layer2": "cti:item/augments/upgrade_augment_anim"
+  }
+}

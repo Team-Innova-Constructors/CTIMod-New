@@ -1,0 +1,5 @@
+{
+  "color": "FFFFFFFF",
+  "flowing": "cti:fluid/molten_violium/flowing",
+  "still": "cti:fluid/molten_violium/still"
+}

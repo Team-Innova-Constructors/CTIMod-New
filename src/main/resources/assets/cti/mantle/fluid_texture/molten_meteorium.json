@@ -1,0 +1,5 @@
+{
+  "color": "FFFFFFFF",
+  "flowing": "cti:fluid/molten_meteorium/flowing",
+  "still": "cti:fluid/molten_meteorium/still"
+}

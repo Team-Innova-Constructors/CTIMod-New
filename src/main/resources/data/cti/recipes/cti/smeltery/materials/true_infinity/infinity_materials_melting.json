@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "cti:true_infinity",
+  "temperature": 16384,
+  "result": {
+    "fluid": "cti:molten_infinity",
+    "amount": 180
+  }
+}

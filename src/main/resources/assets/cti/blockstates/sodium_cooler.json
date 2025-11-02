@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cti:block/sodium_cooler"
+    },
+    "facing=south": {
+      "model": "cti:block/sodium_cooler",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "cti:block/sodium_cooler",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cti:block/sodium_cooler",
+      "y": -90
+    }
+  }
+}

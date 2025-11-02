@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "cti:invert_hoshino",
+  "temperature": 16384,
+  "result": {
+    "fluid": "cti:molten_invert_hoshino",
+    "amount": 90
+  }
+}

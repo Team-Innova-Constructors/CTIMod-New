@@ -1,0 +1,34 @@
+{
+  "type": "tconstruct:modifier",
+  "inputs": [
+    {
+      "item": "farmersdelight:safety_net",
+      "amount_needed": 2
+    },
+    {
+      "item": "tconstruct:nahuatl"
+    },
+    {
+      "item": "farmersdelight:safety_net"
+    },
+    {
+      "item": "create:sturdy_sheet",
+      "amount_needed": 3
+    },
+    {
+      "item": "create:sturdy_sheet",
+      "amount_needed": 3
+    }
+  ],
+  "tools": {
+    "tag": "tconstruct:modifiable/armor"
+  },
+  "slots": {
+    "defense": 1
+  },
+  "allow_crystal": true,
+  "result": "cti:ararar",
+  "level": {
+    "max": 1
+  }
+}

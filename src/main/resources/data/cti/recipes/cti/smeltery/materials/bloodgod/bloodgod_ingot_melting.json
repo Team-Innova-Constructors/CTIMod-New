@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:bloodgod_ingot"},
+  "result": {
+    "fluid": "cti:molten_bloodgod",
+    "amount": 90
+  },
+  "temperature": 2714,
+  "time": 20
+}

@@ -1,0 +1,5 @@
+{
+  "color": "FFFFFFFF",
+  "flowing": "cti:fluid/flux_fluid/flowing",
+  "still": "cti:fluid/flux_fluid/still"
+}

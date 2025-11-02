@@ -1,0 +1,28 @@
+{
+  "type": "tconstruct:modifier",
+  "inputs": [
+    {
+      "item": "etshtinker:hardlead_plate"
+    },
+    {
+      "item": "etshtinker:hardlead_plate"
+    },
+    {
+      "item": "mekanism:teleportation_core"
+    },
+    {
+      "item": "etshtinker:hardlead_plate"
+    },
+    {
+      "item": "etshtinker:hardlead_plate"
+    }
+  ],
+  "tools": {
+    "tag": "tconstruct:modifiable"
+  },
+  "level": {
+    "max": 1
+  },
+  "allow_crystal": true,
+  "result": "cti:hardcore"
+}

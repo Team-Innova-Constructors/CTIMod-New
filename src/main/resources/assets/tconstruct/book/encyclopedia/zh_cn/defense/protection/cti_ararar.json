@@ -1,0 +1,16 @@
+{
+  "modifier_id": "cti:ararar",
+  "text": [
+    {
+      "text": "提升你护甲的面板,只可打一级,不可多级"
+    },
+    {
+      "text": "每级提升2护甲1韧性", "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "可以逐级强化",
+    "需要1个防御槽"
+  ]
+}

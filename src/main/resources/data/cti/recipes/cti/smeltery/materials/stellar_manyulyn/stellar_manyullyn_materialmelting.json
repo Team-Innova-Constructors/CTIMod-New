@@ -1,0 +1,9 @@
+{
+    "type":"tconstruct:material_melting", 
+    "input": "cti:stellar_manyullyn",
+    "temperature": 14930,
+    "result":{
+      "fluid": "cti:molten_stellar_manyullyn",
+      "amount": 90
+    }
+}

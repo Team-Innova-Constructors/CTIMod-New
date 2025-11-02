@@ -1,0 +1,31 @@
+{
+  "type": "tconstruct:modifier",
+  "inputs": [
+    {
+      "item": "biomancy:living_flesh"
+    },
+    {
+      "item": "biomancy:volatile_fluid",
+      "amount_needed": 8
+    },
+    {
+      "item": "biomancy:living_flesh"
+    },
+    {
+      "item": "biomancy:nutrients",
+      "amount_needed": 8
+    },
+    {
+      "item": "biomancy:hormone_secretion",
+      "amount_needed": 8
+    }
+  ],
+  "tools": {
+    "tag": "tconstruct:modifiable"
+  },
+  "level": {
+    "max": 1
+  },
+  "allow_crystal": true,
+  "result": "cti:mutation"
+}

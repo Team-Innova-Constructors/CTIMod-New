@@ -1,0 +1,39 @@
+{
+  "temperature": 78,
+  "downfall": 1,
+  "precipitation": "none",
+  "effects": {
+    "sky_color": -821,
+    "fog_color": -821,
+    "water_color": -821,
+    "water_fog_color": -821,
+    "grass_color": -821,
+    "foliage_color": -821,
+    "particle": {
+      "options": {
+        "type": "minecraft:dust",
+        "color": [1,1,1],
+        "scale": 1.5
+      },
+      "probability": 0.0016
+    }
+  },
+  "creature_spawn_probability": 0,
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [
+      "minecraft:amethyst_geode",
+      "kubejs:stellar_stone_diamond_ore",
+      "kubejs:stellar_ultra_dense_ore",
+      "cti:hultra_dense_geode_placed"
+    ]
+  ]
+}

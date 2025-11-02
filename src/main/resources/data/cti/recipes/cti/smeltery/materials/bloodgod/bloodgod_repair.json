@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "ingredient": {
+    "item": "cti:bloodgod_ingot"
+  },
+  "value": 1,
+  "needed": 1,
+  "material": "cti:bloodgod"
+}

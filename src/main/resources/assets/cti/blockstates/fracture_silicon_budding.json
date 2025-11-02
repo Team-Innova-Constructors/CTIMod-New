@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cti:block/fracture_silicon_budding"
+    }
+  }
+}

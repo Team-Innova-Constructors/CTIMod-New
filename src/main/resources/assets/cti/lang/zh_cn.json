@@ -1,0 +1,1060 @@
+{
+  "itemGroup.cti.materials": "CTI-材料",
+  "itemGroup.cti.mixc": "CTI-杂项",
+  "itemGroup.cti.machine": "CTI-机器",
+  "key.category.cti": "CTI按键设置",
+  "key.cti.star_hit": "星界龙技能按键",
+
+  "block.cti.molten_infinity_fluid":"熔融无尽",
+  "block.cti.molten_invert_hoshino":"熔融星野-恐怖",
+  "block.cti.molten_roxy":"熔融洛琪希",
+
+  "item.cti.aluminium_glass": "高强度铝玻璃",
+  "item.cti.test_tool": "流体信息工具",
+  "item.cti.vein_remove_tool": "矿脉移除工具",
+  "block.cti.aluminium_glass": "高强度铝玻璃",
+
+
+  "effect.cti.ev": "狩猎",
+  "effect.cti.ancientdragonflame": "远古龙焰",
+  "effect.cti.meteor_shower": "陨石雨",
+  "effect.cti.numerical_perception": "数维的感知",
+  "effect.cti.curve_mapping": "曲线映射",
+  "effect.cti.strong": "钢躯糖",
+  "effect.cti.heng": "哼将糖",
+  "effect.cti.ha": "哈将糖",
+  "effect.cti.covert": "月隐糖",
+  "effect.cti.nakshatra": "夜叉戮糖",
+
+
+  "cti.tooltip.item.shift": "按下 Shift 以获取信息",
+  "cti.tooltip.item.ultradense_ammo": "这种高密度材料制成的特种机关枪弹药具有较高的伤害，命中时能无视敌人无敌帧。",
+  "cti.tooltip.item.protonium_ammo": "这种强互作用材料制成的特种机关枪弹药具有很高的伤害，命中时能无视敌人无敌帧，并且穿甲。",
+  "cti.tooltip.item.electronium_ammo": "这种超轻含能材料制成的特种机关枪弹药伤害相对较低，但是射程很远，而且会对目标施加电离减益。",
+
+  "cti.tooltip.item.fe_max": "基础FE存储",
+  "cti.tooltip.item.fe_consumption": "基础FE消耗量",
+  "cti.tooltip.item.fe_generate": "基础FE产生量",
+
+  "cti.tooltip.item.atmosphere_extractor": "将环境的部分大气成分提取为固体物质。",
+  "cti.tooltip.item.atmosphere_condensator": "将环境的部分大气成分冷凝为流体物质。",
+  "cti.tooltip.item.quantum_miner": "消耗压缩奇点以从另一个位面采集矿物，矿物被存入机器上方的容器里。",
+  "cti.tooltip.item.quantum_miner_advanced": "每次产出*2，每tick开采10次，产出的矿物会以恒定的二倍矿被烧制成对应产品。",
+  "cti.tooltip.item.reactor_neutron_collector": "从过热钠蒸汽中提取游离的中子素，会将过热钠变为钠蒸汽。",
+  "cti.tooltip.item.reactor_neutron_collector2": "机器会从左侧的容器吸取过热钠，并向右侧的容器排出钠蒸汽，物品则输出到机器上方的容器，若这几个位置没有容器则不工作。物品输出满了不会影响过热钠的转化，但是会阻止能量产出。",
+  "cti.tooltip.item.reactor_neutron_collector3": "放入催化剂以提高效率，催化剂每刻都有概率消耗一个。催化剂数量越多，处理速度越快，发电越高，但是每刻消耗概率也相应增加。",
+  "cti.tooltip.item.reactor_neutron_collector4": "基础过热钠消耗速率: 100,000mB/t",
+  "cti.tooltip.item.sodium_cooler": "小型的安全的集成化的裂变反应堆，能以固定2870mB/t的速度燃烧裂变燃料并产生FE。",
+  "cti.tooltip.item.sodium_cooler2": "机器会从左侧的容器吸取裂变燃料，并向右侧的容器排出核废料。",
+  "cti.tooltip.item.sodium_cooler3": "能量存储满了、输入/输出端没有化学品容器则无法工作，破坏时不产生辐射。",
+  "cti.tooltip.item.xenoglarium_ingot": "展现在我们面前的宇宙是一个虚无缥缈的存在。",
+  "cti.tooltip.item.xenoglarium_ingot2": "什么，你问我上面那句话和这个材料有什么关系？我不知道。",
+  "cti.tooltip.item.xenoglarium_ingot3": "尽管如此，这些文字并非毫无意义。",
+
+  "cti.tooltip.item.alloy_centrifuge": "通过压缩空气将镕铸炉内的熔融合金分解为它的原料，需要方块的背面紧挨焦褐排液口才能工作。",
+  "cti.tooltip.item.alloy_centrifuge2": "需要2bar以上的压力才能工作，压力越高压缩空气消耗越快，处理速度也越快（10bar时最高），压缩空气容量: 12800mL。",
+  "cti.tooltip.item.alloy_centrifuge3": "不要对着装有燃料的焦黑冶炼炉使用这个，聪明的你应该知道会发生什么",
+
+  "cti.tooltip.item.stellar_plate": "右键查看星图，在星图中点击任意星球以关闭星图。",
+  "cti.tooltip.item.stellar_plate2": "装备时在右下角显示当前你所受的环境危害值，shift+右键查看自己身上的环境抗性。",
+
+  "cti.tooltip.item.atmosphere_upgrade": "可放在大气冷凝机/大气提取机里，增强机器的表现。",
+  "cti.tooltip.item.power_factor": "机器能量消耗",
+  "cti.tooltip.item.speed_factor": "机器速度提升",
+
+  "cti.tooltip.item.etsh": "-EtSH_C2H6S 开发者材料-",
+
+  "item.cti.heng_sugar": "哼将糖",
+  "item.cti.ha_sugar": "哈将糖",
+  "item.cti.strong_sugar": "钢躯糖",
+  "item.cti.covert_sugar": "月隐糖",
+  "item.cti.nakshatra_sugar": "夜叉戮糖",
+
+  "item.cti.star_dragon_ingot": "星界龙神锭",
+  "material.cti.star_dragon": "星界龙神",
+  "material.cti.star_dragon.flavor": "天上天下,唯我独尊",
+  "material.cti.star_dragon.encyclopedia": "三龙合一",
+
+  "item.cti.bloodgod_ingot": "§c血神锭",
+  "item.cti.molten_bloodgod_bucket": "熔融血神桶",
+  "fluid.cti.molten_bloodgod": "熔融血神",
+  "cti.tooltip.item.bloodgod_ingot.desc1": "弥留之际,将于下版本彻底移除",
+  "cti.tooltip.item.bloodgod_ingot.desc2": "白武男(rRickroll) 贡献者材料",
+
+  "material.cti.bloodgod": "血神",
+  "material.cti.bloodgod.flavor": "安格隆打过来了？",
+  "material.cti.bloodgod.encyclopedia": "白武男(rRickroll) 贡献者材料",
+
+  "modifier.cti.bloodgodbless": "血神赐福",
+  "modifier.cti.bloodgodbless.flavor": "血祭血神，颅献颅座",
+  "modifier.cti.bloodgodbless.description":"你每失去一点生命提升0.8%的伤害。当你拥有红温效果时，你的攻击(包括远程)额外附带8%当前生命值与黄心的伤害；你每次攻击回复8%的已损失生命值",
+
+  "modifier.cti.bloodthirsty": "渴血",
+  "modifier.cti.bloodthirsty.flavor": "不要放过任何猎物，否则你将会成为血神的猎物",
+  "modifier.cti.bloodthirsty.description":"嗜血:你的第8次攻击伤害将提升至8倍。你造成的伤害额外附带8%的目标已损失血量，你的每次攻击消耗自身当前8%的生命值(最多降低至8血)。(仅近战生效)",
+
+  "modifier.cti.subspace": "亚空间本质",
+  "modifier.cti.subspace.flavor": "凡渴求杀戮者，皆不惧卑劣之矢",
+  "modifier.cti.subspace.description":"受到的远程攻击和魔法伤害伤害均降低60%",
+
+  "item.cti.awakesaintchef_ingot": "§6觉醒龙皇锭(未完成）",
+  "item.cti.molten_awakesaintchef_ingot_bucket": "熔融觉醒龙皇桶",
+  "fluid.cti.molten_awakesaintchef": "熔融觉醒龙皇",
+  "cti.tooltip.item.awakesaintchef_ingot.desc1": "进化之龙的最终形态,让你亲眼见识一下吧",
+  "cti.tooltip.item.awakesaintchef_ingot.desc2": "天宇冰痕 贡献者材料",
+
+
+  "material.cti.awakesaintchef": "觉醒龙皇",
+  "material.cti.awakesaintchef.flavor": "圣厨锭界限突破了",
+  "material.cti.awakesaintchef.encyclopedia": "天宇冰痕贡献者材料\n关注天宇冰痕谢谢喵",
+
+
+  "modifier.cti.chewevolution": "掠食者进化",
+  "modifier.cti.chewevolution.flavor": "谁家小圣厨",
+  "modifier.cti.chewevolution.description":"根据你所吃过的食物种类解锁独特的能力\n　　50层：每次攻击造成额外的（食物种类*1.5*词条等级）的魔法伤害\n　　125层：击中目标会使目标产生额外的爆炸，对其与周围敌人造成额外的（食物种类*0.15*词条等级）的伤害\n　　250层：使攻击目标陷入“远古龙焰”状态3秒，每秒对敌方造成敌方总血量3%的三穿伤害\n　　300层：工具正常使用不再损失耐久\n　　500层：攻击目标时，若敌方血量削至百分之（食物种类*0.03*词条等级）下时，直接斩杀。该斩杀血量百分比最高为25%",
+
+
+  "item.cti.uriel_ingot": "乌列尔",
+  "item.cti.molten_uriel_bucket": "熔融乌列尔桶",
+  "fluid.cti.molten_uriel": "熔融乌列尔",
+  "tooltip.uriel_ingot.desc1": "Esdras IV in Catholic versions",
+  "tooltip.uriel_ingot.desc2": "牢墨 贡献者材料",
+
+  "material.cti.uriel": "乌列尔",
+  "material.cti.uriel.flavor": "恶魔般的火之审判官",
+  "material.cti.uriel.encyclopedia": "牢墨贡献者材料\n祂手持火焰之剑，以地狱之火审判一切罪孽深重之人",
+
+  "material.cti.buriedocean": "海葬",
+  "material.cti.buriedocean.flavor": "跟随柯尼利亚船长一同沉入海底的一把随身武器的材料",
+  "material.cti.buriedocean.encyclopedia": "绽放着淡蓝色的光芒,明亮但又略显黯淡",
+
+  "modifier.cti.buriedocean": "海葬",
+  "modifier.cti.buriedocean.flavor": "无尽的怨恨",
+  "modifier.cti.buriedocean.description":"对目标额外造成柯尼利亚船长自身最大生命3%的魔法伤害,此伤害穿透魔法防御,并且会越累计越高,至多堆积到6000%倍率",
+
+  "modifier.cti.timetojudge": "审判时刻",
+  "modifier.cti.timetojudge.flavor": "自此刻起，下达判决",
+  "modifier.cti.timetojudge.description":"攻击怪物后将永久为其施加“罪恶者”标签，当怪物具有这个标签的时候此生物受到所有伤害增加800%(包括其他玩家伤害和虚空伤害）,并且其收到的所有伤害穿透魔法抗性",
+
+  "modifier.cti.netherfire": "地狱之火",
+  "modifier.cti.netherfire.flavor": "最后审判已至",
+  "modifier.cti.netherfire.description":"对于带有“罪恶者”标签的生物将会提高基于目标护甲值×护甲×词条等级的基础伤害，怪物护甲大于你则这个基础值再翻倍",
+
+  "modifier.cti.archangelwings": "大天使之翼",
+  "modifier.cti.archangelwings.flavor": "七大天使长之一",
+  "modifier.cti.archangelwings.description":"受到“罪恶者”伤害后获得短暂的生命回复2和抗性提升2效果（需搭配武器使用）",
+
+  "modifier.cti.celestiallight": "神之光辉",
+  "modifier.cti.celestiallight.flavor": "Light Of God",
+  "modifier.cti.celestiallight.description":"受到大于当前生命的伤害规避该伤害，并且获得短暂的3秒无敌帧效果。并且在周围引发一次爆炸,同时点燃被标记为罪恶者的生物1000秒(60秒冷却)(需要主手和盔甲同时有此词条)",
+
+  "item.cti.omniscient_gold_ingot": "§e全知魔金",
+  "item.cti.molten_omniscient_gold_bucket": "熔融全知魔金桶",
+  "fluid.cti.molten_omniscient_gold": "熔融全知魔金",
+  "cti.tooltip.item.omniscient_gold_ingot.desc1": "听起来怎么有点耳熟",
+  "cti.tooltip.item.omniscient_gold_ingot.desc2": "铀铀 贡献者材料",
+
+  "material.cti.omniscient_gold": "全知魔金",
+  "material.cti.omniscient_gold.flavor": "嘶...这不是个饼吗",
+  "material.cti.omniscient_gold.encyclopedia": "铀铀贡献者材料\n待君模组备,草木亦谢矣",
+
+  "modifier.cti.arcaneomniscient": "奥法•全知",
+  "modifier.cti.arcaneomniscient.flavor": "我做了一个梦,一个牢署写出来全知魔金的梦",
+  "modifier.cti.arcaneomniscient.description":"增加三种槽位各两个",
+
+  "modifier.cti.arcaneprotect": "奥法•魔力加护",
+  "modifier.cti.arcaneprotect.flavor": "纵使相逢应不识,牢署模组几时实",
+  "modifier.cti.arcaneprotect.description":"你收到的所有为魔法类型的伤害变为1点,并且受伤获得短暂无敌效果.每5秒获得6秒生命恢复5",
+
+  "modifier.cti.arcanetough": "奥法•坚韧",
+  "modifier.cti.arcanetough.flavor": "门前冷落鞍马稀,牢署大饼积又积",
+  "modifier.cti.arcanetough.description":"工具会吸收魔力来修复自己,并且每次修复10耐久,每次修复还会给与玩家100经验点数.但是工具正常使用不再消耗耐久",
+
+  "modifier.cti.arcanefilling": "奥法•充盈",
+  "modifier.cti.arcanefilling.flavor": "白日放歌须纵酒,署观教程愁又愁",
+  "modifier.cti.arcanefilling.description":"你的工具会对周围敌人溅射等额魔法伤害,等级越高范围越大.当装备这个装备到身上时,你造成的所有自己来源魔法伤害翻倍",
+
+  "material.cti.xinian": "37",
+  "material.cti.xinian.flavor": "嘶...37",
+  "material.cti.xinian.encyclopedia": "惜念开发者材料",
+
+  "modifier.cti.originbasedcomputation": "本源的运算",
+  "modifier.cti.originbasedcomputation.flavor": "矛盾的集合",
+  "modifier.cti.originbasedcomputation.description": "有该词条的武器的伤害转换为本源伤害（无视防御），每次攻击都视为暴击且暴击伤害增加35%。",
+
+  "modifier.cti.kingdomofnumbers": "数于几何的王国",
+  "modifier.cti.kingdomofnumbers.flavor": "它是尽头，是答案，是一切计算的结果",
+  "modifier.cti.kingdomofnumbers.description": "造成奇数伤害时获得一层[数维的感知]，持续10s，初始冷却为15s，每一级词条会使冷却减少0.5s并格外增加一层[数维的感知]。\n[数维的感知]：每级使面板攻击力提高10%，攻击距离+0.5，期间造成伤害提高至200%",
+
+  "modifier.cti.curvemapping": "曲线映射",
+  "modifier.cti.curvemapping.flavor": "一种优美的形式。在维度与分形上可取--众所周知的事实",
+  "modifier.cti.curvemapping.description": "造成偶数伤害时，获得25%减伤，持续10s，初始冷却15s，每一级提升，额外获得5%减伤，并减少0.5s冷却最高生效5级。",
+
+  "modifier.cti.supplementaryformula": "补充算式",
+  "modifier.cti.supplementaryformula.flavor": "不谙日月的真理之底",
+  "modifier.cti.supplementaryformula.description": "每过37秒获得持续10s的25%减伤，穿戴的装备中每有一级该词条都会使减伤格外获得5%，最高生效8级词条。",
+
+  "modifier.cti.triangletheory": "三角正论",
+  "modifier.cti.triangletheory.flavor": "一个显而易见的三角形，为不公的忽视而发声，举证如下",
+  "modifier.cti.triangletheory.description": "穿戴的装备中有该词条时第三次攻击才可对你造成伤害。",
+
+  "modifier.cti.auto_shooting": "自动射击",
+  "modifier.cti.auto_shooting.flavor": "有弓了谁还需要枪？",
+  "modifier.cti.auto_shooting.description": "按住右键就能自动射击，不需要松手。",
+
+  "modifier.cti.atheric": "天赐神兵",
+  "modifier.cti.atheric.flavor": "你的工具已被上天赐福",
+  "modifier.cti.atheric.description": "工具每有一个部件由天镜材料制成，+1时运和抢夺等级、+50%造成的伤害，并根据数量依次增加使用者的辛运、击退抗性、交互距离和最大生命。",
+
+  "modifier.cti.ambrosium_powered": "圣神光辉",
+  "modifier.cti.ambrosium_powered.flavor": "你的工具已注入神的能量",
+  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能24次。每推进一个天镜Boss增加100攻击伤害（近战、远程）或15%独立伤害减免（护甲）",
+
+  "modifier.cti.stellar_arrow": "星辰箭矢",
+  "modifier.cti.stellar_arrow.flavor": "据说能射下天上的星星",
+  "modifier.cti.stellar_arrow.description": "把箭矢替换成伤害更高且击中时召唤落星的星辰箭矢。当工具有神能晶充能时优先消耗充能而非箭矢来射击。",
+
+  "modifier.cti.gravity_shield": "重力场护盾",
+  "modifier.cti.gravity_shield.flavor": "反转引力！",
+  "modifier.cti.gravity_shield.description": "对附近的弹射物施加斥力，使它们偏离原轨迹，等级越高效果越强。[独立减免]对弹射物伤害获得75%减伤，非弹射物伤害则为25%",
+
+  "modifier.cti.secondary_armor": "穿刺防护",
+  "modifier.cti.secondary_armor.flavor": "最锐之矛也奈不了我何！",
+  "modifier.cti.secondary_armor.description": "使你的护甲能抵抗穿甲伤害。",
+
+  "modifier.cti.sentrite_defense": "哨石之庇护",
+  "modifier.cti.sentrite_defense.flavor": "从滑行魔石上扒下来的外壳",
+  "modifier.cti.sentrite_defense.description": "[独立减免]对非穿甲伤害提供50%的减免。",
+
+  "modifier.cti.life_steal": "生命窃取",
+  "modifier.cti.life_steal.flavor": "以血换血",
+  "modifier.cti.life_steal.description": "攻击时每级恢复攻击伤害10%的血量，最大为每级自身生命值5%。",
+
+  "modifier.cti.life_enhance": "生命强化",
+  "modifier.cti.life_enhance.flavor": "增加了你的维生能量",
+  "modifier.cti.life_enhance.description": "每级增加20最大生命。[单次加成]血量超过50%时获得50%减伤，小于50%时增加50%受治疗量。",
+
+  "modifier.cti.valkyrie_bless": "武神之馈",
+  "modifier.cti.valkyrie_bless.flavor": "风之号令",
+  "modifier.cti.valkyrie_bless.description": "攻击时造成风暴伤害，并使不会劈中自己和掉落物且无视无敌帧的落雷击中目标。",
+
+  "modifier.cti.reborn": "重生",
+  "modifier.cti.reborn.flavor": "名为Yharon的龙",
+  "modifier.cti.reborn.description": "死亡时以半血重生，获得10秒抗性V和力量X，冷却240s。",
+
+  "modifier.cti.phoenix": "凤凰",
+  "modifier.cti.phoenix.flavor": "从烈火中诞生",
+  "modifier.cti.phoenix.description": "穿着时缓缓恢复全身装备的神能晶充能，移除流体的迷雾视觉效果。",
+
+  "modifier.cti.armor_oracle": "神谕",
+  "modifier.cti.armor_oracle.flavor": "神不让你加buff，你加吗？",
+  "modifier.cti.armor_oracle.description": "清除穿戴者负面效果，阻止其它生物对自己施加神谕效果。",
+
+  "modifier.cti.stardragonhit": "天瀑",
+  "modifier.cti.stardragonhit.flavor": "始与终",
+  "modifier.cti.stardragonhit.description": "武器的基础伤害每级提高提高500,对于18%以及以下生命值的目标会直接吞噬其灵魂,并且转化为1星尘,远程攻击不会吞噬目标\n[主动技能]当星尘数量满10层,对着你的目标按下绑定按键/射出箭矢命中,会从天空中生成一颗巨型的流星向你的目标位置砸去,内圈(10格内)会造成10倍于你当前武器基础伤害的双穿伤害,随后会引发一道涟漪,逐渐蔓延至周围半径100格的区域,触碰到的敌人会受到高额的双穿伤害并且被大幅度击退,命中生命值低于21%/此次伤害大于目标最大生命10倍,会直接抹除掉目标,并且存储为星尘在你的主手武器中",
+
+  "modifier.cti.starbless": "星界压制",
+  "modifier.cti.starbless.flavor": "畏惧么",
+  "modifier.cti.starbless.description": "大部分目标的莱特兰等级低于你生命和护甲之合将不再敢把你视为目标,并且免疫其造成的额外伤害,同时你也会免疫掉大部分的无来源和全部的魔法伤害,以及自己造成的直接伤害\n受到的单次伤害不会超过最大生命20%",
+
+  "modifier.cti.cursed_arrow": "诅咒之箭",
+  "modifier.cti.cursed_arrow.flavor": "禁止回血",
+  "modifier.cti.cursed_arrow.description": "箭矢击中时每级施加5s1级诅咒。",
+
+
+  "item.cti.xinian_ingot": "§c37锭",
+  "item.cti.molten_xinian_bucket": "熔融37桶",
+  "fluid.cti.molten_xinian": "熔融37",
+  "cti.tooltip.item.xinian_ingot.desc1": "37",
+  "cti.tooltip.item.xinian_ingot.desc2": "惜念(xinian) 开发者材料",
+
+
+  "item.cti.ultradense_ammo": "超致密机枪弹药",
+  "item.cti.protonium_ammo": "质子机枪弹药",
+  "item.cti.electronium_ammo": "电子机枪弹药",
+
+  "item.cti.upgrade_augment_4": "钛锆整合组件",
+  "item.cti.upgrade_augment_5": "彩钢整合组件",
+  "item.cti.upgrade_augment_6": "活化彩钢整合组件",
+
+  "item.cti.extereme_dyano_augment": "恶念燃烧室组件",
+  "item.cti.extereme_speed_augment": "恶念速度提升组件",
+  "item.cti.extereme_output_augment": "恶念催化组件",
+
+  "item.cti.tier_5_rocket": "五级火箭",
+  "item.ad_astra.tier_5_rocket": "五级火箭",
+
+  "item.cti.astra_tablet_1": "一阶全息星空板",
+  "item.cti.astra_tablet_2": "二阶全息星空板",
+  "item.cti.astra_tablet_3": "三阶全息星空板",
+  "item.cti.astra_tablet_4": "四阶全息星空板",
+  "item.cti.astra_tablet_5": "五阶全息星空板",
+
+  "item.cti.compressed_singularity": "压缩奇点",
+  "item.cti.orb_of_curse": "球状恶意",
+
+  "item.cti.upgrade_electronium": "辅助静电场分离组件",
+  "item.cti.upgrade_violium": "外置滤波电容组件",
+  "item.cti.upgrade_aetherium": "超导互感线圈组件",
+
+  "item.cti.advanced_fluid_tank_augment": "高级扩容升级",
+
+  "block.cti.unipolar_magnet": "单极磁石",
+  "block.cti.unipolar_magnet_budding": "单极磁石母岩",
+  "block.cti.overdense_glacio_stone":"超质量霜星石",
+  "item.cti.unipolar_magnet": "单极磁石",
+  "item.cti.unipolar_magnet_budding": "单极磁石母岩",
+  "item.cti.overdense_glacio_stone":"超质量霜星石",
+
+  "block.cti.rasterite": "光栅石",
+  "block.cti.rasterite_budding": "光栅石母岩",
+  "item.cti.rasterite": "光栅石",
+  "item.cti.rasterite_budding": "光栅石母岩",
+
+  "block.cti.fracture_silicon": "分形硅石",
+  "block.cti.fracture_silicon_budding": "分形硅石母岩",
+  "item.cti.fracture_silicon": "分形硅石",
+  "item.cti.fracture_silicon_budding": "分形硅石母岩",
+
+  "block.cti.meteorite_ore": "陨铁矿",
+  "item.cti.meteorium_plane": "陨铁接收面板",
+
+  "item.cti.magic_crystal":"魔力水晶",
+  "item.cti.enriched_mana":"富集魔力水晶",
+
+  "item.cti.cold_gobberwine":"暴雪戈伯冰啤",
+  "item.cti.unknown_wine":"？？？(你不会真以为是贴图出错吧)",
+  "item.cti.ethanol_absolute":"无水乙醇酒(恶徒水壶最爱)",
+  "item.cti.cornflower_beer":"矢车菊清啤",
+  "item.cti.etbeer":"呕吐酒",
+  "item.cti.mahoushaojiu_wine":"马猴烧酒",
+  "item.cti.xuerou_wine":"血肉之精酿",
+  "item.cti.qdbeer":"轻倒啤酒(铀铀最爱)",
+  "item.cti.boomwine":"炸蛋鸡尾酒",
+  "item.cti.fishbone_wine":"牢墨爱喝的鱼骨酒",
+
+  "item.minecraft.potion.effect.bloodanger": "红温药水",
+  "item.minecraft.splash_potion.effect.bloodanger": "喷溅型红温药水",
+  "item.minecraft.lingering_potion.effect.bloodanger": "滞留型红温药水",
+
+  "item.minecraft.potion.effect.resolute": "坚定药水",
+  "item.minecraft.splash_potion.effect.resolute": "喷溅型坚定药水",
+  "item.minecraft.lingering_potion.effect.resolute": "滞留型坚定药水",
+
+
+  "item.cti.strange_ice_crystal":"奇特的冰晶",
+
+
+  "biome.cti.disordered_zone":"异常区域",
+  "biome.cti.ionized_glacio":"电离冻土",
+  "biome.cti.ionized_mare":"电离月海",
+  "biome.cti.infernal":"炼狱",
+  "biome.cti.infernal_molten_surface":"半熔融炼狱",
+  "biome.cti.jupiter":"木星核心",
+  "biome.cti.uranus":"天王星核心",
+
+
+
+  "death.attack.cti.ionized": "%1$s 体内的正负电荷被永远分离了。",
+  "death.attack.cti.ionized.player": "%1$s 体内的正负电荷被永远分离了。",
+  "death.attack.cti.scorch": "%1$s 变成了多孔活性炭。",
+  "death.attack.cti.scorch.player": "%1$s 变成了多孔活性炭。",
+  "death.attack.cti.frozen": "%1$s 变成了速冻水饺。",
+  "death.attack.cti.frozen.player": "%1$s 变成了速冻水饺。",
+  "death.attack.cti.pressure": "%1$s 变成了压缩毛巾。",
+  "death.attack.cti.pressure.player": "%1$s 变成了压缩毛巾。",
+  "death.attack.mobattackreflect": "%1$s 被怪物弹死了。",
+  "death.attack.mobattackreflect.player": "%1$s 被怪物弹死了。",
+  "death.attack.cti.obsidianhurt": "%1$s 被黑曜石碴子崩死了。",
+  "death.attack.cti.obsidianhurt.player": "%1$s 被黑曜石碴子崩死了。",
+
+
+
+  "modifier.cti.electric_protect": "电离防护",
+  "modifier.cti.electric_protect.flavor": "电流退散！",
+  "modifier.cti.electric_protect.description":"每级提供0.25电离抗性",
+
+  "modifier.cti.scorch_protect": "灼热防护",
+  "modifier.cti.scorch_protect.flavor": "清热解暑！",
+  "modifier.cti.scorch_protect.description":"每级提供0.25灼热抗性",
+
+  "modifier.cti.freeze_protect": "极寒防护",
+  "modifier.cti.freeze_protect.flavor": "祛寒避湿！",
+  "modifier.cti.freeze_protect.description":"每级提供0.25极寒抗性",
+
+  "modifier.cti.pressure_protect": "高压防护",
+  "modifier.cti.pressure_protect.flavor": "天塌下来都不怕！",
+  "modifier.cti.pressure_protect.description":"每级提供0.5压强抗性",
+
+  "modifier.cti.gold_simulate": "拟态金",
+  "modifier.cti.gold_simulate.flavor": "assert player == Blocks.Gold_Block;",
+  "modifier.cti.gold_simulate.description":"在猪的眼里你就是一个金块，所以僵尸猪灵不会主动攻击你。",
+
+  "modifier.cti.end_slayer": "弑末者",
+  "modifier.cti.end_slayer.flavor": "-仅在七咒模式下生效-",
+  "modifier.cti.end_slayer.description":"(作为工具时)对末影人、末影螨、潜影贝造成的伤害翻倍\n(作为护甲时)末影人不会主动攻击你，抑制对你有敌意的末影生物的瞬移（只需一件就能生效）",
+
+  "modifier.cti.stellar_blade": "斩星",
+  "modifier.cti.stellar_blade.flavor": "昔日工匠的辉煌，传说中能斩断星辰的材料...",
+  "modifier.cti.stellar_blade.description":"让落星从你敌人的头顶砸下，不同颜色的落星会给目标叠加不同的环境危害。",
+
+  "modifier.cti.fiery_capable": "好暑",
+  "modifier.cti.fiery_capable.flavor": "太烧了",
+  "modifier.cti.fiery_capable.description":"给予使用者抗火，使用者在熔岩中时缓慢恢复耐久",
+
+  "modifier.cti.all": "宇宙之源",
+  "modifier.cti.all.flavor": "宇宙万法的那个源头，它是——",
+  "modifier.cti.all.description":"攻击/被攻击时对敌人施加易伤、原子分解、夸克解离和10种随机负面效果，你造成的伤害*10，受到的伤害*0，你的护甲栏和主副手的每件工具都参与计算一次。",
+
+  "modifier.cti.stress": "应力",
+  "modifier.cti.stress.flavor": "sigma",
+  "modifier.cti.stress.description":"受伤时获得可堆叠的伤害减免，最大40%",
+
+  "modifier.cti.scorch_induced": "焦灼附加",
+  "modifier.cti.scorch_induced.flavor": "热死了，热死了，热死了",
+  "modifier.cti.scorch_induced.description":"攻击时附带一定量焦灼伤害并施加少量焦灼值。",
+
+  "modifier.cti.frozen_induced": "霜冻附加",
+  "modifier.cti.frozen_induced.flavor": "冰！",
+  "modifier.cti.frozen_induced.description":"攻击时附带一定量霜冻伤害并施加少量霜冻值。",
+
+  "modifier.cti.ionize_induced": "电离附加",
+  "modifier.cti.ionize_induced.flavor": "电荷解离！！！",
+  "modifier.cti.ionize_induced.description":"攻击时附带一定量电离伤害，穿透敌人的绝大部分防御手段，并施加少量电离值。",
+
+  "modifier.cti.pressure_induced": "压强附加",
+  "modifier.cti.pressure_induced.flavor": "别压力我了😰😰😰",
+  "modifier.cti.pressure_induced.description":"攻击时附带一定量压强伤害并施加少量压强值。",
+
+  "modifier.cti.disorder": "异常",
+  "modifier.cti.disorder.flavor": "其产生的磁场扰乱了空间中能量的分布",
+  "modifier.cti.disorder.description":"攻击时造成几束等离子爆炸。",
+
+  "modifier.cti.eros": "本能",
+  "modifier.cti.eros.flavor": "本能觉醒",
+  "modifier.cti.eros.description":"右击动物使动物发情",
+
+  "modifier.cti.breeding": "繁衍",
+  "modifier.cti.breeding.flavor": "Good for sex.",
+  "modifier.cti.breeding.description":"加速身边动物的生长，并清除它们的繁殖冷却",
+
+  "modifier.cti.knightglory": "骑士辉耀",
+  "modifier.cti.knightglory.flavor": "剑与盾！",
+  "modifier.cti.knightglory.description":"攻击时，将部分伤害转化为可叠加的伤害吸收，每次10%最大生命，上限等级 * 最大生命30%。并根据伤害吸收提高攻击伤害每级每点1伤害,远程减半",
+
+  "modifier.cti.emp": "电磁脉冲发生器",
+  "modifier.cti.emp.flavor": "生物电都给你打歪",
+  "modifier.cti.emp.description":"在物品栏中时充能，满充能打击将使周围生物宕机3秒（对玩家无效），冷却10秒",
+
+  "modifier.cti.double_edged": "双刃剑",
+  "modifier.cti.double_edged.flavor": "大动脉撕裂者",
+  "modifier.cti.double_edged.description":"满蓄力打击时对敌人造成2.5倍伤害。然而如果未击中或者没有满蓄力，你会打中你自己。",
+
+
+  "item.cti.nitro_supersteel": "冰淬高速钢",
+  "material.cti.nitro_supersteel": "冰淬高速钢",
+  "material.cti.nitro_supersteel.flavor": "无限接近玻璃态金属的晶态金属",
+  "material.cti.nitro_supersteel.encyclopedia": "极端的骤冷和独特的材料组成造就了它集坚硬与韧性为一体的特性",
+
+  "item.cti.stellar_manyullyn": "无垠星河·玛玉灵",
+  "material.cti.stellar_manyullyn": "§l玛玉灵",
+  "material.cti.stellar_manyullyn.flavor": "-开发者材料-",
+  "material.cti.stellar_manyullyn.encyclopedia": "未曾游历星空，怎知星辰不可触及？皆为幻想。",
+
+  "item.cti.invert_hoshino": "星野·恐怖",
+  "cti.tooltip.item.invert_hoshino": "独爱流萤 开发者材料-",
+  "material.cti.invert_hoshino": "§l星野·恐怖",
+  "material.cti.invert_hoshino.flavor": "是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.是我.",
+  "material.cti.invert_hoshino.encyclopedia": "在催化剂和反中子影响下反转的星野锭",
+
+  "material.cti.pyrocrystal": "永燃水晶",
+  "material.cti.pyrocrystal.flavor": "宇宙珍奇之一",
+  "material.cti.pyrocrystal.encyclopedia": "诞生于被星冕辐射的高温星球之上",
+
+  "material.cti.ice_shard": "可燃冰",
+  "material.cti.ice_shard.flavor": "宇宙珍奇之一",
+  "material.cti.ice_shard.encyclopedia": "既冻人又扎人，还富含有机质",
+
+  "material.cti.ultra_dense_hydride_crystal": "氢化超致密",
+  "material.cti.ultra_dense_hydride_crystal.flavor": "宇宙珍奇之一",
+  "material.cti.ultra_dense_hydride_crystal.encyclopedia": "诞生于富氢气巨的核心之中",
+
+  "material.cti.electrocrystal": "感电水晶",
+  "material.cti.electrocrystal.flavor": "宇宙珍奇之一",
+  "material.cti.electrocrystal.encyclopedia": "诞生于被带电粒子辐射的星表",
+
+  "material.cti.unipolar_magnet": "单极磁石",
+  "material.cti.unipolar_magnet.flavor": "宇宙珍奇之一",
+  "material.cti.unipolar_magnet.encyclopedia": "诞生于异常环境的异常材料",
+
+  "material.cti.true_infinity": "无尽",
+  "material.cti.true_infinity.flavor": "结束了？",
+  "material.cti.true_infinity.encyclopedia": "历经了千辛万苦，你终于制得了这种材料\n寰宇之力在你的手中",
+
+  "item.cti.roxy_ingot": "洛琪希锭",
+  "cti.tooltip.item.roxy_ingot": "zehn 贡献者材料-",
+  "material.cti.roxy": "洛琪希",
+  "material.cti.roxy.flavor": "冥冥之中的动力推动你将陨石加护的异星物质雕刻如此，温润如水的光芒从中散发",
+  "material.cti.roxy.encyclopedia": "来自天穹的物质将你包裹起来，你获得了n层神明的加护",
+
+
+  "material.cti.meteorium": "陨铁合金",
+  "material.cti.meteorium.flavor": "它是从哪里来的呢？",
+  "material.cti.meteorium.encyclopedia": "一块来自外星的陨铁，似乎包含了一种神奇的能量。\n怎么把这种能量分离出来呢？",
+
+  "item.cti.xenoglarium_ingot": "烈光合金锭",
+  "material.cti.xenoglarium": "烈光合金",
+  "material.cti.xenoglarium.flavor": "柔和的光芒电离了周围的空气。",
+  "material.cti.xenoglarium.encyclopedia": "“存在即为意义”",
+
+
+
+  "modifier.cti.roxylightning": "雷光",
+  "modifier.cti.roxylightning.flavor": "消耗命运的一击！",
+  "modifier.cti.roxylightning.description":"每隔10s叠加一层自身血量上限*10闪电类型的附伤，至多等级+2层，打出后为使用者附加10s反胃、虚弱和电子效果",
+
+  "modifier.cti.abelisures": "阿贝尔化",
+  "modifier.cti.abelisures.flavor": "我习得了交换的技艺",
+  "modifier.cti.abelisures.description":"右键触发：10内抗拒死亡，计时结束后强制传送至出生点并将自身一切debuff转移至最后攻击的目标，冷却120s",
+
+  "modifier.cti.alienmatter": "异星物质",
+  "modifier.cti.alienmatter.flavor": "我取出了材料中最精华的一部分",
+  "modifier.cti.alienmatter.description":"每次击杀敌人必定产出赛特斯石英和福卢伊克斯水晶",
+
+  "modifier.cti.lebegusprotection": "勒贝格的加护",
+  "modifier.cti.lebegusprotection.flavor": "我的测度已被敛至0",
+  "modifier.cti.lebegusprotection.description":"霍德全伤害减免6% * 等级点",
+
+  "modifier.cti.improve": "改良",
+  "modifier.cti.improve.flavor": "先进工艺！",
+  "modifier.cti.improve.description":"增加升级防御能力各一个槽位",
+
+  "modifier.cti.hardcore": "硬核",
+  "modifier.cti.hardcore.flavor": "字面意思的硬核",
+  "modifier.cti.hardcore.description":"增加两个防御槽",
+
+  "modifier.cti.reflect": "反射",
+  "modifier.cti.reflect.flavor": "别怕了,他不崩服务器的",
+  "modifier.cti.reflect.description":"每级反射原伤害10%给攻击者，会计算全身总装备词条等级",
+
+  "modifier.cti.mutation": "突变",
+  "modifier.cti.mutation.flavor": "血肉在药物刺激下发生了异变，但他似乎屈服于你",
+  "modifier.cti.mutation.description":"增加防御升级能力各一个槽位",
+
+  "modifier.cti.stellar_blessing": "昼夜变换",
+  "modifier.cti.stellar_blessing.flavor": "极致的骤冷与极致的骤热",
+  "modifier.cti.stellar_blessing.description":"攻击时造成额外爆炸伤害，并施加着火或者霜冻。",
+
+  "modifier.cti.dragons_wifu": "龙的老婆",
+  "modifier.cti.dragons_wifu.flavor": "龙娘化！",
+  "modifier.cti.dragons_wifu.description":"攻击时根据等级额外造成龙息伤害。",
+
+  "modifier.cti.armor_dragons_wifu": "龙的老婆",
+  "modifier.cti.armor_dragons_wifu.flavor": "龙娘化！",
+  "modifier.cti.armor_dragons_wifu.description":"免疫末影龙龙息伤害，鞘翅飞行时给予自身抗性提升和夜视，按下shift可以加速飞行",
+
+  "modifier.cti.trinityblessing": "强相互作用",
+  "modifier.cti.trinityblessing.flavor": "三种简并态材料在你的帮助下成功地融合，它们为你的工具赐予了祝福。",
+  "modifier.cti.trinityblessing.description":"你的所有攻击穿甲，自己免疫穿甲攻击，你的工具正常使用不再消耗耐久，每级获得叠乘的167%大部分属性加成，特别地，当属性等级为3时，此增益改为333%",
+
+  "modifier.cti.trinitycurse": "极端顽固",
+  "modifier.cti.trinitycurse.flavor": "以你的技术，无法操作这种坚硬无比的材料，它生气地对你降下诅咒",
+  "modifier.cti.trinitycurse.description":"使你被攻击时所受伤害翻1.33倍，无敌帧缩短，特别地，属性等级为3时移除自身无敌帧，受到伤害的修正倍率变为3.33",
+
+  "modifier.cti.strengthwill": "坚定意志",
+  "modifier.cti.strengthwill.flavor": "第二次机会。",
+  "modifier.cti.strengthwill.description": "生命为满时，不会被受到攻击的一击必杀。",
+
+  "modifier.cti.arrogance": "傲慢",
+  "modifier.cti.arrogance.flavor": "和傲慢诅咒类似",
+  "modifier.cti.arrogance.description": "你对恶意词条大于你的生物将会基于你玩家恶意等级和怪物等级差除50提升倍率，这个倍率不会超过10",
+
+  "modifier.cti.sharpblade": "利刃",
+  "modifier.cti.sharpblade.flavor": "boss生物专精",
+  "modifier.cti.sharpblade.description": "基于(面板攻击力30% x 目标最大生命15%)的十分之一提升你的基础伤害,这个提升不会超过目标最大生命10%",
+
+  "modifier.cti.ararar": "额外夹板",
+  "modifier.cti.ararar.flavor": "精工细作",
+  "modifier.cti.ararar.description": "每一级增加2护甲和1点韧性(面板)，并且增300耐久上限",
+
+  "modifier.cti.nerfed_dash": "疾行",
+  "modifier.cti.nerfed_dash.flavor": "风驰电掣",
+  "modifier.cti.nerfed_dash.description": "增加工具2×玩家速度倍的攻击伤害、采掘速度和箭矢初速度。",
+  "material.tinkerscalibration.fazelle.encyclopedia": "增加工具2×玩家速度倍的攻击伤害、采掘速度和箭矢初速度。",
+
+  "modifier.cti.eventually": "终焉",
+  "modifier.cti.eventually.flavor": "聚...散",
+  "modifier.cti.eventually.description":"获得持久的狩猎状态，主手持有时，处于狩猎状态，你10格以内的所有友善生物和玩家以外的生物会直接化为齑粉",
+
+  "modifier.cti.transmigration": "轮回",
+  "modifier.cti.transmigration.flavor": "1,2,3,4,5,6,7,8,9,0...1,2...",
+  "modifier.cti.transmigration.description":"你身上的狩猎效果无法被牛奶移除",
+
+  "modifier.cti.trauma": "创伤",
+  "modifier.cti.trauma.flavor": "痛苦仅是一瞬",
+  "modifier.cti.trauma.description":"处于狩猎状态你受到的“伤害”会被全部抵消",
+
+  "modifier.cti.nerf_colossal": "泰坦杀手",
+  "modifier.cti.nerf_colossal.flavor": "泰坦杀手",
+  "modifier.cti.nerf_colossal.description":"对生命值高于你的生物造成更多伤害",
+
+  "modifier.cti.overwritesouldevouring": "噬魂",
+  "modifier.cti.overwritesouldevouring.flavor": "吃掉它们，全部！",
+  "modifier.cti.overwritesouldevouring.description":"该工具会在一次次击杀敌人后变得更加强大，每次击杀都会使自身造成的伤害提高词条等级乘1%点。",
+
+  "modifier.cti.infinity": "无限",
+  "modifier.cti.infinity.flavor": "旅途的重点",
+  "modifier.cti.infinity.description":"每级提升基础伤害131072点。当词条等级大于等于3时候，你直接造成3.4E38点伤害",
+
+  "modifier.cti.cosmopolitan": "寰宇",
+  "modifier.cti.cosmopolitan.flavor": "......",
+  "modifier.cti.cosmopolitan.description":"工具正常使用不再消耗耐久,在你的背包时候每刻恢复耐久100点",
+
+  "modifier.cti.unitedasone": "万众一心",
+  "modifier.cti.unitedasone.flavor": "众志成城",
+  "modifier.cti.unitedasone.description":"每当游戏中多一个匠魂词条(任何模组),你的伤害都会增加6%,无上限",
+
+  "modifier.cti.tinge": "色彩",
+  "modifier.cti.tinge.flavor": "......",
+  "modifier.cti.tinge.description":"每级等效增加时运,抢夺88级",
+
+  "modifier.cti.deepanddeep": "更加深入",
+  "modifier.cti.deepanddeep.flavor": "......",
+  "modifier.cti.deepanddeep.description":"每级增加100%回声倍率",
+
+  "modifier.cti.deepoceanecho": "深海的回声",
+  "modifier.cti.deepoceanecho.flavor": "你听到了吗",
+  "modifier.cti.deepoceanecho.description":"基于（最大生命值的30% * 护甲值的30% + 总经验点数的10000分之1【这个至少为1】 ）获得回声点数,回声点数 * 0.1 * 词条等级将会转化为你的实际伤害。如果你的工具持有海蒙/海梦/深海紫水晶/海王/海神等词条，则会每级额外提升200%的伤害,\n获得5海洋槽\n你不再对玩家造成基础伤害",
+
+  "modifier.cti.dominate_replace": "主宰",
+  "modifier.cti.dominate_replace.flavor": "我是世界的主宰！",
+  "modifier.cti.dominate_replace.description":"根据目标血量造成额外伤害，每级最大增加1000点",
+
+  "modifier.cti.nerf_colossal": "泰坦杀手",
+  "modifier.cti.nerf_colossal.flavor": "泰坦杀手",
+  "modifier.cti.nerf_colossal.description":"对生命值高于你的生物造成更多伤害",
+
+  "modifier.cti.imprison": "禁锢",
+  "modifier.cti.imprison.flavor": "别问为什么",
+  "modifier.cti.imprison.description":"由于匠魂戒指加强化会导致远程伤害无限叠加，而原作者已经停更，故戒指无法施加匠魂强化，并且一旦组装无法更换部件",
+
+  "modifier.cti.flying": "飞行模式",
+  "modifier.cti.flying.flavor": "安全飞行",
+  "modifier.cti.flying.description":"现在你可以飞行了",
+
+  "modifier.cti.decoying": "诱食",
+  "modifier.cti.decoying.flavor": "吸引生物",
+  "modifier.cti.decoying.description":"工具攻击目标的时候有概率在周围生成生物，等级越高种类越多",
+
+  "modifier.cti.pressure_loaded": "空气装载",
+  "modifier.cti.pressure_loaded.flavor": "空气动力学！",
+  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力。",
+
+  "modifier.cti.fixed_oracular": "神谕",
+  "modifier.cti.fixed_oracular.flavor": "洗涤心灵。",
+  "modifier.cti.fixed_oracular.description":"每级施加10s神谕，使目标免疫正面效果并失去对负面效果的免疫。",
+
+  "modifier.cti.fixed_purify": "净化",
+  "modifier.cti.fixed_purify.flavor": "纯净之躯。",
+  "modifier.cti.fixed_purify.description":"净化所有负面效果。",
+
+  "modifier.cti.encrypt": "加密",
+  "modifier.cti.encrypt.flavor": "???",
+  "modifier.cti.encrypt.description":"怪物无法复印你的装备词条",
+
+  "modifier.cti.commongobberbless": "戈伯恩惠",
+  "modifier.cti.commongobberbless.flavor": "旅途的开始",
+  "modifier.cti.commongobberbless.description":"伤害每级增加15%，并且缓慢恢复饱食度.作为盔甲时每级减少6%收到的伤害\n[特殊效果]作为近战武器，对凋灵会附带6%最大生命的伤害(六百六十六，这个玩家开桂了)",
+
+  "modifier.cti.nethergobberbless": "下界戈伯恩惠",
+  "modifier.cti.nethergobberbless.flavor": "焱狱与苦难",
+  "modifier.cti.nethergobberbless.description":"获得常驻的抗火效果，伤害每级增加25%，并且缓慢恢复饱食度.作为盔甲时每级减少8%收到的伤害\n[特殊效果]作为近战武器，对凋灵骷髅会直接击杀并且必定获得一个头颅。当对应工具为劈刀，会基于肢解等级*抢夺类词条总等级会额外提升头颅获得倍率",
+
+  "modifier.cti.endergobberbless": "末影戈伯恩惠",
+  "modifier.cti.endergobberbless.flavor": "结束了？",
+  "modifier.cti.endergobberbless.description":"获得抗火效果，伤害每级增加35%，并且缓慢恢复饱食度.作为盔甲时每级减少10%收到的伤害\n[特殊效果]作为武器每次对末影龙造成伤害均会额外提升末影龙6%最大生命的伤害,使用劈刀击杀末影龙的时候必定掉落9个末影龙头颅",
+
+  "modifier.cti.encrypt": "加密",
+  "modifier.cti.encrypt.flavor": "???",
+  "modifier.cti.encrypt.description":"怪物无法复印你的装备词条",
+
+  "modifier.cti.thepast": "往日种种",
+  "modifier.cti.thepast.flavor": "往日种种,你当真不记得了?",
+  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成损失的耐久的200% + 100% * lv(全身)点伤害,这个伤害会有50%概率伤害到你自己,如果不掉耐久则不造成伤害,有黑曜石青铜则不会触发此效果",
+
+  "modifier.cti.mandarinduck": "苦命鸳鸯",
+  "modifier.cti.mandarinduck.flavor": "往日种种,往日?",
+  "modifier.cti.mandarinduck.description":"当身上穿有[黑曜石]装备时候提升其破片伤害倍率4 * 此词条总等级倍并且使其无视护甲,同时不会再伤害到自己.提升2点基础护甲值,如当前装备有黑曜石,则翻倍",
+
+  "modifier.cti.unprincipled": "强忍寡义",
+  "modifier.cti.unprincipled.flavor": "强忍寡义，志欲无餍",
+  "modifier.cti.unprincipled.description":"周围35格没有其他玩家时候,你造成的基础伤害则提升23%.此武器会绑定你的sdm商店,身上现金越多，造成伤害越高,每100元提升5%伤害",
+
+  "modifier.cti.cripplesuppermass": "超级质量",
+  "modifier.cti.cripplesuppermass.flavor": "保护效果更上一层楼！",
+  "modifier.cti.cripplesuppermass.description":"每点护甲值额外降低0.2% * 全身总词条等级 受到的攻击伤害，上限90%。,如果目标伤害穿透护甲则这个收益和上限均减半",
+
+  "modifier.cti.fixsanguine": "血染",
+  "modifier.cti.fixsanguine.flavor": "血肉之躯，燃烧一次足矣！",
+  "modifier.cti.fixsanguine.description":"降低该工具15%的耐久，每次受到伤害时，若伤害大于5点则有概率为该工具附加一层血印，每层血印提高1%攻击伤害与1%攻击速度或初速度，每级至多附加50层血印。",
+
+  "modifier.cti.combustor_modifier": "加力燃烧室",
+  "modifier.cti.combustor_modifier.flavor": "内置四缸发动机。",
+  "modifier.cti.combustor_modifier.description":"攻击时消耗背包里的燃料物品增加伤害，燃料的燃烧时长越长增加的伤害越多（最大+450%），对于熔岩桶这种有燃烧产物的物品不生效。",
+
+  "modifier.cti.igneous": "火成",
+  "modifier.cti.igneous.flavor": "火成岩！",
+  "modifier.cti.igneous.description": "工具会在火中变得更加锋利和坚固，等级越高加成越明显。",
+
+  "modifier.cti.egg_boost": "杀鸡取卵",
+  "modifier.cti.egg_boost.flavor": "某些时候把鸡宰了比等它生蛋更有效！",
+  "modifier.cti.egg_boost.description": "杀死鸡时额外掉落鸡蛋，等级越高掉落的越多。",
+
+  "modifier.cti.earth_core_crush": "地心崩裂",
+  "modifier.cti.earth_core_crush.flavor": "一镐即穿！",
+  "modifier.cti.earth_core_crush.description": "该工具的挖掘速度快到极致，且能够挖掘基岩。",
+
+  "modifier.cti.anti_stun_goggles": "防眩眼镜",
+  "modifier.cti.anti_stun_goggles.flavor": "指防止屏幕前的你晕眩",
+  "modifier.cti.anti_stun_goggles.description": "取消受伤时的屏幕抖动，免疫反胃和失明效果，移除移速造成的视角场效果。",
+
+  "modifier.cti.ragnarok": "诸神黄昏·仿",
+  "modifier.cti.ragnarok.flavor": "史蒂夫对恶意生物的研究成果",
+  "modifier.cti.ragnarok.description": "攻击时有概率移除目标的一个词条并将它掉落出来。",
+
+  "modifier.cti.star_fury": "群星之怒",
+  "modifier.cti.star_fury.flavor": "至少你不用去找空岛了",
+  "modifier.cti.star_fury.description": "攻击时召唤陨石砸向你的敌人。",
+
+  "modifier.cti.plasma_shielding": "离子护盾",
+  "modifier.cti.plasma_shielding.flavor": "离子护盾",
+  "modifier.cti.plasma_shielding.description": "免疫弹射物和爆炸伤害，获得压强以外的1点全环境抗性。获得一面能格挡4次伤害的护盾，护盾破碎后会冷却30秒然后重新充能。",
+
+  "modifier.cti.outer_space": "天外来客",
+  "modifier.cti.outer_space.flavor": "人走在路上被陨石砸死的概率很小，但是不为零",
+  "modifier.cti.outer_space.description": "所有攻击附带20%的下坠方块伤害，在非主世界的维度时所有伤害增加25%。",
+
+  "modifier.cti.explosionprevent": "热爆甲",
+  "modifier.cti.explosionprevent.flavor": "谁家小热爆花",
+  "modifier.cti.explosionprevent.description":"你周围10格内苦力怕类生物的爆炸会被完全压制，不再破坏方块",
+
+  "modifier.cti.atrophyblade": "生长抑制剂",
+  "modifier.cti.atrophyblade.flavor": "永远也长不大",
+  "modifier.cti.atrophyblade.description":"攻击时候会把史莱姆大小强行压制为1",
+
+  "modifier.cti.killphantom": "幻翼杀手",
+  "modifier.cti.killphantom.flavor": "我讨厌你",
+  "modifier.cti.killphantom.description": "穿着时会自动移除玩家30格内所有幻翼",
+
+  "modifier.cti.qcf": "引力场约束",
+  "modifier.cti.qcf.flavor": "引力展开",
+  "modifier.cti.qcf.description":"当怪物目标为你时候，不会再触发'传送'词条导致的传送,你的攻击不会在被'传送'词条所闪避",
+
+  "modifier.cti.donotsplit": "分裂抑制",
+  "modifier.cti.donotsplit.flavor": "不准分裂",
+  "modifier.cti.donotsplit.description":"攻击为目标施加'不准分裂',怪物拥有此效果不会则分裂",
+
+  "modifier.cti.crashdevour": "暴食",
+  "modifier.cti.crashdevour.flavor": "一把抓住，顷刻炼化",
+  "modifier.cti.crashdevour.description":"你的武器会一口气吞下整只史莱姆",
+
+  "modifier.cti.shanxipickaxe": "山西镐",
+  "modifier.cti.shanxipickaxe.flavor": "山西人祖传锻造技术",
+  "modifier.cti.shanxipickaxe.description":"使用带有此词条的镐类工具击杀凋零骷髅会掉落大量煤炭(真的是大量)",
+
+  "modifier.cti.supercrithit": "大暴击",
+  "modifier.cti.supercrithit.flavor": "超级头槌",
+  "modifier.cti.supercrithit.description":"你生命值比例越高可以提高此次暴击伤害,至高200%",
+
+  "modifier.cti.healthboost": "生命洪流",
+  "modifier.cti.healthboost.flavor": "生命在我体内流淌",
+  "modifier.cti.healthboost.description":"每级增加5点生命值",
+
+  "modifier.cti.sugarmaker": "制糖机",
+  "modifier.cti.sugarmaker.flavor": "Cti食品有限公司认证",
+  "modifier.cti.sugarmaker.description":"击杀生物后有70%概率掉落佛糖,不同佛糖食用后有不同的属性\n哈将:提高20%全伤害\n哼将:降低20%全伤害\n钢躯:免疫所有击退\n月隐:不会被3格外生物主动索敌锁到\n夜叉戮:降低50%最大生命,受到击退翻倍但是大幅提升伤害",
+
+  "modifier.cti.eternity": "永恒",
+  "modifier.cti.eternity.flavor": "不朽的 ToolStack",
+  "modifier.cti.eternity.description":"获得优先级较高的不毁，手持/穿着时获得50%伤害减免（仅生效一次）。",
+
+  "modifier.cti.devourer_of_dragons": "龙魂吞噬者",
+  "modifier.cti.devourer_of_dragons.flavor": "虽然你不是龙，但你的灵魂依然是我的盛宴！",
+  "modifier.cti.devourer_of_dragons.description":"你的工具会铭记你的屠龙之举并从中汲取力量。每击杀一条龙，伤害增加10%（最高500%，独立乘算）。",
+
+  "modifier.cti.devourer_of_dragons_armor": "龙魂吞噬者",
+  "modifier.cti.devourer_of_dragons_armor.flavor": "虽然你不是龙，但你的灵魂依然是我的盛宴！",
+  "modifier.cti.devourer_of_dragons_armor.description":"你的工具会铭记你的屠龙之举并从中汲取力量。每击杀一条龙，护甲值和生命值增加2（最高100）。减少75%来自龙的伤害。",
+
+  "modifier.cti.permafrost_revival": "永冻之秘药",
+  "modifier.cti.permafrost_revival.flavor": "不过现在它不会把你冻住了",
+  "modifier.cti.permafrost_revival.description":"死亡时以满血复活并冻结周围敌人5s（240s冷却）。",
+
+  "modifier.cti.plasma_wave_slash": "等离子波动斩Ex",
+  "modifier.cti.plasma_wave_slash.flavor": "泰拉瑞亚1.4.4更新的泰拉之刃belike",
+  "modifier.cti.plasma_wave_slash.description":"挥舞武器，释放毁灭性等离子波动。",
+
+  "modifier.cti.fiery_javelin": "火焰标枪",
+  "modifier.cti.fiery_javelin.flavor": "更快，更强，更炽热",
+  "modifier.cti.fiery_javelin.description":"将箭矢替换为16基础伤害的火焰标枪，击中时造成爆炸。",
+
+  "modifier.cti.regalium": "贵豪",
+  "modifier.cti.regalium.flavor": "贵豪真的贵吗",
+  "modifier.cti.regalium.description":"获得20%大部分属性增幅，使石生体与你中立。",
+
+  "modifier.cti.memory_alloy": "记忆合金",
+  "modifier.cti.memory_alloy.flavor": "记忆合金记忆力有多好？",
+  "modifier.cti.memory_alloy.description":"根据你历次所造成伤害平均值的50%增加攻击伤害（不会记录<10的伤害和多段伤害），用蓝冰右键以擦除历史记录，最多记录每级10000的伤害。\n[小知识：玩家对训练人偶造成的伤害必定为0，只是训练人偶会显示出你本该造成的伤害。因此，攻击训练人偶不会增加本词条的增伤。]",
+
+  "modifier.cti.sunstrike": "耀斑打击",
+  "modifier.cti.sunstrike.flavor": "侦测到在途轨道打击。",
+  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。耀斑打击造成10%的两段伤害，白天时威力翻2倍。词条等级会增加耀斑打击的生效次数。",
+
+  "modifier.cti.industrial": "工业",
+  "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
+  "modifier.cti.industrial.description":"增加升级槽和能力槽各一个。每级增加5%攻击伤害、挖掘速度、弹射物伤害、耐久和耐久修补量，增加5%（最大80%）不消耗耐久的概率。",
+
+  "modifier.cti.industrial_armor": "工业",
+  "modifier.cti.industrial_armor.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
+  "modifier.cti.industrial_armor.description":"增加防御槽和能力槽各一个。每级增加5%护甲值、护甲韧性、耐久和耐久修补量，增加5%（最大80%）不消耗耐久的概率，基于全身等级获得5%（最大80%）的非穿甲伤害减免。无论承受多高的伤害都至多消耗2耐久。",
+
+  "modifier.cti.carcinogenic": "永久创伤",
+  "modifier.cti.carcinogenic.flavor": "小心职业暴露！",
+  "modifier.cti.carcinogenic.description":"在两次攻击时，移除两次攻击之间目标恢复的生命值并依此治疗自己（最大恢复10生命值）。",
+
+  "modifier.cti.piercing_immune": "双层护甲",
+  "modifier.cti.piercing_immune.flavor": "没想到吧，我还有隐藏护甲！",
+  "modifier.cti.piercing_immune.description":"使你的护甲能格挡穿甲伤害，每件带有此特性的护甲都会额外生效一次护甲值减伤。",
+
+  "modifier.cti.permanent_scar": "永久创伤",
+  "modifier.cti.permanent_scar.flavor": "小心职业暴露！",
+  "modifier.cti.permanent_scar.description":"被攻击时，对攻击者逐渐施加最大2.5倍的永久受到伤害提升。",
+
+  "modifier.cti.neutron_collect": "中子凝聚",
+  "modifier.cti.neutron_collect.flavor": "简并态物质的同化作用",
+  "modifier.cti.neutron_collect.description":"击杀生物后随机将掉落物中的一个物品替换成中子态素尘埃，幸运值影响概率，词条等级影响数量。",
+
+  "modifier.cti.stable_step": "稳健脚步",
+  "modifier.cti.stable_step.flavor": "",
+  "modifier.cti.stable_step.description":"对漂浮、缓降和月步效果免疫。",
+
+  "modifier.cti.light_step": "轻盈步伐",
+  "modifier.cti.light_step.flavor": "",
+  "modifier.cti.light_step.description":"对缓慢和重力效果免疫。",
+
+  "modifier.cti.strengthen": "强健体魄",
+  "modifier.cti.strengthen.flavor": "",
+  "modifier.cti.strengthen.description":"对虚弱和挖掘疲劳效果免疫。",
+
+  "modifier.cti.clean": "洁净之躯",
+  "modifier.cti.clean.flavor": "",
+  "modifier.cti.clean.description":"对毒、凋零和反胃效果免疫。",
+
+  "modifier.cti.anti_curse": "反诅咒咒语",
+  "modifier.cti.anti_curse.flavor": "",
+  "modifier.cti.anti_curse.description":"对诅咒、魂火效果免疫。使诅咒层的效果变为1/（全身总属性等级+1）倍，自然减少量增加全身总属性等级倍",
+
+  "modifier.cti.sacrifice": "牺牲",
+  "modifier.cti.sacrifice.flavor": "刻下伤痕，拥抱新生",
+  "modifier.cti.sacrifice.description":"手持工具右键对自己施加牺牲效果，shift-右键增加牺牲层数。每层牺牲会暂时封印你的10%最大生命值，被封印的生命值一旦损失则无法恢复。",
+
+  "modifier.cti.buffed_anger": "血偿",
+  "modifier.cti.buffed_anger.flavor": "死兆将至！",
+  "modifier.cti.buffed_anger.description":"[独立乘算]每损失1%生命值增加1%伤害。当损失超过67%生命值时此效用翻倍，当最大生命值大于100时此效用减半。",
+
+  "modifier.cti.omnipotent": "无所不能",
+  "modifier.cti.omnipotent.flavor": "我无所不能！",
+  "modifier.cti.omnipotent.description":"令工具全部词条等级+1。",
+
+  "modifier.cti.ion_apocalypse": "离子启示录",
+  "modifier.cti.ion_apocalypse.flavor": "没有什么比这个更绚烂，更致命。",
+  "modifier.cti.ion_apocalypse.description":"攻击时令工具的词条效用扩散至周围6格半径内的生物。\n[警告]作用于范围伤害武器时可能造成严重卡顿。",
+
+  "modifier.cti.neutron_collect_plus": "短程力补偿器",
+  "modifier.cti.neutron_collect_plus.flavor": "对物质凝聚器的至强升级",
+  "modifier.cti.neutron_collect_plus.description":"使“中子凝聚”词条掉落中子素粒而非中子素尘。",
+
+  "modifier.cti.self_regulate": "自范性",
+  "modifier.cti.self_regulate.flavor": "自发的有序化",
+  "modifier.cti.self_regulate.description":"每次增加工具最大耐久时，根据 词条等级*log1.2(耐久增量) 永久增加伤害。",
+
+  "modifier.cti.anisotropy": "各向异性",
+  "modifier.cti.anisotropy.flavor": "告诉了我们要从多个角度看待事物",
+  "modifier.cti.anisotropy.description":"[仅单次生效]对小于10的伤害提供7格挡，大于10的伤害提供70%伤害减免，在护甲和大部分词条生效后计算。",
+
+  "modifier.cti.void_touch": "虚空之触",
+  "modifier.cti.void_touch.flavor": "虚空侵扰",
+  "modifier.cti.void_touch.description":"使你的工具能破坏那些通常不可破坏的方块，攻击时附加25%虚空伤害。",
+
+  "modifier.cti.crystallizing_armor": "结晶护甲",
+  "modifier.cti.crystallizing_armor.flavor": "护甲上长晶体了！",
+  "modifier.cti.crystallizing_armor.description":"获得一面每秒增加5%伤害减免的护盾，每次受到伤害都会减少5%的减免。",
+
+
+
+  "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",
+  "item.cti.molten_stellar_manyullyn_bucket": "熔融玛玉灵(?)桶",
+
+  "fluid.cti.molten_infinity": "熔融无尽",
+  "item.cti.molten_infinity_bucket": "熔融无尽桶",
+
+  "fluid.cti.molten_invert_hoshino": "熔融星野-恐怖",
+  "item.cti.molten_invert_hoshino_bucket": "熔融星野-恐怖桶",
+
+  "fluid.cti.molten_roxy": "熔融洛琪希",
+  "item.cti.molten_roxy_bucket": "熔融洛琪希桶",
+
+  "fluid.cti.molten_star_dragon": "熔融星界龙神金属",
+  "item.cti.molten_star_dragon_bucket": "熔融星界龙神金属桶",
+
+  "fluid.cti.lava_heated": "加热的熔岩",
+  "item.cti.lava_heated_bucket": "加热的熔岩桶",
+  "fluid.cti.lava_overheated": "过热熔岩",
+  "item.cti.lava_overheated_bucket": "过热熔岩桶",
+  "fluid.cti.lava_gaseous": "气态熔岩",
+  "item.cti.lava_gaseous_bucket": "气态熔岩桶",
+  "fluid.cti.lava_plasmatic": "等离子态熔岩",
+  "item.cti.lava_plasmatic_bucket": "等离子态熔岩桶",
+  "fluid.cti.lava_atomic": "简并态熔岩",
+  "item.cti.lava_atomic_bucket": "简并态熔岩桶",
+
+
+
+  "cti.gui.environmental.ionize_build": "电离强度",
+  "cti.gui.environmental.ionize_value": "电离值",
+  "cti.gui.environmental.scorch_build": "灼热强度",
+  "cti.gui.environmental.scorch_value": "灼热值",
+  "cti.gui.environmental.frozen_build": "霜冻强度",
+  "cti.gui.environmental.frozen_value": "霜冻值",
+  "cti.gui.environmental.pressure_build": "压强强度",
+  "cti.gui.environmental.pressure_value": "压强值",
+
+  "cti.message.environmental.freeze": "霜冻抗性",
+  "cti.message.environmental.scorch": "灼热抗性",
+  "cti.message.environmental.ionize": "电离抗性",
+  "cti.message.environmental.pressure": "压强抗性",
+
+
+  "cti.machine.atmosphere_extractor": "大气提取器",
+  "block.cti.atmosphere_extractor": "大气提取器",
+  "cti.machine.atmosphere_condensator": "大气冷凝器",
+  "block.cti.atmosphere_condensator": "大气冷凝器",
+  "cti.machine.quantum_miner": "位面采矿机",
+  "block.cti.quantum_miner": "位面采矿机",
+  "cti.machine.quantum_miner_advanced": "高级位面采矿机",
+  "block.cti.quantum_miner_advanced": "高级位面采矿机",
+  "cti.machine.reactor_neutron_collector": "反应堆中子素收集器",
+  "block.cti.reactor_neutron_collector": "反应堆中子素收集器",
+  "block.cti.alloy_centrifuge": "气动合金离心机",
+  "block.cti.sodium_cooler": "微型裂变反应堆",
+
+
+  "cti.gui.biome.null": "null",
+  "cti.gui.biome.incorrect": "无效群系",
+  "cti.gui.cant_output": "无法输出",
+  "cti.gui.missing_input": "缺少输入",
+  "cti.gui.normal": "正常工作",
+
+  "cti.tooltip.liquid.amount.with.capacity": "%s / %s mB",
+  "cti.tooltip.liquid.amount": "%s mB",
+
+  "gas.cti.neutron": "中子素",
+  "gas.cti.mana_gas": "气态魔力",
+  "infuse_type.cti.mana_infuse": "魔力水晶",
+
+  "stat.tconstruct.slot.prefix.ocean": "深海槽：",
+  "stat.tconstruct.slot.display.ocean": "深海",
+  "stat.tconstruct.slot.prefix.shenjin": "神金槽：",
+  "stat.tconstruct.slot.display.shenjin": "神金",
+
+  "stat.tconstruct.harvest_tier.cti.roxy": "洛琪希",
+
+  "cti.tooltip.modifier.volume": "基础空气容量",
+  "cti.tooltip.modifier.air": "空气体积",
+  "cti.tooltip.modifier.pressure": "空气压力",
+  "cti.tooltip.modifier.pressure_damage": "压缩空气增幅",
+  "cti.tooltip.modifier.damage_boost": "伤害增幅",
+  "cti.tooltip.modifier.sacrifice_level": "牺牲印记层数：",
+  "cti.tooltip.modifier.sacrifice_time": "牺牲印迹持续时间：",
+  "cti.tooltip.modifier.be_aware": "谨慎使用！",
+  "cti.tooltip.modifier.self_regulate": "自范性-增加的伤害：",
+
+  "fluid.cti.molten_aetherium": "熔融阳清合金",
+  "item.cti.molten_aetherium_bucket": "熔融阳清合金桶",
+
+  "fluid.cti.molten_violium": "熔融维奥合金",
+  "item.cti.molten_violium_bucket": "熔融维奥合金桶",
+
+  "fluid.cti.extraterrestrial_essense": "液化伊瑟尔",
+  "item.cti.extraterrestrial_essense_bucket": "液化伊瑟尔桶",
+
+  "fluid.cti.molten_meteorium": "熔融陨铁合金",
+  "item.cti.molten_meteorium_bucket": "熔融陨铁合金桶",
+
+  "modifier.cti.electric_protect": "电离防护",
+  "modifier.cti.electric_protect.flavor": "电流退散！",
+  "modifier.cti.electric_protect.description":"每级提供0.25电离抗性",
+
+  "modifier.cti.oxygelium_bud_helmet": "氧素生物头盔",
+  "modifier.cti.oxygelium_bud_helmet.flavor": "这个头盔有生命！",
+  "modifier.cti.oxygelium_bud_helmet.description":"当你氧气不为满,并且头盔中有水存储的时候,你的头盔每隔0.5秒会尝试为你补充氧气,如果补充成功还有20%概率恢复1点生命,同时消耗10mb水。\n在外星维度时，消耗水来抵御无氧环境，获得1霜冻抗性，受到的来自生物的伤害降低18%。",
+
+  "modifier.cti.fixed_precision": "精确",
+  "modifier.cti.fixed_precision.flavor": "精密如仪器！",
+  "modifier.cti.fixed_precision.description":"每级增加25%修复效率和5%耐久",
+
+
+
+  "dimension.ad_astra.infernal": "炼狱",
+  "dimension.ad_astra.uranus": "天王星",
+  "dimension.ad_astra.jupiter": "木星",
+  "dimension.ad_astra.ionized_glacio": "电离冻土",
+
+
+  "item.cti.upgrade_double_kit": "无限速度-能量升级安装器",
+  "item.cti.upgrade_energy_kit": "无限能量升级安装器",
+  "item.cti.upgrade_gas_kit": "无限气体升级安装器",
+  "item.cti.upgrade_speed_kit": "无限速度升级安装器",
+  "item.cti.chroma_upgrade_speed_kit": "速度升级套件T0.75",
+  "item.cti.aetherium_upgrade_speed_kit": "速度升级套件T1.5",
+  "item.cti.upgrade_speed_kit_1": "速度升级套件T1",
+  "item.cti.upgrade_speed_kit_2": "速度升级套件T2",
+  "item.cti.anti_upgrade_speed_kit": "速度升级套件T3",
+  "item.cti.upgrade_energy_kit_2": "高级无限能量升级安装器",
+  "item.cti.upgrade_energy_kit_3": "高高高高高级无限能量升级安装器",
+
+  "item.cti.flat_tablet": "全息永夜世界投影板",
+  "item.cti.flat_tablet_day": "全息永昼世界投影板",
+
+  "item.cti.meteor_shower": "流星雨",
+  "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
+
+
+  "trait.l2hostility.purify": "净化",
+  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果",
+
+  "trait.l2hostility.oracle": "神谕",
+  "trait.l2hostility.oracle.desc": "怪物攻击后每级移除10秒目标的正面效果并取消对负面效果的免疫。",
+
+  "trait.l2hostility.extreme_damage_reduce": "极端伤害防护",
+  "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少60%，受到的穿甲伤害减少80%。",
+
+  "trait.l2hostility.temporary_armor": "临时护盾",
+  "trait.l2hostility.temporary_armor.desc": "使生物获得99%减伤，但是每次受到伤害时该减伤减少1%。穿甲伤害会造成2倍效果（2%）。",
+
+  "trait.l2hostility.second_phase": "二阶段",
+  "trait.l2hostility.second_phase.desc": "当生物血量降至50%时每级使其无敌5秒。",
+
+
+  "info.cti.panel_condition.upward": "于世界最高处向上放置",
+  "info.cti.panel_condition.downward": "于世界最低处向下放置",
+  "info.cti.panel_condition.night": "需要在夜晚",
+
+  "info.cti.strange_ice_crystal": "右键发射冰结球，冷却30秒。",
+
+  "info.biomes.cti.disordered_zone": "异常区域位于电离冻土星球，你需要进入主线第三章并且做出五级火箭才能到达这里。在此之前你需要做出一个完整的质子、电子产线。",
+
+  "info.cti.space_shard": "近距离对训练人偶造成超过1000的dps时产生",
+  "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生"
+}

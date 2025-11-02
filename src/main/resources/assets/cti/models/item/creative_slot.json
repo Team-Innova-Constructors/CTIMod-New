@@ -1,0 +1,9 @@
+{
+  "loader": "mantle:nbt_key",
+  "parent": "forge:item/default",
+  "textures": {
+    "shenjin": "etshtinker:item/ingot/exo_alloy"
+  },
+  "nbt_key": "slot",
+  "extra_textures_key": "tconstruct:creative_slot"
+}

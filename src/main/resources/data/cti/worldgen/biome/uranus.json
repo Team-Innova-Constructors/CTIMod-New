@@ -1,0 +1,37 @@
+{
+  "temperature": -3.88,
+  "downfall": 1,
+  "precipitation": "none",
+  "effects": {
+    "sky_color": 10729169,
+    "fog_color": 10729169,
+    "water_color": 10729169,
+    "water_fog_color": 10729169,
+    "grass_color": 10729169,
+    "foliage_color": 10729169,
+    "particle": {
+      "options": {
+        "type": "minecraft:dust",
+        "color": [1,1,1],
+        "scale": 1.5
+      },
+      "probability": 0.0008
+    }
+  },
+  "creature_spawn_probability": 0,
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [
+      "kubejs:gas_hydrate_ore",
+      "kubejs:stellar_stone_diamond_ore_uranus"
+    ]
+  ]
+}

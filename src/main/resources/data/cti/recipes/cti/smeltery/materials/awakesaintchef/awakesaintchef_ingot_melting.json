@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:awakesaintchef_ingot"},
+  "result": {
+    "fluid": "cti:molten_awakesaintchef",
+    "amount": 90
+  },
+  "temperature": 2714,
+  "time": 20
+}

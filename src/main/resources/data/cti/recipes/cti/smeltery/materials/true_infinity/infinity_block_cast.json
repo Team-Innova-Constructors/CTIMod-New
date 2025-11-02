@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_basin",
+  "fluid": {
+    "fluid": "cti:molten_infinity",
+    "amount": 810
+  },
+  "result": "avaritia:infinity",
+  "cooling_time": 165
+}

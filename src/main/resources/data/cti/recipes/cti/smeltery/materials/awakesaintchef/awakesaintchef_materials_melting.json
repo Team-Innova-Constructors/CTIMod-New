@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "cti:awakesaintchef",
+  "temperature": 2714,
+  "result": {
+    "fluid": "cti:molten_awakesaintchef",
+    "amount": 90
+  }
+}

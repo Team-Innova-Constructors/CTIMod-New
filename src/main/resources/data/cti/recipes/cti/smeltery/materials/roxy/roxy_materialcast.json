@@ -1,0 +1,9 @@
+{
+    "type": "tconstruct:material_fluid", 
+        "fluid": {
+        "name": "cti:molten_roxy",
+         "amount":90
+        },
+         "temperature":1000, 
+         "output":"cti:roxy"
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cti:block/atmosphere_condensator"
+    },
+    "facing=south": {
+      "model": "cti:block/atmosphere_condensator",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "cti:block/atmosphere_condensator",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cti:block/atmosphere_condensator",
+      "y": -90
+    }
+  }
+}

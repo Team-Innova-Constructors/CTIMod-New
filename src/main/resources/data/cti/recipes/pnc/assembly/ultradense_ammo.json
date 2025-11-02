@@ -1,0 +1,10 @@
+{
+  "type": "pneumaticcraft:assembly_drill",
+  "input": {
+    "item": "etshtinker:ultra_dense"
+  },
+  "program": "drill",
+  "result": {
+    "item": "cti:ultradense_ammo"
+  }
+}

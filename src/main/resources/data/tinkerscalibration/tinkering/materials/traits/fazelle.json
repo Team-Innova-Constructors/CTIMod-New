@@ -1,0 +1,16 @@
+{
+  "perStat": {
+    "tconstruct:ranged": [
+      {
+        "name": "cti:nerfed_dash",
+        "level": 1
+      }
+    ],
+    "tconstruct:melee_harvest": [
+      {
+        "name": "cti:nerfed_dash",
+        "level": 1
+      }
+    ]
+  }
+}

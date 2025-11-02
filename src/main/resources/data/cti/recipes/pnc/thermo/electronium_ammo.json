@@ -1,0 +1,21 @@
+{
+  "type": "pneumaticcraft:thermo_plant",
+  "air_use_multiplier": 10.0,
+  "exothermic": false,
+  "fluid_input": {
+    "type": "pneumaticcraft:fluid",
+    "amount": 30,
+    "fluid": "etshtinker:molten_electronium"
+  },
+  "item_input": {
+    "item": "cti:ultradense_ammo"
+  },
+  "item_output": {
+    "item": "cti:electronium_ammo"
+  },
+  "pressure": 10,
+  "speed": 0.5,
+  "temperature": {
+    "min_temp": 973
+  }
+}

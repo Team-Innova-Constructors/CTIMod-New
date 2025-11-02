@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "ingredient": {
+    "item": "cti:invert_hoshino"
+  },
+  "value": 1,
+  "needed": 1,
+  "material": "cti:invert_hoshino"
+}

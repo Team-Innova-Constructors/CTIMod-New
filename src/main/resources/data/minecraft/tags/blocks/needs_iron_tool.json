@@ -1,0 +1,11 @@
+{
+  "values": [
+    "cti:unipolar_magnet_budding",
+    "cti:atmosphere_extractor",
+    "cti:atmosphere_condensator",
+    "cti:quantum_miner",
+    "cti:reactor_neutron_collector",
+    "cti:quantum_miner_advanced",
+    "cti:sodium_cooler"
+  ]
+}

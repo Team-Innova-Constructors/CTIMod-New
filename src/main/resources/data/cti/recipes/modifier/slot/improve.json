@@ -1,0 +1,28 @@
+{
+  "type": "tconstruct:modifier",
+  "inputs": [
+    {
+      "item": "create:precision_mechanism"
+    },
+    {
+      "item": "create:electron_tube"
+    },
+    {
+      "item": "create:precision_mechanism"
+    },
+    {
+      "item": "create:brass_hand"
+    },
+    {
+      "item": "create:sturdy_sheet"
+    }
+  ],
+  "tools": {
+    "tag": "tconstruct:modifiable"
+  },
+  "level": {
+    "max": 1
+  },
+  "allow_crystal": true,
+  "result": "cti:improve"
+}

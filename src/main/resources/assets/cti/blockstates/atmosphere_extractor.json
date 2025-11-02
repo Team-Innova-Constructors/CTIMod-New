@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cti:block/atmosphere_extractor"
+    },
+    "facing=south": {
+      "model": "cti:block/atmosphere_extractor",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "cti:block/atmosphere_extractor",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cti:block/atmosphere_extractor",
+      "y": -90
+    }
+  }
+}

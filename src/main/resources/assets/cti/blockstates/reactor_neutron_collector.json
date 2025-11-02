@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cti:block/reactor_neutron_collector"
+    },
+    "facing=south": {
+      "model": "cti:block/reactor_neutron_collector",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "cti:block/reactor_neutron_collector",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cti:block/reactor_neutron_collector",
+      "y": -90
+    }
+  }
+}

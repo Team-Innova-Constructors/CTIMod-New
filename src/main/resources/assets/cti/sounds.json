@@ -1,0 +1,12 @@
+{
+  "star_hit": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.star_hit",
+    "sounds": [
+      {
+        "name": "cti:star_hit",
+        "stream": "true"
+      }
+    ]
+  }
+}

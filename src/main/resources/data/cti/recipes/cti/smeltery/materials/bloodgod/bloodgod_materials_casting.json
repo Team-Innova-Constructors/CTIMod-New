@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "name": "cti:molten_bloodgod",
+    "amount": 90
+  },
+  "temperature": 2714,
+  "output": "cti:bloodgod"
+}

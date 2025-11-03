@@ -7,6 +7,7 @@ import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -38,13 +39,17 @@ public class ThePast extends BattleModifier{
         var source = new EntityDamageSource("obsidianhurt", entity).setThorns();
         if (shouldHurtOwner && !hasIncrease) {
             entity.hurt(source, amount * (2 + modifier.getLevel()));
-            targets.forEach(mob -> mob.hurt(source, amount * (2 + modifier.getLevel())));
+            targets.forEach(mob -> runHurt(mob,source,amount * (2 + modifier.getLevel())));
         } else if (hasIncrease) {
-            targets.forEach(mob -> mob.hurt(source.bypassArmor(), amount * (2 + modifier.getLevel()) * 4f * increaseLevel));
+            targets.forEach(mob -> runHurt(mob,source.bypassArmor(), amount * (2 + modifier.getLevel()) * 4f * increaseLevel));
         } else {
-            targets.forEach(mob -> mob.hurt(source, amount * (2 + modifier.getLevel())));
+            targets.forEach(mob -> runHurt(mob,source, amount * (2 + modifier.getLevel())));
         }
         entity.level.playSound(null, entity.getOnPos(), SoundEvents.GLASS_BREAK, SoundSource.AMBIENT, 1, 1);
         return amount * 4;
+    }
+    private void runHurt(Mob mob , DamageSource source ,float damage){
+        mob.invulnerableTime=0;
+        mob.hurt(source,damage);
     }
 }

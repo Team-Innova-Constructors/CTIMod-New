@@ -681,15 +681,11 @@
 
   "modifier.cti.thepast": "往日种种",
   "modifier.cti.thepast.flavor": "往日种种,你当真不记得了?",
-  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成损失的耐久的200% + 100% * lv(全身)点伤害,这个伤害会有50%概率伤害到你自己,如果不掉耐久则不造成伤害,有黑曜石青铜则不会触发此效果",
+  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成损失的耐久的200% + 100% * lv(全身)点伤害,五秒内仅能触发一次,这个伤害会有50%概率伤害到你自己,如果不掉耐久则不造成伤害,有黑曜石青铜则不会触发此效果",
 
   "modifier.cti.mandarinduck": "苦命鸳鸯",
   "modifier.cti.mandarinduck.flavor": "往日种种,往日?",
   "modifier.cti.mandarinduck.description":"当身上穿有[黑曜石]装备时候提升其破片伤害倍率4 * 此词条总等级倍并且使其无视护甲,同时不会再伤害到自己.提升2点基础护甲值,如当前装备有黑曜石,则翻倍",
-
-  "modifier.cti.unprincipled": "强忍寡义",
-  "modifier.cti.unprincipled.flavor": "强忍寡义，志欲无餍",
-  "modifier.cti.unprincipled.description":"周围35格没有其他玩家时候,你造成的基础伤害则提升23%.此武器会绑定你的sdm商店,身上现金越多，造成伤害越高,每100元提升5%伤害",
 
   "modifier.cti.cripplesuppermass": "超级质量",
   "modifier.cti.cripplesuppermass.flavor": "保护效果更上一层楼！",

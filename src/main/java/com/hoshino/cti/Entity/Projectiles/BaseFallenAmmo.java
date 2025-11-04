@@ -1,8 +1,6 @@
 package com.hoshino.cti.Entity.Projectiles;
 
-import com.hoshino.cti.register.CtiEntityData;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Rotations;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -36,6 +34,7 @@ public abstract class BaseFallenAmmo extends Projectile implements ItemSupplier 
     protected static final EntityDataAccessor<BlockPos> targetPosition = SynchedEntityData.defineId(BaseFallenAmmo.class, EntityDataSerializers.BLOCK_POS);
     protected static final EntityDataAccessor<Integer> waitTick= SynchedEntityData.defineId(BaseFallenAmmo.class,EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Float> hurtDamage= SynchedEntityData.defineId(BaseFallenAmmo.class,EntityDataSerializers.FLOAT);
+    protected static final EntityDataAccessor<Float> killThreshold= SynchedEntityData.defineId(BaseFallenAmmo.class,EntityDataSerializers.FLOAT);
     protected boolean isArrived;
     protected int arrivedTime;
     protected boolean hasBeenSetSpeed;
@@ -56,6 +55,7 @@ public abstract class BaseFallenAmmo extends Projectile implements ItemSupplier 
         this.entityData.define(targetPosition,new BlockPos( 0,0,0));
         this.entityData.define(waitTick,0);
         this.entityData.define(hurtDamage,5f);
+        this.entityData.define(killThreshold,0.21f);
     }
     public void setHurtDamage(float damage){
         this.entityData.set(hurtDamage,damage);
@@ -77,6 +77,12 @@ public abstract class BaseFallenAmmo extends Projectile implements ItemSupplier 
     }
     public void setTargetPosition(BlockPos position){
         this.entityData.set(targetPosition,new BlockPos(position));
+    }
+    public float getKillThreshold() {
+        return this.entityData.get(killThreshold);
+    }
+    public void setKillThreshold(float killThresholdValue){
+        this.entityData.set(killThreshold,killThresholdValue);
     }
     protected void onArrived(ServerPlayer player){
         this.setDeltaMovement(Vec3.ZERO);

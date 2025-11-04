@@ -27,9 +27,10 @@ public class StarDargonAmmo extends BaseFallenAmmo {
         super(pEntityType, pLevel);
     }
 
-    public StarDargonAmmo(LivingEntity owner, Level level, BlockPos targetPosition, float damageAmount) {
+    public StarDargonAmmo(LivingEntity owner, Level level, BlockPos targetPosition, float damageAmount,float killThreshold) {
         super(CtiEntity.star_dragon_ammo.get(), owner, level, targetPosition);
         this.setHurtDamage(damageAmount);
+        this.setKillThreshold(killThreshold);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class StarDargonAmmo extends BaseFallenAmmo {
         Vec3 knock = mob.position().subtract(getVec3TargetPosition()).normalize().scale(3);
         Vec3 finalKnock = new Vec3(knock.x(), 0.4, knock.z());
         mob.setDeltaMovement(finalKnock);
-        if(mob.getHealth()<mob.getMaxHealth() * 0.21f||getHurtDamage()>mob.getMaxHealth() * 10f){
+        if(mob.getHealth()<mob.getMaxHealth() * this.getKillThreshold()||getHurtDamage()>mob.getMaxHealth() * 10f){
             mob.die(DamageSource.playerAttack(player));
             mob.discard();
             var data= ToolStack.from(player.getMainHandItem()).getPersistentData();

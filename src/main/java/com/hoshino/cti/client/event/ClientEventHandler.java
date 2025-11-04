@@ -1,5 +1,6 @@
 package com.hoshino.cti.client.event;
 
+import com.hoshino.cti.Modifier.StarDargonHit;
 import com.hoshino.cti.Screen.AtmosphereCondensatorScreen;
 import com.hoshino.cti.Screen.AtmosphereExtractorScreen;
 import com.hoshino.cti.Screen.ReactorNeutronCollectorScreen;
@@ -21,12 +22,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 
 public class ClientEventHandler {

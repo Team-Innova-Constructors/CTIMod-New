@@ -9,9 +9,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
@@ -21,6 +24,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeHitModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
+import slimeknights.tconstruct.library.modifiers.hook.interaction.InventoryTickModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.ranged.ProjectileHitModifierHook;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
@@ -33,8 +37,9 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class StarDargonHit extends Modifier implements MeleeHitModifierHook , MeleeDamageModifierHook , TooltipModifierHook , ProjectileHitModifierHook {
+public class StarDargonHit extends Modifier implements MeleeHitModifierHook , MeleeDamageModifierHook , TooltipModifierHook , ProjectileHitModifierHook , InventoryTickModifierHook {
     public static final ResourceLocation STAR_DUST = Cti.getResource("star_dust");
+    public static final ResourceLocation STAR_FREEZE_TICK = Cti.getResource("star_freeze");
     @Override
     public int getPriority() {
         return 10;
@@ -42,7 +47,7 @@ public class StarDargonHit extends Modifier implements MeleeHitModifierHook , Me
     public static final Map<UUID, Float> DAMAGE_SHOULD_BE = new ConcurrentHashMap<>();
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
-        hookBuilder.addHook(this, ModifierHooks.MELEE_HIT,ModifierHooks.MELEE_DAMAGE,ModifierHooks.TOOLTIP,ModifierHooks.PROJECTILE_HIT);
+        hookBuilder.addHook(this, ModifierHooks.MELEE_HIT,ModifierHooks.MELEE_DAMAGE,ModifierHooks.TOOLTIP,ModifierHooks.PROJECTILE_HIT,ModifierHooks.INVENTORY_TICK);
     }
 
     @Override
@@ -51,6 +56,10 @@ public class StarDargonHit extends Modifier implements MeleeHitModifierHook , Me
         var target=context.getLivingTarget();
         if(player==null||target==null)return;
         if(target.getHealth()/target.getMaxHealth()<0.18f){
+            if(target instanceof EnderDragon enderDragon){
+                enderDragon.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(), 2147483647);
+                return;
+            }
             target.die(DamageSource.playerAttack(player));
             target.discard();
             tool.getPersistentData().putInt(STAR_DUST,tool.getPersistentData().getInt(STAR_DUST)+1);
@@ -64,7 +73,7 @@ public class StarDargonHit extends Modifier implements MeleeHitModifierHook , Me
         if(player!=null){
             DAMAGE_SHOULD_BE.put(player.getUUID(),damage+500);
         }
-        return damage+500;
+        return damage+1000 * modifier.getLevel();
     }
 
     @Override
@@ -81,10 +90,24 @@ public class StarDargonHit extends Modifier implements MeleeHitModifierHook , Me
             if(persistentData.getInt(STAR_DUST)>10){
                 persistentData.putInt(STAR_DUST,persistentData.getInt(STAR_DUST)-10);
                 float damageShouldBe=DAMAGE_SHOULD_BE.getOrDefault(player.getUUID(),10f);
-                var ammo=new StarDargonAmmo(player,player.getLevel(),target.blockPosition(),damageShouldBe);
+                var ammo=new StarDargonAmmo(player,player.getLevel(),target.blockPosition(),damageShouldBe,Math.min(0.21f+(persistentData.getInt(STAR_DUST) / 100f * 0.01f),0.78f));
                 player.getLevel().addFreshEntity(ammo);
             }
         }
         return false;
+    }
+    public static int getFreezeTick(IToolStackView view){
+        return view.getPersistentData().getInt(STAR_FREEZE_TICK);
+    }
+    public static void setFreezeTick(IToolStackView view,int tick){
+        view.getPersistentData().putInt(STAR_FREEZE_TICK,tick);
+    }
+
+    @Override
+    public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int i, boolean b, boolean b1, ItemStack itemStack) {
+        if(livingEntity.tickCount%20!=0)return;
+        if(getFreezeTick(iToolStackView)>0){
+            setFreezeTick(iToolStackView,getFreezeTick(iToolStackView)-1);
+        }
     }
 }

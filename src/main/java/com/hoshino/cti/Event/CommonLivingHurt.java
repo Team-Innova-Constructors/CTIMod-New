@@ -42,6 +42,9 @@ public class CommonLivingHurt {
         if (event.getSource().getEntity() instanceof ServerPlayer player && player.hasEffect(CtiEffects.numerical_perception.get())) {
             event.setAmount(event.getAmount() * 2);
         }
+        if(event.getEntity().getPersistentData().getBoolean("star_extra_hurt")){
+            event.setAmount(event.getAmount() * 33f);
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)

@@ -39,11 +39,28 @@ import static com.hoshino.cti.Cti.MOD_ID;
 public class CommonLivingHurt {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void LivingEntityEffectHurt(LivingHurtEvent event) {
+        var entity=event.getEntity();
         if (event.getSource().getEntity() instanceof ServerPlayer player && player.hasEffect(CtiEffects.numerical_perception.get())) {
             event.setAmount(event.getAmount() * 2);
         }
-        if(event.getEntity().getPersistentData().getBoolean("star_extra_hurt")){
+        if(entity.getPersistentData().getBoolean("star_extra_hurt")){
             event.setAmount(event.getAmount() * 33f);
+        }
+        if(event.getSource().getEntity() instanceof Player player&&SuperpositionHandler.isTheCursedOne(player)){
+            var curseNBT=CurseUtil.getCurseCurioData(player);
+            if(curseNBT==null)return;
+            boolean activated=curseNBT.getBoolean("dongzhuo");
+            if(activated){
+                event.setAmount(event.getAmount() * 1.35f);
+            }
+        }
+        if(entity instanceof Player player&&SuperpositionHandler.isTheCursedOne(player)){
+            var curseNBT=CurseUtil.getCurseCurioData(player);
+            if(curseNBT==null)return;
+            boolean activated=curseNBT.getBoolean("dongzhuo");
+            if(activated){
+                event.setAmount(event.getAmount() * 1.35f);
+            }
         }
     }
 

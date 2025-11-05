@@ -50,10 +50,16 @@ public class MandarinDuck extends Modifier implements ToolStatsModifierHook, Too
 
     @Override
     public void addTooltip(IToolStackView iToolStackView, ModifierEntry modifierEntry, @Nullable Player player, List<Component> list, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
-        list.add(Component.literal("你已成功触发彩蛋").withStyle(style -> style.withColor(0x350234)));
-        list.add(Component.literal("吕布记忆中最鲜活的，不是权谋与厮杀\n而是破庙中与董卓赤诚相对的温暖，是共享一毯的私语，是那张喂饭时对他展露的笑颜……然而\n肩头旧伤的刺痛，总能将这一切甜蜜回忆瞬间撕裂。那夜他涕泪交加，愤恨与眷恋撕扯着他的灵魂\n自那时起，爱或许已死，但一丝复杂的“情”却扎根心底\n所以当他厉声质问“你有何话可说”时，泪水会不受控地决堤；而董卓临终射向他的那支箭矢，何尝不是另一种绝望的“情”的回应？当吕布最终蜷缩于神像之后，多年前火堆旁那个带着泪水的相拥，便是这乱世中，他们能给彼此最极致、也最悲哀的爱的证明了。此作的精髓，远非浅薄的香艳肥臀，而在于对这段扭曲又深情的宿命进行了一场盛大而凄美的收束，将历史洪流中的一对枭雄，重塑成了令人扼腕的苦命鸳鸯。").withStyle(style -> style.withColor(0xCAFDCC)));
-        list.add(Component.literal("收到的来自生物伤害额外降低35%,你自己造成的伤害增加35%").withStyle(style -> style.withColor(0x350234)));
-        list.add(Component.literal("彩蛋补给品已发放至背包").withStyle(style -> style.withColor(0xCAFDCC)));
+        if(!SuperpositionHandler.isTheCursedOne(player))return;
+        var curseNBT=CurseUtil.getCurseCurioData(player);
+        if(curseNBT==null)return;
+        boolean activated=curseNBT.getBoolean("dongzhuo");
+        if (activated) {
+            list.add(Component.literal("你已成功触发彩蛋").withStyle(style -> style.withColor(0x350234)));
+            list.add(Component.literal("吕布记忆中最鲜活的，不是权谋与厮杀\n而是破庙中与董卓赤诚相对的温暖，是共享一毯的私语，是那张喂饭时对他展露的笑颜……然而\n肩头旧伤的刺痛，总能将这一切甜蜜回忆瞬间撕裂。那夜他涕泪交加，愤恨与眷恋撕扯着他的灵魂\n自那时起，爱或许已死，但一丝复杂的“情”却扎根心底\n所以当他厉声质问“你有何话可说”时，泪水会不受控地决堤；而董卓临终射向他的那支箭矢，何尝不是另一种绝望的“情”的回应？当吕布最终蜷缩于神像之后，多年前火堆旁那个带着泪水的相拥，便是这乱世中，他们能给彼此最极致、也最悲哀的爱的证明了。此作的精髓，远非浅薄的香艳肥臀，而在于对这段扭曲又深情的宿命进行了一场盛大而凄美的收束，将历史洪流中的一对枭雄，重塑成了令人扼腕的苦命鸳鸯。").withStyle(style -> style.withColor(0xCAFDCC)));
+            list.add(Component.literal("收到的来自生物伤害永久降低35%,你自己造成的伤害永久增加35%,包括卸掉甲").withStyle(style -> style.withColor(0x350234)));
+            list.add(Component.literal("彩蛋补给品已发放至背包").withStyle(style -> style.withColor(0xCAFDCC)));
+        }
     }
 
 
@@ -75,15 +81,13 @@ public class MandarinDuck extends Modifier implements ToolStatsModifierHook, Too
                 nbt.putInt(LOST_HEALTH_TIME, time + 1);
             }
         }
-        if (activated) {
-            return v * 0.65f;
-        } else if (amount >= 350 && time >= 234) {
+          if (amount >= 350 && time >= 234) {
             curseNBT.putBoolean("dongzhuo", true);
             nbt.remove(LOST_HEALTH);
             nbt.remove(LOST_HEALTH_TIME);
             runEgg(player);
-            return v;
-        } else return v;
+          }
+        return v;
     }
 
     private void giveItem(Player player, Item item, int count) {

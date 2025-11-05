@@ -6,6 +6,8 @@ import com.hoshino.cti.netwrok.packet.CurseTimeUpdatePacket;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CommonUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
+import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
@@ -23,6 +25,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 import java.util.Set;
 
@@ -69,6 +72,11 @@ public class L2LivingEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void whenCurseMobAttackPlayer(LivingHurtEvent event) {
         if (event.getAmount()>0 && event.getSource().getEntity() instanceof Mob mob) {
+            var entity=event.getEntity();
+            if(entity instanceof Player player){
+                boolean c= checkEquipment(player);
+                if(c)return;
+            }
             LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
             if (optional.resolve().isPresent()) {
                 MobTraitCap cap = optional.resolve().get();
@@ -82,6 +90,14 @@ public class L2LivingEvents {
                 }
             }
         }
+    }
+
+    private static boolean checkEquipment(Player player) {
+        int uranium=GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
+        int hoshino=GetModifierLevel.CurioModifierLevel(player,TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
+        ModifierId health=new ModifierId("tinkersinnovation:vitality_armor");
+        int healthLevel=GetModifierLevel.getTotalArmorModifierlevel(player,health);
+        return (uranium + hoshino + healthLevel) >= 0;
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

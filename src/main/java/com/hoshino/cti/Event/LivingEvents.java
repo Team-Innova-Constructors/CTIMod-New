@@ -5,14 +5,21 @@ import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.github.alexthe666.iceandfire.entity.EntityDragonBase;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Entity.DisposibleFakePlayer;
+import com.hoshino.cti.Modifier.Contributors.Mz;
+import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.Replace.FixedPurify;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiBlock;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiEntityTickers;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
+import com.hoshino.cti.util.method.GetModifierLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -32,6 +39,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import java.util.Collection;
@@ -208,5 +216,70 @@ public class LivingEvents {
                 event.setCanceled(true);
             }
         }
+    }
+    @SubscribeEvent
+    public static void NKSSreloadTick(LivingEvent.LivingTickEvent event){
+        var entity=event.getEntity();
+        int reload=entity.getPersistentData().getInt("nksszs_reload");
+        if(reload>0){
+            entity.getPersistentData().putInt("nksszs_reload",reload-1);
+        }
+    }
+    @SubscribeEvent
+    public static void NKSSKillReload(LivingDeathEvent event){
+        var entity=event.getEntity();
+        int reload=entity.getPersistentData().getInt("nksszs_reload");
+        if(reload>0){
+            var killer=event.getSource().getEntity();
+            if(killer instanceof Player player){
+               var view= ToolStack.from(player.getMainHandItem());
+               view.getPersistentData().remove(Nkssdtt.NKSSTK_COOLDOWN);
+               var effect=player.getEffect(CtiEffects.blood_angry.get());
+               if(effect!=null){
+                   int level=effect.getAmplifier();
+                   player.addEffect(new MobEffectInstance(CtiEffects.blood_angry.get(),1200,Math.min(level+1,4)));
+               }
+               else {
+                   player.addEffect(new MobEffectInstance(CtiEffects.blood_angry.get(),1200,0));
+               }
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void NKSSExtraDamage(LivingDamageEvent event){
+        if(!(event.getSource().getEntity() instanceof Player player))return;
+        if(player.hasEffect(CtiEffects.blood_angry.get())){
+            var effect=player.getEffect(CtiEffects.blood_angry.get());
+            if(effect!=null){
+                int level=effect.getAmplifier();
+                event.setAmount(event.getAmount() * (1+(level * 0.2f)));
+            }
+        }
+        
+    }
+    @SubscribeEvent
+    public static void cancelFallDamage(LivingAttackEvent event){
+        if(event.getSource().isFall()&&event.getEntity() instanceof Player player){
+            if(GetModifierLevel.HandsHaveModifierlevel(player, CtiModifiers.NKSSZS_STATIC_MODIFIER.getId())){
+                event.setCanceled(true);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void miziPreventDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        var itemStack = player.getMainHandItem();
+        var view = ToolStack.from(itemStack);
+        int currentMizi = view.getPersistentData().getInt(Mz.CurrentMZ);
+        if (currentMizi > 0) {
+            event.setCanceled(true);
+            player.setHealth(player.getMaxHealth());
+            player.level.playSound(player, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.AMBIENT, 1, 1);
+            view.getPersistentData().putInt(Mz.CurrentMZ, currentMizi - 1);
+        }
+    }
+    @SubscribeEvent
+    public static void miziModifyDamage(LivingHurtEvent event) {
+
     }
 }

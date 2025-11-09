@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:fox_ingot"},
+  "result": {
+    "fluid": "cti:molten_fox",
+    "amount": 90
+  },
+  "temperature": 2714,
+  "time": 20
+}

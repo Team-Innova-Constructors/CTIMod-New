@@ -12,6 +12,7 @@ public class Reflect extends ArmorModifier {
     public void PlayerLivingHurt(LivingHurtEvent event, LivingEntity enemy, Player player) {
         if (ModifierLevel.EquipHasModifierlevel(player, this.getId()) && event.getSource() instanceof EntityDamageSource source && !source.isThorns()) {
             int level = ModifierLevel.getTotalArmorModifierlevel(player, this.getId()) + ModifierLevel.getEachHandsTotalModifierlevel(player, this.getId());
+            enemy.invulnerableTime=0;
             enemy.hurt(new EntityDamageSource("goddamncrash", player).setThorns().setMagic(), event.getAmount() * 0.25f * level);
         }
     }

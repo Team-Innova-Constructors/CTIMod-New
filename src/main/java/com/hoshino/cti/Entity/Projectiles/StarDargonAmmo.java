@@ -1,6 +1,7 @@
 package com.hoshino.cti.Entity.Projectiles;
 
-import com.hoshino.cti.Modifier.StarDargonHit;
+
+import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleType;
 import com.hoshino.cti.register.CtiEntity;
 import com.hoshino.cti.register.CtiItem;
@@ -43,8 +44,8 @@ public class StarDargonAmmo extends BaseFallenAmmo {
             mob.die(DamageSource.playerAttack(player));
             mob.discard();
             var data= ToolStack.from(player.getMainHandItem()).getPersistentData();
-            var currentAmount=data.getInt(StarDargonHit.STAR_DUST);
-            data.putInt(StarDargonHit.STAR_DUST,currentAmount + 1);
+            var currentAmount=data.getInt(StarDragonHit.STAR_DUST);
+            data.putInt(StarDragonHit.STAR_DUST,currentAmount + 1);
         }
     }
 

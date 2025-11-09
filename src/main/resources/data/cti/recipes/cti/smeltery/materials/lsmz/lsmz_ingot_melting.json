@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:lsmz_ingot"},
+  "result": {
+    "fluid": "cti:molten_lsmz",
+    "amount": 90
+  },
+  "temperature": 1492,
+  "time": 20
+}

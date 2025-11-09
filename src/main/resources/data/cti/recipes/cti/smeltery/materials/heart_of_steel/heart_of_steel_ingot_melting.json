@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:heart_of_steel_ingot"},
+  "result": {
+    "fluid": "cti:molten_heart_of_steel",
+    "amount": 90
+  },
+  "temperature": 2714,
+  "time": 20
+}

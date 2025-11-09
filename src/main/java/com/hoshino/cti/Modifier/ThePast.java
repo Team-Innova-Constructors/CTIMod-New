@@ -11,10 +11,13 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class ThePast extends BattleModifier{
     @Override
     public int onDamageTool(IToolStackView tool, ModifierEntry modifier, int amount, @Nullable LivingEntity entity) {
         if (amount == 0 || entity == null) return amount;
+        if(!(entity instanceof Player player))return amount;
         int lastFragmentTime = tool.getPersistentData().getInt(KEY_LAST_FRAGMENT);
         if ((int) entity.level.getGameTime()%100==lastFragmentTime) return amount;
         tool.getPersistentData().putInt(KEY_LAST_FRAGMENT, (int) (entity.level.getGameTime()%100));
@@ -37,16 +41,21 @@ public class ThePast extends BattleModifier{
         boolean hasIncrease = increaseLevel > 0;
         boolean shouldHurtOwner = entity.level.getRandom().nextBoolean();
         var source = new EntityDamageSource("obsidianhurt", entity).setThorns();
+        float baseDurability=0;
+        for(ItemStack stack:player.getInventory().armor){
+            baseDurability= baseDurability+ToolStack.from(stack).getCurrentDurability();
+        }
+        float baseDamage=baseDurability * 0.01f;
         if (shouldHurtOwner && !hasIncrease) {
             entity.hurt(source, amount * (2 + modifier.getLevel()));
-            targets.forEach(mob -> runHurt(mob,source,amount * (2 + modifier.getLevel())));
+            targets.forEach(mob -> runHurt(mob,source,baseDamage *modifier.getLevel()));
         } else if (hasIncrease) {
-            targets.forEach(mob -> runHurt(mob,source.bypassArmor(), amount * (2 + modifier.getLevel()) * 4f * increaseLevel));
+            targets.forEach(mob -> runHurt(mob,source.bypassArmor(), baseDamage *modifier.getLevel() * 4f * increaseLevel));
         } else {
-            targets.forEach(mob -> runHurt(mob,source, amount * (2 + modifier.getLevel())));
+            targets.forEach(mob -> runHurt(mob,source, baseDamage *modifier.getLevel()));
         }
         entity.level.playSound(null, entity.getOnPos(), SoundEvents.GLASS_BREAK, SoundSource.AMBIENT, 1, 1);
-        return amount * 4;
+        return amount;
     }
     private void runHurt(Mob mob , DamageSource source ,float damage){
         mob.invulnerableTime=0;

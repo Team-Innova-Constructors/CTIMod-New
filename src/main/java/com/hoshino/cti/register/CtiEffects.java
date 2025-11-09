@@ -1,6 +1,7 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Effects.*;
+import com.marth7th.solidarytinker.effects.BloodAnger;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,5 +26,6 @@ public class CtiEffects {
     public static final RegistryObject<MobEffect> strong = EFFECT.register("strong",Strong::new);
     public static final RegistryObject<MobEffect> covert = EFFECT.register("covert",Covert::new);
     public static final RegistryObject<MobEffect> nakshatra = EFFECT.register("nakshatra",Nakshatra::new);
+    public static final RegistryObject<MobEffect> blood_angry = EFFECT.register("blood_angry", BloodAngry::new);
 
 }

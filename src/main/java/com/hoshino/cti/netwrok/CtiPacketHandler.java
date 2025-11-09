@@ -47,6 +47,11 @@ public class CtiPacketHandler {
                 .encoder(StarHitPacket::ToByte)
                 .consumerMainThread(StarHitPacket::handle)
                 .add();
+        INSTANCE.messageBuilder(NksszsPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .decoder(NksszsPacket::new)
+                .encoder(NksszsPacket::ToByte)
+                .consumerMainThread(NksszsPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg) {

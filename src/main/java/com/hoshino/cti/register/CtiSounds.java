@@ -10,4 +10,6 @@ import java.util.function.Supplier;
 public class CtiSounds {
     public static final DeferredRegister<SoundEvent> sound = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Cti.MOD_ID);
     public static final Supplier<SoundEvent> starHit = sound.register("star_hit", () -> new SoundEvent(Cti.getResource("star_hit")));
+    public static final Supplier<SoundEvent> superDie1 = sound.register("super_die1", () -> new SoundEvent(Cti.getResource("super_die1")));
+    public static final Supplier<SoundEvent> superDie2 = sound.register("super_die2", () -> new SoundEvent(Cti.getResource("super_die2")));
 }

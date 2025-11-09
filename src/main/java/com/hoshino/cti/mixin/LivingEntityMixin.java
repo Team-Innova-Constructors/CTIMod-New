@@ -58,6 +58,8 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
 
     @Unique
     private static final Logger cti$LOGGER = LogUtils.getLogger();
+    @Unique
+    public boolean cti$shouldCancelKnockBack = false;
 
     @Shadow
     @Nullable
@@ -375,6 +377,19 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
                 player.setSharedFlagOnFire(false);
                 player.setLastDeathLocation(Optional.of(GlobalPos.of(player.level.dimension(), player.blockPosition())));
             }
+        }
+    }
+    @Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(DDD)V"))
+    private void set(DamageSource pSource, float pAmount, CallbackInfoReturnable<Boolean> cir) {
+        if (pSource.isMagic()){
+            cti$shouldCancelKnockBack = true;
+        }
+    }
+    @Inject(method = "knockback", at = @At("HEAD"), cancellable = true)
+    private void knock(double pStrength, double pX, double pZ, CallbackInfo ci) {
+        if (cti$shouldCancelKnockBack) {
+            cti$shouldCancelKnockBack = false;
+            ci.cancel();
         }
     }
 }

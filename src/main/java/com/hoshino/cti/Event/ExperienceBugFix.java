@@ -13,7 +13,6 @@ public class ExperienceBugFix {
     @SubscribeEvent
     public static void onChange(PlayerChangedDimensionEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-
             player.connection.send(new ClientboundSetExperiencePacket(
                     player.experienceProgress,
                     player.totalExperience,

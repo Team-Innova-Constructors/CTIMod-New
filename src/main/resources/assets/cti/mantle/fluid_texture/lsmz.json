@@ -1,0 +1,5 @@
+{
+  "color": "FF54f7ff",
+  "flowing": "cti:fluid/lava_gaseous/flowing",
+  "still": "cti:fluid/lava_gaseous/still"
+}

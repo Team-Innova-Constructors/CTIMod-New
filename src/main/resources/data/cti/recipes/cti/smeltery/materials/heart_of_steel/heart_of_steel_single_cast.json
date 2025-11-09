@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/single_use/ingot"
+  },
+  "cast_consumed": true,
+  "fluid": {
+    "name": "cti:molten_heart_of_steel",
+    "amount": 90
+  },
+  "result": "cti:heart_of_steel_ingot",
+  "cooling_time": 200
+}

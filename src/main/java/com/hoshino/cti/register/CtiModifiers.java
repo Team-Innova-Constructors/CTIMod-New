@@ -166,7 +166,7 @@ public class CtiModifiers {
     public static final StaticModifier<Sacrifice> SACRIFICE_MODIFIER = MODIFIERS.register("sacrifice", Sacrifice::new);
     public static final StaticModifier<BuffedAnger> ANGER = MODIFIERS.register("buffed_anger", BuffedAnger::new);
     public static final StaticModifier<ReworkedOmnipotent> OMNIPOTENT = MODIFIERS.register("omnipotent", ReworkedOmnipotent::new);
-    public static final StaticModifier<StarDargonHit> STAR_DARGON_HIT_STATIC_MODIFIER = MODIFIERS.register("stardragonhit", StarDargonHit::new);
+    public static final StaticModifier<StarDragonHit> STAR_DARGON_HIT_STATIC_MODIFIER = MODIFIERS.register("stardragonhit", StarDragonHit::new);
     public static final StaticModifier<IonApocalypse> ION_APOCALYPSE = MODIFIERS.register("ion_apocalypse", IonApocalypse::new);
     public static final StaticModifier<StarBless> starBlessStaticModifier = MODIFIERS.register("starbless", StarBless::new);
     public static final StaticModifier<CursedArrowModifier> CURSED_ARROW = MODIFIERS.register("cursed_arrow", CursedArrowModifier::new);
@@ -176,4 +176,13 @@ public class CtiModifiers {
     public static final StaticModifier<FixVoidTouch> VOID_TOUCH = MODIFIERS.register("void_touch", FixVoidTouch::new);
     public static final StaticModifier<CrystallizingArmor> CRYSTALLIZING_ARMOR = MODIFIERS.register("crystallizing_armor", CrystallizingArmor::new);
     public static final StaticModifier<CrashDevour> crashDevourStaticModifier = MODIFIERS.register("crashdevour", CrashDevour::new);
+    public static final StaticModifier<ThousandStarBless> THOUSAND_STAR_BLESS_STATIC_MODIFIER = MODIFIERS.register("thousand_star_bless", ThousandStarBless::new);
+    public static final StaticModifier<NanoMachine> NANO_MACHINE_STATIC_MODIFIER = MODIFIERS.register("nanomachine", NanoMachine::new);
+    public static final StaticModifier<NanoBee> NANO_BEE_STATIC_MODIFIER = MODIFIERS.register("nanobee", NanoBee::new);
+    public static final StaticModifier<Nkssdtt> NKSSZS_STATIC_MODIFIER = MODIFIERS.register("nkssdtt", Nkssdtt::new);
+    public static final StaticModifier<Mz> MZ_STATIC_MODIFIER = MODIFIERS.register("mz", Mz::new);
+    public static final StaticModifier<Nholography> NHOLOGRAPHY_STATIC_MODIFIER = MODIFIERS.register("nholography", Nholography::new);
+    public static final StaticModifier<Hidden> Hidden = MODIFIERS.register("hidden", Hidden::new);
+
+
 }

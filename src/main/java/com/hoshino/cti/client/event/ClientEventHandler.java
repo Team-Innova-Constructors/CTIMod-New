@@ -1,6 +1,6 @@
 package com.hoshino.cti.client.event;
 
-import com.hoshino.cti.Modifier.StarDargonHit;
+import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Screen.AtmosphereCondensatorScreen;
 import com.hoshino.cti.Screen.AtmosphereExtractorScreen;
 import com.hoshino.cti.Screen.ReactorNeutronCollectorScreen;
@@ -15,6 +15,7 @@ import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
 import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
+import com.hoshino.cti.netwrok.packet.NksszsPacket;
 import com.hoshino.cti.netwrok.packet.StarHitPacket;
 import com.hoshino.cti.register.CtiEntity;
 import com.hoshino.cti.util.Vec3Helper;
@@ -22,7 +23,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -75,8 +75,8 @@ public class ClientEventHandler {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(CtiKeyBinding.STAR_HIT);
+            event.register(CtiKeyBinding.NKSSZS);
         }
-
         //    @SubscribeEvent
 //    public static void onRenderLivingPost(RenderLivingEvent.Post<LivingEntity, ? extends EntityModel<LivingEntity>> event) {
 //        LivingEntity entity = event.getEntity();
@@ -103,7 +103,7 @@ public class ClientEventHandler {
     @Mod.EventBusSubscriber(modid = Cti.MOD_ID,value = Dist.CLIENT,bus =Mod.EventBusSubscriber.Bus.FORGE)
     public static class Forge {
         @SubscribeEvent
-        public static void onKeyPressed(InputEvent.Key event) {
+        public static void onStarHitPressed(InputEvent.Key event) {
             Player player = Minecraft.getInstance().player;
             if (player != null) {
                 if (player.level.isClientSide()) {
@@ -111,6 +111,27 @@ public class ClientEventHandler {
                         var mob= Vec3Helper.getPointedEntity(player,player.getLevel(),50, Mob.class, Mob::isAlive, Mob -> false);
                         if (mob != null) {
                             CtiPacketHandler.sendToServer(new StarHitPacket(mob.getUUID()));
+                        }
+                    }
+                }
+            }
+        }
+        @SubscribeEvent
+        public static void onNKSSZSPressed(InputEvent.Key event) {
+            Player player = Minecraft.getInstance().player;
+            if (player != null) {
+                if (player.level.isClientSide()) {
+                    if (CtiKeyBinding.NKSSZS.consumeClick()) {
+                        var mob= Vec3Helper.getPointedEntity(player,player.getLevel(),7, Mob.class, Mob::isAlive, Mob -> false);
+                        if (mob != null) {
+                            CtiPacketHandler.sendToServer(new NksszsPacket(mob.getUUID()));
+                            var view=ToolStack.from(player.getMainHandItem());
+                            int waitSecond=view.getPersistentData().getInt(Nkssdtt.NKSSTK_COOLDOWN);
+                            if(waitSecond>0)return;
+                            view.getPersistentData().putString(Nkssdtt.NKSSTK, mob.getStringUUID());
+                            player.getPersistentData().putInt("nksswait", 6);
+                            mob.getPersistentData().putInt("nksszs_reload",8);
+                            view.getPersistentData().putInt(Nkssdtt.NKSSTK_COOLDOWN,60);
                         }
                     }
                 }

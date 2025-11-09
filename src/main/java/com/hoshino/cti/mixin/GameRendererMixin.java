@@ -19,5 +19,4 @@ public class GameRendererMixin {
             ci.cancel();
         }
     }
-
 }

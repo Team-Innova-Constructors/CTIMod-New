@@ -68,6 +68,8 @@ public class CtiFluid {
     });
     public static final FluidObject<ForgeFlowingFluid> molten_invert_hoshino = register("molten_invert_hoshino", 350507);
     public static final FluidObject<ForgeFlowingFluid> molten_roxy = register("molten_roxy", 258596);
+    public static final FluidObject<ForgeFlowingFluid> molten_heart_of_steel = register("molten_heart_of_steel", 258596);
+    public static final FluidObject<ForgeFlowingFluid> molten_lsmz = register("molten_lsmz", 258596);
     public static final FluidObject<ForgeFlowingFluid> molten_omniscient_gold = register("molten_omniscient_gold", 225252);
     public static final FluidObject<ForgeFlowingFluid> molten_violium = register("molten_violium", 6000);
     public static final FluidObject<ForgeFlowingFluid> molten_aetherium = register("molten_aetherium", 7000);

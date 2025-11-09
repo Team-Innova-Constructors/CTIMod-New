@@ -25,6 +25,7 @@
   "effect.cti.ha": "哈将糖",
   "effect.cti.covert": "月隐糖",
   "effect.cti.nakshatra": "夜叉戮糖",
+  "effect.cti.blood_angry": "血怒",
 
 
   "cti.tooltip.item.shift": "按下 Shift 以获取信息",
@@ -120,6 +121,7 @@
   "tooltip.uriel_ingot.desc1": "Esdras IV in Catholic versions",
   "tooltip.uriel_ingot.desc2": "牢墨 贡献者材料",
 
+
   "material.cti.uriel": "乌列尔",
   "material.cti.uriel.flavor": "恶魔般的火之审判官",
   "material.cti.uriel.encyclopedia": "牢墨贡献者材料\n祂手持火焰之剑，以地狱之火审判一切罪孽深重之人",
@@ -128,9 +130,6 @@
   "material.cti.buriedocean.flavor": "跟随柯尼利亚船长一同沉入海底的一把随身武器的材料",
   "material.cti.buriedocean.encyclopedia": "绽放着淡蓝色的光芒,明亮但又略显黯淡",
 
-  "modifier.cti.buriedocean": "海葬",
-  "modifier.cti.buriedocean.flavor": "无尽的怨恨",
-  "modifier.cti.buriedocean.description":"对目标额外造成柯尼利亚船长自身最大生命3%的魔法伤害,此伤害穿透魔法防御,并且会越累计越高,至多堆积到6000%倍率",
 
   "modifier.cti.timetojudge": "审判时刻",
   "modifier.cti.timetojudge.flavor": "自此刻起，下达判决",
@@ -261,7 +260,6 @@
   "modifier.cti.cursed_arrow": "诅咒之箭",
   "modifier.cti.cursed_arrow.flavor": "禁止回血",
   "modifier.cti.cursed_arrow.description": "箭矢击中时每级施加5s1级诅咒。",
-
 
   "item.cti.xinian_ingot": "§c37锭",
   "item.cti.molten_xinian_bucket": "熔融37桶",
@@ -498,6 +496,59 @@
   "material.cti.roxy.flavor": "冥冥之中的动力推动你将陨石加护的异星物质雕刻如此，温润如水的光芒从中散发",
   "material.cti.roxy.encyclopedia": "来自天穹的物质将你包裹起来，你获得了n层神明的加护",
 
+  "item.cti.fox_ingot": "零时狐狸锭",
+  "item.cti.molten_fox_bucket": "熔融狐狸桶",
+  "fluid.cti.molten_fox": "熔融狐狸",
+
+  "material.cti.fox": "狐",
+  "material.cti.fox.flavor": "隐匿",
+  "material.cti.fox.encyclopedia": "诞生自炼丹炉中的狐",
+
+  "modifier.cti.hidden": "隐匿",
+  "modifier.cti.hidden.flavor": "小时候看这集被黑油塔锁了",
+  "modifier.cti.hidden.description":"每隔10秒获得5秒的月隐效果\n月隐效果:3格外不会被怪物自然索敌锁到\n[当同一工具之上有Kemomimi部件时] 获得常驻的隐匿效果,隐匿状态下的首次攻击会破隐,将此次伤害提升3倍,最多9次,破隐后需要至少10秒内没有攻击过生物才可再次进入隐匿状态",
+
+
+
+  "item.cti.lsmz_ingot": "零时迷子锭",
+  "item.cti.molten_lsmz_bucket": "熔融迷子桶",
+  "fluid.cti.molten_lsmz": "熔融迷子",
+  "cti.tooltip.item.lsmz_ingot.desc1": "入机",
+  "cti.tooltip.item.lsmz_ingot.desc2": "零逝 贡献者材料",
+
+  "material.cti.lsmz": "零时迷子",
+  "material.cti.lsmz.flavor": "扭曲世界的反作用力",
+  "material.cti.lsmz.encyclopedia": "利用循环往复象征着永远的时钟，将一天内产生的‘劣化与消耗全部否定’，所以后来吸收的力量也会恢复，循环时的性质也不会受到同样的干涉量级（并非永远，存在的世界终究会消逝，一切都有尽头）",
+
+  "modifier.cti.mz": "迷子",
+  "modifier.cti.mz.flavor": "让时间在每日零时迷路的宝具(难道说?你也是迷途之子?)",
+  "modifier.cti.mz.description":"[仅挖掘工具生效]记录破坏的次数,以累计破坏方块的次数的位数 * 词条等级视为迷子数,工具造成的伤害提升迷子数的算术平方根的倍率的伤害,同时你挖掘矿物时候获得迷子数量级的掉落倍率",
+
+  "modifier.cti.nholography": "全息",
+  "modifier.cti.nholography.flavor": "让时间在每日零时迷路的宝具(难道说?你也是迷途之子?)",
+  "modifier.cti.nholography.description":"每过24分钟，迷子给予的免死次数刷新，免死次数为迷子数量,免死次数不为零时，则防止诅咒层数对自己施加。没有免死次数时候获得迷子位数 * 5的免伤",
+
+  "item.cti.heart_of_steel_ingot": "§c钢铁之心锭",
+  "item.cti.molten_heart_of_steel_bucket": "熔融钢铁之心桶",
+  "fluid.cti.molten_heart_of_steel": "熔融钢铁之心",
+  "cti.tooltip.item.heart_of_steel_ingot.desc1": "穿越黑暗之门",
+  "cti.tooltip.item.heart_of_steel_ingot.desc2": "浊心斯卡蒂 贡献者材料",
+
+  "material.cti.heart_of_steel": "钢铁之心",
+  "material.cti.heart_of_steel.flavor": "嘿嘉登，你天天玩纳米机器的日子结束了，快把嘉登之心给我",
+  "material.cti.heart_of_steel.encyclopedia": "一颗致密的金属心脏，一种纳米机器人的临时存储媒介",
+
+  "modifier.cti.nanomachine": "纳米机器",
+  "modifier.cti.nanomachine.flavor": "奶油披萨屑",
+  "modifier.cti.nanomachine.description":"这种纳米机器超越了你所处的时代，你无法用常规方式摧毁它",
+
+  "modifier.cti.nanobee": "纳米蜂群",
+  "modifier.cti.nanobee.flavor": "黑暗起兮",
+  "modifier.cti.nanobee.description":"攻击三次后在穿戴者周围释放纳米蜂群。纳米蜂群领域半径5格，被纳米蜂群侵蚀的敌人每秒受到10点魔法伤害并施加诅咒",
+
+  "modifier.cti.nkssdtt": "钢铁断头台",
+  "modifier.cti.nkssdtt.flavor": "无可匹敌的力量",
+  "modifier.cti.nkssdtt.description":"按R键对指向目标释放跳斩，跳斩额外造成目标生命值40%的真实伤害，冷却1分钟。如果此次跳斩成功击杀目标，立即刷新主动技能CD且获得一层“机械之怒”效果，该效果令自身造成的伤害提升20%，持续时间30秒，最多叠加5层。",
 
   "material.cti.meteorium": "陨铁合金",
   "material.cti.meteorium.flavor": "它是从哪里来的呢？",
@@ -507,8 +558,6 @@
   "material.cti.xenoglarium": "烈光合金",
   "material.cti.xenoglarium.flavor": "柔和的光芒电离了周围的空气。",
   "material.cti.xenoglarium.encyclopedia": "“存在即为意义”",
-
-
 
   "modifier.cti.roxylightning": "雷光",
   "modifier.cti.roxylightning.flavor": "消耗命运的一击！",
@@ -675,16 +724,13 @@
   "modifier.cti.endergobberbless.flavor": "结束了？",
   "modifier.cti.endergobberbless.description":"获得抗火效果，伤害每级增加35%，并且缓慢恢复饱食度.作为盔甲时每级减少10%收到的伤害\n[特殊效果]作为武器每次对末影龙造成伤害均会额外提升末影龙6%最大生命的伤害,使用劈刀击杀末影龙的时候必定掉落9个末影龙头颅",
 
-  "modifier.cti.encrypt": "加密",
-  "modifier.cti.encrypt.flavor": "???",
-  "modifier.cti.encrypt.description":"怪物无法复印你的装备词条",
 
   "modifier.cti.thepast": "往日种种",
   "modifier.cti.thepast.flavor": "往日种种,你当真不记得了?",
-  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成损失的耐久的200% + 100% * lv(全身)点伤害,五秒内仅能触发一次,这个伤害会有50%概率伤害到你自己,如果不掉耐久则不造成伤害,有黑曜石青铜则不会触发此效果",
+  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成全身总护甲耐久1% * 词条等级点伤害 ,五秒内仅能触发一次,这个伤害会有50%概率伤害到你自己\n有黑曜石青铜则不会伤害自己,并且伤害翻四 * 黑曜石青铜等级倍",
 
   "modifier.cti.mandarinduck": "苦命鸳鸯",
-  "modifier.cti.mandarinduck.flavor": "往日种种,往日?",
+  "modifier.cti.mandarinduck.flavor": "再无话说,请速速动手",
   "modifier.cti.mandarinduck.description":"当身上穿有[黑曜石]装备时候提升其破片伤害倍率4 * 此词条总等级倍并且使其无视护甲,同时不会再伤害到自己.提升2点基础护甲值,如当前装备有黑曜石,则翻倍",
 
   "modifier.cti.cripplesuppermass": "超级质量",

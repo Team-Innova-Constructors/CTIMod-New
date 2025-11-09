@@ -8,5 +8,25 @@
         "stream": "true"
       }
     ]
+  },
+  "super_die1": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.super_die1",
+    "sounds": [
+      {
+        "name": "cti:super_die1",
+        "stream": "true"
+      }
+    ]
+  },
+  "super_die2": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.super_die2",
+    "sounds": [
+      {
+        "name": "cti:super_die2",
+        "stream": "true"
+      }
+    ]
   }
 }

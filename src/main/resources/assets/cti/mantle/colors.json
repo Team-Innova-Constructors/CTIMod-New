@@ -6,7 +6,9 @@
     "roxy": "#629df5",
     "awakesaintchef": "#75edff",
     "bloodgod": "#ff0c38",
-    "omniscient_gold": "#d24bff"
+    "omniscient_gold": "#d24bff",
+    "heart_of_steel": "#aaaaff",
+    "lsmz": "#72deff"
   },
 
   "modifier.cti": {
@@ -160,7 +162,12 @@
     "donotsplit": "#98ff78",
     "fragment": "#4b2e4c",
 
+    "nanobee": "#3e9a8b",
+    "nanomachine": "#cbcbcb",
+    "nkssdtt": "#9a0909",
 
+    "mz": "#55ffff",
+    "nholography": "#55ffff",
 
     "_slot_": "升级槽等",
     "improve": "#f9b5ff",

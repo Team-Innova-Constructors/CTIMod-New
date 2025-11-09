@@ -75,9 +75,11 @@ public class CtiItem {
     public static final RegistryObject<Item> star_dragon_ammo = ITEMS.register("star_dragon_ammo",() -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> magic_crystal = ITEMS.register("magic_crystal", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> enriched_mana = ITEMS.register("enriched_mana", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
+    public static final RegistryObject<Item> fox_ingot = ITEMS.register("fox_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> uriel_ingot = ITEMS.register("uriel_ingot", () -> new uriel_ingot(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> elysia = ITEMS.register("elysia", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
-    public static final RegistryObject<Item> jd_heart = ITEMS.register("jd_heart", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
+    public static final RegistryObject<Item> heart_of_steel_ingot = ITEMS.register("heart_of_steel_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
+    public static final RegistryObject<Item> lsmz_ingot = ITEMS.register("lsmz_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> stellar_manyullyn = ITEMS.register("stellar_manyullyn", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.etsh").withStyle(ChatFormatting.LIGHT_PURPLE))));
     public static final RegistryObject<Item> invert_hoshino = ITEMS.register("invert_hoshino", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.invert_hoshino").withStyle(ChatFormatting.DARK_PURPLE))));
     public static final RegistryObject<Item> roxy_ingot = ITEMS.register("roxy_ingot", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.roxy_ingot").withStyle(ChatFormatting.BLUE))));

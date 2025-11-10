@@ -103,6 +103,7 @@
     "AbstractClientPlayerMixin",
     "CameraMixin",
     "GameRendererMixin",
+    "MinecraftMixin",
     "AdAstraMixin.CustomButtonMixin",
     "AdAstraMixin.PlanetSelectionScreenMixin",
     "bugFix.EntityUmvuthiMixin",

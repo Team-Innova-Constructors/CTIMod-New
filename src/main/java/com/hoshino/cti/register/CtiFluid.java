@@ -73,6 +73,7 @@ public class CtiFluid {
     public static final FluidObject<ForgeFlowingFluid> molten_omniscient_gold = register("molten_omniscient_gold", 225252);
     public static final FluidObject<ForgeFlowingFluid> molten_violium = register("molten_violium", 6000);
     public static final FluidObject<ForgeFlowingFluid> molten_aetherium = register("molten_aetherium", 7000);
+    public static final FluidObject<ForgeFlowingFluid> molten_fox = register("molten_fox", 685);
     public static final FluidObject<ForgeFlowingFluid> extraterrestrial_essense = register("extraterrestrial_essense", 0,supplier-> new LiquidBlock(supplier, BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {

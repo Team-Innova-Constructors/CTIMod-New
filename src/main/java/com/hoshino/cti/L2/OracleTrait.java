@@ -6,6 +6,8 @@ import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.EquipmentUtil;
+import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -25,7 +27,7 @@ public class OracleTrait extends MobTrait {
         for (EquipmentSlot slot:EquipmentUtil.ARMOR){
             ItemStack stack = target.getItemBySlot(slot);
             if (stack.getItem() instanceof IModifiable){
-                if (ToolStack.from(stack).getModifierLevel(CtiModifiers.ARMOR_ORACLE.get())>0){
+                if (ToolStack.from(stack).getModifierLevel(CtiModifiers.ARMOR_ORACLE.get())>0|| GetModifierLevel.getTotalArmorModifierlevel(attacker,solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())>0||GetModifierLevel.CurioHasModifierlevel(attacker,solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())){
                     return;
                 }
             }

@@ -4,6 +4,12 @@
   "itemGroup.cti.machine": "CTI-机器",
   "key.category.cti": "CTI按键设置",
   "key.cti.star_hit": "星界龙技能按键",
+  "key.cti.nksszs": "诺克萨斯断头台技能",
+
+  "subtitles.cti.super_die1": "私人叫声",
+  "subtitles.cti.super_die2": "私人叫声",
+  "subtitles.cti.armor_broken": "破片",
+  "subtitles.cti.location_exposed": "位置暴露",
 
   "block.cti.molten_infinity_fluid":"熔融无尽",
   "block.cti.molten_invert_hoshino":"熔融星野-恐怖",
@@ -496,7 +502,7 @@
   "material.cti.roxy.flavor": "冥冥之中的动力推动你将陨石加护的异星物质雕刻如此，温润如水的光芒从中散发",
   "material.cti.roxy.encyclopedia": "来自天穹的物质将你包裹起来，你获得了n层神明的加护",
 
-  "item.cti.fox_ingot": "零时狐狸锭",
+  "item.cti.fox_ingot": "狐狸锭",
   "item.cti.molten_fox_bucket": "熔融狐狸桶",
   "fluid.cti.molten_fox": "熔融狐狸",
 
@@ -506,7 +512,7 @@
 
   "modifier.cti.hidden": "隐匿",
   "modifier.cti.hidden.flavor": "小时候看这集被黑油塔锁了",
-  "modifier.cti.hidden.description":"每隔10秒获得5秒的月隐效果\n月隐效果:3格外不会被怪物自然索敌锁到\n[当同一工具之上有Kemomimi部件时] 获得常驻的隐匿效果,隐匿状态下的首次攻击会破隐,将此次伤害提升3倍,最多9次,破隐后需要至少10秒内没有攻击过生物才可再次进入隐匿状态",
+  "modifier.cti.hidden.description":"每隔10秒获得5秒的月隐效果\n月隐效果:3格外不会被怪物自然索敌锁到\n[当同一工具之上有Kemomimi部件时] 获得常驻的隐匿效果,隐匿状态下的首次攻击会破隐,接下来的9次工具伤害将会提升3倍,破隐后需要至少10秒内没有攻击过生物才可再次进入隐匿状态",
 
 
 
@@ -815,7 +821,7 @@
 
   "modifier.cti.sugarmaker": "制糖机",
   "modifier.cti.sugarmaker.flavor": "Cti食品有限公司认证",
-  "modifier.cti.sugarmaker.description":"击杀生物后有70%概率掉落佛糖,不同佛糖食用后有不同的属性\n哈将:提高20%全伤害\n哼将:降低20%全伤害\n钢躯:免疫所有击退\n月隐:不会被3格外生物主动索敌锁到\n夜叉戮:降低50%最大生命,受到击退翻倍但是大幅提升伤害",
+  "modifier.cti.sugarmaker.description":"击杀生物后有70%概率掉落佛糖,不同佛糖食用后有不同的属性\n哈将:提高20%全伤害\n哼将:受到的全伤害降低20%\n钢躯:免疫所有击退\n月隐:不会被3格外生物主动索敌锁到\n夜叉戮:降低50%最大生命,受到击退翻倍但是大幅提升伤害",
 
   "modifier.cti.eternity": "永恒",
   "modifier.cti.eternity.flavor": "不朽的 ToolStack",
@@ -1077,7 +1083,7 @@
   "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果",
 
   "trait.l2hostility.oracle": "神谕",
-  "trait.l2hostility.oracle.desc": "怪物攻击后每级移除10秒目标的正面效果并取消对负面效果的免疫。",
+  "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
 
   "trait.l2hostility.extreme_damage_reduce": "极端伤害防护",
   "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少60%，受到的穿甲伤害减少80%。",

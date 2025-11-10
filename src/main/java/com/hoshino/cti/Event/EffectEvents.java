@@ -27,6 +27,7 @@ public class EffectEvents {
         if(attacker instanceof LivingEntity lv){
             if(lv.hasEffect(CtiEffects.ha.get())){
                 event.setAmount(amount * 1.25f);
+                amount=amount * 1.25f;
             }
             if(lv.hasEffect(CtiEffects.nakshatra.get())){
                 event.setAmount(amount * 2f);

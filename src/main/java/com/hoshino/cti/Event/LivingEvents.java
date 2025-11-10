@@ -15,6 +15,7 @@ import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -77,7 +78,7 @@ public class LivingEvents {
         if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
             if (event.getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE))
                 event.setResult(Event.Result.DENY);
-        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
+        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())){
             event.setResult(Event.Result.DENY);
         }
     }
@@ -85,13 +86,13 @@ public class LivingEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEffectApplyHigh(MobEffectEvent.Applicable event) {
         if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
-            if (event.getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE))
+            if (event.getEntity() instanceof Player player && (SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)))
                 event.setResult(Event.Result.DENY);
             else if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
                 var activeEffects = event.getEntity().activeEffects;
                 var effect = event.getEffectInstance().getEffect();
                 MobEffectInstance instance = activeEffects.get(effect);
-                if (instance != null) {
+                if (instance != null){
                     instance.update(event.getEffectInstance());
                     event.getEntity().onEffectUpdated(instance, true, null);
                 } else activeEffects.put(effect, event.getEffectInstance());
@@ -100,7 +101,7 @@ public class LivingEvents {
             event.getEntity().getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
                 if (cap.get(FixedPurify.KEY_PURIFY,0)>0) event.setResult(Event.Result.DENY);
             });
-        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
+        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())){
             event.setResult(Event.Result.DENY);
         }
     }

@@ -2,7 +2,9 @@ package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiSounds;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -32,17 +34,15 @@ public class Hidden extends Modifier implements InventoryTickModifierHook , Mele
     public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int i, boolean b, boolean b1, ItemStack itemStack) {
         if (livingEntity instanceof Player player) {
             if (player.tickCount % 20 != 0) return;
-
             if (hasKemomimi(iToolStackView)) {
                 int hiddenWaitTick = getHiddenWaitTick(iToolStackView);
                 if (hiddenWaitTick > 0) {
-
                     setHiddenWaitTick(iToolStackView, hiddenWaitTick - 1);
-                } else livingEntity.addEffect(new MobEffectInstance(CtiEffects.covert.get(), 200, 1, false, true));
+                } else livingEntity.addEffect(new MobEffectInstance(CtiEffects.covert.get(), 200, 1, false, false,true));
             }
             else {
                 if(player.tickCount%200==0){
-                    livingEntity.addEffect(new MobEffectInstance(CtiEffects.covert.get(),100,1));
+                    livingEntity.addEffect(new MobEffectInstance(CtiEffects.covert.get(),100,1,false,false,true));
                 }
             }
         }
@@ -77,6 +77,7 @@ public class Hidden extends Modifier implements InventoryTickModifierHook , Mele
     public static void breakHidden(IToolStackView view,Player player) {
         view.getPersistentData().putInt(KEMOMIMI_HIDDEN, 10);
         view.getPersistentData().putInt(HIDDEN_SUPER_HURT, 9);
+        player.level.playSound(null,player.getOnPos(), CtiSounds.location_exposed.get(), SoundSource.AMBIENT,1,1);
         player.removeEffect(CtiEffects.covert.get());
     }
 

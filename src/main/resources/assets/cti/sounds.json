@@ -28,5 +28,25 @@
         "stream": "true"
       }
     ]
+  },
+  "armor_broken": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.armor_broken",
+    "sounds": [
+      {
+        "name": "cti:armor_broken",
+        "stream": "true"
+      }
+    ]
+  },
+  "location_exposed": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.location_exposed",
+    "sounds": [
+      {
+        "name": "cti:location_exposed",
+        "stream": "true"
+      }
+    ]
   }
 }

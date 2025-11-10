@@ -1,6 +1,7 @@
 package com.hoshino.cti.L2;
 
 import com.hoshino.cti.register.CtiHostilityTrait;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.EffectUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
@@ -66,7 +67,7 @@ public class PurifyTrait extends MobTrait {
                     MobTrait trait = CtiHostilityTrait.PURIFYTRAIT.get();
                     List<Player> playerlist = mob.level.getEntitiesOfClass(Player.class, new AABB(mob.getX() + 10, mob.getY() + 10, mob.getZ() + 10, mob.getX() - 10, mob.getY() - 10, mob.getZ() - 10));
                     for (Player player : playerlist) {
-                        if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+                        if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ARMOR_ORACLE.getId())>0){
                             return;
                         }
                         LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);

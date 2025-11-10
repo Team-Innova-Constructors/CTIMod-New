@@ -2,6 +2,7 @@ package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.register.CtiSounds;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
 import net.minecraft.resources.ResourceLocation;
@@ -54,7 +55,7 @@ public class ThePast extends BattleModifier{
         } else {
             targets.forEach(mob -> runHurt(mob,source, baseDamage *modifier.getLevel()));
         }
-        entity.level.playSound(null, entity.getOnPos(), SoundEvents.GLASS_BREAK, SoundSource.AMBIENT, 1, 1);
+        entity.level.playSound(null, entity.getOnPos(), CtiSounds.armor_broken.get(), SoundSource.AMBIENT, 1, 1);
         return amount;
     }
     private void runHurt(Mob mob , DamageSource source ,float damage){

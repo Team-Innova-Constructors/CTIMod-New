@@ -8,7 +8,8 @@
     "bloodgod": "#ff0c38",
     "omniscient_gold": "#d24bff",
     "heart_of_steel": "#aaaaff",
-    "lsmz": "#72deff"
+    "lsmz": "#72deff",
+    "fox": "#ffaa7f"
   },
 
   "modifier.cti": {
@@ -169,10 +170,13 @@
     "mz": "#55ffff",
     "nholography": "#55ffff",
 
+    "hidden": "#55ffff",
+
     "_slot_": "升级槽等",
     "improve": "#f9b5ff",
     "hardcore": "#f9b5ff",
     "mutation": "#ff3d3d"
+
   },
   "harvest_tier.cti": {
     "roxy": "#629df5"

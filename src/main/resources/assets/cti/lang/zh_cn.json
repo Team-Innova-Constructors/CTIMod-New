@@ -85,7 +85,7 @@
   "item.cti.bloodgod_ingot": "§c血神锭",
   "item.cti.molten_bloodgod_bucket": "熔融血神桶",
   "fluid.cti.molten_bloodgod": "熔融血神",
-  "cti.tooltip.item.bloodgod_ingot.desc1": "弥留之际,将于下版本彻底移除",
+  "cti.tooltip.item.bloodgod_ingot.desc1": "孩子们我打嬴复活赛了",
   "cti.tooltip.item.bloodgod_ingot.desc2": "白武男(rRickroll) 贡献者材料",
 
   "material.cti.bloodgod": "血神",
@@ -103,6 +103,15 @@
   "modifier.cti.subspace": "亚空间本质",
   "modifier.cti.subspace.flavor": "凡渴求杀戮者，皆不惧卑劣之矢",
   "modifier.cti.subspace.description":"受到的远程攻击和魔法伤害伤害均降低60%",
+
+  "modifier.cti.netherback": "地狱归来者(版本限定)",
+  "modifier.cti.netherback.flavor": "故地重游",
+  "modifier.cti.netherback.description":"位于下界时,将会积累怨气,怨气达到一定值(88888tick)会积蓄一次必杀的攻击,此攻击将会提升88888%基础攻击伤害,只能存储一次,存储进度可在tooltip查看",
+
+
+  "modifier.cti.thousand_star_bless": "万众一心",
+  "modifier.cti.thousand_star_bless.flavor": "周年纪念强化",
+  "modifier.cti.thousand_star_bless.description":"根据词条总数量提升伤害\n想对你说的都在tooltip了",
 
   "item.cti.awakesaintchef_ingot": "§6觉醒龙皇锭(未完成）",
   "item.cti.molten_awakesaintchef_ingot_bucket": "熔融觉醒龙皇桶",
@@ -527,12 +536,12 @@
   "material.cti.lsmz.encyclopedia": "利用循环往复象征着永远的时钟，将一天内产生的‘劣化与消耗全部否定’，所以后来吸收的力量也会恢复，循环时的性质也不会受到同样的干涉量级（并非永远，存在的世界终究会消逝，一切都有尽头）",
 
   "modifier.cti.mz": "迷子",
-  "modifier.cti.mz.flavor": "让时间在每日零时迷路的宝具(难道说?你也是迷途之子?)",
-  "modifier.cti.mz.description":"[仅挖掘工具生效]记录破坏的次数,以累计破坏方块的次数的位数 * 词条等级视为迷子数,工具造成的伤害提升迷子数的算术平方根的倍率的伤害,同时你挖掘矿物时候获得迷子数量级的掉落倍率",
+  "modifier.cti.mz.flavor": "循环往复象征着永远的时钟",
+  "modifier.cti.mz.description":"[仅挖掘工具生效]记录破坏的次数,以累计破坏方块的次数的位数 * 词条等级视为迷子数,工具造成的伤害提升迷子数的算术平方根的倍率的伤害,同时你挖掘矿物时候获得迷子数的掉落倍率",
 
   "modifier.cti.nholography": "全息",
-  "modifier.cti.nholography.flavor": "让时间在每日零时迷路的宝具(难道说?你也是迷途之子?)",
-  "modifier.cti.nholography.description":"每过24分钟，迷子给予的免死次数刷新，免死次数为迷子数量,免死次数不为零时，则防止诅咒层数对自己施加。没有免死次数时候获得迷子位数 * 5的免伤",
+  "modifier.cti.nholography.flavor": "然而存在的世界终究会消逝，一切都有尽头",
+  "modifier.cti.nholography.description":"每过24分钟，迷子给予的免死次数刷新，免死次数为迷子数量,免死次数不为零时，则防止诅咒层数对自己施加。没有免死次数时候获得百分之 迷子 * 5的免伤",
 
   "item.cti.heart_of_steel_ingot": "§c钢铁之心锭",
   "item.cti.molten_heart_of_steel_bucket": "熔融钢铁之心桶",
@@ -733,11 +742,11 @@
 
   "modifier.cti.thepast": "往日种种",
   "modifier.cti.thepast.flavor": "往日种种,你当真不记得了?",
-  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成全身总护甲耐久1% * 词条等级点伤害 ,五秒内仅能触发一次,这个伤害会有50%概率伤害到你自己\n有黑曜石青铜则不会伤害自己,并且伤害翻四 * 黑曜石青铜等级倍",
+  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成全身总护甲耐久1% * 词条等级点伤害 ,八秒内仅能触发一次,这个伤害会有50%概率伤害到你自己\n有黑曜石青铜则不会伤害自己,并且伤害翻四 * 黑曜石青铜等级倍",
 
   "modifier.cti.mandarinduck": "苦命鸳鸯",
   "modifier.cti.mandarinduck.flavor": "再无话说,请速速动手",
-  "modifier.cti.mandarinduck.description":"当身上穿有[黑曜石]装备时候提升其破片伤害倍率4 * 此词条总等级倍并且使其无视护甲,同时不会再伤害到自己.提升2点基础护甲值,如当前装备有黑曜石,则翻倍",
+  "modifier.cti.mandarinduck.description":"当身上穿有[黑曜石]装备时候提升其破片伤害倍率1.8 * 此词条总等级倍并且使其无视护甲,同时不会再伤害到自己.提升2点基础护甲值,如当前装备有黑曜石,则提升2倍",
 
   "modifier.cti.cripplesuppermass": "超级质量",
   "modifier.cti.cripplesuppermass.flavor": "保护效果更上一层楼！",
@@ -1103,6 +1112,6 @@
 
   "info.biomes.cti.disordered_zone": "异常区域位于电离冻土星球，你需要进入主线第三章并且做出五级火箭才能到达这里。在此之前你需要做出一个完整的质子、电子产线。",
 
-  "info.cti.space_shard": "近距离对训练人偶造成超过1000的dps时产生",
+  "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过35000的dps时产生",
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生"
 }

@@ -29,7 +29,7 @@ public abstract class TargetDummyMixin extends Mob {
     }
     @Inject(method = "tick",at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;displayClientMessage(Lnet/minecraft/network/chat/Component;Z)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void summon(CallbackInfo ci, BlockPos onPos, BlockState onState, CombatTracker tracker, float combatDuration, CommonConfigs.DpsMode dpsMode, boolean dynamic, float seconds, float dps, List outOfCombat, Iterator var10, Map.Entry e, ServerPlayer p, int timer, boolean showMessage){
-        if (this.lastHurtByPlayer != null && dps > 1000 && this.lastHurtByPlayer.distanceTo(this) < 3) {
+        if (this.lastHurtByPlayer != null && dps > 35000 && this.lastHurtByPlayer.distanceTo(this) < 3) {
             ItemEntity shard = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), new ItemStack(LCItems.SPACE_SHARD.get()));
             this.level.addFreshEntity(shard);
         }

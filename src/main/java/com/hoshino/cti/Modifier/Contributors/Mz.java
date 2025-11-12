@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraftforge.common.util.FakePlayer;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -53,6 +54,7 @@ public class Mz extends Modifier implements BlockBreakModifierHook , MeleeDamage
     @Override
     public void afterBlockBreak(IToolStackView iToolStackView, ModifierEntry modifierEntry, ToolHarvestContext toolHarvestContext) {
         int amount=iToolStackView.getPersistentData().getInt(MZBreak);
+        if(toolHarvestContext.getPlayer() instanceof FakePlayer)return;
         if(iToolStackView.hasTag(TinkerTags.Items.HARVEST)){
             iToolStackView.getPersistentData().putInt(MZBreak,amount+1);
         }

@@ -10,6 +10,7 @@ import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.ModifierManager;
+import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
@@ -38,13 +39,14 @@ public class ThousandStarBless extends Modifier implements TooltipModifierHook {
             "当你打完CTI的时候，你就会知道我们还会再相遇--落秋枫"
     };
 
+
     @Override
     public void addTooltip(IToolStackView iToolStackView, ModifierEntry modifierEntry, @Nullable Player player, List<Component> list, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
         if(player==null)return;
         int[] originColor=new int[]{0xfd0004,0x0202fd,0x00fd26,0xfdfd00};
-        String origin="漫长的旅途...终于迎来一个句号，手握此工具，无限之力贯彻天地古今，获得全属性增幅";
+        String origin="漫长的旅途...终于迎来一个句号，手握此工具，无限之力贯彻天地古今，获得伤害增幅";
         long count= ModifierManager.INSTANCE.getAllValues().count();
-        var one= DynamicComponentUtil.scrollColorfulText.getColorfulText(origin,":"+count+"%",originColor,20,20,false);
+        var one= DynamicComponentUtil.scrollColorfulText.getColorfulText(origin,":"+count * 100f+"%",originColor,20,20,false);
 
         int[] for_member_color=new int[]{0xffaaff,0x97ecff};
         String for_member="CTI不知不觉也1周年了,从最初的残破不堪,内容散乱,到现在的井井有条,离不开组内成员的每一个人,虽然总有分散的一天,但是我会永远记住每个人的.将来我也会有一天投奔生活,因此我希望有人能将这股力量传承下去";
@@ -63,10 +65,10 @@ public class ThousandStarBless extends Modifier implements TooltipModifierHook {
         var two=DynamicComponentUtil.BreathColorfulText.getColorfulText("对制作组其他成员",null,new int[]{0xffaaff},60,2000,false);
         var three=DynamicComponentUtil.scrollColorfulText.getColorfulText(for_member,null,for_member_color,40,30,false);
 
-        var four=DynamicComponentUtil.BreathColorfulText.getColorfulText(description,null,new int[]{0x1fa5fd},60,2000,false);
+        var four=DynamicComponentUtil.BreathColorfulText.getColorfulText("对玩家说的话",null,new int[]{0x1fa5fd},60,2000,false);
         var five=DynamicComponentUtil.scrollColorfulText.getColorfulText(for_player,null,for_player_color,40,30,false);
 
-        var six=DynamicComponentUtil.BreathColorfulText.getColorfulText(description,null,new int[0x1fa5fd],60,2000,false);
+        var six=DynamicComponentUtil.BreathColorfulText.getColorfulText(description,null,new int[]{0x1fa5fd},60,2000,false);
         var seven=DynamicComponentUtil.scrollColorfulText.getColorfulText(currentMessage,null,originColor,40,30,false);
 
         list.add(one);

@@ -1,11 +1,14 @@
 package com.hoshino.cti.mixin.L2;
 
 import com.aetherteam.aether.entity.monster.Swet;
+import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.highlevel.GrowthTrait;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -29,8 +32,14 @@ public abstract class GrowTraitMixin extends MobTrait {
     @Inject(method = "tick",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Slime;m_7839_(IZ)V"), cancellable = true)
     private void setSize(LivingEntity mob, int level, CallbackInfo ci){
         if(mob instanceof Slime slime){
+            if(slime.getTarget() instanceof Player player){
+                if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+                    ci.cancel();
+                    return;
+                }
+            }
             var size=slime.getSize();
-            slime.setSize(Math.max(size,level+3),true);
+            slime.setSize(Math.max(size,level+2),true);
             ci.cancel();
         }
     }

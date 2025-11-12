@@ -39,7 +39,10 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import slimeknights.tconstruct.library.modifiers.ModifierManager;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
+import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
+import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -271,16 +274,33 @@ public class LivingEvents {
         if (!(event.getEntity() instanceof Player player)) return;
         var itemStack = player.getMainHandItem();
         var view = ToolStack.from(itemStack);
+        var view2 = ToolStack.from(player.getOffhandItem());
         int currentMizi = view.getPersistentData().getInt(Mz.CurrentMZ);
+        int currentMizi2 = view2.getPersistentData().getInt(Mz.CurrentMZ);
         if (currentMizi > 0) {
-            event.setCanceled(true);
-            player.setHealth(player.getMaxHealth());
-            player.level.playSound(player, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.AMBIENT, 1, 1);
-            view.getPersistentData().putInt(Mz.CurrentMZ, currentMizi - 1);
+            prevent(event,player,view,currentMizi);
+            return;
+        }
+        if (currentMizi2 > 0) {
+            prevent(event,player,view2,currentMizi2);
         }
     }
     @SubscribeEvent
+    public static void thousandBless(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        var itemStack = player.getMainHandItem();
+        if(ModifierUtil.getModifierLevel(itemStack,CtiModifiers.THOUSAND_STAR_BLESS_STATIC_MODIFIER.getId())>0){
+            long count= ModifierManager.INSTANCE.getAllValues().count();
+            event.setAmount(event.getAmount() * count);
+        }
+    }
+    private static void prevent(LivingDeathEvent event, Player player, IToolStackView view,int currentAmount){
+        event.setCanceled(true);
+        player.setHealth(player.getMaxHealth());
+        player.level.playSound(player, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.AMBIENT, 1, 1);
+        view.getPersistentData().putInt(Mz.CurrentMZ, currentAmount - 1);
+    }
+    @SubscribeEvent
     public static void miziModifyDamage(LivingHurtEvent event) {
-
     }
 }

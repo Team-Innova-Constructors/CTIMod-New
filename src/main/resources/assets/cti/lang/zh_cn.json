@@ -1061,6 +1061,10 @@
   "modifier.cti.fixed_precision.flavor": "精密如仪器！",
   "modifier.cti.fixed_precision.description":"每级增加25%修复效率和5%耐久",
 
+  "modifier.cti.fixcurseblade": "诅咒之刃",
+  "modifier.cti.fixcurseblade.flavor": "不准回血！",
+  "modifier.cti.fixcurseblade.description":"近战攻击和远程攻击每次每级施加10秒诅咒效果",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",

@@ -45,6 +45,7 @@
     "IAFMixin.DragonCaveMixin",
     "IAFMixin.IafDragonDestructionManagerMixin",
     "IEMixin.SurveyToolsItemMixin",
+    "L2.AdaptingMixin",
     "L2.AttackListenerMixin",
     "L2.CsTraitMixin",
     "L2.DementorMixin",

@@ -49,7 +49,7 @@ public class PurifyTrait extends MobTrait {
         for (int i = 0; i < 4; i++) {
             var opt = manager.getTag(LHTraits.POTION).getRandomElement(mob.getRandom());
             if (opt.isEmpty()) continue;
-            var trait = opt.get();
+            MobTrait trait = opt.get();
             if (trait.allow(mob) && !cap.hasTrait(trait)) {
                 cap.setTrait(trait, lv);
                 return;

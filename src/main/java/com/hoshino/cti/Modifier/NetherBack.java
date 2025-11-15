@@ -22,6 +22,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 import java.util.List;
 
+
 public class NetherBack extends Modifier implements InventoryTickModifierHook , MeleeDamageModifierHook , TooltipModifierHook {
     public static final ResourceLocation NETHER_GAS = Cti.getResource("nether_gas");
     @Override

@@ -184,6 +184,7 @@ public class CtiModifiers {
     public static final StaticModifier<Nholography> NHOLOGRAPHY_STATIC_MODIFIER = MODIFIERS.register("nholography", Nholography::new);
     public static final StaticModifier<Hidden> Hidden = MODIFIERS.register("hidden", Hidden::new);
     public static final StaticModifier<NetherBack> NETHER_BACK_STATIC_MODIFIER = MODIFIERS.register("netherback", NetherBack::new);
+    public static final StaticModifier<FixCurseBlade> FIX_CURSE_BLADE_STATIC_MODIFIER = MODIFIERS.register("fixcurseblade", FixCurseBlade::new);
 
 
 

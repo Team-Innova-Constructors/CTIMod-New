@@ -1,6 +1,6 @@
 package com.hoshino.cti;
 
-import com.hoshino.cti.Event.LivingEvents;
+import com.hoshino.cti.Event.CommonLivingEvents;
 import com.hoshino.cti.Event.MobEffectEventHandler;
 import com.hoshino.cti.Modifier.capability.*;
 import com.hoshino.cti.Screen.menu.ctiMenu;
@@ -48,7 +48,7 @@ public class Cti {
         CtiEntityTickers.ENTITY_TICKERS.register(eventBus);
         CtiHostilityTrait.register();
         CtiEntity.ENTITY_TYPES.init();
-        MinecraftForge.EVENT_BUS.register(new LivingEvents());
+        MinecraftForge.EVENT_BUS.register(new CommonLivingEvents());
         MinecraftForge.EVENT_BUS.register(new MobEffectEventHandler());
         CtiPacketHandler.init();
         ctiMenu.MENU_TYPE.register(eventBus);
@@ -56,6 +56,7 @@ public class Cti {
         CtiParticleType.PARTICLES.register(eventBus);
         CtiItem.registerPartModels();
         CtiSounds.sound.register(eventBus);
+        CtiLootCondition.LOOT_CONDITION_TYPES.register(eventBus);
         //ctiRecipes.register(eventBus);
         ctiConfiguredFeature.CONFIGURED_FEATURES.register(eventBus);
         ctiPlacedFeature.PLACED_FEATURES.register(eventBus);
@@ -88,6 +89,8 @@ public class Cti {
         CtiSlots.init();
         //药水配方
         CtiBrewing.init();
+
+
         TierSortingRegistry.registerTier(Roxy.instance, new ResourceLocation("cti:roxy"), List.of(Tiers.NETHERITE), List.of());
     }
 

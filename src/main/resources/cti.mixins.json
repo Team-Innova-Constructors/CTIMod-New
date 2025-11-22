@@ -39,12 +39,14 @@
     "Eni.CubeMixin",
     "Eni.CurseRingMixin",
     "Eni.EniEventMixin",
+    "Eni.SuperpositionHandlerMixin",
     "GoalMixin.NearestAttackableTargetGoalMixin",
     "IAFMixin.ChainPropertiesMixin",
     "IAFMixin.DragonAITargetNonTamedMixin",
     "IAFMixin.DragonCaveMixin",
     "IAFMixin.IafDragonDestructionManagerMixin",
     "IEMixin.SurveyToolsItemMixin",
+    "IPMixin.ProjectorItemMixin",
     "L2.AdaptingMixin",
     "L2.AttackListenerMixin",
     "L2.CsTraitMixin",
@@ -100,6 +102,7 @@
     "TIMixin.ToolUtilsMixin",
     "TwiMixin.BossSpawnerBlockEntityMixin",
     "TwiMixin.HydraMixin",
+    "TwiMixin.LampMixin",
     "TwiMixin.UrGhastMixin"
   ],
   "client": [

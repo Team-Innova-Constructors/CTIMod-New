@@ -1,0 +1,16 @@
+{
+  "default": [
+    {
+      "name": "cti:deathrolling",
+      "level": 1
+    }
+  ],
+  "perStat" : {
+    "tconstruct:head": [
+    {
+      "name": "cti:deathrolling",
+      "level": 1
+    }
+    ]
+  }
+}

@@ -19,6 +19,7 @@ import com.hoshino.cti.Items.pncMinigunAmmo.ElectroniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.ProtoniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.UltraDenseAmmo;
 import com.hoshino.cti.integration.ArsNouveau.MeteorShowerRitual;
+import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
 import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistries;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistry;
@@ -251,6 +252,17 @@ public class CtiItem {
     public static final RegistryObject<Item> upgrade_aetherium = ITEMS.register("upgrade_aetherium", () -> new AtmosphereUpgradeItem(10.5f, 2f));
     public static final RegistryObject<Item> test_tool = ITEMS.register("test_tool", () -> new TestTool(new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<Item> Vein_Remove_Tool = ITEMS.register("vein_remove_tool", () -> new VeinRemoveTool(new Item.Properties().tab(CtiTab.MIXC)));
+    //收藏品
+    public static final RegistryObject<Item> heart_of_africa = ITEMS.register("heart_of_africa", () -> new CollectionItem(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1),List.of(
+            DynamicComponentUtil.BreathColorfulText.getColorfulText("世界上最大的钻石,象征着永恒的爱",null,new int[]{0xff3030},40,2000,false),
+            Component.literal("在真玩家在主世界挖掘钻石矿时候概率产出,也可能在某些高级战利品箱子中").withStyle(style -> style.withColor(0x11ff00)),
+            Component.literal("隐藏收集品").withStyle(style -> style.withColor(0xff0000))
+    ),Component.literal("非洲之心").withStyle(style -> style.withColor(0xca3c37))));
+    public static final RegistryObject<Item> tear_of_sea = ITEMS.register("tear_of_sea", () -> new CollectionItem(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1),List.of(
+            DynamicComponentUtil.scrollColorfulText.getColorfulText("混元天成,珠圆玉润的巨大天然珍珠,其通体散发镭射光泽,令人目眩神迷",null,new int[]{0x185d3c,0xad68ca,0x3a61ca},40,40,false),
+            Component.literal("在海洋中击杀溺尸概率获得,冰雪迷阵的深处也可能有它的踪迹").withStyle(style -> style.withColor(0x11ff00)),
+            Component.literal("隐藏收集品").withStyle(style -> style.withColor(0xff0000))
+    ),Component.literal("海洋之泪").withStyle(style -> style.withColor(0x5161ca))));
 
 
     //材料
@@ -287,6 +299,10 @@ public class CtiItem {
     public static final RegistryObject<Item> covert_sugar = ITEMS.register("covert_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.covert.get()));
     public static final RegistryObject<Item> nakshatra_sugar = ITEMS.register("nakshatra_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.nakshatra.get()));
     public static final RegistryObject<Item> soul_spell = ITEMS.register("soul_spell", () -> new SoulSpell(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1)));
+
+    public static final RegistryObject<Item> mixer_generator = ITEMS.register("mixer_generator", () -> new IEMultiblockGenerator(new Item.Properties().tab(CtiTab.MIXC).stacksTo(35),"immersiveengineering:multiblocks/mixer"));
+    public static final RegistryObject<Item> cokerunit_generator = ITEMS.register("cokerunit_generator", () -> new IEMultiblockGenerator(new Item.Properties().tab(CtiTab.MIXC).stacksTo(35),"immersivepetroleum:multiblocks/cokerunit"));
+    public static final RegistryObject<Item> pumpjack_generator = ITEMS.register("pumpjack_generator", () -> new IEMultiblockGenerator(new Item.Properties().tab(CtiTab.MIXC).stacksTo(35),"immersivepetroleum:multiblocks/pumpjack"));
 
     //矿脉生成
     //ResourceLocation部分需要完整的MODID和path(同实际路径)

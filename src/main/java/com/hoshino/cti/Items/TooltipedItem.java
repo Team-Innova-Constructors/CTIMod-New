@@ -23,6 +23,4 @@ public class TooltipedItem extends Item {
         pTooltipComponents.addAll(this.tooltip);
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
-
-
 }

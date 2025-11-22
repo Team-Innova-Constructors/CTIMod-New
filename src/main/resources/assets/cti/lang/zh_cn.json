@@ -20,6 +20,14 @@
   "item.cti.vein_remove_tool": "矿脉移除工具",
   "block.cti.aluminium_glass": "高强度铝玻璃",
 
+  "item.cti.heart_of_africa": "非洲之心",
+  "item.cti.tear_of_sea": "海洋之泪",
+
+
+  "item.cti.cokerunit_generator": "焦炭塔生成器",
+  "item.cti.mixer_generator": "搅拌机生成器",
+  "item.cti.pumpjack_generator": "磕头机生成器",
+
 
   "effect.cti.ev": "狩猎",
   "effect.cti.ancientdragonflame": "远古龙焰",
@@ -381,6 +389,8 @@
   "death.attack.mobattackreflect.player": "%1$s 被怪物弹死了。",
   "death.attack.cti.obsidianhurt": "%1$s 被黑曜石碴子崩死了。",
   "death.attack.cti.obsidianhurt.player": "%1$s 被黑曜石碴子崩死了。",
+  "death.attack.cti.skd": "%1$s 被创死了。",
+  "death.attack.cti.skd.player": "%1$s 被创死了。",
 
 
 
@@ -914,7 +924,7 @@
 
   "modifier.cti.sacrifice": "牺牲",
   "modifier.cti.sacrifice.flavor": "刻下伤痕，拥抱新生",
-  "modifier.cti.sacrifice.description":"手持工具右键对自己施加牺牲效果，shift-右键增加牺牲层数。每层牺牲会暂时封印你的10%最大生命值，被封印的生命值一旦损失则无法恢复。",
+  "modifier.cti.sacrifice.description":"手持工具右键对自己施加牺牲效果，shift-右键增加牺牲层数。每层牺牲会暂时封印你的8%最大生命值，被封印的生命值一旦损失则无法恢复。",
 
   "modifier.cti.buffed_anger": "血偿",
   "modifier.cti.buffed_anger.flavor": "死兆将至！",
@@ -947,6 +957,14 @@
   "modifier.cti.crystallizing_armor": "结晶护甲",
   "modifier.cti.crystallizing_armor.flavor": "护甲上长晶体了！",
   "modifier.cti.crystallizing_armor.description":"获得一面每秒增加5%伤害减免的护盾，每次受到伤害都会减少5%的减免。",
+
+  "material.cti.shell": "蠕虫甲壳",
+  "material.cti.shell.flavor": "啊呀，骇死我里",
+  "material.cti.shell.encyclopedia": "用这玩意你感觉自己仿佛变成了死亡蠕虫",
+
+  "modifier.cti.deathrolling": "死亡翻滚",
+  "modifier.cti.deathrolling.flavor": "别怕,这里不是塔顶航空箱,也没有喷火兵",
+  "modifier.cti.deathrolling.description":"工具右键会立即像目标冲刺",
 
 
 

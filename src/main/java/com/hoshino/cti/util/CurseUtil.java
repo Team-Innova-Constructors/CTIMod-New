@@ -63,6 +63,16 @@ public class CurseUtil {
         if(data==null)return;
         data.putInt("resolute", resoluteTime);
     }
+    public static void setAetherAllow(Player player,boolean c){
+        var data=getCurseCurioData(player);
+        if(data==null)return;
+        data.putBoolean("aether_allow",c);
+    }
+    public static boolean whetherAetherAllow(Player player){
+        var data=getCurseCurioData(player);
+        if(data==null)return false;
+        return data.getBoolean("aether_allow");
+    }
     
 
 

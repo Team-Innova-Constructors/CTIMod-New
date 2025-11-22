@@ -18,10 +18,9 @@ import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.part.ToolPartItem;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
-public class PlayerEvent {
+public class PlayerLocalEvent {
     @SubscribeEvent
     public static void addToolTip(ItemTooltipEvent event) {
         if (event.getItemStack().getItem() instanceof ToolPartItem partItem) {
@@ -65,4 +64,5 @@ public class PlayerEvent {
             }
         }
     }
+
 }

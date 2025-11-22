@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -34,6 +35,11 @@ public abstract class GrowTraitMixin extends MobTrait {
         if(mob instanceof Slime slime){
             if(slime.getTarget() instanceof Player player){
                 if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+                    ci.cancel();
+                    return;
+                }
+                var slimes=slime.level.getEntitiesOfClass(Slime.class,new AABB(slime.getOnPos()).inflate(8));
+                if(slimes.size()>11){
                     ci.cancel();
                     return;
                 }

@@ -9,16 +9,12 @@ import com.hoshino.cti.Modifier.Contributors.Mz;
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.Replace.FixedPurify;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
-import com.hoshino.cti.register.CtiBlock;
-import com.hoshino.cti.register.CtiEffects;
-import com.hoshino.cti.register.CtiEntityTickers;
-import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
-import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
@@ -26,15 +22,19 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -45,11 +45,12 @@ import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerTools;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import java.util.Collection;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
-public class LivingEvents {
+public class CommonLivingEvents {
     @SubscribeEvent
     public static void onGobberKillEnderDragon(LivingDeathEvent event) {
         if (event.getEntity() instanceof EnderDragon enderDragon && event.getSource().getEntity() instanceof Player player) {
@@ -110,8 +111,8 @@ public class LivingEvents {
     }
 
 
-    @SubscribeEvent
-    public static void onPlayerHurt(LivingHurtEvent event) {
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onPlayerHurt(LivingAttackEvent event) {
         if (event.getSource().getEntity() instanceof Player player1 && event.getEntity() instanceof Player player2) {
             if (!(player1 == player2)) {
                 event.setCanceled(true);
@@ -214,7 +215,7 @@ public class LivingEvents {
         var tickerManager = EntityTickerManager.getInstance(living);
         var tickerInstance = tickerManager.getTicker(CtiEntityTickers.SACRIFICE_SEAL.get());
         if (tickerInstance!=null){
-            float maxHealth = living.getMaxHealth()*(1-0.1f*tickerInstance.level);
+            float maxHealth = living.getMaxHealth()*(1-0.08f*tickerInstance.level);
             if (living.getHealth()+event.getAmount()>maxHealth){
                 living.setHealth(maxHealth);
                 event.setCanceled(true);
@@ -301,6 +302,25 @@ public class LivingEvents {
         view.getPersistentData().putInt(Mz.CurrentMZ, currentAmount - 1);
     }
     @SubscribeEvent
-    public static void miziModifyDamage(LivingHurtEvent event) {
+    public static void onDropAfricaHeart(BlockEvent.BreakEvent event){
+        var player=event.getPlayer();
+        var pos=event.getPos();
+        if(player==null)return;
+        if(player instanceof FakePlayer)return;
+        if(player.getLevel() instanceof ServerLevel serverLevel){
+            if(serverLevel.dimension().equals(ServerLevel.OVERWORLD)){
+                if(event.getState().is(Tags.Blocks.ORES_DIAMOND)){
+                    int deathCount=CurseUtil.getDeathFrequency(player);
+                    var randomSource=player.getRandom();
+                    int currentNumber=randomSource.nextInt(4000);
+                    if(currentNumber + deathCount * 10>3998){
+                        var fzzx=new ItemEntity(player.level,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(CtiItem.heart_of_africa.get(),1));
+                        player.level.addFreshEntity(fzzx);
+                        fzzx.setPos(new Vec3(pos.getX(),pos.getY(),pos.getZ()));
+                    }
+                }
+            }
+        }
     }
+
 }

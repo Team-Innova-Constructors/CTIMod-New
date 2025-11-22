@@ -2,6 +2,7 @@ package com.hoshino.cti.mixin.AetherMixin;
 
 import com.aetherteam.aether.block.portal.AetherPortalBlock;
 import com.hoshino.cti.util.AdvanceMentHelper;
+import com.hoshino.cti.util.CurseUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,8 +19,8 @@ public class AetherPortalMixin {
     private void preventPlayerTeleport(Entity entity, CallbackInfo ci) {
         if (!(entity instanceof ServerPlayer serverPlayer)) return;
         if(serverPlayer.gameMode.isCreative())return;
-        if (!AdvanceMentHelper.hasCompletedAdvancement(serverPlayer, new ResourceLocation(TwilightForestMod.ID, "progress_castle"))) {
-            serverPlayer.displayClientMessage(Component.literal("你现在还没完成暮色,登上暮色最高的城堡后再来吧,天镜的怪对你来说太过于凶猛了"), true);
+        if (!AdvanceMentHelper.hasCompletedAdvancement(serverPlayer, new ResourceLocation(TwilightForestMod.ID, "progress_castle"))&&!CurseUtil.whetherAetherAllow(serverPlayer)){
+            serverPlayer.displayClientMessage(Component.literal("你现在还没完成暮色,登上暮色最高的城堡后,或者使用余烬之灯再来吧,天镜的怪对你来说太过于凶猛了"), true);
             ci.cancel();
         }
     }

@@ -47,14 +47,13 @@ public class ThePast extends Modifier implements ModifyDamageModifierHook , Inve
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float amount, boolean b) {
         var entity=equipmentContext.getEntity();
-        if (amount == 0) return amount;
         if(!(entity instanceof Player player))return amount;
         if(damageSource instanceof EntityDamageSource entityDamageSource&&entityDamageSource.isThorns())return amount;
         int lastFragmentTime = tool.getPersistentData().getInt(FRAGMENT_COOLDOWN);
         if(lastFragmentTime>0)return amount;
 
         tool.getPersistentData().putInt(FRAGMENT_COOLDOWN,4);
-        var area = new AABB(entity.getOnPos()).inflate(3);
+        var area = new AABB(entity.getOnPos()).inflate(5);
         List<Mob> targets = entity.level.getEntitiesOfClass(Mob.class, area, LivingEntity::isAlive);
         int increaseLevel = GetModifierLevel.getTotalArmorModifierlevel(entity, CtiModifiers.MANDARIN_DUCK_STATIC_MODIFIER.getId());
         boolean hasIncrease = increaseLevel > 0;

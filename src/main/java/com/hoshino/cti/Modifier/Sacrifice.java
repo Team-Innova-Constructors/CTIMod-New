@@ -33,7 +33,19 @@ public class Sacrifice extends EtSTBaseModifier implements GeneralInteractionMod
 
     @Override
     public InteractionResult onToolUse(IToolStackView tool, ModifierEntry modifier, Player player, InteractionHand hand, InteractionSource source) {
-        GeneralInteractionModifierHook.startUsing(tool,modifier.getId(),player,hand);
+        var tickerManager = EntityTickerManager.getInstance(player);
+        var tickerInstance = tickerManager.getTicker(CtiEntityTickers.SACRIFICE_SEAL.get());
+        if (tickerInstance != null) {
+            if(tickerInstance.level==11){
+                player.sendSystemMessage(Component.literal("你血量已经很低了,再加牺牲层数使用会死掉的"));
+                return InteractionResult.FAIL;
+            }
+            else {
+                float maxHealth = player.getMaxHealth() * (1 - 0.08f * tickerInstance.level);
+                player.setHealth(maxHealth);
+            }
+        }
+        GeneralInteractionModifierHook.startUsing(tool, modifier.getId(), player, hand);
         return InteractionResult.CONSUME;
     }
 
@@ -55,21 +67,22 @@ public class Sacrifice extends EtSTBaseModifier implements GeneralInteractionMod
     @Override
     public void onFinishUsing(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull LivingEntity entity) {
         var tickerManager = EntityTickerManager.getInstance(entity);
-        if (entity.isShiftKeyDown()){
-            tickerManager.addTicker(new EntityTickerInstance(CtiEntityTickers.SACRIFICE_SEAL.get(),1,200),Integer::sum,Integer::max);
-        }else {
-            tickerManager.addTicker(new EntityTickerInstance(CtiEntityTickers.SACRIFICE_SEAL.get(),1,200),Integer::max,Integer::sum);
+        if (entity.isShiftKeyDown()) {
+            tickerManager.addTicker(new EntityTickerInstance(CtiEntityTickers.SACRIFICE_SEAL.get(), 1, 200), Integer::sum, Integer::max);
+        } else {
+            tickerManager.addTicker(new EntityTickerInstance(CtiEntityTickers.SACRIFICE_SEAL.get(), 1, 200), Integer::max, Integer::sum);
         }
-        if (entity instanceof Player player) player.getCooldowns().addCooldown(player.getItemInHand(player.getUsedItemHand()).getItem(),8);
+        if (entity instanceof Player player)
+            player.getCooldowns().addCooldown(player.getItemInHand(player.getUsedItemHand()).getItem(), 8);
     }
 
     @Override
     public void addTooltip(IToolStackView tool, ModifierEntry modifierEntry, @Nullable Player player, List<Component> tooltip, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
-        if (player!=null){
+        if (player != null) {
             var tickerInstance = EntityTickerManager.getInstance(player).getTicker(CtiEntityTickers.SACRIFICE_SEAL.get());
-            if (tickerInstance!=null){
+            if (tickerInstance != null) {
                 tooltip.add(Component.translatable("cti.tooltip.modifier.sacrifice_level").append(String.valueOf(tickerInstance.level)).withStyle(ChatFormatting.RED));
-                tooltip.add(Component.translatable("cti.tooltip.modifier.sacrifice_time").append(tickerInstance.duration / 20 +"s").withStyle(ChatFormatting.RED));
+                tooltip.add(Component.translatable("cti.tooltip.modifier.sacrifice_time").append(tickerInstance.duration / 20 + "s").withStyle(ChatFormatting.RED));
             }
         }
     }

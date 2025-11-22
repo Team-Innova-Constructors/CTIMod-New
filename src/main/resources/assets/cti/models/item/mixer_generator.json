@@ -1,0 +1,115 @@
+{
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "ground": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "gui": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "head": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "none": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        19.999998,
+        -44.999996,
+        0.0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    }
+  },
+  "flip_v": true,
+  "loader": "forge:obj",
+  "model": "immersiveengineering:models/block/metal_multiblock/mixer.obj"
+}

@@ -19,13 +19,12 @@ public class ManualCompressorBlockEntityMixin {
         ManualCompressorBlockEntity entity = (ManualCompressorBlockEntity) (Object) this;
         Level level = entity.getLevel();
         if (level != null && level.dimension().equals(DimensionConstants.JUPITER)) {
-            LazyOptional<IAirHandlerMachine> optional = entity.getCapability(PNCCapabilities.AIR_HANDLER_MACHINE_CAPABILITY, entity.getRotation());
-            IAirHandler handler = optional.orElse(null);
-            int MaxAmount = (int) (handler.getBaseVolume() * 4.9);
-            if (handler.getPressure() < 4.9) {
-                handler.addAir((int) ((MaxAmount - handler.getAir()) * 0.75f));
-            }
+            entity.getCapability(PNCCapabilities.AIR_HANDLER_MACHINE_CAPABILITY, entity.getRotation()).ifPresent(handler->{
+                int MaxAmount = (int) (handler.getBaseVolume() * 4.9);
+                if (handler.getPressure() < 4.9) {
+                    handler.addAir((int) ((MaxAmount - handler.getAir()) * 0.75f));
+                }
+            });
         }
-
     }
 }

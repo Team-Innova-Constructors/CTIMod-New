@@ -13,6 +13,9 @@ public class CtiToolStats {
     public static final FloatToolStat FROZEN_RESISTANCE = ToolStats.register(new FloatToolStat(name("frozen_resistance"), -3135232, 0.0F, 0.0F, 5));
     public static final FloatToolStat PRESSURE_RESISTANCE = ToolStats.register(new FloatToolStat(name("pressure_resistance"), -3135232, 0.0F, 0.0F, 5));
 
+    public static final FloatToolStat EFFICIENCY = ToolStats.register(new FloatToolStat(name("efficiency"), -3135232, 1.0F, 0.0F, 100));
+    public static final FloatToolStat POWER = ToolStats.register(new FloatToolStat(name("power"), -3135232, 1.0F, 0.0F, 100));
+
     private static ToolStatId name(String name) {
         return new ToolStatId(Cti.MOD_ID, name);
     }

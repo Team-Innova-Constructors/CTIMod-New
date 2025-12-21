@@ -57,7 +57,7 @@ public class PlasmaWaveSlashProjectile extends ItemProjectile {
             if (entity!=null&&entity!=this.getOwner()&&this.getOwner() instanceof Player player&&!(entity instanceof Player)){
                 if (tool!=null) {
                     entity.invulnerableTime = 0;
-                    AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,true, EquipmentSlot.MAINHAND,0.25f);
+                    AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,true, EquipmentSlot.MAINHAND,false,0,0.25f);
                     entity.invulnerableTime =0;
                     hitList.add(entity);
                 }

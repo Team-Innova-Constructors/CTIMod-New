@@ -16,7 +16,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 
 public class HomingSunStrike extends EntitySunstrike {
     public @Nullable LivingEntity homingEntity;
@@ -163,4 +164,5 @@ public class HomingSunStrike extends EntitySunstrike {
             living.hurt(fireSource,this.damage);
         });
     }
+
 }

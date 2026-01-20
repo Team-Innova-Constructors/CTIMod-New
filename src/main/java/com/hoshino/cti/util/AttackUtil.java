@@ -58,7 +58,7 @@ public class AttackUtil {
 
 
     public static boolean attackEntity(IToolStackView tool, LivingEntity attackerLiving, InteractionHand hand,
-                                       Entity targetEntity, DoubleSupplier cooldownFunction, boolean isExtraAttack, EquipmentSlot sourceSlot,float damagePercent) {
+                                       Entity targetEntity, DoubleSupplier cooldownFunction, boolean isExtraAttack, EquipmentSlot sourceSlot,boolean setDamage,float damageSet,float damagePercent) {
         if (tool.isBroken() || !tool.hasTag(TinkerTags.Items.MELEE)) {
             return false;
         }
@@ -73,7 +73,7 @@ public class AttackUtil {
             attackerPlayer = player;
         }
 
-        float damage = getAttributeAttackDamage(tool, attackerLiving, sourceSlot);
+        float damage = setDamage ? damageSet : getAttributeAttackDamage(tool, attackerLiving, sourceSlot);
 
         float cooldown = (float)cooldownFunction.getAsDouble();
         boolean fullyCharged = cooldown > 0.9f;

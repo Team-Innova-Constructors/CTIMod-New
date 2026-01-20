@@ -30,7 +30,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import slimeknights.tconstruct.library.materials.MaterialRegistry;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+
+import java.util.Arrays;
 
 
 public class ClientEventHandler {
@@ -139,5 +143,13 @@ public class ClientEventHandler {
                 }
             }
         }
+//        @SubscribeEvent
+//        public static void onRecipeUpdate(RecipesUpdatedEvent event){
+//            var registry = MaterialRegistry.getInstance();
+//            event.getRecipeManager().getAllRecipesFor(TinkerRecipeTypes.MATERIAL.get()).forEach(recipe->{
+//                var material = recipe.getMaterial();
+//                Arrays.stream(recipe.getIngredient().getItems()).toList().forEach(stack -> );
+//            });
+//        }
     }
 }

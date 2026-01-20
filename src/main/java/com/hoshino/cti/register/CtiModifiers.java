@@ -9,6 +9,7 @@ import com.hoshino.cti.Modifier.Developer.*;
 import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.forTrait.OverslimeHandler;
 import com.hoshino.cti.Modifier.iafCompact.*;
 import com.hoshino.cti.Modifier.l2Compact.*;
 import com.hoshino.cti.Modifier.miscCompact.*;
@@ -185,6 +186,7 @@ public class CtiModifiers {
     public static final StaticModifier<Hidden> Hidden = MODIFIERS.register("hidden", Hidden::new);
     public static final StaticModifier<NetherBack> NETHER_BACK_STATIC_MODIFIER = MODIFIERS.register("netherback", NetherBack::new);
     public static final StaticModifier<FixCurseBlade> FIX_CURSE_BLADE_STATIC_MODIFIER = MODIFIERS.register("fixcurseblade", FixCurseBlade::new);
+    public static final StaticModifier<OverslimeHandler> OVERSLIME_HANDLER = MODIFIERS.register("overslime_handler", OverslimeHandler::new);
     public static final StaticModifier<DeathRolling> DEATH_ROLLING_STATIC_MODIFIER = MODIFIERS.register("deathrolling", DeathRolling::new);
     public static final StaticModifier<FuckingDeltaForce> FUCKING_DELTA_FORCE_STATIC_MODIFIER = MODIFIERS.register("fuckingdeltaforce", FuckingDeltaForce::new);
 

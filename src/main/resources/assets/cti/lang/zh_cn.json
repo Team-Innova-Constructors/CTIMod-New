@@ -41,16 +41,13 @@
   "effect.cti.nakshatra": "夜叉戮糖",
   "effect.cti.blood_angry": "血怒",
 
-
   "cti.tooltip.item.shift": "按下 Shift 以获取信息",
   "cti.tooltip.item.ultradense_ammo": "这种高密度材料制成的特种机关枪弹药具有较高的伤害，命中时能无视敌人无敌帧。",
   "cti.tooltip.item.protonium_ammo": "这种强互作用材料制成的特种机关枪弹药具有很高的伤害，命中时能无视敌人无敌帧，并且穿甲。",
   "cti.tooltip.item.electronium_ammo": "这种超轻含能材料制成的特种机关枪弹药伤害相对较低，但是射程很远，而且会对目标施加电离减益。",
-
   "cti.tooltip.item.fe_max": "基础FE存储",
   "cti.tooltip.item.fe_consumption": "基础FE消耗量",
   "cti.tooltip.item.fe_generate": "基础FE产生量",
-
   "cti.tooltip.item.atmosphere_extractor": "将环境的部分大气成分提取为固体物质。",
   "cti.tooltip.item.atmosphere_condensator": "将环境的部分大气成分冷凝为流体物质。",
   "cti.tooltip.item.quantum_miner": "消耗压缩奇点以从另一个位面采集矿物，矿物被存入机器上方的容器里。",
@@ -65,19 +62,17 @@
   "cti.tooltip.item.xenoglarium_ingot": "展现在我们面前的宇宙是一个虚无缥缈的存在。",
   "cti.tooltip.item.xenoglarium_ingot2": "什么，你问我上面那句话和这个材料有什么关系？我不知道。",
   "cti.tooltip.item.xenoglarium_ingot3": "尽管如此，这些文字并非毫无意义。",
-
   "cti.tooltip.item.alloy_centrifuge": "通过压缩空气将镕铸炉内的熔融合金分解为它的原料，需要方块的背面紧挨焦褐排液口才能工作。",
   "cti.tooltip.item.alloy_centrifuge2": "需要2bar以上的压力才能工作，压力越高压缩空气消耗越快，处理速度也越快（10bar时最高），压缩空气容量: 12800mL。",
   "cti.tooltip.item.alloy_centrifuge3": "不要对着装有燃料的焦黑冶炼炉使用这个，聪明的你应该知道会发生什么",
-
   "cti.tooltip.item.stellar_plate": "右键查看星图，在星图中点击任意星球以关闭星图。",
   "cti.tooltip.item.stellar_plate2": "装备时在右下角显示当前你所受的环境危害值，shift+右键查看自己身上的环境抗性。",
-
   "cti.tooltip.item.atmosphere_upgrade": "可放在大气冷凝机/大气提取机里，增强机器的表现。",
   "cti.tooltip.item.power_factor": "机器能量消耗",
   "cti.tooltip.item.speed_factor": "机器速度提升",
-
   "cti.tooltip.item.etsh": "-EtSH_C2H6S 开发者材料-",
+
+  "cti.tooltip.modifier.piority": "§a运算优先级：",
 
   "item.cti.heng_sugar": "哼将糖",
   "item.cti.ha_sugar": "哈将糖",

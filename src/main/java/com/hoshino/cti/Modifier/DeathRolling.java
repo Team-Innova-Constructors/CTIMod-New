@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
@@ -52,9 +53,8 @@ public class DeathRolling extends Modifier implements EntityInteractionModifierH
             }
         }
     }
-
     @Override
-    public InteractionResult beforeEntityUse(IToolStackView tool, ModifierEntry modifier, Player player, Entity target, InteractionHand hand, InteractionSource source) {
+    public @NotNull InteractionResult beforeEntityUse(IToolStackView tool, ModifierEntry modifier, Player player, Entity target, InteractionHand hand, InteractionSource source) {
 
         if(!(target instanceof LivingEntity living))return InteractionResult.PASS;
         if(living instanceof Villager||living instanceof TamableAnimal)return InteractionResult.PASS;
@@ -63,6 +63,8 @@ public class DeathRolling extends Modifier implements EntityInteractionModifierH
         var playerPos=player.position();
         var sub=targetPos.subtract(playerPos);
         sub.add(new Vec3(0,0.1,0));
+
+        ToolAttackUtil.attackEntity(player.getItemInHand(hand),player,living);
         player.setDeltaMovement(sub);
         player.swing(InteractionHand.OFF_HAND);
 

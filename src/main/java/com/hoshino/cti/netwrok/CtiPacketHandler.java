@@ -37,6 +37,11 @@ public class CtiPacketHandler {
                 .encoder(ServerCursePacket::ToByte)
                 .consumerMainThread(ServerCursePacket::handle)
                 .add();
+        INSTANCE.messageBuilder(ExposedUpdatePacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ExposedUpdatePacket::new)
+                .encoder(ExposedUpdatePacket::ToByte)
+                .consumerMainThread(ExposedUpdatePacket::handle)
+                .add();
         INSTANCE.messageBuilder(CurseTimeUpdatePacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(CurseTimeUpdatePacket::new)
                 .encoder(CurseTimeUpdatePacket::ToByte)

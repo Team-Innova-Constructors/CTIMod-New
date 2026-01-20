@@ -40,6 +40,8 @@ public class CombustorModifier extends NoLevelsModifier implements MeleeDamageMo
     public static final ResourceLocation fuel_quality = new ResourceLocation("cti:fuel_quality");
 
 
+
+
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         if (context.getAttacker() instanceof Player player) {

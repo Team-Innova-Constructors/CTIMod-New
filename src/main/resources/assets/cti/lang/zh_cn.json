@@ -1083,7 +1083,9 @@
   "modifier.cti.fixcurseblade.flavor": "不准回血！",
   "modifier.cti.fixcurseblade.description":"近战攻击和远程攻击每次每级施加10秒诅咒效果",
 
-
+  "modifier.cti.fuckingdeltaforce": "跳一跳",
+  "modifier.cti.fuckingdeltaforce.flavor": "666还有鳄鱼组队",
+  "modifier.cti.fuckingdeltaforce.description":"当你对等级等于/小于你莱特兰等级的怪物 跳一跳时,有50%概率让其为你而战,成功组队的怪物会跳一下回应,在杀死他的目标后它有78%概率背刺你,每次至多同时对18个怪物发起组队邀请",
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",
@@ -1124,6 +1126,9 @@
 
   "trait.l2hostility.second_phase": "二阶段",
   "trait.l2hostility.second_phase.desc": "当生物血量降至50%时每级使其无敌5秒。",
+
+  "trait.l2hostility.hard_skin": "坚硬表皮",
+  "trait.l2hostility.hard_skin.desc": "怪物会格挡掉其最大生命值5%与其护甲值的和的 词条等级倍的伤害，如果伤害穿透护甲则格挡值降低75%，如果穿透无敌则无视格挡",
 
 
   "info.cti.panel_condition.upward": "于世界最高处向上放置",

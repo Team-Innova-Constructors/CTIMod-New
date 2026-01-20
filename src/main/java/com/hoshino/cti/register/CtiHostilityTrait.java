@@ -12,6 +12,7 @@ public class CtiHostilityTrait {
     public static final RegistryEntry<ExtremeDamageReduce> EXTREME_DAMAGE_REDUCE = L2Hostility.REGISTRATE.regTrait("extreme_damage_reduce", () -> new ExtremeDamageReduce(ChatFormatting.GREEN), (rl) -> new TraitConfig(rl, 100, 30, 1, 10000)).desc("Grant 60% damage reduction to Extreme Damage, 80% damage reduction to bypass armor damage.").lang("Extreme DR").register();
     public static final RegistryEntry<TemporaryArmor> TEMPORARY_ARMOR = L2Hostility.REGISTRATE.regTrait("temporary_armor", () -> new TemporaryArmor(ChatFormatting.GRAY), (rl) -> new TraitConfig(rl, 200, 5, 1, 750)).desc("Grant 99% damage reduction but decrease 1% when hit. Bypass armor damage will result in 5x effectiveness.").lang("Temporary Reduction").register();
     public static final RegistryEntry<SecondPhase> SECOND_PHASE = L2Hostility.REGISTRATE.regTrait("second_phase", () -> new SecondPhase(ChatFormatting.GOLD), (rl) -> new TraitConfig(rl, 200, 10, 3, 750)).desc("Grant %s seconds of invulnerable time when health drops over 50%.").lang("Second Phase").register();
+    public static final RegistryEntry<HardSkin> HARD_SKIN = L2Hostility.REGISTRATE.regTrait("hard_skin", HardSkin::new, (rl) -> new TraitConfig(rl, 50, 50, 5, 100)).desc("Monsters will block damage equal to their level multiplier times the sum of 5% of their maximum health and their armor value. If the damage penetrates armor, the block value is reduced by 75%. If it bypasses invincibility, the block is ignored.").lang("Hard Skin").register();
 
     public static void register() {
     }

@@ -11,6 +11,7 @@ import com.hoshino.cti.client.InitPartModel;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.client.hud.CurseInfoHud;
 import com.hoshino.cti.client.hud.EnvironmentalHud;
+import com.hoshino.cti.client.hud.FoxExposedOverlay;
 import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
 import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
@@ -69,6 +70,7 @@ public class ClientEventHandler {
             if (FMLEnvironment.dist == Dist.CLIENT) {
                 event.registerAboveAll("ionize", EnvironmentalHud.ENVIRONMENT_OVERLAY);
                 event.registerAboveAll("curse", CurseInfoHud.CurseHUD);
+                event.registerAboveAll("exposed", FoxExposedOverlay.EXPOSED_OVERLAY);
             }
         }
 

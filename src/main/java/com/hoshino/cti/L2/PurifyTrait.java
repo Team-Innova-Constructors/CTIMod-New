@@ -41,22 +41,6 @@ public class PurifyTrait extends MobTrait {
         MinecraftForge.EVENT_BUS.addListener(this::MobEffectEvent);
     }
 
-    @Override
-    public void postInit(@NotNull LivingEntity mob, int lv) {
-        var cap = MobTraitCap.HOLDER.get(mob);
-        var manager = LHTraits.TRAITS.get().tags();
-        if (manager == null) return;
-        for (int i = 0; i < 4; i++) {
-            var opt = manager.getTag(LHTraits.POTION).getRandomElement(mob.getRandom());
-            if (opt.isEmpty()) continue;
-            MobTrait trait = opt.get();
-            if (trait.allow(mob) && !cap.hasTrait(trait)) {
-                cap.setTrait(trait, lv);
-                return;
-            }
-        }
-    }
-
     private void MobEffectEvent(MobEffectEvent.Applicable event) {
         if (event.getEntity() instanceof Mob mob) {
             LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);

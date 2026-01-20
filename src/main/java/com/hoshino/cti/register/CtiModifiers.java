@@ -186,6 +186,7 @@ public class CtiModifiers {
     public static final StaticModifier<NetherBack> NETHER_BACK_STATIC_MODIFIER = MODIFIERS.register("netherback", NetherBack::new);
     public static final StaticModifier<FixCurseBlade> FIX_CURSE_BLADE_STATIC_MODIFIER = MODIFIERS.register("fixcurseblade", FixCurseBlade::new);
     public static final StaticModifier<DeathRolling> DEATH_ROLLING_STATIC_MODIFIER = MODIFIERS.register("deathrolling", DeathRolling::new);
+    public static final StaticModifier<FuckingDeltaForce> FUCKING_DELTA_FORCE_STATIC_MODIFIER = MODIFIERS.register("fuckingdeltaforce", FuckingDeltaForce::new);
 
 
 

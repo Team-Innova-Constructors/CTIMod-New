@@ -1,9 +1,12 @@
 package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.netwrok.CtiPacketHandler;
+import com.hoshino.cti.netwrok.packet.ExposedUpdatePacket;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiSounds;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,8 +25,8 @@ import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 public class Hidden extends Modifier implements InventoryTickModifierHook , MeleeDamageModifierHook {
-    private static ResourceLocation KEMOMIMI_HIDDEN = Cti.getResource("kemimimi_hidden");
-    private static ResourceLocation HIDDEN_SUPER_HURT = Cti.getResource("hidden_super_hurt");
+    private static final ResourceLocation KEMOMIMI_HIDDEN = Cti.getResource("kemimimi_hidden");
+    private static final ResourceLocation HIDDEN_SUPER_HURT = Cti.getResource("hidden_super_hurt");
 
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
@@ -77,6 +80,10 @@ public class Hidden extends Modifier implements InventoryTickModifierHook , Mele
     public static void breakHidden(IToolStackView view,Player player) {
         view.getPersistentData().putInt(KEMOMIMI_HIDDEN, 10);
         view.getPersistentData().putInt(HIDDEN_SUPER_HURT, 9);
+        int index=player.getRandom().nextInt(4);
+        if(player instanceof ServerPlayer serverPlayer){
+            CtiPacketHandler.sendToPlayer(new ExposedUpdatePacket(index,20),serverPlayer);
+        }
         player.level.playSound(null,player.getOnPos(), CtiSounds.location_exposed.get(), SoundSource.AMBIENT,1,1);
         player.removeEffect(CtiEffects.covert.get());
     }

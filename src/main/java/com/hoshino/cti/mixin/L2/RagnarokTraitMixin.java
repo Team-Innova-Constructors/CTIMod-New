@@ -32,8 +32,6 @@ public abstract class RagnarokTraitMixin {
     private static void Neutralization(EntitySlotAccess access, CallbackInfoReturnable<Boolean> cir) {
         //防止自身被封印
         List<Modifier> sealModifier = new ArrayList<>();
-        sealModifier.add(solidarytinkerModifiers.TACTICSPROTECT_STATIC_MODIFIER.get());//星野
-        sealModifier.add(solidarytinkerModifiers.TACTICSATTACK_STATIC_MODIFIER.get());//星野
         sealModifier.add(solidarytinkerModifiers.SUPERBLAZING_STATIC_MODIFIER.get());//白矮星
         sealModifier.add(solidarytinkerModifiers.COLLAPSE_STATIC_MODIFIER.get());//白矮星
         sealModifier.add(EtshtinkerModifiers.manaoverload_STATIC_MODIFIER.get());//魔灵皇
@@ -70,22 +68,24 @@ public abstract class RagnarokTraitMixin {
                 ci.cancel();
             }
             //这个列表里面的是只要身上4盔甲/主副有这个材料就会让诸神黄昏对所有装备都不生效
-            List<Modifier> AllowModifier = new ArrayList<>();
-            AllowModifier.add(CtiModifiers.INFINITY_STATIC_MODIFIER.get());//无尽
-            AllowModifier.add(CtiModifiers.trauma.get());//恐怖
-            AllowModifier.add(CtiModifiers.eventually.get());//恐怖
-            AllowModifier.add(EtshtinkerModifiers.beconcerted_STATIC_MODIFIER.get());//星河马玉灵和奇迹物质
-            AllowModifier.add(EtshtinkerModifiers.unknown_STATIC_MODIFIER.get());//宏原子
-            AllowModifier.add(EtshtinkerModifiers.controllableannihl_STATIC_MODIFIER.get());//反中子武器
-            AllowModifier.add(EtshtinkerModifiers.reactiveannihlarmor_STATIC_MODIFIER.get());//反中子护甲
-            AllowModifier.add(CtiModifiers.FIERY_JAVELIN.get());//龙炎钢
-            AllowModifier.add(CtiModifiers.PERMAFROST_REVIVAL.get());//龙霜钢
-            AllowModifier.add(CtiModifiers.PLASMA_WAVE_SLASH.get());//龙霆钢
-            AllowModifier.add(solidarytinkerModifiers.ANCIENTOCEAN_STATIC_MODIFIER.get());//墨冰武器
-            AllowModifier.add(solidarytinkerModifiers.DEEPOCEANPROTECT_STATIC_MODIFIER.get());//墨冰护甲
-            AllowModifier.add(CtiModifiers.STAR_DARGON_HIT_STATIC_MODIFIER.get());//星界龙神武器
-            AllowModifier.add(CtiModifiers.starBlessStaticModifier.get());//星界龙神护甲
-            for (Modifier modifier : AllowModifier) {
+            List<Modifier> allowModifier = new ArrayList<>();
+            allowModifier.add(CtiModifiers.INFINITY_STATIC_MODIFIER.get());//无尽
+            allowModifier.add(CtiModifiers.trauma.get());//恐怖
+            allowModifier.add(CtiModifiers.eventually.get());//恐怖
+            allowModifier.add(solidarytinkerModifiers.TACTICSPROTECT_STATIC_MODIFIER.get());//星野
+            allowModifier.add(solidarytinkerModifiers.SANDSTROM_STATIC_MODIFIER.get());//星野
+            allowModifier.add(EtshtinkerModifiers.beconcerted_STATIC_MODIFIER.get());//星河马玉灵和奇迹物质
+            allowModifier.add(EtshtinkerModifiers.unknown_STATIC_MODIFIER.get());//宏原子
+            allowModifier.add(EtshtinkerModifiers.controllableannihl_STATIC_MODIFIER.get());//反中子武器
+            allowModifier.add(EtshtinkerModifiers.reactiveannihlarmor_STATIC_MODIFIER.get());//反中子护甲
+            allowModifier.add(CtiModifiers.FIERY_JAVELIN.get());//龙炎钢
+            allowModifier.add(CtiModifiers.PERMAFROST_REVIVAL.get());//龙霜钢
+            allowModifier.add(CtiModifiers.PLASMA_WAVE_SLASH.get());//龙霆钢
+            allowModifier.add(solidarytinkerModifiers.ANCIENTOCEAN_STATIC_MODIFIER.get());//墨冰武器
+            allowModifier.add(solidarytinkerModifiers.DEEPOCEANPROTECT_STATIC_MODIFIER.get());//墨冰护甲
+            allowModifier.add(CtiModifiers.STAR_DARGON_HIT_STATIC_MODIFIER.get());//星界龙神武器
+            allowModifier.add(CtiModifiers.starBlessStaticModifier.get());//星界龙神护甲
+            for (Modifier modifier : allowModifier) {
                 if (ModifierLevel.EquipHasModifierlevel(target, modifier.getId())) {
                     ci.cancel();
                 }

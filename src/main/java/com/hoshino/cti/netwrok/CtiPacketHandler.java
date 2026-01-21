@@ -57,6 +57,11 @@ public class CtiPacketHandler {
                 .encoder(NksszsPacket::ToByte)
                 .consumerMainThread(NksszsPacket::handle)
                 .add();
+        INSTANCE.messageBuilder(BreakBlockPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .decoder(BreakBlockPacket::new)
+                .encoder(BreakBlockPacket::ToByte)
+                .consumerMainThread(BreakBlockPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg) {

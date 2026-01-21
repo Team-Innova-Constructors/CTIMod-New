@@ -111,7 +111,18 @@ public class CtiItem {
             Component.translatable("etshtinker.item.tooltip.special").withStyle(ChatFormatting.LIGHT_PURPLE),
             Component.translatable("etshtinker.item.tooltip.special2").withStyle(ChatFormatting.LIGHT_PURPLE)
     )));
-
+    public static final RegistryObject<BlockItem> qi_yao_matrix = ITEMS.register("qi_yao_matrix", () -> new BlockItem(CtiBlock.qi_yao_matrix.get(), new Item.Properties().tab(CtiTab.MIXC)){
+        @Override
+        public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+            pTooltip.add(Component.literal("这块名为七曜矩阵其中蕴含着神秘的力量,据说可以用对应的七种溯时之匙来破开他---来自前人的刻痕").withStyle(style -> style.withColor(0xffaaff)));
+            pTooltip.add(Component.literal("如果破不开不必担心,你可以把他带回去慢慢研究,将来有一天你会破解开的...").withStyle(style -> style.withColor(0xffaaff)));
+            pTooltip.add(Component.literal("七种溯时之匙对应的奖励各不相同").withStyle(style -> style.withColor(0xff557f)));
+        }
+    });
+    public static final RegistryObject<Item> red_soyokey = ITEMS.register("red_soyokey",()->new SoyoKey(
+            SoyoKeyCategory.red,
+            List.of(Component.literal("一把红色的溯时之匙,可能开出来离心相关原件"))
+    ));
 
     public static final RegistryObject<PartItem<MeteoriumAnnihilationPlanePart>> meteorium_plane = ITEMS.register("meteorium_plane", () -> new PartItem<>(new Item.Properties().tab(CtiTab.MIXC), MeteoriumAnnihilationPlanePart.class, MeteoriumAnnihilationPlanePart::new));
 

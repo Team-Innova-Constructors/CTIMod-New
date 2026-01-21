@@ -48,5 +48,15 @@
         "stream": "true"
       }
     ]
+  },
+  "zhubi": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.zhubi",
+    "sounds": [
+      {
+        "name": "cti:zhubi",
+        "stream": "true"
+      }
+    ]
   }
 }

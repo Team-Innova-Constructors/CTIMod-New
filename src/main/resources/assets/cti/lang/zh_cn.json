@@ -1103,6 +1103,10 @@
   "item.cti.flat_tablet": "全息永夜世界投影板",
   "item.cti.flat_tablet_day": "全息永昼世界投影板",
 
+  "item.cti.qi_yao_matrix": "七曜矩阵",
+  "block.cti.qi_yao_matrix":"七曜矩阵",
+  "item.cti.red_soyokey": "红色溯时之匙",
+
   "item.cti.meteor_shower": "流星雨",
   "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
 

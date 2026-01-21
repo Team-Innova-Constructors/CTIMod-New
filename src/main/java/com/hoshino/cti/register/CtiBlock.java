@@ -5,14 +5,8 @@ import com.hoshino.cti.Blocks.Machine.*;
 import com.hoshino.cti.Blocks.OverdenseGlacioStone;
 import com.hoshino.cti.Blocks.RasteriteBudding;
 import com.hoshino.cti.Blocks.unipolarBudding;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -51,6 +45,20 @@ public class CtiBlock {
         @Override
         public float getEnchantPowerBonus(BlockState state, LevelReader level, BlockPos pos) {
             return 350234;
+        }
+    });
+    public static final RegistryObject<Block> qi_yao_matrix = BLOCK.register("qi_yao_matrix", () -> new Block(BlockBehaviour.Properties.of(Material.METAL,MaterialColor.COLOR_BLUE)
+            .sound(SoundType.GLASS).strength(5)
+            .noOcclusion()
+            .isValidSpawn((a,b,c,d)->false)
+            .lightLevel((a)->0)
+            .isViewBlocking((a,b,c)->false)
+            .isSuffocating((a,b,c)->false)
+            .isRedstoneConductor((a,b,c)->true)
+    ){
+        @Override
+        public float getEnchantPowerBonus(BlockState state, LevelReader level, BlockPos pos) {
+            return 7;
         }
     });
     public static final RegistryObject<BaseEntityBlock> atmosphere_extractor = BLOCK.register("atmosphere_extractor", () -> new AtmosphereExtractorBlock(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).destroyTime(2).requiresCorrectToolForDrops()));

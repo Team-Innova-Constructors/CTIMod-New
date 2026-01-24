@@ -6,6 +6,10 @@
     "cti:quantum_miner",
     "cti:reactor_neutron_collector",
     "cti:quantum_miner_advanced",
-    "cti:sodium_cooler"
+    "cti:sodium_cooler",
+    "cti:hepatizon_casting_basin",
+    "cti:hepatizon_casting_table",
+    "cti:hepatizon_faucet",
+    "cti:advanced_alloyer"
   ]
 }

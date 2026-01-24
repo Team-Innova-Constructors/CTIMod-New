@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=down":  { "model": "cti:block/smeltery/hepatizon/faucet_up" },
+    "facing=north": { "model": "cti:block/smeltery/hepatizon/faucet", "y":   0 },
+    "facing=east":  { "model": "cti:block/smeltery/hepatizon/faucet", "y":  90 },
+    "facing=south": { "model": "cti:block/smeltery/hepatizon/faucet", "y": 180 },
+    "facing=west":  { "model": "cti:block/smeltery/hepatizon/faucet", "y": 270 }
+  }
+}

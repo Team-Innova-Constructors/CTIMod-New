@@ -1,0 +1,8 @@
+{
+  "parent": "tconstruct:block/template/table",
+  "textures": {
+    "side":   "cti:block/smeltery/hepatizon/casting/table_side",
+    "top":    "cti:block/smeltery/hepatizon/casting/top",
+    "bottom": "cti:block/smeltery/hepatizon/casting/bottom"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "tconstruct:block/template/faucet",
+  "textures": {
+    "tex": "cti:block/smeltery/zirconium_alloy/faucet"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "cti:block/smeltery/hepatizon/table" },
+    "facing=south": { "model": "cti:block/smeltery/hepatizon/table", "y": 180 },
+    "facing=west":  { "model": "cti:block/smeltery/hepatizon/table", "y": 270 },
+    "facing=east":  { "model": "cti:block/smeltery/hepatizon/table", "y":  90 }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "cti:block/smeltery/zirconium_alloy/table" },
+    "facing=south": { "model": "cti:block/smeltery/zirconium_alloy/table", "y": 180 },
+    "facing=west":  { "model": "cti:block/smeltery/zirconium_alloy/table", "y": 270 },
+    "facing=east":  { "model": "cti:block/smeltery/zirconium_alloy/table", "y":  90 }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "cti:block/smeltery/advanced_alloyer/alloyer",
+  "textures": {
+    "front": "cti:block/smeltery/advanced_alloyer/alloyer_inactive"
+  }
+}

@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CommonUtil {
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final String TAG_MACHINE_PARALLEL = "MachineParallel";
 
     public static void Reload(MinecraftServer server) {
         LOGGER.info("Mod cti is now conducting a reload! It will take 114514 years.");

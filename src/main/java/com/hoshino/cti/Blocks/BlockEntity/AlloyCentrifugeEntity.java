@@ -1,17 +1,21 @@
 package com.hoshino.cti.Blocks.BlockEntity;
 
+import com.google.common.util.concurrent.AtomicDouble;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import me.desht.pneumaticcraft.api.PNCCapabilities;
 import me.desht.pneumaticcraft.api.pressure.PressureTier;
 import me.desht.pneumaticcraft.api.tileentity.IAirHandlerMachine;
 import me.desht.pneumaticcraft.common.capabilities.MachineAirHandler;
+import me.desht.pneumaticcraft.common.util.DirectionUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
@@ -24,15 +28,17 @@ import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipe;
 import slimeknights.tconstruct.smeltery.block.entity.tank.ISmelteryTankHandler;
 import slimeknights.tconstruct.smeltery.block.entity.tank.SmelteryTank;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AlloyCentrifugeEntity extends BlockEntity {
     public AlloyCentrifugeEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(CtiBlockEntityType.ALLOY_CENTRIFUGE.get(), p_155229_, p_155230_);
+        this.airHandler = LazyOptional.of(() -> this.machineAirHandler);
     }
+    private final Map<IAirHandlerMachine, List<Direction>> airHandlerMap = new IdentityHashMap();
 
-    protected static List<AlloyRecipe> list = new ArrayList<>();
+    protected static Map<Fluid,AlloyRecipe> recipeMap = new HashMap<>();
+    protected static Map<AlloyRecipe,List<FluidStack>> outputMap = new HashMap<>();
 
     private LazyOptional<IAirHandlerMachine> airHandler = LazyOptional.empty();
 
@@ -64,7 +70,7 @@ public class AlloyCentrifugeEntity extends BlockEntity {
 
     @Override
     public void onLoad() {
-        this.airHandler = LazyOptional.of(() -> this.machineAirHandler);
+        this.initializeHullAirHandlers();
         super.onLoad();
     }
 
@@ -85,7 +91,10 @@ public class AlloyCentrifugeEntity extends BlockEntity {
         super.load(nbt);
         this.machineAirHandler.deserializeNBT(nbt.getCompound("AirHandler"));
     }
-
+    public void handleUpdateTag(CompoundTag tag) {
+        super.handleUpdateTag(tag);
+        this.initializeHullAirHandlers();
+    }
 
     public static void tick(Level level, BlockPos blockPos, BlockState state, AlloyCentrifugeEntity entity) {
         if (level.isClientSide) {
@@ -98,8 +107,31 @@ public class AlloyCentrifugeEntity extends BlockEntity {
         if (level.getGameTime() % Math.max(2, 12 - (int) entity.machineAirHandler.getPressure()) != 0) {
             return;
         }
-        if (list.isEmpty()) {
-            list = level.getRecipeManager().getAllRecipesFor(TinkerRecipeTypes.ALLOYING.get());
+        if (recipeMap.isEmpty()||outputMap.isEmpty()){
+            level.getRecipeManager().getAllRecipesFor(TinkerRecipeTypes.ALLOYING.get()).forEach(alloyRecipe -> {
+                var fluidStack = alloyRecipe.getOutput();
+                var fluid = fluidStack.getFluid();
+                var inputs = alloyRecipe.getDisplayInputs();
+                if (recipeMap.get(fluid)!=null){
+                    var recipe = recipeMap.get(fluid);
+                    var resultAmount1 = new AtomicDouble(0);
+                    for (List<FluidStack> stacks:inputs){
+                        stacks.stream().findFirst().ifPresent(fluidStack1 -> resultAmount1.addAndGet(fluidStack1.getAmount()));
+                    }
+                    var resultAmount2 = new AtomicDouble(0);
+                    for (List<FluidStack> stacks:recipe.getDisplayInputs()){
+                        stacks.stream().findFirst().ifPresent(fluidStack1 -> resultAmount2.addAndGet(fluidStack1.getAmount()));
+                    }
+                    var amount0 = fluidStack.getAmount();
+                    var amount1 = recipe.getOutput().getAmount();
+                    if ((resultAmount1.get()/amount0)>(resultAmount2.get()/amount1)) recipeMap.put(fluid,alloyRecipe);
+                } else recipeMap.put(fluid,alloyRecipe);
+            });
+            recipeMap.values().forEach(alloyRecipe -> {
+                var fluids = alloyRecipe.getDisplayInputs().stream().map(fluidStacks -> fluidStacks.stream().findFirst().orElse(null))
+                        .filter(Objects::nonNull).toList();
+                outputMap.put(alloyRecipe,fluids);
+            });
         }
         Direction direction = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
         BlockEntity blockEntity = level.getBlockEntity(entity.getBlockPos().relative(direction.getOpposite()));
@@ -115,12 +147,9 @@ public class AlloyCentrifugeEntity extends BlockEntity {
                     FluidStack stack = smelteryTank.getFluidInTank(i);
                     AlloyRecipe recipe = getRecipe(stack);
                     FluidStack InputFluid = FluidStack.EMPTY;
-                    if (recipe != null && recipe.getOutput().getAmount() <= stack.getAmount()) {
+                    if (recipe != null&& outputMap.get(recipe)!=null&&!outputMap.get(recipe).isEmpty() && recipe.getOutput().getAmount() <= stack.getAmount()) {
                         InputFluid = recipe.getOutput();
-                        List<List<FluidStack>> listList = recipe.getDisplayInputs();
-                        for (List<FluidStack> ls : listList) {
-                            OutputfluidStacks.addAll(ls);
-                        }
+                        OutputfluidStacks.addAll(outputMap.get(recipe));
                     }
                     boolean canFill = false;
                     for (FluidStack fluidStack : OutputfluidStacks) {
@@ -147,16 +176,16 @@ public class AlloyCentrifugeEntity extends BlockEntity {
     }
 
     public static AlloyRecipe getRecipe(FluidStack fluidStack) {
-        AlloyRecipe recipe = null;
-        if (list.isEmpty()) {
-            return recipe;
+        return recipeMap.get(fluidStack.getFluid());
+    }
+
+    public void initializeHullAirHandlers() {
+        this.airHandlerMap.clear();
+
+        for(Direction side : DirectionUtil.VALUES) {
+            this.getCapability(PNCCapabilities.AIR_HANDLER_MACHINE_CAPABILITY, side).ifPresent((handler) -> ((List)this.airHandlerMap.computeIfAbsent(handler, (k) -> new ArrayList())).add(side));
         }
-        for (AlloyRecipe recipes : list) {
-            if (recipes.getOutput().getFluid().isSame(fluidStack.getFluid())) {
-                recipe = recipes;
-                break;
-            }
-        }
-        return recipe;
+
+        this.airHandlerMap.forEach(IAirHandlerMachine::setConnectedFaces);
     }
 }

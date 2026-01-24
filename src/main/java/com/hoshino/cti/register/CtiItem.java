@@ -33,6 +33,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GlassBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -45,6 +46,7 @@ import java.util.List;
 import static cofh.core.init.CoreFlags.getFlag;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.lib.common.ThermalFlags.FLAG_UPGRADE_AUGMENTS;
+import static com.hoshino.cti.util.CommonUtil.TAG_MACHINE_PARALLEL;
 import static earth.terrarium.ad_astra.common.registry.ModItems.ITEM_GROUP;
 import static umpaz.brewinandchewin.common.registry.BCItems.TANKARD;
 
@@ -52,6 +54,11 @@ public class CtiItem {
     public static String FLAG_MACHINE_AUGMENTS = "machine_augments";
     public static String FLAG_DYNAMO_AUGMENTS = "dynamo_augments";
     public static String FLAG_AREA_AUGMENTS = "area_augments";
+
+    public static RegistryObject<BlockItem> registerBlockItem(RegistryObject<? extends Block> block) {
+        RegistryObject<BlockItem> object = ITEMS.register(block.getId().getPath(), () -> new BlockItem((Block)block.get(), new Item.Properties().tab(CtiTab.MACHINE)));
+        return object;
+    }
 
     public CtiItem() {
     }
@@ -181,11 +188,13 @@ public class CtiItem {
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.3F)
             .mod(TAG_AUGMENT_RF_STORAGE, 2.5F)
             .mod(TAG_AUGMENT_RF_XFER, 12.5F)
+            .mod(TAG_MACHINE_PARALLEL,1)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
     public static final RegistryObject<Item> advanced_catalyst_augment = ITEMS.register("advanced_catalyst_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_MACHINE)
             .mod(TAG_AUGMENT_MACHINE_CATALYST, 0.18F)
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 2F)
+            .mod(TAG_MACHINE_PARALLEL,1)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
 
     public static final RegistryObject<Item> advanced_dyano_augment = ITEMS.register("advanced_dyano_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
@@ -213,6 +222,7 @@ public class CtiItem {
             .mod(TAG_AUGMENT_MACHINE_PRIMARY, 0.4F)
             .mod(TAG_AUGMENT_MACHINE_SECONDARY, 0.4F)
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.75F)
+            .mod(TAG_MACHINE_PARALLEL,1)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
     public static final RegistryObject<Item> advanced_fluid_tank_augment = ITEMS.register("advanced_fluid_tank_augment", () -> (new AugmentItem((new Item.Properties()).tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_FLUID)
@@ -221,15 +231,18 @@ public class CtiItem {
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_4 = ITEMS.register("upgrade_augment_4", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 5)
+            .mod(TAG_MACHINE_PARALLEL,1)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_5 = ITEMS.register("upgrade_augment_5", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 7)
+            .mod(TAG_MACHINE_PARALLEL,3)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_6 = ITEMS.register("upgrade_augment_6", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 14)
+            .mod(TAG_MACHINE_PARALLEL,7)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     //黑雾级别
@@ -248,6 +261,7 @@ public class CtiItem {
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.1F)
             .mod(TAG_AUGMENT_RF_STORAGE, 10F)
             .mod(TAG_AUGMENT_RF_XFER, 40.0F)
+            .mod(TAG_MACHINE_PARALLEL,4)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
     //黑雾深度催化
     public static final RegistryObject<Item> extereme_output_augment = ITEMS.register("extereme_output_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
@@ -255,6 +269,7 @@ public class CtiItem {
             .mod(TAG_AUGMENT_MACHINE_PRIMARY, 1F)
             .mod(TAG_AUGMENT_MACHINE_SECONDARY, 1F)
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.25F)
+            .mod(TAG_MACHINE_PARALLEL,4)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
 
 
@@ -346,17 +361,11 @@ public class CtiItem {
 
     public static final RegistryObject<Item> BIOMES_ITEM = ITEMS.register("biomes_item",BiomeInfoItem::new);
 
-    /*
-    //群系JEI物品
-    public static class BiomesItems{
-        private static final DeferredRegister<Item> BIOMES_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, cti.MOD_ID);
-        public static void init(IEventBus eventBus){
-            ForgeRegistries.BIOMES.getKeys().forEach(location -> {
-                BIOMES_ITEMS.register()
-            });
-        }
-    }
 
-     */
+
+    public static final RegistryObject<BlockItem> HEPATIZON_FAUCET = registerBlockItem(CtiBlock.HEPATIZON_FAUCET);
+    public static final RegistryObject<BlockItem> HEPATIZON_TABLE = registerBlockItem(CtiBlock.HEPATIZON_TABLE);
+    public static final RegistryObject<BlockItem> HEPATIZON_BASIN = registerBlockItem(CtiBlock.HEPATIZON_BASIN);
+    public static final RegistryObject<BlockItem> ADVANCED_ALLOYER = registerBlockItem(CtiBlock.ADVANCED_ALLOYER);
 
 }

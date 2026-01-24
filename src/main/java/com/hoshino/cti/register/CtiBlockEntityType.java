@@ -17,4 +17,23 @@ public class CtiBlockEntityType {
     public static final RegistryObject<BlockEntityType<ReactorNeutronCollectorEntity>> REACTOR_NEUTRON_COLLECTOR = BLOCK_ENTITIES.register("reactor_neutron_collector", () -> BlockEntityType.Builder.of(ReactorNeutronCollectorEntity::new, CtiBlock.reactor_neutron_collector.get()).build(null));
     public static final RegistryObject<BlockEntityType<AlloyCentrifugeEntity>> ALLOY_CENTRIFUGE = BLOCK_ENTITIES.register("alloy_centrifuge", () -> BlockEntityType.Builder.of(AlloyCentrifugeEntity::new, CtiBlock.alloy_centrifuge_block.get()).build(null));
     public static final RegistryObject<BlockEntityType<SodiumCoolerEntity>> SODIUM_COOLER = BLOCK_ENTITIES.register("sodium_cooler", () -> BlockEntityType.Builder.of(SodiumCoolerEntity::new, CtiBlock.sodium_cooler_block.get()).build(null));
+
+
+    public static final RegistryObject<BlockEntityType<HepatizonCastingBlockEntity.Table>> HEPATIZON_TABLE =
+            BLOCK_ENTITIES.register("hepatizon_casting_table_be",()->
+                    BlockEntityType.Builder.of(HepatizonCastingBlockEntity.Table::new, CtiBlock.HEPATIZON_TABLE.get())
+                            .build(null));
+    public static final RegistryObject<BlockEntityType<HepatizonCastingBlockEntity.Basin>> HEPATIZON_BASIN =
+            BLOCK_ENTITIES.register("hepatizon_casting_basin_be",()->
+                    BlockEntityType.Builder.of(HepatizonCastingBlockEntity.Basin::new, CtiBlock.HEPATIZON_BASIN.get())
+                            .build(null));
+    public static final RegistryObject<BlockEntityType<HepatizonFaucetBlockEntity>> HEPATIZON_FAUCET =
+            BLOCK_ENTITIES.register("hepatizon_faucet_be",()->
+                    BlockEntityType.Builder.of(HepatizonFaucetBlockEntity::new, CtiBlock.HEPATIZON_FAUCET.get())
+                            .build(null));
+
+    public static final RegistryObject<BlockEntityType<AdvancedAlloyerBlockEntity>> ADVANCED_ALLOYER =
+            BLOCK_ENTITIES.register("advanced_alloyer_be",()->
+                    BlockEntityType.Builder.of(AdvancedAlloyerBlockEntity::new, CtiBlock.ADVANCED_ALLOYER.get())
+                            .build(null));
 }

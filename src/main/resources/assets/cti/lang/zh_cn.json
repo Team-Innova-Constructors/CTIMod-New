@@ -71,6 +71,11 @@
   "cti.tooltip.item.power_factor": "机器能量消耗",
   "cti.tooltip.item.speed_factor": "机器速度提升",
   "cti.tooltip.item.etsh": "-EtSH_C2H6S 开发者材料-",
+  "tooltip.cti.hepatizon_casting": "冷却速度变为4倍，需要放置铸膜才能工作（等效于焦褐设备）。",
+  "tooltip.cti.advanced_alloyer1": "作用机制与焦褐合金炉类似（但是没有GUI）。",
+  "tooltip.cti.advanced_alloyer2": "会识别冶炼炉/熔铸炉的排液口而不是储罐以工作。",
+  "tooltip.cti.hepatizon_casting": "冷却速度变为%1$s倍。",
+  "tooltip.cti.faucet_transfer": "浇筑速率：",
 
   "cti.tooltip.modifier.piority": "§a运算优先级：",
 
@@ -360,6 +365,11 @@
 
 
   "item.cti.strange_ice_crystal":"奇特的冰晶",
+
+  "block.cti.hepatizon_faucet": "黑色科林斯青铜浇筑口",
+  "block.cti.hepatizon_casting_table": "黑色科林斯青铜铸件台",
+  "block.cti.hepatizon_casting_basin": "黑色科林斯青铜铸造盆",
+  "block.cti.advanced_alloyer": "液金混熔炉",
 
 
   "biome.cti.disordered_zone":"异常区域",

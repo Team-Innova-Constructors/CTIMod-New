@@ -18,6 +18,7 @@ import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.NksszsPacket;
 import com.hoshino.cti.netwrok.packet.StarHitPacket;
+import com.hoshino.cti.register.CtiBlockEntityType;
 import com.hoshino.cti.register.CtiEntity;
 import com.hoshino.cti.util.Vec3Helper;
 import net.minecraft.client.Minecraft;
@@ -33,6 +34,9 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.smeltery.client.render.CastingBlockEntityRenderer;
+import slimeknights.tconstruct.smeltery.client.render.FaucetBlockEntityRenderer;
+import slimeknights.tconstruct.smeltery.client.render.TankBlockEntityRenderer;
 
 import java.util.Arrays;
 
@@ -67,6 +71,11 @@ public class ClientEventHandler {
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(CtiEntity.star_dragon_ammo.get(), StarDragonAmmoRenderer::new);
+
+            event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_FAUCET.get(), FaucetBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.ADVANCED_ALLOYER.get(), TankBlockEntityRenderer::new);
         }
 
         @SubscribeEvent

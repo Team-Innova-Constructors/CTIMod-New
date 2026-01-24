@@ -88,6 +88,8 @@
     "MowzieMixin.EntityUmvuthiBossMixin",
     "MowzieMixin.EntityWroughtnautMixin",
     "PnCMixin.AirGrateMixin",
+    "TconMixin.CastingBlockEntityMixin",
+    "TconMixin.FaucetBlockEntityMixin",
     "TconMixin.InsatiableMixin",
     "TconMixin.KineticMixin",
     "TconMixin.ModifierMixin",

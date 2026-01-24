@@ -1,0 +1,8 @@
+{
+  "parent": "tconstruct:block/template/basin",
+  "textures": {
+    "top":    "cti:block/smeltery/zirconium_alloy/casting/top",
+    "side":   "cti:block/smeltery/zirconium_alloy/casting/basin_side",
+    "bottom": "cti:block/smeltery/zirconium_alloy/casting/bottom"
+  }
+}

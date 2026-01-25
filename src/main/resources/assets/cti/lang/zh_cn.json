@@ -23,6 +23,13 @@
   "item.cti.heart_of_africa": "非洲之心",
   "item.cti.tear_of_sea": "海洋之泪",
 
+  "item.cti.gossip_of_ratatoskr": "拉塔托斯克之语",
+  "cti.tooltip.item.gossip_of_ratatoskr.desc1": "根据玩家难度每级使周围怪物获得额外词条。",
+  "cti.tooltip.item.gossip_of_ratatoskr.desc2": "周围怪物会获得当前等级下所有能获得的词条。",
+
+  "item.cti.ring_of_nibelungen": "尼伯龙根之戒",
+  "cti.tooltip.item.ring_of_nibelungen.desc1": "佩戴嫉妒诅咒时，根据玩家难度增加掉落词条的概率。",
+  "cti.tooltip.item.ring_of_nibelungen.desc2": "佩戴嫉妒诅咒时，必定掉落那些词条。",
 
   "item.cti.cokerunit_generator": "焦炭塔生成器",
   "item.cti.mixer_generator": "搅拌机生成器",

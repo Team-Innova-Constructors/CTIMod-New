@@ -290,6 +290,9 @@ public class CtiItem {
             Component.literal("隐藏收集品").withStyle(style -> style.withColor(0xff0000))
     ),Component.literal("海洋之泪").withStyle(style -> style.withColor(0x5161ca))));
 
+    //饰品
+    public static final RegistryObject<Item> gossip_of_ratatoskr = ITEMS.register("gossip_of_ratatoskr", () -> new GossipOfRatatoskr(new Item.Properties().tab(CtiTab.MIXC)));
+    public static final RegistryObject<Item> ring_of_nibelungen = ITEMS.register("ring_of_nibelungen", () -> new RingOfNibelungen(new Item.Properties().tab(CtiTab.MIXC)));
 
     //材料
     public static final RegistryObject<Item> nitro_supersteel = ITEMS.register("nitro_supersteel", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));

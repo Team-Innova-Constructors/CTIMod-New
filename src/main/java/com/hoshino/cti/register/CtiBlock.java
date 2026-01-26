@@ -3,6 +3,7 @@ package com.hoshino.cti.register;
 import com.hoshino.cti.Blocks.*;
 import com.hoshino.cti.Blocks.BlockEntity.AdvancedAlloyerBlockEntity;
 import com.hoshino.cti.Blocks.BlockEntity.HepatizonCastingBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.ZirconiumCastingBlockEntity;
 import com.hoshino.cti.Blocks.Machine.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -130,6 +131,57 @@ public class CtiBlock {
                     pTooltip.add(Component.translatable("tooltip.cti.hepatizon_casting",4).withStyle(ChatFormatting.GRAY));
                 }
             });
+
+
+    public static final RegistryObject<Block> ZR_ALLOY_FAUCET = BLOCK.register("zirconium_alloy_faucet", () ->
+            new ZirconiumFaucetBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.searedFaucet.get()).sound(SoundType.NETHERITE_BLOCK)));
+    public static final RegistryObject<Block> ZR_ALLOY_TABLE = BLOCK.register("zirconium_alloy_casting_table", () ->
+            new ZirconiumTableBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.searedTable.get())
+                    .sound(SoundType.NETHERITE_BLOCK),true) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public @NotNull BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+                    return new ZirconiumCastingBlockEntity.Table(pPos,pState);
+                }
+
+                @Override
+                public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> check) {
+                    return ZirconiumCastingBlockEntity.getTicker(pLevel,check, CtiBlockEntityType.ZR_ALLOY_TABLE.get());
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.zirconium_alloy_casting").withStyle(ChatFormatting.GRAY));
+                    pTooltip.add(Component.translatable("tooltip.cti.zirconium_alloy_casting2").withStyle(ChatFormatting.GRAY));
+                    pTooltip.add(Component.translatable("tooltip.cti.zirconium_alloy_casting3").withStyle(ChatFormatting.DARK_AQUA));
+                }
+            });
+    public static final RegistryObject<Block> ZR_ALLOY_BASIN = BLOCK.register("zirconium_alloy_casting_basin", () ->
+            new ZirconiumBasinBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.searedTable.get())
+                    .sound(SoundType.NETHERITE_BLOCK),true) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public @NotNull BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+                    return new ZirconiumCastingBlockEntity.Basin(pPos,pState);
+                }
+
+                @Override
+                public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> check) {
+                    return ZirconiumCastingBlockEntity.getTicker(pLevel,check, CtiBlockEntityType.ZR_ALLOY_BASIN.get());
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.zirconium_alloy_casting").withStyle(ChatFormatting.GRAY));
+                    pTooltip.add(Component.translatable("tooltip.cti.zirconium_alloy_casting2").withStyle(ChatFormatting.GRAY));
+                    pTooltip.add(Component.translatable("tooltip.cti.zirconium_alloy_casting3").withStyle(ChatFormatting.DARK_AQUA));
+                }
+            });
+
 
     public static final RegistryObject<Block> ADVANCED_ALLOYER = BLOCK.register("advanced_alloyer", () ->
             new AlloyerBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedFaucet.get()).sound(SoundType.NETHERITE_BLOCK)){

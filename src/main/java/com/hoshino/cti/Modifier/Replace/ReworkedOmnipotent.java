@@ -1,5 +1,6 @@
 package com.hoshino.cti.Modifier.Replace;
 
+import com.hoshino.cti.register.CtiModifiers;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.build.ModifierTraitHook;
@@ -17,7 +18,7 @@ public class ReworkedOmnipotent extends NoLevelsModifier implements ModifierTrai
     @Override
     public void addTraits(IToolContext context, ModifierEntry modifier, TraitBuilder builder, boolean firstEncounter) {
         context.getModifierList().forEach(modifierEntry -> {
-                    if (modifierEntry.getId() == this.getId()) return;
+                    if (modifierEntry.getId() == CtiModifiers.OMNIPOTENT.getId()) return;
                     builder.add(modifierEntry.getId(), 1);
                 }
         );

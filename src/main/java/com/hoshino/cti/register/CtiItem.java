@@ -366,6 +366,11 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> HEPATIZON_FAUCET = registerBlockItem(CtiBlock.HEPATIZON_FAUCET);
     public static final RegistryObject<BlockItem> HEPATIZON_TABLE = registerBlockItem(CtiBlock.HEPATIZON_TABLE);
     public static final RegistryObject<BlockItem> HEPATIZON_BASIN = registerBlockItem(CtiBlock.HEPATIZON_BASIN);
+
+    public static final RegistryObject<BlockItem> ZR_ALLOY_FAUCET = registerBlockItem(CtiBlock.ZR_ALLOY_FAUCET);
+    public static final RegistryObject<BlockItem> ZR_ALLOY_TABLE = registerBlockItem(CtiBlock.ZR_ALLOY_TABLE);
+    public static final RegistryObject<BlockItem> ZR_ALLOY_BASIN = registerBlockItem(CtiBlock.ZR_ALLOY_BASIN);
+
     public static final RegistryObject<BlockItem> ADVANCED_ALLOYER = registerBlockItem(CtiBlock.ADVANCED_ALLOYER);
 
 }

@@ -23,7 +23,7 @@ public class HepatizonCastingBlockEntity extends CastingBlockEntity implements I
 
     @Override
     public int modifyTotalCoolingTime(FluidStack fluidStack, ICastingRecipe iCastingRecipe, int i) {
-        return (int) (i/ 4);
+        return (int) (i/ 4f);
     }
 
     @Override

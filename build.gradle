@@ -203,6 +203,7 @@ dependencies {
     implementation fg.deobf("slimeknights.mantle:Mantle:1.19.2-${mantle_version}")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.2-5.1.1.0:api")
+    implementation fg.deobf("curse.maven:jade-324717:4914105")
 
     runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:11.0.0.211")
 

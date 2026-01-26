@@ -32,8 +32,23 @@ public class CtiBlockEntityType {
                     BlockEntityType.Builder.of(HepatizonFaucetBlockEntity::new, CtiBlock.HEPATIZON_FAUCET.get())
                             .build(null));
 
+    public static final RegistryObject<BlockEntityType<ZirconiumCastingBlockEntity.Table>> ZR_ALLOY_TABLE =
+            BLOCK_ENTITIES.register("zirconium_alloy_table_be",()->
+                    BlockEntityType.Builder.of(ZirconiumCastingBlockEntity.Table::new, CtiBlock.ZR_ALLOY_TABLE.get())
+                            .build(null));
+    public static final RegistryObject<BlockEntityType<ZirconiumCastingBlockEntity.Basin>> ZR_ALLOY_BASIN =
+            BLOCK_ENTITIES.register("zirconium_alloy_basin_be",()->
+                    BlockEntityType.Builder.of(ZirconiumCastingBlockEntity.Basin::new, CtiBlock.ZR_ALLOY_BASIN.get())
+                            .build(null));
+    public static final RegistryObject<BlockEntityType<ZirconiumFaucetBlockEntity>> ZR_ALLOY_FAUCET =
+            BLOCK_ENTITIES.register("zirconium_alloy_faucet_be",()->
+                    BlockEntityType.Builder.of(ZirconiumFaucetBlockEntity::new, CtiBlock.ZR_ALLOY_FAUCET.get())
+                            .build(null));
+
+
     public static final RegistryObject<BlockEntityType<AdvancedAlloyerBlockEntity>> ADVANCED_ALLOYER =
             BLOCK_ENTITIES.register("advanced_alloyer_be",()->
                     BlockEntityType.Builder.of(AdvancedAlloyerBlockEntity::new, CtiBlock.ADVANCED_ALLOYER.get())
                             .build(null));
+
 }

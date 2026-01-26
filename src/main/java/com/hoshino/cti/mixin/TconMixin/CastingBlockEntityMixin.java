@@ -13,10 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -79,9 +76,11 @@ public abstract class CastingBlockEntityMixin extends TableBlockEntity implement
         return a;
     }
 
+    @Unique private int cti$ejectCD = 0;
+
     /**
-     * @author
-     * @reason
+     * @author ETSH_C2H6S
+     * @reason 重做浇筑设备，使其可以被加速和主动输出。
      */
     @Overwrite
     private void serverTick(Level level, BlockPos pos){
@@ -89,6 +88,27 @@ public abstract class CastingBlockEntityMixin extends TableBlockEntity implement
         if ((CastingBlockEntity)(Object) this instanceof IConditionalSpeedCastingBlockEntity entity){
             icscb = entity;
             entity.onServerTickStart();
+            if (cti$ejectCD>0) cti$ejectCD--;
+            if (cti$ejectCD<=0&&!entity.ejectSides().isEmpty()&&getBlockPos()!=null&&!getItem(OUTPUT).isEmpty()){
+                AtomicBoolean inserted = new AtomicBoolean(false);
+                var output = getItem(OUTPUT);
+                //避免无法输出时产生卡顿，每1秒检测一次
+                cti$ejectCD=20;
+                for (Direction side : entity.ejectSides()) {
+                    var receiver = level.getBlockEntity(getBlockPos().relative(side));
+                    if (receiver!=null) receiver.getCapability(ForgeCapabilities.ITEM_HANDLER,side.getOpposite()).ifPresent(handler->{
+                        for (int i = 0; i < handler.getSlots(); i++) {
+                            if (handler.insertItem(i,output,true).isEmpty()){
+                                handler.insertItem(i,output,false);
+                                setItem(OUTPUT,ItemStack.EMPTY);
+                                inserted.set(true);
+                                break;
+                            }
+                        }
+                    });
+                    if (inserted.get()) break;
+                }
+            }
         }
         if (currentRecipe == null) {
             return;
@@ -150,4 +170,5 @@ public abstract class CastingBlockEntityMixin extends TableBlockEntity implement
         }
         if (icscb!=null) icscb.onServerTickEnd();
     }
+
 }

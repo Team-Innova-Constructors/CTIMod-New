@@ -2,6 +2,7 @@ package com.hoshino.cti.Blocks;
 
 import com.hoshino.cti.api.interfaces.IConfigurableFaucetBlock;
 import com.hoshino.cti.util.MathUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -32,7 +33,7 @@ public class ConfigurableFaucetBlock extends FaucetBlock implements IConfigurabl
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
-        pTooltip.add(Component.translatable("tooltip.cti.faucet_transfer").append(MathUtil.getUnitForFluid(perTickConfig.get())+"/t"));
+        pTooltip.add(Component.translatable("tooltip.cti.faucet_transfer").append(MathUtil.getUnitForFluid(perTickConfig.get())+"/t").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

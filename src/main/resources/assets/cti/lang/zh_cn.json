@@ -76,7 +76,9 @@
   "tooltip.cti.advanced_alloyer2": "会识别冶炼炉/熔铸炉的排液口而不是储罐以工作。",
   "tooltip.cti.hepatizon_casting": "冷却速度变为%1$s倍。",
   "tooltip.cti.faucet_transfer": "浇筑速率：",
-
+  "tooltip.cti.zirconium_alloy_casting": "温度越低，冷却越快，但是处理配方时会积热而升温。",
+  "tooltip.cti.zirconium_alloy_casting2": "温度小于250℃时，每下降5℃增加1x冷却速度，同时相应增加产热速率。",
+  "tooltip.cti.zirconium_alloy_casting3": "会主动将输出弹射到下方的容器。",
   "cti.tooltip.modifier.piority": "§a运算优先级：",
 
   "item.cti.heng_sugar": "哼将糖",
@@ -369,6 +371,9 @@
   "block.cti.hepatizon_faucet": "黑色科林斯青铜浇筑口",
   "block.cti.hepatizon_casting_table": "黑色科林斯青铜铸件台",
   "block.cti.hepatizon_casting_basin": "黑色科林斯青铜铸造盆",
+  "block.cti.zirconium_alloy_faucet": "锆合金浇筑口",
+  "block.cti.zirconium_alloy_casting_table": "锆合金铸件台",
+  "block.cti.zirconium_alloy_casting_basin": "锆合金铸造盆",
   "block.cti.advanced_alloyer": "液金混熔炉",
 
 

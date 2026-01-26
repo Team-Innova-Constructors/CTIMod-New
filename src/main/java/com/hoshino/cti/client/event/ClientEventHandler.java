@@ -18,9 +18,11 @@ import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.NksszsPacket;
 import com.hoshino.cti.netwrok.packet.StarHitPacket;
+import com.hoshino.cti.register.CtiBlock;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import com.hoshino.cti.register.CtiEntity;
 import com.hoshino.cti.util.Vec3Helper;
+import me.desht.pneumaticcraft.client.ColorHandlers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.entity.Mob;
@@ -75,6 +77,11 @@ public class ClientEventHandler {
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_FAUCET.get(), FaucetBlockEntityRenderer::new);
+
+            event.registerBlockEntityRenderer(CtiBlockEntityType.ZR_ALLOY_TABLE.get(), CastingBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.ZR_ALLOY_BASIN.get(), CastingBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.ZR_ALLOY_FAUCET.get(), FaucetBlockEntityRenderer::new);
+
             event.registerBlockEntityRenderer(CtiBlockEntityType.ADVANCED_ALLOYER.get(), TankBlockEntityRenderer::new);
         }
 
@@ -152,13 +159,13 @@ public class ClientEventHandler {
                 }
             }
         }
-//        @SubscribeEvent
-//        public static void onRecipeUpdate(RecipesUpdatedEvent event){
-//            var registry = MaterialRegistry.getInstance();
-//            event.getRecipeManager().getAllRecipesFor(TinkerRecipeTypes.MATERIAL.get()).forEach(recipe->{
-//                var material = recipe.getMaterial();
-//                Arrays.stream(recipe.getIngredient().getItems()).toList().forEach(stack -> );
-//            });
-//        }
+        @SubscribeEvent
+        public static void registerBlockColorHandlers(RegisterColorHandlersEvent.Block event){
+            for (var block : CtiBlock.BLOCK.getEntries()) {
+                if (block.get() instanceof ColorHandlers.ITintableBlock tintable) {
+                    event.register(tintable::getTintColor, block.get());
+                }
+            }
+        }
     }
 }

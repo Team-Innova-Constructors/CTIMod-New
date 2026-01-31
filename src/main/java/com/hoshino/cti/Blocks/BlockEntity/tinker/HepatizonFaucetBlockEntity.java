@@ -1,5 +1,6 @@
-package com.hoshino.cti.Blocks.BlockEntity;
+package com.hoshino.cti.Blocks.BlockEntity.tinker;
 
+import com.hoshino.cti.Blocks.BlockEntity.ConfigurableFaucetBlockEntity;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;

@@ -7,8 +7,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import slimeknights.tconstruct.smeltery.menu.HeatingStructureContainerMenu;
 
-public class ctiMenu {
+public class CtiMenu {
     public static final DeferredRegister<MenuType<?>> MENU_TYPE = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Cti.MOD_ID);
     public static final RegistryObject<MenuType<AtmosphereExtractorMenu>> ATMOSPHERE_EXT_MENU = MENU_TYPE.register("atmosphere_extractor_menu", () -> IForgeMenuType.create(AtmosphereExtractorMenu::new));
     public static final RegistryObject<MenuType<AtmosphereCondensatorMenu>> ATMOSPHERE_CON_MENU = MENU_TYPE.register("atmosphere_condensator_menu", () -> IForgeMenuType.create(AtmosphereCondensatorMenu::new));

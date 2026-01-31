@@ -1,4 +1,4 @@
-package com.hoshino.cti.Blocks.BlockEntity;
+package com.hoshino.cti.Blocks.BlockEntity.tinker;
 
 
 import com.hoshino.cti.api.interfaces.IConditionalSpeedCastingBlockEntity;

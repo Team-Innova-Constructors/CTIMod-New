@@ -1,0 +1,9 @@
+{
+  "parent": "tconstruct:block/template/chute",
+  "textures": {
+    "top": "cti:block/refinery/io/chute_top_active",
+    "back": "cti:block/refinery/io/back",
+    "bricks": "cti:block/refinery/silicated/bricks",
+    "side": "cti:block/refinery/io/chute_side_active"
+  }
+}

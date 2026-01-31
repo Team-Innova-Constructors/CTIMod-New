@@ -3,7 +3,7 @@ package com.hoshino.cti;
 import com.hoshino.cti.Event.CommonLivingEvents;
 import com.hoshino.cti.Event.MobEffectEventHandler;
 import com.hoshino.cti.Modifier.capability.*;
-import com.hoshino.cti.Screen.menu.ctiMenu;
+import com.hoshino.cti.Screen.menu.CtiMenu;
 import com.hoshino.cti.client.CtiParticleType;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.register.*;
@@ -40,6 +40,7 @@ public class Cti {
         CtiModifiers.MODIFIERS.register(eventBus);
         CtiFluid.FLUIDS.register(eventBus);
         CtiBlock.BLOCK.register(eventBus);
+        CtiBlock.BLOCK_EXT.register(eventBus);
         CtiEffects.EFFECT.register(eventBus);
         CtiBlockEntityType.BLOCK_ENTITIES.register(eventBus);
         CtiInfusetype.INFUSE.register(eventBus);
@@ -51,7 +52,7 @@ public class Cti {
         MinecraftForge.EVENT_BUS.register(new CommonLivingEvents());
         MinecraftForge.EVENT_BUS.register(new MobEffectEventHandler());
         CtiPacketHandler.init();
-        ctiMenu.MENU_TYPE.register(eventBus);
+        CtiMenu.MENU_TYPE.register(eventBus);
         CtiPotions.POTIONS.register(eventBus);
         CtiParticleType.PARTICLES.register(eventBus);
         CtiItem.registerPartModels();

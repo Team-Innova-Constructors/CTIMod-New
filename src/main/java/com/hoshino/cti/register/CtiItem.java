@@ -28,13 +28,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.GlassBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -376,4 +372,11 @@ public class CtiItem {
 
     public static final RegistryObject<BlockItem> ADVANCED_ALLOYER = registerBlockItem(CtiBlock.ADVANCED_ALLOYER);
 
+    public static final RegistryObject<BlockItem> SILICATED_BRICKS = registerBlockItem(CtiBlock.SILICATED_BRICK);
+    public static final RegistryObject<BlockItem> SILICATED_CHUTE = registerBlockItem(CtiBlock.SILICATED_CHUTE);
+    public static final RegistryObject<BlockItem> SILICATED_DRAIN = registerBlockItem(CtiBlock.SILICATED_DRAIN);
+    public static final RegistryObject<BlockItem> SILICATED_GLASS = registerBlockItem(CtiBlock.SILICATED_GLASS);
+    public static final RegistryObject<BlockItem> SILICATED_DUCT = registerBlockItem(CtiBlock.SILICATED_DUCT);
+    public static final RegistryObject<BlockItem> REFINER_CONTROLLER = registerBlockItem(CtiBlock.REFINERY);
+    public static final RegistryObject<BlockItem> SILICATED_VAULT = registerBlockItem(CtiBlock.SILICATED_VALVE);
 }

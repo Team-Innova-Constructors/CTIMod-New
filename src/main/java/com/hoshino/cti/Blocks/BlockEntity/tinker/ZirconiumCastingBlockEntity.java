@@ -1,4 +1,4 @@
-package com.hoshino.cti.Blocks.BlockEntity;
+package com.hoshino.cti.Blocks.BlockEntity.tinker;
 
 import com.hoshino.cti.api.interfaces.IConditionalSpeedCastingBlockEntity;
 import com.hoshino.cti.register.CtiBlockEntityType;
@@ -50,8 +50,8 @@ public class ZirconiumCastingBlockEntity extends CastingBlockEntity implements I
 
     @Override
     public int getBoost(int i) {
-        var boost = Math.max(0,((250-heatExchanger.getTemperature())/5)-1);
-        this.heatExchanger.addHeat(boost+1);
+        var boost =  Math.max(0,((250-Math.max(0,heatExchanger.getTemperature()))/5)-1)+(2*Math.max(0,0-heatExchanger.getTemperature()));
+        this.heatExchanger.addHeat(boost/2);
         return (int) boost;
     }
 

@@ -1,6 +1,6 @@
 package com.hoshino.cti.Blocks;
 
-import com.hoshino.cti.Blocks.BlockEntity.HepatizonFaucetBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.HepatizonFaucetBlockEntity;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;

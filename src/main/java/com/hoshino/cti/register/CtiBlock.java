@@ -1,14 +1,14 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Blocks.*;
-import com.hoshino.cti.Blocks.BlockEntity.AdvancedAlloyerBlockEntity;
-import com.hoshino.cti.Blocks.BlockEntity.HepatizonCastingBlockEntity;
-import com.hoshino.cti.Blocks.BlockEntity.ZirconiumCastingBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.Machine.*;
+import com.hoshino.cti.Cti;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -31,10 +31,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import slimeknights.mantle.registration.object.EnumObject;
+import slimeknights.mantle.util.BlockEntityHelper;
+import slimeknights.tconstruct.common.registration.BlockDeferredRegisterExtension;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.CastingBasinBlock;
 import slimeknights.tconstruct.smeltery.block.CastingTableBlock;
+import slimeknights.tconstruct.smeltery.block.component.*;
 import slimeknights.tconstruct.smeltery.block.controller.AlloyerBlock;
+import slimeknights.tconstruct.smeltery.block.entity.component.SmelteryInputOutputBlockEntity;
+import slimeknights.tconstruct.smeltery.item.TankItem;
 import slimeknights.tconstruct.world.block.CrystalClusterBlock;
 
 import java.util.List;
@@ -42,6 +48,7 @@ import java.util.List;
 
 public class CtiBlock {
     public static final DeferredRegister<Block> BLOCK = DeferredRegister.create(ForgeRegistries.BLOCKS, "cti");
+    public static final BlockDeferredRegisterExtension BLOCK_EXT = new BlockDeferredRegisterExtension(Cti.MOD_ID);
     public static final RegistryObject<Block> unipolar_magnet_budding = BLOCK.register("unipolar_magnet_budding", () -> new unipolarBudding(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel((BlockStateBase) -> 15).sound(SoundType.AMETHYST).randomTicks().destroyTime(1)));
     public static final RegistryObject<Block> unipolar_magnet = BLOCK.register("unipolar_magnet", () -> new CrystalClusterBlock(SoundEvents.AMETHYST_BLOCK_CHIME, 7, 3, BlockBehaviour.Properties.of(Material.AMETHYST).noOcclusion().sound(SoundType.AMETHYST_CLUSTER).strength(5.5F).lightLevel((BlockStateBase) -> 5).destroyTime(1)));
     public static final RegistryObject<Block> overdense_glacio_stone = BLOCK.register("overdense_glacio_stone", () -> new OverdenseGlacioStone(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.ANCIENT_DEBRIS).randomTicks().destroyTime(3)));
@@ -205,6 +212,88 @@ public class CtiBlock {
                             .withStyle(ChatFormatting.GRAY));
                     list.add(Component.translatable("tooltip.cti.advanced_alloyer2")
                             .withStyle(ChatFormatting.GRAY));
+                }
+            });
+
+    public static final RegistryObject<Block> REFINERY = BLOCK.register("refinery_controller", () ->
+            new RefineryControllerBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.AMETHYST)));
+    public static final RegistryObject<Block> SILICATED_BRICK = BLOCK.register("silicated_bricks", () ->
+            new SearedBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.AMETHYST),false) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.silicated_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SILICATED_GLASS = BLOCK.register("silicated_glass",()->
+            new SearedGlassBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedGlass.get()).sound(SoundType.AMETHYST)){
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.silicated_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final EnumObject<SearedTankBlock.TankType,SearedTankBlock> SILICATED_TANK = BLOCK_EXT
+            .registerEnum("silicated",new SearedTankBlock.TankType[]{SearedTankBlock.TankType.FUEL_GAUGE, SearedTankBlock.TankType.INGOT_GAUGE},tankType ->
+                    new SearedTankBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedGlass.get()).sound(SoundType.AMETHYST),tankType.getCapacity()*4){
+                        @Override
+                        public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+                            return new CtiTankBlockEntity(pPos,pState);
+                        }
+                    }, searedTankBlock -> new TankItem(searedTankBlock,new Item.Properties().tab(CtiTab.MACHINE),true));
+    public static final RegistryObject<Block> SILICATED_DRAIN = BLOCK.register("silicated_drain",()->
+            new SearedDrainBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.AMETHYST)){
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.silicated_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SILICATED_DUCT = BLOCK.register("silicated_duct",()->
+            new SearedDuctBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.AMETHYST)){
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.silicated_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SILICATED_CHUTE = BLOCK.register("silicated_chute",()->
+            new RetexturedOrientableSmelteryBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.AMETHYST), SmelteryInputOutputBlockEntity.ChuteBlockEntity::new){
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.silicated_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SILICATED_VALVE = BLOCK.register("silicated_valve",()->
+            new RetexturedOrientableSmelteryBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.AMETHYST), ValveBlockEntity::new){
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of( new ItemStack(this.asItem()));
+                }
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.silicated_brick").withStyle(ChatFormatting.GRAY));
+                }
+
+                @Override
+                public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+                    return ValveBlockEntity.getTicker(level,type,CtiBlockEntityType.VAULT.get());
                 }
             });
 }

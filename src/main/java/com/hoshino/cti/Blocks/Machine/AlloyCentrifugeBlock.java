@@ -1,6 +1,6 @@
 package com.hoshino.cti.Blocks.Machine;
 
-import com.hoshino.cti.Blocks.BlockEntity.AlloyCentrifugeEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.AlloyCentrifugeEntity;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;

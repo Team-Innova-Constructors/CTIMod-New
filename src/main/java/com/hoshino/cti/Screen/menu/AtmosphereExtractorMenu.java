@@ -28,7 +28,7 @@ public class AtmosphereExtractorMenu extends GeneralMachineMenu {
     }
 
     public AtmosphereExtractorMenu(int id, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ctiMenu.ATMOSPHERE_EXT_MENU.get(), id, (GeneralMachineEntity) entity);
+        super(CtiMenu.ATMOSPHERE_EXT_MENU.get(), id, (GeneralMachineEntity) entity);
         checkContainerSize(inventory, 1);
         this.level = inventory.player.level;
         this.entity = (AtmosphereExtractorEntity) entity;

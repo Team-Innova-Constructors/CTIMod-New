@@ -28,7 +28,7 @@ public class ReactorNeutronCollectorMenu extends GeneralMachineMenu {
     }
 
     public ReactorNeutronCollectorMenu(int id, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ctiMenu.NEUT_COL_MENU.get(), id, (GeneralMachineEntity) entity);
+        super(CtiMenu.NEUT_COL_MENU.get(), id, (GeneralMachineEntity) entity);
         checkContainerSize(inventory, 1);
         this.level = inventory.player.level;
         this.entity = (ReactorNeutronCollectorEntity) entity;

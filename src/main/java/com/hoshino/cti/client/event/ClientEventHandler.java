@@ -4,7 +4,7 @@ import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Screen.AtmosphereCondensatorScreen;
 import com.hoshino.cti.Screen.AtmosphereExtractorScreen;
 import com.hoshino.cti.Screen.ReactorNeutronCollectorScreen;
-import com.hoshino.cti.Screen.menu.ctiMenu;
+import com.hoshino.cti.Screen.menu.CtiMenu;
 import com.hoshino.cti.client.CtiKeyBinding;
 import com.hoshino.cti.client.CtiParticleType;
 import com.hoshino.cti.client.InitPartModel;
@@ -25,6 +25,8 @@ import com.hoshino.cti.util.Vec3Helper;
 import me.desht.pneumaticcraft.client.ColorHandlers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,14 +35,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import slimeknights.tconstruct.library.materials.MaterialRegistry;
-import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.smeltery.client.render.CastingBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.FaucetBlockEntityRenderer;
+import slimeknights.tconstruct.smeltery.client.render.HeatingStructureBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.TankBlockEntityRenderer;
-
-import java.util.Arrays;
 
 
 public class ClientEventHandler {
@@ -64,10 +63,12 @@ public class ClientEventHandler {
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
-            MenuScreens.register(ctiMenu.ATMOSPHERE_EXT_MENU.get(), AtmosphereExtractorScreen::new);
-            MenuScreens.register(ctiMenu.ATMOSPHERE_CON_MENU.get(), AtmosphereCondensatorScreen::new);
-            MenuScreens.register(ctiMenu.NEUT_COL_MENU.get(), ReactorNeutronCollectorScreen::new);
+            MenuScreens.register(CtiMenu.ATMOSPHERE_EXT_MENU.get(), AtmosphereExtractorScreen::new);
+            MenuScreens.register(CtiMenu.ATMOSPHERE_CON_MENU.get(), AtmosphereCondensatorScreen::new);
+            MenuScreens.register(CtiMenu.NEUT_COL_MENU.get(), ReactorNeutronCollectorScreen::new);
             event.enqueueWork(CtiEntity::registerEntityRenderers);
+
+            ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
         }
 
         @SubscribeEvent
@@ -83,6 +84,9 @@ public class ClientEventHandler {
             event.registerBlockEntityRenderer(CtiBlockEntityType.ZR_ALLOY_FAUCET.get(), FaucetBlockEntityRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.ADVANCED_ALLOYER.get(), TankBlockEntityRenderer::new);
+
+            event.registerBlockEntityRenderer(CtiBlockEntityType.REFINERY.get(), HeatingStructureBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.TANK.get(), TankBlockEntityRenderer::new);
         }
 
         @SubscribeEvent

@@ -1,11 +1,14 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Blocks.BlockEntity.*;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.refinery.RefineryControllerBlockEntity;
 import com.hoshino.cti.Cti;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock;
 
 public class CtiBlockEntityType {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Cti.MOD_ID);
@@ -49,6 +52,21 @@ public class CtiBlockEntityType {
     public static final RegistryObject<BlockEntityType<AdvancedAlloyerBlockEntity>> ADVANCED_ALLOYER =
             BLOCK_ENTITIES.register("advanced_alloyer_be",()->
                     BlockEntityType.Builder.of(AdvancedAlloyerBlockEntity::new, CtiBlock.ADVANCED_ALLOYER.get())
+                            .build(null));
+
+    public static final RegistryObject<BlockEntityType<RefineryControllerBlockEntity>> REFINERY =
+            BLOCK_ENTITIES.register("refinery_be",()->
+                    BlockEntityType.Builder.of(RefineryControllerBlockEntity::new, CtiBlock.REFINERY.get())
+                            .build(null));
+
+    public static final RegistryObject<BlockEntityType<CtiTankBlockEntity>> TANK =
+            BLOCK_ENTITIES.register("tank",()->
+                    BlockEntityType.Builder.of(CtiTankBlockEntity::new, CtiBlock.SILICATED_TANK.get(SearedTankBlock.TankType.FUEL_GAUGE),
+                                    CtiBlock.SILICATED_TANK.get(SearedTankBlock.TankType.INGOT_GAUGE))
+                            .build(null));
+    public static final RegistryObject<BlockEntityType<ValveBlockEntity>> VAULT =
+            BLOCK_ENTITIES.register("vault",()->
+                    BlockEntityType.Builder.of(ValveBlockEntity::new, CtiBlock.SILICATED_VALVE.get())
                             .build(null));
 
 }

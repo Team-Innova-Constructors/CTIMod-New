@@ -27,7 +27,7 @@ public class AtmosphereCondensatorMenu extends GeneralMachineMenu {
     }
 
     public AtmosphereCondensatorMenu(int id, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ctiMenu.ATMOSPHERE_CON_MENU.get(), id, (GeneralMachineEntity) entity);
+        super(CtiMenu.ATMOSPHERE_CON_MENU.get(), id, (GeneralMachineEntity) entity);
         checkContainerSize(inventory, 1);
         this.level = inventory.player.level;
         this.entity = (AtmosphereCondensatorEntity) entity;

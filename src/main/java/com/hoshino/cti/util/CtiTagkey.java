@@ -14,4 +14,9 @@ public class CtiTagkey {
     public static final TagKey<Item> NDHGBLACKLIST = TagKey.create(Registry.ITEM_REGISTRY, Cti.getResource("ndhg_blacklist"));
     public static final TagKey<Block> ORE = TagKey.create(Registry.BLOCK_REGISTRY,new ResourceLocation("forge","ores"));
     public static final TagKey<Block> STONE = TagKey.create(Registry.BLOCK_REGISTRY,new ResourceLocation("forge","stone"));
+
+    public static final TagKey<Block> REFINERY = TagKey.create(Registry.BLOCK_REGISTRY,Cti.getResource("refinery"));
+    public static final TagKey<Block> REFINERY_FLOOR = TagKey.create(Registry.BLOCK_REGISTRY,Cti.getResource("refinery/floor"));
+    public static final TagKey<Block> REFINERY_TANKS = TagKey.create(Registry.BLOCK_REGISTRY,Cti.getResource("refinery/tanks"));
+    public static final TagKey<Block> REFINERY_WALL = TagKey.create(Registry.BLOCK_REGISTRY,Cti.getResource("refinery/wall"));
 }

@@ -1,4 +1,4 @@
-package com.hoshino.cti.Blocks.BlockEntity;
+package com.hoshino.cti.Blocks.BlockEntity.tinker;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import com.hoshino.cti.register.CtiBlockEntityType;
@@ -10,7 +10,6 @@ import me.desht.pneumaticcraft.common.util.DirectionUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,9 +39,9 @@ public class AlloyCentrifugeEntity extends BlockEntity {
     protected static Map<Fluid,AlloyRecipe> recipeMap = new HashMap<>();
     protected static Map<AlloyRecipe,List<FluidStack>> outputMap = new HashMap<>();
 
-    private LazyOptional<IAirHandlerMachine> airHandler = LazyOptional.empty();
+    private final LazyOptional<IAirHandlerMachine> airHandler;
 
-    private MachineAirHandler machineAirHandler = new MachineAirHandler(PressureTier.TIER_TWO, 12800) {
+    private final MachineAirHandler machineAirHandler = new MachineAirHandler(PressureTier.TIER_TWO, 12800) {
         @Override
         public float getCriticalPressure() {
             return 40;
@@ -183,7 +182,7 @@ public class AlloyCentrifugeEntity extends BlockEntity {
         this.airHandlerMap.clear();
 
         for(Direction side : DirectionUtil.VALUES) {
-            this.getCapability(PNCCapabilities.AIR_HANDLER_MACHINE_CAPABILITY, side).ifPresent((handler) -> ((List)this.airHandlerMap.computeIfAbsent(handler, (k) -> new ArrayList())).add(side));
+            this.getCapability(PNCCapabilities.AIR_HANDLER_MACHINE_CAPABILITY, side).ifPresent((handler) -> (this.airHandlerMap.computeIfAbsent(handler, (k) -> new ArrayList<>())).add(side));
         }
 
         this.airHandlerMap.forEach(IAirHandlerMachine::setConnectedFaces);

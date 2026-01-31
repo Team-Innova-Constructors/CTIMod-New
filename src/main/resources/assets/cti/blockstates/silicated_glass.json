@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "cti:block/refinery/glass/block" }
+  }
+}

@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 
 import java.util.Iterator;
 
@@ -22,7 +23,7 @@ public class NDHGmixin {
     private static void condition(LivingDropsEvent event, CallbackInfo ci, MobTraitCap cap, LivingEntity killer, double val, int count, Iterator<ItemStack> var6, ItemEntity stack){
         //后续如果有想禁用的加黑名单
         var item=stack.getItem().getItem();
-        if(item instanceof BackpackItem||stack.getItem().is(CtiTagkey.NDHGBLACKLIST)){
+        if(item instanceof BackpackItem||item instanceof IModifiable || item.isDamageable(stack.getItem()) ||stack.getItem().is(CtiTagkey.NDHGBLACKLIST)){
             ci.cancel();
         }
     }

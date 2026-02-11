@@ -10,6 +10,7 @@ import com.hoshino.cti.util.EquipmentUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,7 +37,7 @@ public class ToolEvents {
     public static void onLeftClick(PlayerInteractEvent.LeftClickEmpty event){
         Player player = event.getEntity();
         if (player!=null&&player.level.isClientSide) {
-            ItemStack stack = player.getItemInHand(player.getUsedItemHand());
+            ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {
                 EquipmentSlot slot = stack.getEquipmentSlot();
                 LeftClickModifierHook.handleLeftClick(stack,player,slot);
@@ -49,7 +50,7 @@ public class ToolEvents {
         BlockPos pos = event.getPos();
         if (player!=null) {
             BlockState state = player.level.getBlockState(pos);
-            ItemStack stack = player.getItemInHand(player.getUsedItemHand());
+            ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {
                 EquipmentSlot slot = stack.getEquipmentSlot();
                 LeftClickModifierHook.handleLeftClickBlock(stack,player,slot,state,pos);

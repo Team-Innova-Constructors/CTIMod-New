@@ -1,5 +1,6 @@
 package com.hoshino.cti.Modifier;
 
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -18,7 +19,7 @@ public class EggBoost extends Modifier {
 
     private void onLivingKilled(LivingDeathEvent event) {
         if (event.getSource().getEntity() instanceof LivingEntity living && event.getEntity() instanceof Chicken chicken) {
-            ItemStack stack = living.getItemInHand(living.getUsedItemHand());
+            ItemStack stack = living.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {
                 ToolStack tool = ToolStack.from(stack);
                 int lvl = tool.getModifierLevel(this);

@@ -805,7 +805,7 @@
 
   "modifier.cti.egg_boost": "杀鸡取卵",
   "modifier.cti.egg_boost.flavor": "某些时候把鸡宰了比等它生蛋更有效！",
-  "modifier.cti.egg_boost.description": "杀死鸡时额外掉落鸡蛋，等级越高掉落的越多。",
+  "modifier.cti.egg_boost.description": "主手持有时，杀死鸡会额外掉落鸡蛋，等级越高掉落的越多。",
 
   "modifier.cti.earth_core_crush": "地心崩裂",
   "modifier.cti.earth_core_crush.flavor": "一镐即穿！",

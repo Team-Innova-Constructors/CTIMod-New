@@ -13,7 +13,6 @@ import com.hoshino.cti.Entity.vehicles.rocketTier5;
 import com.hoshino.cti.Items.*;
 import com.hoshino.cti.Items.MekUpgrades.AdvancedUpgrade;
 import com.hoshino.cti.Items.Vehicle.RocketItemTier5;
-import com.hoshino.cti.Items.Wine.Unknown_Wine;
 import com.hoshino.cti.Items.ingots.uriel_ingot;
 import com.hoshino.cti.Items.pncMinigunAmmo.ElectroniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.ProtoniumAmmo;
@@ -35,7 +34,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
-import umpaz.brewinandchewin.common.item.BoozeItem;
 
 import java.util.List;
 
@@ -44,7 +42,6 @@ import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.lib.common.ThermalFlags.FLAG_UPGRADE_AUGMENTS;
 import static com.hoshino.cti.util.CommonUtil.TAG_MACHINE_PARALLEL;
 import static earth.terrarium.ad_astra.common.registry.ModItems.ITEM_GROUP;
-import static umpaz.brewinandchewin.common.registry.BCItems.TANKARD;
 
 public class CtiItem {
     public static String FLAG_MACHINE_AUGMENTS = "machine_augments";
@@ -59,9 +56,6 @@ public class CtiItem {
     public CtiItem() {
     }
 
-    public static Item.Properties tankard_drinkItem() {
-        return (new Item.Properties()).craftRemainder(TANKARD.get()).stacksTo(16).tab(CtiTab.FOOD);
-    }
 
     public static Item.Properties bottle_drinkItem() {
         return (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).tab(CtiTab.FOOD);
@@ -305,17 +299,6 @@ public class CtiItem {
     public static final RegistryObject<Item> star_frozen = ITEMS.register("star_frozen", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> star_ionize = ITEMS.register("star_ionize", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> star_pressure = ITEMS.register("star_pressure", () -> new Item(new Item.Properties()));
-    //吃的喝的
-    public static final RegistryObject<Item> COLD_GOBBERWINE = ITEMS.register("cold_gobberwine", () -> new BoozeItem(1, 5, tankard_drinkItem().food(CtiWine.COLD_GOBBERWINE)));
-    public static final RegistryObject<Item> ETHANOL_ABSOLUTE = ITEMS.register("ethanol_absolute", () -> new BoozeItem(3, 20, tankard_drinkItem().food(CtiWine.ETHANOL_ABSOLUTE)));
-    public static final RegistryObject<Item> cornflower_beer = ITEMS.register("cornflower_beer", () -> new BoozeItem(1, 5, tankard_drinkItem().food(CtiWine.cornflower_beer)));
-    public static final RegistryObject<Item> etbeer = ITEMS.register("etbeer", () -> new BoozeItem(3, 10, tankard_drinkItem().food(CtiWine.etbeer)));
-    public static final RegistryObject<Item> xuerou_wine = ITEMS.register("xuerou_wine", () -> new BoozeItem(3, 5, tankard_drinkItem().food(CtiWine.xuerou_wine)));
-    public static final RegistryObject<Item> mahoushaojiu_wine = ITEMS.register("mahoushaojiu_wine", () -> new BoozeItem(1, 10, tankard_drinkItem().food(CtiWine.mahoushaojiu_wine)));
-    public static final RegistryObject<Item> UNKNOWN_WINE = ITEMS.register("unknown_wine", () -> new Unknown_Wine(tankard_drinkItem().food(CtiWine.UNKNOWN_WINE).craftRemainder(TANKARD.get())));
-    public static final RegistryObject<Item> qdbeer = ITEMS.register("qdbeer", () -> new BoozeItem(1, 1, bottle_drinkItem().food(CtiWine.qdbeer)));
-    public static final RegistryObject<Item> boomwine = ITEMS.register("boomwine", () -> new BoozeItem(1, 5, bottle_drinkItem().food(CtiWine.boomwine)));
-    public static final RegistryObject<Item> fishbone_wine = ITEMS.register("fishbone_wine", () -> new BoozeItem(1, 1, tankard_drinkItem().food(CtiWine.fishbone_wine).craftRemainder(Items.ENCHANTED_GOLDEN_APPLE)));
 
     //佛糖
     public static final RegistryObject<Item> heng_sugar = ITEMS.register("heng_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.heng.get()));

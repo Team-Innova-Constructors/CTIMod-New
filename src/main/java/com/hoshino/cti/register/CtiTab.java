@@ -26,7 +26,7 @@ public class CtiTab {
     public static final CreativeModeTab FOOD = new CreativeModeTab("cti.food") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(CtiItem.etbeer.get());
+            return new ItemStack(CtiItem.covert_sugar.get());
         }
     };
 

@@ -1,8 +1,11 @@
 package com.hoshino.cti.mixin.L2;
 
 import com.aetherteam.aether.entity.monster.Swet;
+import com.aetherteam.aether.entity.monster.dungeon.Sentry;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
+import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
+import dev.xkmc.l2hostility.content.item.wand.TraitAdderWand;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.highlevel.GrowthTrait;
 import net.minecraft.ChatFormatting;
@@ -16,6 +19,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 
 @Mixin(value = GrowthTrait.class,remap = false)
 public abstract class GrowTraitMixin extends MobTrait {
@@ -28,7 +32,7 @@ public abstract class GrowTraitMixin extends MobTrait {
      */
     @Overwrite
     public boolean allow(@NotNull LivingEntity le, int difficulty, int maxModLv) {
-        return le instanceof Slime && super.allow(le, difficulty, maxModLv)&&!(le instanceof Swet);
+        return le instanceof Slime && super.allow(le, difficulty, maxModLv)&&!(le instanceof Swet)&&!(le instanceof ArmoredSlimeEntity)&&!(le instanceof Sentry);
     }
     @Inject(method = "tick",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Slime;m_7839_(IZ)V"), cancellable = true)
     private void setSize(LivingEntity mob, int level, CallbackInfo ci){
@@ -39,10 +43,19 @@ public abstract class GrowTraitMixin extends MobTrait {
                     return;
                 }
                 var slimes=slime.level.getEntitiesOfClass(Slime.class,new AABB(slime.getOnPos()).inflate(8));
-                if(slimes.size()>11){
+                if(slimes.size()>6){
                     ci.cancel();
                     return;
                 }
+            }
+            MobTraitCap cap = MobTraitCap.HOLDER.get(slime);
+            int iterationCount=slime.getPersistentData().getInt("cti:iteration");
+            if(iterationCount>2){
+                MobTrait trait=this;
+                cap.traits.compute(trait,(a,b)->0);
+                trait.initialize(slime, 0);
+                trait.postInit(slime, 0);
+                cap.syncToClient(slime);
             }
             var size=slime.getSize();
             slime.setSize(Math.max(size,level+2),true);

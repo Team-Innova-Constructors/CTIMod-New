@@ -18,6 +18,7 @@
     "ProjectileMixin",
     "ServerLevelMixin",
     "ShulkerBulletMixin",
+    "SlimeMixin",
     "ToolStatsMixin",
     "WitherSkullMixin",
     "AdAstraMixin.AcidRainTick",

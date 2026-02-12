@@ -18,7 +18,7 @@ public class HardSkin extends MobTrait {
     private void LivingDamageEvent(LivingDamageEvent event) {
         var source = event.getSource();
         var target = event.getEntity();
-        if (source.isBypassInvul()) return;
+        if (source.isBypassInvul()||source.isBypassMagic()) return;
         if (target instanceof Mob mob) {
             LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
             if (optional.resolve().isPresent()) {
@@ -28,7 +28,7 @@ public class HardSkin extends MobTrait {
                 if (source.isBypassArmor()) {
                     blockAmount /= 4;
                 }
-                event.setAmount(event.getAmount() - blockAmount);
+                event.setAmount(Math.max(0,event.getAmount() - blockAmount));
             }
         }
     }

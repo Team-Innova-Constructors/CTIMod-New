@@ -26,7 +26,6 @@ import mekanism.api.Upgrade;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -267,7 +266,10 @@ public class CtiItem {
     public static final RegistryObject<Item> upgrade_violium = ITEMS.register("upgrade_violium", () -> new AtmosphereUpgradeItem(4.5f, 0.5f));
     public static final RegistryObject<Item> upgrade_aetherium = ITEMS.register("upgrade_aetherium", () -> new AtmosphereUpgradeItem(10.5f, 2f));
     public static final RegistryObject<Item> test_tool = ITEMS.register("test_tool", () -> new TestTool(new Item.Properties().tab(CtiTab.MIXC)));
-    public static final RegistryObject<Item> Vein_Remove_Tool = ITEMS.register("vein_remove_tool", () -> new VeinRemoveTool(new Item.Properties().tab(CtiTab.MIXC)));
+
+    public static final RegistryObject<Item> IE_Vein_Remove_Tool = ITEMS.register("ie_vein_remove_tool", IEVeinRemoveTool::new);
+    public static final RegistryObject<Item> IE_Vein_Completely_Remove_Tool = ITEMS.register("ie_vein_completely_remove_tool", IEVeinCompletelyRemoveTool::new);
+    public static final RegistryObject<Item> COE_Vein_Remove_Tool = ITEMS.register("coe_vein_remove_tool", COEVeinRemoveTool::new);
     //收藏品
     public static final RegistryObject<Item> heart_of_africa = ITEMS.register("heart_of_africa", () -> new CollectionItem(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1),List.of(
             DynamicComponentUtil.BreathColorfulText.getColorfulText("世界上最大的钻石,象征着永恒的爱",null,new int[]{0xff3030},40,2000,false),
@@ -308,13 +310,15 @@ public class CtiItem {
     public static final RegistryObject<Item> nakshatra_sugar = ITEMS.register("nakshatra_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.nakshatra.get()));
     public static final RegistryObject<Item> soul_spell = ITEMS.register("soul_spell", () -> new SoulSpell(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1)));
 
-    public static final RegistryObject<Item> mixer_generator = ITEMS.register("mixer_generator", () -> new IEMultiblockGenerator(new Item.Properties().tab(CtiTab.MIXC).stacksTo(35),"immersiveengineering:multiblocks/mixer"));
-    public static final RegistryObject<Item> cokerunit_generator = ITEMS.register("cokerunit_generator", () -> new IEMultiblockGenerator(new Item.Properties().tab(CtiTab.MIXC).stacksTo(35),"immersivepetroleum:multiblocks/cokerunit"));
-    public static final RegistryObject<Item> pumpjack_generator = ITEMS.register("pumpjack_generator", () -> new IEMultiblockGenerator(new Item.Properties().tab(CtiTab.MIXC).stacksTo(35),"immersivepetroleum:multiblocks/pumpjack"));
+    public static final RegistryObject<Item> mixer_generator = ITEMS.register("refinery_generator", () -> new IEMultiblockGenerator("immersiveengineering:multiblocks/refinery"));
+    public static final RegistryObject<Item> arcfurnace_generator = ITEMS.register("arcfurnace_generator", () -> new IEMultiblockGenerator("immersiveengineering:multiblocks/arcfurnace"));
+    public static final RegistryObject<Item> cokerunit_generator = ITEMS.register("cokerunit_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/cokerunit"));
+    public static final RegistryObject<Item> pumpjack_generator = ITEMS.register("distillationtower_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/distillationtower"));
 
     //矿脉生成
-    //ResourceLocation部分需要完整的MODID和path(同实际路径)
-    public static final RegistryObject<Item> bi_mineral_generator = ITEMS.register("bi_mineral_generator", () -> new VeinGeneratorItem(new Item.Properties().tab(CtiTab.MIXC),new ResourceLocation("etshtinker","immersiveengineering/mineral/bismuthinite")));
+    public static final RegistryObject<Item> IE_VEIN_SEED = ITEMS.register("ie_vein_seed", IEVeinGeneratorItem::new);
+
+    public static final RegistryObject<Item> COE_VEIN_SEED = ITEMS.register("coe_vein_seed", COEVeinGeneratorItem::new);
 
 
     //mek高级升级

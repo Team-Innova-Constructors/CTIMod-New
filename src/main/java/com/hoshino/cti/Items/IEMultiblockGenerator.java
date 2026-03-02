@@ -1,6 +1,7 @@
 package com.hoshino.cti.Items;
 
 import blusunrize.immersiveengineering.api.multiblocks.MultiblockHandler;
+import com.hoshino.cti.register.CtiTab;
 import flaxbeard.immersivepetroleum.api.event.ProjectorEvent;
 import flaxbeard.immersivepetroleum.common.util.projector.MultiblockProjection;
 import net.minecraft.core.BlockPos;
@@ -30,8 +31,8 @@ import java.util.List;
 import java.util.function.BiPredicate;
 
 public class IEMultiblockGenerator extends Item {
-    public IEMultiblockGenerator(Properties p_41383_,String multiBlockResourceLocation) {
-        super(p_41383_);
+    public IEMultiblockGenerator(String multiBlockResourceLocation) {
+        super(new Item.Properties().stacksTo(35).tab(CtiTab.MIXC));
         this.MultiBlockResourceLocation =new ResourceLocation(multiBlockResourceLocation);
     }
     private final ResourceLocation MultiBlockResourceLocation;
@@ -101,28 +102,12 @@ public class IEMultiblockGenerator extends Item {
         BiPredicate<Integer, MultiblockProjection.Info> pred = (layer, info) -> {
             BlockPos realPos = info.tPos.offset(finalHitPos);
             BlockState tstate0 = info.getModifiedState(level, realPos);
-            ProjectorEvent.PlaceBlock event = new ProjectorEvent.PlaceBlock(
-                    info.multiblock,
-                    info.templateWorld,
-                    info.tBlockInfo.pos,
-                    level,
-                    realPos,
-                    tstate0,
-                    fixedRotation
-            );
+            ProjectorEvent.PlaceBlock event = new ProjectorEvent.PlaceBlock(info.multiblock, info.templateWorld, info.tBlockInfo.pos, level, realPos, tstate0, fixedRotation);
 
             if (!MinecraftForge.EVENT_BUS.post(event)) {
                 BlockState tstate1 = event.getState();
                 if (level.setBlock(realPos, tstate1, 3)) {
-                    ProjectorEvent.PlaceBlockPost postEvent = new ProjectorEvent.PlaceBlockPost(
-                            info.multiblock,
-                            info.templateWorld,
-                            event.getTemplatePos(),
-                            level,
-                            realPos,
-                            tstate1,
-                            fixedRotation
-                    );
+                    ProjectorEvent.PlaceBlockPost postEvent = new ProjectorEvent.PlaceBlockPost(info.multiblock, info.templateWorld, event.getTemplatePos(), level, realPos, tstate1, fixedRotation);
                     MinecraftForge.EVENT_BUS.post(postEvent);
                 }
             }

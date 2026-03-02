@@ -1,5 +1,6 @@
 package com.hoshino.cti.mixin.L2;
 
+import com.hoshino.cti.Items.RingOfNibelungen;
 import com.hoshino.cti.register.CtiItem;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.player.PlayerDifficulty;
@@ -18,15 +19,18 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class EnvyLootModifierMixin {
     @Redirect(method = "doApply", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$DoubleValue;get()Ljava/lang/Object;"))
     private Object setEnvyLootRate(ForgeConfigSpec.DoubleValue instance, ObjectArrayList<ItemStack> list, LootContext context) {
-        if (context.hasParam(LootContextParams.LAST_DAMAGE_PLAYER)) {
-            Player player = context.getParam(LootContextParams.LAST_DAMAGE_PLAYER);
-            PlayerDifficulty pl = PlayerDifficulty.HOLDER.get(player);
-            double total = 0;
-            if (CurioCompat.hasItem(player, CtiItem.ring_of_nibelungen.get())) {
-                total = pl.getLevelEditor().getTotal() * 0.0001;
+        double base = instance.get();
+        if (context.hasParam(LootContextParams.KILLER_ENTITY)) {
+            var killer = context.getParam(LootContextParams.KILLER_ENTITY);
+            if (killer instanceof Player player) {
+                PlayerDifficulty pl = PlayerDifficulty.HOLDER.get(player);
+                if (CurioCompat.hasItem(player, CtiItem.ring_of_nibelungen.get())) {
+                    int level = pl.getLevelEditor().getTotal();
+                    var extra= RingOfNibelungen.getExtraRate(level);
+                    return extra+base;
+                }
             }
-            return instance.get() + total;
         }
-        return instance.get();
+        return base;
     }
 }

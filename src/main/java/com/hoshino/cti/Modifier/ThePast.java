@@ -52,7 +52,7 @@ public class ThePast extends Modifier implements ModifyDamageModifierHook , Inve
         int lastFragmentTime = tool.getPersistentData().getInt(FRAGMENT_COOLDOWN);
         if(lastFragmentTime>0)return amount;
 
-        tool.getPersistentData().putInt(FRAGMENT_COOLDOWN,4);
+        tool.getPersistentData().putInt(FRAGMENT_COOLDOWN,6);
         var area = new AABB(entity.getOnPos()).inflate(5);
         List<Mob> targets = entity.level.getEntitiesOfClass(Mob.class, area, LivingEntity::isAlive);
         int increaseLevel = GetModifierLevel.getTotalArmorModifierlevel(entity, CtiModifiers.MANDARIN_DUCK_STATIC_MODIFIER.getId());
@@ -63,7 +63,8 @@ public class ThePast extends Modifier implements ModifyDamageModifierHook , Inve
         for(ItemStack stack:player.getInventory().armor){
             baseDurability= baseDurability+ToolStack.from(stack).getCurrentDurability();
         }
-        float baseDamage=baseDurability * 0.01f;
+        float DurabilityDamage=baseDurability * 0.002f;
+        float baseDamage=DurabilityDamage + entity.getMaxHealth() * 0.6f + entity.getArmorValue() * 0.9f;
         if (shouldHurtOwner && !hasIncrease) {
             entity.hurt(source, baseDamage + modifier.getLevel());
             targets.forEach(mob -> runHurt(mob,source,baseDamage *modifier.getLevel()));

@@ -88,6 +88,7 @@ public class CtiFluid {
     public static final FluidObject<ForgeFlowingFluid> molten_bloodgod = register("molten_bloodgod", 1257);
     public static final FluidObject<ForgeFlowingFluid> molten_xinian = register("molten_xinian", 1257);
     public static final FluidObject<ForgeFlowingFluid> MOLTEN_STAR_DRAGON = register("molten_star_dragon", 9273);
+    public static final FluidObject<ForgeFlowingFluid> molten_aluminium_glass = register("molten_aluminium_glass", 1565);
 
     public static final FluidObject<ForgeFlowingFluid> LAVA_HEATED = register("lava_heated", 2000,(supplier)->new BurningLiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA),2000,20));
     public static final FluidObject<ForgeFlowingFluid> LAVA_OVERHEATED = register("lava_overheated", 3500,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){

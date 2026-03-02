@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cti:item/vein/vein_base",
+    "layer1": "cti:item/vein/ie"
+  }
+}

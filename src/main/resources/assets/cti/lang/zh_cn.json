@@ -17,7 +17,13 @@
 
   "item.cti.aluminium_glass": "高强度铝玻璃",
   "item.cti.test_tool": "流体信息工具",
-  "item.cti.vein_remove_tool": "矿脉移除工具",
+
+  "item.cti.ie_vein_remove_tool": "矿脉提取工具(沉浸工程)",
+  "item.cti.ie_vein_completely_remove_tool": "矿脉移除工具(沉浸工程)",
+  "item.cti.coe_vein_remove_tool": "矿脉提取工具(机械动力)",
+  "item.cti.ie_vein_seed": "矿脉蕴生之种(沉浸工程)",
+  "item.cti.coe_vein_seed": "矿脉蕴生之种(机械动力)",
+
   "block.cti.aluminium_glass": "高强度铝玻璃",
 
   "item.cti.heart_of_africa": "非洲之心",
@@ -29,7 +35,7 @@
 
   "item.cti.ring_of_nibelungen": "尼伯龙根之戒",
   "cti.tooltip.item.ring_of_nibelungen.desc1": "佩戴嫉妒诅咒时，根据玩家难度增加掉落词条的概率。",
-  "cti.tooltip.item.ring_of_nibelungen.desc2": "佩戴嫉妒诅咒时，必定掉落那些词条。",
+  "cti.tooltip.item.ring_of_nibelungen.desc2": "佩戴嫉妒诅咒时，当前掉落词条概率",
 
   "item.cti.cokerunit_generator": "焦炭塔生成器",
   "item.cti.mixer_generator": "搅拌机生成器",
@@ -410,7 +416,16 @@
   "death.attack.cti.skd": "%1$s 被创死了。",
   "death.attack.cti.skd.player": "%1$s 被创死了。",
 
+  "item.cti.molten_aluminium_glass_bucket": "熔融铝玻璃桶",
+  "fluid.cti.molten_aluminium_glass": "熔融铝玻璃",
 
+  "material.cti.aluminium_glass": "铝玻璃",
+  "material.cti.aluminium_glass.flavor": "一铝玻",
+  "material.cti.aluminium_glass.encyclopedia": "极度坚硬且抗冲击",
+
+  "modifier.cti.aluminiumpower": "钢化本质",
+  "modifier.cti.aluminiumpower.flavor": "我硬的要命，真的",
+  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供50%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低60%,同时也会降低你承受到的60%(魔法,火焰,摔落,弹射物)伤害.对爆炸的减免则提升到90%",
 
   "modifier.cti.electric_protect": "电离防护",
   "modifier.cti.electric_protect.flavor": "电流退散！",
@@ -770,7 +785,7 @@
 
   "modifier.cti.thepast": "往日种种",
   "modifier.cti.thepast.flavor": "往日种种,你当真不记得了?",
-  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围3格内生物造成全身总护甲耐久1% * 词条等级点伤害 ,八秒内仅能触发一次,这个伤害会有50%概率伤害到你自己\n有黑曜石青铜则不会伤害自己,并且伤害翻四 * 黑曜石青铜等级倍",
+  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围5格内生物造成(全身总护甲耐久2‰ + 最大生命60% + 护甲值90%) * 词条等级点伤害 ,六秒内仅能触发一次,这个伤害会有50%概率伤害到你自己\n有黑曜石青铜则不会伤害自己,并且伤害提升1.8 * 全身黑曜石青铜等级倍",
 
   "modifier.cti.mandarinduck": "苦命鸳鸯",
   "modifier.cti.mandarinduck.flavor": "再无话说,请速速动手",

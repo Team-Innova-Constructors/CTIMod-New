@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cti:item/tool/test_tool",
+    "layer1": "cti:item/tool/coe_layer"
+  }
+}

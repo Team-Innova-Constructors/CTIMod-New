@@ -189,7 +189,5 @@ public class CtiModifiers {
     public static final StaticModifier<OverslimeHandler> OVERSLIME_HANDLER = MODIFIERS.register("overslime_handler", OverslimeHandler::new);
     public static final StaticModifier<DeathRolling> DEATH_ROLLING_STATIC_MODIFIER = MODIFIERS.register("deathrolling", DeathRolling::new);
     public static final StaticModifier<FuckingDeltaForce> FUCKING_DELTA_FORCE_STATIC_MODIFIER = MODIFIERS.register("fuckingdeltaforce", FuckingDeltaForce::new);
-
-
-
+    public static final StaticModifier<AluminiumPower> ALUMINIUM_POWER_STATIC_MODIFIER = MODIFIERS.register("aluminiumpower", AluminiumPower::new);
 }

@@ -4,9 +4,11 @@ import blusunrize.immersiveengineering.api.excavator.ExcavatorHandler;
 import blusunrize.immersiveengineering.api.excavator.MineralMix;
 import blusunrize.immersiveengineering.api.excavator.MineralVein;
 import blusunrize.immersiveengineering.common.IESaveData;
+import com.hoshino.cti.register.CtiTab;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.locale.Language;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ColumnPos;
@@ -27,12 +29,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 @Getter
-public class VeinGeneratorItem extends Item {
-    public VeinGeneratorItem(Properties properties, ResourceLocation mineralResourceLocation) {
-        super(properties);
-        this.resourceLocation=mineralResourceLocation;
+public class IEVeinGeneratorItem extends Item {
+    public IEVeinGeneratorItem() {
+        super(new Item.Properties().stacksTo(1).tab(CtiTab.MIXC));
     }
-    private final ResourceLocation resourceLocation;
 
     @Override
     public int getUseDuration(ItemStack stack) {
@@ -55,24 +55,34 @@ public class VeinGeneratorItem extends Item {
             return InteractionResult.SUCCESS;
         }
     }
-    private MineralMix getMineralMix(Level level){
+    private MineralMix getMineralMix(Level level,ItemStack stack){
         MineralMix mineralMix=null;
         for(MineralMix mix:MineralMix.RECIPES.getRecipes(level)){
-            if(mix.getId().equals(resourceLocation)){
+            if(mix.getId().equals(getVeinResourceLocation(stack))){
                 mineralMix=mix;
                 break;
             }
         }
         return mineralMix;
     }
+    private ResourceLocation getVeinResourceLocation(ItemStack stack){
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("MineralType")) return new ResourceLocation("null_vein");
+        return new ResourceLocation(tag.getString("MineralType"));
+    }
 
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity living) {
-        if(!(living instanceof ServerPlayer serverPlayer))return stack;
+        if (!(living instanceof ServerPlayer serverPlayer)) return stack;
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.contains("MineralType")) return stack;
+        ResourceLocation mineralId = new ResourceLocation(tag.getString("MineralType"));
+        int savedDepletion = tag.getInt("Depletion");
         BlockHitResult rtr = getPlayerPOVHitResult(level, serverPlayer, ClipContext.Fluid.NONE);
         BlockPos pos = rtr.getBlockPos();
-        ColumnPos columnPos=new ColumnPos(pos.getX(),pos.getZ());
-        MineralVein vein=new MineralVein(columnPos,resourceLocation,15);
+        ColumnPos columnPos = new ColumnPos(pos.getX(), pos.getZ());
+        MineralVein vein = new MineralVein(columnPos, mineralId, 15);
+        vein.setDepletion(savedDepletion);
         ExcavatorHandler.addVein(serverPlayer.getLevel().dimension(), vein);
         IESaveData.markInstanceDirty();
         stack.shrink(1);
@@ -81,14 +91,18 @@ public class VeinGeneratorItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-        if(getMineralMix(level)!=null){
-            MineralVein vein=new MineralVein(new ColumnPos(1,1),resourceLocation,15);
+        if(getMineralMix(level,stack)!=null){
+            MineralVein vein=new MineralVein(new ColumnPos(1,1),getVeinResourceLocation(stack),15);
             var mineral=vein.getMineral(level);
             if(mineral!=null){
+                CompoundTag tag = stack.getOrCreateTag();
+                int savedDepletion = tag.getInt("Depletion");
                 var str=Language.getInstance().getOrDefault(mineral.getTranslationKey());
+                list.add(Component.literal("不要让矿脉重叠!!!").withStyle(style -> style.withColor(0xffaaff)));
                 list.add(Component.literal("长按右键在目标点生成"+str+ "矿脉").withStyle(style -> style.withColor(0xffaaff)));
+                list.add(Component.literal("该矿脉已消耗"+savedDepletion).withStyle(style -> style.withColor(0xffaaff)));
             }
-            else list.add(Component.literal("长按右键在目标点生成矿脉").withStyle(style -> style.withColor(0xffaaff)));
+            else list.add(Component.literal("这个物品nbt不正确").withStyle(style -> style.withColor(0xffaaff)));
         }
     }
 }

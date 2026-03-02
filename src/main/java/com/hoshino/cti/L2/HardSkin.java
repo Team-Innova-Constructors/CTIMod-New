@@ -24,7 +24,8 @@ public class HardSkin extends MobTrait {
             if (optional.resolve().isPresent()) {
                 MobTraitCap cap = optional.resolve().get();
                 var level = cap.getTraitLevel(CtiHostilityTrait.HARD_SKIN.get());
-                var blockAmount = target.getMaxHealth() * 0.05f + target.getArmorValue() * 0.5f * level;
+                var blockAmount = Math.min(target.getMaxHealth() * 0.05f,target.getArmorValue()) + target.getArmorValue() * 0.5f * level;
+                if(level==0)return;
                 if (source.isBypassArmor()) {
                     blockAmount /= 4;
                 }

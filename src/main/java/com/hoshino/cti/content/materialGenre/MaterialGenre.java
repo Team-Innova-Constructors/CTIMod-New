@@ -28,7 +28,7 @@ public class MaterialGenre {
         materialTag = MaterialManager.getTag(Cti.getResource(id));
         modifierTag = ModifierManager.getTag(Cti.getResource(id));
         baseStat = ToolStats.register(new FloatToolStat(name(id+"_base"),0x000000,0,0,Float.MAX_VALUE));
-        mulStat = ToolStats.register(new FloatToolStat(name(id+"mul"),0x000000,0,0,Float.MAX_VALUE));
+        mulStat = ToolStats.register(new FloatToolStat(name(id+"_mul"),0x000000,0,0,Float.MAX_VALUE));
         baseArmorStat = ToolStats.register(new FloatToolStat(name(id+"_base_armor"),0x000000,0,0,1000));
         mulArmorStat = ToolStats.register(new FloatToolStat(name(id+"_mul_armor"),0x000000,0,0,0.4f));
     }

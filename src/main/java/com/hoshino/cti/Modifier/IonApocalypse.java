@@ -4,6 +4,7 @@ import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.client.CtiParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -42,6 +43,9 @@ public class IonApocalypse extends EtSTBaseModifier {
                         MeleeHitModifierHook hook = modifierEntry.getHook(ModifierHooks.MELEE_HIT);
                         hook.afterMeleeHit(tool, modifier, attackContext, 0);
                         hook.beforeMeleeHit(tool, modifier, attackContext, damage, 0, 0);
+                        living.invulnerableTime=0;
+                        living.hurt(DamageSource.mobAttack(context.getAttacker()),0.1f*damage);
+                        living.invulnerableTime=0;
                         hook.afterMeleeHit(tool, modifier, attackContext, damage);
                     });
                 });
@@ -49,8 +53,8 @@ public class IonApocalypse extends EtSTBaseModifier {
                         context.getTarget().getX(),
                         context.getTarget().getY()+context.getTarget().getBbHeight()/2,
                         context.getTarget().getZ(),
-                        25, 0,0,0,1.5d);
-                serverLevel.sendParticles(ParticleTypes.FLASH,
+                        30, 0,0,0,0.75d);
+                serverLevel.sendParticles(CtiParticleType.IONIC_EXPLOSION.get(),
                         context.getTarget().getX(),
                         context.getTarget().getY()+context.getTarget().getBbHeight()/2,
                         context.getTarget().getZ(),

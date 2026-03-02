@@ -44,7 +44,7 @@ public class OverslimeHandler extends Modifier implements MeleeDamageModifierHoo
 
     @Override
     public int getPriority() {
-        return 150;
+        return OVERSLIME_MODIFIER_PRIORITY;
     }
 
     @Override
@@ -84,6 +84,11 @@ public class OverslimeHandler extends Modifier implements MeleeDamageModifierHoo
         public static void onServerTick(TickEvent.ServerTickEvent event){
             if (event.getServer().getTickCount()%100==0) clearInvalidTasks();
         }
+        public OverslimePostHitHandler(){
+            registerListener((tool, context, damage) -> {
+
+            });
+        }
         private static final List<OverslimeExtraDamageListener> LIST_LISTENER = new ArrayList<>();
         private static final Map<ToolAttackContext,PostHitTask> MAP_TASK = new ConcurrentHashMap<>();
         public record PostHitTask(IToolStackView tool, ToolAttackContext context,float damage){
@@ -114,7 +119,7 @@ public class OverslimeHandler extends Modifier implements MeleeDamageModifierHoo
             });
         }
     }
-    public static abstract class OverslimeExtraDamageListener{
-        public abstract void doPostHitEffect(IToolStackView tool, ToolAttackContext context, float damage);
+    public interface OverslimeExtraDamageListener{
+        void doPostHitEffect(IToolStackView tool, ToolAttackContext context, float damage);
     }
 }

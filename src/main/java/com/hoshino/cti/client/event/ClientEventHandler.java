@@ -9,6 +9,7 @@ import com.hoshino.cti.client.CtiKeyBinding;
 import com.hoshino.cti.client.CtiParticleType;
 import com.hoshino.cti.client.InitPartModel;
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.client.Screen.RefineryScreen;
 import com.hoshino.cti.client.hud.CurseInfoHud;
 import com.hoshino.cti.client.hud.EnvironmentalHud;
 import com.hoshino.cti.client.hud.FoxExposedOverlay;
@@ -60,12 +61,15 @@ public class ClientEventHandler {
             event.register(CtiParticleType.FIERY_LINE.get(), FieryJavelinLineParticle::provider);
             event.register(CtiParticleType.ION.get(), IonParticle::provider);
             event.register(CtiParticleType.STARFALL.get(), StarFallParticleProvider::new);
+            event.register(CtiParticleType.IONIC_EXPLOSION.get(), IonicExplosionParticle.IonicExplosionParticleProvider::new);
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(CtiMenu.ATMOSPHERE_EXT_MENU.get(), AtmosphereExtractorScreen::new);
             MenuScreens.register(CtiMenu.ATMOSPHERE_CON_MENU.get(), AtmosphereCondensatorScreen::new);
             MenuScreens.register(CtiMenu.NEUT_COL_MENU.get(), ReactorNeutronCollectorScreen::new);
+            MenuScreens.register(CtiMenu.REFINERY_MENU.get(), RefineryScreen::new);
+
             event.enqueueWork(CtiEntity::registerEntityRenderers);
             ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
         }

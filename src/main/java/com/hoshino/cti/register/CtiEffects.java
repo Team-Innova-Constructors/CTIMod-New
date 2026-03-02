@@ -2,8 +2,10 @@ package com.hoshino.cti.register;
 
 import com.hoshino.cti.Effects.*;
 import com.marth7th.solidarytinker.effects.BloodAnger;
+import com.marth7th.solidarytinker.effects.StaticEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -27,5 +29,8 @@ public class CtiEffects {
     public static final RegistryObject<MobEffect> covert = EFFECT.register("covert",Covert::new);
     public static final RegistryObject<MobEffect> nakshatra = EFFECT.register("nakshatra",Nakshatra::new);
     public static final RegistryObject<MobEffect> blood_angry = EFFECT.register("blood_angry", BloodAngry::new);
+    public static final RegistryObject<MobEffect> INSATIABLE_BOOST = EFFECT.register("insatiable_boost",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0x9546C9).addAttributeModifier(
+            CtiAttributes.MAX_INSATIABLE.get(),"f74c192d-4d5c-e9e6-a8ea-c7db8f8280b5",4, AttributeModifier.Operation.ADDITION
+    ));
 
 }

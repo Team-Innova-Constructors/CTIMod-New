@@ -9,6 +9,7 @@ import com.hoshino.cti.util.ILivingEntityMixin;
 import com.hoshino.cti.util.StrictDamageProcess;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.mojang.logging.LogUtils;
+import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.GlobalPos;
@@ -271,6 +272,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
     @Unique
     public void cti$strictDie(DamageSource pDamageSource) {
         LivingEntity living = (LivingEntity)(Object) this;
+        if (living instanceof TargetDummyEntity) return;
         LivingEntityAccessor accessor = (LivingEntityAccessor) living;
         if (living instanceof ServerPlayer player){
             ServerPlayerAccessor playerAccessor = (ServerPlayerAccessor) player;

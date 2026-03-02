@@ -14,6 +14,7 @@ public class CtiMenu {
     public static final RegistryObject<MenuType<AtmosphereExtractorMenu>> ATMOSPHERE_EXT_MENU = MENU_TYPE.register("atmosphere_extractor_menu", () -> IForgeMenuType.create(AtmosphereExtractorMenu::new));
     public static final RegistryObject<MenuType<AtmosphereCondensatorMenu>> ATMOSPHERE_CON_MENU = MENU_TYPE.register("atmosphere_condensator_menu", () -> IForgeMenuType.create(AtmosphereCondensatorMenu::new));
     public static final RegistryObject<MenuType<ReactorNeutronCollectorMenu>> NEUT_COL_MENU = MENU_TYPE.register("reactor_neutron_collector_menu", () -> IForgeMenuType.create(ReactorNeutronCollectorMenu::new));
+    public static final RegistryObject<MenuType<HeatingStructureContainerMenu>> REFINERY_MENU = MENU_TYPE.register("refinery_menu", () -> IForgeMenuType.create(HeatingStructureContainerMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENU_TYPE.register(eventBus);

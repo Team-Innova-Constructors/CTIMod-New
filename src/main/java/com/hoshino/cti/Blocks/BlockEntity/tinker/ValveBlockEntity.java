@@ -130,6 +130,18 @@ public class ValveBlockEntity extends SmelteryInputOutputBlockEntity<IAirHandler
     }
 
     @Override
+    protected void saveSynced(CompoundTag tags) {
+        super.saveSynced(tags);
+        this.airHandler.ifPresent(cap-> tags.put(RefineryControllerBlockEntity.KEY_AIR,cap.serializeNBT()));
+    }
+
+    @Override
+    public void load(CompoundTag tags) {
+        super.load(tags);
+        this.airHandler.ifPresent(cap->cap.deserializeNBT(tags.getCompound(RefineryControllerBlockEntity.KEY_AIR)));
+    }
+
+    @Override
     protected LazyOptional<IAirHandlerMachine> getCapability(BlockEntity parent) {
         if (!this.airHandler.isPresent()&&parent instanceof IMachineAirHandlerProvider provider)
             this.airHandler = LazyOptional.of(()->new VaultWrappedMachineAirHandler(provider));

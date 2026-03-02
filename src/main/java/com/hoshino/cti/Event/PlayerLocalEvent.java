@@ -13,11 +13,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import slimeknights.mantle.client.SafeClientAccess;
 import slimeknights.mantle.client.TooltipKey;
-import slimeknights.tconstruct.library.materials.MaterialRegistry;
-import slimeknights.tconstruct.library.materials.definition.MaterialId;
-import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
-import slimeknights.tconstruct.library.modifiers.ModifierEntry;
-import slimeknights.tconstruct.library.tools.part.ToolPartItem;
 
 import java.util.List;
 
@@ -25,23 +20,7 @@ import java.util.List;
 public class PlayerLocalEvent {
     @SubscribeEvent
     public static void addToolTip(ItemTooltipEvent event) {
-        if (event.getItemStack().getItem() instanceof ToolPartItem partItem) {
-            TooltipKey key = SafeClientAccess.getTooltipKey();
-            if (key == TooltipKey.CONTROL) {
-                MaterialVariantId materialVariant = partItem.getMaterial(event.getItemStack());
-                MaterialId id = materialVariant.getId();
-                if (partItem.canUseMaterial(id)) {
-                    event.getToolTip().add(Component.literal("材料特性描述："));
-                    for (ModifierEntry entry : MaterialRegistry.getInstance().getTraits(id, partItem.getStatType())) {
-                        event.getToolTip().add(entry.getModifier().getDisplayName());
-                        List<Component> description = entry.getModifier().getDescriptionList(entry.getLevel());
-                        for (int i = 1; i < description.size(); i++) {
-                            event.getToolTip().add(description.get(i).plainCopy().withStyle(ChatFormatting.GRAY));
-                        }
-                    }
-                }
-            } else event.getToolTip().add(Component.literal("按住§bCtrl§r查看材料特性描述"));
-        } else if (event.getItemStack().is(TIItems.STAR_ALLOY_INGOT.get())) {
+        if (event.getItemStack().is(TIItems.STAR_ALLOY_INGOT.get())) {
             TooltipKey key = SafeClientAccess.getTooltipKey();
             if (key == TooltipKey.SHIFT) {
                 List.of(

@@ -1,6 +1,8 @@
 package com.hoshino.cti.client.particle;
 
 import com.c2h6s.etshtinker.client.particle.annhilParticle;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.LightTexture;
@@ -31,8 +33,8 @@ public class FieryExplodeParticle extends TextureSheetParticle {
         super(world, x, y, z);
         this.spriteSet = spriteSet;
         this.setSize(1f, 1f);
-        this.quadSize =1f;
-        this.lifetime = 4;
+        this.quadSize =1.25f+EtSHrnd().nextFloat()*0.25f;
+        this.lifetime = 6;
         this.gravity = 0f;
         this.hasPhysics = false;
         this.xd = vx * 0;
@@ -41,6 +43,12 @@ public class FieryExplodeParticle extends TextureSheetParticle {
         this.roll = (float)( EtSHrnd().nextFloat()*2*Math.PI);
         this.oRoll =this.roll;
         this.setSpriteFromAge(spriteSet);
+    }
+
+    @Override
+    public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
+        this.setSprite(this.spriteSet.get((int) Math.min(12,(this.age+pPartialTicks)*2),12));
+        super.render(pBuffer, pRenderInfo, pPartialTicks);
     }
 
     @Override
@@ -54,11 +62,8 @@ public class FieryExplodeParticle extends TextureSheetParticle {
     @Override
     public void tick() {
         super.tick();
-        if (this.age>this.lifetime){
+        if (this.age>=this.lifetime){
             this.remove();
-        }
-        if (!this.removed) {
-            this.setSprite(this.spriteSet.get(this.age  % 5 + 1, 5));
         }
     }
 }

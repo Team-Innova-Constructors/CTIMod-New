@@ -22,13 +22,15 @@ public class RedSparkParticle extends TextureSheetParticle {
     public double xdo;
     public double ydo;
     public double zdo;
+    public double initialVelocity;
 
     RedSparkParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites){
         super(pLevel,pX,pY,pZ,pXSpeed,pYSpeed,pZSpeed);
-        this.lifetime = 15 + this.random.nextInt(10);
+        this.lifetime = 20 + this.random.nextInt(10);
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
+        this.initialVelocity = Mth.length(pXSpeed,pYSpeed,pZSpeed);
         this.friction = 0.8F;
         this.sprite = pSprites.get(this.random);
         this.hasPhysics = false;
@@ -42,15 +44,15 @@ public class RedSparkParticle extends TextureSheetParticle {
         float vy = (float)Mth.lerp(pPartialTicks, this.ydo, this.yd);
         float vz = (float)Mth.lerp(pPartialTicks, this.zdo, this.zd);
         Vec3 velocity = new Vec3(vx, vy, vz);
-        Vec3 side = lookVec.cross(velocity).normalize().scale(0.2);
+        Vec3 side = lookVec.cross(velocity).normalize().scale(0.4*(velocity.length()/initialVelocity));
         float x = (float)(Mth.lerp(pPartialTicks, this.xo, this.x) - cameraPos.x());
         float y = (float)(Mth.lerp(pPartialTicks, this.yo, this.y) - cameraPos.y());
         float z = (float)(Mth.lerp(pPartialTicks, this.zo, this.z) - cameraPos.z());
         Vec3 pos = new Vec3(x,y,z);
         Vector3f[] positions = new Vector3f[]{
                 new Vector3f(pos),
-                new Vector3f(pos.subtract(velocity)),
-                new Vector3f(pos.subtract(side).subtract(velocity)),
+                new Vector3f(pos.subtract(velocity.scale(2))),
+                new Vector3f(pos.subtract(side).subtract(velocity.scale(2))),
                 new Vector3f(pos.subtract(side))
         };
         float u0 = this.getU0();

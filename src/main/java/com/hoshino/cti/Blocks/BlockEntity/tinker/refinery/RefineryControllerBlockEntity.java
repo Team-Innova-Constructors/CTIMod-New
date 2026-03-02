@@ -1,8 +1,10 @@
 package com.hoshino.cti.Blocks.BlockEntity.tinker.refinery;
 
+import com.hoshino.cti.Screen.menu.RefineryMenu;
 import com.hoshino.cti.api.interfaces.IMachineAirHandlerProvider;
 import com.hoshino.cti.api.interfaces.IOreRateCondition;
 import com.hoshino.cti.mixin.TconMixin.MeltingModuleInventoryAccessor;
+import com.hoshino.cti.netwrok.packet.PAirHandlerSyncS2C;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import com.hoshino.cti.util.ConditionalOreRate;
 import com.hoshino.cti.util.ICtiMeltingModule;
@@ -12,7 +14,11 @@ import me.desht.pneumaticcraft.api.pressure.PressureTier;
 import me.desht.pneumaticcraft.common.capabilities.MachineAirHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -42,6 +48,8 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
     public RefineryControllerBlockEntity(BlockPos pos, BlockState state) {
         this(CtiBlockEntityType.REFINERY.get(), pos, state, NAME);
     }
+    public static final String KEY_AIR = "air";
+    public float lastPressure = 0;
 
 
 
@@ -77,6 +85,11 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
         if (refineryRate==null)
             refineryRate = new ConditionalOreRate(new IOreRateCondition.BiRateCondition(()->machineAirHandler.getPressure()<-0.5,3,9));
         return new RefineryMeltingModuleInventory(this,tank,refineryRate);
+    }
+
+    @Override
+    public @org.jetbrains.annotations.Nullable AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
+        return new RefineryMenu(id,inv,this);
     }
 
     @Override
@@ -121,6 +134,8 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
     protected void serverTick(Level level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
         this.machineAirHandler.tick(this);
+        if (level.getGameTime()%10==0)
+            PAirHandlerSyncS2C.syncAirToClient(this);
     }
 
     @Override
@@ -174,6 +189,22 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
             meltingInventory.resize(dx * dy * dz, dropItem);
             fuelRate = 1 + (2 * ((dx+2) * dy) + 2 * (dy * dz) + ((dx+2) * (dz+2))) / BLOCKS_PER_FUEL;
         }
+    }
+
+    @Override
+    public void saveSynced(CompoundTag compound) {
+        super.saveSynced(compound);
+        compound.put(KEY_AIR,this.machineAirHandler.serializeNBT());
+    }
+
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.machineAirHandler.deserializeNBT(nbt.getCompound(KEY_AIR));
+    }
+
+    public float getPressure(){
+        return machineAirHandler.getPressure();
     }
 
     @Override

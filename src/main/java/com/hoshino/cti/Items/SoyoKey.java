@@ -1,5 +1,6 @@
 package com.hoshino.cti.Items;
 
+import com.hoshino.cti.client.CtiClientHooks;
 import com.hoshino.cti.client.Screen.MorseCodeScreen;
 import com.hoshino.cti.register.CtiBlock;
 import com.hoshino.cti.register.CtiTab;
@@ -15,6 +16,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,11 +41,15 @@ public class SoyoKey extends Item {
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
         Player player = context.getPlayer();
+
         if (player == null) return InteractionResult.PASS;
+
         if (state.is(CtiBlock.qi_yao_matrix.get())) {
             if (level.isClientSide) {
-                int index = this.soyoKeyCategory.ordinal();
-                Minecraft.getInstance().setScreen(new MorseCodeScreen(pos, index));
+                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+                    int index = this.soyoKeyCategory.ordinal();
+                    CtiClientHooks.openMorseCodeScreen(pos, index);
+                });
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

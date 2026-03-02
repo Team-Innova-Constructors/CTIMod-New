@@ -965,7 +965,7 @@
 
   "modifier.cti.ion_apocalypse": "离子启示录",
   "modifier.cti.ion_apocalypse.flavor": "没有什么比这个更绚烂，更致命。",
-  "modifier.cti.ion_apocalypse.description":"攻击时令工具的词条效用扩散至周围6格半径内的生物。\n[警告]作用于范围伤害武器时可能造成严重卡顿。",
+  "modifier.cti.ion_apocalypse.description":"攻击时令工具的词条效用扩散至周围6格半径内的生物，同时工具每有一个词条对目标施加10%附加伤害。\n[警告]作用于范围伤害武器时可能造成严重卡顿。",
 
   "modifier.cti.neutron_collect_plus": "短程力补偿器",
   "modifier.cti.neutron_collect_plus.flavor": "对物质凝聚器的至强升级",
@@ -1033,6 +1033,9 @@
   "cti.gui.environmental.frozen_value": "霜冻值",
   "cti.gui.environmental.pressure_build": "压强强度",
   "cti.gui.environmental.pressure_value": "压强值",
+
+  "gui.cti.tooltip.pressure": "压力",
+  "gui.cti.tooltip.refinery_pressure_boost": "降至-0.5 bar后获得产出和熔炼速度加成。",
 
   "cti.message.environmental.freeze": "霜冻抗性",
   "cti.message.environmental.scorch": "灼热抗性",
@@ -1117,6 +1120,24 @@
   "modifier.cti.fuckingdeltaforce.flavor": "666还有鳄鱼组队",
   "modifier.cti.fuckingdeltaforce.description":"当你对等级等于/小于你莱特兰等级的怪物 跳一跳时,有50%概率让其为你而战,成功组队的怪物会跳一下回应,在杀死他的目标后它有78%概率背刺你,每次至多同时对18个怪物发起组队邀请",
 
+  "modifier.cti.replaced_insatiable": "贪婪",
+  "modifier.cti.replaced_insatiable.flavor": "出识真味，力量无垠！",
+  "modifier.cti.replaced_insatiable.description":"+8最大贪婪等级，攻击/防御时每级+1贪婪等级。",
+
+  "modifier.cti.tricky_insatiable": "技巧贪婪",
+  "modifier.cti.tricky_insatiable.flavor": "有技巧地贪",
+  "modifier.cti.tricky_insatiable.description":"暴击时每级额外+2贪婪等级，并临时获得每级+4的最大贪婪等级。",
+
+  "modifier.cti.stone_cold_replaced": "冷血",
+  "modifier.cti.stone_cold_replaced.flavor": "莫得感情",
+  "modifier.cti.stone_cold_replaced.description":"对50%血量以上的生物每级额外追加两次5%的附加伤害。",
+
+  "modifier.cti.evil_insatiable": "极恶之贪",
+  "modifier.cti.evil_insatiable.flavor": "贪婪一切，嫉妒一切，毁灭一切",
+  "modifier.cti.evil_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+2贪婪等级。贪婪等级到达上限时使贪婪的增伤效果翻倍。",
+
+
+
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",
   "dimension.ad_astra.jupiter": "木星",
@@ -1174,5 +1195,8 @@
   "info.biomes.cti.disordered_zone": "异常区域位于电离冻土星球，你需要进入主线第三章并且做出五级火箭才能到达这里。在此之前你需要做出一个完整的质子、电子产线。",
 
   "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过35000的dps时产生",
-  "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生"
+  "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
+
+  "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲和减伤之后每级+0.5。注意：贪婪效果通常只会存在15秒。",
+  "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。"
 }

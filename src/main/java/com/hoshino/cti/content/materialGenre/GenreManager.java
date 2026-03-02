@@ -9,4 +9,5 @@ public class GenreManager {
     public static final int DURABILITY_VALUE = 10000;
 
     public static final MaterialGenre.ResourceConsumingGenre OVERSLIME_GENRE = new MaterialGenre.ResourceConsumingGenre("overslime");
+    public static final MaterialGenre INSATIABLE_GENRE = new MaterialGenre("insatiable");
 }

@@ -9,6 +9,10 @@ import com.hoshino.cti.Modifier.Developer.*;
 import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
+import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
+import com.hoshino.cti.Modifier.genre.insatiable.ReplacedInsatiable;
+import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
+import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.forTrait.OverslimeHandler;
 import com.hoshino.cti.Modifier.iafCompact.*;
 import com.hoshino.cti.Modifier.l2Compact.*;
@@ -189,6 +193,11 @@ public class CtiModifiers {
     public static final StaticModifier<OverslimeHandler> OVERSLIME_HANDLER = MODIFIERS.register("overslime_handler", OverslimeHandler::new);
     public static final StaticModifier<DeathRolling> DEATH_ROLLING_STATIC_MODIFIER = MODIFIERS.register("deathrolling", DeathRolling::new);
     public static final StaticModifier<FuckingDeltaForce> FUCKING_DELTA_FORCE_STATIC_MODIFIER = MODIFIERS.register("fuckingdeltaforce", FuckingDeltaForce::new);
+    public static final StaticModifier<InsatiableHandler> INSATIABLE_HANDLER = MODIFIERS.register("insatiable_handler", InsatiableHandler::new);
+    public static final StaticModifier<ReplacedInsatiable> REPLACED_INSATIABLE = MODIFIERS.register("replaced_insatiable", ReplacedInsatiable::new);
+    public static final StaticModifier<TrickyInsatiable> TRICKY_INSATIABLE = MODIFIERS.register("tricky_insatiable", TrickyInsatiable::new);
+    public static final StaticModifier<StoneColdReplaced> STONE_COLD_REPLACED = MODIFIERS.register("stone_cold_replaced", StoneColdReplaced::new);
+    public static final StaticModifier<EvilInsatiable> EVIL_INSATIABLE = MODIFIERS.register("evil_insatiable", EvilInsatiable::new);
 
 
 

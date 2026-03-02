@@ -16,7 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.Vec3;
 
-import static com.hoshino.cti.util.method.RenderUtils.drawPipe;
+import static com.hoshino.cti.client.util.RenderUtil.drawPipe;
 
 public class FieryJavelinRender extends EntityRenderer<Projectile> {
     public FieryJavelinRender(EntityRendererProvider.Context pContext) {

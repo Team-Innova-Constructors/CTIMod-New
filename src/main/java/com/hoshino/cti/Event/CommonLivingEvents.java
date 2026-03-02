@@ -8,11 +8,13 @@ import com.hoshino.cti.Entity.DisposibleFakePlayer;
 import com.hoshino.cti.Modifier.Contributors.Mz;
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.Replace.FixedPurify;
+import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2hostility.init.loot.EnvyLootModifier;
+import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,13 +47,22 @@ import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.stats.ToolType;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import java.util.Collection;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class CommonLivingEvents {
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event){
+        if (event.getEntity() instanceof TargetDummyEntity){
+            event.setCanceled(true);
+        }
+    }
     @SubscribeEvent
     public static void onGobberKillEnderDragon(LivingDeathEvent event) {
         if (event.getEntity() instanceof EnderDragon enderDragon && event.getSource().getEntity() instanceof Player player) {
@@ -321,6 +332,28 @@ public class CommonLivingEvents {
                     }
                 }
             }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingDamageLowest(LivingDamageEvent event){
+        var target = event.getEntity();
+        var attacker = event.getSource().getEntity();
+        if (!event.isCanceled()&&attacker instanceof LivingEntity livingAttacker){
+            List.of(ToolType.MELEE,ToolType.ARMOR).forEach(toolType -> {
+                var insatiable = livingAttacker.getEffect(TinkerModifiers.insatiableEffect.get(toolType));
+                if (insatiable!=null) {
+                    var bonus = (insatiable.getAmplifier() * 0.5f) + 0.5f;
+                    attacker.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
+                        if (cap.get(EvilInsatiable.KEY_EVIL_INSATIABLE,0)>0) {
+                            var instance = livingAttacker.getAttribute(CtiAttributes.MAX_INSATIABLE.get());
+                            if (instance!=null&&insatiable.getAmplifier()+1>=instance.getValue())
+                                event.setAmount(event.getAmount() + bonus);
+                        }
+                    });
+                    event.setAmount(event.getAmount() + bonus);
+                }
+            });
         }
     }
 

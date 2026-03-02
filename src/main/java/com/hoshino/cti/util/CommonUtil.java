@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.WorldData;
 import org.slf4j.Logger;
+import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 
@@ -23,6 +24,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CommonUtil {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final String TAG_MACHINE_PARALLEL = "MachineParallel";
+    public static final String MISSING_MATERIAL_KEY = TConstruct.makeTranslationKey("tooltip", "part.missing_material");
+    public static final String MISSING_STATS_KEY = TConstruct.makeTranslationKey("tooltip", "part.missing_stats");
 
     public static void Reload(MinecraftServer server) {
         LOGGER.info("Mod cti is now conducting a reload! It will take 114514 years.");

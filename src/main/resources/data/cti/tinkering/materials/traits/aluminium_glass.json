@@ -1,0 +1,20 @@
+{
+  "default": [
+    {
+      "name": "cti:industrial",
+      "level": 2
+    },
+    {
+      "name": "cti:aluminiumpower",
+      "level": 1
+    }
+  ],
+  "perStat": {
+    "tinkers_ingenuity:curio": [
+      {
+        "name": "solidarytinker:overloadcurio",
+        "level": 1
+      }
+    ]
+  }
+}

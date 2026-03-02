@@ -1,37 +1,17 @@
 {
   "display": {
     "firstperson_lefthand": {
-      "rotation": [
-        0,
-        225,
-        0
-      ],
       "scale": [
         0.03125,
         0.03125,
         0.03125
-      ],
-      "translation": [
-        -1.75,
-        2.5,
-        1.25
       ]
     },
     "firstperson_righthand": {
-      "rotation": [
-        0,
-        225,
-        0
-      ],
       "scale": [
         0.03125,
         0.03125,
         0.03125
-      ],
-      "translation": [
-        -1.75,
-        2.5,
-        1.75
       ]
     },
     "fixed": {
@@ -41,9 +21,9 @@
         0.0625
       ],
       "translation": [
-        -1,
+        0,
         -8,
-        -2
+        0
       ]
     },
     "ground": {
@@ -53,9 +33,9 @@
         0.0625
       ],
       "translation": [
-        -1.5,
-        3,
-        -1.5
+        1,
+        0,
+        1
       ]
     },
     "gui": {
@@ -65,12 +45,12 @@
         0
       ],
       "scale": [
-        0.1875,
-        0.1875,
-        0.1875
+        0.0625,
+        0.0625,
+        0.0625
       ],
       "translation": [
-        6,
+        -1,
         -6,
         0
       ]
@@ -82,9 +62,9 @@
         0.2
       ],
       "translation": [
-        0,
+        1.5,
         8,
-        -8
+        1.5
       ]
     },
     "thirdperson_lefthand": {
@@ -100,7 +80,7 @@
       ],
       "translation": [
         -0.75,
-        0,
+        -5,
         -1.25
       ]
     },
@@ -117,16 +97,15 @@
       ],
       "translation": [
         1,
-        0,
+        -5,
         -1.75
       ]
     }
   },
   "flip_v": true,
   "loader": "forge:obj",
-  "model": "immersivepetroleum:models/item/obj/pumpjack_itemmockup.obj",
+  "model": "immersivepetroleum:models/multiblock/obj/distillationtower.obj",
   "textures": {
-    "texture_armature": "immersivepetroleum:models/pumpjack_armature",
-    "texture_base": "immersivepetroleum:multiblock/pumpjack_base"
+    "texture": "immersivepetroleum:multiblock/distillation_tower"
   }
 }

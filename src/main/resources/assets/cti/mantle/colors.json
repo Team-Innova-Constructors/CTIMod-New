@@ -9,7 +9,8 @@
     "omniscient_gold": "#d24bff",
     "heart_of_steel": "#aaaaff",
     "lsmz": "#72deff",
-    "fox": "#ffaa7f"
+    "fox": "#ffaa7f",
+    "aluminium_glass": "ffd1a2"
   },
 
   "modifier.cti": {
@@ -137,6 +138,7 @@
     "crashdevour": "#9EFAFF",
     "mandarinduck": "#ffaa7f",
     "thepast": "#350234",
+    "aluminiumpower": "#D3F3FF",
 
 
     "_uriel_": "乌列尔",

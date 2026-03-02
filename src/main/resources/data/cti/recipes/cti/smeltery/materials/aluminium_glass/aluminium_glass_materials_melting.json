@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "cti:aluminium_glass",
+  "temperature": 1500,
+  "result": {
+    "fluid": "cti:molten_aluminium_glass",
+    "amount": 1000
+  }
+}

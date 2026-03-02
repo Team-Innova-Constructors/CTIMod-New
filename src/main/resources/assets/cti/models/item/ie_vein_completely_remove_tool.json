@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer1": "cti:item/tool/ie_vein_completely_remove_tool"
+  }
+}

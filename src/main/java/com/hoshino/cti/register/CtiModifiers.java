@@ -198,6 +198,8 @@ public class CtiModifiers {
     public static final StaticModifier<TrickyInsatiable> TRICKY_INSATIABLE = MODIFIERS.register("tricky_insatiable", TrickyInsatiable::new);
     public static final StaticModifier<StoneColdReplaced> STONE_COLD_REPLACED = MODIFIERS.register("stone_cold_replaced", StoneColdReplaced::new);
     public static final StaticModifier<EvilInsatiable> EVIL_INSATIABLE = MODIFIERS.register("evil_insatiable", EvilInsatiable::new);
+    public static final StaticModifier<AluminiumPower> ALUMINIUM_POWER_STATIC_MODIFIER = MODIFIERS.register("aluminiumpower", AluminiumPower::new);
+
 
 
 

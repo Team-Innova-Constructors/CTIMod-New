@@ -2,6 +2,8 @@ package com.hoshino.cti.Items;
 
 import blusunrize.immersiveengineering.api.excavator.ExcavatorHandler;
 import blusunrize.immersiveengineering.api.excavator.MineralVein;
+import blusunrize.immersiveengineering.common.IESaveData;
+import com.hoshino.cti.register.CtiTab;
 import com.hoshino.cti.util.ExcavatorHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.locale.Language;
@@ -18,9 +20,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec2;
 
-public class VeinRemoveTool extends Item {
-    public VeinRemoveTool(Properties properties) {
-        super(properties);
+public class IEVeinCompletelyRemoveTool extends Item {
+    public IEVeinCompletelyRemoveTool() {
+        super(new Item.Properties().stacksTo(1).tab(CtiTab.MIXC));
     }
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         var player = context.getPlayer();
@@ -54,16 +56,17 @@ public class VeinRemoveTool extends Item {
                 var mineral=vein.getMineral(level);
                 if(mineral!=null){
                     Vec2 vecToCenter = new Vec2((float) (vein.getPos().x() - pos.getX()), (float) (vein.getPos().z() - pos.getZ()));
-                    if(vecToCenter.x == 0.0F && vecToCenter.y == 0.0F){
-                        var str= Language.getInstance().getOrDefault(mineral.getTranslationKey());
+                    if(vecToCenter.x == 0.0F && vecToCenter.y == 0.0F){;
                         var dimension=player.getLevel().dimension();
                         ExcavatorHelper.removeVein(dimension,vein);
-                        player.displayClientMessage(Component.literal("已成功移除"+dimension+"维度"+"x:"+pos.getX()+",z:"+pos.getZ()+"的"+str).withStyle(style -> style.withColor(0x45f6ff)),true);
+                        IESaveData.markInstanceDirty();
+                        var mineralTranslate=Component.translatable(mineral.getTranslationKey());
+                        player.displayClientMessage(Component.literal("已成功移除"+dimension+"维度"+"x:"+pos.getX()+",z:"+pos.getZ()+"的").append(mineralTranslate).withStyle(style -> style.withColor(0x45f6ff)),true);
                     }
                     else player.displayClientMessage(Component.literal("请移动到矿脉中心点以移除此矿脉").withStyle(style -> style.withColor(0x9557ff)),true);
                 }
             }
-            else player.displayClientMessage(Component.literal("附近没有矿脉喵").withStyle(style -> style.withColor(0xd1a9ff)),true);
+            else player.displayClientMessage(Component.literal("目标点没有矿脉喵").withStyle(style -> style.withColor(0xd1a9ff)),true);
         }
         return stack;
     }

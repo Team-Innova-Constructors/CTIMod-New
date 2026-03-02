@@ -13,7 +13,6 @@ import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
-import dev.xkmc.l2hostility.init.loot.EnvyLootModifier;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -23,6 +22,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -50,19 +50,12 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.stats.ToolType;
-import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 import java.util.Collection;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class CommonLivingEvents {
-    @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event){
-        if (event.getEntity() instanceof TargetDummyEntity){
-            event.setCanceled(true);
-        }
-    }
     @SubscribeEvent
     public static void onGobberKillEnderDragon(LivingDeathEvent event) {
         if (event.getEntity() instanceof EnderDragon enderDragon && event.getSource().getEntity() instanceof Player player) {
@@ -94,7 +87,7 @@ public class CommonLivingEvents {
         if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
             if (event.getEntity() instanceof Player player && SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE))
                 event.setResult(Event.Result.DENY);
-        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())){
+        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
             event.setResult(Event.Result.DENY);
         }
     }
@@ -108,16 +101,16 @@ public class CommonLivingEvents {
                 var activeEffects = event.getEntity().activeEffects;
                 var effect = event.getEffectInstance().getEffect();
                 MobEffectInstance instance = activeEffects.get(effect);
-                if (instance != null){
+                if (instance != null) {
                     instance.update(event.getEffectInstance());
                     event.getEntity().onEffectUpdated(instance, true, null);
                 } else activeEffects.put(effect, event.getEffectInstance());
                 event.getEntity().onEffectAdded(activeEffects.get(effect), null);
             }
-            event.getEntity().getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
-                if (cap.get(FixedPurify.KEY_PURIFY,0)>0) event.setResult(Event.Result.DENY);
+            event.getEntity().getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap -> {
+                if (cap.get(FixedPurify.KEY_PURIFY, 0) > 0) event.setResult(Event.Result.DENY);
             });
-        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())){
+        } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
             event.setResult(Event.Result.DENY);
         }
     }
@@ -158,7 +151,8 @@ public class CommonLivingEvents {
     public static void onLivingAttack(LivingAttackEvent event) {
         if (event.getEntity() instanceof EntityDragonBase && event.getSource().getEntity() != null && !(event.getSource().getEntity() instanceof Player))
             event.setCanceled(true);
-        if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.INVULNERABLE.get())) event.setCanceled(true);
+        if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.INVULNERABLE.get()))
+            event.setCanceled(true);
     }
 
     @SubscribeEvent
@@ -181,107 +175,128 @@ public class CommonLivingEvents {
         }
         event.setAmount(event.getAmount() * 1 - (Math.min(40f, count) / 100f));
     }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onCurseDeath(LivingDeathEvent event){
-        if(!(event.getEntity() instanceof Player player))return;
-        if(!(SuperpositionHandler.isTheCursedOne(player)))return;
-        if(event.isCanceled())return;
-        int fre=CurseUtil.getDeathFrequency(player);
-        CurseUtil.setDeathFrequency(player,fre+1);
-        CurseUtil.setResoluteTime(player,0);
-        if(fre<3)return;
-        CurseUtil.setPunishTime(player,1);
-        CurseUtil.setDeathFrequency(player,fre+1);
+    public static void onCurseDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (!(SuperpositionHandler.isTheCursedOne(player))) return;
+        if (event.isCanceled()) return;
+        int fre = CurseUtil.getDeathFrequency(player);
+        CurseUtil.setDeathFrequency(player, fre + 1);
+        CurseUtil.setResoluteTime(player, 0);
+        if (fre < 3) return;
+        CurseUtil.setPunishTime(player, 1);
+        CurseUtil.setDeathFrequency(player, fre + 1);
     }
 
     @SubscribeEvent
     public static void deathTimePunish(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
         if (!SuperpositionHandler.isTheCursedOne(player)) return;
-        int fre=CurseUtil.getDeathFrequency(player);
-        int time=CurseUtil.getPunishTime(player);
-        if(time==0)return;
-        event.setAmount((Math.max((fre-3) * 0.5f,0)+1) * event.getAmount());
+        int fre = CurseUtil.getDeathFrequency(player);
+        int time = CurseUtil.getPunishTime(player);
+        if (time == 0) return;
+        event.setAmount((Math.max((fre - 3) * 0.5f, 0) + 1) * event.getAmount());
     }
+
     @SubscribeEvent
     public static void punishWeakenPlayer(LivingHurtEvent event) {
         if (!(event.getSource().getEntity() instanceof Player player)) return;
         if (!SuperpositionHandler.isTheCursedOne(player)) return;
-        int fre=CurseUtil.getDeathFrequency(player);
-        int time=CurseUtil.getPunishTime(player);
-        if(time==0)return;
-        event.setAmount(event.getAmount() / Math.max( fre-3,0));
+        int fre = CurseUtil.getDeathFrequency(player);
+        int time = CurseUtil.getPunishTime(player);
+        if (time == 0) return;
+        event.setAmount(event.getAmount() / Math.max(fre - 3, 0));
     }
+
     @SubscribeEvent
     public static void resoluteModify(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
         if (!SuperpositionHandler.isTheCursedOne(player)) return;
-        int time=CurseUtil.getResoluteTime(player);
-        if(time==0)return;
-        event.setAmount(event.getAmount() * (1-(0.06f * time)));
+        int time = CurseUtil.getResoluteTime(player);
+        if (time == 0) return;
+        event.setAmount(event.getAmount() * (1 - (0.06f * time)));
     }
 
     @SubscribeEvent
-    public static void onLivingHeal(LivingHealEvent event){
+    public static void onLivingHeal(LivingHealEvent event) {
         LivingEntity living = event.getEntity();
         var tickerManager = EntityTickerManager.getInstance(living);
         var tickerInstance = tickerManager.getTicker(CtiEntityTickers.SACRIFICE_SEAL.get());
-        if (tickerInstance!=null){
-            float maxHealth = living.getMaxHealth()*(1-0.08f*tickerInstance.level);
-            if (living.getHealth()+event.getAmount()>maxHealth){
+        if (tickerInstance != null) {
+            float maxHealth = living.getMaxHealth() * (1 - 0.08f * tickerInstance.level);
+            if (living.getHealth() + event.getAmount() > maxHealth) {
                 living.setHealth(maxHealth);
                 event.setCanceled(true);
             }
         }
     }
+
     @SubscribeEvent
-    public static void NKSSreloadTick(LivingEvent.LivingTickEvent event){
-        var entity=event.getEntity();
-        int reload=entity.getPersistentData().getInt("nksszs_reload");
-        if(reload>0){
-            entity.getPersistentData().putInt("nksszs_reload",reload-1);
+    public static void NKSSreloadTick(LivingEvent.LivingTickEvent event) {
+        var entity = event.getEntity();
+        int reload = entity.getPersistentData().getInt("nksszs_reload");
+        if (reload > 0) {
+            entity.getPersistentData().putInt("nksszs_reload", reload - 1);
         }
     }
+
     @SubscribeEvent
-    public static void NKSSKillReload(LivingDeathEvent event){
-        var entity=event.getEntity();
-        int reload=entity.getPersistentData().getInt("nksszs_reload");
-        if(reload>0){
-            var killer=event.getSource().getEntity();
-            if(killer instanceof Player player){
-               var view= ToolStack.from(player.getMainHandItem());
-               view.getPersistentData().remove(Nkssdtt.NKSSTK_COOLDOWN);
-               var effect=player.getEffect(CtiEffects.blood_angry.get());
-               if(effect!=null){
-                   int level=effect.getAmplifier();
-                   player.addEffect(new MobEffectInstance(CtiEffects.blood_angry.get(),1200,Math.min(level+1,4)));
-               }
-               else {
-                   player.addEffect(new MobEffectInstance(CtiEffects.blood_angry.get(),1200,0));
-               }
+    public static void NKSSKillReload(LivingDeathEvent event) {
+        var entity = event.getEntity();
+        int reload = entity.getPersistentData().getInt("nksszs_reload");
+        if (reload > 0) {
+            var killer = event.getSource().getEntity();
+            if (killer instanceof Player player) {
+                var view = ToolStack.from(player.getMainHandItem());
+                view.getPersistentData().remove(Nkssdtt.NKSSTK_COOLDOWN);
+                var effect = player.getEffect(CtiEffects.blood_angry.get());
+                if (effect != null) {
+                    int level = effect.getAmplifier();
+                    player.addEffect(new MobEffectInstance(CtiEffects.blood_angry.get(), 1200, Math.min(level + 1, 4)));
+                } else {
+                    player.addEffect(new MobEffectInstance(CtiEffects.blood_angry.get(), 1200, 0));
+                }
             }
         }
     }
+
+
+
     @SubscribeEvent
-    public static void NKSSExtraDamage(LivingDamageEvent event){
-        if(!(event.getSource().getEntity() instanceof Player player))return;
-        if(player.hasEffect(CtiEffects.blood_angry.get())){
-            var effect=player.getEffect(CtiEffects.blood_angry.get());
-            if(effect!=null){
-                int level=effect.getAmplifier();
-                event.setAmount(event.getAmount() * (1+(level * 0.2f)));
+    public static void costAluminumDamage(LivingDamageEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        var source = event.getSource();
+        if (source == null) return;
+        if (source.isFire() || source.isProjectile() || source.isExplosion() || source.isMagic()) {
+            if (GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ALUMINIUM_POWER_STATIC_MODIFIER.getId()) > 0) {
+                event.setAmount(event.getAmount() * 0.4f);
             }
         }
-        
     }
+
     @SubscribeEvent
-    public static void cancelFallDamage(LivingAttackEvent event){
-        if(event.getSource().isFall()&&event.getEntity() instanceof Player player){
-            if(GetModifierLevel.HandsHaveModifierlevel(player, CtiModifiers.NKSSZS_STATIC_MODIFIER.getId())){
+    public static void NKSSExtraDamage(LivingDamageEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) return;
+        if (player.hasEffect(CtiEffects.blood_angry.get())) {
+            var effect = player.getEffect(CtiEffects.blood_angry.get());
+            if (effect != null) {
+                int level = effect.getAmplifier();
+                event.setAmount(event.getAmount() * (1 + (level * 0.2f)));
+            }
+        }
+
+    }
+
+    @SubscribeEvent
+    public static void cancelFallDamage(LivingAttackEvent event) {
+        if (event.getSource().isFall() && event.getEntity() instanceof Player player) {
+            if (GetModifierLevel.HandsHaveModifierlevel(player, CtiModifiers.NKSSZS_STATIC_MODIFIER.getId())) {
                 event.setCanceled(true);
             }
         }
     }
+
     @SubscribeEvent
     public static void miziPreventDeath(LivingDeathEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
@@ -291,56 +306,58 @@ public class CommonLivingEvents {
         int currentMizi = view.getPersistentData().getInt(Mz.CurrentMZ);
         int currentMizi2 = view2.getPersistentData().getInt(Mz.CurrentMZ);
         if (currentMizi > 0) {
-            prevent(event,player,view,currentMizi);
+            prevent(event, player, view, currentMizi);
             return;
         }
         if (currentMizi2 > 0) {
-            prevent(event,player,view2,currentMizi2);
+            prevent(event, player, view2, currentMizi2);
         }
     }
+
     @SubscribeEvent
     public static void thousandBless(LivingHurtEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
         var itemStack = player.getMainHandItem();
-        if(ModifierUtil.getModifierLevel(itemStack,CtiModifiers.THOUSAND_STAR_BLESS_STATIC_MODIFIER.getId())>0){
-            long count= ModifierManager.INSTANCE.getAllValues().count();
+        if (ModifierUtil.getModifierLevel(itemStack, CtiModifiers.THOUSAND_STAR_BLESS_STATIC_MODIFIER.getId()) > 0) {
+            long count = ModifierManager.INSTANCE.getAllValues().count();
             event.setAmount(event.getAmount() * count);
         }
     }
-    private static void prevent(LivingDeathEvent event, Player player, IToolStackView view,int currentAmount){
+
+    private static void prevent(LivingDeathEvent event, Player player, IToolStackView view, int currentAmount) {
         event.setCanceled(true);
         player.setHealth(player.getMaxHealth());
         player.level.playSound(player, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.AMBIENT, 1, 1);
         view.getPersistentData().putInt(Mz.CurrentMZ, currentAmount - 1);
     }
+
     @SubscribeEvent
-    public static void onDropAfricaHeart(BlockEvent.BreakEvent event){
-        var player=event.getPlayer();
-        var pos=event.getPos();
-        if(player==null)return;
-        if(player instanceof FakePlayer)return;
-        if(player.getLevel() instanceof ServerLevel serverLevel){
-            if(serverLevel.dimension().equals(ServerLevel.OVERWORLD)){
-                if(event.getState().is(Tags.Blocks.ORES_DIAMOND)){
-                    int deathCount=CurseUtil.getDeathFrequency(player);
-                    var randomSource=player.getRandom();
-                    int currentNumber=randomSource.nextInt(4000);
-                    if(currentNumber + deathCount * 10>3998){
-                        var fzzx=new ItemEntity(player.level,pos.getX(),pos.getY(),pos.getZ(),new ItemStack(CtiItem.heart_of_africa.get(),1));
+    public static void onDropAfricaHeart(BlockEvent.BreakEvent event) {
+        var player = event.getPlayer();
+        var pos = event.getPos();
+        if (player == null) return;
+        if (player instanceof FakePlayer) return;
+        if (player.getLevel() instanceof ServerLevel serverLevel) {
+            if (serverLevel.dimension().equals(ServerLevel.OVERWORLD)) {
+                if (event.getState().is(Tags.Blocks.ORES_DIAMOND)) {
+                    int deathCount = CurseUtil.getDeathFrequency(player);
+                    var randomSource = player.getRandom();
+                    int currentNumber = randomSource.nextInt(4000);
+                    if (currentNumber + deathCount * 10 > 3998) {
+                        var fzzx = new ItemEntity(player.level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(CtiItem.heart_of_africa.get(), 1));
                         player.level.addFreshEntity(fzzx);
-                        fzzx.setPos(new Vec3(pos.getX(),pos.getY(),pos.getZ()));
+                        fzzx.setPos(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
                     }
                 }
             }
         }
     }
-
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingDamageLowest(LivingDamageEvent event){
         var target = event.getEntity();
         var attacker = event.getSource().getEntity();
         if (!event.isCanceled()&&attacker instanceof LivingEntity livingAttacker){
-            List.of(ToolType.MELEE,ToolType.ARMOR).forEach(toolType -> {
+            List.of(ToolType.MELEE, ToolType.ARMOR).forEach(toolType -> {
                 var insatiable = livingAttacker.getEffect(TinkerModifiers.insatiableEffect.get(toolType));
                 if (insatiable!=null) {
                     var bonus = (insatiable.getAmplifier() * 0.5f) + 0.5f;
@@ -354,6 +371,12 @@ public class CommonLivingEvents {
                     event.setAmount(event.getAmount() + bonus);
                 }
             });
+        }
+    }
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event){
+        if (event.getEntity() instanceof TargetDummyEntity){
+            event.setCanceled(true);
         }
     }
 

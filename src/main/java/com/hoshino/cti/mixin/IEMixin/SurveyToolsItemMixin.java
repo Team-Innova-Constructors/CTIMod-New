@@ -54,14 +54,15 @@ public abstract class SurveyToolsItemMixin extends IEBaseItem{
             if(vein!=null){
                 var targetMineral=vein.getMineral(world);
                 if (targetMineral != null) {
-                    var str= Language.getInstance().getOrDefault(targetMineral.getTranslationKey());
                     Vec2 vecToCenter = new Vec2((float) (vein.getPos().x() - pos.getX()), (float) (vein.getPos().z() - pos.getZ()));
                     Component response;
                     var veinPos = vein.getPos();
+                    var mineralTranslate=Component.translatable(targetMineral.getTranslationKey());
+                    var xx=Component.literal("中心喵");
                     if (vecToCenter.x == 0.0F && vecToCenter.y == 0.0F) {
-                        response = Component.literal("你指向的地方就是"+str+"中心喵").withStyle(style -> style.withColor(0xffaa7f));
+                        response = Component.literal("你指向的地方就是").append(mineralTranslate).append(xx).withStyle(style -> style.withColor(0xffaa7f));
                     } else {
-                        response = Component.literal("最近的"+str+"的中心点").append("在" +"x:"+ veinPos.x() + "," +"z:"+ veinPos.z()).withStyle(style -> style.withColor(0xc6fffe));
+                        response = Component.literal("最近的").append(mineralTranslate).append("的中心点"+"在" +"x:"+ veinPos.x() + "," +"z:"+ veinPos.z()).withStyle(style -> style.withColor(0xc6fffe));
                     }
                     player.displayClientMessage(response, true);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BOOK_PAGE_TURN, SoundSource.NEUTRAL, 1.0F, 1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F);

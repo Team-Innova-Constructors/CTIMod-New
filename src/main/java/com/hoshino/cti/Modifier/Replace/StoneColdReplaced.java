@@ -15,14 +15,16 @@ public class StoneColdReplaced extends EtSTBaseModifier {
     }
 
     @Override
-    public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
-        if (context.getTarget() instanceof LivingEntity living&&living.getHealth()>=living.getMaxHealth()*0.5f){
+    public void postMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage) {
+        if (context.getTarget() instanceof LivingEntity living&&living.getHealth()>=living.getMaxHealth()*0.33f){
             var it = living.invulnerableTime;
+            var lastHurt = living.lastHurt;
             for (int i = 0; i < modifier.getLevel()*2; i++) {
                 living.invulnerableTime=0;
-                living.hurt(DamageSource.mobAttack(context.getAttacker()),damageDealt*0.05f);
+                living.hurt(DamageSource.mobAttack(context.getAttacker()),damage*0.05f);
             }
             living.invulnerableTime=it;
+            living.lastHurt = lastHurt;
         }
     }
 }

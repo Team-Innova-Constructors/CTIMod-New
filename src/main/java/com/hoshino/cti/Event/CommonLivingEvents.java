@@ -9,6 +9,8 @@ import com.hoshino.cti.Modifier.Contributors.Mz;
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.Replace.FixedPurify;
 import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
+import com.hoshino.cti.Modifier.genre.insatiable.InsatiableDigest;
+import com.hoshino.cti.Modifier.genre.insatiable.ReplacedWellTrained;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
@@ -50,9 +52,11 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.stats.ToolType;
+import twilightforest.init.TFItems;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class CommonLivingEvents {
@@ -361,11 +365,29 @@ public class CommonLivingEvents {
                 var insatiable = livingAttacker.getEffect(TinkerModifiers.insatiableEffect.get(toolType));
                 if (insatiable!=null) {
                     var bonus = (insatiable.getAmplifier() * 0.5f) + 0.5f;
+                    var manager = EntityTickerManager.getInstance(attacker);
+                    var ticker = manager.getTicker(CtiEntityTickers.SOUL.get());
+                    if (ticker!=null)
+                        bonus*=1+(0.01f*ticker.level);
+                    Random random = new Random();
+                    float finalBonus = bonus;
                     attacker.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
                         if (cap.get(EvilInsatiable.KEY_EVIL_INSATIABLE,0)>0) {
                             var instance = livingAttacker.getAttribute(CtiAttributes.MAX_INSATIABLE.get());
                             if (instance!=null&&insatiable.getAmplifier()+1>=instance.getValue())
-                                event.setAmount(event.getAmount() + bonus);
+                                event.setAmount(event.getAmount() + finalBonus);
+                        }
+                        if (cap.get(ReplacedWellTrained.KEY_WELL_TRAINED,0)>0){
+                            if (random.nextFloat()<0.02)
+                                event.setAmount(event.getAmount()+target.getMaxHealth()*0.01f*cap.get(ReplacedWellTrained.KEY_WELL_TRAINED,0));
+                        }
+                        if (!(target instanceof TargetDummyEntity)&&cap.get(InsatiableDigest.KEY_INSATIABLE,0)>0&&attacker instanceof Player player){
+                            if (random.nextFloat()<0.05f)
+                                player.eat(player.level,new ItemStack(TFItems.HYDRA_CHOP.get()));
+                            if (random.nextFloat()<0.02f){
+                                player.heal(finalBonus);
+                                target.setHealth(Math.max(1,target.getHealth()- finalBonus));
+                            }
                         }
                     });
                     event.setAmount(event.getAmount() + bonus);

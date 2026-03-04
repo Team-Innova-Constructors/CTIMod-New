@@ -369,8 +369,12 @@
   "item.minecraft.splash_potion.effect.resolute": "喷溅型坚定药水",
   "item.minecraft.lingering_potion.effect.resolute": "滞留型坚定药水",
 
-
   "item.cti.strange_ice_crystal":"奇特的冰晶",
+
+  "item.cti.slime_can":"加压黏液罐",
+  "tooltip.item.cti.slime_can_1":"用黏液球右键以装填黏液覆层",
+  "tooltip.item.cti.slime_can_2":"右键工具以为其补充黏液覆层",
+
 
   "block.cti.hepatizon_faucet": "黑色科林斯青铜浇筑口",
   "block.cti.hepatizon_casting_table": "黑色科林斯青铜铸件台",
@@ -1124,21 +1128,73 @@
   "modifier.cti.fuckingdeltaforce.flavor": "666还有鳄鱼组队",
   "modifier.cti.fuckingdeltaforce.description":"当你对等级等于/小于你莱特兰等级的怪物 跳一跳时,有50%概率让其为你而战,成功组队的怪物会跳一下回应,在杀死他的目标后它有78%概率背刺你,每次至多同时对18个怪物发起组队邀请",
 
-  "modifier.cti.replaced_insatiable": "贪婪",
-  "modifier.cti.replaced_insatiable.flavor": "出识真味，力量无垠！",
-  "modifier.cti.replaced_insatiable.description":"+8最大贪婪等级，攻击/防御时每级+1贪婪等级。",
-
   "modifier.cti.tricky_insatiable": "技巧贪婪",
   "modifier.cti.tricky_insatiable.flavor": "有技巧地贪",
   "modifier.cti.tricky_insatiable.description":"暴击时每级额外+2贪婪等级，并临时获得每级+4的最大贪婪等级。",
 
+  "modifier.cti.replaced_insatiable": "贪婪",
+  "modifier.cti.replaced_insatiable.flavor": "出识真味，力量无垠！",
+  "modifier.cti.replaced_insatiable.description":"+8最大贪婪等级，攻击/防御时每级+1贪婪等级。",
+
   "modifier.cti.stone_cold_replaced": "冷血",
   "modifier.cti.stone_cold_replaced.flavor": "莫得感情",
-  "modifier.cti.stone_cold_replaced.description":"对50%血量以上的生物每级额外追加两次5%的附加伤害。",
+  "modifier.cti.stone_cold_replaced.description":"对33%血量以上的生物每级额外追加两次5%的附加伤害。",
 
   "modifier.cti.evil_insatiable": "极恶之贪",
   "modifier.cti.evil_insatiable.flavor": "贪婪一切，嫉妒一切，毁灭一切",
   "modifier.cti.evil_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+2贪婪等级。贪婪等级到达上限时使贪婪的增伤效果翻倍。",
+
+  "modifier.cti.replaced_benthamism": "功利主义",
+  "modifier.cti.replaced_benthamism.flavor": "功利至上！",
+  "modifier.cti.replaced_benthamism.description":"+128最大贪婪等级，攻击/防御时每级+4贪婪等级，但是每级令攻击伤害叠乘0.75倍。",
+
+  "modifier.cti.replaced_well_trained": "训练有素",
+  "modifier.cti.replaced_well_trained.flavor": "优雅的爵士",
+  "modifier.cti.replaced_well_trained.description":"有2%的概率令贪婪结算伤害时额外增加每级1%目标最大生命值点，护甲参与计算。",
+
+  "modifier.cti.insatiable_digest": "暴食贪婪",
+  "modifier.cti.insatiable_digest.flavor": "吞噬万物",
+  "modifier.cti.insatiable_digest.description":"每级+32最大贪婪等级，攻击/防御时每级+2贪婪等级。贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
+
+  "modifier.cti.arrogance_insatiable": "傲慢贪婪",
+  "modifier.cti.arrogance_insatiable.flavor": "你瞧不起那些凭词条取胜的怪物，并想从它们身上大捞特捞。",
+  "modifier.cti.arrogance_insatiable.description":"每级+72最大贪婪等级，攻击/防御时每级+6贪婪等级。\n攻击高恶意等级的敌人会有特殊效果：256级以上时+16贪婪等级，512级以上时+256临时最大贪婪，1024级以上时追加64*4伤害。",
+
+  "modifier.cti.shadow_slash": "斩影",
+  "modifier.cti.shadow_slash.flavor": "你在砍什么？",
+  "modifier.cti.shadow_slash.description":"近战攻击什么都没砍到时也能+1贪婪等级。",
+
+  "modifier.cti.nonstop_insatiable": "无止之贪",
+  "modifier.cti.nonstop_insatiable.flavor": "我生来贪得无厌",
+  "modifier.cti.nonstop_insatiable.description":"+256最大贪婪等级，攻击/防御时每级+1贪婪等级。溢出上限的贪婪等级会转换成灵魂层数，灵魂层数能近乎无限叠加，每层+1%贪婪结算伤害，但是每10秒会重置层数。",
+
+  "modifier.cti.replaced_overgrowth": "蔓生",
+  "modifier.cti.replaced_overgrowth.flavor": "像菌子一样",
+  "modifier.cti.replaced_overgrowth.description":"工具会缓慢生长出黏液覆层，等级越高速度越快。",
+
+  "modifier.cti.slime_strike": "黏液打击",
+  "modifier.cti.slime_strike.flavor": "非流顿牛体！",
+  "modifier.cti.slime_strike.description":"每级+50黏液覆层上限，攻击时每级消耗1黏液覆层+10近战伤害。",
+
+  "modifier.cti.slime_shield": "黏液之护",
+  "modifier.cti.slime_shield.flavor": "非流顿牛体！",
+  "modifier.cti.slime_shield.description":"每级+50黏液覆层上限，受击时每级消耗2黏液覆层格挡5伤害（护甲前）。",
+
+  "modifier.cti.slime_explode": "胶黏爆破",
+  "modifier.cti.slime_explode.flavor": "到处都黏糊糊的",
+  "modifier.cti.slime_explode.description":"攻击时消耗20黏液覆层释放黏液爆炸，对附近敌人造成25%伤害并产生一片能造成伤害、削减护甲和施加缓慢的烟雾。工具每有40黏液覆层会增加1%的爆炸伤害比例，最多增加100%。",
+
+  "modifier.cti.replaced_overempire": "黏液帝皇",
+  "modifier.cti.replaced_overempire.flavor": "帝国荣光！",
+  "modifier.cti.replaced_overempire.description":"工具每有100黏液覆层提供1%的独立减伤，最大每级20%，上限60%，消耗10黏液覆层。",
+
+  "modifier.cti.replaced_overarmy": "黏液军团",
+  "modifier.cti.replaced_overarmy.flavor": "史莱姆大军！",
+  "modifier.cti.replaced_overarmy.description":"工具每有100黏液覆层在攻击时增加0.01x独立乘算增伤和1黏液覆层消耗，最高每级+0.5x。",
+
+  "modifier.cti.super_overslime": "黏液超容EX",
+  "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
+  "modifier.cti.super_overslime.description":"黏液覆层上限变为200倍。",
 
 
 
@@ -1202,5 +1258,8 @@
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
   "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲和减伤之后每级+0.5。注意：贪婪效果通常只会存在15秒。",
-  "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。"
+  "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。",
+
+
+  "attribute.cti.max_insatiable": "最大贪婪"
 }

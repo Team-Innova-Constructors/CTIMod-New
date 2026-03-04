@@ -120,7 +120,7 @@ public class CtiFluid {
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
             if (pEntity instanceof LivingEntity living) {
                 pEntity.invulnerableTime = 0;
-                ThroughSources.atomic(100).hurtEntity(living);
+                ThroughSources.atomic(living instanceof Player?100:10).hurtEntity(living);
                 pEntity.invulnerableTime = 0;
             }
         }

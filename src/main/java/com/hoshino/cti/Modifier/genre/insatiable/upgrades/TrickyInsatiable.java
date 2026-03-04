@@ -18,7 +18,7 @@ public class TrickyInsatiable extends EtSTBaseModifier {
     @Override
     public float beforeMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage, float baseKnockback, float knockback) {
         if (context.isCritical()){
-            InsatiableHandler.applyEffect(context.getAttacker(), ToolType.MELEE,InsatiableHandler.EFFECT_TICKS,modifier.getLevel()*2);
+            InsatiableHandler.applyEffect(context.getAttacker(), ToolType.MELEE,modifier.getLevel()*2);
             context.getAttacker().addEffect(new MobEffectInstance(CtiEffects.INSATIABLE_BOOST.get(),300,modifier.getLevel()-1,false,false));
         }
         return knockback;

@@ -104,6 +104,7 @@
     "TconMixin.MeltingRecipeMixin",
     "TconMixin.ModifierMixin",
     "TconMixin.OverslimeMixin",
+    "TconMixin.OverslimeModifierRecipeAccessor",
     "TconMixin.TankItemFluidHandlerMixin",
     "TconMixin.TinkerStationMixin",
     "TconMixin.ToolPartItemMixin",

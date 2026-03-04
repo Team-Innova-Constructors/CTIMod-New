@@ -9,12 +9,12 @@ public class SlimeStrike extends BasicOverslimeModifier {
 
     @Override
     public int getConsumption(IToolContext context, ModifierEntry modifier) {
-        return 5;
+        return modifier.getLevel();
     }
 
     @Override
     public float getDamageBase(IToolContext context, ModifierEntry modifier) {
-        return 30*modifier.getLevel();
+        return 10*modifier.getLevel();
     }
 
     @Override

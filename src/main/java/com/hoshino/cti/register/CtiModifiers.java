@@ -9,10 +9,17 @@ import com.hoshino.cti.Modifier.Developer.*;
 import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
-import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
-import com.hoshino.cti.Modifier.genre.insatiable.ReplacedInsatiable;
+import com.hoshino.cti.Modifier.genre.insatiable.*;
 import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
+import com.hoshino.cti.Modifier.genre.insatiable.upgrades.ShadowSlash;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.ReplacedOvergrowth;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.SuperOverslime;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.ReplaceOverarmy;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.SlimeExplode;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.SlimeStrike;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.ReplaceOverempire;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.SlimeShield;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.forTrait.OverslimeHandler;
 import com.hoshino.cti.Modifier.iafCompact.*;
 import com.hoshino.cti.Modifier.l2Compact.*;
@@ -199,7 +206,19 @@ public class CtiModifiers {
     public static final StaticModifier<StoneColdReplaced> STONE_COLD_REPLACED = MODIFIERS.register("stone_cold_replaced", StoneColdReplaced::new);
     public static final StaticModifier<EvilInsatiable> EVIL_INSATIABLE = MODIFIERS.register("evil_insatiable", EvilInsatiable::new);
     public static final StaticModifier<AluminiumPower> ALUMINIUM_POWER_STATIC_MODIFIER = MODIFIERS.register("aluminiumpower", AluminiumPower::new);
-
+    public static final StaticModifier<ReplacedBenthamism> REPLACED_BENTHAMISM = MODIFIERS.register("replaced_benthamism", ReplacedBenthamism::new);
+    public static final StaticModifier<ReplacedWellTrained> REPLACED_WELL_TRAINED = MODIFIERS.register("replaced_well_trained", ReplacedWellTrained::new);
+    public static final StaticModifier<InsatiableDigest> INSATIABLE_DIGEST = MODIFIERS.register("insatiable_digest", InsatiableDigest::new);
+    public static final StaticModifier<ArroganceInsatiable> ARROGANCE_INSATIABLE = MODIFIERS.register("arrogance_insatiable", ArroganceInsatiable::new);
+    public static final StaticModifier<ShadowSlash> SHADOW_SLASH = MODIFIERS.register("shadow_slash", ShadowSlash::new);
+    public static final StaticModifier<NonStopInsatiable> NONSTOP_INSATIABLE = MODIFIERS.register("nonstop_insatiable", NonStopInsatiable::new);
+    public static final StaticModifier<ReplacedOvergrowth> REPLACED_OVERGROWTH = MODIFIERS.register("replaced_overgrowth", ReplacedOvergrowth::new);
+    public static final StaticModifier<SlimeStrike> SLIME_STRIKE = MODIFIERS.register("slime_strike", SlimeStrike::new);
+    public static final StaticModifier<SlimeShield> SLIME_SHIELD = MODIFIERS.register("slime_shield", SlimeShield::new);
+    public static final StaticModifier<SlimeExplode> SLIME_EXPLODE = MODIFIERS.register("slime_explode", SlimeExplode::new);
+    public static final StaticModifier<ReplaceOverempire> REPLACED_OVEREMPIRE = MODIFIERS.register("replaced_overempire", ReplaceOverempire::new);
+    public static final StaticModifier<ReplaceOverarmy> REPLACED_OVERARMY = MODIFIERS.register("replaced_overarmy", ReplaceOverarmy::new);
+    public static final StaticModifier<SuperOverslime> SUPER_OVERSLIME = MODIFIERS.register("super_overslime", SuperOverslime::new);
 
 
 

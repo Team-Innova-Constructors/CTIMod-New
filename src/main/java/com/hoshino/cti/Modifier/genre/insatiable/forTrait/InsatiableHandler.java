@@ -1,7 +1,11 @@
 package com.hoshino.cti.Modifier.genre.insatiable.forTrait;
 
+import com.hoshino.cti.Modifier.genre.insatiable.NonStopInsatiable;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.register.CtiAttributes;
+import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.util.CommonUtil;
 import com.hoshino.cti.util.MathUtil;
 import net.minecraft.network.chat.Component;
@@ -25,6 +29,7 @@ import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeHitModifierHoo
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.ranged.ProjectileHitModifierHook;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
+import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
@@ -60,9 +65,24 @@ public class InsatiableHandler extends Modifier implements ProjectileHitModifier
     }
 
 
-    public static void applyEffect(LivingEntity living, ToolType type, int duration, int add) {
+    public static void applyEffect(LivingEntity living, ToolType type, int add) {
         TinkerEffect effect = TinkerModifiers.insatiableEffect.get(type);
-        effect.apply(living, duration, Math.min(getMaxInsatiable(living), effect.getLevel(living) + add), true);
+        var initLvl = effect.getLevel(living);
+        var maxLvl = getMaxInsatiable(living);
+        var lvl = Math.min(initLvl,maxLvl) + add;
+        if (initLvl>maxLvl&&living.getEffect(TinkerModifiers.insatiableEffect.get(type))!=null)
+            living.removeEffect(TinkerModifiers.insatiableEffect.get(type));
+        effect.apply(living, EFFECT_TICKS, Math.min(lvl,maxLvl), true);
+        if (lvl>maxLvl) {
+            living.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap -> {
+                if (cap.get(NonStopInsatiable.KEY_NONSTOP_INSATIABLE,0)>0){
+                    var manager = EntityTickerManager.getInstance(living);
+                    if (manager.hasTicker(CtiEntityTickers.SOUL.get()))
+                        manager.addTicker(new EntityTickerInstance(CtiEntityTickers.SOUL.get(), lvl-maxLvl,200),Integer::sum,Integer::min);
+                    else manager.addTicker(new EntityTickerInstance(CtiEntityTickers.SOUL.get(), lvl-maxLvl,200),Integer::sum,Integer::max);
+                }
+            });
+        }
     }
 
     @Override
@@ -74,28 +94,25 @@ public class InsatiableHandler extends Modifier implements ProjectileHitModifier
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
         if (!context.isExtraAttack() && context.isFullyCharged()) {
-            applyEffect(context.getAttacker(), ToolType.MELEE, EFFECT_TICKS, modifier.getLevel());
+            applyEffect(context.getAttacker(), ToolType.MELEE, modifier.getLevel());
         }
     }
 
     @Override
     public boolean onProjectileHitEntity(ModifierNBT modifiers, NamespacedNBT persistentData, ModifierEntry modifier, Projectile projectile, EntityHitResult hit, @Nullable LivingEntity attacker, @Nullable LivingEntity target) {
         if (attacker != null) {
-            applyEffect(attacker, ToolType.RANGED, EFFECT_TICKS, modifier.getLevel());
+            applyEffect(attacker, ToolType.RANGED, modifier.getLevel());
         }
         return false;
     }
 
     @Override
     public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player, List<Component> tooltip, TooltipKey key, TooltipFlag tooltipFlag) {
-        Optional.of(GenreManager.INSATIABLE_GENRE.baseStat).ifPresent(stat->{
-            tooltip.add(Component.translatable(stat.getTranslationKey()).append("+"+tool.getStats().getInt(stat)).withStyle(style -> style.withColor(0x9546C9)));
-        });
     }
 
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
-        applyEffect(context.getEntity(),ToolType.ARMOR,EFFECT_TICKS,modifier.getLevel());
+        applyEffect(context.getEntity(),ToolType.ARMOR,modifier.getLevel());
         return amount;
     }
 

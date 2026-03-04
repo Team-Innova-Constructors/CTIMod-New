@@ -348,7 +348,7 @@ public class CtiItem {
     public static final RegistryObject<Item> BIOMES_ITEM = ITEMS.register("biomes_item",BiomeInfoItem::new);
 
 
-
+    //匠魂物品
     public static final RegistryObject<BlockItem> HEPATIZON_FAUCET = registerBlockItem(CtiBlock.HEPATIZON_FAUCET);
     public static final RegistryObject<BlockItem> HEPATIZON_TABLE = registerBlockItem(CtiBlock.HEPATIZON_TABLE);
     public static final RegistryObject<BlockItem> HEPATIZON_BASIN = registerBlockItem(CtiBlock.HEPATIZON_BASIN);
@@ -366,4 +366,7 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> SILICATED_DUCT = registerBlockItem(CtiBlock.SILICATED_DUCT);
     public static final RegistryObject<BlockItem> REFINER_CONTROLLER = registerBlockItem(CtiBlock.REFINERY);
     public static final RegistryObject<BlockItem> SILICATED_VAULT = registerBlockItem(CtiBlock.SILICATED_VALVE);
+
+    public static final RegistryObject<Item> SLIME_CAN = ITEMS.register("slime_can",SlimeCanItem::new);
+
 }

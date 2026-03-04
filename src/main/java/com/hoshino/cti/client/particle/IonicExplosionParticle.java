@@ -33,7 +33,7 @@ public class IonicExplosionParticle extends TextureSheetParticle {
         this.spriteSet = spriteSet;
         this.setSize(1f, 1f);
         this.quadSize =2f+EtSHrnd().nextFloat();
-        this.lifetime = 6;
+        this.lifetime = 8;
         this.gravity = 0f;
         this.hasPhysics = false;
         this.xd = vx * 0;
@@ -46,7 +46,7 @@ public class IonicExplosionParticle extends TextureSheetParticle {
 
     @Override
     public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
-        this.setSprite(this.spriteSet.get((int) Math.min(12,(this.age+pPartialTicks)*2),12));
+        this.setSprite(this.spriteSet.get((int) Math.min(12,(this.age+pPartialTicks)*1.5),12));
         super.render(pBuffer, pRenderInfo, pPartialTicks);
     }
 

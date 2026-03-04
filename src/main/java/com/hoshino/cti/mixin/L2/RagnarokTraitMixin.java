@@ -44,6 +44,7 @@ public abstract class RagnarokTraitMixin {
         sealModifier.add(CtiModifiers.VALKYRIE_BLESS.get());//女武神
         sealModifier.add(CtiModifiers.PHOENIX.get());//凤凰
         sealModifier.add(TIModifiers.SEA_DREAM.get());//海梦
+        sealModifier.add(CtiModifiers.NONSTOP_INSATIABLE.get());//格莱特
         for (Modifier modifier : sealModifier) {
             if (ModifierUtil.getModifierLevel(access.get(), modifier.getId()) > 0) {
                 cir.setReturnValue(false);

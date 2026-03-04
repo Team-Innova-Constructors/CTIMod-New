@@ -28,6 +28,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -62,6 +63,7 @@ public class ClientEventHandler {
             event.register(CtiParticleType.ION.get(), IonParticle::provider);
             event.register(CtiParticleType.STARFALL.get(), StarFallParticleProvider::new);
             event.register(CtiParticleType.IONIC_EXPLOSION.get(), IonicExplosionParticle.IonicExplosionParticleProvider::new);
+            event.register(CtiParticleType.GEL_EXPLOSION.get(), GelExplosionParticle.Provider::new);
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
@@ -77,6 +79,7 @@ public class ClientEventHandler {
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(CtiEntity.star_dragon_ammo.get(), StarDragonAmmoRenderer::new);
+            event.registerEntityRenderer(CtiEntity.GEL_CLOUD.get(), NoopRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);
@@ -105,6 +108,12 @@ public class ClientEventHandler {
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(CtiKeyBinding.STAR_HIT);
             event.register(CtiKeyBinding.NKSSZS);
+        }
+
+        @SubscribeEvent
+        public static void addSprite(TextureStitchEvent.Pre event){
+            event.addSprite(Cti.getResource("slots/slime_can_slot"));
+            event.addSprite(Cti.getResource("slots/oxygen_can_slot"));
         }
         //    @SubscribeEvent
 //    public static void onRenderLivingPost(RenderLivingEvent.Post<LivingEntity, ? extends EntityModel<LivingEntity>> event) {

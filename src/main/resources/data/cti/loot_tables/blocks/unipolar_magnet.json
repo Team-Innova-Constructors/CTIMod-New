@@ -43,7 +43,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "cti:unipolar_magnet_shard"
+              "name": "kubejs:unipolar_magnet_shard"
             }
           ]
         }

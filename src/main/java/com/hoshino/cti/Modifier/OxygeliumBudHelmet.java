@@ -1,6 +1,5 @@
 package com.hoshino.cti.Modifier;
 
-import cofh.core.item.FluidContainerItem;
 import cofh.thermal.innovation.item.FluidReservoirItem;
 import com.hoshino.cti.Modifier.Base.OxygenConsumeModifier;
 import com.hoshino.cti.mixin.ThermalMixin.FluidReservoirItemMixin;
@@ -50,7 +49,7 @@ public class OxygeliumBudHelmet extends OxygenConsumeModifier {
                 ToolTankHelper.TANK_HELPER.setFluid(tool, tank);
                 player.setAirSupply(player.getMaxAirSupply());
             }
-        } else if (tankHasOxygen(player, modifier)) {
+        } else if (tankHasOxygen(player, modifier)&& player.getAirSupply() < player.getMaxAirSupply()) {
             consumeTankOxygen(player, modifier);
             player.setAirSupply(player.getMaxAirSupply());
         }
@@ -100,9 +99,9 @@ public class OxygeliumBudHelmet extends OxygenConsumeModifier {
         if (living instanceof Player player) {
             var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
             if (fluidContainerStack == null) return;
-            if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidContainerItem) {
-                FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidContainerItem;
-                container.drainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
+            if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
+                FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidReservoirItem;
+                container.useDrainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
             }
         }
     }

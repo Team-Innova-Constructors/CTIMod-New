@@ -10,5 +10,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(FluidReservoirItem.class)
 public interface FluidReservoirItemMixin {
     @Invoker(value = "drainInternal",remap = false)
-     FluidStack drainInternal(ItemStack container, int maxDrain, IFluidHandler.FluidAction action);
+     FluidStack useDrainInternal(ItemStack container, int maxDrain, IFluidHandler.FluidAction action);
 }

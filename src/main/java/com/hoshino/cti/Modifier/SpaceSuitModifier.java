@@ -1,26 +1,20 @@
 package com.hoshino.cti.Modifier;
 
-import cofh.core.item.FluidContainerItem;
-import cofh.thermal.lib.item.FluidContainerItemAugmentable;
+import cofh.thermal.innovation.item.FluidReservoirItem;
 import com.hoshino.cti.Modifier.Base.OxygenConsumeModifier;
 import com.hoshino.cti.mixin.ThermalMixin.FluidReservoirItemMixin;
 import com.hoshino.cti.register.CtiToolStats;
 import com.hoshino.cti.util.method.FluidContainerHelper;
-import mekanism.common.registries.MekanismFluids;
 import mekanism.common.tags.MekanismTags;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.build.ModifierTraitHook;
@@ -32,7 +26,6 @@ import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 import slimeknights.tconstruct.tools.data.ModifierIds;
-import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStatsModifierHook, InventoryTickModifierHook , ModifierTraitHook {
     @Override
@@ -68,8 +61,8 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
         if (living instanceof Player player) {
             var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
             if (fluidContainerStack == null) return false;
-            if (fluidContainerStack.getItem() instanceof FluidContainerItem fluidContainerItem) {
-                return fluidContainerItem.getFluid(fluidContainerStack).getFluid().is(MekanismTags.Fluids.OXYGEN) && fluidContainerItem.getCapacity(fluidContainerStack) > 1;
+            if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
+                return fluidReservoirItem.getFluid(fluidContainerStack).getFluid().is(MekanismTags.Fluids.OXYGEN) && fluidReservoirItem.getCapacity(fluidContainerStack) > 1;
             }
         }
         return false;
@@ -90,9 +83,9 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
         if (living instanceof Player player) {
             var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
             if (fluidContainerStack == null) return;
-            if (fluidContainerStack.getItem() instanceof FluidContainerItemAugmentable fluidContainerItem) {
-                FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidContainerItem;
-                container.drainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
+            if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
+                FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidReservoirItem;
+                container.useDrainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
             }
         }
     }

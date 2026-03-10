@@ -1,6 +1,5 @@
 package com.hoshino.cti.mixin.AdAstraMixin;
 
-import com.hoshino.cti.Capabilitiess.IFreezeShielding;
 import com.hoshino.cti.Modifier.Base.OxygenConsumeModifier;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.BiomeUtil;
@@ -57,11 +56,19 @@ public abstract class ModUtilMixin {
             ItemStack stack = entity.getItemBySlot(EquipmentSlot.HEAD);
             if (stack.getItem() instanceof IModifiable) {
                 ToolStack tool = ToolStack.from(stack);
-                for (ModifierEntry entry:tool.getModifierList()){
-                    if (entry.getModifier() instanceof OxygenConsumeModifier modifier&&modifier.hasOxygen(tool,entry)) {
-                        if (!entity.level.isClientSide) modifier.consumeOxygen(tool,entry);
-                        callbackInfo.setReturnValue(true);
-                        return;
+                for (ModifierEntry entry : tool.getModifierList()) {
+                    if (entry.getModifier() instanceof OxygenConsumeModifier modifier) {
+                        if (!entity.level.isClientSide) {
+                            if (modifier.tankHasOxygen(entity, entry)) {
+                                modifier.consumeTankOxygen(entity, entry);
+                                callbackInfo.setReturnValue(true);
+                                return;
+                            } else if (modifier.hasOxygen(tool, entry)) {
+                                modifier.consumeOxygen(tool, entry);
+                                callbackInfo.setReturnValue(true);
+                                return;
+                            }
+                        }
                     }
                 }
             } else if (stack.getTags().toList().contains(CtiTagkey.OXYGEN_REGEN)) {

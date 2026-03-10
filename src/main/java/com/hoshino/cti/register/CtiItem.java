@@ -302,6 +302,8 @@ public class CtiItem {
     public static final RegistryObject<Item> star_ionize = ITEMS.register("star_ionize", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> star_pressure = ITEMS.register("star_pressure", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> refined_stone = ITEMS.register("refined_stone", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MIXC),List.of(Component.literal("更高能量的精炼红石,可在powah反应堆提供400点红石能量").withStyle(style -> style.withColor(0xffaaff)))));
+
     //佛糖
     public static final RegistryObject<Item> heng_sugar = ITEMS.register("heng_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.heng.get()));
     public static final RegistryObject<Item> ha_sugar = ITEMS.register("ha_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.ha.get()));
@@ -313,7 +315,8 @@ public class CtiItem {
     public static final RegistryObject<Item> mixer_generator = ITEMS.register("refinery_generator", () -> new IEMultiblockGenerator("immersiveengineering:multiblocks/refinery"));
     public static final RegistryObject<Item> arcfurnace_generator = ITEMS.register("arcfurnace_generator", () -> new IEMultiblockGenerator("immersiveengineering:multiblocks/arcfurnace"));
     public static final RegistryObject<Item> cokerunit_generator = ITEMS.register("cokerunit_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/cokerunit"));
-    public static final RegistryObject<Item> pumpjack_generator = ITEMS.register("distillationtower_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/distillationtower"));
+    public static final RegistryObject<Item> distillationtower_generator = ITEMS.register("distillationtower_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/distillationtower"));
+    public static final RegistryObject<Item> hydrotreater_generator = ITEMS.register("hydrotreater_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/hydrotreater"));
 
     //矿脉生成
     public static final RegistryObject<Item> IE_VEIN_SEED = ITEMS.register("ie_vein_seed", IEVeinGeneratorItem::new);

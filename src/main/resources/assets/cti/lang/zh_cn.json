@@ -29,6 +29,8 @@
   "item.cti.heart_of_africa": "非洲之心",
   "item.cti.tear_of_sea": "海洋之泪",
 
+  "item.cti.refined_stone": "精炼高能红石",
+
   "item.cti.gossip_of_ratatoskr": "拉塔托斯克之语",
   "cti.tooltip.item.gossip_of_ratatoskr.desc1": "根据玩家难度每级使周围怪物获得额外词条。",
   "cti.tooltip.item.gossip_of_ratatoskr.desc2": "周围怪物会获得当前等级下所有能获得的词条。",
@@ -38,8 +40,10 @@
   "cti.tooltip.item.ring_of_nibelungen.desc2": "佩戴嫉妒诅咒时，当前掉落词条概率",
 
   "item.cti.cokerunit_generator": "焦炭塔生成器",
-  "item.cti.mixer_generator": "搅拌机生成器",
-  "item.cti.pumpjack_generator": "磕头机生成器",
+  "item.cti.arcfurnace_generator": "电弧炉生成器",
+  "item.cti.refinery_generator": "炼油厂生成器",
+  "item.cti.distillationtower_generator": "蒸馏塔生成器",
+  "item.cti.hydrotreater_generator": "高压精炼装置生成器",
 
 
   "effect.cti.ev": "狩猎",

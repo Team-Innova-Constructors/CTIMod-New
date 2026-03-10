@@ -11,10 +11,8 @@ import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.LazyOptional;
@@ -51,8 +49,23 @@ public class L2LivingEvents {
                                 if (GetModifierLevel.EachHandsHaveModifierlevel(player, CtiModifiers.end_slayer.getId())) {
                                     return;
                                 }
-                                var source = mob.level.getRandom();
-                                int number = source.nextInt(100);
+                                if(GetModifierLevel.CurioHasModifierlevel(player,TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+                                    return;
+                                }
+                                var damageSource=event.getSource();
+                                if(damageSource.isBypassInvul()){
+                                    return;
+                                }
+                                var randomSource = mob.level.getRandom();
+                                float number = randomSource.nextInt(100);
+
+                                if(damageSource.isBypassArmor()){
+                                    number=number/2f;
+                                }
+                                if(damageSource.isBypassMagic()){
+                                    number=number/2f;
+                                }
+
                                 int o = (int) (amount / health * 100f) + 20;
                                 boolean c = o > number;
                                 if (!c) {

@@ -85,16 +85,16 @@ public class COEVeinGeneratorItem extends Item {
         var nbt=stack.getTag();
         if(level==null)return;
         if (nbt != null && nbt.contains("MineralType")){
-            String localizedName;
+            Component localizedName;
             ResourceLocation mineralId = new ResourceLocation(getTypeString(nbt));
             RecipeManager rm = level.getRecipeManager();
             Optional<? extends Recipe<?>> recipe = rm.byKey(mineralId);
             if (recipe.isPresent() && recipe.get() instanceof ExcavatingRecipe er) {
-                 localizedName = er.getId().toString();
+                 localizedName = er.getName();
             } else {
-                localizedName=mineralId.toLanguageKey();
+                localizedName=Component.translatable(mineralId.toLanguageKey());
             }
-            components.add(Component.literal("矿脉种类:"+localizedName));
+            components.add(Component.literal("矿脉种类:").append(localizedName));
             components.add(Component.literal("矿脉消耗量:"+getExtractedAmount(nbt)));
         }
     }

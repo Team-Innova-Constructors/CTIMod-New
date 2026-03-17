@@ -17,7 +17,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 import java.util.List;
 
-public class ThousandStarBless extends Modifier implements TooltipModifierHook {
+public class ThousandStarBless extends Modifier implements TooltipModifierHook  {
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         hookBuilder.addHook(this, ModifierHooks.TOOLTIP);

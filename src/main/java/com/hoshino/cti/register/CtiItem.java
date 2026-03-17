@@ -74,6 +74,7 @@ public class CtiItem {
     public static final RegistryObject<Item> enriched_mana = ITEMS.register("enriched_mana", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> fox_ingot = ITEMS.register("fox_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> uriel_ingot = ITEMS.register("uriel_ingot", () -> new uriel_ingot(new Item.Properties().tab(CtiTab.MATERIALS)));
+    public static final RegistryObject<Item> feima_ingot = ITEMS.register("feima_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
 
 
     public static final RegistryObject<Item> stellar_manyullyn = ITEMS.register("stellar_manyullyn", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.etsh").withStyle(ChatFormatting.LIGHT_PURPLE))));
@@ -217,10 +218,18 @@ public class CtiItem {
             .type(TAG_FLUID)
             .mod(TAG_AUGMENT_FLUID_STORAGE, 16.0F)
             .build())).setShowInGroups(ThermalFlags.getFlag(ThermalFlags.FLAG_STORAGE_AUGMENTS)));
+
+
+
+    //4级-硬铅组件-6x
+    //5级-彩钢组件-8x
+    //6级-钛锆组件-10x
+    //7级-极寒组件-13x
+    //8级-活彩组件-15x
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_4 = ITEMS.register("upgrade_augment_4", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 5)
-            .mod(TAG_MACHINE_PARALLEL,1)
+            .mod(TAG_MACHINE_PARALLEL,2)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_5 = ITEMS.register("upgrade_augment_5", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
@@ -230,8 +239,18 @@ public class CtiItem {
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_6 = ITEMS.register("upgrade_augment_6", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
-            .mod(TAG_AUGMENT_BASE_MOD, 14)
-            .mod(TAG_MACHINE_PARALLEL,7)
+            .mod(TAG_AUGMENT_BASE_MOD, 9)
+            .mod(TAG_MACHINE_PARALLEL,4)
+            .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_7 = ITEMS.register("upgrade_augment_7", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+            .type(TAG_AUGMENT_TYPE_UPGRADE)
+            .mod(TAG_AUGMENT_BASE_MOD, 11)
+            .mod(TAG_MACHINE_PARALLEL,5)
+            .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_8 = ITEMS.register("upgrade_augment_8", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+            .type(TAG_AUGMENT_TYPE_UPGRADE)
+            .mod(TAG_AUGMENT_BASE_MOD, 13)
+            .mod(TAG_MACHINE_PARALLEL,6)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     //黑雾级别

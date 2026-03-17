@@ -1,7 +1,9 @@
 package com.hoshino.cti.mixin;
 
 import com.hoshino.cti.util.ChangeBossHealth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -38,24 +40,12 @@ public abstract class MobMixin extends LivingEntity implements ChangeBossHealth 
         multimapConsumer.accept(maxHealth);
         multimapConsumer.accept(armor);
     }
-    @Inject(method = "tick",at = @At("TAIL"))
-    private void tick(CallbackInfo ci){
-        var target=this.getTarget();
-        var data=this.getPersistentData();
-        boolean teamed=data.getBoolean("player_teamed");
-        if(teamed){
-            if(target instanceof Player){
-                this.setTarget(null);
-            }
-            if(this.getTarget() == null){
-                var mobList = this.getLevel().getEntitiesOfClass(Monster.class, new AABB(this.getOnPos()).inflate(6));
-
-                for(Mob mob : mobList){
-                    if(mob.getPersistentData().getBoolean("player_teamed") || mob.getUUID() == this.getUUID()) continue;
-                    this.setTarget(mob);
-                    break;
-                }
-            }
-        }
+    @Inject(method = "enchantSpawnedArmor",at = @At("HEAD"), cancellable = true)
+    private void preventArmor(RandomSource pRandom, float pChanceMultiplier, EquipmentSlot pSlot, CallbackInfo ci){
+        ci.cancel();
+    }
+    @Inject(method = "enchantSpawnedWeapon",at = @At("HEAD"), cancellable = true)
+    private void preventWeapon(RandomSource pRandom, float pChanceMultiplier, CallbackInfo ci){
+        ci.cancel();
     }
 }

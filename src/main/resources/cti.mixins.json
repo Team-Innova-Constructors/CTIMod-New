@@ -3,6 +3,7 @@
   "package": "com.hoshino.cti.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.7",
+  "plugin": "com.hoshino.cti.mixin.CtiMixinConfig",
   "refmap": "cti.refmap.json",
   "mixins": [
     "AbstractArrowMixin",
@@ -64,7 +65,9 @@
     "L2.EnvyLootModifierMixin",
     "L2.GrowTraitMixin",
     "L2.HostilityBulletMixin",
+    "L2.ItemPopulatorMixin",
     "L2.KillHaloMixin",
+    "L2.MobEventMixin",
     "L2.NDHGmixin",
     "L2.PlayerDifficultyMixin",
     "L2.RagnarokTraitMixin",

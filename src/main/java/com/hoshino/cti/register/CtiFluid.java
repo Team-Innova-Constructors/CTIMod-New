@@ -89,39 +89,40 @@ public class CtiFluid {
     public static final FluidObject<ForgeFlowingFluid> molten_xinian = register("molten_xinian", 1257);
     public static final FluidObject<ForgeFlowingFluid> MOLTEN_STAR_DRAGON = register("molten_star_dragon", 9273);
     public static final FluidObject<ForgeFlowingFluid> molten_aluminium_glass = register("molten_aluminium_glass", 1565);
+    public static final FluidObject<ForgeFlowingFluid> molten_feima = register("molten_feima", 888);
 
     public static final FluidObject<ForgeFlowingFluid> LAVA_HEATED = register("lava_heated", 2000,(supplier)->new BurningLiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA),2000,20));
     public static final FluidObject<ForgeFlowingFluid> LAVA_OVERHEATED = register("lava_overheated", 3500,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-            pEntity.invulnerableTime=0;
-            pEntity.hurt(DamageSource.LAVA,20);
-            pEntity.invulnerableTime=0;
+            pEntity.invulnerableTime=3;
+            pEntity.hurt(DamageSource.LAVA,2);
+            pEntity.invulnerableTime=3;
         }
     });
     public static final FluidObject<ForgeFlowingFluid> LAVA_GASEOUS = register("lava_gaseous", 5000,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-            pEntity.invulnerableTime=0;
-            pEntity.hurt(DamageSource.LAVA.bypassArmor().bypassMagic(),20);
-            pEntity.invulnerableTime=0;
+            pEntity.invulnerableTime=3;
+            pEntity.hurt(DamageSource.LAVA.bypassArmor().bypassMagic(),5);
+            pEntity.invulnerableTime=3;
         }
     });
     public static final FluidObject<ForgeFlowingFluid> LAVA_PLASMATIC = register("lava_plasmatic", 7000,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-            pEntity.invulnerableTime=0;
-            pEntity.hurt(EDamageSource.scorched(true,5),25);
-            pEntity.invulnerableTime=0;
+            pEntity.invulnerableTime=2;
+            pEntity.hurt(EDamageSource.scorched(true,5),6);
+            pEntity.invulnerableTime=2;
         }
     });
     public static final FluidObject<ForgeFlowingFluid> LAVA_ATOMIC = register("lava_atomic", 9000,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
             if (pEntity instanceof LivingEntity living) {
-                pEntity.invulnerableTime = 0;
-                ThroughSources.atomic(living instanceof Player?100:10).hurtEntity(living);
-                pEntity.invulnerableTime = 0;
+                pEntity.invulnerableTime = 2;
+                ThroughSources.atomic(10).hurtEntity(living);
+                pEntity.invulnerableTime = 2;
             }
         }
     });

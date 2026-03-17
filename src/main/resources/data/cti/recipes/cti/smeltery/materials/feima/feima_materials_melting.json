@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_melting",
+  "input": "cti:feima",
+  "temperature": 1888,
+  "result": {
+    "fluid": "cti:molten_feima",
+    "amount": 90
+  }
+}

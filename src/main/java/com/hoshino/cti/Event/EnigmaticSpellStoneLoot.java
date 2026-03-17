@@ -30,16 +30,16 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> golemHeart = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.GOLEM_HEART, 35);
                 if (golemHeart != null) {
-                    entries.add(golemHeart.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(golemHeart.when(CtiLootCondition.playerL2Level(100)));
                 }
                 LootPoolEntryContainer.Builder<?> angelBlessing = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.ANGEL_BLESSING, 65);
                 if (angelBlessing != null) {
-                    entries.add(angelBlessing.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(angelBlessing.when(CtiLootCondition.playerL2Level(400)));
                 }
 
                 LootPoolEntryContainer.Builder<?> ichorBottle = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.ICHOR_BOTTLE, 65);
                 if (ichorBottle != null) {
-                    entries.add(ichorBottle.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(ichorBottle.when(CtiLootCondition.playerL2Level(300)));
                 }
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,
                         entries.toArray(new LootPoolEntryContainer.Builder[0])
@@ -51,11 +51,11 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> eyeOfNebula = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.EYE_OF_NEBULA, 35);
                 if (eyeOfNebula != null) {
-                    entries.add(eyeOfNebula.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(eyeOfNebula.when(CtiLootCondition.playerL2Level(500)));
                 }
                 LootPoolEntryContainer.Builder<?> golemHeart = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.GOLEM_HEART, 65);
                 if (golemHeart != null) {
-                    entries.add(golemHeart.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(golemHeart.when(CtiLootCondition.playerL2Level(100)));
                 }
 
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,
@@ -68,11 +68,11 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> angelBlessing = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.ANGEL_BLESSING, 100);
                 if (angelBlessing != null) {
-                    entries.add(angelBlessing.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(angelBlessing.when(CtiLootCondition.playerL2Level(400)));
                 }
                 LootPoolEntryContainer.Builder<?> ichorBottle = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.ICHOR_BOTTLE, 100);
                 if (ichorBottle != null) {
-                    entries.add(ichorBottle.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(ichorBottle.when(CtiLootCondition.playerL2Level(300)));
                 }
 
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,
@@ -85,7 +85,7 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> golemHeart = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.GOLEM_HEART, 100);
                 if (golemHeart != null) {
-                    entries.add(golemHeart.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(golemHeart.when(CtiLootCondition.playerL2Level(100)));
                 }
 
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,
@@ -98,7 +98,7 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> blazingCore = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.BLAZING_CORE, 100);
                 if (blazingCore != null) {
-                    entries.add(blazingCore.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(blazingCore.when(CtiLootCondition.playerL2Level(200)));
                 }
 
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,
@@ -111,7 +111,7 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> oceanStone = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.OCEAN_STONE, 100);
                 if (oceanStone != null) {
-                    entries.add(oceanStone.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(oceanStone.when(CtiLootCondition.playerL2Level(500)));
                 }
 
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,
@@ -124,11 +124,11 @@ public class EnigmaticSpellStoneLoot {
                 List<LootPoolEntryContainer.Builder<?>> entries = new ArrayList<>();
                 LootPoolEntryContainer.Builder<?> eyeOfNebula = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.EYE_OF_NEBULA, 90);
                 if (eyeOfNebula != null) {
-                    entries.add(eyeOfNebula.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(eyeOfNebula.when(CtiLootCondition.playerL2Level(400)));
                 }
                 LootPoolEntryContainer.Builder<?> voidPearl = SuperpositionHandler.createOptionalLootEntry(EnigmaticItems.VOID_PEARL, 10);
                 if (voidPearl != null) {
-                    entries.add(voidPearl.when(CtiLootCondition.playerL2Level(800)));
+                    entries.add(voidPearl.when(CtiLootCondition.playerL2Level(1000)));
                 }
 
                 LootPool poolSpellstones = cticonstructLootPool("ctispellstones", -1.0F, 1.0F,

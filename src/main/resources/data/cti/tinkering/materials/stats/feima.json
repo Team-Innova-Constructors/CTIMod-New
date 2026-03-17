@@ -1,0 +1,28 @@
+{
+  "stats": {
+    "tconstruct:binding": {},
+    "tconstruct:head": {
+      "durability": 890,
+      "mining_speed": 7.8,
+      "mining_tier": "minecraft:netherite",
+      "melee_attack": 8
+    },
+    "tconstruct:handle": {
+      "durability": -0.1,
+      "mining_speed": 0.25,
+      "melee_speed": -0.1,
+      "melee_damage": 0.88
+    },
+    "solidarytinker:soulge_heart": {
+      "detection_range": 20,
+      "exert_times": 40,
+      "attack_frequency": 8,
+      "kill_threshold": 0.3
+    },
+    "solidarytinker:core_battery": {
+      "attack_range": 8,
+      "target_amount": 8,
+      "energy_capability": 188888
+    }
+  }
+}

@@ -119,16 +119,6 @@ public class CommonLivingEvents {
         }
     }
 
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onPlayerHurt(LivingAttackEvent event) {
-        if (event.getSource().getEntity() instanceof Player player1 && event.getEntity() instanceof Player player2) {
-            if (!(player1 == player2)) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void onFakePlayerHurt(LivingHurtEvent event) {
         if (event.getEntity().getMaxHealth() > 10000 && event.getSource().getEntity() instanceof FakePlayer fakePlayer && !(fakePlayer instanceof DisposibleFakePlayer) && event.getAmount() < 2147483647) {

@@ -206,6 +206,7 @@ public abstract class ReactorTileMixin extends AbstractEnergyProvider<ReactorBlo
                 flag = true;
             }else if(stack.getItem() == CtiItem.refined_stone.get()){
                 this.redstone.setAll(400.0);
+                flag = true;
             }
             if (flag) {
                 this.redstoneTemp = 240;

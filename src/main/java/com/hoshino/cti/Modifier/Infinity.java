@@ -45,8 +45,9 @@ public class Infinity extends BattleModifier implements ToolStatsModifierHook {
                     return damage + 131072;
                 }
                 default -> {
-                    mob.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic().bypassInvul(),Float.MAX_VALUE);
-                    return Float.MAX_VALUE;
+                    mob.die(DamageSource.playerAttack(player));
+                    mob.kill();
+                    return damage;
                 }
             }
         }
@@ -62,8 +63,8 @@ public class Infinity extends BattleModifier implements ToolStatsModifierHook {
                     arrow.setBaseDamage(131072 * level);
                 }
                 default -> {
-                    mob.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic().bypassInvul(),Float.MAX_VALUE);
-                    arrow.setBaseDamage(Integer.MAX_VALUE);
+                    mob.die(DamageSource.playerAttack(player));
+                    mob.kill();
                 }
             }
         }

@@ -243,11 +243,11 @@
 
   "modifier.cti.atheric": "天赐神兵",
   "modifier.cti.atheric.flavor": "你的工具已被上天赐福",
-  "modifier.cti.atheric.description": "工具每有一个部件由天镜材料制成，+1时运和抢夺等级、+50%造成的伤害，并根据数量依次增加使用者的辛运、击退抗性、交互距离和最大生命。",
+  "modifier.cti.atheric.description": "工具每有一个部件由天镜材料制成，+1时运和抢夺等级、+25%造成的伤害，并根据数量依次增加使用者的辛运、击退抗性、交互距离和最大生命。",
 
   "modifier.cti.ambrosium_powered": "圣神光辉",
   "modifier.cti.ambrosium_powered.flavor": "你的工具已注入神的能量",
-  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能24次。每推进一个天镜Boss增加100攻击伤害（近战、远程）或15%独立伤害减免（护甲）",
+  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3格挡/+2近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
 
   "modifier.cti.stellar_arrow": "星辰箭矢",
   "modifier.cti.stellar_arrow.flavor": "据说能射下天上的星星",
@@ -1142,7 +1142,7 @@
 
   "modifier.cti.evil_insatiable": "极恶之贪",
   "modifier.cti.evil_insatiable.flavor": "贪婪一切，嫉妒一切，毁灭一切",
-  "modifier.cti.evil_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+2贪婪等级。贪婪等级到达上限时使贪婪的增伤效果翻倍。",
+  "modifier.cti.evil_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪等级到达上限时使贪婪的增伤效果翻倍。",
 
   "modifier.cti.replaced_benthamism": "功利主义",
   "modifier.cti.replaced_benthamism.flavor": "功利至上！",
@@ -1154,11 +1154,11 @@
 
   "modifier.cti.insatiable_digest": "暴食贪婪",
   "modifier.cti.insatiable_digest.flavor": "吞噬万物",
-  "modifier.cti.insatiable_digest.description":"每级+32最大贪婪等级，攻击/防御时每级+2贪婪等级。贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
+  "modifier.cti.insatiable_digest.description":"每级+32最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
 
   "modifier.cti.arrogance_insatiable": "傲慢贪婪",
   "modifier.cti.arrogance_insatiable.flavor": "你瞧不起那些凭词条取胜的怪物，并想从它们身上大捞特捞。",
-  "modifier.cti.arrogance_insatiable.description":"每级+72最大贪婪等级，攻击/防御时每级+6贪婪等级。\n攻击高恶意等级的敌人会有特殊效果：256级以上时+16贪婪等级，512级以上时+256临时最大贪婪，1024级以上时追加64*4伤害。",
+  "modifier.cti.arrogance_insatiable.description":"每级+72最大贪婪等级，攻击/防御时每级+6贪婪等级。\n 攻击高恶意等级的敌人会有特殊效果：\n  ·256级以上时+16贪婪等级。\n  ·512级以上时+256临时最大贪婪。\n  ·1024级以上时追加64*4伤害。",
 
   "modifier.cti.shadow_slash": "斩影",
   "modifier.cti.shadow_slash.flavor": "你在砍什么？",
@@ -1166,7 +1166,7 @@
 
   "modifier.cti.nonstop_insatiable": "无止之贪",
   "modifier.cti.nonstop_insatiable.flavor": "我生来贪得无厌",
-  "modifier.cti.nonstop_insatiable.description":"+256最大贪婪等级，攻击/防御时每级+1贪婪等级。溢出上限的贪婪等级会转换成灵魂层数，灵魂层数能近乎无限叠加，每层+1%贪婪结算伤害，但是每10秒会重置层数。",
+  "modifier.cti.nonstop_insatiable.description":"+256最大贪婪等级，攻击/防御时每级+1贪婪等级。\n ·溢出上限的贪婪等级会转换成灵魂层数，灵魂层数能近乎无限叠加，每层+1%贪婪结算伤害，但是每10秒会重置层数。",
 
   "modifier.cti.replaced_overgrowth": "蔓生",
   "modifier.cti.replaced_overgrowth.flavor": "像菌子一样",
@@ -1182,7 +1182,7 @@
 
   "modifier.cti.slime_explode": "胶黏爆破",
   "modifier.cti.slime_explode.flavor": "到处都黏糊糊的",
-  "modifier.cti.slime_explode.description":"攻击时消耗20黏液覆层释放黏液爆炸，对附近敌人造成25%伤害并产生一片能造成伤害、削减护甲和施加缓慢的烟雾。工具每有40黏液覆层会增加1%的爆炸伤害比例，最多增加100%。",
+  "modifier.cti.slime_explode.description":"攻击时消耗20黏液覆层释放黏液爆炸，对附近敌人造成25%伤害并产生一片能造成伤害、削减护甲和施加缓慢的烟雾。\n ·工具每有40黏液覆层会增加1%的爆炸伤害比例，最多增加每级100%。",
 
   "modifier.cti.replaced_overempire": "黏液帝皇",
   "modifier.cti.replaced_overempire.flavor": "帝国荣光！",
@@ -1195,6 +1195,50 @@
   "modifier.cti.super_overslime": "黏液超容EX",
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
   "modifier.cti.super_overslime.description":"黏液覆层上限变为200倍。",
+
+  "modifier.cti.ender_stiction": "末影黏滞",
+  "modifier.cti.ender_stiction.flavor": "黏住了空间",
+  "modifier.cti.ender_stiction.description":"每级+500黏液覆层上限，攻击时每级消耗5黏液覆层+25近战伤害。\n ·攻击时额外消耗5黏液覆层移除无敌帧，消耗5黏液覆层造成末影黏滞效果阻止对方传送。",
+
+  "modifier.cti.ender_suppress": "末影压制",
+  "modifier.cti.ender_suppress.flavor": "黏住了空间",
+  "modifier.cti.ender_suppress.description":"对你有敌意且具有末影黏滞效果的生物传送时，你会使用主手的工具进行反击，效果冷却时间相当于你攻击冷却的一半。",
+
+  "modifier.cti.replace_overlost": "迷失",
+  "modifier.cti.replace_overlost.flavor": "迷途之子",
+  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+15近战伤害。\n ·攻击时目标每级缓慢效果都会增加5伤害和1黏液覆层消耗。",
+
+  "modifier.cti.replace_overlost_armor": "迷失",
+  "modifier.cti.replace_overlost_armor.flavor": "迷途之子",
+  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗5黏液覆层+10%独立减伤（最大40%）。\n ·受击时目标每级缓慢效果都会增加5格挡和1黏液覆层消耗。",
+
+  "modifier.cti.united_overslime": "其利断金",
+  "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
+  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+25%近战伤害。\n ·全力打击时撕裂目标周围空间，每级造成5%持续伤害并消耗20黏液覆层。",
+
+  "modifier.cti.united_insatiable": "兄弟齐心",
+  "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
+  "modifier.cti.united_insatiable.description":"每级+32最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·没有贪婪效果时消耗100黏液覆层获得一半于最大贪婪的贪婪等级，并每秒消耗1黏液覆层维持贪婪等级，贪婪等级超过一半时不生效。",
+
+  "modifier.cti.overfill": "黏液转置",
+  "modifier.cti.overfill.flavor": "就像个充电宝",
+  "modifier.cti.overfill.description":"置于饰品栏时向护甲和手持工具补充黏液覆层。",
+
+  "modifier.cti.overcrit": "黏液下砸",
+  "modifier.cti.overcrit.flavor": "暴击！",
+  "modifier.cti.overcrit.description":"每级+50黏液覆层上限，近战攻击时消耗5黏液覆层使攻击必定暴击。",
+
+  "modifier.cti.over_aetheric": "晶能流质学",
+  "modifier.cti.over_aetheric.flavor": "活性与产能",
+  "modifier.cti.over_aetheric.description":"每级+250黏液覆层上限，受击时每级消耗10黏液覆层+20和20%的近战伤害/减伤（近战/护甲）。\n ·工具上每有一个天境材料+10%的耐久和黏液覆层上限。\n ·消耗黏液覆层时充入4倍于消耗量的神能晶充能。",
+
+  "modifier.cti.overtrade": "交易者",
+  "modifier.cti.overtrade.flavor": "以物易物！",
+  "modifier.cti.overtrade.description":"-50黏液增伤，-0.5百分比黏液增伤，-50%黏液覆层上限，+50黏液覆层消耗且当工具没有黏液覆层时造成伤害归零，但是下列工具属性乘以2倍：\n近战伤害、攻击速度、挖掘速度、耐久度、伤害倍率、离子化射线炮射线宽度。",
+
+  "modifier.cti.quantum_entangled": "量子纠缠",
+  "modifier.cti.quantum_entangled.flavor": "遇事不决，量子力学！",
+  "modifier.cti.quantum_entangled.description":"对工具附加0.5倍顶端材料的手柄属性、0.5倍手柄材料的顶端属性、0.25倍绑定节材料的手柄和顶端属性、1倍其它部件材料的手柄和顶端属性。",
 
 
 
@@ -1257,8 +1301,10 @@
   "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过35000的dps时产生",
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
-  "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲和减伤之后每级+0.5。注意：贪婪效果通常只会存在15秒。",
+  "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲之后每级+0.5。注意：贪婪效果通常只会存在15秒。",
   "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。",
+
+  "info.cti.overslime_value": "黏液覆层补充量：",
 
 
   "attribute.cti.max_insatiable": "最大贪婪"

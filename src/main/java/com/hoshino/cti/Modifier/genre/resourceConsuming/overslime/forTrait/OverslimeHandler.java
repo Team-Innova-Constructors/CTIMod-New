@@ -66,8 +66,8 @@ public class OverslimeHandler extends Modifier implements MeleeDamageModifierHoo
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         var stats = tool.getStats();
         float consumption = stats.getInt(OVERSLIME_GENRE.consumption);
-        float efficiency = stats.getInt(CtiToolStats.EFFICIENCY);
-        float power = stats.getInt(CtiToolStats.POWER);
+        float efficiency = stats.get(CtiToolStats.EFFICIENCY);
+        float power = stats.get(CtiToolStats.POWER);
         consumption*=power/efficiency;
         int actualConsumption = (int) consumption+ (RANDOM.nextFloat()<consumption-(int)consumption ? 1 : 0);
         var overslime = TinkerModifiers.overslime.get();

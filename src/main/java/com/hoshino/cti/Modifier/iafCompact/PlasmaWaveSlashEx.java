@@ -34,6 +34,11 @@ public class PlasmaWaveSlashEx extends EtSTBaseModifier implements LeftClickModi
     public static float cacheDamage = 0;
 
     @Override
+    public int getPriority() {
+        return Integer.MIN_VALUE;
+    }
+
+    @Override
     public boolean isNoLevels() {
         return true;
     }

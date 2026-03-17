@@ -1,6 +1,7 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.content.entityTicker.EnderStiction;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import com.hoshino.cti.content.entityTicker.tickers.*;
 import com.hoshino.cti.content.registry.CtiRegistry;
@@ -17,4 +18,5 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> FIERY = ENTITY_TICKERS.register("fiery", Fiery::new);
     public static final RegistryObject<EntityTicker> VULNERABLE = ENTITY_TICKERS.register("vulnerable", VulnerableTicker::new);
     public static final RegistryObject<EntityTicker> SOUL = ENTITY_TICKERS.register("soul", Soul::new);
+    public static final RegistryObject<EntityTicker> ENDER_STICTION = ENTITY_TICKERS.register("ender_stiction", EnderStiction::new);
 }

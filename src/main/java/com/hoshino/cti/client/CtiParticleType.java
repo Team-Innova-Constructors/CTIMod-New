@@ -19,5 +19,6 @@ public class CtiParticleType {
     public static final RegistryObject<ParticleType<StarFallParticleType>> STARFALL = PARTICLES.register("star_fall", () -> new StarFallParticleType(true, 100, 0xffaaff, 0, 1, 5, new Vec3(0, -58, 0)));
     public static final RegistryObject<SimpleParticleType> IONIC_EXPLOSION = PARTICLES.register("ionic_explosion", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> GEL_EXPLOSION = PARTICLES.register("gel_explosion", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> VOID_ARC = PARTICLES.register("void_arc", () -> new SimpleParticleType(false));
 
 }

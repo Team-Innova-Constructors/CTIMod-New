@@ -179,6 +179,7 @@
     "arrogance_insatiable": "#BD74FF",
     "shadow_slash": "#9B53DD",
     "nonstop_insatiable": "#6953CC",
+    "united_insatiable": "#BD74FF",
 
     "slime_strike": "#6BFF71",
     "slime_shield": "#6BFF71",
@@ -186,6 +187,13 @@
     "slime_explode": "#91E7FF",
     "replaced_overempire": "#FF812D",
     "replaced_overarmy": "#FF812D",
+    "ender_stiction": "#7847AD",
+    "ender_suppress": "#7847AD",
+    "replace_overlost": "#465742",
+    "replace_overlost_armor": "#465742",
+    "united_overslime": "#6BFF71",
+    "overcrit": "#41966D",
+    "over_aetheric": "#FFE793",
 
     "mz": "#55ffff",
     "nholography": "#55ffff",

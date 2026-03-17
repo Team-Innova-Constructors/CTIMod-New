@@ -1,14 +1,17 @@
 package com.hoshino.cti.Event;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.Items.SlimeCanItem;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.library.modifier.hooks.OnDeathModifierHook;
 import com.hoshino.cti.library.modifier.hooks.OnHoldingPreventDeathHook;
 import com.hoshino.cti.library.modifier.hooks.SlotStackModifierHook;
+import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.util.EquipmentUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -17,6 +20,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
@@ -25,11 +32,16 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class ToolEvents {
@@ -114,4 +126,36 @@ public class ToolEvents {
             event.setCanceled(true);
         }
     }
+
+    @SubscribeEvent
+    public static void attachCap(AttachCapabilitiesEvent<ItemStack> event){
+        var stack = event.getObject();
+        if (stack.getItem()== CtiItem.SLIME_CAN.get()){
+            event.addCapability(CuriosCapability.ID_ITEM, new ICapabilityProvider() {
+                @Override
+                public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+                    if (cap== CuriosCapability.ITEM){
+                        return LazyOptional.of(()-> new ICurio(){
+                            @Override
+                            public ItemStack getStack() {
+                                return stack;
+                            }
+                            @Override
+                            public void curioTick(SlotContext slotContext) {
+                                SlimeCanItem.tick(slotContext,stack);
+                            }
+                        }).cast();
+                    }
+                    return LazyOptional.empty();
+                }
+
+                @Override
+                public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
+                    return getCapability(cap,null);
+                }
+            });
+        }
+    }
+
+
 }

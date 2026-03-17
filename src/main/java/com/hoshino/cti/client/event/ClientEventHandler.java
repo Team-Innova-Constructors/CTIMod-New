@@ -26,9 +26,11 @@ import com.hoshino.cti.util.Vec3Helper;
 import me.desht.pneumaticcraft.client.ColorHandlers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.NoopRenderer;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -64,6 +66,7 @@ public class ClientEventHandler {
             event.register(CtiParticleType.STARFALL.get(), StarFallParticleProvider::new);
             event.register(CtiParticleType.IONIC_EXPLOSION.get(), IonicExplosionParticle.IonicExplosionParticleProvider::new);
             event.register(CtiParticleType.GEL_EXPLOSION.get(), GelExplosionParticle.Provider::new);
+            event.register(CtiParticleType.VOID_ARC.get(), new VoidArcParticle.Provider());
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
@@ -80,6 +83,7 @@ public class ClientEventHandler {
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(CtiEntity.star_dragon_ammo.get(), StarDragonAmmoRenderer::new);
             event.registerEntityRenderer(CtiEntity.GEL_CLOUD.get(), NoopRenderer::new);
+            event.registerEntityRenderer(CtiEntity.VOID_ARC.get(), NoopRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);

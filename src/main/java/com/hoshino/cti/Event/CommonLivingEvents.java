@@ -356,8 +356,8 @@ public class CommonLivingEvents {
             }
         }
     }
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onLivingDamageLowest(LivingDamageEvent event){
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent event){
         var target = event.getEntity();
         var attacker = event.getSource().getEntity();
         if (!event.isCanceled()&&attacker instanceof LivingEntity livingAttacker){

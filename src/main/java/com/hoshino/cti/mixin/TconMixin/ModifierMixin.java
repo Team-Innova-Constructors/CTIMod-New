@@ -33,10 +33,11 @@ public abstract class ModifierMixin {
         if (descriptionList == null) {
             List<Component> list = new ArrayList<>(List.of(
                     Component.translatable(getTranslationKey() + ".flavor").withStyle(ChatFormatting.ITALIC),
-                    Component.translatable(getTranslationKey() + ".description"),
-                    Component.translatable("cti.tooltip.modifier.piority").append("" + getPriority())));
+                    Component.translatable(getTranslationKey() + ".description")));
             if ((Modifier)(Object) this instanceof IModifierWithSpecialDesc specialDesc)
                 list.add(Component.translatable(specialDesc.getDesc()));
+            if (!String.valueOf(getPriority()).isEmpty())
+                list.add(Component.translatable("cti.tooltip.modifier.piority").append("§b" + getPriority()));
             descriptionList = list;
         }
         return descriptionList;

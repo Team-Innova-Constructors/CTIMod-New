@@ -1,5 +1,7 @@
 package com.hoshino.cti.util;
 
+import net.minecraft.world.phys.Vec3;
+
 import java.util.Random;
 import java.util.UUID;
 
@@ -120,5 +122,16 @@ public class MathUtil {
      */
     public static String toPercentage(double number,int limit){
         return limitsNumber(number,limit+2) * 100+"%";
+    }
+
+    public static Vec3 rotateVec3(Vec3 original, Vec3 axis, float deg){
+        if (deg==0) return original;
+        axis = axis.normalize();
+        var rad = Math.toRadians(deg);
+        return original.scale(Math.cos(rad))
+                .add(axis.cross(original)
+                        .scale(Math.sin(rad)))
+                .add(axis.scale(1-Math.cos(rad))
+                        .scale(axis.dot(original)));
     }
 }

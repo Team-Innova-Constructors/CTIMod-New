@@ -32,6 +32,7 @@ public class AnnihilationPanelRecipe implements Recipe<SimpleContainer> {
     public final List<FluidStack> fluidOutputs;
     public final List<ItemStack> itemOutputs;
     public final Component additionalCondition;
+    @NotNull public final ItemStack itemInput;
 
     public static AnnihilationPanelRecipe EMPTY = new AnnihilationPanelRecipe(Cti.getResource("panel_recipe/empty"), AEParts.ANNIHILATION_PLANE.m_5456_(), PanelCondition.NULL,0,null,List.of(),List.of(),List.of());
 
@@ -45,6 +46,7 @@ public class AnnihilationPanelRecipe implements Recipe<SimpleContainer> {
         this.fluidOutputs = fluidOutputs;
         this.itemOutputs = itemOutputs;
         this.additionalCondition = null;
+        itemInput = ItemStack.EMPTY;
     }
     public AnnihilationPanelRecipe(ResourceLocation id, PartItem<?> panel, PanelCondition condition, int ticks, ResourceKey<Level> dimension, List<ChemicalStack<?>> chemicalOutputs, List<FluidStack> fluidOutputs, List<ItemStack> itemOutputs,Component component) {
         this.id = id;
@@ -56,6 +58,19 @@ public class AnnihilationPanelRecipe implements Recipe<SimpleContainer> {
         this.fluidOutputs = fluidOutputs;
         this.itemOutputs = itemOutputs;
         this.additionalCondition = component;
+        itemInput = ItemStack.EMPTY;
+    }
+    public AnnihilationPanelRecipe(ResourceLocation id, PartItem<?> panel, PanelCondition condition, int ticks, ResourceKey<Level> dimension, List<ChemicalStack<?>> chemicalOutputs, List<FluidStack> fluidOutputs, List<ItemStack> itemOutputs,ItemStack input) {
+        this.id = id;
+        this.condition = condition;
+        this.panel = panel;
+        this.ticks = ticks;
+        this.dimension = dimension;
+        this.chemicalOutputs = chemicalOutputs;
+        this.fluidOutputs = fluidOutputs;
+        this.itemOutputs = itemOutputs;
+        this.additionalCondition = null;
+        itemInput = input;
     }
 
     @Override

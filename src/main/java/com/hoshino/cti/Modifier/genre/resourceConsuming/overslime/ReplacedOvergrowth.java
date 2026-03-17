@@ -2,6 +2,7 @@ package com.hoshino.cti.Modifier.genre.resourceConsuming.overslime;
 
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.api.interfaces.IModifierWithSpecialDesc;
+import com.hoshino.cti.register.CtiItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;

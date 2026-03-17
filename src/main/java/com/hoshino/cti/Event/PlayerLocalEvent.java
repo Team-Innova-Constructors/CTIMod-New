@@ -1,6 +1,7 @@
 package com.hoshino.cti.Event;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.Items.SlimeCanItem;
 import com.hoshino.cti.client.cache.ExposedDelay;
 import com.xiaoyue.tinkers_ingenuity.register.TIItems;
 import dev.xkmc.l2complements.init.registrate.LCItems;
@@ -32,6 +33,13 @@ public class PlayerLocalEvent {
             } else {
                 event.getToolTip().add(Component.translatable("etshtinker.item.tooltip.shift").withStyle(ChatFormatting.YELLOW));
             }
+        }
+        var item = event.getItemStack().getItem();
+        var player = event.getEntity();
+        if (player!=null){
+            var osV = SlimeCanItem.getOverslimeValues(player.level);
+            if (osV.containsKey(item))
+                event.getToolTip().add(Component.translatable("info.cti.overslime_value").append("§a"+osV.get(item)));
         }
     }
 

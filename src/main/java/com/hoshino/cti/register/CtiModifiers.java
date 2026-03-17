@@ -13,12 +13,11 @@ import com.hoshino.cti.Modifier.genre.insatiable.*;
 import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.ShadowSlash;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.ReplacedOvergrowth;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.SuperOverslime;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.ReplaceOverarmy;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.SlimeExplode;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.SlimeStrike;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.*;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.*;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.EnderSuppress;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.ReplaceOverempire;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.ReplaceOverlostArmor;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.SlimeShield;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.forTrait.OverslimeHandler;
 import com.hoshino.cti.Modifier.iafCompact.*;
@@ -219,6 +218,17 @@ public class CtiModifiers {
     public static final StaticModifier<ReplaceOverempire> REPLACED_OVEREMPIRE = MODIFIERS.register("replaced_overempire", ReplaceOverempire::new);
     public static final StaticModifier<ReplaceOverarmy> REPLACED_OVERARMY = MODIFIERS.register("replaced_overarmy", ReplaceOverarmy::new);
     public static final StaticModifier<SuperOverslime> SUPER_OVERSLIME = MODIFIERS.register("super_overslime", SuperOverslime::new);
+    public static final StaticModifier<EnderSuppress> ENDER_SUPPRESS = MODIFIERS.register("ender_suppress", EnderSuppress::new);
+    public static final StaticModifier<EnderStictionModifier> ENDER_STICTION = MODIFIERS.register("ender_stiction", EnderStictionModifier::new);
+    public static final StaticModifier<ReplaceOverLost> REPLACE_OVERLOST = MODIFIERS.register("replace_overlost", ReplaceOverLost::new);
+    public static final StaticModifier<ReplaceOverlostArmor> REPLACE_OVERLOST_ARMOR = MODIFIERS.register("replace_overlost_armor", ReplaceOverlostArmor::new);
+    public static final StaticModifier<UnitedOverslime> UNITED_OVERSLIME = MODIFIERS.register("united_overslime", UnitedOverslime::new);
+    public static final StaticModifier<UnitedInsatiable> UNITED_INSATIABLE = MODIFIERS.register("united_insatiable", UnitedInsatiable::new);
+    public static final StaticModifier<Overfill> OVERFILL = MODIFIERS.register("overfill", Overfill::new);
+    public static final StaticModifier<Overcrit> OVERCRIT = MODIFIERS.register("overcrit", Overcrit::new);
+    public static final StaticModifier<OverAetheric> OVER_AETHERIC = MODIFIERS.register("over_aetheric", OverAetheric::new);
+    public static final StaticModifier<OverTrade> OVERTRADE = MODIFIERS.register("overtrade", OverTrade::new);
+    public static final StaticModifier<QuantumEntangle> QUANTUM_PENETRATE = MODIFIERS.register("quantum_entangled", QuantumEntangle::new);
 
 
 

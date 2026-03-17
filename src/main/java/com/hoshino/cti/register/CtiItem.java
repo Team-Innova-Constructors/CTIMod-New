@@ -231,7 +231,7 @@ public class CtiItem {
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_6 = ITEMS.register("upgrade_augment_6", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 14)
-            .mod(TAG_MACHINE_PARALLEL,7)
+            .mod(TAG_MACHINE_PARALLEL,15)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     //黑雾级别
@@ -367,6 +367,6 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> REFINER_CONTROLLER = registerBlockItem(CtiBlock.REFINERY);
     public static final RegistryObject<BlockItem> SILICATED_VAULT = registerBlockItem(CtiBlock.SILICATED_VALVE);
 
-    public static final RegistryObject<Item> SLIME_CAN = ITEMS.register("slime_can",SlimeCanItem::new);
+    public static final RegistryObject<SlimeCanItem> SLIME_CAN = ITEMS.register("slime_can",SlimeCanItem::new);
 
 }

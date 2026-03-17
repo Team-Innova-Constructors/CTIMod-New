@@ -48,6 +48,7 @@ public class CtiEntity {
                     .build("star_dragon_ammo")
     );
     public static final RegistryObject<EntityType<GelCloudEntity>> GEL_CLOUD = ENTITIES.register("gel_cloud", () -> EntityType.Builder.<GelCloudEntity>of(GelCloudEntity::new, MobCategory.MISC).sized(1, 1).setTrackingRange(4).setUpdateInterval(1).setCustomClientFactory((spawnEntity, world) -> new GelCloudEntity(world)).setShouldReceiveVelocityUpdates(true));
+    public static final RegistryObject<EntityType<VoidArcEntity>> VOID_ARC = ENTITIES.register("void_arc", () -> EntityType.Builder.<VoidArcEntity>of(VoidArcEntity::new, MobCategory.MISC).sized(1, 1).setTrackingRange(4).setUpdateInterval(1).setCustomClientFactory((spawnEntity, world) -> new VoidArcEntity(world)).setShouldReceiveVelocityUpdates(true));
 
     public static void registerEntityRenderers() {
         ClientHooks.registerEntityRenderer(CtiEntity.TIER_5_ROCKET, RocketRendererTier5::new);

@@ -40,6 +40,7 @@ public class GelCloudEntity extends Projectile {
 
     public float damage=0;
     public float radius=4;
+    public int lvl = 1;
 
     @Override
     public void tick() {
@@ -51,8 +52,8 @@ public class GelCloudEntity extends Projectile {
             if (this.tickCount%5==0&&!level.isClientSide&&this.damage>0&&this.getOwner() instanceof LivingEntity living){
                 this.level.getEntitiesOfClass(LivingEntity.class,new AABB(this.getX()-visualRadius,this.getY()-1,this.getZ()-visualRadius, this.getX()+visualRadius,this.getY()+1,this.getZ()+visualRadius),entity->
                         entity!=living&&!(entity instanceof Player)&&entity.isAlive()).forEach(living1 -> {
-                            living1.forceAddEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,200,2),living);
-                            living1.forceAddEffect(new MobEffectInstance(CoreMobEffects.SUNDERED.get(),200,2),living);
+                            living1.forceAddEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,200,lvl),living);
+                            living1.forceAddEffect(new MobEffectInstance(CoreMobEffects.SUNDERED.get(),200,lvl),living);
                             var it = living1.invulnerableTime;
                             var lastHurt = living1.lastHurt;
                             living1.invulnerableTime = 0;
@@ -62,7 +63,7 @@ public class GelCloudEntity extends Projectile {
                 });
             }
             if (this.level instanceof ServerLevel serverLevel){
-                serverLevel.sendParticles(new FluidParticleData(TinkerCommons.fluidParticle.get(), new FluidStack(TinkerFluids.skySlime.get(),1)),this.getX(),this.getY(),this.getZ(),this.tickCount<10?40:10,visualRadius,1,visualRadius,0.05);
+                serverLevel.sendParticles(new FluidParticleData(TinkerCommons.fluidParticle.get(), new FluidStack(TinkerFluids.skySlime.get(),1)),this.getX(),this.getY(),this.getZ(),this.tickCount<10?20:6,visualRadius,1,visualRadius,0.05);
             }
         }
     }

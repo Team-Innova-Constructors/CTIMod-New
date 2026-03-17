@@ -72,7 +72,10 @@ public class AnnihilationPanelRecipeCategory implements IRecipeCategory<Annihila
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, AnnihilationPanelRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT,11,13).addItemStack(new ItemStack(recipe.panel));
+        if (!recipe.itemInput.isEmpty()){
+            builder.addSlot(RecipeIngredientRole.INPUT,11,4).addItemStack(new ItemStack(recipe.panel));
+            builder.addSlot(RecipeIngredientRole.INPUT,11,22).addItemStack(recipe.itemInput);
+        } else builder.addSlot(RecipeIngredientRole.INPUT,11,13).addItemStack(new ItemStack(recipe.panel));
         ArrayList<ItemStack> items =new ArrayList<>(List.copyOf(recipe.itemOutputs));
         ArrayList<FluidStack> fluids =new ArrayList<>(List.copyOf(recipe.fluidOutputs));
         ArrayList<ChemicalStack<?>> chemicals =new ArrayList<>(List.copyOf(recipe.chemicalOutputs));
@@ -151,6 +154,7 @@ public class AnnihilationPanelRecipeCategory implements IRecipeCategory<Annihila
         if (!recipe.condition.description.isEmpty()){
             Minecraft.getInstance().font.draw(stack, Component.translatable(recipe.condition.description).withStyle(Style.EMPTY.withColor(0x3c314b)), 2, 32, 0);
         }
-        Minecraft.getInstance().font.draw(stack, Component.literal(recipe.ticks+" Ticks"), 32, 16, 0);
+        if (!recipe.itemInput.isEmpty())
+            Minecraft.getInstance().font.draw(stack, Component.literal(recipe.ticks+" Ticks"), 32, 16, 0);
     }
 }

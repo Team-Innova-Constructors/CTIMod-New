@@ -32,7 +32,7 @@ public class SlimeExplode extends EtSTBaseModifier {
         if (!context.isExtraAttack()) {
             if (os.getShield(tool) >= 20) {
                 os.addOverslime(tool, modifier, -20);
-                float percentage = 0.25f + Math.min(1f, os.getShield(tool) / 4000f);
+                float percentage = 0.25f + Math.min(modifier.getLevel(), os.getShield(tool) / 4000f);
                 level.getEntitiesOfClass(LivingEntity.class, new AABB(targetCenter.x - 3, targetCenter.y - 3, targetCenter.z - 3, targetCenter.x + 3, targetCenter.y + 3, targetCenter.z + 3), living ->
                         !(living instanceof Player) && living != attacker).forEach(living -> {
                     living.invulnerableTime = 0;
@@ -44,6 +44,7 @@ public class SlimeExplode extends EtSTBaseModifier {
                     GelCloudEntity entity = new GelCloudEntity(level);
                     entity.damage = 4 * modifier.getLevel();
                     entity.radius = 3 + modifier.getLevel();
+                    entity.lvl = modifier.getLevel();
                     entity.setOwner(attacker);
                     entity.setPos(targetCenter);
                     serverLevel.addFreshEntity(entity);

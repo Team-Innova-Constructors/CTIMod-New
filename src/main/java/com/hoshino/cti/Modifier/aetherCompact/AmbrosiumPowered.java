@@ -1,16 +1,14 @@
 package com.hoshino.cti.Modifier.aetherCompact;
 
-import com.aetherteam.aether.entity.AetherEntityTypes;
 import com.aetherteam.aether.item.AetherItems;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.SlotStackModifierHook;
-import com.hoshino.cti.netwrok.CtiPacketHandler;
-import com.hoshino.cti.netwrok.packet.PAmbrosiumChargeC2S;
+import com.hoshino.cti.register.CtiModifiers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
@@ -19,9 +17,6 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraftforge.event.ItemStackedOnOtherEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -36,6 +31,7 @@ import slimeknights.tconstruct.library.modifiers.hook.ranged.ProjectileLaunchMod
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.*;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
@@ -54,7 +50,7 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
     @Override
     public boolean overrideOtherStackedOnMe(IToolStackView slotTool, ModifierEntry modifier, ItemStack held, Slot slot, Player player, SlotAccess access) {
         if (held.is(AetherItems.AMBROSIUM_SHARD.get())&&slot.allowModification(player)){
-            if (!player.level.isClientSide&&slotTool.getPersistentData().getInt(KEY_AMBROSIUM_POWER)<24*modifier.getLevel()){
+            if (!player.level.isClientSide&&slotTool.getPersistentData().getInt(KEY_AMBROSIUM_POWER)<getMaxCharge(modifier)){
                 held.shrink(1);
                 chargeTool(slotTool);
             }
@@ -63,11 +59,40 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
         return false;
     }
 
+    public static int getMaxCharge(ModifierEntry thisModifier){
+        return thisModifier.getLevel()*32;
+    }
+    public static int getMaxCharge(IToolStackView tool){
+        return getMaxCharge(tool.getModifier(CtiModifiers.AMBROSIUM_POWERED.getId()));
+    }
 
 
-    public static void chargeTool(IToolStackView toolStackView){
-        toolStackView.getPersistentData().putInt(KEY_AMBROSIUM_POWER,toolStackView.getPersistentData().getInt(KEY_AMBROSIUM_POWER)+4);
-        ((ToolStack)toolStackView).rebuildStats();
+
+    public static int chargeTool(IToolStackView toolStackView,int amount){
+        if (toolStackView.getModifierLevel(CtiModifiers.AMBROSIUM_POWERED.getId())<=0) return 0;
+        var maxCharge = getMaxCharge(toolStackView);
+        var power = toolStackView.getPersistentData().getInt(KEY_AMBROSIUM_POWER);
+        amount = Mth.clamp(amount,-power,maxCharge-power);
+        boolean shouldRebuild = power==0&&amount!=0;
+        power+=amount;
+        toolStackView.getPersistentData().putInt(KEY_AMBROSIUM_POWER,Math.max(power,0));
+        if (!shouldRebuild) shouldRebuild= power<=0;
+        if (shouldRebuild)
+            ((ToolStack)toolStackView).rebuildStats();
+        return amount;
+    }
+    public static int chargeTool(IToolStackView toolStackView){
+        return chargeTool(toolStackView,4);
+    }
+
+    public static void chargeLiving(LivingEntity living, int amount){
+        for(EquipmentSlot slot:EquipmentSlot.values()){
+            var stack = living.getItemBySlot(slot);
+            if (stack.getItem() instanceof IModifiable){
+                amount-=chargeTool(ToolStack.from(stack));
+                if (amount<=0) break;
+            }
+        }
     }
 
     @Override
@@ -95,30 +120,36 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
 
 
 
-    public static int getBonus(ServerPlayer player){
-        var stats = player.getStats();
-        int bonus=0;
-        if (stats.getValue(Stats.ENTITY_KILLED.get(AetherEntityTypes.VALKYRIE_QUEEN.get()))>0) bonus+=2;
-        if (stats.getValue(Stats.ENTITY_KILLED.get(AetherEntityTypes.SUN_SPIRIT.get()))>0) bonus++;
-        return bonus;
+    public static int getCharge(IToolStackView tool){
+        return tool.getPersistentData().getInt(KEY_AMBROSIUM_POWER);
+    }
+    public static int getAndUseChargeWithMax(IToolStackView toolStackView,int maxUsage){
+        var charge = Math.min(getCharge(toolStackView),maxUsage);
+        chargeTool(toolStackView, (int) (-0.0625f*charge));
+        return charge;
+    }
+    public static int getAndUseCharge(IToolStackView toolStackView){
+        var charge = getCharge(toolStackView);
+        chargeTool(toolStackView, (int) (-0.0625f*charge));
+        return charge;
     }
 
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
-        if (context.getPlayerAttacker() instanceof ServerPlayer serverPlayer) return damage+100*getBonus(serverPlayer);
+        damage+=getAndUseCharge(tool)*2;
         return damage;
     }
 
     @Override
     public void onProjectileLaunch(IToolStackView tool, ModifierEntry modifier, LivingEntity shooter, Projectile projectile, @Nullable AbstractArrow arrow, NamespacedNBT persistentData, boolean primary) {
-        if (shooter instanceof ServerPlayer serverPlayer&&arrow!=null){
-            arrow.setBaseDamage(arrow.getBaseDamage()+100*getBonus(serverPlayer));
+        if (arrow!=null){
+            arrow.setBaseDamage(arrow.getBaseDamage()+getAndUseCharge(tool));
         }
     }
 
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
-        if (context.getEntity() instanceof ServerPlayer serverPlayer) return amount-getBonus(serverPlayer)*0.15f*amount;
+        amount-=getAndUseChargeWithMax(tool, (int) amount)*3;
         return amount;
     }
 }

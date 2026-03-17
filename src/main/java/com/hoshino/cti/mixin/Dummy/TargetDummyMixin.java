@@ -31,13 +31,13 @@ import java.util.Map;
 
 @Mixin(TargetDummyEntity.class)
 public abstract class TargetDummyMixin extends Mob {
-    @Shadow private int lastTickActuallyDamaged;
+    @Shadow(remap = false) private int lastTickActuallyDamaged;
 
-    @Shadow private DamageSource currentDamageSource;
+    @Shadow(remap = false) private DamageSource currentDamageSource;
 
-    @Shadow protected abstract void showDamageDealt(float damage, DamageType type);
+    @Shadow(remap = false) protected abstract void showDamageDealt(float damage, DamageType type);
 
-    @Shadow private boolean critical;
+    @Shadow(remap = false) private boolean critical;
 
     protected TargetDummyMixin(EntityType<? extends Mob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);

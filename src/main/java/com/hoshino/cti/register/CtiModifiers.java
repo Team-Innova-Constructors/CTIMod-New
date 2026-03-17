@@ -6,6 +6,8 @@ import com.hoshino.cti.Modifier.Armor.*;
 import com.hoshino.cti.Modifier.*;
 import com.hoshino.cti.Modifier.Contributors.*;
 import com.hoshino.cti.Modifier.Developer.*;
+import com.hoshino.cti.Modifier.Meme.Fbfq;
+import com.hoshino.cti.Modifier.Meme.Feima;
 import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
@@ -218,6 +220,8 @@ public class CtiModifiers {
     public static final StaticModifier<ReplaceOverempire> REPLACED_OVEREMPIRE = MODIFIERS.register("replaced_overempire", ReplaceOverempire::new);
     public static final StaticModifier<ReplaceOverarmy> REPLACED_OVERARMY = MODIFIERS.register("replaced_overarmy", ReplaceOverarmy::new);
     public static final StaticModifier<SuperOverslime> SUPER_OVERSLIME = MODIFIERS.register("super_overslime", SuperOverslime::new);
+    public static final StaticModifier<Feima> FEIMA_STATIC_MODIFIER = MODIFIERS.register("feima", Feima::new);
+    public static final StaticModifier<Fbfq> FBFQ_STATIC_MODIFIER = MODIFIERS.register("fbfq", Fbfq::new);
     public static final StaticModifier<EnderSuppress> ENDER_SUPPRESS = MODIFIERS.register("ender_suppress", EnderSuppress::new);
     public static final StaticModifier<EnderStictionModifier> ENDER_STICTION = MODIFIERS.register("ender_stiction", EnderStictionModifier::new);
     public static final StaticModifier<ReplaceOverLost> REPLACE_OVERLOST = MODIFIERS.register("replace_overlost", ReplaceOverLost::new);

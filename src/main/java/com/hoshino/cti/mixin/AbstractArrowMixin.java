@@ -1,7 +1,9 @@
 package com.hoshino.cti.mixin;
 
+import com.marth7th.solidarytinker.entity.tinkertrident;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +20,7 @@ public class AbstractArrowMixin {
     @Inject(method = "tick",at = @At(value = "INVOKE", target = "Lnet/minecraftforge/event/ForgeEventFactory;onProjectileImpact(Lnet/minecraft/world/entity/projectile/Projectile;Lnet/minecraft/world/phys/HitResult;)Z",remap = false))
     private void cancelVelocity(CallbackInfo ci){
         AbstractArrow arrow = (AbstractArrow) (Object) this;
+        if(arrow instanceof ThrownTrident||arrow instanceof tinkertrident )return;
         this.cti$deltaMovement = arrow.getDeltaMovement();
         CompoundTag nbt = arrow.getPersistentData();
         if (nbt.getFloat("cti_basedamage")>0) arrow.setBaseDamage(nbt.getFloat("cti_basedamage"));
@@ -28,6 +31,7 @@ public class AbstractArrowMixin {
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/AbstractArrow;getDeltaMovement()Lnet/minecraft/world/phys/Vec3;",ordinal = 1),method = "tick")
     private void addBackVelocity(CallbackInfo ci){
         AbstractArrow arrow = (AbstractArrow) (Object) this;
+        if(arrow instanceof ThrownTrident||arrow instanceof tinkertrident )return;
         if (this.cti$deltaMovement!=null) arrow.setDeltaMovement(this.cti$deltaMovement);
     }
 

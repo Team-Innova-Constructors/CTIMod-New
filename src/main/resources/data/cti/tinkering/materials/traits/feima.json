@@ -1,0 +1,16 @@
+{
+  "default": [
+    {
+      "name": "cti:industrial",
+      "level": 1
+    },
+    {
+      "name": "cti:feima",
+      "level": 1
+    },
+    {
+      "name": "cti:fbfq",
+      "level": 1
+    }
+  ]
+}

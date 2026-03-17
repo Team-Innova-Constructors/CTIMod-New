@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "cti:item/food/etbeer"
+    "layer0": "cti:item/vein/refined_stone"
   }
 }

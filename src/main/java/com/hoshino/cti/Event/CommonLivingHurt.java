@@ -94,7 +94,7 @@ public class CommonLivingHurt {
     @SubscribeEvent
     public static void onLivingJumpFDF(LivingEvent.LivingJumpEvent event) {
         if (event.getEntity() instanceof Player player) {
-            if (GetModifierLevel.getOffhandModifierlevel(player, CtiModifiers.FUCKING_DELTA_FORCE_STATIC_MODIFIER.getId()) > 0) {
+            if (GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.FUCKING_DELTA_FORCE_STATIC_MODIFIER.getId()) > 0) {
                 var amount =player.getPersistentData().getInt("tiao_yi_tiao");
                 if(amount<3){
                     player.getPersistentData().putInt("tiao_yi_tiao",amount+1);
@@ -107,13 +107,13 @@ public class CommonLivingHurt {
                         if(shouldTeam){
                             if(mob.getTarget()==player){
                                 mob.setTarget(null);
-                                mob.setDeltaMovement(new Vec3(0,0.5,0));
-                                mob.getPersistentData().putBoolean("player_teamed",true);
-                                double d0 = mob.getRandom().nextGaussian() * 0.02;
-                                double d1 = mob.getRandom().nextGaussian() * 0.02;
-                                double d2 = mob.getRandom().nextGaussian() * 0.02;
-                                mob.level.addParticle(ParticleTypes.HEART, mob.getRandomX(1.0F), mob.getRandomY() + (double)0.5F, mob.getRandomZ(1.0F), d0, d1, d2);
                             }
+                            mob.setDeltaMovement(new Vec3(0,0.5,0));
+                            mob.getPersistentData().putBoolean("player_teamed",true);
+                            double d0 = mob.getRandom().nextGaussian() * 0.02;
+                            double d1 = mob.getRandom().nextGaussian() * 0.02;
+                            double d2 = mob.getRandom().nextGaussian() * 0.02;
+                            mob.level.addParticle(ParticleTypes.HEART, mob.getRandomX(1.0F), mob.getRandomY() + (double)0.5F, mob.getRandomZ(1.0F), d0, d1, d2);
                         }
                         else {
                             mob.getPersistentData().putBoolean("player_teamed",false);

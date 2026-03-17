@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": { "item": "cti:feima_ingot"},
+  "result": {
+    "fluid": "cti:molten_feima",
+    "amount": 90
+  },
+  "temperature": 1888,
+  "time": 20
+}

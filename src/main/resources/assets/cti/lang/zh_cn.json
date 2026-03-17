@@ -29,6 +29,8 @@
   "item.cti.heart_of_africa": "非洲之心",
   "item.cti.tear_of_sea": "海洋之泪",
 
+  "item.cti.refined_stone": "精炼高能红石",
+
   "item.cti.gossip_of_ratatoskr": "拉塔托斯克之语",
   "cti.tooltip.item.gossip_of_ratatoskr.desc1": "根据玩家难度每级使周围怪物获得额外词条。",
   "cti.tooltip.item.gossip_of_ratatoskr.desc2": "周围怪物会获得当前等级下所有能获得的词条。",
@@ -38,8 +40,10 @@
   "cti.tooltip.item.ring_of_nibelungen.desc2": "佩戴嫉妒诅咒时，当前掉落词条概率",
 
   "item.cti.cokerunit_generator": "焦炭塔生成器",
-  "item.cti.mixer_generator": "搅拌机生成器",
-  "item.cti.pumpjack_generator": "磕头机生成器",
+  "item.cti.arcfurnace_generator": "电弧炉生成器",
+  "item.cti.refinery_generator": "炼油厂生成器",
+  "item.cti.distillationtower_generator": "蒸馏塔生成器",
+  "item.cti.hydrotreater_generator": "高压精炼装置生成器",
 
 
   "effect.cti.ev": "狩猎",
@@ -136,7 +140,7 @@
 
   "modifier.cti.thousand_star_bless": "万众一心",
   "modifier.cti.thousand_star_bless.flavor": "周年纪念强化",
-  "modifier.cti.thousand_star_bless.description":"根据词条总数量提升伤害\n想对你说的都在tooltip了",
+  "modifier.cti.thousand_star_bless.description":"根据词条总数量提升伤害",
 
   "item.cti.awakesaintchef_ingot": "§6觉醒龙皇锭(未完成）",
   "item.cti.molten_awakesaintchef_ingot_bucket": "熔融觉醒龙皇桶",
@@ -173,7 +177,7 @@
 
   "modifier.cti.timetojudge": "审判时刻",
   "modifier.cti.timetojudge.flavor": "自此刻起，下达判决",
-  "modifier.cti.timetojudge.description":"攻击怪物后将永久为其施加“罪恶者”标签，当怪物具有这个标签的时候此生物受到所有伤害增加800%(包括其他玩家伤害和虚空伤害）,并且其收到的所有伤害穿透魔法抗性",
+  "modifier.cti.timetojudge.description":"攻击怪物后将永久为其施加“罪恶者”标签，当怪物具有这个标签的时候此生物受到所有伤害增加388%(包括其他玩家伤害和虚空伤害）,并且其收到的所有伤害穿透魔法抗性",
 
   "modifier.cti.netherfire": "地狱之火",
   "modifier.cti.netherfire.flavor": "最后审判已至",
@@ -312,9 +316,11 @@
   "item.cti.protonium_ammo": "质子机枪弹药",
   "item.cti.electronium_ammo": "电子机枪弹药",
 
-  "item.cti.upgrade_augment_4": "钛锆整合组件",
+  "item.cti.upgrade_augment_4": "硬铅整合组件",
   "item.cti.upgrade_augment_5": "彩钢整合组件",
-  "item.cti.upgrade_augment_6": "活化彩钢整合组件",
+  "item.cti.upgrade_augment_6": "钛锆整合组件",
+  "item.cti.upgrade_augment_7": "极寒整合组件",
+  "item.cti.upgrade_augment_8": "活彩整合组件",
 
   "item.cti.extereme_dyano_augment": "恶念燃烧室组件",
   "item.cti.extereme_speed_augment": "恶念速度提升组件",
@@ -776,7 +782,7 @@
 
   "modifier.cti.commongobberbless": "戈伯恩惠",
   "modifier.cti.commongobberbless.flavor": "旅途的开始",
-  "modifier.cti.commongobberbless.description":"伤害每级增加15%，并且缓慢恢复饱食度.作为盔甲时每级减少6%收到的伤害\n[特殊效果]作为近战武器，对凋灵会附带6%最大生命的伤害(六百六十六，这个玩家开桂了)",
+  "modifier.cti.commongobberbless.description":"伤害每级增加15%，并且缓慢恢复饱食度.作为盔甲时每级减少6%收到的伤害\n[特殊效果]作为近战武器，对凋灵会附带6%最大生命的伤害",
 
   "modifier.cti.nethergobberbless": "下界戈伯恩惠",
   "modifier.cti.nethergobberbless.flavor": "焱狱与苦难",
@@ -1196,6 +1202,14 @@
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
   "modifier.cti.super_overslime.description":"黏液覆层上限变为200倍。",
 
+  "item.cti.feima_ingot": "费马锭",
+  "item.cti.molten_feima_bucket": "熔融费马桶",
+  "fluid.cti.molten_feima": "熔融费马",
+
+  "material.cti.feima": "费马",
+  "material.cti.feima.flavor": "不要去练也不要去搜辣个",
+  "material.cti.feima.encyclopedia": "怨念的化身",
+
   "modifier.cti.ender_stiction": "末影黏滞",
   "modifier.cti.ender_stiction.flavor": "黏住了空间",
   "modifier.cti.ender_stiction.description":"每级+500黏液覆层上限，攻击时每级消耗5黏液覆层+25近战伤害。\n ·攻击时额外消耗5黏液覆层移除无敌帧，消耗5黏液覆层造成末影黏滞效果阻止对方传送。",
@@ -1241,6 +1255,13 @@
   "modifier.cti.quantum_entangled.description":"对工具附加0.5倍顶端材料的手柄属性、0.5倍手柄材料的顶端属性、0.25倍绑定节材料的手柄和顶端属性、1倍其它部件材料的手柄和顶端属性。",
 
 
+  "modifier.cti.fbfq": "废八分钱",
+  "modifier.cti.fbfq.flavor": "不要说辣个",
+  "modifier.cti.fbfq.description":"当你SDM商店有大于1000钱时候,每多八分钱(1铜币对应价值为1分)会提升0.1%伤害,还会额外乘上词条等级",
+
+  "modifier.cti.feima": "费马定理",
+  "modifier.cti.feima.flavor": "不存在的整数解",
+  "modifier.cti.feima.description":"攻击次数为2的倍数时附加一次生命值为底,护甲值为高,伤害为斜边的魔法伤害,攻击次数为3的倍数时候则该攻击基础伤害仅有1",
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

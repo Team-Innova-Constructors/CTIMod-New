@@ -19,6 +19,7 @@ public class AetherPortalMixin {
     private void preventPlayerTeleport(Entity entity, CallbackInfo ci) {
         if (!(entity instanceof ServerPlayer serverPlayer)) return;
         if(serverPlayer.gameMode.isCreative())return;
+
         if (!AdvanceMentHelper.hasCompletedAdvancement(serverPlayer, new ResourceLocation(TwilightForestMod.ID, "progress_castle"))&&!CurseUtil.whetherAetherAllow(serverPlayer)){
             serverPlayer.displayClientMessage(Component.literal("你现在还没完成暮色,登上暮色最高的城堡后,或者使用余烬之灯再来吧,天镜的怪对你来说太过于凶猛了"), true);
             ci.cancel();

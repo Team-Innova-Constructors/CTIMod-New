@@ -6,6 +6,7 @@ import com.c2h6s.etshtinker.init.EtshtinkerModifiers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
+import com.marth7th.solidarytinker.register.solidarytinkerModifierMekEtsh;
 import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import com.xiaoyue.tinkers_ingenuity.register.TIModifiers;
@@ -44,6 +45,8 @@ public abstract class RagnarokTraitMixin {
         sealModifier.add(CtiModifiers.VALKYRIE_BLESS.get());//女武神
         sealModifier.add(CtiModifiers.PHOENIX.get());//凤凰
         sealModifier.add(TIModifiers.SEA_DREAM.get());//海梦
+        sealModifier.add(solidarytinkerModifiers.HOU_GUO_YU_STATIC_MODIFIER.get());
+        sealModifier.add(solidarytinkerModifierMekEtsh.FLUX_ARMOR_STATIC_MODIFIER.get());
         sealModifier.add(CtiModifiers.NONSTOP_INSATIABLE.get());//格莱特
         for (Modifier modifier : sealModifier) {
             if (ModifierUtil.getModifierLevel(access.get(), modifier.getId()) > 0) {

@@ -2,7 +2,7 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "cti:item/augments/upgrade_augment_4",
-    "layer1": "cti:item/augments/upgrade_augment_4_lights",
+    "layer1": "cti:item/augments/upgrade_augment_6_lights",
     "layer2": "cti:item/augments/upgrade_augment_anim"
   }
 }

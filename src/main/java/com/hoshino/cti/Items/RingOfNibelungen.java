@@ -23,7 +23,7 @@ public class RingOfNibelungen extends CurseCurioItem {
         super(properties.rarity(Rarity.EPIC));
     }
     private static final String NAME = "cti:nibelungen";
-    private final int extraLevel = 500;
+    private final int extraLevel = 200;
 
     @Override
     public int getExtraLevel(ItemStack stack) {
@@ -52,15 +52,10 @@ public class RingOfNibelungen extends CurseCurioItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         int total = stack.getOrCreateTag().getInt(NAME);
-        double b = Mth.clamp((double) total / 9800, 0, 1);
         var totalRate=0.02+getExtraRate(total);
         String rateText = String.format("%.2f%%", totalRate * 100);
-        if (b >= 1) {
-            list.add(Component.translatable("cti.tooltip.item.ring_of_nibelungen.desc2").withStyle(ChatFormatting.GOLD).append(rateText).withStyle(style -> style.withColor(0xffaaff)));
-        } else {
-            list.add(Component.translatable("cti.tooltip.item.ring_of_nibelungen.desc1").withStyle(ChatFormatting.GOLD));
-        }
-        list.add(LangData.ITEM_CHARM_ADD_LEVEL.get(extraLevel).withStyle(ChatFormatting.RED));
+        list.add(Component.translatable("cti.tooltip.item.ring_of_nibelungen.desc2").withStyle(ChatFormatting.GOLD).append(rateText).withStyle(style -> style.withColor(0xffaaff)));
+        list.add(Component.translatable("cti.tooltip.item.ring_of_nibelungen.desc1").withStyle(ChatFormatting.GOLD));
         list.add(LangData.ITEM_CHARM_ADD_LEVEL.get(extraLevel).withStyle(ChatFormatting.RED));
     }
 }

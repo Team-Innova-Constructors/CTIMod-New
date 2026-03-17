@@ -74,6 +74,7 @@ public class CtiItem {
     public static final RegistryObject<Item> enriched_mana = ITEMS.register("enriched_mana", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> fox_ingot = ITEMS.register("fox_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> uriel_ingot = ITEMS.register("uriel_ingot", () -> new uriel_ingot(new Item.Properties().tab(CtiTab.MATERIALS)));
+    public static final RegistryObject<Item> feima_ingot = ITEMS.register("feima_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
 
 
     public static final RegistryObject<Item> stellar_manyullyn = ITEMS.register("stellar_manyullyn", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.etsh").withStyle(ChatFormatting.LIGHT_PURPLE))));
@@ -217,10 +218,18 @@ public class CtiItem {
             .type(TAG_FLUID)
             .mod(TAG_AUGMENT_FLUID_STORAGE, 16.0F)
             .build())).setShowInGroups(ThermalFlags.getFlag(ThermalFlags.FLAG_STORAGE_AUGMENTS)));
+
+
+
+    //4级-硬铅组件-6x
+    //5级-彩钢组件-8x
+    //6级-钛锆组件-10x
+    //7级-极寒组件-13x
+    //8级-活彩组件-15x
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_4 = ITEMS.register("upgrade_augment_4", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 5)
-            .mod(TAG_MACHINE_PARALLEL,1)
+            .mod(TAG_MACHINE_PARALLEL,2)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_5 = ITEMS.register("upgrade_augment_5", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
@@ -230,8 +239,18 @@ public class CtiItem {
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
     public static final RegistryObject<Item> UPGRADE_AUGMENTS_6 = ITEMS.register("upgrade_augment_6", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
-            .mod(TAG_AUGMENT_BASE_MOD, 14)
-            .mod(TAG_MACHINE_PARALLEL,15)
+            .mod(TAG_AUGMENT_BASE_MOD, 9)
+            .mod(TAG_MACHINE_PARALLEL,4)
+            .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_7 = ITEMS.register("upgrade_augment_7", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+            .type(TAG_AUGMENT_TYPE_UPGRADE)
+            .mod(TAG_AUGMENT_BASE_MOD, 11)
+            .mod(TAG_MACHINE_PARALLEL,5)
+            .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_8 = ITEMS.register("upgrade_augment_8", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+            .type(TAG_AUGMENT_TYPE_UPGRADE)
+            .mod(TAG_AUGMENT_BASE_MOD, 13)
+            .mod(TAG_MACHINE_PARALLEL,6)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     //黑雾级别
@@ -302,6 +321,8 @@ public class CtiItem {
     public static final RegistryObject<Item> star_ionize = ITEMS.register("star_ionize", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> star_pressure = ITEMS.register("star_pressure", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> refined_stone = ITEMS.register("refined_stone", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MIXC),List.of(Component.literal("更高能量的精炼红石,可在powah反应堆提供400点红石能量").withStyle(style -> style.withColor(0xffaaff)))));
+
     //佛糖
     public static final RegistryObject<Item> heng_sugar = ITEMS.register("heng_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.heng.get()));
     public static final RegistryObject<Item> ha_sugar = ITEMS.register("ha_sugar", () -> new FoSugar(new Item.Properties().tab(CtiTab.MIXC),CtiEffects.ha.get()));
@@ -313,7 +334,8 @@ public class CtiItem {
     public static final RegistryObject<Item> mixer_generator = ITEMS.register("refinery_generator", () -> new IEMultiblockGenerator("immersiveengineering:multiblocks/refinery"));
     public static final RegistryObject<Item> arcfurnace_generator = ITEMS.register("arcfurnace_generator", () -> new IEMultiblockGenerator("immersiveengineering:multiblocks/arcfurnace"));
     public static final RegistryObject<Item> cokerunit_generator = ITEMS.register("cokerunit_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/cokerunit"));
-    public static final RegistryObject<Item> pumpjack_generator = ITEMS.register("distillationtower_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/distillationtower"));
+    public static final RegistryObject<Item> distillationtower_generator = ITEMS.register("distillationtower_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/distillationtower"));
+    public static final RegistryObject<Item> hydrotreater_generator = ITEMS.register("hydrotreater_generator", () -> new IEMultiblockGenerator("immersivepetroleum:multiblocks/hydrotreater"));
 
     //矿脉生成
     public static final RegistryObject<Item> IE_VEIN_SEED = ITEMS.register("ie_vein_seed", IEVeinGeneratorItem::new);

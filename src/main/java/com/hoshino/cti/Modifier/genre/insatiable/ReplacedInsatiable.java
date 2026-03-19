@@ -6,6 +6,6 @@ import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 public class ReplacedInsatiable extends BasicInsatiableModifier{
     @Override
     public float getMaxInsatiableBonus(IToolContext context, ModifierEntry modifier) {
-        return 8;
+        return 16;
     }
 }

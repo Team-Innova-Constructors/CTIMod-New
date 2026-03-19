@@ -8,7 +8,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 public class ReplacedBenthamism extends BasicInsatiableModifier{
     @Override
     public float getMaxInsatiableBonus(IToolContext context, ModifierEntry modifier) {
-        return 128;
+        return 192;
     }
 
     @Override

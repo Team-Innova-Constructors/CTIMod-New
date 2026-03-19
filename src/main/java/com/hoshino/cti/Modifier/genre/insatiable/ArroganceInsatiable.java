@@ -26,7 +26,7 @@ public class ArroganceInsatiable extends BasicInsatiableModifier{
 
     @Override
     public float getMaxInsatiableBonus(IToolContext context, ModifierEntry modifier) {
-        return 72*modifier.getLevel();
+        return 96*modifier.getLevel();
     }
 
     @Override

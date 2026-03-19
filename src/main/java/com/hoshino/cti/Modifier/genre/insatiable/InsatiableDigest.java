@@ -29,6 +29,6 @@ public class InsatiableDigest extends BasicInsatiableModifier{
 
     @Override
     public float getMaxInsatiableBonus(IToolContext context, ModifierEntry modifier) {
-        return 32;
+        return 48;
     }
 }

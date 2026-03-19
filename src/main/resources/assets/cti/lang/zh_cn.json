@@ -1140,7 +1140,7 @@
 
   "modifier.cti.replaced_insatiable": "贪婪",
   "modifier.cti.replaced_insatiable.flavor": "出识真味，力量无垠！",
-  "modifier.cti.replaced_insatiable.description":"+8最大贪婪等级，攻击/防御时每级+1贪婪等级。",
+  "modifier.cti.replaced_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+1贪婪等级。",
 
   "modifier.cti.stone_cold_replaced": "冷血",
   "modifier.cti.stone_cold_replaced.flavor": "莫得感情",
@@ -1148,11 +1148,11 @@
 
   "modifier.cti.evil_insatiable": "极恶之贪",
   "modifier.cti.evil_insatiable.flavor": "贪婪一切，嫉妒一切，毁灭一切",
-  "modifier.cti.evil_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪等级到达上限时使贪婪的增伤效果翻倍。",
+  "modifier.cti.evil_insatiable.description":"+24最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪等级到达上限时使贪婪的增伤效果翻倍。",
 
   "modifier.cti.replaced_benthamism": "功利主义",
   "modifier.cti.replaced_benthamism.flavor": "功利至上！",
-  "modifier.cti.replaced_benthamism.description":"+128最大贪婪等级，攻击/防御时每级+4贪婪等级，但是每级令攻击伤害叠乘0.75倍。",
+  "modifier.cti.replaced_benthamism.description":"+192最大贪婪等级，攻击/防御时每级+4贪婪等级，但是每级令攻击伤害叠乘0.75倍。",
 
   "modifier.cti.replaced_well_trained": "训练有素",
   "modifier.cti.replaced_well_trained.flavor": "优雅的爵士",
@@ -1160,11 +1160,11 @@
 
   "modifier.cti.insatiable_digest": "暴食贪婪",
   "modifier.cti.insatiable_digest.flavor": "吞噬万物",
-  "modifier.cti.insatiable_digest.description":"每级+32最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
+  "modifier.cti.insatiable_digest.description":"每级+48最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
 
   "modifier.cti.arrogance_insatiable": "傲慢贪婪",
   "modifier.cti.arrogance_insatiable.flavor": "你瞧不起那些凭词条取胜的怪物，并想从它们身上大捞特捞。",
-  "modifier.cti.arrogance_insatiable.description":"每级+72最大贪婪等级，攻击/防御时每级+6贪婪等级。\n 攻击高恶意等级的敌人会有特殊效果：\n  ·256级以上时+16贪婪等级。\n  ·512级以上时+256临时最大贪婪。\n  ·1024级以上时追加64*4伤害。",
+  "modifier.cti.arrogance_insatiable.description":"每级+96最大贪婪等级，攻击/防御时每级+6贪婪等级。\n 攻击高恶意等级的敌人会有特殊效果：\n  ·256级以上时+16贪婪等级。\n  ·512级以上时+256临时最大贪婪。\n  ·1024级以上时追加64*4伤害。",
 
   "modifier.cti.shadow_slash": "斩影",
   "modifier.cti.shadow_slash.flavor": "你在砍什么？",
@@ -1232,7 +1232,7 @@
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_insatiable.description":"每级+32最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·没有贪婪效果时消耗100黏液覆层获得一半于最大贪婪的贪婪等级，并每秒消耗1黏液覆层维持贪婪等级，贪婪等级超过一半时不生效。",
+  "modifier.cti.united_insatiable.description":"每级+48最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·没有贪婪效果时消耗100黏液覆层获得一半于最大贪婪的贪婪等级，并每秒消耗1黏液覆层维持贪婪等级，贪婪等级超过一半时不生效。",
 
   "modifier.cti.overfill": "黏液转置",
   "modifier.cti.overfill.flavor": "就像个充电宝",
@@ -1322,7 +1322,7 @@
   "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过35000的dps时产生",
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
-  "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲之后每级+0.5。注意：贪婪效果通常只会存在15秒。",
+  "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25。注意：贪婪效果通常只会存在15秒。",
   "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。",
 
   "info.cti.overslime_value": "黏液覆层补充量：",

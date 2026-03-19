@@ -24,6 +24,6 @@ public class EvilInsatiable extends BasicInsatiableModifier {
 
     @Override
     public float getMaxInsatiableBonus(IToolContext context, ModifierEntry modifier) {
-        return 16;
+        return 24;
     }
 }

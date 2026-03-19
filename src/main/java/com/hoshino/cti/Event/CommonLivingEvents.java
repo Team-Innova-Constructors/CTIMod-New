@@ -354,7 +354,7 @@ public class CommonLivingEvents {
             List.of(ToolType.MELEE, ToolType.ARMOR).forEach(toolType -> {
                 var insatiable = livingAttacker.getEffect(TinkerModifiers.insatiableEffect.get(toolType));
                 if (insatiable!=null) {
-                    var bonus = (insatiable.getAmplifier() * 0.5f) + 0.5f;
+                    var bonus = (insatiable.getAmplifier() * 0.25f) + 0.25f;
                     var manager = EntityTickerManager.getInstance(attacker);
                     var ticker = manager.getTicker(CtiEntityTickers.SOUL.get());
                     if (ticker!=null)

@@ -42,6 +42,7 @@ public class ReplaceOverlostArmor extends BasicOverslimeModifier implements Modi
             var slowEffect = living.getEffect(MobEffects.MOVEMENT_SLOWDOWN);
             if (slowEffect!=null){
                 var boost = slowEffect.getAmplifier()+1;
+                boost=Math.min(boost,10);
                 var os = TinkerModifiers.overslime.get();
                 if (os.getShield(tool)>=boost){
                     os.addOverslime(tool,modifier,-boost);

@@ -1,5 +1,6 @@
 package com.hoshino.cti.util.method;
 
+import com.xiaoyue.tinkers_ingenuity.register.TIItems;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -135,7 +136,7 @@ public class GetModifierLevel {
                     for (ICurioStacksHandler curios : handler.resolve().get().getCurios().values()) {
                         for (int i = 0; i < curios.getSlots(); ++i) {
                             ItemStack stack = curios.getStacks().getStackInSlot(i);
-                            if (!stack.isEmpty() && stack.is(TinkerTags.Items.MODIFIABLE)) {
+                            if (!stack.isEmpty() && stack.is(TIItems.TINKER_RING.get())) {
                                 list.add(stack);
                             }
                         }

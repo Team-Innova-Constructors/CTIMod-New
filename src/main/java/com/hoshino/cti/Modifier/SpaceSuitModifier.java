@@ -12,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -44,8 +45,18 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
     @Override
     public void onInventoryTick(IToolStackView iToolStackView, @NotNull ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int i, boolean b, boolean b1, ItemStack itemStack) {
         if (iToolStackView.hasTag(TinkerTags.Items.HELMETS)&&livingEntity.isInWater() &&level.getGameTime()%10==0&&hasOxygen(iToolStackView,modifierEntry)){
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 12, 0, false, false));
-            consumeOxygen(iToolStackView,modifierEntry);
+            if (!b1 || !(livingEntity instanceof Player player)) return;
+            if (player.tickCount % 10 != 0) return;
+            var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
+            if (fluidContainerStack == null) {
+                if (hasOxygen(iToolStackView,modifierEntry) && player.getAirSupply() < player.getMaxAirSupply()) {
+                    consumeOxygen(iToolStackView,modifierEntry);
+                    player.setAirSupply(player.getMaxAirSupply());
+                }
+            } else if (tankHasOxygen(player, modifierEntry)&& player.getAirSupply() < player.getMaxAirSupply()) {
+                consumeTankOxygen(player, modifierEntry);
+                player.setAirSupply(player.getMaxAirSupply());
+            }
         }
     }
 

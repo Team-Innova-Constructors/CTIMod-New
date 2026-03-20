@@ -5,6 +5,7 @@ import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,22 +39,6 @@ public class CommonLivingHurt {
         }
         if (entity.getPersistentData().getBoolean("star_extra_hurt")) {
             event.setAmount(event.getAmount() * 33f);
-        }
-        if (event.getSource().getEntity() instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
-            var curseNBT = CurseUtil.getCurseCurioData(player);
-            if (curseNBT == null) return;
-            boolean activated = curseNBT.getBoolean("dongzhuo");
-            if (activated) {
-                event.setAmount(event.getAmount() * 1.35f);
-            }
-        }
-        if (entity instanceof Player player && SuperpositionHandler.isTheCursedOne(player)) {
-            var curseNBT = CurseUtil.getCurseCurioData(player);
-            if (curseNBT == null) return;
-            boolean activated = curseNBT.getBoolean("dongzhuo");
-            if (activated) {
-                event.setAmount(event.getAmount() * 1.35f);
-            }
         }
     }
 
@@ -94,7 +79,7 @@ public class CommonLivingHurt {
     @SubscribeEvent
     public static void onLivingJumpFDF(LivingEvent.LivingJumpEvent event) {
         if (event.getEntity() instanceof Player player) {
-            if (GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.FUCKING_DELTA_FORCE_STATIC_MODIFIER.getId()) > 0) {
+            if (GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.FUCKING_DELTA_FORCE_STATIC_MODIFIER.getId()) > 0||GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.COLDFETTERS_STATIC_MODIFIER.getId())>0) {
                 var amount =player.getPersistentData().getInt("tiao_yi_tiao");
                 if(amount<3){
                     player.getPersistentData().putInt("tiao_yi_tiao",amount+1);

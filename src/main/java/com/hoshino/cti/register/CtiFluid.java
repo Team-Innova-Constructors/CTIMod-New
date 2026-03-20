@@ -95,32 +95,32 @@ public class CtiFluid {
     public static final FluidObject<ForgeFlowingFluid> LAVA_OVERHEATED = register("lava_overheated", 3500,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-            pEntity.invulnerableTime=3;
+            if(pEntity.invulnerableTime!=0)return;
             pEntity.hurt(DamageSource.LAVA,2);
-            pEntity.invulnerableTime=3;
+            pEntity.invulnerableTime=4;
         }
     });
     public static final FluidObject<ForgeFlowingFluid> LAVA_GASEOUS = register("lava_gaseous", 5000,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-            pEntity.invulnerableTime=3;
+            if(pEntity.invulnerableTime!=0)return;
             pEntity.hurt(DamageSource.LAVA.bypassArmor().bypassMagic(),5);
-            pEntity.invulnerableTime=3;
+            pEntity.invulnerableTime=4;
         }
     });
     public static final FluidObject<ForgeFlowingFluid> LAVA_PLASMATIC = register("lava_plasmatic", 7000,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
-            pEntity.invulnerableTime=2;
+            if(pEntity.invulnerableTime!=0)return;
             pEntity.hurt(EDamageSource.scorched(true,5),6);
-            pEntity.invulnerableTime=2;
+            pEntity.invulnerableTime=3;
         }
     });
     public static final FluidObject<ForgeFlowingFluid> LAVA_ATOMIC = register("lava_atomic", 9000,supplier -> new LiquidBlock(supplier,BlockBehaviour.Properties.of(Material.LAVA)){
         @Override
         public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
             if (pEntity instanceof LivingEntity living) {
-                pEntity.invulnerableTime = 2;
+                if(living.invulnerableTime!=0)return;
                 ThroughSources.atomic(10).hurtEntity(living);
                 pEntity.invulnerableTime = 2;
             }

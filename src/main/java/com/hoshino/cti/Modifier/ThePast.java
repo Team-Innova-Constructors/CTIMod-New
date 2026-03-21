@@ -64,7 +64,7 @@ public class ThePast extends Modifier implements ModifyDamageModifierHook , Inve
             baseDurability= baseDurability+ToolStack.from(stack).getCurrentDurability();
         }
         float DurabilityDamage=baseDurability * 0.002f;
-        float baseDamage=DurabilityDamage + entity.getMaxHealth() * 0.6f + entity.getArmorValue() * 0.9f;
+        float baseDamage=DurabilityDamage + entity.getMaxHealth() * 0.3f + entity.getArmorValue() * 0.45f;
         if (shouldHurtOwner && !hasIncrease) {
             entity.hurt(source, baseDamage + modifier.getLevel());
             targets.forEach(mob -> runHurt(mob,source,baseDamage *modifier.getLevel()));
@@ -73,7 +73,7 @@ public class ThePast extends Modifier implements ModifyDamageModifierHook , Inve
         } else {
             targets.forEach(mob -> runHurt(mob,source, baseDamage *modifier.getLevel()));
         }
-        entity.level.playSound(null, entity.getOnPos(), CtiSounds.armor_broken.get(), SoundSource.AMBIENT, 1, 1);
+        entity.level.playSound(null, entity.getOnPos(), CtiSounds.armor_broken.get(), SoundSource.AMBIENT, 0.6f, 1);
         return amount;
     }
 

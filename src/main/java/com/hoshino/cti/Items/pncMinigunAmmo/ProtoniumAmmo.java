@@ -35,7 +35,7 @@ public class ProtoniumAmmo extends AbstractGunAmmoItem {
 
     @Override
     protected float getDamageMultiplier(Entity target, ItemStack ammoStack) {
-        return 20f;
+        return 70f;
     }
 
     @Override

@@ -5,9 +5,7 @@ import blusunrize.immersiveengineering.api.excavator.MineralVein;
 import blusunrize.immersiveengineering.common.items.IEBaseItem;
 import blusunrize.immersiveengineering.common.items.SurveyToolsItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,6 +19,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec2;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = SurveyToolsItem.class,remap = false)
 public abstract class SurveyToolsItemMixin extends IEBaseItem{
@@ -40,7 +41,10 @@ public abstract class SurveyToolsItemMixin extends IEBaseItem{
             return InteractionResult.SUCCESS;
         }
     }
-
+    @Inject(method = "m_8105_",at = @At("HEAD"), cancellable = true)
+    public void getUseTick(ItemStack stack, CallbackInfoReturnable<Integer> cir){
+        cir.setReturnValue(10);
+    }
     /**
      * @author firefly
      * @reason 受够了原本的繁文缛节

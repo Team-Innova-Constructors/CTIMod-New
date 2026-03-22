@@ -18,10 +18,11 @@ public class ReworkedOmnipotent extends NoLevelsModifier implements ModifierTrai
     @Override
     public void addTraits(IToolContext context, ModifierEntry modifier, TraitBuilder builder, boolean firstEncounter) {
         if (!firstEncounter) return;
-        context.getModifierList().forEach(modifierEntry -> {
-                    if (modifierEntry.getId() == CtiModifiers.OMNIPOTENT.getId()) return;
-                    builder.add(modifierEntry.getId(), 1);
-                }
-        );
+        for (ModifierEntry entry : context.getModifierList()) {
+            if (entry.getId().equals(CtiModifiers.OMNIPOTENT.getId())) {
+                continue;
+            }
+            builder.add(entry.getId(),1);
+        }
     }
 }

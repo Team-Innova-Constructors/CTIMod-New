@@ -19,7 +19,7 @@ public class ReplacedOvergrowth extends EtSTBaseModifier implements IModifierWit
 
     @Override
     public void modifierOnInventoryTick(IToolStackView tool, ModifierEntry modifier, Level level, LivingEntity holder, int itemSlot, boolean isSelected, boolean isCorrectSlot, ItemStack itemStack) {
-        if (!level.isClientSide && holder.tickCount % Math.max(10,40-(modifier.getLevel()*10)) == 0) {
+        if (!level.isClientSide && holder.tickCount % Math.max(10,40-(modifier.getLevel()*10)) == 0&&tool.getItem()!=CtiItem.SLIME_CAN.get()) {
             OverslimeModifier overslime = TinkerModifiers.overslime.get();
             ModifierEntry entry = tool.getModifier(TinkerModifiers.overslime.getId());
             if (entry.getLevel() > 0 && overslime.getShield(tool) < overslime.getShieldCapacity(tool, entry)) {

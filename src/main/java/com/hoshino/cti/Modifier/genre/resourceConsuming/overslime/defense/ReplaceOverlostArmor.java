@@ -33,7 +33,7 @@ public class ReplaceOverlostArmor extends BasicOverslimeModifier implements Modi
 
     @Override
     public int getConsumption(IToolContext context, ModifierEntry modifier) {
-        return 5;
+        return 2;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ReplaceOverlostArmor extends BasicOverslimeModifier implements Modi
                 var os = TinkerModifiers.overslime.get();
                 if (os.getShield(tool)>=boost){
                     os.addOverslime(tool,modifier,-boost);
-                    amount-=boost*5;
+                    amount-=boost*10;
                 }
             }
         }

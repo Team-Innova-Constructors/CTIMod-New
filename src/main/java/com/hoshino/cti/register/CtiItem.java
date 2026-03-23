@@ -101,6 +101,7 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> rasterite = ITEMS.register("rasterite", () -> new BlockItem(CtiBlock.rasterite.get(), new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<BlockItem> rasterite_budding = ITEMS.register("rasterite_budding", () -> new BlockItem(CtiBlock.rasterite_budding.get(), new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<BlockItem> meteorite_ore = ITEMS.register("meteorite_ore", () -> new BlockItem(CtiBlock.meteorite_ore.get(), new Item.Properties().tab(CtiTab.MIXC)));
+    public static final RegistryObject<BlockItem> quantum_meteorite_ore = ITEMS.register("quantum_meteorite_ore", () -> new BlockItem(CtiBlock.meteorite_ore.get(), new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<StoriedMaterial> xenoglarium_ingot = ITEMS.register("xenoglarium_ingot", () -> new StoriedMaterial(new Item.Properties().tab(CtiTab.MATERIALS), List.of(
             Component.translatable("cti.tooltip.item.xenoglarium_ingot").withStyle(ChatFormatting.AQUA),
             Component.translatable("cti.tooltip.item.xenoglarium_ingot2").withStyle(ChatFormatting.DARK_AQUA),

@@ -58,6 +58,12 @@ public class CtiBlock {
     public static final RegistryObject<Block> rasterite_budding = BLOCK.register("rasterite_budding", () -> new RasteriteBudding(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel((BlockStateBase) -> 5).sound(SoundType.AMETHYST).randomTicks()));
     public static final RegistryObject<Block> fracture_silicon_budding = BLOCK.register("fracture_silicon_budding", () -> new FractureSiliconBudding(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel((BlockStateBase) -> 15).sound(SoundType.AMETHYST).randomTicks()));
     public static final RegistryObject<Block> meteorite_ore = BLOCK.register("meteorite_ore", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.ANCIENT_DEBRIS).lightLevel((BlockStateBase) -> 3)));
+    public static final RegistryObject<Block> quantum_meteorite_ore = BLOCK.register("quantum_meteorite_ore", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.ANCIENT_DEBRIS).lightLevel((BlockStateBase) -> 15)){
+        @Override
+        public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+            return List.of( new ItemStack(this.asItem()));
+        }
+    });
     public static final RegistryObject<GlassBlock> aluminium_glass = BLOCK.register("aluminium_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS,MaterialColor.COLOR_YELLOW)
             .sound(SoundType.GLASS).strength(5)
             .noOcclusion()

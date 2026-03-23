@@ -34,6 +34,11 @@ public class ValkyrieBless extends EtSTBaseModifier implements PlasmaExplosionHi
         builder.addHook(this,etshtinkerHook.AFTER_SLASH_HIT,etshtinkerHook.PLASMA_EXPLOSION_HIT,etshtinkerHook.BEFORE_SLASH_HIT);
     }
 
+    @Override
+    public int getPriority() {
+        return 125;
+    }
+
     public static boolean b1 = false;
 
     @Override
@@ -56,7 +61,7 @@ public class ValkyrieBless extends EtSTBaseModifier implements PlasmaExplosionHi
     }
 
     @Override
-    public void postMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage) {
+    public float onGetMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         if (context.isFullyCharged()&&context.getTarget() instanceof LivingEntity) {
             Entity entity = context.getTarget();
             entity.invulnerableTime = 0;
@@ -78,6 +83,7 @@ public class ValkyrieBless extends EtSTBaseModifier implements PlasmaExplosionHi
             }
 
         }
+        return damage;
     }
 
     @Override

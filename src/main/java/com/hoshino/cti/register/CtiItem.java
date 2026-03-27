@@ -4,6 +4,9 @@ import appeng.api.parts.PartModels;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
 import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.thermal.core.ThermalCore;
+import cofh.thermal.core.util.RegistrationHelper;
+import cofh.thermal.lib.common.ThermalAugmentRules;
 import cofh.thermal.lib.common.ThermalFlags;
 import cofh.thermal.lib.item.AugmentItem;
 import com.c2h6s.etshtinker.Items.StoriedMaterial;
@@ -226,28 +229,34 @@ public class CtiItem {
     //6级-钛锆组件-10x
     //7级-极寒组件-13x
     //8级-活彩组件-15x
-    public static final RegistryObject<Item> UPGRADE_AUGMENTS_4 = ITEMS.register("upgrade_augment_4", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+   public static void setUp() {
+        ThermalAugmentRules.flagUniqueAugment(CtiItem.UPGRADE_AUGMENTS_4.get());
+        ThermalAugmentRules.flagUniqueAugment(CtiItem.UPGRADE_AUGMENTS_5.get());
+        ThermalAugmentRules.flagUniqueAugment(CtiItem.UPGRADE_AUGMENTS_6.get());
+        ThermalAugmentRules.flagUniqueAugment(CtiItem.UPGRADE_AUGMENTS_7.get());
+        ThermalAugmentRules.flagUniqueAugment(CtiItem.UPGRADE_AUGMENTS_8.get());
+    }
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_4 = ITEMS.register("upgrade_augment_4", () -> new AugmentItem(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 5)
             .mod(TAG_MACHINE_PARALLEL,2)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
-
-    public static final RegistryObject<Item> UPGRADE_AUGMENTS_5 = ITEMS.register("upgrade_augment_5", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_5 = ITEMS.register("upgrade_augment_5", () -> new AugmentItem(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 7)
             .mod(TAG_MACHINE_PARALLEL,3)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
-    public static final RegistryObject<Item> UPGRADE_AUGMENTS_6 = ITEMS.register("upgrade_augment_6", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_6 = ITEMS.register("upgrade_augment_6", () -> new AugmentItem(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 9)
             .mod(TAG_MACHINE_PARALLEL,4)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
-    public static final RegistryObject<Item> UPGRADE_AUGMENTS_7 = ITEMS.register("upgrade_augment_7", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_7 = ITEMS.register("upgrade_augment_7", () -> new AugmentItem(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 11)
             .mod(TAG_MACHINE_PARALLEL,5)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
-    public static final RegistryObject<Item> UPGRADE_AUGMENTS_8 = ITEMS.register("upgrade_augment_8", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_8 = ITEMS.register("upgrade_augment_8", () -> new AugmentItem(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_UPGRADE)
             .mod(TAG_AUGMENT_BASE_MOD, 13)
             .mod(TAG_MACHINE_PARALLEL,6)

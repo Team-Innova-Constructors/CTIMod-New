@@ -29,7 +29,7 @@ public class PlayerEnigmaticItemsCondition implements LootItemCondition {
             if (entity instanceof Player player) {
                 if(SuperpositionHandler.isTheCursedOne(player)){
                     int l2Level= DifficultyLevel.ofAny(player);
-                    return l2Level > 300;
+                    return l2Level > 10;
                 } else return true;
             }
         }

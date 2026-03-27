@@ -1,5 +1,6 @@
 package com.hoshino.cti;
 
+import cofh.thermal.core.init.TCoreItems;
 import com.hoshino.cti.Event.CommonLivingEvents;
 import com.hoshino.cti.Event.MobEffectEventHandler;
 import com.hoshino.cti.Modifier.capability.*;
@@ -93,6 +94,7 @@ public class Cti {
         event.enqueueWork(BiomeUtil::init);
         event.enqueueWork(CtiRailgunProjectile::register);
         event.enqueueWork(CtiRitual::init);
+        event.enqueueWork(CtiItem::setUp);
         //机械动力土豆加农炮
         CtiPotatocannon.register();
         //powah反应堆冷却剂

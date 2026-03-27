@@ -4,6 +4,7 @@ import com.hoshino.cti.Items.RingOfNibelungen;
 import com.hoshino.cti.register.CtiItem;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.player.PlayerDifficulty;
+import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
 import dev.xkmc.l2hostility.init.loot.EnvyLootModifier;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.entity.player.Player;
@@ -23,9 +24,8 @@ public abstract class EnvyLootModifierMixin {
         if (context.hasParam(LootContextParams.KILLER_ENTITY)) {
             var killer = context.getParam(LootContextParams.KILLER_ENTITY);
             if (killer instanceof Player player) {
-                PlayerDifficulty pl = PlayerDifficulty.HOLDER.get(player);
                 if (CurioCompat.hasItem(player, CtiItem.ring_of_nibelungen.get())) {
-                    int level = pl.getLevelEditor().getTotal();
+                    int level = DifficultyLevel.ofAny(player);
                     var extra= RingOfNibelungen.getExtraRate(level);
                     return extra+base;
                 }

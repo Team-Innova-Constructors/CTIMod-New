@@ -267,7 +267,7 @@
 
   "modifier.cti.sentrite_defense": "哨石之庇护",
   "modifier.cti.sentrite_defense.flavor": "从滑行魔石上扒下来的外壳",
-  "modifier.cti.sentrite_defense.description": "[独立减免]对非穿甲伤害提供50%的减免。",
+  "modifier.cti.sentrite_defense.description": "[独立减免]对非穿甲伤害提供50%的减免。对反伤类伤害(守卫者，反射词条等)则额外再减免90%",
 
   "modifier.cti.life_steal": "生命窃取",
   "modifier.cti.life_steal.flavor": "以血换血",
@@ -435,7 +435,7 @@
 
   "modifier.cti.aluminiumpower": "钢化本质",
   "modifier.cti.aluminiumpower.flavor": "我硬的要命，真的",
-  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供50%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低60%,同时也会降低你承受到的60%(魔法,火焰,摔落,弹射物)伤害.对爆炸的减免则提升到90%",
+  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供50%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低40%,同时也会降低你承受到的40%(魔法,火焰,摔落,弹射物)伤害.对爆炸和反伤类的减免则提升到80%",
 
   "modifier.cti.electric_protect": "电离防护",
   "modifier.cti.electric_protect.flavor": "电流退散！",

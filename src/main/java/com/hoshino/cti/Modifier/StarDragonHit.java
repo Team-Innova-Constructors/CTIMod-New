@@ -1,7 +1,8 @@
 package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.Cti;
-import com.hoshino.cti.Entity.Projectiles.StarDargonAmmo;
+import com.hoshino.cti.Entity.Projectiles.StarDragonAmmo;
+import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -41,7 +42,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
     public static final ResourceLocation STAR_FREEZE_TICK = Cti.getResource("star_freeze");
     @Override
     public int getPriority() {
-        return 10;
+        return 6;
     }
     public static final Map<UUID, Float> DAMAGE_SHOULD_BE = new ConcurrentHashMap<>();
     @Override
@@ -55,6 +56,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         var target=context.getLivingTarget();
         if(player==null||target==null)return;
         if(target.getHealth()/target.getMaxHealth()<0.18f){
+            if(target instanceof TargetDummyEntity)return;
             if(target instanceof EnderDragon enderDragon){
                 enderDragon.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(), 2147483647);
                 return;
@@ -62,7 +64,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
             target.die(DamageSource.playerAttack(player));
             target.discard();
             tool.getPersistentData().putInt(STAR_DUST,tool.getPersistentData().getInt(STAR_DUST)+1);
-            player.getLevel().playSound(null,player,SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.AMBIENT,1f,1f);
+            player.getLevel().playSound(null,player,SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.AMBIENT,0.3f,1f);
         }
 
     }
@@ -70,7 +72,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         var player=context.getPlayerAttacker();
         if(player!=null){
-            DAMAGE_SHOULD_BE.put(player.getUUID(),damage+500);
+            DAMAGE_SHOULD_BE.put(player.getUUID(),damage+1000 * modifier.getLevel());
         }
         return damage+1000 * modifier.getLevel();
     }
@@ -89,7 +91,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
             if(persistentData.getInt(STAR_DUST)>10){
                 persistentData.putInt(STAR_DUST,persistentData.getInt(STAR_DUST)-10);
                 float damageShouldBe=DAMAGE_SHOULD_BE.getOrDefault(player.getUUID(),10f);
-                var ammo=new StarDargonAmmo(player,player.getLevel(),target.blockPosition(),damageShouldBe,Math.min(0.21f+(persistentData.getInt(STAR_DUST) / 100f * 0.01f),0.78f));
+                var ammo=new StarDragonAmmo(player,player.getLevel(),target.blockPosition(),damageShouldBe,Math.min(0.21f+(persistentData.getInt(STAR_DUST) / 100f * 0.01f),0.78f));
                 player.getLevel().addFreshEntity(ammo);
             }
         }

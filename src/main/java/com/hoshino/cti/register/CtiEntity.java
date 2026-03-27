@@ -39,9 +39,9 @@ public class CtiEntity {
     public static final RegistryObject<EntityType<FieryJavelinProjectile>> FIERY_JAVELIN = ENTITIES.register("fiery_javelin", () -> EntityType.Builder.<FieryJavelinProjectile>of(FieryJavelinProjectile::new, MobCategory.MISC).sized(0.25F, 0.25F).setTrackingRange(4).setUpdateInterval(1).setCustomClientFactory((spawnEntity, world) -> new FieryJavelinProjectile(CtiEntity.FIERY_JAVELIN.get(),world)).setShouldReceiveVelocityUpdates(true));
     public static final RegistryObject<EntityType<PlasmaWaveSlashProjectile>> PLASMA_WAVE_SLASH = ENTITIES.register("plasma_wave_slash", () -> EntityType.Builder.of(PlasmaWaveSlashProjectile::new, MobCategory.MISC).sized(8F, 1F).setTrackingRange(4).setUpdateInterval(10).setCustomClientFactory((spawnEntity, world) -> new PlasmaWaveSlashProjectile(CtiEntity.PLASMA_WAVE_SLASH.get(), world)).setShouldReceiveVelocityUpdates(true));
     public static final RegistryObject<EntityType<HomingSunStrike>> HOMING_SUNSTRIKE = ENTITIES.register("homing_sunstrike", () -> EntityType.Builder.of(HomingSunStrike::new, MobCategory.MISC).sized(0.1f, 0.1F).setCustomClientFactory((spawnEntity, world) -> new HomingSunStrike(CtiEntity.HOMING_SUNSTRIKE.get(), world)).setShouldReceiveVelocityUpdates(true));
-    public static final RegistryObject<EntityType<StarDargonAmmo>> star_dragon_ammo = ENTITY.register(
+    public static final RegistryObject<EntityType<StarDragonAmmo>> star_dragon_ammo = ENTITY.register(
             "star_dragon_ammo",
-            () -> EntityType.Builder.<StarDargonAmmo>of(StarDargonAmmo::new, MobCategory.MISC)
+            () -> EntityType.Builder.<StarDragonAmmo>of(StarDragonAmmo::new, MobCategory.MISC)
                     .sized(0.5f, 0.5f)
                     .clientTrackingRange(4)
                     .updateInterval(20)

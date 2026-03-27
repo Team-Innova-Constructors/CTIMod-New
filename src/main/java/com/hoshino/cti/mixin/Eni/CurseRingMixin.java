@@ -9,10 +9,12 @@ import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.hoshino.cti.client.cache.SevenCurse;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.ServerCursePacket;
+import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseStage;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -38,6 +40,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
@@ -77,7 +80,11 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
     @Inject(method = "curioTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan;m_6710_(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
     private void angryEnderMan(SlotContext context, ItemStack stack, CallbackInfo ci) {
         if (!(context.entity() instanceof Player player)) return;
-        boolean shouldNotBeAngry = player.getLevel().isDay() || GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.end_slayer.getId()) || this.cti$isInfancy(player);
+        if(player.hasEffect(CtiEffects.covert.get())){
+            ci.cancel();
+            return;
+        }
+        boolean shouldNotBeAngry = player.getLevel().isDay() || GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.end_slayer.getId()) || this.cti$isInfancy(player)||GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         if (shouldNotBeAngry) {
             ci.cancel();
         }
@@ -85,8 +92,12 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
 
     @Inject(method = "curioTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/NeutralMob;m_6710_(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
     private void angryOtherMob(SlotContext context, ItemStack stack, CallbackInfo ci) {
-        if (!(context.entity() instanceof Player player)) return;
-        boolean shouldNotBeAngry = player.level.isDay() || this.cti$isInfancy(player);
+        if (!(context.entity() instanceof Player player))return;
+        if(player.hasEffect(CtiEffects.covert.get())){
+            ci.cancel();
+            return;
+        }
+        boolean shouldNotBeAngry = player.getLevel().isDay() || this.cti$isInfancy(player)||GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         if (shouldNotBeAngry) {
             ci.cancel();
         }

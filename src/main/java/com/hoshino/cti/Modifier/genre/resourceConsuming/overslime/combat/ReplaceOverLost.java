@@ -1,6 +1,7 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat;
 
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.base.BasicOverslimeModifier;
+import com.hoshino.cti.content.materialGenre.GenreManager;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -30,12 +31,21 @@ public class ReplaceOverLost extends BasicOverslimeModifier {
         if (context.getTarget() instanceof LivingEntity living){
             var slowEffect = living.getEffect(MobEffects.MOVEMENT_SLOWDOWN);
             if (slowEffect!=null){
-                var boost = slowEffect.getAmplifier()+1;
-                boost=Math.min(boost,10);
+                var duration = slowEffect.getDuration();
+                var amp = slowEffect.getAmplifier()+1;
+                var boostAdd = duration/10;
+                boostAdd =Math.min(boostAdd,10);
                 var os = TinkerModifiers.overslime.get();
-                if (os.getShield(tool)>=boost){
-                    os.addOverslime(tool,modifier,-boost);
-                    damage+=boost*5;
+                if (os.getShield(tool)>= boostAdd){
+                    os.addOverslime(tool,modifier,-boostAdd);
+                    damage+= boostAdd *10;
+                }
+                var boostMul = amp*0.025f;
+                var consumption = boostAdd*(1+boostMul);
+                consumption += tool.getStats().getInt(GenreManager.OVERSLIME_GENRE.consumption)*boostMul;
+                if (os.getShield(tool)>=consumption){
+                    os.addOverslime(tool,modifier, (int) -consumption);
+                    damage+=damage*boostMul;
                 }
             }
         }

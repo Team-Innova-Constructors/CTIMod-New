@@ -2,15 +2,21 @@ package com.hoshino.cti.Items;
 
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.DistancedOverfill;
 import com.hoshino.cti.mixin.TconMixin.OverslimeModifierRecipeAccessor;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.register.CtiTab;
 import com.hoshino.cti.util.tinker.ModifiableToolDefinition;
 import com.hoshino.cti.util.tinker.ModifiableToolDefinitionData;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.SlotAccess;
@@ -22,8 +28,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
@@ -36,6 +44,7 @@ import slimeknights.tconstruct.library.tools.definition.module.build.ToolTraitsM
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.item.ModifiableItem;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
+import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.modifiers.slotless.OverslimeModifier;
@@ -80,18 +89,22 @@ public class SlimeCanItem extends ModifiableItem{
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack pStack, ItemStack pOther, Slot pSlot, ClickAction pAction, Player pPlayer, SlotAccess pAccess) {
         if (pAction==ClickAction.PRIMARY) return false;
-        if (OVERSLIME_VALUES.isEmpty()) initOverslimeValues(pPlayer.level);
-        if (OVERSLIME_VALUES.containsKey(pOther.getItem())){
-            if (!pPlayer.level.isClientSide){
-                var slimeball = pOther.getItem();
-                var tool = ToolStack.from(pStack);
+        return convertSlimeball(pPlayer,pStack,pOther);
+    }
+
+    public static boolean convertSlimeball(Player player,ItemStack toolItem,ItemStack slime){
+        if (OVERSLIME_VALUES.isEmpty()) initOverslimeValues(player.level);
+        if (OVERSLIME_VALUES.containsKey(slime.getItem())){
+            if (!player.level.isClientSide){
+                var slimeball = slime.getItem();
+                var tool = ToolStack.from(toolItem);
                 var os = TinkerModifiers.overslime.get();
                 var needed = tool.getStats().getInt(OverslimeModifier.OVERSLIME_STAT)-os.getShield(tool);
                 var perBall = OVERSLIME_VALUES.get(slimeball);
                 var calculateBalls = (tool.getModifierLevel(TinkerModifiers.overworked.get())>0)? perBall*=2:perBall;
                 if (needed>=calculateBalls){
-                    var count = Math.min(pOther.getCount(),needed/calculateBalls);
-                    pOther.shrink(count);
+                    var count = Math.min(slime.getCount(),needed/calculateBalls);
+                    slime.shrink(count);
                     os.addOverslime(tool,new ModifierEntry(os.getId(),1),perBall*count);
                 }
             }
@@ -155,7 +168,33 @@ public class SlimeCanItem extends ModifiableItem{
                         transferOverslime(slimeCan,tool);
                     }
                 }
+            } else if (modifier.getModifier()==CtiModifiers.DISTANCED_OVERFILL.get()&&holder.tickCount%20==0&&holder instanceof Player player){
+                if (slimeCan.getPersistentData().contains(DistancedOverfill.KEY_DIM, Tag.TAG_STRING)) {
+                    ModDataNBT nbt = slimeCan.getPersistentData();
+                    BlockPos blockPos = new BlockPos(nbt.getInt(DistancedOverfill.KEY_X), nbt.getInt(DistancedOverfill.KEY_Y), nbt.getInt(DistancedOverfill.KEY_Z));
+                    ResourceKey<Level> key = ResourceKey.create(Registry.DIMENSION_REGISTRY, ResourceLocation.of(slimeCan.getPersistentData().getString(DistancedOverfill.KEY_DIM), ':'));
+                    if (level.getServer() != null) {
+                        Level targetLevel = level.getServer().getLevel(key);
+                        if (targetLevel != null) {
+                            var blockEntity = targetLevel.getBlockEntity(blockPos);
+                            if (blockEntity != null) {
+                                var optional = blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER);
+                                optional.ifPresent(iItemHandler -> {
+                                    if (iItemHandler instanceof IItemHandlerModifiable handler)
+                                        for (int i = 0; i < iItemHandler.getSlots(); i++) {
+                                            var slimeBall = handler.getStackInSlot(i).copy();
+                                            if (convertSlimeball(player, stack, slimeBall)) {
+                                                handler.setStackInSlot(i, slimeBall);
+                                                break;
+                                            }
+                                        }
+                                });
+                            }
+                        }
+                    }
+                }
             }
+
         }
     }
 }

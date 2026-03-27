@@ -1220,11 +1220,11 @@
 
   "modifier.cti.replace_overlost": "迷失",
   "modifier.cti.replace_overlost.flavor": "迷途之子",
-  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+15近战伤害。\n ·攻击时目标每级缓慢效果都会增加5伤害和1黏液覆层消耗。",
+  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+15近战伤害。\n ·攻击时目标每级缓慢效果都会增加2.5%伤害和黏液覆层消耗。目标每10秒缓慢时长都会增加10伤害和1黏液覆层消耗。",
 
   "modifier.cti.replace_overlost_armor": "迷失",
   "modifier.cti.replace_overlost_armor.flavor": "迷途之子",
-  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗5黏液覆层+10%独立减伤（最大40%）。\n ·受击时目标每级缓慢效果都会增加5格挡和1黏液覆层消耗。",
+  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗2黏液覆层+10%独立减伤（最大40%）。\n ·受击时目标每级缓慢效果都会增加10格挡和1黏液覆层消耗。",
 
   "modifier.cti.united_overslime": "其利断金",
   "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
@@ -1232,7 +1232,7 @@
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_insatiable.description":"每级+48最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·没有贪婪效果时消耗100黏液覆层获得一半于最大贪婪的贪婪等级，并每秒消耗1黏液覆层维持贪婪等级，贪婪等级超过一半时不生效。",
+  "modifier.cti.united_insatiable.description":"每级+48最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·每秒消耗1黏液覆层维持贪婪等级为最大贪婪的一半，贪婪等级超过一半时不生效。",
 
   "modifier.cti.overfill": "黏液转置",
   "modifier.cti.overfill.flavor": "就像个充电宝",
@@ -1254,7 +1254,6 @@
   "modifier.cti.quantum_entangled.flavor": "遇事不决，量子力学！",
   "modifier.cti.quantum_entangled.description":"对工具附加0.5倍顶端材料的手柄属性、0.5倍手柄材料的顶端属性、0.25倍绑定节材料的手柄和顶端属性、1倍其它部件材料的手柄和顶端属性。",
 
-
   "modifier.cti.fbfq": "废八分钱",
   "modifier.cti.fbfq.flavor": "不要说辣个",
   "modifier.cti.fbfq.description":"当你SDM商店有大于1000钱时候,每多八分钱(1铜币对应价值为1分)会提升0.1%伤害,还会额外乘上词条等级",
@@ -1262,6 +1261,12 @@
   "modifier.cti.feima": "费马定理",
   "modifier.cti.feima.flavor": "不存在的整数解",
   "modifier.cti.feima.description":"攻击次数为2的倍数时附加一次生命值为底,护甲值为高,伤害为斜边的魔法伤害,攻击次数为3的倍数时候则该攻击基础伤害仅有1",
+
+  "modifier.cti.distanced_overfill": "隔空取黏",
+  "modifier.cti.distanced_overfill.flavor": "自动化！",
+  "modifier.cti.distanced_overfill.description":"Shift-右键容器以绑定容器，黏液罐会自动消耗绑定容器内的物品来恢复黏液覆层。",
+
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",
@@ -1328,5 +1333,8 @@
   "info.cti.overslime_value": "黏液覆层补充量：",
 
 
-  "attribute.cti.max_insatiable": "最大贪婪"
+  "attribute.cti.max_insatiable": "最大贪婪",
+
+  "info.cti.container_bind": "绑定容器",
+  "info.cti.container_disbound": "解绑容器"
 }

@@ -29,6 +29,7 @@ import com.hoshino.cti.Modifier.slot.*;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Modifier.test;
 import com.hoshino.cti.Modifier.underGardenCompact.*;
+import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
@@ -233,6 +234,7 @@ public class CtiModifiers {
     public static final StaticModifier<OverAetheric> OVER_AETHERIC = MODIFIERS.register("over_aetheric", OverAetheric::new);
     public static final StaticModifier<OverTrade> OVERTRADE = MODIFIERS.register("overtrade", OverTrade::new);
     public static final StaticModifier<QuantumEntangle> QUANTUM_PENETRATE = MODIFIERS.register("quantum_entangled", QuantumEntangle::new);
+    public static final StaticModifier<DistancedOverfill> DISTANCED_OVERFILL = MODIFIERS.register("distanced_overfill", DistancedOverfill::new);
 
 
 

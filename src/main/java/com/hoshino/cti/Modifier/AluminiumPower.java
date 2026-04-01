@@ -1,6 +1,7 @@
 package com.hoshino.cti.Modifier;
 
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -26,10 +27,13 @@ public class AluminiumPower extends Modifier implements ModifyDamageModifierHook
     @Override
     public float modifyDamageTaken(IToolStackView iToolStackView, ModifierEntry modifierEntry, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float v, boolean b) {
         if(damageSource.isExplosion()){
-             v= v*0.1f;
+             v= v*0.2f;
+        }
+        if(damageSource instanceof EntityDamageSource entityDamageSource&&entityDamageSource.isThorns()){
+            v=v* 0.2f;
         }
         else if(damageSource.isProjectile()||damageSource.isMagic()||damageSource.isFall()||damageSource.isFire()){
-            v=v * 0.4f;
+            v=v * 0.6f;
         }
         if(damageSource.getEntity()!=null){
             return v-2;

@@ -63,17 +63,18 @@ public abstract class NearestAttackableTargetGoalMixin<T extends LivingEntity> e
         if (this.mob.getPersistentData().getBoolean("player_teamed")) {
             return Monster.class;
         }
-        return this.targetType; // 返回原本的成员变量
+        return this.targetType;
     }
 
     @Inject(method = "canUse", at = @At(value = "RETURN",ordinal = 1), cancellable = true)
     private void setRange(CallbackInfoReturnable<Boolean> cir){
         if(this.target!=null&&this.target instanceof Player player){
             if(player.hasEffect(CtiEffects.covert.get())){
-                var distance=target.position().distanceTo(mob.position());
-                if(distance>3){
-                    cir.setReturnValue(false);
-                }
+                cir.setReturnValue(false);
+//                var distance=target.position().distanceTo(mob.position());
+//                if(distance>3){
+//
+//                }
             }
             else if(ModifierLevel.EquipHasModifierlevel(player, CtiModifiers.starBlessStaticModifier.getId())){
                 int mobLevel= DifficultyLevel.ofAny(mob);

@@ -264,7 +264,7 @@ public class CommonLivingEvents {
         if (source == null) return;
         if (source.isFire() || source.isProjectile() || source.isExplosion() || source.isMagic()) {
             if (GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ALUMINIUM_POWER_STATIC_MODIFIER.getId()) > 0) {
-                event.setAmount(event.getAmount() * 0.4f);
+                event.setAmount(event.getAmount() * 0.6f);
             }
         }
     }

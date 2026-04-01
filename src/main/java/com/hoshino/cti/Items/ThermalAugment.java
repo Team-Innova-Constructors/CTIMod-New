@@ -18,7 +18,6 @@ public class ThermalAugment extends ItemCoFH implements IAugmentItem {
     }
 
     public boolean setAugmentData(CompoundTag augmentData) {
-
         if (augmentData == null || augmentData.isEmpty()) {
             return false;
         }

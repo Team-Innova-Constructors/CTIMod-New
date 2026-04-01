@@ -1,6 +1,6 @@
 package com.hoshino.cti.netwrok.packet;
 
-import com.hoshino.cti.Entity.Projectiles.StarDargonAmmo;
+import com.hoshino.cti.Entity.Projectiles.StarDragonAmmo;
 import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
@@ -44,11 +44,11 @@ public class StarHitPacket {
                 return;
             }
             if(starDust>=50){
-                view.getPersistentData().putInt(StarDragonHit.STAR_DUST,starDust-50);
+                view.getPersistentData().putInt(StarDragonHit.STAR_DUST,starDust-10);
                 float damageShouldBe=StarDragonHit.DAMAGE_SHOULD_BE.getOrDefault(sender.getUUID(),10f);
                 mob.getPersistentData().putBoolean("star_extra_hurt",true);
-                StarDragonHit.setFreezeTick(view, GetModifierLevel.CurioModifierLevel(sender, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) > 0 ? 8 : 20);
-                var ammo=new StarDargonAmmo(sender,sender.getLevel(),mob.blockPosition(),damageShouldBe,Math.min(0.21f+(starDust / 100f * 0.01f),0.78f));
+                StarDragonHit.setFreezeTick(view, GetModifierLevel.CurioModifierLevel(sender, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) > 0 ? 1 : 5);
+                var ammo=new StarDragonAmmo(sender,sender.getLevel(),mob.blockPosition(),damageShouldBe,Math.min(0.21f+(starDust / 100f * 0.01f),0.78f));
                 sender.getLevel().playSound(null,sender, SoundEvents.ENDER_DRAGON_SHOOT, SoundSource.AMBIENT,1f,1f);
                 sender.getLevel().addFreshEntity(ammo);
             }

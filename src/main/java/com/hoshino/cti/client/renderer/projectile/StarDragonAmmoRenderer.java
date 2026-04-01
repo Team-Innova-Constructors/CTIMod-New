@@ -1,7 +1,7 @@
 package com.hoshino.cti.client.renderer.projectile;
 
 import com.hoshino.cti.Cti;
-import com.hoshino.cti.Entity.Projectiles.StarDargonAmmo;
+import com.hoshino.cti.Entity.Projectiles.StarDragonAmmo;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public class StarDragonAmmoRenderer extends EntityRenderer<StarDargonAmmo> {
+public class StarDragonAmmoRenderer extends EntityRenderer<StarDragonAmmo> {
 
     private final ItemRenderer itemRenderer;
 
@@ -23,7 +23,7 @@ public class StarDragonAmmoRenderer extends EntityRenderer<StarDargonAmmo> {
     }
 
     @Override
-    public void render(StarDargonAmmo pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(StarDragonAmmo pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         if (pEntity.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(pEntity) < 12.25D)) {
             pPoseStack.pushPose();
             float scale = 5;
@@ -37,7 +37,7 @@ public class StarDragonAmmoRenderer extends EntityRenderer<StarDargonAmmo> {
     }
 
     @Override
-    public @NotNull ResourceLocation getTextureLocation(StarDargonAmmo starDargonAmmo) {
+    public @NotNull ResourceLocation getTextureLocation(StarDragonAmmo starDargonAmmo) {
         return Cti.getResource("textures/item/projectile/star_dragon_ammo.png");
     }
 }

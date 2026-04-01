@@ -6,6 +6,7 @@ import com.hoshino.cti.client.particle.ParticleType.StarFallParticleType;
 import com.hoshino.cti.register.CtiEntity;
 import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.register.CtiSounds;
+import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,12 +24,12 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
-public class StarDargonAmmo extends BaseFallenAmmo {
-    public StarDargonAmmo(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+public class StarDragonAmmo extends BaseFallenAmmo {
+    public StarDragonAmmo(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    public StarDargonAmmo(LivingEntity owner, Level level, BlockPos targetPosition, float damageAmount,float killThreshold) {
+    public StarDragonAmmo(LivingEntity owner, Level level, BlockPos targetPosition, float damageAmount, float killThreshold) {
         super(CtiEntity.star_dragon_ammo.get(), owner, level, targetPosition);
         this.setHurtDamage(damageAmount);
         this.setKillThreshold(killThreshold);
@@ -36,11 +37,12 @@ public class StarDargonAmmo extends BaseFallenAmmo {
 
     @Override
     protected void shockWaveHurt(Mob mob, Player player) {
-        mob.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(),this.getHurtDamage());
+        mob.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(),this.getHurtDamage() * 9f);
         Vec3 knock = mob.position().subtract(getVec3TargetPosition()).normalize().scale(3);
-        Vec3 finalKnock = new Vec3(knock.x(), 0.4, knock.z());
+        Vec3 finalKnock = new Vec3(knock.x()/4, 0.8, knock.z()/4);
         mob.setDeltaMovement(finalKnock);
         if(mob.getHealth()<mob.getMaxHealth() * this.getKillThreshold()||getHurtDamage()>mob.getMaxHealth() * 10f){
+            if(mob instanceof TargetDummyEntity)return;
             mob.die(DamageSource.playerAttack(player));
             mob.discard();
             var data= ToolStack.from(player.getMainHandItem()).getPersistentData();
@@ -52,7 +54,7 @@ public class StarDargonAmmo extends BaseFallenAmmo {
     @Override
     protected void onArrived(ServerPlayer player) {
         super.onArrived(player);
-        this.directHurtLiving(DamageSource.playerAttack(player).bypassArmor().bypassMagic().bypassInvul(), this.getHurtDamage() * 10, 5);
+        this.directHurtLiving(DamageSource.playerAttack(player).bypassArmor().bypassMagic().bypassInvul(), this.getHurtDamage() * 90, 5);
         if (!this.level.isClientSide) {
             var particle = new StarFallParticleType(true, 1, 0xf8ffb2, 1, 1, 10, getVec3TargetPosition());
             player.getLevel().sendParticles(particle, getVec3TargetPosition().x(), getVec3TargetPosition().y() + 0.05, getVec3TargetPosition().z(), 1, 0, 0, 0, 0.25);

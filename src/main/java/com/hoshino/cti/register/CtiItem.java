@@ -9,6 +9,7 @@ import cofh.thermal.lib.item.AugmentItem;
 import com.c2h6s.etshtinker.Items.StoriedMaterial;
 import com.hollingsworth.arsnouveau.common.items.RitualTablet;
 import com.hoshino.cti.Blocks.AEParts.MeteoriumAnnihilationPlanePart;
+import com.hoshino.cti.Blocks.AEParts.QuantumizePlanePart;
 import com.hoshino.cti.Entity.vehicles.rocketTier5;
 import com.hoshino.cti.Items.*;
 import com.hoshino.cti.Items.MekUpgrades.AdvancedUpgrade;
@@ -62,6 +63,7 @@ public class CtiItem {
 
     public static void registerPartModels() {
         PartModels.registerModels(PartModelsHelper.createModels(MeteoriumAnnihilationPlanePart.class));
+        PartModels.registerModels(PartModelsHelper.createModels(QuantumizePlanePart.class));
     }
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "cti");
     public static final ResourcefulRegistry<Item> ASTRAITEM = ResourcefulRegistries.create(Registry.ITEM, "cti");
@@ -75,6 +77,7 @@ public class CtiItem {
     public static final RegistryObject<Item> fox_ingot = ITEMS.register("fox_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> uriel_ingot = ITEMS.register("uriel_ingot", () -> new uriel_ingot(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> feima_ingot = ITEMS.register("feima_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
+    public static final RegistryObject<Item> quantum_scrap = ITEMS.register("quantum_scrap", () -> new Item(new Item.Properties().tab(CtiTab.MIXC)));
 
 
     public static final RegistryObject<Item> stellar_manyullyn = ITEMS.register("stellar_manyullyn", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.etsh").withStyle(ChatFormatting.LIGHT_PURPLE))));
@@ -101,7 +104,7 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> rasterite = ITEMS.register("rasterite", () -> new BlockItem(CtiBlock.rasterite.get(), new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<BlockItem> rasterite_budding = ITEMS.register("rasterite_budding", () -> new BlockItem(CtiBlock.rasterite_budding.get(), new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<BlockItem> meteorite_ore = ITEMS.register("meteorite_ore", () -> new BlockItem(CtiBlock.meteorite_ore.get(), new Item.Properties().tab(CtiTab.MIXC)));
-    public static final RegistryObject<BlockItem> quantum_meteorite_ore = ITEMS.register("quantum_meteorite_ore", () -> new BlockItem(CtiBlock.meteorite_ore.get(), new Item.Properties().tab(CtiTab.MIXC)));
+    public static final RegistryObject<BlockItem> quantum_meteorite_ore = ITEMS.register("quantum_meteorite_ore", () -> new BlockItem(CtiBlock.quantum_meteorite_ore.get(), new Item.Properties().tab(CtiTab.MIXC)));
     public static final RegistryObject<StoriedMaterial> xenoglarium_ingot = ITEMS.register("xenoglarium_ingot", () -> new StoriedMaterial(new Item.Properties().tab(CtiTab.MATERIALS), List.of(
             Component.translatable("cti.tooltip.item.xenoglarium_ingot").withStyle(ChatFormatting.AQUA),
             Component.translatable("cti.tooltip.item.xenoglarium_ingot2").withStyle(ChatFormatting.DARK_AQUA),
@@ -123,6 +126,7 @@ public class CtiItem {
     ));
 
     public static final RegistryObject<PartItem<MeteoriumAnnihilationPlanePart>> meteorium_plane = ITEMS.register("meteorium_plane", () -> new PartItem<>(new Item.Properties().tab(CtiTab.MIXC), MeteoriumAnnihilationPlanePart.class, MeteoriumAnnihilationPlanePart::new));
+    public static final RegistryObject<PartItem<QuantumizePlanePart>> QUANTUMIZE_PLANE = ITEMS.register("quantumize_plane", () -> new PartItem<>(new Item.Properties().tab(CtiTab.MIXC), QuantumizePlanePart.class, QuantumizePlanePart::new));
 
     public static final RegistryObject<RitualTablet> meteor_shower_tablet = ITEMS.register("meteor_shower_tablet", () -> {
         RitualTablet tablet = new RitualTablet(new Item.Properties().tab(CtiTab.MIXC));

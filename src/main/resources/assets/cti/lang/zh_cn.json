@@ -337,6 +337,7 @@
 
   "item.cti.compressed_singularity": "压缩奇点",
   "item.cti.orb_of_curse": "球状恶意",
+  "item.cti.quantum_scrap": "量子陨铁残片",
 
   "item.cti.upgrade_electronium": "辅助静电场分离组件",
   "item.cti.upgrade_violium": "外置滤波电容组件",
@@ -363,6 +364,9 @@
 
   "block.cti.meteorite_ore": "陨铁矿",
   "item.cti.meteorium_plane": "陨铁接收面板",
+
+  "block.cti.quantum_meteorite_ore": "量子陨铁矿",
+  "item.cti.quantumize_plane": "量子化破坏面板",
 
   "item.cti.magic_crystal":"魔力水晶",
   "item.cti.enriched_mana":"富集魔力水晶",
@@ -975,7 +979,7 @@
 
   "modifier.cti.omnipotent": "无所不能",
   "modifier.cti.omnipotent.flavor": "我无所不能！",
-  "modifier.cti.omnipotent.description":"令工具全部词条等级+1。",
+  "modifier.cti.omnipotent.description":"增加2级均衡，你需要先为工具强化均衡才能正常生效。",
 
   "modifier.cti.ion_apocalypse": "离子启示录",
   "modifier.cti.ion_apocalypse.flavor": "没有什么比这个更绚烂，更致命。",
@@ -1083,6 +1087,7 @@
 
   "gas.cti.neutron": "中子素",
   "gas.cti.mana_gas": "气态魔力",
+  "gas.cti.deformed_quantum_slag": "不稳定量子残余",
   "infuse_type.cti.mana_infuse": "魔力水晶",
 
   "stat.tconstruct.slot.prefix.ocean": "深海槽：",
@@ -1192,7 +1197,7 @@
 
   "modifier.cti.replaced_overempire": "黏液帝皇",
   "modifier.cti.replaced_overempire.flavor": "帝国荣光！",
-  "modifier.cti.replaced_overempire.description":"工具每有100黏液覆层提供1%的独立减伤，最大每级20%，上限60%，消耗10黏液覆层。",
+  "modifier.cti.replaced_overempire.description":"工具每有160黏液覆层+1黏液覆层消耗提供1%的独立减伤，最大每级20%，上限60%。",
 
   "modifier.cti.replaced_overarmy": "黏液军团",
   "modifier.cti.replaced_overarmy.flavor": "史莱姆大军！",
@@ -1200,7 +1205,7 @@
 
   "modifier.cti.super_overslime": "黏液超容EX",
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
-  "modifier.cti.super_overslime.description":"黏液覆层上限变为200倍。",
+  "modifier.cti.super_overslime.description":"黏液覆层上限变为100倍。",
 
   "item.cti.feima_ingot": "费马锭",
   "item.cti.molten_feima_bucket": "熔融费马桶",

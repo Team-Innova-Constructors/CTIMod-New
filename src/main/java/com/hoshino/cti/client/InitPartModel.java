@@ -19,6 +19,8 @@ public class InitPartModel {
         InitPartModel.register = register;
         addPlaneModel("part/meteorium_annihilation_plane","part/meteorium_annihilation_plane");
         addPlaneModel("part/meteorium_annihilation_plane_on","part/meteorium_annihilation_plane_on");
+        addPlaneModel("part/quantumize_plane","part/quantumize_plane");
+        addPlaneModel("part/quantumize_plane_on","part/quantumize_plane_on");
         InitPartModel.register =null;
     }
     private static void addPlaneModel(String planeName, String frontTexture) {

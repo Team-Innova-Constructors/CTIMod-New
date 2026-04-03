@@ -4,6 +4,7 @@ import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.google.common.collect.Lists;
 import com.hoshino.cti.Modifier.Armor.AntiCurse;
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -82,4 +83,6 @@ public class CommonUtil {
     public static int getAntiCurseLevel(LivingEntity living){
         return getArmorLevelingValue(AntiCurse.KEY_ANTI_CURSE,living);
     }
+
+    public static final ResourceLocation SLOT_SEAL = new ResourceLocation("thermal","slot_seal");
 }

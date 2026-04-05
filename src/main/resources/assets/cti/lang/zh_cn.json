@@ -1284,6 +1284,10 @@
   "modifier.cti.blood_letting.flavor": "放干猪血",
   "modifier.cti.blood_letting.description":"魂戈-10%攻击间隔，+20%攻击伤害和攻击速度，但是攻击时扣除相当于5%最大生命的血量，需要突破作为前置。",
 
+  "modifier.cti.replace_ring_necrotic": "噬生",
+  "modifier.cti.replace_ring_necrotic.flavor": "吞噬生灵",
+  "modifier.cti.replace_ring_necrotic.description":"攻击时每级恢复你5%伤害的生命值，不超过你最大生命的5%。",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",

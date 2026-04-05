@@ -20,4 +20,10 @@ public class EniEventMixin{
             instance.setRemainingFireTicks(i);
         }
     }
+
+    @Redirect(method = "onEntityDamaged",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;m_5634_(F)V"))
+    private void limitLifeSteal(Player instance, float v){
+        v = Math.min(v,0.2f);
+        instance.heal(Math.min(v,instance.getMaxHealth()*(v/2)));
+    }
 }

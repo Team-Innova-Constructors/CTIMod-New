@@ -595,7 +595,7 @@
 
   "modifier.cti.mz": "迷子",
   "modifier.cti.mz.flavor": "循环往复象征着永远的时钟",
-  "modifier.cti.mz.description":"[仅挖掘工具生效]记录破坏的次数,以累计破坏方块的次数的位数 * 词条等级视为迷子数,工具造成的伤害提升迷子数的算术平方根的倍率的伤害,同时你挖掘矿物时候获得迷子数的掉落倍率",
+  "modifier.cti.mz.description":"[仅挖掘工具生效]记录破坏的次数,以累计破坏方块的次数的位数 * 该材料数量视为迷子数,工具造成的伤害提升迷子数的算术平方根的倍率的伤害,同时你挖掘矿物时候获得迷子数的掉落倍率(至多3)",
 
   "modifier.cti.nholography": "全息",
   "modifier.cti.nholography.flavor": "然而存在的世界终究会消逝，一切都有尽头",
@@ -1262,7 +1262,7 @@
 
   "modifier.cti.fbfq": "废八分钱",
   "modifier.cti.fbfq.flavor": "不要说辣个",
-  "modifier.cti.fbfq.description":"当你SDM商店有大于1000钱时候,每多八分钱(1铜币对应价值为1分)会提升0.1%伤害,还会额外乘上词条等级",
+  "modifier.cti.fbfq.description":"当你SDM商店有大于1000钱时候,每多八分钱(1铜币对应价值为1分)会提升0.01%基础伤害,还会额外乘上词条等级，至高不超过88%",
 
   "modifier.cti.feima": "费马定理",
   "modifier.cti.feima.flavor": "不存在的整数解",

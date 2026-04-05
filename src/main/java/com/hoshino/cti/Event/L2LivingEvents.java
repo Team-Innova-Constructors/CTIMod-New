@@ -118,10 +118,13 @@ public class L2LivingEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void curseCostPlayerHeal(LivingHealEvent event) {
         if (event.getEntity() instanceof Player player) {
+            boolean hasMari=GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("solidarytinker:heallight"));
+            if(hasMari)return;
             int painTime = player.getPersistentData().getInt("pain_time");
             int a = Math.round(painTime / 8f);
             float shouldHeal = event.getAmount();
             float antiCurseFactor = 1f/(CommonUtil.getAntiCurseLevel(player)+1);
+
             if (a > 0) {
                 switch (a) {
                     case 1, 2, 3 -> event.setAmount(Math.max(0.1F, shouldHeal - a * 0.7F * antiCurseFactor));

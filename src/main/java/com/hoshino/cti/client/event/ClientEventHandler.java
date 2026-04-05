@@ -119,25 +119,26 @@ public class ClientEventHandler {
             event.addSprite(Cti.getResource("slots/slime_can_slot"));
             event.addSprite(Cti.getResource("slots/oxygen_can_slot"));
         }
-        //    @SubscribeEvent
-//    public static void onRenderLivingPost(RenderLivingEvent.Post<LivingEntity, ? extends EntityModel<LivingEntity>> event) {
-//        LivingEntity entity = event.getEntity();
-//        PoseStack poseStack = event.getPoseStack();
-//        MultiBufferSource bufferSource = event.getMultiBufferSource();
-//        if (Minecraft.getInstance().player != null && entity instanceof Mob mob) {
-//            poseStack.pushPose();
-//            float heightOffset = entity.getBbHeight() + 3F;
-//            poseStack.translate(0F, heightOffset, 0F);
-//            poseStack.mulPose(Vector3f.YP.rotationDegrees(-entity.getYRot()));
-//            poseStack.mulPose(Vector3f.XP.rotationDegrees(90F));
-//            poseStack.mulPose(Vector3f.YP.rotationDegrees(225F));
-//            poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
-//            poseStack.scale(2.5F, 2.5F, 2.5F);
-//            ItemStack ironSword = new ItemStack(Items.IRON_SWORD);
-//            Minecraft.getInstance().getItemRenderer().renderStatic(ironSword, ItemTransforms.TransformType.NONE, event.getPackedLight(), OverlayTexture.NO_OVERLAY, poseStack, bufferSource, entity.getId());
-//            poseStack.popPose();
+
+//        @SubscribeEvent
+//        public static void onRenderLivingPost(RenderLivingEvent.Post<LivingEntity, ? extends EntityModel<LivingEntity>> event) {
+//            LivingEntity entity = event.getEntity();
+//            PoseStack poseStack = event.getPoseStack();
+//            MultiBufferSource bufferSource = event.getMultiBufferSource();
+//            if (Minecraft.getInstance().player != null && entity instanceof Mob mob) {
+//                poseStack.pushPose();
+//                float heightOffset = entity.getBbHeight() + 3F;
+//                poseStack.translate(0F, heightOffset, 0F);
+//                poseStack.mulPose(Vector3f.YP.rotationDegrees(-entity.getYRot()));
+//                poseStack.mulPose(Vector3f.XP.rotationDegrees(90F));
+//                poseStack.mulPose(Vector3f.YP.rotationDegrees(225F));
+//                poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
+//                poseStack.scale(2.5F, 2.5F, 2.5F);
+//                ItemStack ironSword = new ItemStack(Items.IRON_SWORD);
+//                Minecraft.getInstance().getItemRenderer().renderStatic(ironSword, ItemTransforms.TransformType.NONE, event.getPackedLight(), OverlayTexture.NO_OVERLAY, poseStack, bufferSource, entity.getId());
+//                poseStack.popPose();
+//            }
 //        }
-//    }
 
 
     }

@@ -19,7 +19,7 @@ public class Decoying extends BattleModifier {
 
     public void SummonLivingEntity(Level Level, Vec3 Position, LivingEntity lv) {
         Level.addFreshEntity(lv);
-        lv.moveTo(Position);
+        lv.setPos(Position);
     }
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {

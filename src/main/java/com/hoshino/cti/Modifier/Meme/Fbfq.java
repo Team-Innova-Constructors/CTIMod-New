@@ -23,7 +23,7 @@ public class Fbfq extends Modifier implements MeleeDamageModifierHook {
         if(p==null)return damage;
         var money= SDMShopR.getMoney(p);
         if(money>1000){
-            return damage + (damage * 0.001f * ((money - 1000) /8f) * modifier.getLevel());
+            return damage + (baseDamage * Math.min(0.88f,0.0001f * ((money - 1000) /8f) * modifier.getLevel()));
         }
         return damage;
     }

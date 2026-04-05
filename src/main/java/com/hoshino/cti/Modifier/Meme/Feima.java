@@ -30,7 +30,7 @@ public class Feima extends NoLevelsModifier implements MeleeHitModifierHook {
             var b=player.getArmorValue();
 
             var c=Math.sqrt((a * a) + (b * b));
-            context.getLivingTarget().hurt(DamageSource.playerAttack(player).setMagic(),(float) c);
+            context.getLivingTarget().hurt(DamageSource.playerAttack(player).setMagic().bypassArmor(),(float) c);
         }
     }
 }

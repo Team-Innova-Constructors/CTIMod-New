@@ -284,6 +284,7 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
         boolean canOutputItem = false;
         float SodiumAmplifier = 1;
         float chanceConsume = 0;
+        boolean notConsume = false;
         ItemStack catalyst = entity.itemStackHandler.getStackInSlot(0);
         ReactorNeutronCollectorRecipe recipe = getRecipe(level, catalyst);
         ItemStack output = new ItemStack(ModItems.neutron_nugget.get());
@@ -291,6 +292,7 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
             SodiumAmplifier += recipe.getEfficiency() * (float) (catalyst.getCount() / recipe.getCatalyst().getCount());
             chanceConsume = recipe.getConsumptionRate() * (float) (catalyst.getCount() / recipe.getCatalyst().getCount());
             output = recipe.getResultItem();
+            notConsume = recipe.getConsumptionRate()<0.0001f;
         }
         if (good) {
             SodiumAmplifier *= 2f;
@@ -341,7 +343,7 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
         if (entity.PROGRESS < 2000000000) {
             entity.ENERGY_STORAGE.receiveEnergy((int) (entity.getEnergyPerTick() * fe), false);
             entity.PROGRESS = (int) Math.min(Integer.MAX_VALUE, entity.PROGRESS + amount);
-            if (EtSHrnd().nextFloat() <= chanceConsume) {
+            if (!notConsume&&EtSHrnd().nextFloat() <= chanceConsume) {
                 entity.itemStackHandler.extractItem(0, 1, false);
             }
             entity.setChanged();

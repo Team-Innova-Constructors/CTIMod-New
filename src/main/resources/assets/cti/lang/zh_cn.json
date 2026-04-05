@@ -429,6 +429,7 @@
   "death.attack.cti.obsidianhurt.player": "%1$s 被黑曜石碴子崩死了。",
   "death.attack.cti.skd": "%1$s 被创死了。",
   "death.attack.cti.skd.player": "%1$s 被创死了。",
+  "death.attack.cti.self_damage": "%1$s 放干了猪血。",
 
   "item.cti.molten_aluminium_glass_bucket": "熔融铝玻璃桶",
   "fluid.cti.molten_aluminium_glass": "熔融铝玻璃",
@@ -1271,6 +1272,18 @@
   "modifier.cti.distanced_overfill.flavor": "自动化！",
   "modifier.cti.distanced_overfill.description":"Shift-右键容器以绑定容器，黏液罐会自动消耗绑定容器内的物品来恢复黏液覆层。",
 
+  "modifier.cti.break_through": "突破",
+  "modifier.cti.break_through.flavor": "突破极限！",
+  "modifier.cti.break_through.description":"魂戈-15%攻击间隔，+10%攻击伤害和攻击速度，但是攻击时扣除相当于7.5%最大生命的血量。",
+
+  "modifier.cti.blasphemy": "渎神",
+  "modifier.cti.blasphemy.flavor": "噶人门渎神腾跃伤害特别高",
+  "modifier.cti.blasphemy.description":"魂戈-25%攻击间隔，+10%攻击伤害和攻击速度，但是攻击时对自己强制施加2秒神谕和诅咒，需要突破作为前置。",
+
+  "modifier.cti.blood_letting": "放血",
+  "modifier.cti.blood_letting.flavor": "放干猪血",
+  "modifier.cti.blood_letting.description":"魂戈-10%攻击间隔，+20%攻击伤害和攻击速度，但是攻击时扣除相当于5%最大生命的血量，需要突破作为前置。",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",
@@ -1336,7 +1349,8 @@
   "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
-
+  "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",
+  "info.cti.requirement_blasphemy": "渎神强化需要 突破 为前置。",
 
   "attribute.cti.max_insatiable": "最大贪婪",
 

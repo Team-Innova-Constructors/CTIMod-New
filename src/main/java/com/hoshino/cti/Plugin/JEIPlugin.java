@@ -24,6 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.recipe.fuel.MeltingFuel;
+import slimeknights.tconstruct.plugin.jei.TConstructJEIConstants;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 
 import java.util.List;
@@ -100,6 +101,8 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(etshtinkerItems.constrained_plasma_saber.get()), MELTING_FUEL);
         registration.addRecipeCatalyst(new ItemStack(CtiItem.meteorium_plane.get()), PANEL_RECIPE);
         registration.addRecipeCatalyst(new ItemStack(AEParts.ANNIHILATION_PLANE.m_5456_()), PANEL_RECIPE);
+        registration.addRecipeCatalyst(new ItemStack(CtiItem.REFINER_CONTROLLER.get()),MELTING_FUEL);
+        registration.addRecipeCatalyst(new ItemStack(CtiItem.REFINER_CONTROLLER.get()), TConstructJEIConstants.FOUNDRY);
     }
 
 

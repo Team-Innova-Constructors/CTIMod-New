@@ -83,7 +83,7 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
     @Override
     protected MeltingModuleInventory createMeltingInventory() {
         if (refineryRate==null)
-            refineryRate = new ConditionalOreRate(new IOreRateCondition.BiRateCondition(()->machineAirHandler.getPressure()<-0.5,3,9));
+            refineryRate = new ConditionalOreRate(new IOreRateCondition.BiRateCondition(()->machineAirHandler.getPressure()<-0.5,3,6));
         return new RefineryMeltingModuleInventory(this,tank,refineryRate);
     }
 

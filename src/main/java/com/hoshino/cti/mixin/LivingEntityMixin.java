@@ -54,9 +54,6 @@ import static com.hoshino.cti.content.environmentSystem.EnvironmentalHandler.*;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements ILivingEntityMixin {
-    @Shadow
-    public abstract boolean hasEffect(MobEffect p_21024_);
-
     @Unique
     private static final Logger cti$LOGGER = LogUtils.getLogger();
     @Unique
@@ -65,6 +62,8 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
     @Shadow
     @Nullable
     public abstract LivingEntity getLastHurtByMob();
+
+    @Shadow public abstract boolean hasEffect(MobEffect pEffect);
 
     @Inject(at = @At(value = "HEAD"), method = "checkTotemDeathProtection", cancellable = true)
     private void checkTotemDeathProtection(DamageSource pDamageSource, CallbackInfoReturnable<Boolean> cir) {
@@ -118,7 +117,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
 
     @Inject(at = @At(value = "HEAD"), method = "hurt", cancellable = true)
     public void Hurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (this.hasEffect(CtiEffects.ev.get())) {
+        if (hasEffect(CtiEffects.ev.get())) {
             cir.setReturnValue(false);
         }else if (source instanceof IEnvironmentalSource){
             cir.setReturnValue(EnvironmentalHandler.hurtEntity((LivingEntity) (Object) this,source,amount));

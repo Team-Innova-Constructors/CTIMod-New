@@ -28,4 +28,6 @@ public class CtiChemical {
     public static final GasRegistryObject<Gas> PRECURSOR = GAS.register("precursor", 0xFFFD71);
     public static final GasRegistryObject<Gas> PURE_MATTER = GAS.register("pure_matter", 0x000000);
     public static final GasRegistryObject<Gas> CONCENTRATED_CARBON = GAS.register("concentrated_carbon", 0xFF5943,new GasAttributes.Fuel(()->100,()-> FloatingLong.create(131072)));
+    public static final GasRegistryObject<Gas> DEFORMED_QUANTUM_SLAG = GAS.register("deformed_quantum_slag", 0x290047);
+
 }

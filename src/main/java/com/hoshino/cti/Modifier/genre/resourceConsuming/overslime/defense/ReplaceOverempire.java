@@ -21,10 +21,10 @@ public class ReplaceOverempire extends BasicOverslimeModifier implements ModifyD
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
         var os = TinkerModifiers.overslime.get();
-        if (os.getShield(tool)>=100){
-            var bonus = os.getShield(tool)/100;
-            os.addOverslime(tool,modifier,-10);
+        if (os.getShield(tool)>=160){
+            var bonus = os.getShield(tool)/160;
             bonus = Math.min(bonus,Math.min(20*modifier.getLevel(),60));
+            os.addOverslime(tool,modifier,-5*bonus);
             amount-=amount*0.01f*bonus;
         }
         return amount;

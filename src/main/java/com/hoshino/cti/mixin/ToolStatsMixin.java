@@ -28,7 +28,7 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float BmodifyMaxValue(float constant) {
-        return 8196F;
+        return 8192F;
     }
 
     @ModifyConstant(

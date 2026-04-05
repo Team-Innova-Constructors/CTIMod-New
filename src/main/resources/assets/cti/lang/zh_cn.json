@@ -94,7 +94,7 @@
   "tooltip.cti.hepatizon_casting": "冷却速度变为%1$s倍。",
   "tooltip.cti.faucet_transfer": "浇筑速率：",
   "tooltip.cti.zirconium_alloy_casting": "温度越低，冷却越快，但是处理配方时会释放更多热而剧烈升温。",
-  "tooltip.cti.zirconium_alloy_casting2": "温度小于250℃时，每下降5℃增加1x冷却速度，小于0℃时，每下降1℃增加1x冷却速度。",
+  "tooltip.cti.zirconium_alloy_casting2": "温度小于250℃时，每下降25℃增加1x冷却速度，小于-50℃时，每下降1℃增加2x冷却速度。",
   "tooltip.cti.zirconium_alloy_casting3": "会主动将输出弹射到下方的容器。",
   "tooltip.cti.silicated_brick": "构造精炼炉的建材",
 
@@ -251,7 +251,7 @@
 
   "modifier.cti.ambrosium_powered": "圣神光辉",
   "modifier.cti.ambrosium_powered.flavor": "你的工具已注入神的能量",
-  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3格挡/+2近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
+  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡/+2近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
 
   "modifier.cti.stellar_arrow": "星辰箭矢",
   "modifier.cti.stellar_arrow.flavor": "据说能射下天上的星星",
@@ -287,7 +287,7 @@
 
   "modifier.cti.phoenix": "凤凰",
   "modifier.cti.phoenix.flavor": "从烈火中诞生",
-  "modifier.cti.phoenix.description": "穿着时缓缓恢复全身装备的神能晶充能，移除流体的迷雾视觉效果。",
+  "modifier.cti.phoenix.description": "穿着时缓缓恢复全身装备的神能晶充能，移除流体的迷雾视觉效果。对提供50%对冰、火、电龙的伤害减免。",
 
   "modifier.cti.armor_oracle": "神谕",
   "modifier.cti.armor_oracle.flavor": "神不让你加buff，你加吗？",
@@ -337,6 +337,7 @@
 
   "item.cti.compressed_singularity": "压缩奇点",
   "item.cti.orb_of_curse": "球状恶意",
+  "item.cti.quantum_scrap": "量子陨铁残片",
 
   "item.cti.upgrade_electronium": "辅助静电场分离组件",
   "item.cti.upgrade_violium": "外置滤波电容组件",
@@ -363,6 +364,9 @@
 
   "block.cti.meteorite_ore": "陨铁矿",
   "item.cti.meteorium_plane": "陨铁接收面板",
+
+  "block.cti.quantum_meteorite_ore": "量子陨铁矿",
+  "item.cti.quantumize_plane": "量子化破坏面板",
 
   "item.cti.magic_crystal":"魔力水晶",
   "item.cti.enriched_mana":"富集魔力水晶",
@@ -975,7 +979,7 @@
 
   "modifier.cti.omnipotent": "无所不能",
   "modifier.cti.omnipotent.flavor": "我无所不能！",
-  "modifier.cti.omnipotent.description":"令工具全部词条等级+1。",
+  "modifier.cti.omnipotent.description":"增加2级均衡，你需要先为工具强化均衡才能正常生效。",
 
   "modifier.cti.ion_apocalypse": "离子启示录",
   "modifier.cti.ion_apocalypse.flavor": "没有什么比这个更绚烂，更致命。",
@@ -1083,6 +1087,7 @@
 
   "gas.cti.neutron": "中子素",
   "gas.cti.mana_gas": "气态魔力",
+  "gas.cti.deformed_quantum_slag": "不稳定量子残余",
   "infuse_type.cti.mana_infuse": "魔力水晶",
 
   "stat.tconstruct.slot.prefix.ocean": "深海槽：",
@@ -1192,7 +1197,7 @@
 
   "modifier.cti.replaced_overempire": "黏液帝皇",
   "modifier.cti.replaced_overempire.flavor": "帝国荣光！",
-  "modifier.cti.replaced_overempire.description":"工具每有100黏液覆层提供1%的独立减伤，最大每级20%，上限60%，消耗10黏液覆层。",
+  "modifier.cti.replaced_overempire.description":"工具每有160黏液覆层+1黏液覆层消耗提供1%的独立减伤，最大每级20%，上限60%。",
 
   "modifier.cti.replaced_overarmy": "黏液军团",
   "modifier.cti.replaced_overarmy.flavor": "史莱姆大军！",
@@ -1200,7 +1205,7 @@
 
   "modifier.cti.super_overslime": "黏液超容EX",
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
-  "modifier.cti.super_overslime.description":"黏液覆层上限变为200倍。",
+  "modifier.cti.super_overslime.description":"黏液覆层上限变为100倍。",
 
   "item.cti.feima_ingot": "费马锭",
   "item.cti.molten_feima_bucket": "熔融费马桶",

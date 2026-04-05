@@ -101,6 +101,8 @@
     "MowzieMixin.EntityWroughtnautMixin",
     "PnCMixin.AirGrateMixin",
     "PnCMixin.PlayerExperienceHandlerMixin",
+    "PowahMixin.EnergizingOrbTileMixin",
+    "PowahMixin.EnergizingRecipeMixin",
     "PowahMixin.ReactorTileMixin",
     "TconMixin.CastingBlockEntityMixin",
     "TconMixin.FaucetBlockEntityMixin",

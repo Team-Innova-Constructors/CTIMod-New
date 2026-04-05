@@ -9,7 +9,7 @@ import slimeknights.tconstruct.tools.modifiers.slotless.OverslimeModifier;
 public class SuperOverslime extends EtSTBaseModifier {
     @Override
     public void modifierAddToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
-        OverslimeModifier.OVERSLIME_STAT.multiply(builder,2000);
+        OverslimeModifier.OVERSLIME_STAT.multiply(builder,100);
     }
 
     @Override

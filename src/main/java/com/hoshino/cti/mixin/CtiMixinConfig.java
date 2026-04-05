@@ -10,7 +10,7 @@ import java.util.Set;
 public class CtiMixinConfig implements IMixinConfigPlugin {
     @Override
     public void onLoad(String s) {
-
+        System.setProperty("mixin.debug.disable", "com.xiaoyue.tinkers_ingenuity.mixin.ToolAttackMixin");
     }
 
     @Override
@@ -20,9 +20,6 @@ public class CtiMixinConfig implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.equals("dev.xkmc.l2hostility.mixin.MobMixin")) {
-            return false;
-        }
         return true;
     }
 

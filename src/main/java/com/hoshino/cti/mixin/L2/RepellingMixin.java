@@ -1,5 +1,7 @@
 package com.hoshino.cti.mixin.L2;
 
+import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import com.xiaoyue.tinkers_ingenuity.utils.ToolUtils;
 import dev.xkmc.l2hostility.content.traits.legendary.PushPullTrait;
@@ -31,6 +33,9 @@ public abstract class RepellingMixin {
                         if (ModifierUtil.getModifierLevel(curios, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) > 0) {
                             ci.cancel();
                         }
+                    }
+                    if(GetModifierLevel.EquipHasModifierlevel(players,CtiModifiers.STABLE_STEP.getId())){
+                        ci.cancel();
                     }
                 }
             }

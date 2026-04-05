@@ -23,8 +23,8 @@ public class NDHGmixin {
     private static void condition(LivingDropsEvent event, CallbackInfo ci, MobTraitCap cap, LivingEntity killer, double val, int count, Iterator<ItemStack> var6, ItemEntity stack){
         //后续如果有想禁用的加黑名单
         var item=stack.getItem().getItem();
-        if(item instanceof BackpackItem||item instanceof IModifiable || item.isDamageable(stack.getItem()) ||stack.getItem().is(CtiTagkey.NDHGBLACKLIST)){
+        if(item instanceof BackpackItem||item instanceof IModifiable||stack.getItem().is(CtiTagkey.NDHGBLACKLIST)){
             ci.cancel();
-        }
+        } 
     }
 }

@@ -30,6 +30,7 @@ import slimeknights.tconstruct.library.recipe.molding.MoldingRecipe;
 import slimeknights.tconstruct.smeltery.block.entity.CastingBlockEntity;
 
 import java.util.List;
+import java.util.Random;
 
 public class ZirconiumCastingBlockEntity extends CastingBlockEntity implements IConditionalSpeedCastingBlockEntity, IHeatTinted, IHeatExchangingTE {
     protected final IHeatExchangerLogic heatExchanger;
@@ -50,8 +51,11 @@ public class ZirconiumCastingBlockEntity extends CastingBlockEntity implements I
 
     @Override
     public int getBoost(int i) {
-        var boost =  Math.max(0,((250-Math.max(0,heatExchanger.getTemperature()))/5)-1)+(2*Math.max(0,0-heatExchanger.getTemperature()));
-        this.heatExchanger.addHeat(boost/2);
+        var boost = Math.max(0,((523-Math.max(0,heatExchanger.getTemperature()))/25)-1)+(2*Math.max(0,223-heatExchanger.getTemperature()));
+        this.heatExchanger.addHeat(Math.max(0,boost/2));
+        var boostInt = (int) boost;
+        Random random = new Random();
+        boost = boostInt+ (random.nextFloat()<=boost-boostInt?1:0);
         return (int) boost;
     }
 

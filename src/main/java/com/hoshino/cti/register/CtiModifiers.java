@@ -239,6 +239,8 @@ public class CtiModifiers {
     public static final StaticModifier<Blasphemy> BLASPHEMY = MODIFIERS.register("blasphemy", Blasphemy::new);
     public static final StaticModifier<Bloodletting> BLOOD_LETTING = MODIFIERS.register("blood_letting", Bloodletting::new);
     public static final StaticModifier<ReplaceRingNecrotic> REPLACE_RING_NECROTIC = MODIFIERS.register("replace_ring_necrotic", ReplaceRingNecrotic::new);
+    public static final StaticModifier<WitherInhibitor> WITHER_INHIBITOR_STATIC_MODIFIER = MODIFIERS.register("witherinhibitor", WitherInhibitor::new);
+
 
 
 

@@ -45,6 +45,10 @@ public class EDamageSource extends DamageSource implements IEnvironmentalSource 
         return new EntitySource("cti.ionized", CtiAttributes.IONIZE_RESISTANCE.get(),entity,fromBiomes,level);
     }
 
+    public static EDamageSource selfDamage(int level){
+        return new EDamageSource("cti.self_damage", CtiAttributes.IONIZE_RESISTANCE.get(),true,level);
+    }
+
     @Override
     public Attribute getResistAttribute() {
         return this.resistAttribute;

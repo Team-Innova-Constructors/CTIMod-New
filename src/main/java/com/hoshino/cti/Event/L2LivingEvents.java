@@ -1,8 +1,10 @@
 package com.hoshino.cti.Event;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.CurseTimeUpdatePacket;
+import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CommonUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
@@ -130,6 +132,8 @@ public class L2LivingEvents {
                     case 7, 8, 9, 10, 11, 12 -> event.setAmount(Math.max(0, shouldHeal - a * 0.5F * antiCurseFactor));
                 }
             }
+            if (!player.level.isClientSide)
+                if (EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.STRICT_CURSE.get())) event.setCanceled(true);
         }
     }
 

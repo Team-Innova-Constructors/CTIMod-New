@@ -235,7 +235,10 @@ public class CtiModifiers {
     public static final StaticModifier<OverTrade> OVERTRADE = MODIFIERS.register("overtrade", OverTrade::new);
     public static final StaticModifier<QuantumEntangle> QUANTUM_PENETRATE = MODIFIERS.register("quantum_entangled", QuantumEntangle::new);
     public static final StaticModifier<DistancedOverfill> DISTANCED_OVERFILL = MODIFIERS.register("distanced_overfill", DistancedOverfill::new);
-    public static final StaticModifier<WitherInhibitor> WITHER_INHIBITOR_STATIC_MODIFIER = MODIFIERS.register("witherinhibitor", WitherInhibitor::new);
+    public static final StaticModifier<BreakThrough> BREAK_THROUGH = MODIFIERS.register("break_through", BreakThrough::new);
+    public static final StaticModifier<Blasphemy> BLASPHEMY = MODIFIERS.register("blasphemy", Blasphemy::new);
+    public static final StaticModifier<Bloodletting> BLOOD_LETTING = MODIFIERS.register("blood_letting", Bloodletting::new);
+    public static final StaticModifier<ReplaceRingNecrotic> REPLACE_RING_NECROTIC = MODIFIERS.register("replace_ring_necrotic", ReplaceRingNecrotic::new);
 
 
 

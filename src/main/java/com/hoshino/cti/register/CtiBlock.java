@@ -252,6 +252,11 @@ public class CtiBlock {
                         public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
                             return new CtiTankBlockEntity(pPos,pState);
                         }
+
+                        @Override
+                        public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+                            return List.of(new ItemStack(this.asItem()));
+                        }
                     }, searedTankBlock -> new TankItem(searedTankBlock,new Item.Properties().tab(CtiTab.MACHINE),true));
     public static final RegistryObject<Block> SILICATED_DRAIN = BLOCK.register("silicated_drain",()->
             new SearedDrainBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.AMETHYST)){

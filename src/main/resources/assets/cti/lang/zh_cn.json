@@ -518,6 +518,10 @@
   "modifier.cti.emp.flavor": "生物电都给你打歪",
   "modifier.cti.emp.description":"在物品栏中时充能，满充能打击将使周围生物宕机3秒（对玩家无效），冷却10秒",
 
+  "modifier.cti.witherinhibitor": "凋灵电击器",
+  "modifier.cti.witherinhibitor.flavor": "已老实",
+  "modifier.cti.witherinhibitor.description":"你的电磁脉冲会对凋灵的大脑造成不可逆的损伤，使其永远无法自由移动",
+
   "modifier.cti.double_edged": "双刃剑",
   "modifier.cti.double_edged.flavor": "大动脉撕裂者",
   "modifier.cti.double_edged.description":"满蓄力打击时对敌人造成2.5倍伤害。然而如果未击中或者没有满蓄力，你会打中你自己。",

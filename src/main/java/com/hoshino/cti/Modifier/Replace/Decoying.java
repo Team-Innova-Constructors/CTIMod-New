@@ -18,8 +18,8 @@ import java.util.List;
 public class Decoying extends BattleModifier {
 
     public void SummonLivingEntity(Level Level, Vec3 Position, LivingEntity lv) {
-        Level.addFreshEntity(lv);
         lv.setPos(Position);
+        Level.addFreshEntity(lv);
     }
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {

@@ -68,7 +68,7 @@
   "cti.tooltip.item.atmosphere_extractor": "将环境的部分大气成分提取为固体物质。",
   "cti.tooltip.item.atmosphere_condensator": "将环境的部分大气成分冷凝为流体物质。",
   "cti.tooltip.item.quantum_miner": "消耗压缩奇点以从另一个位面采集矿物，矿物被存入机器上方的容器里。",
-  "cti.tooltip.item.quantum_miner_advanced": "每次产出*2，每tick开采10次，产出的矿物会以恒定的二倍矿被烧制成对应产品。",
+  "cti.tooltip.item.quantum_miner_advanced": "每次产出*2，每tick开采10次，产出的矿物会以恒定的四倍矿被烧制成对应产品。",
   "cti.tooltip.item.reactor_neutron_collector": "从过热钠蒸汽中提取游离的中子素，会将过热钠变为钠蒸汽。",
   "cti.tooltip.item.reactor_neutron_collector2": "机器会从左侧的容器吸取过热钠，并向右侧的容器排出钠蒸汽，物品则输出到机器上方的容器，若这几个位置没有容器则不工作。物品输出满了不会影响过热钠的转化，但是会阻止能量产出。",
   "cti.tooltip.item.reactor_neutron_collector3": "放入催化剂以提高效率，催化剂每刻都有概率消耗一个。催化剂数量越多，处理速度越快，发电越高，但是每刻消耗概率也相应增加。",
@@ -517,6 +517,10 @@
   "modifier.cti.emp": "电磁脉冲发生器",
   "modifier.cti.emp.flavor": "生物电都给你打歪",
   "modifier.cti.emp.description":"在物品栏中时充能，满充能打击将使周围生物宕机3秒（对玩家无效），冷却10秒",
+
+  "modifier.cti.witherinhibitor": "凋灵电击器",
+  "modifier.cti.witherinhibitor.flavor": "已老实",
+  "modifier.cti.witherinhibitor.description":"你的电磁脉冲会对凋灵的大脑造成不可逆的损伤，使其永远无法自由移动",
 
   "modifier.cti.double_edged": "双刃剑",
   "modifier.cti.double_edged.flavor": "大动脉撕裂者",

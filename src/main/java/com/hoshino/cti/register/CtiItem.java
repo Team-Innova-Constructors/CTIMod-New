@@ -4,8 +4,6 @@ import appeng.api.parts.PartModels;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
 import cofh.core.util.helpers.AugmentDataHelper;
-import cofh.thermal.core.ThermalCore;
-import cofh.thermal.core.util.RegistrationHelper;
 import cofh.thermal.lib.common.ThermalAugmentRules;
 import cofh.thermal.lib.common.ThermalFlags;
 import cofh.thermal.lib.item.AugmentItem;
@@ -52,16 +50,11 @@ public class CtiItem {
     public static String FLAG_AREA_AUGMENTS = "area_augments";
 
     public static RegistryObject<BlockItem> registerBlockItem(RegistryObject<? extends Block> block) {
-        RegistryObject<BlockItem> object = ITEMS.register(block.getId().getPath(), () -> new BlockItem((Block)block.get(), new Item.Properties().tab(CtiTab.MACHINE)));
+        RegistryObject<BlockItem> object = ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(CtiTab.MACHINE)));
         return object;
     }
 
     public CtiItem() {
-    }
-
-
-    public static Item.Properties bottle_drinkItem() {
-        return (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).tab(CtiTab.FOOD);
     }
 
     public static void registerPartModels() {

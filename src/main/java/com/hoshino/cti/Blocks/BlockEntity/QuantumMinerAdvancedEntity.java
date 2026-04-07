@@ -176,8 +176,6 @@ public class QuantumMinerAdvancedEntity extends BlockEntity {
             entity.itemStackHandler.extractItem(0, 1, false);
             entity.PROGRESS += 20;
         }
-        ServerLevel serverLevel = (ServerLevel) level;
-        PlayerList list = serverLevel.getServer().getPlayerList();
         ItemStack output = getOutPut(level);
         if (output.isEmpty()) {
             return;

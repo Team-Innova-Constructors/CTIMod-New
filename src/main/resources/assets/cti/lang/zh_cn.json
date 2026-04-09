@@ -802,13 +802,13 @@
   "modifier.cti.endergobberbless.description":"获得抗火效果，伤害每级增加35%，并且缓慢恢复饱食度.作为盔甲时每级减少10%收到的伤害\n[特殊效果]作为武器每次对末影龙造成伤害均会额外提升末影龙6%最大生命的伤害,使用劈刀击杀末影龙的时候必定掉落9个末影龙头颅",
 
 
-  "modifier.cti.thepast": "往日种种",
-  "modifier.cti.thepast.flavor": "往日种种,你当真不记得了?",
-  "modifier.cti.thepast.description":"损失耐久提升400%,损失耐久时对周围5格内生物造成(全身总护甲耐久2‰ + 最大生命60% + 护甲值90%) * 词条等级点伤害 ,六秒内仅能触发一次,这个伤害会有50%概率伤害到你自己\n有黑曜石青铜则不会伤害自己,并且伤害提升1.8 * 全身黑曜石青铜等级倍",
+  "modifier.cti.fragment": "破灭之片",
+  "modifier.cti.fragment.flavor": "人形火车头",
+  "modifier.cti.fragment.description":"被攻击时候会对周围半径6格所有非玩家生物造成一次高额的主动反伤,会受到你最大生命和装备耐久的影响,三秒内仅能触发一次,该伤害单次至多不会超过100点",
 
-  "modifier.cti.mandarinduck": "苦命鸳鸯",
-  "modifier.cti.mandarinduck.flavor": "再无话说,请速速动手",
-  "modifier.cti.mandarinduck.description":"当身上穿有[黑曜石]装备时候提升其破片伤害倍率1.8 * 此词条总等级倍并且使其无视护甲,同时不会再伤害到自己.提升2点基础护甲值,如当前装备有黑曜石,则提升2倍",
+  "modifier.cti.reforge": "千锻万打",
+  "modifier.cti.reforge.flavor": "仔细听声音很清脆",
+  "modifier.cti.reforge.description":"额外提升5点护甲,10%的额外免伤,额外附赠一个防御槽,同时降低30%受到的魔法伤害,降低50%受到的反伤,但是只能生效1级并且降低2点盔甲韧性",
 
   "modifier.cti.cripplesuppermass": "超级质量",
   "modifier.cti.cripplesuppermass.flavor": "保护效果更上一层楼！",

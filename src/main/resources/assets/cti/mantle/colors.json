@@ -136,8 +136,6 @@
     "anisotropy": "#6D29FF",
     "crystallizing_armor": "#9EFAFF",
     "crashdevour": "#9EFAFF",
-    "mandarinduck": "#ffaa7f",
-    "thepast": "#350234",
     "aluminiumpower": "#D3F3FF",
 
 
@@ -164,6 +162,7 @@
     "qcf": "#71be59",
     "donotsplit": "#98ff78",
     "fragment": "#4b2e4c",
+    "reforged": "#4b2e4c",
 
     "nanobee": "#3e9a8b",
     "nanomachine": "#cbcbcb",
@@ -206,6 +205,7 @@
     "deathrolling": "#ffd1a2",
     "fbfq": "#ffd1a2",
     "feima": "#ffd1a2",
+    "reforge": "#3B2754",
 
     "witherinhibitor": "#72abff",
 

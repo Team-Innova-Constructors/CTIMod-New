@@ -1,9 +1,7 @@
 package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.Cti;
-import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.register.CtiSounds;
-import com.hoshino.cti.util.method.GetModifierLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -27,7 +25,7 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.List;
 
-public class ThePast extends Modifier implements ModifyDamageModifierHook , InventoryTickModifierHook {
+public class Fragment extends Modifier implements ModifyDamageModifierHook , InventoryTickModifierHook {
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         hookBuilder.addHook(this, ModifierHooks.MODIFY_DAMAGE,ModifierHooks.INVENTORY_TICK);
@@ -47,32 +45,18 @@ public class ThePast extends Modifier implements ModifyDamageModifierHook , Inve
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float amount, boolean b) {
         var entity=equipmentContext.getEntity();
-        if(!(entity instanceof Player player))return amount;
+        if(!(entity instanceof Player))return amount;
         if(damageSource instanceof EntityDamageSource entityDamageSource&&entityDamageSource.isThorns())return amount;
         int lastFragmentTime = tool.getPersistentData().getInt(FRAGMENT_COOLDOWN);
         if(lastFragmentTime>0)return amount;
 
-        tool.getPersistentData().putInt(FRAGMENT_COOLDOWN,6);
-        var area = new AABB(entity.getOnPos()).inflate(5);
+        tool.getPersistentData().putInt(FRAGMENT_COOLDOWN,3);
+        var area = new AABB(entity.getOnPos()).inflate(8);
         List<Mob> targets = entity.level.getEntitiesOfClass(Mob.class, area, LivingEntity::isAlive);
-        int increaseLevel = GetModifierLevel.getTotalArmorModifierlevel(entity, CtiModifiers.MANDARIN_DUCK_STATIC_MODIFIER.getId());
-        boolean hasIncrease = increaseLevel > 0;
-        boolean shouldHurtOwner = entity.level.getRandom().nextBoolean();
-        var source = new EntityDamageSource("obsidianhurt", entity).setThorns();
-        float baseDurability=0;
-        for(ItemStack stack:player.getInventory().armor){
-            baseDurability= baseDurability+ToolStack.from(stack).getCurrentDurability();
-        }
-        float DurabilityDamage=baseDurability * 0.002f;
-        float baseDamage=DurabilityDamage + entity.getMaxHealth() * 0.3f + entity.getArmorValue() * 0.45f;
-        if (shouldHurtOwner && !hasIncrease) {
-            entity.hurt(source, baseDamage + modifier.getLevel());
-            targets.forEach(mob -> runHurt(mob,source,baseDamage *modifier.getLevel()));
-        } else if (hasIncrease) {
-            targets.forEach(mob -> runHurt(mob,source.bypassArmor(), baseDamage *modifier.getLevel() * 1.8f * increaseLevel));
-        } else {
-            targets.forEach(mob -> runHurt(mob,source, baseDamage *modifier.getLevel()));
-        }
+        var source = new EntityDamageSource("obsidianhurt", entity).setThorns().bypassArmor();
+        float DurabilityDamage=tool.getCurrentDurability() * 0.02f;
+        float baseDamage=DurabilityDamage + entity.getMaxHealth() * 0.2f + entity.getArmorValue() * 0.25f;
+        targets.forEach(mob -> runHurt(mob,source, Math.min(baseDamage ,100 ) * modifier.getLevel()));
         entity.level.playSound(null, entity.getOnPos(), CtiSounds.armor_broken.get(), SoundSource.AMBIENT, 0.6f, 1);
         return amount;
     }

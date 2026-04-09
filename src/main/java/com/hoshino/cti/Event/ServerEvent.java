@@ -30,6 +30,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import thelm.packagedauto.block.entity.CrafterBlockEntity;
 import thelm.packagedauto.block.entity.PackagerBlockEntity;
+import thelm.packagedauto.block.entity.PackagerExtensionBlockEntity;
 import thelm.packagedauto.block.entity.UnpackagerBlockEntity;
 import thelm.packagedavaritia.block.entity.ExtremeCrafterBlockEntity;
 import thelm.packagedexcrafting.block.entity.AdvancedCrafterBlockEntity;
@@ -120,5 +121,7 @@ public class ServerEvent {
         ExtremeCrafterBlockEntity.energyUsage=500;
         PackagerBlockEntity.energyReq = 500;
         PackagerBlockEntity.energyUsage = 250;
+        PackagerExtensionBlockEntity.energyReq=500;
+        PackagerExtensionBlockEntity.energyUsage=250;
     }
 }

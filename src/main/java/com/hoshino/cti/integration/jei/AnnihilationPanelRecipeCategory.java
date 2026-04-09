@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration;
+package com.hoshino.cti.integration.jei;
 
 import com.hoshino.cti.Plugin.JEIPlugin;
 import com.hoshino.cti.Cti;

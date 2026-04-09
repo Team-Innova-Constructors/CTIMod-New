@@ -8,6 +8,7 @@ import com.hoshino.cti.util.AttackUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -83,6 +84,10 @@ public interface BurstHitModifierHook {
                             true, tool.getStats().get(ToolStats.ATTACK_DAMAGE)+1+finalDamage,burstExtra.cti$getDamageModifier())){
                         didHitEntity = true;
                     }
+                } else {
+                    var source = new IndirectEntityDamageSource("burst_damage",burstEntity,owner);
+                    if (entity.hurt(source,finalDamage))
+                        didHitEntity = true;
                 }
                 if (entity instanceof LivingEntity target) {
                     if (didHitEntity) {

@@ -69,4 +69,11 @@ public class CtiBlockEntityType {
                     BlockEntityType.Builder.of(ValveBlockEntity::new, CtiBlock.SILICATED_VALVE.get())
                             .build(null));
 
+    public static final RegistryObject<BlockEntityType<ManaInterfaceBE>> MANA_INTERFACE =
+            BLOCK_ENTITIES.register("mana_interface",()-> {
+                        var type = BlockEntityType.Builder.of(ManaInterfaceBE::new, CtiBlock.MANA_INTERFACE.get())
+                                .build(null);
+                        CtiBlock.MANA_INTERFACE.get().setBlockEntity(ManaInterfaceBE.class, type, null, null);
+                        return type;
+                    });
 }

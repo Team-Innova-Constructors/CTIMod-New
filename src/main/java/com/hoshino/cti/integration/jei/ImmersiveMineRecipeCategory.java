@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration;
+package com.hoshino.cti.integration.jei;
 
 import blusunrize.immersiveengineering.ImmersiveEngineering;
 import blusunrize.immersiveengineering.api.crafting.StackWithChance;

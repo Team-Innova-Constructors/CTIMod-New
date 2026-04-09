@@ -29,7 +29,9 @@ import com.hoshino.cti.Modifier.slot.*;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Modifier.test;
 import com.hoshino.cti.Modifier.underGardenCompact.*;
-import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
+import com.hoshino.cti.integration.botania.api.modifierBase.BurstMiningModifier;
+import com.hoshino.cti.integration.botania.api.modifierBase.LCManaBurstModifier;
+import com.hoshino.cti.integration.botania.modifiers.FartherSights;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
@@ -240,6 +242,9 @@ public class CtiModifiers {
     public static final StaticModifier<Bloodletting> BLOOD_LETTING = MODIFIERS.register("blood_letting", Bloodletting::new);
     public static final StaticModifier<ReplaceRingNecrotic> REPLACE_RING_NECROTIC = MODIFIERS.register("replace_ring_necrotic", ReplaceRingNecrotic::new);
     public static final StaticModifier<WitherInhibitor> WITHER_INHIBITOR_STATIC_MODIFIER = MODIFIERS.register("witherinhibitor", WitherInhibitor::new);
+    public static final StaticModifier<LCManaBurstModifier> MANA_BURST_HANDLER = MODIFIERS.register("mana_burst_handler", LCManaBurstModifier::new);
+    public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
+    public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);
 
 
 

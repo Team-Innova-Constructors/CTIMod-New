@@ -6,10 +6,12 @@ import com.hoshino.cti.Entity.Projectiles.*;
 import com.hoshino.cti.Entity.vehicles.rocketTier5;
 import com.hoshino.cti.client.renderer.projectile.*;
 import com.hoshino.cti.client.renderer.vehicle.rocketTier5.RocketRendererTier5;
+import com.hoshino.cti.integration.botania.entity.ThunderBurstEntity;
 import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistries;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistry;
 import earth.terrarium.botarium.client.ClientHooks;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -21,6 +23,7 @@ import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
 import slimeknights.tconstruct.tools.TinkerToolParts;
 import slimeknights.tconstruct.tools.TinkerTools;
+import vazkii.botania.common.entity.ManaBurstEntity;
 
 public class CtiEntity {
     public static final DeferredRegister<EntityType<?>> ENTITY = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, "cti");
@@ -49,6 +52,13 @@ public class CtiEntity {
     );
     public static final RegistryObject<EntityType<GelCloudEntity>> GEL_CLOUD = ENTITIES.register("gel_cloud", () -> EntityType.Builder.<GelCloudEntity>of(GelCloudEntity::new, MobCategory.MISC).sized(1, 1).setTrackingRange(4).setUpdateInterval(1).setCustomClientFactory((spawnEntity, world) -> new GelCloudEntity(world)).setShouldReceiveVelocityUpdates(true));
     public static final RegistryObject<EntityType<VoidArcEntity>> VOID_ARC = ENTITIES.register("void_arc", () -> EntityType.Builder.<VoidArcEntity>of(VoidArcEntity::new, MobCategory.MISC).sized(1, 1).setTrackingRange(4).setUpdateInterval(1).setCustomClientFactory((spawnEntity, world) -> new VoidArcEntity(world)).setShouldReceiveVelocityUpdates(true));
+    public static final RegistryEntry<EntityType<ManaBurstEntity>> THUNDER_BURST = ENTITY_TYPES.register("thunder_burst",()->
+            EntityType.Builder.<ManaBurstEntity>of(ThunderBurstEntity::new, MobCategory.MISC)
+                    .sized(3f,3f)
+                    .setCustomClientFactory(((spawnEntity, level) -> new ThunderBurstEntity(level)))
+                    .setTrackingRange(8)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .updateInterval(4).build("thunder_burst"));
 
     public static void registerEntityRenderers() {
         ClientHooks.registerEntityRenderer(CtiEntity.TIER_5_ROCKET, RocketRendererTier5::new);
@@ -63,6 +73,7 @@ public class CtiEntity {
         ClientHooks.registerEntityRenderer(CtiEntity.PLASMA_WAVE_SLASH, renderSlash::new);
         ClientHooks.registerEntityRenderer(CtiEntity.FIERY_JAVELIN, FieryJavelinRender::new);
         ClientHooks.registerEntityRenderer(CtiEntity.HOMING_SUNSTRIKE, RenderSunstrike::new);
+        ClientHooks.registerEntityRenderer(CtiEntity.THUNDER_BURST, NoopRenderer::new);
     }
     public static void register(IEventBus bus){
         ENTITIES.register(bus);

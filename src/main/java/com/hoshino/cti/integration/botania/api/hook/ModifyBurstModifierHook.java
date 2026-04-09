@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import vazkii.botania.api.internal.ManaBurst;
 import vazkii.botania.api.mana.BurstProperties;
 import vazkii.botania.common.item.lens.LensItem;
@@ -20,7 +21,9 @@ public interface ModifyBurstModifierHook {
 
     static void handleBurstCreation(ManaBurst burst, ItemStack stack,IToolStackView tool){
         ToolStack toolStack = ToolStack.from(stack);
-        toolStack.getModifierList().forEach(entry -> entry.getHook(CtiBotModifierHooks.MODIFY_BURST).modifyBurst(tool,entry,tool.getModifierList(),burst.entity().getOwner(),burst,(IManaBurstExtra) burst,toolStack));
+        var burstExtra = (IManaBurstExtra) burst;
+        burstExtra.addBaseDamage(toolStack.getStats().get(ToolStats.ATTACK_DAMAGE)*0.5f);
+        toolStack.getModifierList().forEach(entry -> entry.getHook(CtiBotModifierHooks.MODIFY_BURST).modifyBurst(tool,entry,tool.getModifierList(),burst.entity().getOwner(),burst,burstExtra,toolStack));
         BurstProperties burstProperties = new BurstProperties(burst.getMana(),burst.getMinManaLoss(),burst.getManaLossPerTick(),burst.getBurstGravity(),1,burst.getColor());
         List<ItemStack> list = LensProviderModifierHook.gatherLens(tool,burst);
         list.forEach(lensStack ->{

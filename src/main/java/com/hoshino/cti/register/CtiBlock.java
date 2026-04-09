@@ -1,5 +1,6 @@
 package com.hoshino.cti.register;
 
+import appeng.block.misc.InterfaceBlock;
 import com.hoshino.cti.Blocks.*;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.Machine.*;
@@ -307,4 +308,6 @@ public class CtiBlock {
                     return ValveBlockEntity.getTicker(level,type,CtiBlockEntityType.VAULT.get());
                 }
             });
+
+    public static final RegistryObject<ManaInterfaceBlock> MANA_INTERFACE = BLOCK.register("mana_interface", ManaInterfaceBlock::new);
 }

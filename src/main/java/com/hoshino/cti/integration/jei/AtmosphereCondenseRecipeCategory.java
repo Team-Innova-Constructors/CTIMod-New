@@ -1,13 +1,14 @@
-package com.hoshino.cti.integration;
+package com.hoshino.cti.integration.jei;
 
 import com.hoshino.cti.Items.BiomeInfoItem;
 import com.hoshino.cti.Plugin.JEIPlugin;
 import com.hoshino.cti.Cti;
-import com.hoshino.cti.recipe.AtmosphereExtractorRecipe;
+import com.hoshino.cti.recipe.AtmosphereCondensorRecipe;
 import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.util.BiomeUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -26,13 +27,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.biome.Biome;
 
-public class AtmosphereExtractRecipeCategory implements IRecipeCategory<AtmosphereExtractorRecipe> {
+public class AtmosphereCondenseRecipeCategory implements IRecipeCategory<AtmosphereCondensorRecipe> {
     // 区分合成分类的ID
     public static final ResourceLocation UID = new ResourceLocation(Cti.MOD_ID,
-            "atmosphere_extract");
+            "atmosphere_condense");
     // png file texture
     public static final ResourceLocation TEXTURE = new ResourceLocation(Cti.MOD_ID,
-            "textures/gui/machine/atmosphere_extractor_bg.png");
+            "textures/gui/machine/gui_condensor.png");
 
     // 合成分类的背景图片
     private final IDrawable background;
@@ -40,24 +41,24 @@ public class AtmosphereExtractRecipeCategory implements IRecipeCategory<Atmosphe
     private final IDrawable icon;
 
     // 构造方法
-    public AtmosphereExtractRecipeCategory(IGuiHelper helper) {
+    public AtmosphereCondenseRecipeCategory(IGuiHelper helper) {
         // 渲染背景图片。图片的开始位置和图片的结束的位置 u,v,width,height
         this.background = helper.createDrawable(TEXTURE, 42, 17, 100, 48);
         // 图标
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(CtiItem.atmosphere_extractor.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(CtiItem.atmosphere_condensator.get()));
 
     }
 
     // 返回JEITutorialModPlugin定义的type
     @Override
-    public RecipeType<AtmosphereExtractorRecipe> getRecipeType() {
-        return JEIPlugin.ATMOSPHERE_EXTRACT;
+    public RecipeType<AtmosphereCondensorRecipe> getRecipeType() {
+        return JEIPlugin.ATMOSPHERE_CONDENSE;
     }
 
     // 合成界面的标题是什么
     @Override
     public Component getTitle() {
-        return Component.literal("大气提取");
+        return Component.literal("大气冷凝");
     }
 
     //
@@ -73,8 +74,8 @@ public class AtmosphereExtractRecipeCategory implements IRecipeCategory<Atmosphe
 
     // 添加合成表的输入slot和输出的slot
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, AtmosphereExtractorRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 74, 18).addItemStack(recipe.getResultItem());
+    public void setRecipe(IRecipeLayoutBuilder builder, AtmosphereCondensorRecipe recipe, IFocusGroup focuses) {
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 74, 4).setFluidRenderer(40, false, 16, 40).addIngredient(ForgeTypes.FLUID_STACK, recipe.getFluid());
         if (BiomeUtil.INFO_LIST.contains(recipe.getBiome())){
             ItemStack stack = new ItemStack(CtiItem.BIOMES_ITEM.get());
             stack.getOrCreateTag().putString(BiomeInfoItem.KEY_BIOMES,recipe.getBiome());
@@ -83,7 +84,7 @@ public class AtmosphereExtractRecipeCategory implements IRecipeCategory<Atmosphe
     }
 
     @Override
-    public void draw(AtmosphereExtractorRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(AtmosphereCondensorRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         String biomes = recipe.getBiome();
         ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(biomes));
         MutableComponent biomeC = Component.literal("群系:").withStyle(ChatFormatting.WHITE);

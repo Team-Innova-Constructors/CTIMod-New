@@ -7,7 +7,7 @@ import blusunrize.immersiveengineering.common.register.IEBlocks;
 import com.c2h6s.etshtinker.init.ItemReg.etshtinkerItems;
 import com.hoshino.cti.Items.BiomeInfoItem;
 import com.hoshino.cti.Cti;
-import com.hoshino.cti.integration.*;
+import com.hoshino.cti.integration.jei.*;
 import com.hoshino.cti.recipe.*;
 import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.util.BiomeUtil;

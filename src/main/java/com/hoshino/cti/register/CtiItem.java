@@ -20,6 +20,7 @@ import com.hoshino.cti.Items.pncMinigunAmmo.ElectroniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.ProtoniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.UltraDenseAmmo;
 import com.hoshino.cti.integration.ArsNouveau.MeteorShowerRitual;
+import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
 import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
 import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistries;
@@ -74,6 +75,7 @@ public class CtiItem {
     public static final RegistryObject<Item> uriel_ingot = ITEMS.register("uriel_ingot", () -> new uriel_ingot(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> feima_ingot = ITEMS.register("feima_ingot", () -> new Item(new Item.Properties().tab(CtiTab.MATERIALS)));
     public static final RegistryObject<Item> quantum_scrap = ITEMS.register("quantum_scrap", () -> new Item(new Item.Properties().tab(CtiTab.MIXC)));
+    public static final RegistryObject<DummyToolManaLens> DUMMY_TOOL_MANA_LENS = ITEMS.register("dummy_tool_mana_lens", DummyToolManaLens::new);
 
 
     public static final RegistryObject<Item> stellar_manyullyn = ITEMS.register("stellar_manyullyn", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS), List.of(Component.translatable("cti.tooltip.item.etsh").withStyle(ChatFormatting.LIGHT_PURPLE))));
@@ -171,6 +173,8 @@ public class CtiItem {
             Component.translatable("cti.tooltip.item.fe_max").append(": 2 GFE").withStyle(ChatFormatting.RED),
             Component.translatable("cti.tooltip.item.fe_generate").append(": 50 MFE/t").withStyle(ChatFormatting.RED)
     )));
+    public static final RegistryObject<BlockItem> MANA_INTERFACE = ITEMS.register("mana_interface", () -> new BlockItem(CtiBlock.MANA_INTERFACE.get(), new Item.Properties().tab(CtiTab.MACHINE)));
+
 
 
     public static final RegistryObject<Item> advanced_speed_augment = ITEMS.register("advanced_speed_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()

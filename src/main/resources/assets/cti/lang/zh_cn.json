@@ -393,6 +393,7 @@
   "block.cti.zirconium_alloy_casting_table": "锆合金铸件台",
   "block.cti.zirconium_alloy_casting_basin": "锆合金铸造盆",
   "block.cti.advanced_alloyer": "液金混熔炉",
+  "block.cti.mana_interface": "ME集魔接口",
 
   "block.cti.silicated_bricks": "硅碳砖块",
   "block.cti.silicated_glass": "硅碳玻璃",
@@ -1363,5 +1364,13 @@
   "attribute.cti.max_insatiable": "最大贪婪",
 
   "info.cti.container_bind": "绑定容器",
-  "info.cti.container_disbound": "解绑容器"
+  "info.cti.container_disbound": "解绑容器",
+
+  "tooltip.cti.mana_per_burst":"魔力脉冲能量：",
+  "tooltip.cti.mana_per_entity": "实体魔力消耗：",
+  "tooltip.cti.mana_per_block": "方块魔力消耗：",
+  "info.cti.specialized_burst_modifier":"§b-专业化魔力射线词条-",
+  "tooltip.cti.burst_time_before_loss": "射线在 ",
+  "tooltip.cti.burst_mana_loss": "刻 后每刻流失 ",
+  "tooltip.cti.error.specialized_burst_modifier":"每件工具只能施加一个专业化魔力射线词条，冲突词条："
 }

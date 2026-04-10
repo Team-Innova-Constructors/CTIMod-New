@@ -12,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -56,6 +58,14 @@ public class ServerEvent {
                 event.getEntity().invulnerableTime=0;
                 event.setCanceled(true);
             }
+        }
+    }
+    @SubscribeEvent
+    public static void onEntityLeaveLevel(EntityLeaveLevelEvent event) {
+        Entity entity = event.getEntity();
+        if (!entity.level.isClientSide) {
+            EntityTickerManager.save(entity);
+            EntityTickerManager.TICKER_MAP.remove(entity);
         }
     }
 

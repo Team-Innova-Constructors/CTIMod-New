@@ -21,6 +21,10 @@ public class EntityTickerManager {
     }
 
     public static boolean tick(Entity entity){
+        if (entity.isRemoved()) {
+            TICKER_MAP.remove(entity);
+            return true;
+        }
         if (entity.getPersistentData().contains("cti_tickers")){
             load(entity);
         }

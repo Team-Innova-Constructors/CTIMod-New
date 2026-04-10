@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 //EntityTicker的基础类，你的Ticker需要继承这个
 public abstract class EntityTicker {
@@ -31,4 +33,5 @@ public abstract class EntityTicker {
     public void onTickerEnd(int level,Entity entity){
 
     }
+
 }

@@ -139,7 +139,6 @@ public class CtiModifiers {
     public static final StaticModifier<Qcf> qcfStaticModifier = MODIFIERS.register("qcf", Qcf::new);
     public static final StaticModifier<DoNotSplit> doNotSplitStaticModifier = MODIFIERS.register("donotsplit", DoNotSplit::new);
     public static final StaticModifier<AutoShooting> AUTO_SHOOTING = MODIFIERS.register("auto_shooting", AutoShooting::new);
-    public static final StaticModifier<MandarinDuck> MANDARIN_DUCK_STATIC_MODIFIER = MODIFIERS.register("mandarinduck", MandarinDuck::new);
     public static final StaticModifier<Atheric> ATHERIC = MODIFIERS.register("atheric", Atheric::new);
     public static final StaticModifier<AmbrosiumPowered> AMBROSIUM_POWERED = MODIFIERS.register("ambrosium_powered", AmbrosiumPowered::new);
     public static final StaticModifier<StellarArrow> STELLAR_ARROW = MODIFIERS.register("stellar_arrow", StellarArrow::new);

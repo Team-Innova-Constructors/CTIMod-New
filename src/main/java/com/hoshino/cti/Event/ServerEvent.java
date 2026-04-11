@@ -3,9 +3,7 @@ package com.hoshino.cti.Event;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Entity.Projectiles.MeteorEntity;
 import com.hoshino.cti.Event.ModEvents.MeteorSpawnEvent;
-import com.hoshino.cti.Items.SlimeCanItem;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
-import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.util.DimensionConstants;
 import com.xiaoyue.tinkers_ingenuity.content.basic.entity.projectile.ShurikenEntity;
 import net.minecraft.core.BlockPos;
@@ -33,13 +31,10 @@ import net.minecraftforge.fml.common.Mod;
 import thelm.packagedauto.block.entity.CrafterBlockEntity;
 import thelm.packagedauto.block.entity.PackagerBlockEntity;
 import thelm.packagedauto.block.entity.PackagerExtensionBlockEntity;
-import thelm.packagedauto.block.entity.UnpackagerBlockEntity;
 import thelm.packagedavaritia.block.entity.ExtremeCrafterBlockEntity;
 import thelm.packagedexcrafting.block.entity.AdvancedCrafterBlockEntity;
 import thelm.packagedexcrafting.block.entity.EliteCrafterBlockEntity;
 import thelm.packagedexcrafting.block.entity.UltimateCrafterBlockEntity;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.Random;
 
@@ -63,15 +58,15 @@ public class ServerEvent {
     @SubscribeEvent
     public static void onEntityLeaveLevel(EntityLeaveLevelEvent event) {
         Entity entity = event.getEntity();
-        if (!entity.level.isClientSide) {
+        if (!event.getLevel().isClientSide()) {
             EntityTickerManager.save(entity);
-            EntityTickerManager.TICKER_MAP.remove(entity);
+            EntityTickerManager.TICKER_MAP.remove(entity.getUUID());
         }
     }
 
     @SubscribeEvent
-    public static void onServerStopping(ServerStoppingEvent event){
-        EntityTickerManager.saveAll();
+    public static void onServerStopping(ServerStoppingEvent event) {
+        EntityTickerManager.saveAll(event.getServer());
     }
     @SubscribeEvent
     public static void onEntityTravelDimension(EntityTravelToDimensionEvent event) {

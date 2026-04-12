@@ -1,6 +1,6 @@
 package com.hoshino.cti.register;
 
-import appeng.block.misc.InterfaceBlock;
+import cofh.core.init.CoreMobEffects;
 import com.hoshino.cti.Blocks.*;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.Machine.*;
@@ -9,16 +9,15 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.GlassBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -33,7 +32,6 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.registration.object.EnumObject;
-import slimeknights.mantle.util.BlockEntityHelper;
 import slimeknights.tconstruct.common.registration.BlockDeferredRegisterExtension;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.CastingBasinBlock;
@@ -43,12 +41,20 @@ import slimeknights.tconstruct.smeltery.block.controller.AlloyerBlock;
 import slimeknights.tconstruct.smeltery.block.entity.component.SmelteryInputOutputBlockEntity;
 import slimeknights.tconstruct.smeltery.item.TankItem;
 import slimeknights.tconstruct.world.block.CrystalClusterBlock;
+import vazkii.botania.api.block_entity.SpecialFlowerBlockEntity;
+import vazkii.botania.common.block.BotaniaBlocks;
+import vazkii.botania.common.block.FloatingSpecialFlowerBlock;
+import vazkii.botania.forge.block.ForgeSpecialFlowerBlock;
+import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 
 public class CtiBlock {
     public static final DeferredRegister<Block> BLOCK = DeferredRegister.create(ForgeRegistries.BLOCKS, "cti");
+    private static final BlockBehaviour.Properties FLOWER_PROPS = BlockBehaviour.Properties.copy(Blocks.POPPY);
+    private static final BlockBehaviour.Properties FLOATING_PROPS = BotaniaBlocks.FLOATING_PROPS;
     public static final BlockDeferredRegisterExtension BLOCK_EXT = new BlockDeferredRegisterExtension(Cti.MOD_ID);
     public static final RegistryObject<Block> unipolar_magnet_budding = BLOCK.register("unipolar_magnet_budding", () -> new unipolarBudding(BlockBehaviour.Properties.of(Material.AMETHYST).lightLevel((BlockStateBase) -> 15).sound(SoundType.AMETHYST).randomTicks().destroyTime(1)));
     public static final RegistryObject<Block> unipolar_magnet = BLOCK.register("unipolar_magnet", () -> new CrystalClusterBlock(SoundEvents.AMETHYST_BLOCK_CHIME, 7, 3, BlockBehaviour.Properties.of(Material.AMETHYST).noOcclusion().sound(SoundType.AMETHYST_CLUSTER).strength(5.5F).lightLevel((BlockStateBase) -> 5).destroyTime(1)));
@@ -310,4 +316,31 @@ public class CtiBlock {
             });
 
     public static final RegistryObject<ManaInterfaceBlock> MANA_INTERFACE = BLOCK.register("mana_interface", ManaInterfaceBlock::new);
+
+    public static final RegistryObject<FlowerBlock> REACTIVE_FLOWER = BLOCK.register("reactive_flower", ()->createSpecialFlowerBlock(
+            MobEffects.LUCK, 2400, CtiBlockEntityType.REACTIVE_FLOWER::get
+    ));
+    public static final RegistryObject<FloatingSpecialFlowerBlock> FLOATING_REACTIVE_FLOWER = BLOCK.register("floating_reactive_flower",
+            ()->new FloatingSpecialFlowerBlock(FLOATING_PROPS,CtiBlockEntityType.REACTIVE_FLOWER::get){
+                @Override
+                public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+            });
+
+
+
+
+    private static FlowerBlock createSpecialFlowerBlock(
+            MobEffect effect, int effectDuration,
+            Supplier<BlockEntityType<? extends SpecialFlowerBlockEntity>> beType) {
+        return new ForgeSpecialFlowerBlock(
+                effect, effectDuration, CtiBlock.FLOWER_PROPS, beType
+        ){
+            @Override
+            public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+                return List.of(new ItemStack(this.asItem()));
+            }
+        };
+    }
 }

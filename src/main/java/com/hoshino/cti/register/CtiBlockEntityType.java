@@ -1,6 +1,7 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Blocks.BlockEntity.*;
+import com.hoshino.cti.Blocks.BlockEntity.botania.ReactiveFLowerBE;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.refinery.RefineryControllerBlockEntity;
 import com.hoshino.cti.Cti;
@@ -76,4 +77,8 @@ public class CtiBlockEntityType {
                         CtiBlock.MANA_INTERFACE.get().setBlockEntity(ManaInterfaceBE.class, type, null, null);
                         return type;
                     });
+
+    public static final RegistryObject<BlockEntityType<ReactiveFLowerBE>> REACTIVE_FLOWER =
+            BLOCK_ENTITIES.register("reactive_flower",()-> BlockEntityType.Builder.of(ReactiveFLowerBE::new, CtiBlock.REACTIVE_FLOWER.get(),CtiBlock.FLOATING_REACTIVE_FLOWER.get())
+                    .build(null));
 }

@@ -44,6 +44,8 @@ import slimeknights.tconstruct.smeltery.client.render.CastingBlockEntityRenderer
 import slimeknights.tconstruct.smeltery.client.render.FaucetBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.HeatingStructureBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.TankBlockEntityRenderer;
+import vazkii.botania.client.render.block_entity.FloatingFlowerBlockEntityRenderer;
+import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
 
 
 public class ClientEventHandler {
@@ -97,6 +99,8 @@ public class ClientEventHandler {
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.REFINERY.get(), HeatingStructureBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.TANK.get(), TankBlockEntityRenderer::new);
+
+            event.registerBlockEntityRenderer(CtiBlockEntityType.REACTIVE_FLOWER.get(), SpecialFlowerBlockEntityRenderer::new);
         }
 
         @SubscribeEvent

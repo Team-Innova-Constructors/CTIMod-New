@@ -9,8 +9,10 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.WorldData;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
@@ -85,4 +87,8 @@ public class CommonUtil {
     }
 
     public static final ResourceLocation SLOT_SEAL = new ResourceLocation("thermal","slot_seal");
+
+    public static Item itemFromId(String id){
+        return ForgeRegistries.ITEMS.getValue(new ResourceLocation(id));
+    }
 }

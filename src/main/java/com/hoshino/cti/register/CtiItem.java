@@ -174,6 +174,8 @@ public class CtiItem {
             Component.translatable("cti.tooltip.item.fe_generate").append(": 50 MFE/t").withStyle(ChatFormatting.RED)
     )));
     public static final RegistryObject<BlockItem> MANA_INTERFACE = ITEMS.register("mana_interface", () -> new BlockItem(CtiBlock.MANA_INTERFACE.get(), new Item.Properties().tab(CtiTab.MACHINE)));
+    public static final RegistryObject<BlockItem> REACTIVE_FLOWER = ITEMS.register("reactive_flower", () -> new BlockItem(CtiBlock.REACTIVE_FLOWER.get(), new Item.Properties().tab(CtiTab.MACHINE)));
+    public static final RegistryObject<BlockItem> FLOATING_REACTIVE_FLOWER = ITEMS.register("floating_reactive_flower", () -> new BlockItem(CtiBlock.FLOATING_REACTIVE_FLOWER.get(), new Item.Properties().tab(CtiTab.MACHINE)));
 
 
 

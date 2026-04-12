@@ -38,6 +38,7 @@ public class JEIPlugin implements IModPlugin {
     public static RecipeType<MineralMix> MINERAL_MIX = new RecipeType<>(ImmersiveMineRecipeCategory.UID, MineralMix.class);
     public static RecipeType<MeltingFuel> MELTING_FUEL = new RecipeType<>(MeltingFuelRecipeCategory.UID, MeltingFuel.class);
     public static RecipeType<AnnihilationPanelRecipe> PANEL_RECIPE = new RecipeType<>(AnnihilationPanelRecipeCategory.UID, AnnihilationPanelRecipe.class);
+    public static RecipeType<ReactiveFlowerRecipe> REACTIVE_FLOWER = new RecipeType<>(ReactiveFlowerRecipeCategory.UID, ReactiveFlowerRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -53,6 +54,7 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new ImmersiveMineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MeltingFuelRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new AnnihilationPanelRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ReactiveFlowerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -62,12 +64,14 @@ public class JEIPlugin implements IModPlugin {
         List<QuantumMinerRecipe> quantumMining = List.copyOf(RecipeMap.MinerRecipeList);
         List<ReactorNeutronCollectorRecipe> neutronCollecting = List.copyOf(RecipeMap.NeutronRecipeList);
         List<AnnihilationPanelRecipe> panelRecipes = List.copyOf(RecipeMap.ANNIHILATION_PANEL_RECIPES);
+        List<ReactiveFlowerRecipe> reactiveFlowerRecipes = List.copyOf(RecipeMap.getReactiveFlowerRecipes().values());
 
         registration.addRecipes(ATMOSPHERE_EXTRACT, recipesExtract);
         registration.addRecipes(ATMOSPHERE_CONDENSE, recipesCondense);
         registration.addRecipes(QUANTUM_MINING, quantumMining);
         registration.addRecipes(NEUTRON_COLLECTING, neutronCollecting);
         registration.addRecipes(PANEL_RECIPE,panelRecipes);
+        registration.addRecipes(REACTIVE_FLOWER,reactiveFlowerRecipes);
 
         if (Minecraft.getInstance().level != null) {
             List<MineralMix> mineralMixes = Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(IERecipeTypes.MINERAL_MIX.get());
@@ -93,6 +97,8 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(CtiItem.quantum_miner_advanced.get()), QUANTUM_MINING);
         registration.addRecipeCatalyst(new ItemStack(CtiItem.reactor_neutron_collector.get()), NEUTRON_COLLECTING);
         registration.addRecipeCatalyst(new ItemStack(IEBlocks.Multiblocks.EXCAVATOR), MINERAL_MIX);
+        registration.addRecipeCatalyst(new ItemStack(CtiItem.REACTIVE_FLOWER.get()),REACTIVE_FLOWER);
+        registration.addRecipeCatalyst(new ItemStack(CtiItem.FLOATING_REACTIVE_FLOWER.get()),REACTIVE_FLOWER);
 
         registration.addRecipeCatalyst(new ItemStack(TinkerSmeltery.smelteryController), MELTING_FUEL);
         registration.addRecipeCatalyst(new ItemStack(TinkerSmeltery.scorchedAlloyer), MELTING_FUEL);

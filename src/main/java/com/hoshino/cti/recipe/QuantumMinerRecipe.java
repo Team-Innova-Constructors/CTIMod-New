@@ -2,6 +2,7 @@ package com.hoshino.cti.recipe;
 
 import com.google.gson.JsonObject;
 import com.hoshino.cti.Cti;
+import lombok.Getter;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -16,6 +17,7 @@ import javax.annotation.Nullable;
 public class QuantumMinerRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
+    @Getter
     private final float chance;
     private final Ingredient ingredient = Ingredient.EMPTY;
 
@@ -28,10 +30,6 @@ public class QuantumMinerRecipe implements Recipe<SimpleContainer> {
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
         return !pLevel.isClientSide();
-    }
-
-    public float getChance() {
-        return chance;
     }
 
     @Override

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cti:block/floating_reactive_flower"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cti:block/reactive_flower"
+    }
+  }
+}

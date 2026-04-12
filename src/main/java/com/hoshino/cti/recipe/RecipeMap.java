@@ -3,19 +3,26 @@ package com.hoshino.cti.recipe;
 import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.hoshino.cti.Blocks.BlockEntity.botania.ReactiveFLowerBE;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.util.PanelCondition;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static com.hoshino.cti.util.CommonUtil.itemFromId;
 
 public class RecipeMap {
     public static ItemStack stack(ItemLike item, int count) {
@@ -408,4 +415,64 @@ public class RecipeMap {
                     Component.translatable("info.cti.panel_condition.night").withStyle(ChatFormatting.DARK_AQUA)
             )
     );
+
+    private static final HashMap<Item,ReactiveFlowerRecipe> REACTIVE_FLOWER_RECIPE_HASH_MAP = new HashMap<>();
+    private static ReactiveFlowerRecipe createReactiveFlowerRecipe(String itemId, int value, ReactiveFLowerBE.ElementalType type){
+        var itemLocation = new ResourceLocation(itemId);
+        return new ReactiveFlowerRecipe(Cti.getResource("reactive_flower_"+itemLocation.getNamespace()+"_"+itemLocation.getPath()),value,itemFromId(itemId),type);
+    }
+    private static void addReactiveFlowerRecipe(String itemId, int value, ReactiveFLowerBE.ElementalType type){
+        REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId(itemId),createReactiveFlowerRecipe(itemId,value,type));
+    }
+    public static HashMap<Item,ReactiveFlowerRecipe> getReactiveFlowerRecipes(){
+        if (REACTIVE_FLOWER_RECIPE_HASH_MAP.isEmpty()){
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(Items.BLAZE_POWDER,
+                    createReactiveFlowerRecipe("minecraft:blaze_powder",2000, ReactiveFLowerBE.ElementalType.BLAZE));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(Items.BLAZE_ROD,
+                    createReactiveFlowerRecipe("minecraft:blaze_rod",6000, ReactiveFLowerBE.ElementalType.BLAZE));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(Items.FIRE_CHARGE,
+                    createReactiveFlowerRecipe("minecraft:fire_charge",3000, ReactiveFLowerBE.ElementalType.BLAZE));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId("thermal:blitz_powder"),
+                    createReactiveFlowerRecipe("thermal:blitz_powder",2000, ReactiveFLowerBE.ElementalType.AERIAL));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId("thermal:blitz_rod"),
+                    createReactiveFlowerRecipe("thermal:blitz_rod",6000, ReactiveFLowerBE.ElementalType.AERIAL));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId("thermal:basalz_powder"),
+                    createReactiveFlowerRecipe("thermal:basalz_powder",2000, ReactiveFLowerBE.ElementalType.EARTH));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId("thermal:basalz_powder"),
+                    createReactiveFlowerRecipe("thermal:basalz_rod",6000, ReactiveFLowerBE.ElementalType.EARTH));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId("thermal:blizz_powder"),
+                    createReactiveFlowerRecipe("thermal:blizz_powder",2000, ReactiveFLowerBE.ElementalType.ICE));
+            REACTIVE_FLOWER_RECIPE_HASH_MAP.put(itemFromId("thermal:blizz_rod"),
+                    createReactiveFlowerRecipe("thermal:blizz_rod",6000, ReactiveFLowerBE.ElementalType.ICE));
+
+            addReactiveFlowerRecipe("tinkerscalibration:stellarium_ingot",6000, ReactiveFLowerBE.ElementalType.BLAZE);
+            addReactiveFlowerRecipe("tinkerscalibration:hothium_ingot",9000, ReactiveFLowerBE.ElementalType.ICE);
+            addReactiveFlowerRecipe("tinkerscalibration:steamium_ingot",12000, ReactiveFLowerBE.ElementalType.AERIAL);
+            addReactiveFlowerRecipe("tinkerscalibration:tonium_ingot",8000, ReactiveFLowerBE.ElementalType.EARTH);
+
+            addReactiveFlowerRecipe("powah:crystal_blazing",48000, ReactiveFLowerBE.ElementalType.BLAZE);
+            addReactiveFlowerRecipe("etshtinker:blizz_enderium",72000, ReactiveFLowerBE.ElementalType.ICE);
+            addReactiveFlowerRecipe("etshtinker:blitz_lumium",64000, ReactiveFLowerBE.ElementalType.AERIAL);
+            addReactiveFlowerRecipe("etshtinker:basalz_signalum",56000, ReactiveFLowerBE.ElementalType.EARTH);
+
+            addReactiveFlowerRecipe("kubejs:pyrocrystal",2048000, ReactiveFLowerBE.ElementalType.BLAZE);
+            addReactiveFlowerRecipe("kubejs:gas_hydrate",2048000, ReactiveFLowerBE.ElementalType.ICE);
+            addReactiveFlowerRecipe("kubejs:valkyrie_ingot",4096000, ReactiveFLowerBE.ElementalType.AERIAL);
+            addReactiveFlowerRecipe("kubejs:sentrite",4096000, ReactiveFLowerBE.ElementalType.EARTH);
+
+            addReactiveFlowerRecipe("tconstruct:ichor_slime_crystal",96000, ReactiveFLowerBE.ElementalType.BLAZE);
+            addReactiveFlowerRecipe("tconstruct:sky_slime_crystal",48000, ReactiveFLowerBE.ElementalType.AERIAL);
+            addReactiveFlowerRecipe("tconstruct:earth_slime_crystal",24000, ReactiveFLowerBE.ElementalType.EARTH);
+
+            addReactiveFlowerRecipe("kubejs:dust_pyrotheum",80000, ReactiveFLowerBE.ElementalType.BLAZE);
+            addReactiveFlowerRecipe("kubejs:dust_cryotheum",80000, ReactiveFLowerBE.ElementalType.ICE);
+            addReactiveFlowerRecipe("kubejs:dust_aerotheum",80000, ReactiveFLowerBE.ElementalType.AERIAL);
+            addReactiveFlowerRecipe("kubejs:dust_petrotheum",80000, ReactiveFLowerBE.ElementalType.EARTH);
+
+            addReactiveFlowerRecipe("thermal:lightning_charge",3000, ReactiveFLowerBE.ElementalType.AERIAL);
+            addReactiveFlowerRecipe("thermal:ice_charge",3000, ReactiveFLowerBE.ElementalType.ICE);
+            addReactiveFlowerRecipe("thermal:earth_charge",3000, ReactiveFLowerBE.ElementalType.EARTH);
+        }
+        return REACTIVE_FLOWER_RECIPE_HASH_MAP;
+    }
 }

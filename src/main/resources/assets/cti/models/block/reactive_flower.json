@@ -1,0 +1,7 @@
+{
+  "render_type": "minecraft:cutout",
+  "parent": "botania:block/shapes/cross",
+  "textures": {
+    "cross": "cti:block/reactive_flower"
+  }
+}

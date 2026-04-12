@@ -394,6 +394,8 @@
   "block.cti.zirconium_alloy_casting_basin": "锆合金铸造盆",
   "block.cti.advanced_alloyer": "液金混熔炉",
   "block.cti.mana_interface": "ME集魔接口",
+  "block.cti.reactive_flower": "对消花",
+  "block.cti.floating_reactive_flower": "浮空对消花",
 
   "block.cti.silicated_bricks": "硅碳砖块",
   "block.cti.silicated_glass": "硅碳玻璃",
@@ -1207,7 +1209,7 @@
 
   "modifier.cti.replaced_overarmy": "黏液军团",
   "modifier.cti.replaced_overarmy.flavor": "史莱姆大军！",
-  "modifier.cti.replaced_overarmy.description":"工具每有100黏液覆层在攻击时增加0.01x独立乘算增伤和1黏液覆层消耗，最高每级+0.5x。",
+  "modifier.cti.replaced_overarmy.description":"工具每有50黏液覆层在攻击时增加0.01x独立乘算增伤和1黏液覆层消耗，最高每级+2x。",
 
   "modifier.cti.super_overslime": "黏液超容EX",
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
@@ -1372,5 +1374,10 @@
   "info.cti.specialized_burst_modifier":"§b-专业化魔力射线词条-",
   "tooltip.cti.burst_time_before_loss": "射线在 ",
   "tooltip.cti.burst_mana_loss": "刻 后每刻流失 ",
-  "tooltip.cti.error.specialized_burst_modifier":"每件工具只能施加一个专业化魔力射线词条，冲突词条："
+  "tooltip.cti.error.specialized_burst_modifier":"每件工具只能施加一个专业化魔力射线词条，冲突词条：",
+
+  "info.cti.elemental.earth": "大地",
+  "info.cti.elemental.blaze": "烈焰",
+  "info.cti.elemental.aerial": "狂风",
+  "info.cti.elemental.ice": "凛冰"
 }

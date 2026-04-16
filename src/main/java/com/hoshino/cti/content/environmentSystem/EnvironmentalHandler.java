@@ -140,7 +140,7 @@ public class EnvironmentalHandler {
                 toAdd=0;
 
                 value = getPressureValue(living);
-                maxValue = (int)(frozenLevel *4)*volume/4;
+                maxValue = (int)(pressureLevel *4)*volume/4;
                 if (pressureLevel >0&& value <maxValue){
                     toAdd = Math.max(1,baseBuildUp* pressureLevel);
                     int added =(int) Math.min(maxValue- value,toAdd);
@@ -314,7 +314,7 @@ public class EnvironmentalHandler {
             if (shielding.isPresent()) {
                 resist += shielding.get().getScorchShieldinng();
             } else if (stack.getTags().toList().contains(CtiTagkey.PRESSURE_MINOR)) {
-                resist += 1f;
+                resist += 0.3f;
             } else if (stack.getTags().toList().contains(CtiTagkey.ENVIRONMENT_ADV)) {
                 resist += 10f;
             }

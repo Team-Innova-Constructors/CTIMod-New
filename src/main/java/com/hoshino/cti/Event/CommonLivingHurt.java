@@ -1,11 +1,13 @@
 package com.hoshino.cti.Event;
 
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
+import earth.terrarium.ad_astra.common.util.OxygenUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,6 +28,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
+import java.util.UUID;
 
 import static com.hoshino.cti.Cti.MOD_ID;
 
@@ -106,6 +109,14 @@ public class CommonLivingHurt {
                     }
                     player.getPersistentData().remove("tiao_yi_tiao");
                 }
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void OxygenBackEvent(LivingEvent.LivingTickEvent event){
+        if (event.getEntity().tickCount % 10 == 0 && event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if (OxygenUtils.levelHasOxygen(serverPlayer.getLevel())) {
+                OxygenS.checkAndRecoverOxygen(serverPlayer);
             }
         }
     }

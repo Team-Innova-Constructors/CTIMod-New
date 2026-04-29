@@ -1,6 +1,7 @@
 package com.hoshino.cti.Modifier;
 
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.projectile.WitherSkull;
@@ -18,7 +19,9 @@ import java.util.List;
 public class ShanXiPickaxe extends BattleModifier {
     @Override
     public void processLoot(IToolStackView iToolStackView, ModifierEntry modifierEntry, List<ItemStack> list, LootContext lootContext) {
-        if(lootContext.getParam(LootContextParams.KILLER_ENTITY) instanceof WitherSkeleton){
+        Entity target = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
+        if(target==null)return;
+        if(target instanceof WitherSkeleton){
             if(iToolStackView.hasTag(TinkerTags.Items.HARVEST)){
                 list.add(new ItemStack(Items.COAL,100));
             }

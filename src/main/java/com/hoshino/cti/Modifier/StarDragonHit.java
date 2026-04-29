@@ -1,26 +1,37 @@
 package com.hoshino.cti.Modifier;
 
+import com.github.alexthe666.iceandfire.entity.EntityFireDragon;
+import com.github.alexthe666.iceandfire.entity.EntityIceDragon;
+import com.github.alexthe666.iceandfire.entity.EntityLightningDragon;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Entity.Projectiles.StarDragonAmmo;
+import com.hoshino.cti.Items.RandomReward;
+import com.hoshino.cti.util.DragonRewardCategory;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
+import slimeknights.tconstruct.library.modifiers.hook.behavior.ProcessLootModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeHitModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
@@ -37,7 +48,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class StarDragonHit extends Modifier implements MeleeHitModifierHook , MeleeDamageModifierHook , TooltipModifierHook , ProjectileHitModifierHook , InventoryTickModifierHook {
+public class StarDragonHit extends Modifier implements MeleeHitModifierHook , MeleeDamageModifierHook , TooltipModifierHook , ProjectileHitModifierHook , InventoryTickModifierHook{
     public static final ResourceLocation STAR_DUST = Cti.getResource("star_dust");
     public static final ResourceLocation STAR_FREEZE_TICK = Cti.getResource("star_freeze");
     @Override
@@ -61,12 +72,21 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
                 enderDragon.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(), 2147483647);
                 return;
             }
+            var level=player.level;
+            if(target instanceof EntityIceDragon){
+                generateLoot(level,target.getOnPos(),DragonRewardCategory.ice);
+            }
+            if(target instanceof EntityFireDragon){
+                generateLoot(level,target.getOnPos(),DragonRewardCategory.fire);
+            }
+            if(target instanceof EntityLightningDragon){
+                generateLoot(level,target.getOnPos(),DragonRewardCategory.lightning);
+            }
             target.die(DamageSource.playerAttack(player));
             target.discard();
             tool.getPersistentData().putInt(STAR_DUST,tool.getPersistentData().getInt(STAR_DUST)+1);
             player.getLevel().playSound(null,player,SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.AMBIENT,0.3f,1f);
         }
-
     }
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
@@ -109,6 +129,14 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         if(livingEntity.tickCount%20!=0)return;
         if(getFreezeTick(iToolStackView)>0){
             setFreezeTick(iToolStackView,getFreezeTick(iToolStackView)-1);
+        }
+    }
+    public void generateLoot(Level level, BlockPos pos,DragonRewardCategory category){
+        for(RandomReward reward: category.getReward()){
+            ItemStack stack = reward.roll(level.getRandom());
+            ItemEntity itemEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
+            itemEntity.setDeltaMovement(level.random.nextGaussian() * 0.05D, 0.2D, level.random.nextGaussian() * 0.05D);
+            level.addFreshEntity(itemEntity);
         }
     }
 }

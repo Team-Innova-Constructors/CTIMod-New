@@ -23,7 +23,7 @@ public class AcidRainTick {
         boolean b = false;
         for (EquipmentSlot slot : List.of(EquipmentSlot.CHEST, EquipmentSlot.FEET, EquipmentSlot.HEAD, EquipmentSlot.LEGS)) {
             ItemStack stack = entity.getItemBySlot(slot);
-            if (stack.getItem() instanceof IModifiable iModifiable) {
+            if (stack.getItem() instanceof IModifiable) {
                 ToolStack tool = ToolStack.from(stack);
                 if (tool.getModifierLevel(CtiModifiers.space_suit.get()) > 1) {
                     b = true;

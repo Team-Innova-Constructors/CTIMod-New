@@ -1,10 +1,12 @@
 package com.hoshino.cti.mixin.AdAstraMixin;
 
 import com.hoshino.cti.Modifier.Base.OxygenConsumeModifier;
+import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.BiomeUtil;
 import com.hoshino.cti.util.CtiTagkey;
 import earth.terrarium.ad_astra.common.util.ModUtils;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -61,10 +63,16 @@ public abstract class ModUtilMixin {
                         if (!entity.level.isClientSide) {
                             if (modifier.tankHasOxygen(entity, entry)) {
                                 modifier.consumeTankOxygen(entity, entry);
+                                if(entity instanceof ServerPlayer serverPlayer){
+                                    OxygenS.checkAndRecoverOxygen(serverPlayer);
+                                }
                                 callbackInfo.setReturnValue(true);
                                 return;
                             } else if (modifier.hasOxygen(tool, entry)) {
                                 modifier.consumeOxygen(tool, entry);
+                                if(entity instanceof ServerPlayer serverPlayer){
+                                    OxygenS.checkAndRecoverOxygen(serverPlayer);
+                                }
                                 callbackInfo.setReturnValue(true);
                                 return;
                             }

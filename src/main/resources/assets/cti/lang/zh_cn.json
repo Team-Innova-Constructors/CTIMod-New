@@ -299,7 +299,7 @@
 
   "modifier.cti.starbless": "星界压制",
   "modifier.cti.starbless.flavor": "畏惧么",
-  "modifier.cti.starbless.description": "大部分目标的莱特兰等级低于你生命和护甲之合将不再敢把你视为目标,并且免疫其造成的额外伤害,同时你也会免疫掉大部分的无来源和全部的魔法伤害,以及自己造成的直接伤害\n受到的单次伤害不会超过最大生命20%",
+  "modifier.cti.starbless.description": "你在外太空不再需要氧气\n大部分目标的莱特兰等级低于你生命和护甲之合将不再敢把你视为目标,并且免疫其造成的额外伤害,同时你也会免疫掉大部分的无来源和全部的魔法伤害,以及自己造成的直接伤害\n受到的单次伤害不会超过最大生命20%",
 
   "modifier.cti.cursed_arrow": "诅咒之箭",
   "modifier.cti.cursed_arrow.flavor": "禁止回血",
@@ -1021,6 +1021,13 @@
   "modifier.cti.deathrolling.flavor": "别怕,这里不是塔顶航空箱,也没有喷火兵",
   "modifier.cti.deathrolling.description":"工具右键会立即像目标冲刺",
 
+  "modifier.cti.soulflame": "灼魂烈焰",
+  "modifier.cti.soulflame.flavor": "透骨魂火",
+  "modifier.cti.soulflame.description":"根据目标着火时长(至多生效118秒)，每多一秒则额外增加4点基础伤害,至多玩家最大生命点伤害\n如果目标本身免疫火焰伤害则每次攻击附带面板攻击的50%点魔法伤害",
+
+  "modifier.cti.drflamez": "火博士",
+  "modifier.cti.drflamez.flavor": "我仍是石移步",
+  "modifier.cti.drflamez.description":"免疫魂火和烈焰效果，并且受到攻击会反噬给目标魂火118秒和118tick着火时长,着火时长至多叠加至118秒",
 
 
   "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",

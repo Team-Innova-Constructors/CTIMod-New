@@ -132,9 +132,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
         if (pDamageAmount > 0.0F && pDamageAmount < 3.4028235E37F && pDamageSource.getEntity() instanceof ServerPlayer) {
             ((ServerPlayer) pDamageSource.getEntity()).awardStat(Stats.CUSTOM.get(Stats.DAMAGE_DEALT_ABSORBED), Math.round(pDamageAmount * 10.0F));
         }
-
         ForgeHooks.onLivingDamage(living, pDamageSource, pDamageAmount);
-
         float f1 = living.getHealth();
         living.getCombatTracker().recordDamage(pDamageSource, f1, pDamageAmount);
         living.setHealth(f1 - pDamageAmount);

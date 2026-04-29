@@ -1,6 +1,6 @@
 package com.hoshino.cti.netwrok.packet;
 
-import com.hoshino.cti.Items.MatrixReward;
+import com.hoshino.cti.Items.RandomReward;
 import com.hoshino.cti.Items.SoyoKey;
 import com.hoshino.cti.Items.SoyoKeyCategory;
 import com.hoshino.cti.register.CtiBlock;
@@ -40,7 +40,7 @@ public class BreakBlockPacket {
             if (player.distanceToSqr(pos.getX(), pos.getY(), pos.getZ()) < 64 && level.getBlockState(pos).is(CtiBlock.qi_yao_matrix.get())) {
                 SoyoKeyCategory category = SoyoKeyCategory.values()[msg.categoryIndex];
                 level.removeBlock(pos, false);
-                for (MatrixReward reward : category.getReward()) {
+                for (RandomReward reward : category.getReward()) {
                     ItemStack stack = reward.roll(player.getRandom());
                     ItemEntity itemEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
                     itemEntity.setDeltaMovement(level.random.nextGaussian() * 0.05D, 0.2D, level.random.nextGaussian() * 0.05D);

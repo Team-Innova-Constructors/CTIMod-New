@@ -32,6 +32,7 @@ import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.integration.botania.api.modifierBase.BurstMiningModifier;
 import com.hoshino.cti.integration.botania.api.modifierBase.LCManaBurstModifier;
 import com.hoshino.cti.integration.botania.modifiers.FartherSights;
+import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
@@ -246,6 +247,8 @@ public class CtiModifiers {
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
     public static final StaticModifier<DRFlamez> DR_FLAMEZ_STATIC_MODIFIER = MODIFIERS.register("drflamez", DRFlamez::new);
     public static final StaticModifier<SoulFlame> SOUL_FLAME_STATIC_MODIFIER = MODIFIERS.register("soulflame", SoulFlame::new);
+    public static final StaticModifier<NoLevelsModifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", NoLevelsModifier::new);
+    public static final StaticModifier<NoLevelsModifier> THE_RELIC = MODIFIERS.register("the_relic", NoLevelsModifier::new);
 
 
 

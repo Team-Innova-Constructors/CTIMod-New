@@ -22,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 
 import java.util.ArrayList;
@@ -33,25 +34,18 @@ public abstract class RagnarokTraitMixin {
     private static void Neutralization(EntitySlotAccess access, CallbackInfoReturnable<Boolean> cir) {
         //防止自身被封印
         List<Modifier> sealModifier = new ArrayList<>();
-        sealModifier.add(solidarytinkerModifiers.SUPERBLAZING_STATIC_MODIFIER.get());//白矮星
-        sealModifier.add(solidarytinkerModifiers.COLLAPSE_STATIC_MODIFIER.get());//白矮星
         sealModifier.add(EtshtinkerModifiers.manaoverload_STATIC_MODIFIER.get());//魔灵皇
         sealModifier.add(EtshtinkerModifiers.perfectism.get());//魔灵皇
         sealModifier.add(EtshtinkerModifiers.trinitycurse_STATIC_MODIFIER.get());//三位一体
-        sealModifier.add(CtiModifiers.timetojudge.get());//乌列尔
-        sealModifier.add(CtiModifiers.celestiallight.get());//乌列尔
-        sealModifier.add(CtiModifiers.disorder.get());//单机磁石
-        sealModifier.add(CtiModifiers.ionize_induced.get());//感电水晶
-        sealModifier.add(CtiModifiers.VALKYRIE_BLESS.get());//女武神
-        sealModifier.add(CtiModifiers.PHOENIX.get());//凤凰
+
         sealModifier.add(TIModifiers.SEA_DREAM.get());//海梦
-        sealModifier.add(solidarytinkerModifiers.HOU_GUO_YU_STATIC_MODIFIER.get());
-        sealModifier.add(solidarytinkerModifierMekEtsh.FLUX_ARMOR_STATIC_MODIFIER.get());
-        sealModifier.add(CtiModifiers.NONSTOP_INSATIABLE.get());//格莱特
         for (Modifier modifier : sealModifier) {
             if (ModifierUtil.getModifierLevel(access.get(), modifier.getId()) > 0) {
                 cir.setReturnValue(false);
             }
+        }
+        if (ModifierUtil.getModifierLevel(access.get(),new ModifierId("cti:the_relic")) > 0) {
+            cir.setReturnValue(false);
         }
         if (access.get().is(EnigmaticItems.CURSED_RING)) {
             cir.setReturnValue(false);
@@ -65,6 +59,9 @@ public abstract class RagnarokTraitMixin {
             if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 ci.cancel();
             }
+            if (GetModifierLevel.CurioHasModifierlevel(player, new ModifierId("solidarytinker:deepoceanchew"))) {
+                ci.cancel();
+            }
             if (SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)) {
                 ci.cancel();
             }
@@ -73,26 +70,17 @@ public abstract class RagnarokTraitMixin {
             }
             //这个列表里面的是只要身上4盔甲/主副有这个材料就会让诸神黄昏对所有装备都不生效
             List<Modifier> allowModifier = new ArrayList<>();
-            allowModifier.add(CtiModifiers.INFINITY_STATIC_MODIFIER.get());//无尽
-            allowModifier.add(CtiModifiers.trauma.get());//恐怖
-            allowModifier.add(CtiModifiers.eventually.get());//恐怖
-            allowModifier.add(solidarytinkerModifiers.TACTICSPROTECT_STATIC_MODIFIER.get());//星野
-            allowModifier.add(solidarytinkerModifiers.SANDSTROM_STATIC_MODIFIER.get());//星野
-            allowModifier.add(EtshtinkerModifiers.beconcerted_STATIC_MODIFIER.get());//星河马玉灵和奇迹物质
+            allowModifier.add(EtshtinkerModifiers.beconcerted_STATIC_MODIFIER.get());//奇迹物质
             allowModifier.add(EtshtinkerModifiers.unknown_STATIC_MODIFIER.get());//宏原子
-            allowModifier.add(EtshtinkerModifiers.controllableannihl_STATIC_MODIFIER.get());//反中子武器
-            allowModifier.add(EtshtinkerModifiers.reactiveannihlarmor_STATIC_MODIFIER.get());//反中子护甲
-            allowModifier.add(CtiModifiers.FIERY_JAVELIN.get());//龙炎钢
-            allowModifier.add(CtiModifiers.PERMAFROST_REVIVAL.get());//龙霜钢
-            allowModifier.add(CtiModifiers.PLASMA_WAVE_SLASH.get());//龙霆钢
-            allowModifier.add(solidarytinkerModifiers.ANCIENTOCEAN_STATIC_MODIFIER.get());//墨冰武器
-            allowModifier.add(solidarytinkerModifiers.DEEPOCEANPROTECT_STATIC_MODIFIER.get());//墨冰护甲
-            allowModifier.add(CtiModifiers.STAR_DARGON_HIT_STATIC_MODIFIER.get());//星界龙神武器
-            allowModifier.add(CtiModifiers.starBlessStaticModifier.get());//星界龙神护甲
+
+
             for (Modifier modifier : allowModifier) {
                 if (ModifierLevel.EquipHasModifierlevel(target, modifier.getId())) {
                     ci.cancel();
                 }
+            }
+            if (ModifierLevel.EquipHasModifierlevel(target, new ModifierId("cti:shadow_of_vigrid"))) {
+                ci.cancel();
             }
             if (player.getItemBySlot(EquipmentSlot.HEAD).is(MekanismItems.MEKASUIT_HELMET.get()) || player.getItemBySlot(EquipmentSlot.CHEST).is(MekanismItems.MEKASUIT_BODYARMOR.get()) || player.getItemBySlot(EquipmentSlot.LEGS).is(MekanismItems.MEKASUIT_PANTS.get()) || player.getItemBySlot(EquipmentSlot.FEET).is(MekanismItems.MEKASUIT_BOOTS.get())) {
                 ci.cancel();

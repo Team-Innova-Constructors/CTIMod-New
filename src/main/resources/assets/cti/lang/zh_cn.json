@@ -853,6 +853,14 @@
   "modifier.cti.plasma_shielding.flavor": "离子护盾",
   "modifier.cti.plasma_shielding.description": "免疫弹射物和爆炸伤害，获得压强以外的1点全环境抗性。获得一面能格挡4次伤害的护盾，护盾破碎后会冷却30秒然后重新充能。",
 
+  "modifier.cti.shadow_of_vigrid": "维格利得之魂",
+  "modifier.cti.shadow_of_vigrid.flavor": "终幕战场上的残魂",
+  "modifier.cti.shadow_of_vigrid.description": "当你拥有此词条的工具时候,你身上任何一个物品都不再会被诸神黄昏词条封印",
+
+  "modifier.cti.the_relic": "遗者",
+  "modifier.cti.the_relic.flavor": "被遗忘者",
+  "modifier.cti.the_relic.description": "拥有此词条的工具不再会被诸神黄昏词条封印",
+
   "modifier.cti.outer_space": "天外来客",
   "modifier.cti.outer_space.flavor": "人走在路上被陨石砸死的概率很小，但是不为零",
   "modifier.cti.outer_space.description": "所有攻击附带20%的下坠方块伤害，在非主世界的维度时所有伤害增加25%。",

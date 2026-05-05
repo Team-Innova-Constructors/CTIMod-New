@@ -55,7 +55,7 @@ public class NetherGobberBless extends BattleModifier {
 
     @Override
     public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
-        if (entity instanceof Player player) {
+        if (entity instanceof Player player&&isCorrectSlot) {
             if (!player.hasEffect(MobEffects.FIRE_RESISTANCE)) {
                 player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, false, false));
             }

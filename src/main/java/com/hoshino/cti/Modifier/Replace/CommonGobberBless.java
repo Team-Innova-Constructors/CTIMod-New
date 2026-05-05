@@ -33,7 +33,7 @@ public class CommonGobberBless extends BattleModifier {
 
     @Override
     public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
-        if (entity instanceof Player player) {
+        if (entity instanceof Player player&&isCorrectSlot) {
             for (ItemStack itemStack1 : player.getAllSlots()) {
                 if (ModifierUtil.getModifierLevel(itemStack1, this.getId()) > 0 && player.tickCount % 100 == 0) {
                     float saturationLevel = player.getFoodData().getSaturationLevel();

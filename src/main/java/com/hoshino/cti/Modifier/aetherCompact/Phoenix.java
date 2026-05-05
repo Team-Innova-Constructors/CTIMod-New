@@ -42,7 +42,7 @@ public class Phoenix extends EtSTBaseModifier implements ModifyDamageModifierHoo
 
     @Override
     public void modifierOnInventoryTick(IToolStackView tool, ModifierEntry modifier, Level level, LivingEntity holder, int itemSlot, boolean isSelected, boolean isCorrectSlot, ItemStack itemStack) {
-        if (!level.isClientSide&&level.getGameTime()%20==0){
+        if (!level.isClientSide&&level.getGameTime()%20==0&&isCorrectSlot){
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                 ItemStack stack = holder.getItemBySlot(slot);
                 if (stack.getItem() instanceof IModifiable){

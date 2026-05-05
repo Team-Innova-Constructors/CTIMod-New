@@ -479,7 +479,7 @@
 
   "modifier.cti.all": "宇宙之源",
   "modifier.cti.all.flavor": "宇宙万法的那个源头，它是——",
-  "modifier.cti.all.description":"攻击/被攻击时对敌人施加易伤、原子分解、夸克解离和10种随机负面效果，你造成的伤害*10，受到的伤害*0，你的护甲栏和主副手的每件工具都参与计算一次。",
+  "modifier.cti.all.description":"攻击时对敌人施加易伤、原子分解、夸克解离和10种随机负面效果并触发斩星词条的效果并使攻击伤害*10，你的护甲栏和主副手的每件工具都参与计算一次。格挡等同于所受伤害值的伤害。",
 
   "modifier.cti.stress": "应力",
   "modifier.cti.stress.flavor": "sigma",

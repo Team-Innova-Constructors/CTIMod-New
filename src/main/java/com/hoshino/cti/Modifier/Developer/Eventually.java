@@ -1,5 +1,6 @@
 package com.hoshino.cti.Modifier.Developer;
 
+import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.register.CtiEffects;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
 import net.minecraft.world.damagesource.DamageSource;
@@ -34,35 +35,24 @@ public class Eventually extends BattleModifier {
     }
 
     @Override
-    public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
-        List<Entity> entities = entity.level.getEntitiesOfClass(Entity.class, new AABB(entity.getX() + 10, entity.getY() + 10, entity.getZ() + 10, entity.getX() - 10, entity.getY() - 10, entity.getZ() - 10));
-        for (Entity entity1 : entities) {
-            if (entity1 instanceof ExperienceOrb exp) {
-                exp.moveTo(entity.getPosition(1));
-                return;
-            }
-        }
-    }
-
-    @Override
     public float staticdamage(IToolStackView tool, int level, ToolAttackContext context, LivingEntity attacker, LivingEntity livingTarget, float baseDamage, float damage) {
         if (context.getLivingTarget() instanceof Player) {
             return damage;
         } else if (attacker.hasEffect(CtiEffects.ev.get())) {
-            return damage + Float.MAX_VALUE;
+            return Float.MAX_VALUE;
         }
         return damage;
     }
 
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
-        if (context.getLivingTarget() != null && context.getPlayerAttacker() != null) {
-            if (context.getLivingTarget() instanceof Player) {
+        var target=context.getLivingTarget();
+        var player=context.getPlayerAttacker();
+        if (target!= null && player!= null) {
+            if (target instanceof Player) {
                 return;
-            } else if (context.getLivingTarget().getMaxHealth() == 40) {
-                return;
-            } else context.getLivingTarget().die(DamageSource.playerAttack(context.getPlayerAttacker()));
-            context.getLivingTarget().remove(Entity.RemovalReason.KILLED);
+            }
+            StarDragonHit.runSpecialKill(target,player);
         }
     }
 }

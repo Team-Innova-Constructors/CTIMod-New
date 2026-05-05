@@ -67,26 +67,30 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         var target=context.getLivingTarget();
         if(player==null||target==null)return;
         if(target.getHealth()/target.getMaxHealth()<0.18f){
-            if(target instanceof TargetDummyEntity)return;
-            if(target instanceof EnderDragon enderDragon){
-                enderDragon.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(), 2147483647);
-                return;
-            }
-            var level=player.level;
-            if(target instanceof EntityIceDragon){
-                generateLoot(level,target.getOnPos(),DragonRewardCategory.ice);
-            }
-            if(target instanceof EntityFireDragon){
-                generateLoot(level,target.getOnPos(),DragonRewardCategory.fire);
-            }
-            if(target instanceof EntityLightningDragon){
-                generateLoot(level,target.getOnPos(),DragonRewardCategory.lightning);
-            }
-            target.die(DamageSource.playerAttack(player));
-            target.discard();
+            runSpecialKill(target,player);
             tool.getPersistentData().putInt(STAR_DUST,tool.getPersistentData().getInt(STAR_DUST)+1);
             player.getLevel().playSound(null,player,SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.AMBIENT,0.3f,1f);
         }
+    }
+    public static void runSpecialKill(LivingEntity target,Player attacker){
+        if(target instanceof Player)return;
+        if(target instanceof TargetDummyEntity)return;
+        if(target instanceof EnderDragon enderDragon){
+            enderDragon.hurt(DamageSource.playerAttack(attacker).bypassArmor().bypassMagic(), 2147483647);
+            return;
+        }
+        var level=attacker.level;
+        if(target instanceof EntityIceDragon){
+            generateLoot(level,target.getOnPos(),DragonRewardCategory.ice);
+        }
+        if(target instanceof EntityFireDragon){
+            generateLoot(level,target.getOnPos(),DragonRewardCategory.fire);
+        }
+        if(target instanceof EntityLightningDragon){
+            generateLoot(level,target.getOnPos(),DragonRewardCategory.lightning);
+        }
+        target.die(DamageSource.playerAttack(attacker));
+        target.discard();
     }
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
@@ -131,7 +135,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
             setFreezeTick(iToolStackView,getFreezeTick(iToolStackView)-1);
         }
     }
-    public void generateLoot(Level level, BlockPos pos,DragonRewardCategory category){
+    public static void generateLoot(Level level, BlockPos pos,DragonRewardCategory category){
         for(RandomReward reward: category.getReward()){
             ItemStack stack = reward.roll(level.getRandom());
             ItemEntity itemEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);

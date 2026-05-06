@@ -995,7 +995,7 @@
 
   "modifier.cti.omnipotent": "无所不能",
   "modifier.cti.omnipotent.flavor": "我无所不能！",
-  "modifier.cti.omnipotent.description":"增加2级均衡，你需要先为工具强化均衡才能正常生效。",
+  "modifier.cti.omnipotent.description":"使工具首个部件的词条额外施加两次，类似于均衡强化的材料特性效果。",
 
   "modifier.cti.ion_apocalypse": "离子启示录",
   "modifier.cti.ion_apocalypse.flavor": "没有什么比这个更绚烂，更致命。",

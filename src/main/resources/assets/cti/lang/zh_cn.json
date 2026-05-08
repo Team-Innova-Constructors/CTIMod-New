@@ -50,7 +50,8 @@
   "effect.cti.ancientdragonflame": "远古龙焰",
   "effect.cti.meteor_shower": "陨石雨",
   "effect.cti.numerical_perception": "数维的感知",
-  "effect.cti.curve_mapping": "曲线映射",
+  "effect.cti.solid": "坚固",
+  "effect.cti.solid_armor": "坚固",
   "effect.cti.strong": "钢躯糖",
   "effect.cti.heng": "哼将糖",
   "effect.cti.ha": "哈将糖",
@@ -227,15 +228,15 @@
 
   "modifier.cti.kingdomofnumbers": "数于几何的王国",
   "modifier.cti.kingdomofnumbers.flavor": "它是尽头，是答案，是一切计算的结果",
-  "modifier.cti.kingdomofnumbers.description": "造成奇数伤害时获得一层[数维的感知]，持续10s，初始冷却为15s，每一级词条会使冷却减少0.5s并格外增加一层[数维的感知]。\n[数维的感知]：每级使面板攻击力提高10%，攻击距离+0.5，期间造成伤害提高至200%",
+  "modifier.cti.kingdomofnumbers.description": "造成奇数伤害时获得一层[数维的感知]，持续10s，初始冷却为15s，每一级词条会使冷却减少0.5s并格外增加一层。\n[数维的感知]：每级使面板攻击力提高10%，攻击距离+0.5，期间造成伤害提高至200%",
 
   "modifier.cti.curvemapping": "曲线映射",
   "modifier.cti.curvemapping.flavor": "一种优美的形式。在维度与分形上可取--众所周知的事实",
-  "modifier.cti.curvemapping.description": "造成偶数伤害时，获得25%减伤，持续10s，初始冷却15s，每一级提升，额外获得5%减伤，并减少0.5s冷却最高生效5级。",
+  "modifier.cti.curvemapping.description": "造成偶数伤害时获得1级[坚固]，持续10s，初始冷却15s，每一级词条会使冷却减少0.5s并格外增加一级，最高生效5级。\n[坚固]：获得25%减伤，每提高一级格外提供5%",
 
   "modifier.cti.supplementaryformula": "补充算式",
   "modifier.cti.supplementaryformula.flavor": "不谙日月的真理之底",
-  "modifier.cti.supplementaryformula.description": "每过37秒获得持续10s的25%减伤，穿戴的装备中每有一级该词条都会使减伤格外获得5%，最高生效8级词条。",
+  "modifier.cti.supplementaryformula.description": "每过37秒获得获得1级[坚固]，持续10s，穿戴的装备中每有一级都会格外增加一级，最高生效8级。\n[坚固]：获得25%减伤，每提高一级格外提供5%",
 
   "modifier.cti.triangletheory": "三角正论",
   "modifier.cti.triangletheory.flavor": "一个显而易见的三角形，为不公的忽视而发声，举证如下",

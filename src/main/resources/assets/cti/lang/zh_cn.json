@@ -1037,6 +1037,10 @@
   "modifier.cti.drflamez.flavor": "我仍是石移步",
   "modifier.cti.drflamez.description":"免疫魂火和烈焰效果，并且受到攻击会反噬给目标魂火118秒和118tick着火时长,着火时长至多叠加至118秒",
 
+  "modifier.cti.weight_unstable": "密度失衡",
+  "modifier.cti.weight_unstable.flavor": "重心偏移了！",
+  "modifier.cti.weight_unstable.description":"减少等同于1%挖掘速度的攻击速度。",
+
 
   "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",
   "item.cti.molten_stellar_manyullyn_bucket": "熔融玛玉灵(?)桶",

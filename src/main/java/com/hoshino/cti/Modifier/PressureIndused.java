@@ -20,8 +20,8 @@ public class PressureIndused extends EtSTBaseModifier {
         if (entity instanceof LivingEntity target && living instanceof Player player && !(entity instanceof Player)&&context.isFullyCharged()) {
             target.invulnerableTime = 0;
             target.hurt(EDamageSource.indirectPressure(false, player,modifier.getLevel()), damageDealt / 6);
-            if (getPressureResistance(target) <= 1.5 && getPressureValue(target) < 40) {
-                addPressureValue(target, modifier.getLevel()*3);
+            if (getPressureResistance(target) <= 1.5 && getPressureValue(target) < 40&&Math.random()<0.2*modifier.getLevel()) {
+                addPressureValue(target, modifier.getLevel());
             }
             target.invulnerableTime = 0;
         }

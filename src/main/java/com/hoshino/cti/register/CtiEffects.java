@@ -1,7 +1,6 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Effects.*;
-import com.marth7th.solidarytinker.effects.BloodAnger;
 import com.marth7th.solidarytinker.effects.StaticEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -21,8 +20,8 @@ public class CtiEffects {
     public static final RegistryObject<MobEffect> AncientDragonFlame = EFFECT.register("ancientdragonflame", AncientDragonFlame::new);
     public static final RegistryObject<MobEffect> meteor_shower = EFFECT.register("meteor_shower", MeteorShower::new);
     public static final RegistryObject<MobEffect> numerical_perception = EFFECT.register("numerical_perception", NumericalPerception::new);
-    public static final RegistryObject<MobEffect> curve_mapping = EFFECT.register("curve_mapping", CurveMapping::new);
-    public static final RegistryObject<MobEffect> supplementary_formula = EFFECT.register("supplementary_formula", SupplementaryFormula::new);
+    public static final RegistryObject<MobEffect> solid = EFFECT.register("solid", Solid::new);
+    public static final RegistryObject<MobEffect> solid_armor = EFFECT.register("solid_armor", SolidArmor::new);
     public static final RegistryObject<MobEffect> heng = EFFECT.register("heng",Heng::new);
     public static final RegistryObject<MobEffect> ha = EFFECT.register("ha",Ha::new);
     public static final RegistryObject<MobEffect> strong = EFFECT.register("strong",Strong::new);

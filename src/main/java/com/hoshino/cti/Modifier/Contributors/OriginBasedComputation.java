@@ -5,6 +5,7 @@ import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
@@ -15,8 +16,7 @@ import static com.hoshino.cti.register.CtiModifiers.originbasedcomputation;
 
 public class OriginBasedComputation extends BattleModifier {
     public OriginBasedComputation() {
-        MinecraftForge.EVENT_BUS.addListener(this::livinghurtevent);
-        MinecraftForge.EVENT_BUS.addListener(this::livingcriticalhitevent);
+        MinecraftForge.EVENT_BUS.addListener(this::OnLivingCriticalHit);
     }
 
     @Override
@@ -24,8 +24,9 @@ public class OriginBasedComputation extends BattleModifier {
         return true;
     }
 
-    private void livingcriticalhitevent(CriticalHitEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player && event.getTarget() != null && ModifierUtil.getModifierLevel(player.getItemBySlot(EquipmentSlot.MAINHAND), originbasedcomputation.getId()) > 0) {
+    private void OnLivingCriticalHit(CriticalHitEvent event) {
+        Player player = event.getEntity();
+        if (player!=null && event.getTarget() != null && ModifierUtil.getModifierLevel(player.getItemBySlot(EquipmentSlot.MAINHAND), originbasedcomputation.getId()) > 0) {
             if (event.getResult() != Event.Result.ALLOW) {
                 event.setResult(Event.Result.ALLOW);
             }
@@ -33,9 +34,10 @@ public class OriginBasedComputation extends BattleModifier {
         }
     }
 
-    public void livinghurtevent(LivingHurtEvent event) {
+    @Override
+    public void LivingHurtEvent(LivingHurtEvent event) {
         Entity a = event.getSource().getEntity();
-        if (a instanceof ServerPlayer player && event.getEntity() != null) {
+        if (a instanceof Player player && event.getEntity() != null) {
             if (ModifierUtil.getModifierLevel(player.getItemBySlot(EquipmentSlot.MAINHAND), originbasedcomputation.getId()) > 0) {
                 event.getEntity().invulnerableTime = 0;
                 event.getSource().bypassArmor().bypassMagic().bypassInvul().bypassEnchantments();

@@ -250,6 +250,7 @@ public class CtiModifiers {
     public static final StaticModifier<NoLevelsModifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", NoLevelsModifier::new);
     public static final StaticModifier<NoLevelsModifier> THE_RELIC = MODIFIERS.register("the_relic", NoLevelsModifier::new);
     public static final StaticModifier<WeightUnstable> WEIGHT_UNSTABLE = MODIFIERS.register("weight_unstable", WeightUnstable::new);
+    public static final StaticModifier<OverProperty> OVER_PROPERTY = MODIFIERS.register("over_property", OverProperty::new);
 
 
 

@@ -1042,6 +1042,10 @@
   "modifier.cti.weight_unstable.flavor": "重心偏移了！",
   "modifier.cti.weight_unstable.description":"减少等同于1%挖掘速度的攻击速度。",
 
+  "modifier.cti.over_property": "王国资产",
+  "modifier.cti.over_property.flavor": "“打赢了还是打输了？” “赚了。”",
+  "modifier.cti.over_property.description":"有足够黏液覆层时消耗黏液覆层每级获得1时运和抢夺。",
+
 
   "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",
   "item.cti.molten_stellar_manyullyn_bucket": "熔融玛玉灵(?)桶",

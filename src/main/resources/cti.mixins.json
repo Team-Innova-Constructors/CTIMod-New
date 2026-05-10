@@ -123,6 +123,7 @@
     "TIMixin.GaiaGuardMixin",
     "TIMixin.KnightCrystalCurioMixin",
     "TIMixin.PlayerAccessor",
+    "TIMixin.ReboundMixin",
     "TIMixin.ServerPlayerAccessor",
     "TIMixin.ShurikenMixin",
     "TIMixin.Sin_RootMixin",

@@ -11,6 +11,8 @@ import com.hoshino.cti.Modifier.Meme.Feima;
 import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
+import com.hoshino.cti.Modifier.genre.floating.FloatingHandler;
+import com.hoshino.cti.Modifier.genre.floating.ReplacedTerritoralSky;
 import com.hoshino.cti.Modifier.genre.insatiable.*;
 import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.ShadowSlash;
@@ -251,6 +253,10 @@ public class CtiModifiers {
     public static final StaticModifier<NoLevelsModifier> THE_RELIC = MODIFIERS.register("the_relic", NoLevelsModifier::new);
     public static final StaticModifier<WeightUnstable> WEIGHT_UNSTABLE = MODIFIERS.register("weight_unstable", WeightUnstable::new);
     public static final StaticModifier<OverProperty> OVER_PROPERTY = MODIFIERS.register("over_property", OverProperty::new);
+    public static final StaticModifier<FloatingHandler> FLOATING_HANDLER = MODIFIERS.register("floating_handler", FloatingHandler::new);
+    public static final StaticModifier<FixedCelestial> FIXED_CELESTIAL = MODIFIERS.register("fixed_celestial", FixedCelestial::new);
+    public static final StaticModifier<ReplacedTerritoralSky> REPLACED_TERRITORAL_SKY = MODIFIERS.register("territoral_sky", ReplacedTerritoralSky::new);
+
 
 
 

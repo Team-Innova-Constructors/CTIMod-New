@@ -1046,6 +1046,14 @@
   "modifier.cti.over_property.flavor": "“打赢了还是打输了？” “赚了。”",
   "modifier.cti.over_property.description":"有足够黏液覆层时消耗黏液覆层每级获得1时运和抢夺。",
 
+  "modifier.cti.fixed_celestial": "烈风",
+  "modifier.cti.fixed_celestial.flavor": "风起！",
+  "modifier.cti.fixed_celestial.description":"穿戴时增加飞行速度",
+
+  "modifier.cti.territoral_sky": "领空",
+  "modifier.cti.territoral_sky.flavor": "天空使者",
+  "modifier.cti.territoral_sky.description":"对滞空单位每级增加40%伤害，滞空时增加挖掘速度抵消挖掘惩罚。",
+
 
   "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",
   "item.cti.molten_stellar_manyullyn_bucket": "熔融玛玉灵(?)桶",

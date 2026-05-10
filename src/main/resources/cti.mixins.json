@@ -118,6 +118,7 @@
     "TconMixin.TinkerStationMixin",
     "TconMixin.ToolPartItemMixin",
     "ThermalMixin.FluidReservoirItemMixin",
+    "TIMixin.ArmorRedHeartMixin",
     "TIMixin.BlowPipeMixin",
     "TIMixin.CurioExquisiteMixin",
     "TIMixin.GaiaGuardMixin",

@@ -587,7 +587,7 @@
 
   "modifier.cti.hidden": "隐匿",
   "modifier.cti.hidden.flavor": "小时候看这集被黑油塔锁了",
-  "modifier.cti.hidden.description":"每隔10秒获得5秒的月隐效果\n月隐效果:3格外不会被怪物自然索敌锁到\n[当同一工具之上有Kemomimi部件时] 获得常驻的隐匿效果,隐匿状态下的首次攻击会破隐,接下来的9次工具伤害将会提升3倍,破隐后需要至少10秒内没有攻击过生物才可再次进入隐匿状态",
+  "modifier.cti.hidden.description":"每隔10秒获得5秒的月隐效果\n月隐效果:3格外不会被怪物自然索敌锁到\n[当同一工具之上有Kemomimi部件时] 主手持有时获得常驻的月隐效果,月隐状态下的首次攻击会破隐,接下来的9次工具伤害将会提升3倍,破隐后需要至少10秒内没有攻击过生物才可再次进入隐匿状态",
 
 
 
@@ -956,7 +956,7 @@
 
   "modifier.cti.piercing_immune": "双层护甲",
   "modifier.cti.piercing_immune.flavor": "没想到吧，我还有隐藏护甲！",
-  "modifier.cti.piercing_immune.description":"使你的护甲能格挡穿甲伤害，每件带有此特性的护甲都会额外生效一次护甲值减伤。",
+  "modifier.cti.piercing_immune.description":"使你的护甲能格挡一次穿甲伤害，每件带有此特性的护甲都会对非穿甲伤害额外生效一次护甲值减伤。",
 
   "modifier.cti.permanent_scar": "永久创伤",
   "modifier.cti.permanent_scar.flavor": "小心职业暴露！",
@@ -1053,6 +1053,11 @@
   "modifier.cti.territoral_sky": "领空",
   "modifier.cti.territoral_sky.flavor": "天空使者",
   "modifier.cti.territoral_sky.description":"对滞空单位每级增加40%伤害，滞空时增加挖掘速度抵消挖掘惩罚。",
+
+  "modifier.cti.infernal": "炼狱",
+  "modifier.cti.infernal.flavor": "炼狱",
+  "modifier.cti.infernal.description":"对50%血量以上的目标每级增加目标3%最大生命值的伤害，但是对50%血量以下的目标每级减少目标1%最大生命值的伤害。",
+
 
 
   "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",

@@ -8,6 +8,7 @@ import com.hoshino.cti.register.CtiSounds;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +23,9 @@ import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifier
 import slimeknights.tconstruct.library.modifiers.hook.interaction.InventoryTickModifierHook;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 public class Hidden extends Modifier implements InventoryTickModifierHook , MeleeDamageModifierHook {
     private static final ResourceLocation KEMOMIMI_HIDDEN = Cti.getResource("kemimimi_hidden");
@@ -34,10 +37,10 @@ public class Hidden extends Modifier implements InventoryTickModifierHook , Mele
     }
 
     @Override
-    public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int i, boolean b, boolean b1, ItemStack itemStack) {
-        if (livingEntity instanceof Player player) {
+    public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int itemSlot, boolean isSelected, boolean isCorrectSlot, ItemStack itemStack) {
+        if (livingEntity instanceof Player player&&isCorrectSlot) {
             if (player.tickCount % 20 != 0) return;
-            if (hasKemomimi(iToolStackView)) {
+            if (hasKemomimi(iToolStackView)&&isSelected) {
                 int hiddenWaitTick = getHiddenWaitTick(iToolStackView);
                 if (hiddenWaitTick > 0) {
                     setHiddenWaitTick(iToolStackView, hiddenWaitTick - 1);
@@ -77,9 +80,15 @@ public class Hidden extends Modifier implements InventoryTickModifierHook , Mele
         view.getPersistentData().putInt(HIDDEN_SUPER_HURT, amount);
     }
 
-    public static void breakHidden(IToolStackView view,Player player) {
+    public static void breakHidden(IToolStackView view, Player player, InteractionHand hand) {
         view.getPersistentData().putInt(KEMOMIMI_HIDDEN, 10);
         view.getPersistentData().putInt(HIDDEN_SUPER_HURT, 9);
+        hand = hand==InteractionHand.MAIN_HAND?InteractionHand.OFF_HAND:InteractionHand.MAIN_HAND;
+        var itemStack = player.getItemInHand(hand);
+        if (itemStack.getItem() instanceof IModifiable){
+            var otherTool = ToolStack.from(itemStack);
+            otherTool.getPersistentData().putInt(HIDDEN_SUPER_HURT, 4);
+        }
         int index=player.getRandom().nextInt(4);
         if(player instanceof ServerPlayer serverPlayer){
             CtiPacketHandler.sendToPlayer(new ExposedUpdatePacket(index,20),serverPlayer);
@@ -89,21 +98,32 @@ public class Hidden extends Modifier implements InventoryTickModifierHook , Mele
     }
 
     @Override
-    public float getMeleeDamage(IToolStackView iToolStackView, ModifierEntry modifierEntry, ToolAttackContext toolAttackContext, float v, float v1) {
-        if(!hasKemomimi(iToolStackView))return v1;
-        var player=toolAttackContext.getPlayerAttacker();
-        if(player==null)return v1;
+    public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
+        if(!hasKemomimi(tool))return damage;
+        var player=context.getPlayerAttacker();
+        if(player==null)return damage;
         if(player.hasEffect(CtiEffects.covert.get())){
-            breakHidden(iToolStackView,player);
+            breakHidden(tool,player,context.getHand());
         }
-        if(getHiddenWaitTick(iToolStackView)<10){
-            setHiddenWaitTick(iToolStackView,10);
+        if(getHiddenWaitTick(tool)<10){
+            setHiddenWaitTick(tool,10);
         }
-        int superHurt=getSuperHurt(iToolStackView);
+        var otherHand = context.getHand()==InteractionHand.MAIN_HAND?InteractionHand.OFF_HAND:InteractionHand.MAIN_HAND;
+        var otherItem = player.getItemInHand(otherHand);
+        if (otherItem.getItem() instanceof IModifiable){
+            var otherTool = ToolStack.from(otherItem);
+            if (getHiddenWaitTick(otherTool)<10)
+                setHiddenWaitTick(otherTool,10);
+            if (getSuperHurt(otherTool)>0){
+                setSuperHurt(otherTool,getSuperHurt(otherTool)-1);
+                return damage*3;
+            }
+        }
+        int superHurt=getSuperHurt(tool);
         if(superHurt>0){
-            setSuperHurt(iToolStackView,getSuperHurt(iToolStackView) - 1);
-            return v1 * 3;
+            setSuperHurt(tool,getSuperHurt(tool) - 1);
+            return damage * 3;
         }
-        return v1;
+        return damage;
     }
 }

@@ -19,21 +19,21 @@ import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 public class SecondaryArmorPlus extends EtSTBaseModifier {
-    public static final TinkerDataCapability.TinkerDataKey<Integer> KEY_SECONDARY_ARMOR = TinkerDataCapability.TinkerDataKey.of(Cti.getResource("secondary_armor_plus"));
+    public static final TinkerDataCapability.TinkerDataKey<Integer> KEY_SECONDARY_ARMOR_PLUS = TinkerDataCapability.TinkerDataKey.of(Cti.getResource("secondary_armor_plus"));
 
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
-        hookBuilder.addModule(new ArmorLevelModule(KEY_SECONDARY_ARMOR,false,null));
+        hookBuilder.addModule(new ArmorLevelModule(KEY_SECONDARY_ARMOR_PLUS,false,null));
     }
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getSource().isBypassInvul()||!event.getSource().isBypassArmor()) return;
+        if (event.getSource().isBypassInvul()||event.getSource().isBypassArmor()) return;
         LivingEntity living = event.getEntity();
         if (living instanceof Player player){
             living.getCapability(TinkerDataCapability.CAPABILITY).ifPresent((cap)->{
-                int level = cap.get(KEY_SECONDARY_ARMOR,0);
+                int level = cap.get(KEY_SECONDARY_ARMOR_PLUS,0);
                 if (level>0){
                     player.getInventory().hurtArmor(event.getSource(),event.getAmount(), Inventory.ALL_ARMOR_SLOTS);
                     event.setAmount(CombatRules.getDamageAfterAbsorb(event.getAmount(), (float) player.getArmorValue(), (float) player.getAttributeValue(Attributes.ARMOR_TOUGHNESS)));
@@ -44,7 +44,7 @@ public class SecondaryArmorPlus extends EtSTBaseModifier {
 
     @Override
     public float modifierDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
-        if (context.getEntity() instanceof Player player) return CombatRules.getDamageAfterAbsorb(amount, (float) player.getArmorValue(), (float) player.getAttributeValue(Attributes.ARMOR_TOUGHNESS));
+        if (context.getEntity() instanceof Player player&&!source.isBypassArmor()) return CombatRules.getDamageAfterAbsorb(amount, (float) player.getArmorValue(), (float) player.getAttributeValue(Attributes.ARMOR_TOUGHNESS));
         return amount;
     }
 

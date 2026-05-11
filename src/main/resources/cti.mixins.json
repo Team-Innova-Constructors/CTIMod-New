@@ -122,6 +122,7 @@
     "TIMixin.BlowPipeMixin",
     "TIMixin.CurioExquisiteMixin",
     "TIMixin.GaiaGuardMixin",
+    "TIMixin.GloryEmblemMixin",
     "TIMixin.KnightCrystalCurioMixin",
     "TIMixin.PlayerAccessor",
     "TIMixin.ReboundMixin",

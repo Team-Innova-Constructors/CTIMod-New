@@ -56,7 +56,7 @@ public class Fragment extends Modifier implements ModifyDamageModifierHook , Inv
         var source = new EntityDamageSource("obsidianhurt", entity).setThorns().bypassArmor();
         float DurabilityDamage=tool.getCurrentDurability() * 0.02f;
         float baseDamage=DurabilityDamage + entity.getMaxHealth() * 0.2f + entity.getArmorValue() * 0.25f;
-        targets.forEach(mob -> runHurt(mob,source, Math.min(baseDamage ,100 ) * modifier.getLevel()));
+        targets.forEach(mob -> runHurt(mob,source, Math.min(baseDamage ,50 ) * modifier.getLevel()));
         entity.level.playSound(null, entity.getOnPos(), CtiSounds.armor_broken.get(), SoundSource.AMBIENT, 0.6f, 1);
         return amount;
     }

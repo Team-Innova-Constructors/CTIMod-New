@@ -83,6 +83,7 @@
     "L2.SplitTraitMixin",
     "L2.TargetEffectTraitsMixin",
     "L2.TeleportMixin",
+    "L2.TraitLootModifierMixin",
     "L2.UndyingTraitMixin",
     "MekMixin.ChemicalStackRendererMixin",
     "MekMixin.ItemUpgradeMixin",

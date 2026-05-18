@@ -1,10 +1,14 @@
 package com.hoshino.cti.mixin.L2;
 
+import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.common.RegenTrait;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -29,6 +33,13 @@ public abstract class RegenTaintMixin extends MobTrait {
     public void tick(LivingEntity mob, int level) {
         if (!mob.getLevel().isClientSide()) {
             if (mob.tickCount % 20 == 0) {
+                if(mob instanceof Mob mob1){
+                    if(mob1.getTarget() instanceof Player player){
+                        if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+                            return;
+                        }
+                    }
+                }
                 var data = mob.getPersistentData();
                 boolean shouldAdd = !data.contains("cti_liming");
                 if (mob.getHealth() <= mob.getMaxHealth() * 0.5f && shouldAdd) {

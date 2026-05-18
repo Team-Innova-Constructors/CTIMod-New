@@ -1,5 +1,6 @@
 package com.hoshino.cti.Event;
 
+import com.aetherteam.aether.entity.AetherEntityTypes;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
@@ -7,6 +8,7 @@ import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
+import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import earth.terrarium.ad_astra.common.util.OxygenUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +21,7 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -26,6 +29,8 @@ import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import twilightforest.entity.boss.Hydra;
+import twilightforest.util.TwilightItemTier;
 
 import java.util.List;
 import java.util.UUID;
@@ -57,6 +62,14 @@ public class CommonLivingHurt {
                         event.setCanceled(true);
                     }
                 }
+            }
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void playerHurtHydra(LivingAttackEvent event) {
+        if (event.getSource().getEntity() instanceof Player) {
+            if (event.getEntity() instanceof Hydra) {
+                event.getSource().bypassArmor();
             }
         }
     }

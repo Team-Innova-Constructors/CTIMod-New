@@ -1,5 +1,6 @@
 package com.hoshino.cti.Items;
 
+import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.hoshino.cti.register.CtiTab;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
@@ -42,12 +43,12 @@ public class FlatWorldDayTabletItem extends Item {
                 if (level.dimension().equals(Level.OVERWORLD)) {
                     var ultraFlat=server.getLevel(ULTRA_FLAT_KEY);
                     if(ultraFlat!=null){
-                        player.teleportTo(ultraFlat, 0, 324, 0, 0, 0);
+                        player.teleportTo(ultraFlat, 0, -59, 0, 0, 0);
                     }
                 } else if (level.dimension().equals(ULTRA_FLAT_KEY)) {
                     var overWorld=server.getLevel(Level.OVERWORLD);
                     if(overWorld!=null){
-                        player.teleportTo(overWorld, 0, 324, 0, 0, 0);
+                        SuperpositionHandler.backToSpawn(player);
                     }
                 }
             }

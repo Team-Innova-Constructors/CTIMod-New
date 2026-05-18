@@ -1,6 +1,7 @@
 package com.hoshino.cti.Modifier;
 
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffects;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
@@ -34,7 +35,7 @@ public class SoulFlame extends NoLevelsModifier implements MeleeDamageModifierHo
         var player=context.getPlayerAttacker();
         if(target==null||player==null)return;
 
-        if(target.fireImmune()){
+        if(target.fireImmune()||target.hasEffect(MobEffects.FIRE_RESISTANCE)){
             float damageStat=tool.getStats().get(ToolStats.ATTACK_DAMAGE);
             target.invulnerableTime=0;
             target.hurt(DamageSource.indirectMagic(player,null),damageStat * 0.5f);

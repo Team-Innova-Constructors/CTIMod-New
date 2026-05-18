@@ -43,8 +43,7 @@ public class StarDragonAmmo extends BaseFallenAmmo {
         mob.setDeltaMovement(finalKnock);
         if(mob.getHealth()<mob.getMaxHealth() * this.getKillThreshold()||getHurtDamage()>mob.getMaxHealth() * 10f){
             if(mob instanceof TargetDummyEntity)return;
-            mob.die(DamageSource.playerAttack(player));
-            mob.discard();
+            StarDragonHit.runSpecialKill(mob,player);
             var data= ToolStack.from(player.getMainHandItem()).getPersistentData();
             var currentAmount=data.getInt(StarDragonHit.STAR_DUST);
             data.putInt(StarDragonHit.STAR_DUST,currentAmount + 1);

@@ -43,9 +43,9 @@ public class StarHitPacket {
                 sender.displayClientMessage(Component.literal("还在冷却,冷却时长为"+waitTick+"秒").withStyle(style -> style.withColor(0x64a9fd)),true);
                 return;
             }
-            if(starDust>=50){
+            if(starDust>=10){
                 view.getPersistentData().putInt(StarDragonHit.STAR_DUST,starDust-10);
-                float damageShouldBe=StarDragonHit.DAMAGE_SHOULD_BE.getOrDefault(sender.getUUID(),10f);
+                float damageShouldBe=StarDragonHit.DAMAGE_SHOULD_BE.getOrDefault(sender.getUUID(),1000f);
                 mob.getPersistentData().putBoolean("star_extra_hurt",true);
                 StarDragonHit.setFreezeTick(view, GetModifierLevel.CurioModifierLevel(sender, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) > 0 ? 1 : 5);
                 var ammo=new StarDragonAmmo(sender,sender.getLevel(),mob.blockPosition(),damageShouldBe,Math.min(0.21f+(starDust / 100f * 0.01f),0.78f));

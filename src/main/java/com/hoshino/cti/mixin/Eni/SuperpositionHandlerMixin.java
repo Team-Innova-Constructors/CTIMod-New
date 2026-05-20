@@ -13,7 +13,7 @@ public class SuperpositionHandlerMixin {
     @Inject(method = "constructLootPool",at = @At("HEAD"), cancellable = true,remap = false)
     private static void onLootTableLoaded(String poolName, float minRolls, float maxRolls, LootPoolEntryContainer.Builder<?>[] entries, CallbackInfoReturnable<LootPool> cir){
         LootPool.Builder poolBuilder = LootPool.lootPool();
-        if(poolName.equals("spell")){
+        if(poolName.equals("spellstones")){
             cir.setReturnValue(poolBuilder.build());
         }
     }

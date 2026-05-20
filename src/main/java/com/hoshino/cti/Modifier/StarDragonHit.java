@@ -66,6 +66,10 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         var player=context.getPlayerAttacker();
         var target=context.getLivingTarget();
         if(player==null||target==null)return;
+        if(target instanceof Player)return;
+        if(target instanceof TargetDummyEntity)return;
+        if(target.isDeadOrDying())return;
+        if(!target.isAlive())return;
         if(target.getHealth()/target.getMaxHealth()<0.18f){
             runSpecialKill(target,player);
             tool.getPersistentData().putInt(STAR_DUST,tool.getPersistentData().getInt(STAR_DUST)+1);

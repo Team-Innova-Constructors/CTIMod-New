@@ -1,6 +1,7 @@
 package com.hoshino.cti.util;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
@@ -48,5 +49,12 @@ public class SearchTools {
             return Fluids.EMPTY;
         }
         return result;
+    }
+    public static MobEffect findMobEffect(String registryNameString){
+        if (registryNameString == null || !registryNameString.contains(":")) {
+            return null;
+        }
+        ResourceLocation location = new ResourceLocation(registryNameString);
+        return ForgeRegistries.MOB_EFFECTS.getValue(location);
     }
 }

@@ -29,9 +29,9 @@ public class Reforge extends NoLevelsModifier implements ToolStatsModifierHook, 
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
         float finallyAmount=amount;
         if(source instanceof EntityDamageSource entityDamageSource&&entityDamageSource.isThorns()){
-            finallyAmount=finallyAmount/0.5f;
+            finallyAmount=finallyAmount * 0.5f;
         } else if(source.isMagic()){
-            finallyAmount=finallyAmount/0.3f;
+            finallyAmount=finallyAmount *0.7f;
         }
         finallyAmount=finallyAmount * 0.9f;
         return finallyAmount;

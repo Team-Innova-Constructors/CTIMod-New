@@ -13,6 +13,7 @@ import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseStage;
 import com.hoshino.cti.util.CurseUtil;
+import com.hoshino.cti.util.SearchTools;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import net.minecraft.ChatFormatting;
@@ -80,7 +81,7 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
     @Inject(method = "curioTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan;m_6710_(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
     private void angryEnderMan(SlotContext context, ItemStack stack, CallbackInfo ci) {
         if (!(context.entity() instanceof Player player)) return;
-        if(player.hasEffect(CtiEffects.covert.get())){
+        if(player.hasEffect(CtiEffects.covert.get())||player.hasEffect(SearchTools.findMobEffect("solidarytinker:lurk"))){
             ci.cancel();
             return;
         }
@@ -93,7 +94,7 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
     @Inject(method = "curioTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/NeutralMob;m_6710_(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
     private void angryOtherMob(SlotContext context, ItemStack stack, CallbackInfo ci) {
         if (!(context.entity() instanceof Player player))return;
-        if(player.hasEffect(CtiEffects.covert.get())){
+        if(player.hasEffect(CtiEffects.covert.get())||player.hasEffect(SearchTools.findMobEffect("solidarytinker:lurk"))){
             ci.cancel();
             return;
         }

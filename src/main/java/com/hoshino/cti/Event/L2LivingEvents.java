@@ -46,37 +46,35 @@ public class L2LivingEvents {
         if (amount > health) return;
         mob.getCapability(MobTraitCap.CAPABILITY)
                 .filter(cap -> cap.hasTrait(LHTraits.INVISIBLE.get()) && mob.hasEffect(MobEffects.INVISIBILITY))
-                .ifPresentOrElse(cap -> {
-                            if (event.getSource().getEntity() instanceof Player player) {
-                                if (GetModifierLevel.EachHandsHaveModifierlevel(player, CtiModifiers.end_slayer.getId())) {
-                                    return;
-                                }
-                                if(GetModifierLevel.CurioHasModifierlevel(player,TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
-                                    return;
-                                }
-                                var damageSource=event.getSource();
-                                if(damageSource.isBypassInvul()){
-                                    return;
-                                }
-                                var randomSource = mob.level.getRandom();
-                                float number = randomSource.nextInt(100);
-
-                                if(damageSource.isBypassArmor()){
-                                    number=number/2f;
-                                }
-                                if(damageSource.isBypassMagic()){
-                                    number=number/2f;
-                                }
-
-                                int o = (int) (amount / health * 100f) + 20;
-                                boolean c = o > number;
-                                if (!c) {
-                                    event.setCanceled(true);
-                                }
-                            }
-                        }, () -> {
+                .ifPresent(cap -> {
+                    if (event.getSource().getEntity() instanceof Player player) {
+                        if (GetModifierLevel.EachHandsHaveModifierlevel(player, CtiModifiers.end_slayer.getId())) {
+                            return;
                         }
-                );
+                        if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+                            return;
+                        }
+                        var damageSource = event.getSource();
+                        if (damageSource.isBypassInvul()) {
+                            return;
+                        }
+                        var randomSource = mob.level.getRandom();
+                        float number = randomSource.nextInt(100);
+
+                        if (damageSource.isBypassArmor()) {
+                            number = number / 2f;
+                        }
+                        if (damageSource.isBypassMagic()) {
+                            number = number / 2f;
+                        }
+
+                        int o = (int) (amount / health * 100f) + 20;
+                        boolean c = o > number;
+                        if (!c) {
+                            event.setCanceled(true);
+                        }
+                    }
+                });
     }
 
     /**

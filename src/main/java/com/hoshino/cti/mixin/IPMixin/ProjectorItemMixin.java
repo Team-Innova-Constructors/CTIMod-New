@@ -1,6 +1,7 @@
 package com.hoshino.cti.mixin.IPMixin;
 
 import blusunrize.immersiveengineering.api.tool.IUpgradeableTool;
+import com.hoshino.cti.Items.IEMultiblockGenerator;
 import flaxbeard.immersivepetroleum.api.event.ProjectorEvent;
 import flaxbeard.immersivepetroleum.common.items.IPItemBase;
 import flaxbeard.immersivepetroleum.common.items.ProjectorItem;
@@ -58,55 +59,67 @@ public abstract class ProjectorItemMixin extends IPItemBase implements IUpgradea
         BlockPos pos = context.getClickedPos();
         Direction facing = context.getClickedFace();
 
-        if (playerIn == null) return;
+        if (playerIn == null || playerIn.isCreative()) return;
+        if (!(playerIn.isCrouching())) return;
 
         ItemStack stack = playerIn.getItemInHand(hand);
         Settings settings = getSettings(stack);
 
-        if (playerIn.isCreative()) return;
-        if (!(playerIn.isCrouching())) return;
-
         if (settings.getMode() == Settings.Mode.PROJECTION && settings.getPos() == null && settings.getMultiblock() != null) {
-            BlockState state = world.getBlockState(pos);
-            BlockPos.MutableBlockPos hit = pos.mutable();
+            var targetMultiblock = settings.getMultiblock();
+            boolean usedGenerator = false;
+            for (int i = 0; i < playerIn.getInventory().getContainerSize(); i++) {
+                ItemStack invStack = playerIn.getInventory().getItem(i);
+                if (invStack.getItem() instanceof IEMultiblockGenerator generator) {
+                    if (generator.getMultiblock() != null &&
+                            generator.getMultiblock().getUniqueName().equals(targetMultiblock.getUniqueName())) {
 
+                        if (!world.isClientSide) {
+                            invStack.shrink(1);
+                        }
+                        usedGenerator = true;
+                        break;
+                    }
+                }
+            }
+            BlockPos.MutableBlockPos hit = pos.mutable();
+            BlockState state = world.getBlockState(pos);
             if (!state.getMaterial().isReplaceable() && facing == Direction.UP) {
                 hit.setWithOffset(hit, 0, 1, 0);
             }
 
-            Vec3i size = settings.getMultiblock().getSize(world);
+            Vec3i size = targetMultiblock.getSize(world);
             cti_new$alignHit(hit, playerIn, size, settings.getRotation(), settings.isMirrored());
 
             if (!world.isClientSide) {
-                var targetMultiblock = settings.getMultiblock();
-                Map<Item, Integer> requiredItems = new HashMap<>();
-                MultiblockProjection projection = new MultiblockProjection(world, targetMultiblock);
-                projection.setFlip(settings.isMirrored());
-                projection.setRotation(settings.getRotation());
+                if (!usedGenerator) {
+                    Map<Item, Integer> requiredItems = new HashMap<>();
+                    MultiblockProjection projection = new MultiblockProjection(world, targetMultiblock);
+                    projection.setFlip(settings.isMirrored());
+                    projection.setRotation(settings.getRotation());
 
-                projection.processAll((layer, info) -> {
-                    BlockState requiredState = info.getModifiedState(world, info.tPos.offset(hit));
-                    Item item = requiredState.getBlock().asItem();
-                    if (item != Items.AIR) {
-                        requiredItems.put(item, requiredItems.getOrDefault(item, 0) + 1);
-                    }
-                    return false;
-                });
-                boolean needMaterials=false;
-
-                for (Map.Entry<Item, Integer> entry : requiredItems.entrySet()) {
-                    int countInInv = getCountInInventory(playerIn, entry.getKey());
-                    if (countInInv < entry.getValue()) {
-                        var level=playerIn.getLevel();
-                        if(!level.isClientSide){
-                            playerIn.sendSystemMessage(Component.literal("缺少材料: ").append(entry.getKey().getDescription()).append(" x" + (entry.getValue() - countInInv)));
+                    projection.processAll((layer, info) -> {
+                        BlockState requiredState = info.getModifiedState(world, info.tPos.offset(hit));
+                        Item item = requiredState.getBlock().asItem();
+                        if (item != Items.AIR) {
+                            requiredItems.put(item, requiredItems.getOrDefault(item, 0) + 1);
                         }
-                        needMaterials=true;
+                        return false;
+                    });
+
+                    boolean needMaterials = false;
+                    for (Map.Entry<Item, Integer> entry : requiredItems.entrySet()) {
+                        int countInInv = getCountInInventory(playerIn, entry.getKey());
+                        if (countInInv < entry.getValue()) {
+                            playerIn.sendSystemMessage(Component.literal("缺少材料: ").append(entry.getKey().getDescription()).append(" x" + (entry.getValue() - countInInv)));
+                            needMaterials = true;
+                        }
                     }
-                }
-                if(needMaterials)return;
-                for (Map.Entry<Item, Integer> entry : requiredItems.entrySet()) {
-                    removeItemFromInventory(playerIn, entry.getKey(), entry.getValue());
+
+                    if (needMaterials) return;
+                    for (Map.Entry<Item, Integer> entry : requiredItems.entrySet()) {
+                        removeItemFromInventory(playerIn, entry.getKey(), entry.getValue());
+                    }
                 }
 
                 if (targetMultiblock.getUniqueName().getPath().contains("excavator_demo") ||
@@ -114,7 +127,11 @@ public abstract class ProjectorItemMixin extends IPItemBase implements IUpgradea
                     hit.setWithOffset(hit, 0, -2, 0);
                 }
 
-                BiPredicate<Integer, MultiblockProjection.Info> pred = (layer, info) -> {
+                MultiblockProjection finalProjection = new MultiblockProjection(world, targetMultiblock);
+                finalProjection.setFlip(settings.isMirrored());
+                finalProjection.setRotation(settings.getRotation());
+
+                finalProjection.processAll((layer, info) -> {
                     BlockPos realPos = info.tPos.offset(hit);
                     BlockState tstate0 = info.getModifiedState(world, realPos);
                     ProjectorEvent.PlaceBlock event = new ProjectorEvent.PlaceBlock(info.multiblock, info.templateWorld, info.tBlockInfo.pos, world, realPos, tstate0, settings.getRotation());
@@ -127,9 +144,7 @@ public abstract class ProjectorItemMixin extends IPItemBase implements IUpgradea
                         }
                     }
                     return false;
-                };
-
-                projection.processAll(pred);
+                });
             }
             cir.setReturnValue(InteractionResult.CONSUME);
         }

@@ -43,28 +43,29 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
     }
 
     @Override
-    public void onInventoryTick(IToolStackView iToolStackView, @NotNull ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int i, boolean b, boolean b1, ItemStack itemStack) {
-        if (iToolStackView.hasTag(TinkerTags.Items.HELMETS)&&livingEntity.isInWater() &&level.getGameTime()%10==0&&hasOxygen(iToolStackView,modifierEntry)){
-            if (!b1 || !(livingEntity instanceof Player player)) return;
-            if (player.tickCount % 10 != 0) return;
-            var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
-            if (fluidContainerStack == null) {
-                if (hasOxygen(iToolStackView,modifierEntry) && player.getAirSupply() < player.getMaxAirSupply()) {
-                    consumeOxygen(iToolStackView,modifierEntry);
-                    player.setAirSupply(player.getMaxAirSupply());
-                }
-            } else if (tankHasOxygen(player, modifierEntry)&& player.getAirSupply() < player.getMaxAirSupply()) {
-                consumeTankOxygen(player, modifierEntry);
+    public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
+        if (!isCorrectSlot || !(entity instanceof Player player)) return;
+        if (player.tickCount % 10 != 0) return;
+        var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
+        if (fluidContainerStack == null) {
+            var tank = ToolTankHelper.TANK_HELPER.getFluid(tool);
+            int amount = tank.getAmount();
+            if (tank.getFluid().is(MekanismTags.Fluids.OXYGEN) && amount > 1 && player.getAirSupply() < player.getMaxAirSupply()) {
+                tank.setAmount(tank.getAmount() - 1);
+                ToolTankHelper.TANK_HELPER.setFluid(tool, tank);
                 player.setAirSupply(player.getMaxAirSupply());
             }
+        } else if (tankHasOxygen(player, modifier)&& player.getAirSupply() < player.getMaxAirSupply()) {
+            consumeTankOxygen(player, modifier);
+            player.setAirSupply(player.getMaxAirSupply());
         }
     }
 
     @Override
     public boolean hasOxygen(IToolStackView tool, ModifierEntry modifier) {
-        var tank= ToolTankHelper.TANK_HELPER.getFluid(tool);
-        int amount=tank.getAmount();
-        return tank.getFluid().is(MekanismTags.Fluids.OXYGEN)&&amount>1;
+        var tank = ToolTankHelper.TANK_HELPER.getFluid(tool);
+        int amount = tank.getAmount();
+        return tank.getFluid().is(MekanismTags.Fluids.OXYGEN ) && amount > 1;
     }
 
     @Override
@@ -73,19 +74,20 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
             var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
             if (fluidContainerStack == null) return false;
             if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
-                return fluidReservoirItem.getFluid(fluidContainerStack).getFluid().is(MekanismTags.Fluids.OXYGEN) && fluidReservoirItem.getCapacity(fluidContainerStack) > 1;
+                return fluidReservoirItem.getFluid(fluidContainerStack).getFluid().is(MekanismTags.Fluids.OXYGEN ) && fluidReservoirItem.getCapacity(fluidContainerStack) > 1;
             }
         }
         return false;
     }
 
+
     @Override
     public void consumeOxygen(IToolStackView tool, ModifierEntry modifier) {
-        var tank=ToolTankHelper.TANK_HELPER.getFluid(tool);
-        int amount=tank.getAmount();
-        if(tank.getFluid().is(MekanismTags.Fluids.OXYGEN)&&amount>1){
-            tank.setAmount(tank.getAmount()-1);
-            ToolTankHelper.TANK_HELPER.setFluid(tool,tank);
+        var tank = ToolTankHelper.TANK_HELPER.getFluid(tool);
+        int amount = tank.getAmount();
+        if (tank.getFluid().is(MekanismTags.Fluids.OXYGEN )&& amount > 1) {
+            tank.setAmount(tank.getAmount() - 1);
+            ToolTankHelper.TANK_HELPER.setFluid(tool, tank);
         }
     }
 
@@ -97,6 +99,7 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
             if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
                 FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidReservoirItem;
                 container.useDrainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
+                player.heal(player.getMaxHealth() * 0.05f);
             }
         }
     }

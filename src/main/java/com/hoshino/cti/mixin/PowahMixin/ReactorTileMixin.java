@@ -199,13 +199,13 @@ public abstract class ReactorTileMixin extends AbstractEnergyProvider<ReactorBlo
         if (this.redstone.isEmpty()) {
             ItemStack stack = this.inv.getStackInSlot(3);
             if (stack.getItem() == Items.REDSTONE) {
-                this.redstone.setAll(18.0);
+                this.redstone.setAll(10.0);
                 flag = true;
             } else if (stack.getItem() == Items.REDSTONE_BLOCK) {
-                this.redstone.setAll(162.0);
+                this.redstone.setAll(90.0);
                 flag = true;
             }else if(stack.getItem() == CtiItem.refined_stone.get()){
-                this.redstone.setAll(400.0);
+                this.redstone.setAll(120.0);
                 flag = true;
             }
             if (flag) {

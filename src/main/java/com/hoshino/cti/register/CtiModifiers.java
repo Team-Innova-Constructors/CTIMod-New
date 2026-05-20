@@ -78,7 +78,7 @@ public class CtiModifiers {
     public static final StaticModifier<TrinityBlessing> trinityblessing = MODIFIERS.register("trinityblessing", TrinityBlessing::new);
     public static final StaticModifier<Breeding> breeding = MODIFIERS.register("breeding", Breeding::new);
     public static final StaticModifier<Eros> eros = MODIFIERS.register("eros", Eros::new);
-    public static final StaticModifier<ararar> ararar = MODIFIERS.register("ararar", ararar::new);
+    public static final StaticModifier<Arararar> ararar = MODIFIERS.register("ararar", Arararar::new);
     public static final StaticModifier<NerfedDash> nerfed_dash = MODIFIERS.register("nerfed_dash", NerfedDash::new);
     public static final StaticModifier<Emp> emp = MODIFIERS.register("emp", Emp::new);
     public static final StaticModifier<Transmigration> transmigration = MODIFIERS.register("transmigration", Transmigration::new);
@@ -247,6 +247,8 @@ public class CtiModifiers {
     public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
     public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
+    public static final StaticModifier<Fragment> FRAGMENT_STATIC_MODIFIER = MODIFIERS.register("fragment", Fragment::new);
+
     public static final StaticModifier<DRFlamez> DR_FLAMEZ_STATIC_MODIFIER = MODIFIERS.register("drflamez", DRFlamez::new);
     public static final StaticModifier<SoulFlame> SOUL_FLAME_STATIC_MODIFIER = MODIFIERS.register("soulflame", SoulFlame::new);
     public static final StaticModifier<NoLevelsModifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", NoLevelsModifier::new);

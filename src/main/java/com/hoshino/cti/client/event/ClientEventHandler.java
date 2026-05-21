@@ -78,7 +78,7 @@ public class ClientEventHandler {
             MenuScreens.register(CtiMenu.REFINERY_MENU.get(), RefineryScreen::new);
 
             event.enqueueWork(CtiEntity::registerEntityRenderers);
-            ItemBlockRenderTypes .setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
         }
 
         @SubscribeEvent

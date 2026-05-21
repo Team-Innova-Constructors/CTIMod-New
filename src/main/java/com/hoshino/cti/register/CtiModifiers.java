@@ -259,5 +259,6 @@ public class CtiModifiers {
     public static final StaticModifier<FixedCelestial> FIXED_CELESTIAL = MODIFIERS.register("fixed_celestial", FixedCelestial::new);
     public static final StaticModifier<ReplacedTerritoralSky> REPLACED_TERRITORAL_SKY = MODIFIERS.register("territoral_sky", ReplacedTerritoralSky::new);
     public static final StaticModifier<ReplacedInfernal> REPLACED_INFERNAL = MODIFIERS.register("infernal", ReplacedInfernal::new);
+    public static final StaticModifier<Ethereal> ETHEREAL_STATIC_MODIFIER = MODIFIERS.register("ethereal", Ethereal::new);
 
 }

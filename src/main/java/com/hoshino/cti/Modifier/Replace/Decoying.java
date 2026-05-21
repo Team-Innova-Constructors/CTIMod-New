@@ -25,7 +25,7 @@ public class Decoying extends BattleModifier {
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
         if ((context.getAttacker() instanceof Player)) {
             LivingEntity target = context.getLivingTarget();
-            int random = RANDOM.nextInt(Math.min(modifier.getLevel(), 5));
+            int random = RANDOM.nextInt(Math.min(modifier.getLevel()+1 , 5));
             if (target != null) {
                 Level level = target.getLevel();
                 List<Mob> spawns =level.getEntitiesOfClass(Mob.class,new AABB(target.getOnPos()).inflate(10));

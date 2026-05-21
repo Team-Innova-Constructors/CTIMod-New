@@ -85,6 +85,7 @@
     "L2.TeleportMixin",
     "L2.TraitLootModifierMixin",
     "L2.UndyingTraitMixin",
+    "L2.GraMixin",
     "MekMixin.ChemicalStackRendererMixin",
     "MekMixin.ItemUpgradeMixin",
     "MekMixin.MekanismUtilMixin",

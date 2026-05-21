@@ -91,6 +91,17 @@ public class CommonLivingHurt {
             }
         }
     }
+    @SubscribeEvent
+    public static void playerCauseDamage(LivingDamageEvent event) {
+        var source = event.getSource();
+        if (source.getEntity() instanceof ServerPlayer player) {
+            if(GetModifierLevel.EquipHasModifierlevel(player,CtiModifiers.ETHEREAL_STATIC_MODIFIER.getId())){
+                if(source.isMagic()||source.isExplosion()){
+                    event.setAmount(event.getAmount() * 0.5f);
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onLivingJumpFDF(LivingEvent.LivingJumpEvent event) {

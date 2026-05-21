@@ -2,35 +2,30 @@ package com.hoshino.cti.L2;
 
 import com.hoshino.cti.register.CtiHostilityTrait;
 import com.hoshino.cti.register.CtiModifiers;
-import com.hoshino.cti.util.EffectUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
-import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.init.data.LHConfig;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
-import dev.xkmc.l2hostility.init.registrate.LHTraits;
-import dev.xkmc.l2library.init.events.attack.AttackCache;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event;
 import org.jetbrains.annotations.NotNull;
-import slimeknights.tconstruct.TConstruct;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.function.IntSupplier;
@@ -42,36 +37,70 @@ public class PurifyTrait extends MobTrait {
     }
 
     private void MobEffectEvent(MobEffectEvent.Applicable event) {
-        if (event.getEntity() instanceof Mob mob) {
-            LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
-            if (optional.resolve().isPresent()) {
-                MobTraitCap cap = optional.resolve().get();
-                Set<MobTrait> set = cap.traits.keySet();
-                for (int i = 0; i < set.stream().toList().size(); i++) {
-                    MobTrait trait = CtiHostilityTrait.PURIFYTRAIT.get();
-                    List<Player> playerlist = mob.level.getEntitiesOfClass(Player.class, new AABB(mob.getX() + 10, mob.getY() + 10, mob.getZ() + 10, mob.getX() - 10, mob.getY() - 10, mob.getZ() - 10));
-                    for (Player player : playerlist) {
-                        if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ARMOR_ORACLE.getId())>0){
-                            return;
-                        }
-                        LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
-                        if (handler.resolve().isPresent()) {
-                            for (ICurioStacksHandler curios : handler.resolve().get().getCurios().values()) {
-                                for (int k = 0; k < curios.getSlots(); ++k) {
-                                    ItemStack stack = curios.getStacks().getStackInSlot(k);
-                                    if (stack.is(LHItems.RING_REFLECTION.get()) || stack.is(LHItems.ABRAHADABRA.get())) {
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                        if (cap.hasTrait(trait) && !event.getEffectInstance().getEffect().isBeneficial()) {
-                            event.setResult(Event.Result.DENY);
+        if (!(event.getEntity() instanceof Mob mob)) return;
+        LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
+        if (optional.resolve().isEmpty()) return;
+        MobTraitCap cap = optional.resolve().get();
+        MobTrait trait = CtiHostilityTrait.PURIFYTRAIT.get();
+        if (!cap.hasTrait(trait) || event.getEffectInstance().getEffect().isBeneficial()) {
+            return;
+        }
+        var target = mob.getTarget();
+        if (target instanceof Player player) {
+            if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ARMOR_ORACLE.getId()) > 0) {
+                return;
+            }
+            LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
+            if (handler.resolve().isPresent()) {
+                for (ICurioStacksHandler curios : handler.resolve().get().getCurios().values()) {
+                    for (int k = 0; k < curios.getSlots(); ++k) {
+                        ItemStack stack = curios.getStacks().getStackInSlot(k);
+                        if (stack.is(LHItems.RING_REFLECTION.get()) || stack.is(LHItems.ABRAHADABRA.get())) {
                             return;
                         }
                     }
                 }
             }
+        }
+        event.setResult(Event.Result.DENY);
+    }
+
+    @Override
+    public void tick(@NotNull LivingEntity living, int level) {
+        if (!(living instanceof Mob mob)) return;
+        if (mob.tickCount % 3 != 0) return;
+        var target = mob.getTarget();
+        var list = mob.getActiveEffects();
+        if (target instanceof Player player) {
+            if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+                return;
+            }
+            LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
+            if (handler.resolve().isPresent()) {
+                for (ICurioStacksHandler curios : handler.resolve().get().getCurios().values()) {
+                    for (int k = 0; k < curios.getSlots(); ++k) {
+                        ItemStack stack = curios.getStacks().getStackInSlot(k);
+                        if (stack.is(LHItems.ABRAHADABRA.get())) {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        removeAndHeal(mob, list, level);
+    }
+
+    public static void removeAndHeal(Mob mob, Collection<MobEffectInstance> mobEffectInstanceList, int level) {
+        float healAmount = 0;
+        List<MobEffectInstance> copyList = new ArrayList<>(mobEffectInstanceList);
+        for (MobEffectInstance instance : copyList) {
+            if (instance.getEffect().isBeneficial()) continue;
+            if (instance.getDuration() > level * 7 * 20f) continue;
+            mob.removeEffect(instance.getEffect());
+            healAmount += instance.getDuration() / 20f;
+        }
+        if (healAmount > 0) {
+            mob.heal(healAmount);
         }
     }
 

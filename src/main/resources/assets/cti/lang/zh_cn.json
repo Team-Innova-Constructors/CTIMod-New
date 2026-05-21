@@ -1332,6 +1332,9 @@
   "modifier.cti.replace_ring_necrotic.flavor": "吞噬生灵",
   "modifier.cti.replace_ring_necrotic.description":"攻击时每级恢复你5%伤害的生命值，不超过你最大生命的5%。",
 
+  "modifier.cti.ethereal": "飘渺",
+  "modifier.cti.ethereal.flavor": "滚木化",
+  "modifier.cti.ethereal.description":"穿戴时15%概率免疫伤害,但穿戴时造成的魔法和爆炸伤害和受到的魔法和爆炸均降低50%\n，因为你的身体飘渺化了，所以增加每级40点最大生命值，并且更难被怪物察觉到",
 
 
   "dimension.ad_astra.infernal": "炼狱",
@@ -1362,9 +1365,8 @@
   "item.cti.meteor_shower": "流星雨",
   "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
 
-
   "trait.l2hostility.purify": "净化",
-  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果",
+  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除),当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命，(可被扭曲之魂和星野戒指破除)",
 
   "trait.l2hostility.oracle": "神谕",
   "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",

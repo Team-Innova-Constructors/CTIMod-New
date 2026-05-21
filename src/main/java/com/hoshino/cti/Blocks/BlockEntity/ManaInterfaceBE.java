@@ -24,7 +24,6 @@ public class ManaInterfaceBE extends InterfaceBlockEntity implements ManaCollect
     public @NotNull ManaGenericStackInvStorage getCachedManaStorage(){
         if (cachedManaStorage==null)
             this.cachedManaStorage = new ManaGenericStackInvStorage(this.getInterfaceLogic().getStorage(),this.level,this.getBlockPos());
-        LogUtils.getLogger().info("mana storage max:{} current:{} isfull:{}",cachedManaStorage.getMaxMana(),cachedManaStorage.getCurrentMana(),cachedManaStorage.isFull());
         return cachedManaStorage;
     }
 

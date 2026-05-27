@@ -1,13 +1,21 @@
 package com.hoshino.cti.mixin.L2;
 
+import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
 import dev.xkmc.l2hostility.content.traits.legendary.DementorTrait;
+import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
+import dev.xkmc.l2library.init.events.attack.AttackCache;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(value = DementorTrait.class, remap = false)
-public class DementorMixin {
+public class DementorMixin extends LegendaryTrait {
+    public DementorMixin(ChatFormatting format) {
+        super(format);
+    }
+
     /**
      * @author FireFly
      * @reason 摄魂判定问题，此形参无法正确检测isBypassArmor属性,因此mixin掉,不再免疫
@@ -23,5 +31,10 @@ public class DementorMixin {
     public void onCreateSource(int level, LivingEntity attacker, LivingAttackEvent event) {
         if(event.getSource().getMsgId().equals("mobattackreflect"))return;
         event.getSource().bypassArmor();
+    }
+
+    @Override
+    public void postHurtPlayer(int level, LivingEntity attacker, TraitEffectCache traitCache) {
+
     }
 }

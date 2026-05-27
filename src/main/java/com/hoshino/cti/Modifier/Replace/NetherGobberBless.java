@@ -55,12 +55,12 @@ public class NetherGobberBless extends BattleModifier {
 
     @Override
     public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
-        if (entity instanceof Player player&&isCorrectSlot) {
+        if (entity instanceof Player player&&isCorrectSlot&&player.tickCount % 60 == 0) {
             if (!player.hasEffect(MobEffects.FIRE_RESISTANCE)) {
-                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0, false, false));
+                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 280, 0, false, false,true));
             }
             for (ItemStack itemStack1 : player.getAllSlots()) {
-                if (ModifierUtil.getModifierLevel(itemStack1, this.getId()) > 0 && player.tickCount % 60 == 0) {
+                if (ModifierUtil.getModifierLevel(itemStack1, this.getId()) > 0) {
                     float saturationLevel = player.getFoodData().getSaturationLevel();
                     int foodlevel = player.getFoodData().getFoodLevel();
                     player.getFoodData().setFoodLevel(Math.min(20, foodlevel + 1));

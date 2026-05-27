@@ -261,4 +261,6 @@ public class CtiModifiers {
     public static final StaticModifier<ReplacedInfernal> REPLACED_INFERNAL = MODIFIERS.register("infernal", ReplacedInfernal::new);
     public static final StaticModifier<Ethereal> ETHEREAL_STATIC_MODIFIER = MODIFIERS.register("ethereal", Ethereal::new);
 
+    public static final StaticModifier<ActuallyMutation> ACTUALLY_MUTATION_STATIC_MODIFIER = MODIFIERS.register("actually_mutation", ActuallyMutation::new);
+
 }

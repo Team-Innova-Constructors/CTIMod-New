@@ -74,7 +74,7 @@ public abstract class NearestAttackableTargetGoalMixin<T extends LivingEntity> e
                 cir.setReturnValue(false);
                 return;
             }
-            if(player.hasEffect(CtiEffects.covert.get())&&player.distanceTo(this.mob)<3){
+            if(player.hasEffect(CtiEffects.covert.get())&&player.distanceTo(this.mob)>3){
                 cir.setReturnValue(false);
             }
             else if(ModifierLevel.EquipHasModifierlevel(player, CtiModifiers.starBlessStaticModifier.getId())){

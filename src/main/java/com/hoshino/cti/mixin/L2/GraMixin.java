@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AuraEffectTrait.class)
 public class GraMixin {
-    @Inject(method = "tick",at = @At("HEAD"), cancellable = true)
+    @Inject(method = "tick",at = @At("HEAD"), cancellable = true,remap = false)
     private void tick(LivingEntity mob, int level, CallbackInfo ci){
         if(mob instanceof Mob mob1){
             LazyOptional<MobTraitCap> optional = mob1.getCapability(MobTraitCap.CAPABILITY);

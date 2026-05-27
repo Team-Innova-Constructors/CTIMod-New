@@ -805,7 +805,6 @@
   "modifier.cti.endergobberbless.flavor": "结束了？",
   "modifier.cti.endergobberbless.description":"获得抗火效果，伤害每级增加35%，并且缓慢恢复饱食度.作为盔甲时每级减少10%收到的伤害\n[特殊效果]作为武器每次对末影龙造成伤害均会额外提升末影龙6%最大生命的伤害,使用劈刀击杀末影龙的时候必定掉落9个末影龙头颅",
 
-
   "modifier.cti.fragment": "破灭之片",
   "modifier.cti.fragment.flavor": "人形火车头",
   "modifier.cti.fragment.description":"被攻击时候会对周围半径6格所有非玩家生物造成一次高额的主动反伤,会受到你最大生命和装备耐久的影响,三秒内仅能触发一次,该伤害单次至多不会超过100点",
@@ -1176,9 +1175,17 @@
   "modifier.cti.fixed_precision.flavor": "精密如仪器！",
   "modifier.cti.fixed_precision.description":"每级增加25%修复效率和5%耐久",
 
+  "modifier.cti.actually_mutation": "异变",
+  "modifier.cti.actually_mutation.flavor": "盔甲觉醒了",
+  "modifier.cti.actually_mutation.description":"增加25%基础生命值(包含调味料加成,不包含其他额外百分比生命)的最大生命,2护甲和6盔甲韧性.同时获得6%全伤害减免",
+
   "modifier.cti.fixcurseblade": "诅咒之刃",
   "modifier.cti.fixcurseblade.flavor": "不准回血！",
   "modifier.cti.fixcurseblade.description":"近战攻击和远程攻击每次每级施加10秒诅咒效果",
+
+  "modifier.cti.shadow_slash": "斩影",
+  "modifier.cti.shadow_slash.flavor": "你在砍什么？",
+  "modifier.cti.shadow_slash.description":"近战攻击什么都没砍到时也能+1贪婪等级。",
 
   "modifier.cti.fuckingdeltaforce": "跳一跳",
   "modifier.cti.fuckingdeltaforce.flavor": "666还有鳄鱼组队",
@@ -1392,7 +1399,7 @@
 
   "info.biomes.cti.disordered_zone": "异常区域位于电离冻土星球，你需要进入主线第三章并且做出五级火箭才能到达这里。在此之前你需要做出一个完整的质子、电子产线。",
 
-  "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过35000的dps时产生",
+  "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过350234的dps时产生",
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
   "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25。注意：贪婪效果通常只会存在15秒。",

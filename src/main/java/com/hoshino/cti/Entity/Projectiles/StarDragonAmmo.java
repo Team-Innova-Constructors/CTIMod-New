@@ -12,7 +12,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -28,6 +28,11 @@ public class StarDragonAmmo extends BaseFallenAmmo {
     public StarDragonAmmo(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
+    private  EntityDamageSource starHit(Player player){
+        var source=new EntityDamageSource("star_dragon_hit",player);
+        source.bypassArmor().bypassMagic();
+        return source;
+    }
 
     public StarDragonAmmo(LivingEntity owner, Level level, BlockPos targetPosition, float damageAmount, float killThreshold) {
         super(CtiEntity.star_dragon_ammo.get(), owner, level, targetPosition);
@@ -37,7 +42,7 @@ public class StarDragonAmmo extends BaseFallenAmmo {
 
     @Override
     protected void shockWaveHurt(Mob mob, Player player) {
-        mob.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic(),this.getHurtDamage() * 9f);
+        mob.hurt(starHit(player),this.getHurtDamage() * 9f);
         Vec3 knock = mob.position().subtract(getVec3TargetPosition()).normalize().scale(3);
         Vec3 finalKnock = new Vec3(knock.x()/4, 0.8, knock.z()/4);
         mob.setDeltaMovement(finalKnock);
@@ -53,7 +58,7 @@ public class StarDragonAmmo extends BaseFallenAmmo {
     @Override
     protected void onArrived(ServerPlayer player) {
         super.onArrived(player);
-        this.directHurtLiving(DamageSource.playerAttack(player).bypassArmor().bypassMagic().bypassInvul(), this.getHurtDamage() * 90, 5);
+        this.directHurtLiving(starHit(player), this.getHurtDamage() * 90, 5);
         if (!this.level.isClientSide) {
             var particle = new StarFallParticleType(true, 1, 0xf8ffb2, 1, 1, 10, getVec3TargetPosition());
             player.getLevel().sendParticles(particle, getVec3TargetPosition().x(), getVec3TargetPosition().y() + 0.05, getVec3TargetPosition().z(), 1, 0, 0, 0, 0.25);

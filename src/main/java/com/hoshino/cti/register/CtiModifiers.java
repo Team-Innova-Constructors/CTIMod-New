@@ -216,6 +216,7 @@ public class CtiModifiers {
     public static final StaticModifier<InsatiableDigest> INSATIABLE_DIGEST = MODIFIERS.register("insatiable_digest", InsatiableDigest::new);
     public static final StaticModifier<ArroganceInsatiable> ARROGANCE_INSATIABLE = MODIFIERS.register("arrogance_insatiable", ArroganceInsatiable::new);
     public static final StaticModifier<ShadowSlash> SHADOW_SLASH = MODIFIERS.register("shadow_slash", ShadowSlash::new);
+
     public static final StaticModifier<NonStopInsatiable> NONSTOP_INSATIABLE = MODIFIERS.register("nonstop_insatiable", NonStopInsatiable::new);
     public static final StaticModifier<ReplacedOvergrowth> REPLACED_OVERGROWTH = MODIFIERS.register("replaced_overgrowth", ReplacedOvergrowth::new);
     public static final StaticModifier<SlimeStrike> SLIME_STRIKE = MODIFIERS.register("slime_strike", SlimeStrike::new);

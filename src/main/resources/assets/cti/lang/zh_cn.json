@@ -10,6 +10,7 @@
   "subtitles.cti.super_die2": "私人叫声",
   "subtitles.cti.armor_broken": "破片",
   "subtitles.cti.location_exposed": "位置暴露",
+  "subtitles.cti.farewell_gift": "怪物死亡反噬",
 
   "block.cti.molten_infinity_fluid":"熔融无尽",
   "block.cti.molten_invert_hoshino":"熔融星野-恐怖",
@@ -268,7 +269,7 @@
 
   "modifier.cti.sentrite_defense": "哨石之庇护",
   "modifier.cti.sentrite_defense.flavor": "从滑行魔石上扒下来的外壳",
-  "modifier.cti.sentrite_defense.description": "[独立减免]对非穿甲伤害提供50%的减免。对反伤类伤害(守卫者，反射词条等)则额外再减免90%",
+  "modifier.cti.sentrite_defense.description": "[独立减免]对非穿甲伤害提供40%的减免,穿甲伤害这个效益则降低至15%。对反伤类伤害(守卫者，反射词条等)则减免50%",
 
   "modifier.cti.life_steal": "生命窃取",
   "modifier.cti.life_steal.flavor": "以血换血",
@@ -434,6 +435,9 @@
   "death.attack.cti.skd": "%1$s 被创死了。",
   "death.attack.cti.skd.player": "%1$s 被创死了。",
   "death.attack.cti.self_damage": "%1$s 放干了猪血。",
+  "death.attack.dementor": "%1$s 被怪物吸干了灵魂。",
+  "death.attack.dispell": "%1$s 被怪物用法力浸润了。",
+  "death.attack.farewell_gift": "%1$s 被怪物临死的怨念终结了。",
 
   "item.cti.molten_aluminium_glass_bucket": "熔融铝玻璃桶",
   "fluid.cti.molten_aluminium_glass": "熔融铝玻璃",
@@ -444,7 +448,7 @@
 
   "modifier.cti.aluminiumpower": "钢化本质",
   "modifier.cti.aluminiumpower.flavor": "我硬的要命，真的",
-  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供50%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低40%,同时也会降低你承受到的40%(魔法,火焰,摔落,弹射物)伤害.对爆炸和反伤类的减免则提升到80%",
+  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供50%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低40%,同时也会降低你承受到的40%(魔法,火焰,摔落,弹射物)伤害.对爆炸和反伤类的减免则提升到60%",
 
   "modifier.cti.electric_protect": "电离防护",
   "modifier.cti.electric_protect.flavor": "电流退散！",
@@ -811,7 +815,7 @@
 
   "modifier.cti.reforge": "千锻万打",
   "modifier.cti.reforge.flavor": "仔细听声音很清脆",
-  "modifier.cti.reforge.description":"额外提升5点护甲,10%的额外免伤,额外附赠一个防御槽,同时降低30%受到的魔法伤害,降低50%受到的反伤,但是只能生效1级并且降低2点盔甲韧性",
+  "modifier.cti.reforge.description":"额外提升5点护甲,10%的额外免伤,额外附赠一个防御槽,同时降低30%受到的魔法伤害,降低40%受到的反伤,但是单件只能生效1级并且降低2点盔甲韧性",
 
   "modifier.cti.cripplesuppermass": "超级质量",
   "modifier.cti.cripplesuppermass.flavor": "保护效果更上一层楼！",
@@ -1379,7 +1383,7 @@
   "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
 
   "trait.l2hostility.extreme_damage_reduce": "极端伤害防护",
-  "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少60%，受到的穿甲伤害减少80%。",
+  "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少60%，受到的穿甲伤害减少90%。",
 
   "trait.l2hostility.temporary_armor": "临时护盾",
   "trait.l2hostility.temporary_armor.desc": "使生物获得99%减伤，但是每次受到伤害时该减伤减少1%。穿甲伤害会造成2倍效果（2%）。",
@@ -1389,6 +1393,15 @@
 
   "trait.l2hostility.hard_skin": "坚硬表皮",
   "trait.l2hostility.hard_skin.desc": "怪物会格挡掉其最大生命值5%与其护甲值的和的 词条等级倍的伤害，如果伤害穿透护甲则格挡值降低75%，如果穿透无敌则无视格挡",
+
+
+  "trait.l2hostility.farewell_gift": "临别馈赠",
+  "trait.l2hostility.farewell_gift.desc": "怪物在死后会强制反噬一段高额伤害给击杀他的玩家,数值等同于怪物最大生命5% * 词条等级,此数值可以被莱特兰等级二次增幅,怪物死亡距离玩家越远伤害越低,15格外完全不受伤害",
+
+
+  "trait.l2hostility.mandate_of_heaven": "天命",
+  "trait.l2hostility.mandate_of_heaven.desc": "该生物会参照目标全身全部的材料进行评级,7级以下材料不计入.全身每多1个7级材料,增加0.4%最终伤害,每多一个8级材料,增加0.8%最终伤害,每多一个9级材料,增加3.2%最终伤害,只会在灾变生物身上刷新",
+
 
 
   "info.cti.panel_condition.upward": "于世界最高处向上放置",

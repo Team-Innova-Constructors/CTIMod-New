@@ -20,6 +20,11 @@ public class StarBless extends Modifier implements DamageBlockModifierHook , Mod
     }
 
     @Override
+    public int getPriority() {
+        return 2;
+    }
+
+    @Override
     public boolean isDamageBlocked(IToolStackView iToolStackView, ModifierEntry modifierEntry, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float v){
         if(damageSource.getEntity() == null||damageSource.isMagic())return true;
         if(damageSource.getEntity()==equipmentContext.getEntity())return true;

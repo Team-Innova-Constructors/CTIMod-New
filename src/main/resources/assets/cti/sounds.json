@@ -58,5 +58,15 @@
         "stream": "true"
       }
     ]
+  },
+  "farewell_gift": {
+    "category": "voice",
+    "subtitle": "subtitles.cti.farewell_gift",
+    "sounds": [
+      {
+        "name": "cti:farewell_gift",
+        "stream": "true"
+      }
+    ]
   }
 }

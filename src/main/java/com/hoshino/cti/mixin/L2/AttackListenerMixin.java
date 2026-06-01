@@ -18,7 +18,26 @@ public class AttackListenerMixin implements AttackListener {
     public void onHurt(AttackCache cache, ItemStack weapon, CallbackInfo ci){
         if(cache.getLivingHurtEvent()!=null&&cache.getLivingHurtEvent().getSource()!=null){
             var damagesource=cache.getLivingHurtEvent().getSource();
-            if(damagesource.getMsgId().contains("mobattackreflect")){
+            if(damagesource.getMsgId().contains("mobattackreflect")||damagesource.getMsgId().equals("farewell_gift")){
+                ci.cancel();
+            }
+        }
+    }
+    @Inject(method = "onHurt", at = @At("HEAD"), cancellable = true)
+    private void prevent(AttackCache cache, ItemStack weapon, CallbackInfo ci) {
+        if (cache.getLivingHurtEvent() != null && cache.getLivingHurtEvent().getSource() != null) {
+            String msgId = cache.getLivingHurtEvent().getSource().getMsgId();
+            if ("dementor".equals(msgId) || "dispell".equals(msgId)) {
+                ci.cancel();
+            }
+        }
+    }
+
+    @Inject(method = "onAttack", at = @At("HEAD"), cancellable = true)
+    private void preventA(AttackCache cache, ItemStack weapon, CallbackInfo ci) {
+        if (cache.getLivingAttackEvent() != null && cache.getLivingAttackEvent().getSource() != null) {
+            String msgId = cache.getLivingAttackEvent().getSource().getMsgId();
+            if ("dementor".equals(msgId) || "dispell".equals(msgId)) {
                 ci.cancel();
             }
         }

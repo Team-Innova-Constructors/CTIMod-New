@@ -39,8 +39,10 @@ public class PlayerSkullMixin extends StandingAndWallBlockItem {
         var player = context.getPlayer();
         var pos = context.getClickedPos();
         var level = context.getLevel();
+        var uuid=SkullHelper.getPlayerUUIDFromHead(stack);
+        if(uuid==null)return InteractionResult.PASS;
         //恶徒水壶的UUID
-        if (player == null || !SkullHelper.getPlayerUUIDFromHead(stack).equals(UUID.fromString("f0692b01-fa6d-44c5-9aa9-93dd2d233c96")) || level.getBlockState(pos).isAir()) {
+        if (player == null || !uuid.equals(UUID.fromString("f0692b01-fa6d-44c5-9aa9-93dd2d233c96")) || level.getBlockState(pos).isAir()) {
             return InteractionResult.PASS;
         } else {
             player.startUsingItem(context.getHand());

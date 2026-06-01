@@ -8,6 +8,7 @@ import com.hoshino.cti.Entity.DisposibleFakePlayer;
 import com.hoshino.cti.Modifier.Contributors.Mz;
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.Replace.FixedPurify;
+import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
 import com.hoshino.cti.Modifier.genre.insatiable.InsatiableDigest;
 import com.hoshino.cti.Modifier.genre.insatiable.ReplacedWellTrained;
@@ -17,14 +18,17 @@ import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.warden.Warden;
@@ -43,6 +47,10 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import slimeknights.tconstruct.common.TinkerTags;
+import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.modifiers.ModifierEntry;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.ModifierManager;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
@@ -333,10 +341,10 @@ public class CommonLivingEvents {
         if (player.getLevel() instanceof ServerLevel serverLevel) {
             if (serverLevel.dimension().equals(ServerLevel.OVERWORLD)) {
                 if (event.getState().is(Tags.Blocks.ORES_DIAMOND)) {
-                    int deathCount = CurseUtil.getDeathFrequency(player);
                     var randomSource = player.getRandom();
+
                     int currentNumber = randomSource.nextInt(4000);
-                    if (currentNumber + deathCount * 10 > 3998) {
+                    if (currentNumber> 3998) {
                         var fzzx = new ItemEntity(player.level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(CtiItem.heart_of_africa.get(), 1));
                         player.level.addFreshEntity(fzzx);
                         fzzx.setPos(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
@@ -390,5 +398,22 @@ public class CommonLivingEvents {
             event.setCanceled(true);
         }
     }
-
+    @SubscribeEvent
+    public static void onGiveStarDust(LivingDeathEvent event){
+        if (event.getEntity() instanceof Mob mob){
+            if(!mob.isDeadOrDying())return;
+            var entity=event.getSource().getEntity();
+            if(entity instanceof Player player){
+                var mainHandItem=player.getMainHandItem();
+                if(!mainHandItem.isEmpty() && mainHandItem.is(TinkerTags.Items.MODIFIABLE)){
+                    if(ModifierUtil.getModifierLevel(player.getMainHandItem(),new ModifierId("cti:stardragonhit"))>0){
+                        var tool=ToolStack.from(mainHandItem);
+                        var nbt=tool.getPersistentData();
+                        var currentDust=nbt.getInt(StarDragonHit.STAR_DUST);
+                        nbt.putInt(StarDragonHit.STAR_DUST,currentDust+1);
+                    }
+                }
+            }
+        }
+    }
 }

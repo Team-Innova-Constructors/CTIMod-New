@@ -18,7 +18,6 @@ public class HardSkin extends MobTrait {
     private void LivingDamageEvent(LivingDamageEvent event) {
         var source = event.getSource();
         var target = event.getEntity();
-        if (source.isBypassInvul()||source.isBypassMagic()) return;
         if (target instanceof Mob mob) {
             LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
             if (optional.resolve().isPresent()) {

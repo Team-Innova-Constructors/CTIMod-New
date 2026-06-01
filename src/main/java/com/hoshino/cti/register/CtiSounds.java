@@ -15,4 +15,5 @@ public class CtiSounds {
     public static final Supplier<SoundEvent> armor_broken = sound.register("armor_broken", () -> new SoundEvent(Cti.getResource("armor_broken")));
     public static final Supplier<SoundEvent> location_exposed = sound.register("location_exposed", () -> new SoundEvent(Cti.getResource("location_exposed")));
     public static final Supplier<SoundEvent> zhubi = sound.register("zhubi", () -> new SoundEvent(Cti.getResource("zhubi")));
+    public static final Supplier<SoundEvent> farewell_gift = sound.register("farewell_gift", () -> new SoundEvent(Cti.getResource("farewell_gift")));
 }

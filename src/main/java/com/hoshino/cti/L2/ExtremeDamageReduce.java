@@ -16,7 +16,7 @@ public class ExtremeDamageReduce extends LegendaryTrait {
 
     @Override
     public void onHurtByOthers(int level, LivingEntity entity, LivingHurtEvent event) {
-        if (event.getSource().isBypassArmor()) event.setAmount(event.getAmount()*0.2f);
+        if (event.getSource().isBypassArmor()) event.setAmount(event.getAmount()*0.1f);
     }
 
     @Override

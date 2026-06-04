@@ -26,12 +26,12 @@ public class DoubleEdged extends NoLevelsModifier implements MeleeDamageModifier
     }
 
     private void OnLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-        if (event.getSide() == LogicalSide.CLIENT) {
+        if (event.getSide() != LogicalSide.CLIENT) {
             ItemStack stack = event.getItemStack();
             if (stack.getItem() instanceof IModifiable && event.getHand() == InteractionHand.MAIN_HAND) {
                 ToolStack tool = ToolStack.from(stack);
                 if (tool.getModifierLevel(this) > 0) {
-                    CtiPacketHandler.sendToServer(new PAttackSelfC2S());
+                    ToolAttackUtil.attackEntity(tool,event.getEntity(),InteractionHand.MAIN_HAND,event.getEntity(),()->1,false);
                 }
             }
         }

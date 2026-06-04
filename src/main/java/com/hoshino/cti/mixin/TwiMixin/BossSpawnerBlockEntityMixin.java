@@ -66,7 +66,7 @@ public abstract class BossSpawnerBlockEntityMixin<T extends Mob> extends BlockEn
                     var uuid = player.getUUID();
                     if (myCreature instanceof ChangeBossHealth changeBossHealth) {
                         changeBossHealth.cti$changeMaxHealthAttributeInstance(attributeInstance -> {
-                            var modifier = new AttributeModifier(uuid, attributeInstance.getAttribute().getDescriptionId(), 1.8f, AttributeModifier.Operation.MULTIPLY_TOTAL);
+                            var modifier = new AttributeModifier(uuid, attributeInstance.getAttribute().getDescriptionId(), 0.5f, AttributeModifier.Operation.MULTIPLY_TOTAL);
                             attributeInstance.addPermanentModifier(modifier);
                         });
                     }

@@ -7,6 +7,8 @@ import com.hoshino.cti.netwrok.packet.CurseTimeUpdatePacket;
 import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CommonUtil;
+import com.hoshino.cti.util.L2.CorodiHelper;
+import com.hoshino.cti.util.L2.RagnarokHelper;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
@@ -18,10 +20,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -84,11 +83,11 @@ public class L2LivingEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void whenCurseMobAttackPlayer(LivingHurtEvent event) {
-        if (event.getAmount()>0 && event.getSource().getEntity() instanceof Mob mob) {
-            var entity=event.getEntity();
-            if(entity instanceof Player player){
-                boolean c= checkEquipment(player);
-                if(c)return;
+        if (event.getAmount() > 0 && event.getSource().getEntity() instanceof Mob mob) {
+            var entity = event.getEntity();
+            if (entity instanceof Player player) {
+                boolean c = checkEquipment(player);
+                if (c) return;
             }
             LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
             if (optional.resolve().isPresent()) {
@@ -106,22 +105,22 @@ public class L2LivingEvents {
     }
 
     private static boolean checkEquipment(Player player) {
-        int uranium=GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
-        int hoshino=GetModifierLevel.CurioModifierLevel(player,TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
-        ModifierId health=new ModifierId("tinkersinnovation:vitality_armor");
-        int healthLevel=GetModifierLevel.getTotalArmorModifierlevel(player,health);
-        return (uranium + hoshino + healthLevel) >= 0;
+        int uranium = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
+        int hoshino = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
+        ModifierId health = new ModifierId("tinkersinnovation:vitality_armor");
+        int mari = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("solidarytinker:heallight"));
+        int healthLevel = GetModifierLevel.getTotalArmorModifierlevel(player, health);
+        return (uranium + hoshino + healthLevel + mari) > 0;
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void curseCostPlayerHeal(LivingHealEvent event) {
         if (event.getEntity() instanceof Player player) {
-            boolean hasMari=GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("solidarytinker:heallight"));
-            if(hasMari)return;
+
             int painTime = player.getPersistentData().getInt("pain_time");
             int a = Math.round(painTime / 8f);
             float shouldHeal = event.getAmount();
-            float antiCurseFactor = 1f/(CommonUtil.getAntiCurseLevel(player)+1);
+            float antiCurseFactor = 1f / (CommonUtil.getAntiCurseLevel(player) + 1);
 
             if (a > 0) {
                 switch (a) {
@@ -131,7 +130,8 @@ public class L2LivingEvents {
                 }
             }
             if (!player.level.isClientSide)
-                if (EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.STRICT_CURSE.get())) event.setCanceled(true);
+                if (EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.STRICT_CURSE.get()))
+                    event.setCanceled(true);
         }
     }
 
@@ -143,8 +143,8 @@ public class L2LivingEvents {
             int curseLevelToSend = 0;
             if (serverPlayer.tickCount % 20 == 0) {
                 if (painTime > 0) {
-                    painTime -= CommonUtil.getAntiCurseLevel(serverPlayer)+1;
-                    serverPlayer.getPersistentData().putInt("pain_time",painTime);
+                    painTime -= CommonUtil.getAntiCurseLevel(serverPlayer) + 1;
+                    serverPlayer.getPersistentData().putInt("pain_time", painTime);
                     switch (a) {
                         case 1, 2, 3 -> curseLevelToSend = 1;
                         case 4, 5, 6 -> curseLevelToSend = 2;
@@ -153,6 +153,46 @@ public class L2LivingEvents {
                 }
                 CtiPacketHandler.sendToPlayer(new CurseTimeUpdatePacket(curseLevelToSend, painTime), serverPlayer);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void ragnarokHandler(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if (serverPlayer.tickCount % 120 == 0) {
+                if (RagnarokHelper.hasBeenCost(serverPlayer)) {
+                    RagnarokHelper.removeData(serverPlayer);
+                }
+            }
+            if (serverPlayer.tickCount % 100 == 0) {
+                if (CorodiHelper.hasBeenCost(serverPlayer)) {
+                    CorodiHelper.removeData(serverPlayer);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onIncreaseCorrosion(LivingDamageEvent event) {
+        if (event.getSource().getEntity() instanceof Mob mob && event.getEntity() instanceof Player player) {
+            mob.getCapability(MobTraitCap.CAPABILITY).ifPresent(cap -> {
+                int totalTraitLevel = cap.getTraitLevel(LHTraits.CORROSION.get()) + cap.getTraitLevel(LHTraits.EROSION.get());
+                if (totalTraitLevel <= 0) return;
+                float playerArmorCount = player.getArmorValue();
+                float costScale = Math.max(0f, 1f - (playerArmorCount / 100f));
+                float damageBonusScale = 0.5f * totalTraitLevel * costScale;
+                float originalDamage = event.getAmount();
+                float finalDamage = originalDamage * (1f + damageBonusScale);
+                event.setAmount(finalDamage);
+            });
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onIncreaseLiming(LivingHurtEvent event) {
+        if (event.getSource().getEntity() instanceof Mob mob && event.getEntity() instanceof Player player) {
+           if(mob.getPersistentData().contains("cti_liming")){
+               event.setAmount(event.getAmount() * 1.3f);
+           }
         }
     }
 }

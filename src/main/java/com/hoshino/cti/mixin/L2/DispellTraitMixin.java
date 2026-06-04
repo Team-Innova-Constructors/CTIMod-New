@@ -75,25 +75,27 @@ public class DispellTraitMixin extends LegendaryTrait {
             var mobLevel= DifficultyLevel.ofAny(attacker);
             float scale=cti_new$getScale(target);
             float totalHurt=mobLevel * 0.02f * level *scale;
-            ((ILivingEntityMixin)target).cti$strictHurt(source,totalHurt);
+            if(target.isDeadOrDying())return;
+            ((ILivingEntityMixin)target).cti$strictHurt(source,totalHurt,false);
         }
     }
     @Unique
     private boolean cti_new$shouldHurt(LivingEntity living){
         if(!(living instanceof Player player))return true;
         if(GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("solidarytinker:bha")))return false;
-        return true;
+        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("tinkers_ingenuity:unmatched")))return false;
+        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("cti:trauma")))return false;
+        return !GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("cti:all"));
     }
     @Unique
     private float cti_new$getScale(LivingEntity living){
-        if(!(living instanceof Player player))return 1;
-        var relicLevel=GetModifierLevel.getAllSlotModifierlevel(player,new ModifierId("cti:the_relic"));
-        var shadowOfVigridLevel=GetModifierLevel.getAllSlotModifierlevel(player,new ModifierId("cti:shadow_of_vigrid"));
-        boolean hashardLevel=GetModifierLevel.getAllSlotModifierlevel(player,new ModifierId("etshtinker:solidex"))>0;
-        float hasHard=1;
-        if(hashardLevel){
-            hasHard=0.8f;
-        }
-        return (1-(relicLevel * 0.03f)) * (1-(shadowOfVigridLevel * 0.7f)) *hasHard;
+        if(!(living instanceof Player player)) return 1;
+        var relicLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("cti:the_relic"));
+        var shadowOfVigridLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
+        boolean hashardLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("etshtinker:solidex")) > 0;
+        float hasHard = hashardLevel ? 0.8f : 1.0f;
+        float relicFactor = Math.max(0.0f, 1.0f - (relicLevel * 0.03f));
+        float shadowFactor = Math.max(0.0f, 1.0f - (shadowOfVigridLevel * 0.08f));
+        return relicFactor * shadowFactor * hasHard;
     }
 }

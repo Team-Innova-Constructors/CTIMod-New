@@ -95,25 +95,30 @@ public class ToolEvents {
     }
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void ToolHoldingDeath(LivingDeathEvent event) {
+        if (event.isCanceled()) return;
         LivingEntity livingEntity = event.getEntity();
+        if (!livingEntity.isDeadOrDying()) return;
         DamageSource source = event.getSource();
         EquipmentContext context = new EquipmentContext(livingEntity);
-        if (context.hasModifiableArmor()){
-            for (EquipmentSlot slotType : EquipmentSlot.values()) {
-                IToolStackView toolStack = context.getToolInSlot(slotType);
-                if (toolStack != null && !toolStack.isBroken()) {
-                    boolean canIgnore= OnHoldingPreventDeathHook.canIgnorePassInvul(CtiModifierHook.PREVENT_DEATH,context);
-                    float HealthRemain = OnHoldingPreventDeathHook.onHoldingPreventDeath(CtiModifierHook.PREVENT_DEATH,context,source,event.getEntity());
-                    if(shouldPrevent(source,canIgnore)&&HealthRemain>0){
-                        event.setCanceled(true);
-                        event.getEntity().setHealth(HealthRemain);
-                        event.getEntity().sendSystemMessage(Component.translatable("etshtinker.message.death_prevent").withStyle(ChatFormatting.AQUA));
-                        return;
-                    }
-                    if(livingEntity.isDeadOrDying()){
-                        OnDeathModifierHook.handleDeath(CtiModifierHook.ON_DEATH,context,source,livingEntity);
-                    }
+        for (EquipmentSlot slotType : EquipmentSlot.values()) {
+            IToolStackView toolStack = context.getToolInSlot(slotType);
+            if (toolStack != null && !toolStack.isBroken()) {
+                boolean canIgnore = OnHoldingPreventDeathHook.canIgnorePassInvul(CtiModifierHook.PREVENT_DEATH, context);
+                float healthRemain = OnHoldingPreventDeathHook.onHoldingPreventDeath(CtiModifierHook.PREVENT_DEATH, context, source, livingEntity);
+
+                if (shouldPrevent(source, canIgnore) && healthRemain > 0) {
+                    event.setCanceled(true);
+                    livingEntity.setHealth(healthRemain);
+                    livingEntity.deathTime = 0;
+                    livingEntity.sendSystemMessage(Component.translatable("etshtinker.message.death_prevent").withStyle(ChatFormatting.AQUA));
+                    return;
                 }
+            }
+        }
+        for (EquipmentSlot slotType : EquipmentSlot.values()) {
+            IToolStackView toolStack = context.getToolInSlot(slotType);
+            if (toolStack != null && !toolStack.isBroken()) {
+                OnDeathModifierHook.handleDeath(CtiModifierHook.ON_DEATH, context, source, livingEntity);
             }
         }
     }

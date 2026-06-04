@@ -4,10 +4,8 @@ import com.hoshino.cti.content.environmentSystem.EnvironmentalHandler;
 import com.hoshino.cti.content.environmentSystem.IEnvironmentalSource;
 import com.hoshino.cti.mixin.TIMixin.ServerPlayerAccessor;
 import com.hoshino.cti.register.CtiEffects;
-import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.ILivingEntityMixin;
 import com.hoshino.cti.util.StrictDamageProcess;
-import com.hoshino.cti.util.method.GetModifierLevel;
 import com.mojang.logging.LogUtils;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.ChatFormatting;
@@ -41,7 +39,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -140,7 +137,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
     }
 
     @Unique
-    public boolean cti$strictHurt(DamageSource pSource, float pAmount){
+    public boolean cti$strictHurt(DamageSource pSource, float pAmount,boolean bypassRespawn){
         LivingEntity living = (LivingEntity)(Object) this;
         LivingEntityAccessor accessor = (LivingEntityAccessor) living;
         ForgeHooks.onLivingAttack(living, pSource, pAmount);
@@ -247,7 +244,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
                 if (flag1 && soundevent != null) {
                     living.playSound(soundevent, accessor.getSoundVolume(), living.getVoicePitch());
                 }
-                this.cti$strictDie(pSource);
+                this.cti$strictDie(pSource,bypassRespawn);
             } else if (flag1) {
                 accessor.playHurtSound(pSource);
             }
@@ -267,10 +264,13 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
         }
     }
     @Unique
-    public void cti$strictDie(DamageSource pDamageSource) {
+    public void cti$strictDie(DamageSource pDamageSource,boolean bypassRespawn) {
         LivingEntity living = (LivingEntity)(Object) this;
         if (living instanceof TargetDummyEntity) return;
         LivingEntityAccessor accessor = (LivingEntityAccessor) living;
+        if (ForgeHooks.onLivingDeath(living, pDamageSource)&&!bypassRespawn) {
+            return;
+        }
         if (living instanceof ServerPlayer player){
             ServerPlayerAccessor playerAccessor = (ServerPlayerAccessor) player;
             living.gameEvent(GameEvent.ENTITY_DIE);

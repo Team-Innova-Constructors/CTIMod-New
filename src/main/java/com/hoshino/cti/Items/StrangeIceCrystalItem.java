@@ -38,7 +38,7 @@ public class StrangeIceCrystalItem extends Item {
             crystal.setPos(pLivingEntity.getEyePosition());
             crystal.setDeltaMovement(pLivingEntity.getLookAngle().scale(2));
             pLivingEntity.level.addFreshEntity(crystal);
-            if (pLivingEntity instanceof Player player) player.getCooldowns().addCooldown(pStack.getItem(),600);
+            if (pLivingEntity instanceof Player player) player.getCooldowns().addCooldown(pStack.getItem(),400);
         }
         return pStack;
     }

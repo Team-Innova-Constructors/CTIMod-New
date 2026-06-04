@@ -182,6 +182,7 @@ public class CommonLivingEvents {
         if (!(event.getEntity() instanceof Player player)) return;
         if (!(SuperpositionHandler.isTheCursedOne(player))) return;
         if (event.isCanceled()) return;
+        if(!event.getEntity().isDeadOrDying())return;
         int fre = CurseUtil.getDeathFrequency(player);
         CurseUtil.setDeathFrequency(player, fre + 1);
         CurseUtil.setResoluteTime(player, 0);

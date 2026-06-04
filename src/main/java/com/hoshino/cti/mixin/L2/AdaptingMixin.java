@@ -37,7 +37,7 @@ public class AdaptingMixin extends MobTrait {
             data.memory.remove(id);
             data.memory.add(0, id);
             float levelScale=(float)Math.sqrt(level);
-            float baseMultiple=0.9f / damageTypesAmount * levelScale;
+            float baseMultiple=0.9f /  damageTypesAmount * levelScale;
             float finallyMultiple=isBypassArmor?baseMultiple * 0.9f:baseMultiple ;
             event.setAmount(event.getAmount() * (1-Math.min(0.9f,finallyMultiple)));
         } else {

@@ -34,6 +34,7 @@ import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.integration.botania.api.modifierBase.BurstMiningModifier;
 import com.hoshino.cti.integration.botania.api.modifierBase.LCManaBurstModifier;
 import com.hoshino.cti.integration.botania.modifiers.FartherSights;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
@@ -252,8 +253,8 @@ public class CtiModifiers {
 
     public static final StaticModifier<DRFlamez> DR_FLAMEZ_STATIC_MODIFIER = MODIFIERS.register("drflamez", DRFlamez::new);
     public static final StaticModifier<SoulFlame> SOUL_FLAME_STATIC_MODIFIER = MODIFIERS.register("soulflame", SoulFlame::new);
-    public static final StaticModifier<NoLevelsModifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", NoLevelsModifier::new);
-    public static final StaticModifier<NoLevelsModifier> THE_RELIC = MODIFIERS.register("the_relic", NoLevelsModifier::new);
+    public static final StaticModifier<Modifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", Modifier::new);
+    public static final StaticModifier<Modifier> THE_RELIC = MODIFIERS.register("the_relic", Modifier::new);
     public static final StaticModifier<WeightUnstable> WEIGHT_UNSTABLE = MODIFIERS.register("weight_unstable", WeightUnstable::new);
     public static final StaticModifier<OverProperty> OVER_PROPERTY = MODIFIERS.register("over_property", OverProperty::new);
     public static final StaticModifier<FloatingHandler> FLOATING_HANDLER = MODIFIERS.register("floating_handler", FloatingHandler::new);

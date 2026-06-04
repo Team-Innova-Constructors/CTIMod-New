@@ -31,6 +31,6 @@ public abstract class HydraMixin extends Mob implements Enemy, EnforcedHomePoint
     }
     @ModifyArg(method = "attackEntityFromPart",at = @At(value = "INVOKE", target = "Ljava/lang/Math;round(F)I"),remap = false)
     private float setModify(float a){
-        return a * 4;
+        return a * 2;
     }
 }

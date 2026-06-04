@@ -96,9 +96,9 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         var player=context.getPlayerAttacker();
         if(player!=null){
-            DAMAGE_SHOULD_BE.put(player.getUUID(),damage+1000 * modifier.getLevel());
+            DAMAGE_SHOULD_BE.put(player.getUUID(),damage+850 * modifier.getLevel());
         }
-        return damage+1000 * modifier.getLevel();
+        return damage+850 * modifier.getLevel();
     }
 
     @Override
@@ -114,7 +114,7 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         if(attacker instanceof Player player&&target!=null){
             if(persistentData.getInt(STAR_DUST)>10){
                 persistentData.putInt(STAR_DUST,persistentData.getInt(STAR_DUST)-10);
-                float damageShouldBe=DAMAGE_SHOULD_BE.getOrDefault(player.getUUID(),10f);
+                float damageShouldBe=DAMAGE_SHOULD_BE.getOrDefault(player.getUUID(),1000f);
                 var ammo=new StarDragonAmmo(player,player.getLevel(),target.blockPosition(),damageShouldBe,Math.min(0.21f+(persistentData.getInt(STAR_DUST) / 100f * 0.01f),0.78f));
                 player.getLevel().addFreshEntity(ammo);
             }

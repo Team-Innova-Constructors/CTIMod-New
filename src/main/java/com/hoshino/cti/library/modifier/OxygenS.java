@@ -33,7 +33,7 @@ public class OxygenS {
     public static boolean checkNeedOxygen(ServerPlayer serverPlayer) {
         if(serverPlayer.isCreative())return false;
         ModifierId[] modifierIDs=new ModifierId[]{
-                new ModifierId("cti:infinity"),
+                new ModifierId("tinkers_ingenuity:unmatched"),
                 new ModifierId("cti:starbless"),
                 new ModifierId("cti:eventually"),
                 new ModifierId("cti:all"),

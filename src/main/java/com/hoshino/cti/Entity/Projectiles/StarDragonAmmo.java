@@ -42,7 +42,7 @@ public class StarDragonAmmo extends BaseFallenAmmo {
 
     @Override
     protected void shockWaveHurt(Mob mob, Player player) {
-        mob.hurt(starHit(player),this.getHurtDamage() * 9f);
+        mob.hurt(starHit(player),this.getHurtDamage());
         Vec3 knock = mob.position().subtract(getVec3TargetPosition()).normalize().scale(3);
         Vec3 finalKnock = new Vec3(knock.x()/4, 0.8, knock.z()/4);
         mob.setDeltaMovement(finalKnock);
@@ -58,7 +58,7 @@ public class StarDragonAmmo extends BaseFallenAmmo {
     @Override
     protected void onArrived(ServerPlayer player) {
         super.onArrived(player);
-        this.directHurtLiving(starHit(player), this.getHurtDamage() * 90, 5);
+        this.directHurtLiving(starHit(player), this.getHurtDamage() * 5, 5);
         if (!this.level.isClientSide) {
             var particle = new StarFallParticleType(true, 1, 0xf8ffb2, 1, 1, 10, getVec3TargetPosition());
             player.getLevel().sendParticles(particle, getVec3TargetPosition().x(), getVec3TargetPosition().y() + 0.05, getVec3TargetPosition().z(), 1, 0, 0, 0, 0.25);

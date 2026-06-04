@@ -64,12 +64,7 @@ public class Nkssdtt extends NoLevelsModifier implements InventoryTickModifierHo
                 if (lv.isAlive()) {
                     ToolAttackUtil.attackEntity(itemStack,player,entity);
                     lv.hurt(DamageSource.playerAttack(player),lv.getMaxHealth() * 0.4f);
-                    SoundEvent events;
-                    boolean c = player.level.random.nextBoolean();
-                    if (c) {
-                        events = CtiSounds.superDie1.get();
-                    } else events = CtiSounds.superDie2.get();
-                    player.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), events, SoundSource.AMBIENT, 1, 1);
+                    player.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), CtiSounds.farewell_gift.get(), SoundSource.AMBIENT, 1, 1);
                     player.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.AMBIENT, 1, 1);
                     level.sendParticles(ParticleTypes.CRIT, entity.getX(), entity.getY(0.5), entity.getZ(), 10, 0.1, 0, 0.1, 0.2);
                     level.sendParticles(ParticleTypes.DAMAGE_INDICATOR, entity.getX(), entity.getY(0.5), entity.getZ(), 20, 0.1, 0, 0.1, 0.2);

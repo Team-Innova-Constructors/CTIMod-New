@@ -211,7 +211,7 @@ public class BasicFlyingSwordEntity extends Projectile{
         DamageSource source = this.createDamageSource();
 
 
-        boolean didHit = isTrueHurt&&targetLiving!=null? ((ILivingEntityMixin)targetLiving).cti$strictHurt(source,damage) : targetEntity.hurt(source,damage);
+        boolean didHit = isTrueHurt&&targetLiving!=null? ((ILivingEntityMixin)targetLiving).cti$strictHurt(source,damage,true) : targetEntity.hurt(source,damage);
 
         this.doAfterHitEffect(targetEntity,damage);
 

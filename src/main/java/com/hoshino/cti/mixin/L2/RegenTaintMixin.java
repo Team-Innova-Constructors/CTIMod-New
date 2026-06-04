@@ -25,9 +25,9 @@ public abstract class RegenTaintMixin extends MobTrait {
     /**
      * @author firefly
      * @reason 最新更改:
-     * <br><h5>I.大幅度降低了基础恢复(每秒1.5%x等级->0.05%x等级)
+     * <br><h5>I.大幅度降低了基础恢复(每秒1.5%x等级->0.5%x等级)
      * <br>II.现在首次进入半血会附带黎明效果,快速恢复一部分生命,只触发一次
-     * <br>III.触发黎明后怪物造成的伤害提升10%</h5>
+     * <br>III.触发黎明后怪物造成的伤害提升30%</h5>
      */
     @Overwrite
     public void tick(LivingEntity mob, int level) {

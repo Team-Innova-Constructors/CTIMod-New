@@ -52,7 +52,7 @@ public class EnvironmentalHandler {
     //为了避免环境伤害被减免，使用自定义的伤害方法
     public static boolean hurtEntity(LivingEntity living, DamageSource source, float amount){
         if (source instanceof IEnvironmentalSource environmental){
-            if (environmental.fromBiomes()) return ((ILivingEntityMixin) living).cti$strictHurt(source,amount);
+            if (environmental.fromBiomes()) return ((ILivingEntityMixin) living).cti$strictHurt(source,amount,true);
             else {
                 double protection = 0;
                 AttributeInstance instance = living.getAttribute(environmental.getResistAttribute());
@@ -60,7 +60,7 @@ public class EnvironmentalHandler {
                     protection = instance.getValue();
                 }
                 double multiplier =Math.max(0,environmental.getLevel()-protection) ;
-                return ((ILivingEntityMixin) living).cti$strictHurt(source, (float) (amount*multiplier));
+                return ((ILivingEntityMixin) living).cti$strictHurt(source, (float) (amount*multiplier),true);
             }
         }
         return false;

@@ -57,7 +57,7 @@ public class EntityOxygenSystemMixin {
                 source.bypassMagic().bypassInvul().bypassEnchantments();
                 entity.hurt(source,totalHurt);
             }
-            else ((ILivingEntityMixin)entity).cti$strictHurt(source,totalHurt);
+            else ((ILivingEntityMixin)entity).cti$strictHurt(source,totalHurt,true);
 
             ci.cancel();
         }

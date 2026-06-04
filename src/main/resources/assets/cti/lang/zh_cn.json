@@ -297,7 +297,7 @@
 
   "modifier.cti.stardragonhit": "天瀑",
   "modifier.cti.stardragonhit.flavor": "始与终",
-  "modifier.cti.stardragonhit.description": "武器的基础伤害每级提高提高1000,对于18%以及以下生命值的目标会直接吞噬其灵魂,并且转化为1星尘,远程攻击不会吞噬目标\n[主动技能]当星尘数量满10层,对着你的目标按下绑定按键/射出箭矢命中,会从天空中生成一颗巨型的流星向你的目标位置砸去\n被锁定的目标受到的任何伤害提高33倍\n内圈(10格内)会造成10倍于你当前武器基础伤害的双穿伤害,随后会引发一道涟漪,逐渐蔓延至周围半径100格的区域,触碰到的敌人会受到高额的双穿伤害并且被大幅度击退\n命中生命值低于21%/此次伤害大于目标最大生命10倍,会直接抹除掉目标,并且存储为星尘在你的主手武器中\n每存有100星尘提高1%斩杀线,至高提升到78%\n每次释放技能消耗50星尘,冷却时间20秒",
+  "modifier.cti.stardragonhit.description": "武器的基础伤害每级提高提高850,对于18%以及以下生命值的目标会直接吞噬其灵魂,并且转化为1星尘,远程攻击不会吞噬目标\n[主动技能]当星尘数量满10层,对着你的目标按下绑定按键/射出箭矢命中,会从天空中生成一颗巨型的流星向你的目标位置砸去\n•被锁定的目标终身受到的任何伤害提高5倍\n•内圈(10格内)会造成3.5倍于你当前武器基础伤害的双穿伤害,随后会引发一道涟漪,逐渐蔓延至周围半径100格的区域,触碰到的敌人会受到高额的双穿伤害并且被大幅度击退\n命中生命值低于21%/此次伤害大于目标最大生命10倍,会直接抹除掉目标,并且存储为星尘在你的主手武器中\n每存有100星尘提高1%斩杀线,至高提升到78%\n每次释放技能消耗10星尘,冷却时间10秒",
 
   "modifier.cti.starbless": "星界压制",
   "modifier.cti.starbless.flavor": "畏惧么",
@@ -859,11 +859,11 @@
 
   "modifier.cti.shadow_of_vigrid": "维格利得之魂",
   "modifier.cti.shadow_of_vigrid.flavor": "终幕战场上的残魂",
-  "modifier.cti.shadow_of_vigrid.description": "当你拥有此词条的工具时候,你身上任何一个物品都不再会被诸神黄昏词条封印",
+  "modifier.cti.shadow_of_vigrid.description": "当你拥有此词条的工具时候,你身上任何一个物品都不再会被诸神黄昏词条封印\n•依据全身此词条总等级,每级减少7%摄魂和破魔的最终穿刺伤害",
 
   "modifier.cti.the_relic": "遗者",
   "modifier.cti.the_relic.flavor": "被遗忘者",
-  "modifier.cti.the_relic.description": "拥有此词条的工具不再会被诸神黄昏词条封印",
+  "modifier.cti.the_relic.description": "拥有此词条的工具不再会被诸神黄昏词条封印\n•依据全身此词条总等级,每级减少3%摄魂和破魔的最终穿刺伤害",
 
   "modifier.cti.outer_space": "天外来客",
   "modifier.cti.outer_space.flavor": "人走在路上被陨石砸死的概率很小，但是不为零",
@@ -1391,16 +1391,22 @@
   "trait.l2hostility.second_phase": "二阶段",
   "trait.l2hostility.second_phase.desc": "当生物血量降至50%时每级使其无敌5秒。",
 
+
+
   "trait.l2hostility.hard_skin": "坚硬表皮",
   "trait.l2hostility.hard_skin.desc": "怪物会格挡掉其最大生命值5%与其护甲值的和的 词条等级倍的伤害，如果伤害穿透护甲则格挡值降低75%，如果穿透无敌则无视格挡",
 
-
   "trait.l2hostility.farewell_gift": "临别馈赠",
-  "trait.l2hostility.farewell_gift.desc": "怪物在死后会强制反噬一段高额伤害给击杀他的玩家,数值等同于怪物最大生命5% * 词条等级,此数值可以被莱特兰等级二次增幅,怪物死亡距离玩家越远伤害越低,15格外完全不受伤害",
-
+  "trait.l2hostility.farewell_gift.desc": "怪物在死后会强制反噬一段高额伤害给击杀他的玩家,数值等同于怪物最大生命5% * 词条等级,此数值可以被莱特兰等级二次增幅,可被摄魂破魔增幅为穿甲穿魔伤害,怪物等级每提升1级增加0.5%该伤害,怪物死亡距离玩家越远伤害越低,15格外完全不受伤害",
 
   "trait.l2hostility.mandate_of_heaven": "天命",
   "trait.l2hostility.mandate_of_heaven.desc": "该生物会参照目标全身全部的材料进行评级,7级以下材料不计入.全身每多1个7级材料,增加0.4%最终伤害,每多一个8级材料,增加0.8%最终伤害,每多一个9级材料,增加3.2%最终伤害,只会在灾变生物身上刷新",
+
+  "trait.l2hostility.meddwl_attack": "意念攻击",
+  "trait.l2hostility.meddwl_attack.desc": "该生物对有仇恨的目标可以隔空攻击\n玩家距离该生物越远受到的伤害越高,超过20格时受到的伤害会穿透护甲和魔抗.\n对于hide的目标无法锁定",
+
+  "trait.l2hostility.breuddwyd_drwg_braslun": "梦魇印记",
+  "trait.l2hostility.breuddwyd_drwg_braslun.desc": "攻击会对玩家施加等级层的梦魇印记,每层印记增加玩家受到的8%全伤害,当印记满42层时,玩家会直接死亡\n印记每6秒自然消散一层",
 
 
 

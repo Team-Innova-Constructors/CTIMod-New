@@ -3,16 +3,21 @@ package com.hoshino.cti.mixin.L2;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.c2h6s.etshtinker.init.EtshtinkerModifiers;
+import com.hoshino.cti.register.CtiHostilityTrait;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import com.xiaoyue.tinkers_ingenuity.register.TIModifiers;
 import dev.xkmc.l2hostility.compat.curios.EntitySlotAccess;
+import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.legendary.RagnarokTrait;
+import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.util.LazyOptional;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,6 +29,8 @@ import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.hoshino.cti.util.L2.RagnarokHelper.checkAndGiveData;
 
 @Mixin(value = RagnarokTrait.class, remap = false)
 public abstract class RagnarokTraitMixin {
@@ -41,7 +48,7 @@ public abstract class RagnarokTraitMixin {
                 cir.setReturnValue(false);
             }
         }
-        if (ModifierUtil.getModifierLevel(access.get(),new ModifierId("cti:the_relic")) > 0) {
+        if (ModifierUtil.getModifierLevel(access.get(), new ModifierId("cti:the_relic")) > 0) {
             cir.setReturnValue(false);
         }
         if (access.get().is(EnigmaticItems.CURSED_RING)) {
@@ -52,25 +59,35 @@ public abstract class RagnarokTraitMixin {
     @Inject(at = {@At("HEAD")}, method = {"postHurtImpl"}, cancellable = true)
     private void ignore(int level, LivingEntity attacker, LivingEntity target, CallbackInfo ci) {
         if (target instanceof Player player) {
-            //戒指专属
             if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 ci.cancel();
+                return;
             }
             if (GetModifierLevel.CurioHasModifierlevel(player, new ModifierId("solidarytinker:deepoceanchew"))) {
                 ci.cancel();
+                return;
             }
+            if (attacker instanceof Mob mob) {
+                LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
+                if (optional.resolve().isPresent()) {
+                    MobTraitCap cap = optional.resolve().get();
+                    var traitLevel = cap.getTraitLevel(LHTraits.RAGNAROK.get());
+                    checkAndGiveData(player, traitLevel);
+                }
+            }
+            //饰品专属
             if (SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)) {
                 ci.cancel();
+                return;
             }
             if (SuperpositionHandler.hasCurio(player, EnigmaticItems.ENIGMATIC_ITEM)) {
                 ci.cancel();
+                return;
             }
             //这个列表里面的是只要身上4盔甲/主副有这个材料就会让诸神黄昏对所有装备都不生效
             List<Modifier> allowModifier = new ArrayList<>();
             allowModifier.add(EtshtinkerModifiers.beconcerted_STATIC_MODIFIER.get());//奇迹物质
             allowModifier.add(EtshtinkerModifiers.unknown_STATIC_MODIFIER.get());//宏原子
-
-
             for (Modifier modifier : allowModifier) {
                 if (ModifierLevel.EquipHasModifierlevel(target, modifier.getId())) {
                     ci.cancel();

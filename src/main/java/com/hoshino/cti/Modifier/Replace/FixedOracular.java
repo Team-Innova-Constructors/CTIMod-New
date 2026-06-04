@@ -32,7 +32,7 @@ public class FixedOracular extends Modifier implements MeleeHitModifierHook, Pro
             return;
         }
         EntityTickerManager.getInstance(target).addTicker(
-                new EntityTickerInstance(CtiEntityTickers.ORACLE.get(),1,200),
+                new EntityTickerInstance(CtiEntityTickers.ORACLE.get(),1,modifier.getLevel() * 200),
                 Integer::max,
                 Integer::sum
         );
@@ -47,7 +47,7 @@ public class FixedOracular extends Modifier implements MeleeHitModifierHook, Pro
     public boolean onProjectileHitEntity(ModifierNBT modifiers, NamespacedNBT persistentData, ModifierEntry modifier, Projectile projectile, EntityHitResult hit, @Nullable LivingEntity attacker, @Nullable LivingEntity target) {
         if (target != null && attacker != null) {
             EntityTickerManager.getInstance(target).addTicker(
-                    new EntityTickerInstance(CtiEntityTickers.ORACLE.get(),1,200),
+                    new EntityTickerInstance(CtiEntityTickers.ORACLE.get(),1,modifier.getLevel() * 200),
                     Integer::max,
                     Integer::sum
             );

@@ -26,11 +26,9 @@ import com.hoshino.cti.util.Vec3Helper;
 import me.desht.pneumaticcraft.client.ColorHandlers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.NoopRenderer;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,7 +42,6 @@ import slimeknights.tconstruct.smeltery.client.render.CastingBlockEntityRenderer
 import slimeknights.tconstruct.smeltery.client.render.FaucetBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.HeatingStructureBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.TankBlockEntityRenderer;
-import vazkii.botania.client.render.block_entity.FloatingFlowerBlockEntityRenderer;
 import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
 
 

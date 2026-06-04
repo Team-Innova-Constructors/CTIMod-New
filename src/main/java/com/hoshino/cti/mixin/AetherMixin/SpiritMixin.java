@@ -60,6 +60,10 @@ public abstract class SpiritMixin extends PathfinderMob implements AetherBossMob
     @Inject(method = "tick",at = @At("HEAD"))
     private void tick(CallbackInfo ci){
         cti$freezeTick--;
+        SunSpirit sunSpirit = (SunSpirit) (Object) this;
+        float healthPercentage = Math.max(0.1f, sunSpirit.getHealth() / sunSpirit.getMaxHealth());
+        double targetVelocity = 1.5D - healthPercentage / 2;
+        this.velocity = Mth.clamp(targetVelocity, 0.1D, 2.0D);
     }
     @Inject(method = "hurt", at = @At("HEAD"))
     private void onHurtHead(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
@@ -87,16 +91,6 @@ public abstract class SpiritMixin extends PathfinderMob implements AetherBossMob
             return instance.addFreshEntity(entity);
         }
         return false;
-    }
-
-    @Inject(method = "hurt", at = @At("TAIL"))
-    private void onHurtTail(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (cir.getReturnValue()) {
-            SunSpirit sunSpirit = (SunSpirit) (Object) this;
-            float healthPercentage = Math.max(0.1f, sunSpirit.getHealth() / sunSpirit.getMaxHealth());
-            double targetVelocity = 1.5D - healthPercentage / 2;
-            this.velocity = Mth.clamp(targetVelocity, 0.1D, 2.0D);
-        }
     }
 
     @ModifyArg(method = "customServerAiStep",at = @At(value = "INVOKE", target = "Lcom/aetherteam/aether/entity/monster/dungeon/boss/SunSpirit;setFrozen(Z)V",remap = false))

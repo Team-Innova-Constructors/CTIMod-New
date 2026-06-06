@@ -30,6 +30,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -80,6 +81,7 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
     public ContainerData DATA;
     public int PROGRESS = 0;
     public int MAX_PROGRESS = 100000000;
+    public Item lastOutput = null;
     protected Component DISPLAY_NAME = Component.translatable("cti.machine.reactor_neutron_collector").withStyle(ChatFormatting.DARK_PURPLE);
     protected int MAX_ENERGY = 2000000000;
     protected int MAX_TRANSFER = 2000000000;
@@ -292,6 +294,10 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
             SodiumAmplifier += recipe.getEfficiency() * (float) (catalyst.getCount() / recipe.getCatalyst().getCount());
             chanceConsume = recipe.getConsumptionRate() * (float) (catalyst.getCount() / recipe.getCatalyst().getCount());
             output = recipe.getResultItem();
+            if (output.getItem()!=entity.lastOutput){
+                entity.lastOutput = output.getItem();
+                entity.PROGRESS = 0;
+            }
             notConsume = recipe.getConsumptionRate()<0.0001f;
         }
         if (good) {

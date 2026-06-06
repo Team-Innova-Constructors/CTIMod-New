@@ -67,12 +67,14 @@ public class ReactiveFLowerBE extends GeneratingFlowerBlockEntity {
             if (burnTime > 0&&perGeneration>0) {
                 var needed = getMaxMana()-getMana();
                 needed = Math.min(needed,perGeneration);
+                needed = Math.min(burnTime,needed);
                 addMana(needed);
                 burnTime-=needed;
+                burnTime = Math.max(0,burnTime);
             }
         }
 
-        if (burnTime == 0) {
+        if (burnTime <= 0) {
             if (tickCollecting<=40&&usedTypes.size()<4) {
                 if (getMana() < getMaxMana()) {
                     for (ItemEntity item : getLevel().getEntitiesOfClass(ItemEntity.class, new AABB(getEffectivePos().offset(-RANGE, -RANGE, -RANGE), getEffectivePos().offset(RANGE + 1, RANGE + 1, RANGE + 1)))) {

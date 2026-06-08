@@ -4,8 +4,10 @@ package com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense;
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.base.BasicOverslimeModifier;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiEntityTickers;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
@@ -17,6 +19,9 @@ import slimeknights.tconstruct.library.modifiers.modules.technical.ArmorLevelMod
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Mod.EventBusSubscriber
 public class EnderSuppress extends EtSTBaseModifier {
@@ -34,6 +39,7 @@ public class EnderSuppress extends EtSTBaseModifier {
     }
 
     public static final String KEY_CD = "tiac_ender_supress_cd";
+    public static final String KEY_TARGET_ID = "ender_suppress_id";
 
     @SubscribeEvent
     public static void stopEnderTeleport(EntityTeleportEvent event){
@@ -46,8 +52,9 @@ public class EnderSuppress extends EtSTBaseModifier {
                     var lvl = cap.get(KEY_ENDER_SUPPRESS, 0);
                     if (lvl > 0) {
                         if (entity.getPersistentData().getInt(KEY_CD) > 0) return;
-                        if (entity instanceof Player player && entity.getMainHandItem().is(TinkerTags.Items.MELEE_PRIMARY)) {
-                            ToolAttackUtil.attackEntity(entity.getMainHandItem(), player, mob);
+                        if (entity instanceof ServerPlayer player && entity.getMainHandItem().is(TinkerTags.Items.MELEE_PRIMARY)) {
+                            EntityTickerManager.getInstance(player).addTickerSimple(new EntityTickerInstance(CtiEntityTickers.ENDER_SUPPRESS.get(),1,1));
+                            player.getPersistentData().putUUID(KEY_TARGET_ID,mob.getUUID());
                             player.getPersistentData().putInt(KEY_CD, Math.max(1, (int) (player.getCurrentItemAttackStrengthDelay() * 0.5f)));
                         }
                     }

@@ -1,6 +1,7 @@
 package com.hoshino.cti.Blocks.BlockEntity.tinker;
 
 import com.google.common.util.concurrent.AtomicDouble;
+import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiBlockEntityType;
 import me.desht.pneumaticcraft.api.PNCCapabilities;
 import me.desht.pneumaticcraft.api.pressure.PressureTier;
@@ -9,7 +10,9 @@ import me.desht.pneumaticcraft.common.capabilities.MachineAirHandler;
 import me.desht.pneumaticcraft.common.util.DirectionUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -35,6 +38,7 @@ public class AlloyCentrifugeEntity extends BlockEntity {
         this.airHandler = LazyOptional.of(() -> this.machineAirHandler);
     }
     private final Map<IAirHandlerMachine, List<Direction>> airHandlerMap = new IdentityHashMap();
+    public static final TagKey<Fluid> BLACK_LIST_TAG = TagKey.create(Registry.FLUID_REGISTRY, Cti.getResource("centrifuge_blacklist"));
 
     protected static Map<Fluid,AlloyRecipe> recipeMap = new HashMap<>();
     protected static Map<AlloyRecipe,List<FluidStack>> outputMap = new HashMap<>();
@@ -141,9 +145,10 @@ public class AlloyCentrifugeEntity extends BlockEntity {
             BlockEntity master = servantTileEntity.getMasterPos() != null ? level.getBlockEntity(servantTileEntity.getMasterPos()) : null;
             if (master instanceof ISmelteryTankHandler smelteryTankHandler) {
                 List<FluidStack> OutputfluidStacks = new ArrayList<>();
-                SmelteryTank smelteryTank = smelteryTankHandler.getTank();
+                var smelteryTank = smelteryTankHandler.getTank();
                 for (int i = 0; i < smelteryTank.getTanks(); i++) {
                     FluidStack stack = smelteryTank.getFluidInTank(i);
+                    if (stack.getFluid().is(BLACK_LIST_TAG)) continue;
                     AlloyRecipe recipe = getRecipe(stack);
                     FluidStack InputFluid = FluidStack.EMPTY;
                     if (recipe != null&& outputMap.get(recipe)!=null&&!outputMap.get(recipe).isEmpty() && recipe.getOutput().getAmount() <= stack.getAmount()) {

@@ -1,7 +1,7 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Cti;
-import com.hoshino.cti.content.entityTicker.EnderStiction;
+import com.hoshino.cti.content.entityTicker.tickers.EnderStiction;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import com.hoshino.cti.content.entityTicker.tickers.*;
 import com.hoshino.cti.content.registry.CtiRegistry;
@@ -20,4 +20,5 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> SOUL = ENTITY_TICKERS.register("soul", Soul::new);
     public static final RegistryObject<EntityTicker> ENDER_STICTION = ENTITY_TICKERS.register("ender_stiction", EnderStiction::new);
     public static final RegistryObject<EntityTicker> STRICT_CURSE = ENTITY_TICKERS.register("strict_curse", StrictCurse::new);
+    public static final RegistryObject<EntityTicker> ENDER_SUPPRESS = ENTITY_TICKERS.register("ender_suppress", EnderSuppress::new);
 }

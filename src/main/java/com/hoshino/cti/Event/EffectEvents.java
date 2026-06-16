@@ -1,8 +1,12 @@
 package com.hoshino.cti.Event;
 
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiEntityTickers;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,6 +35,17 @@ public class EffectEvents {
             }
             if(lv.hasEffect(CtiEffects.nakshatra.get())){
                 event.setAmount(amount * 2f);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void LimingExtraDamage(LivingHurtEvent event){
+        if(event.getSource().getEntity() instanceof Player player){
+            if(EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.DAWN_EXTRA_DAMAGE.get())){
+                var ticker=EntityTickerManager.getInstance(player).getTicker(CtiEntityTickers.DAWN_EXTRA_DAMAGE.get());
+                if (ticker != null) {
+                    event.setAmount(event.getAmount() * 2 * ticker.level);
+                }
             }
         }
     }

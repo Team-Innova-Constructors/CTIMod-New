@@ -21,4 +21,6 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> ENDER_STICTION = ENTITY_TICKERS.register("ender_stiction", EnderStiction::new);
     public static final RegistryObject<EntityTicker> STRICT_CURSE = ENTITY_TICKERS.register("strict_curse", StrictCurse::new);
     public static final RegistryObject<EntityTicker> ENDER_SUPPRESS = ENTITY_TICKERS.register("ender_suppress", EnderSuppress::new);
+    public static final RegistryObject<EntityTicker> DAWN = ENTITY_TICKERS.register("dawn", Dawn::new);
+    public static final RegistryObject<EntityTicker> DAWN_EXTRA_DAMAGE = ENTITY_TICKERS.register("dawn_extra_damage", EmptyTicker::new);
 }

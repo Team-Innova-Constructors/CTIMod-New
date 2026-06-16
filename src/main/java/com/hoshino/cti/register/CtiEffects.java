@@ -5,9 +5,12 @@ import com.marth7th.solidarytinker.effects.StaticEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.UUID;
 
 import static com.hoshino.cti.Cti.MOD_ID;
 
@@ -26,7 +29,7 @@ public class CtiEffects {
     public static final RegistryObject<MobEffect> ha = EFFECT.register("ha",Ha::new);
     public static final RegistryObject<MobEffect> strong = EFFECT.register("strong",Strong::new);
     public static final RegistryObject<MobEffect> covert = EFFECT.register("covert",Covert::new);
-    public static final RegistryObject<MobEffect> nakshatra = EFFECT.register("nakshatra",Nakshatra::new);
+    public static final RegistryObject<MobEffect> nakshatra = EFFECT.register("nakshatra",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0xad0101).addAttributeModifier(Attributes.MAX_HEALTH, UUID.nameUUIDFromBytes("ank".getBytes()).toString(),-0.3F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<MobEffect> blood_angry = EFFECT.register("blood_angry", BloodAngry::new);
     public static final RegistryObject<MobEffect> INSATIABLE_BOOST = EFFECT.register("insatiable_boost",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0x9546C9).addAttributeModifier(
             CtiAttributes.MAX_INSATIABLE.get(),"f74c192d-4d5c-e9e6-a8ea-c7db8f8280b5",4, AttributeModifier.Operation.ADDITION

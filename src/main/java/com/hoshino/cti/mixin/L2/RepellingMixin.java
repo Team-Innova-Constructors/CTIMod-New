@@ -12,6 +12,7 @@ import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 
@@ -19,26 +20,22 @@ import java.util.List;
 
 @Mixin(value = PushPullTrait.class, remap = false)
 public abstract class RepellingMixin {
-    @Inject(method = "tick", remap = false, at = {@At("HEAD")}, cancellable = true)
-    private void tick(LivingEntity mob, int level, CallbackInfo ci) {
-        if (mob.level.isClientSide()) {
-            double x = mob.getX();
-            double y = mob.getY();
-            double z = mob.getZ();
-            List<Player> lv = mob.level.getEntitiesOfClass(Player.class, new AABB(x + 10, y + 10, z + 10, x - 10, y - 10, z - 10));
-            for (Player players : lv) {
-                if (players != null) {
-                    List<ItemStack> stacks = ToolUtils.Curios.getStacks(players);
-                    for (ItemStack curios : stacks) {
-                        if (ModifierUtil.getModifierLevel(curios, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) > 0) {
-                            ci.cancel();
-                        }
-                    }
-                    if(GetModifierLevel.EquipHasModifierlevel(players,CtiModifiers.STABLE_STEP.getId())){
-                        ci.cancel();
-                    }
+    @Redirect(
+            method = "tick(Lnet/minecraft/world/entity/LivingEntity;I)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;m_5997_(DDD)V")
+    )
+    private void redirectMove(LivingEntity e, double x, double y, double z) {
+        if (e instanceof Player player) {
+            List<ItemStack> stacks = ToolUtils.Curios.getStacks(player);
+            for (ItemStack curios : stacks) {
+                if (ModifierUtil.getModifierLevel(curios, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) > 0) {
+                    return;
                 }
             }
+            if (GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.STABLE_STEP.getId())) {
+                return;
+            }
         }
+        e.setDeltaMovement(x, y, z);
     }
 }

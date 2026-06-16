@@ -9,6 +9,7 @@ import com.hoshino.cti.Modifier.Developer.*;
 import com.hoshino.cti.Modifier.Meme.Fbfq;
 import com.hoshino.cti.Modifier.Meme.Feima;
 import com.hoshino.cti.Modifier.Mob.BuriedOcean;
+import com.hoshino.cti.Modifier.Race.*;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
 import com.hoshino.cti.Modifier.genre.floating.FloatingHandler;
@@ -35,7 +36,6 @@ import com.hoshino.cti.integration.botania.api.modifierBase.BurstMiningModifier;
 import com.hoshino.cti.integration.botania.api.modifierBase.LCManaBurstModifier;
 import com.hoshino.cti.integration.botania.modifiers.FartherSights;
 import slimeknights.tconstruct.library.modifiers.Modifier;
-import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
@@ -82,9 +82,7 @@ public class CtiModifiers {
     public static final StaticModifier<Arararar> ararar = MODIFIERS.register("ararar", Arararar::new);
     public static final StaticModifier<NerfedDash> nerfed_dash = MODIFIERS.register("nerfed_dash", NerfedDash::new);
     public static final StaticModifier<Emp> emp = MODIFIERS.register("emp", Emp::new);
-    public static final StaticModifier<Transmigration> transmigration = MODIFIERS.register("transmigration", Transmigration::new);
     public static final StaticModifier<Eventually> eventually = MODIFIERS.register("eventually", Eventually::new);
-    public static final StaticModifier<Trauma> trauma = MODIFIERS.register("trauma", Trauma::new);
     public static final StaticModifier<Arrogance> ARROGANCE_STATIC_MODIFIER = MODIFIERS.register("arrogance", Arrogance::new);
     public static final StaticModifier<NerfColossal> nerf_colossal = MODIFIERS.register("nerf_colossal", NerfColossal::new);
     public static final StaticModifier<SharpBlade> SHARP_BLADE_STATIC_MODIFIER = MODIFIERS.register("sharpblade", SharpBlade::new);
@@ -115,7 +113,7 @@ public class CtiModifiers {
     public static final StaticModifier<Encrypt> encryptStaticModifier = MODIFIERS.register("encrypt", Encrypt::new);
     public static final StaticModifier<FixSanguine> fixSanguineStaticModifier = MODIFIERS.register("fixsanguine", FixSanguine::new);
     public static final StaticModifier<CrippleSupperMass> crippleSupperMassStaticModifier = MODIFIERS.register("cripplesuppermass", CrippleSupperMass::new);
-    public static final StaticModifier<Ragnarok> ragnarok = MODIFIERS.register("ragnarok", Ragnarok::new);
+    public static final StaticModifier<CleanAndRemove> ragnarok = MODIFIERS.register("clean_and_remove", CleanAndRemove::new);
     public static final StaticModifier<StarFury> STAR_FURY = MODIFIERS.register("star_fury", StarFury::new);
     public static final StaticModifier<PlasmaShielding> plasma_shielding = MODIFIERS.register("plasma_shielding", PlasmaShielding::new);
     public static final StaticModifier<OuterSpace> outer_space = MODIFIERS.register("outer_space", OuterSpace::new);
@@ -262,7 +260,15 @@ public class CtiModifiers {
     public static final StaticModifier<ReplacedTerritoralSky> REPLACED_TERRITORAL_SKY = MODIFIERS.register("territoral_sky", ReplacedTerritoralSky::new);
     public static final StaticModifier<ReplacedInfernal> REPLACED_INFERNAL = MODIFIERS.register("infernal", ReplacedInfernal::new);
     public static final StaticModifier<Ethereal> ETHEREAL_STATIC_MODIFIER = MODIFIERS.register("ethereal", Ethereal::new);
+    public static final StaticModifier<Cutter> CUTTER_STATIC_MODIFIER = MODIFIERS.register("cutter", Cutter::new);
+    public static final StaticModifier<BreakStone> BREAK_STONE_STATIC_MODIFIER = MODIFIERS.register("breakstone", BreakStone::new);
 
     public static final StaticModifier<ActuallyMutation> ACTUALLY_MUTATION_STATIC_MODIFIER = MODIFIERS.register("actually_mutation", ActuallyMutation::new);
+    public static final StaticModifier<ShulkerProtect> SHULKER_PROTECT_STATIC_MODIFIER = MODIFIERS.register("shulker_protect", ShulkerProtect::new);
+    public static final StaticModifier<EndlessHatred> ENDLESS_HATRED_STATIC_MODIFIER = MODIFIERS.register("endless_hatred", EndlessHatred::new);
+    public static final StaticModifier<NaturePower> NATURE_POWER_STATIC_MODIFIER = MODIFIERS.register("nature_power", NaturePower::new);
+    public static final StaticModifier<ArrogantPerson> ARROGANT_PERSON_STATIC_MODIFIER = MODIFIERS.register("arrogant_person", ArrogantPerson::new);
+    public static final StaticModifier<DilapidatedMagic> DILAPIDATED_MAGIC_STATIC_MODIFIER = MODIFIERS.register("dilapidated_magic", DilapidatedMagic::new);
+    public static final StaticModifier<MessengerOfDawn> MESSENGER_OF_DAWN_STATIC_MODIFIER = MODIFIERS.register("messengerofdawn", MessengerOfDawn::new);
 
 }

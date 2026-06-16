@@ -9,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.WorldData;
@@ -64,6 +65,12 @@ public class CommonUtil {
 
     public static UUID UUIDFromSlot(EquipmentSlot slot, ModifierId modifierId){
         return UUID.nameUUIDFromBytes((slot.getName() +modifierId.toString()).getBytes(StandardCharsets.UTF_8));
+    }
+    public static UUID UUIDFromSlotAndAttribute(EquipmentSlot slot, ModifierId modifierId, Attribute attribute){
+        return UUID.nameUUIDFromBytes((slot.getName() +modifierId.toString()+attribute.getDescriptionId()).getBytes(StandardCharsets.UTF_8));
+    }
+    public static UUID UUIDFromAnyString(String s){
+        return UUID.nameUUIDFromBytes(s.getBytes(StandardCharsets.UTF_8));
     }
 
     public static boolean isAetherNight(Level level){

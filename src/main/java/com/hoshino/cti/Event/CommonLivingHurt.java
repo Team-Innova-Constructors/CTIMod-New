@@ -1,6 +1,5 @@
 package com.hoshino.cti.Event;
 
-import com.aetherteam.aether.entity.AetherEntityTypes;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
@@ -8,7 +7,6 @@ import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import earth.terrarium.ad_astra.common.util.OxygenUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +14,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
@@ -30,10 +27,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import twilightforest.entity.boss.Hydra;
-import twilightforest.util.TwilightItemTier;
 
 import java.util.List;
-import java.util.UUID;
 
 import static com.hoshino.cti.Cti.MOD_ID;
 
@@ -106,7 +101,7 @@ public class CommonLivingHurt {
     @SubscribeEvent
     public static void onLivingJumpFDF(LivingEvent.LivingJumpEvent event) {
         if (event.getEntity() instanceof Player player) {
-            if (GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.FUCKING_DELTA_FORCE_STATIC_MODIFIER.getId()) > 0||GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.COLDFETTERS_STATIC_MODIFIER.getId())>0) {
+            if (GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.COLDFETTERS_STATIC_MODIFIER.getId())>0) {
                 var amount =player.getPersistentData().getInt("tiao_yi_tiao");
                 if(amount<3){
                     player.getPersistentData().putInt("tiao_yi_tiao",amount+1);

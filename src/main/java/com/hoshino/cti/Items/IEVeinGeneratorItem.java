@@ -98,7 +98,7 @@ public class IEVeinGeneratorItem extends Item {
                 CompoundTag tag = stack.getOrCreateTag();
                 int savedDepletion = tag.getInt("Depletion");
                 var str=Language.getInstance().getOrDefault(mineral.getTranslationKey());
-                list.add(Component.literal("不要让矿脉重叠!!!").withStyle(style -> style.withColor(0xffaaff)));
+                list.add(Component.literal("可在同一格内适量堆叠").withStyle(style -> style.withColor(0xffaaff)));
                 list.add(Component.literal("长按右键在目标点生成"+str+ "矿脉").withStyle(style -> style.withColor(0xffaaff)));
                 list.add(Component.literal("该矿脉已消耗"+savedDepletion).withStyle(style -> style.withColor(0xffaaff)));
             }

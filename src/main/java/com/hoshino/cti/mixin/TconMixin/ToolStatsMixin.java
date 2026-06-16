@@ -1,4 +1,4 @@
-package com.hoshino.cti.mixin;
+package com.hoshino.cti.mixin.TconMixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -17,7 +17,7 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float AmodifyMaxValue(float constant) {
-        return 16384F;
+        return 2147483647F;
     }
 
     @ModifyConstant(
@@ -28,7 +28,7 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float BmodifyMaxValue(float constant) {
-        return 8192F;
+        return 2147483647F;
     }
 
     @ModifyConstant(
@@ -39,7 +39,7 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float CmodifyMaxValue(float constant) {
-        return 120F;
+        return 2147483647F;
     }
 
     @ModifyConstant(
@@ -50,6 +50,6 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float DmodifyMaxValue(float constant) {
-        return 80F;
+        return 2147483647F;
     }
 }

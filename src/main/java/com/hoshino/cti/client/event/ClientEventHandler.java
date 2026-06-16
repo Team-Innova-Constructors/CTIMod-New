@@ -73,7 +73,6 @@ public class ClientEventHandler {
             MenuScreens.register(CtiMenu.ATMOSPHERE_CON_MENU.get(), AtmosphereCondensatorScreen::new);
             MenuScreens.register(CtiMenu.NEUT_COL_MENU.get(), ReactorNeutronCollectorScreen::new);
             MenuScreens.register(CtiMenu.REFINERY_MENU.get(), RefineryScreen::new);
-
             event.enqueueWork(CtiEntity::registerEntityRenderers);
             ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
         }

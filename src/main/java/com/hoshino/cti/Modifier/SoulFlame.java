@@ -2,6 +2,7 @@ package com.hoshino.cti.Modifier;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffects;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
@@ -12,7 +13,7 @@ import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 
-public class SoulFlame extends NoLevelsModifier implements MeleeDamageModifierHook , MeleeHitModifierHook {
+public class SoulFlame extends Modifier implements MeleeDamageModifierHook , MeleeHitModifierHook {
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         hookBuilder.addHook(this, ModifierHooks.MELEE_DAMAGE,ModifierHooks.MELEE_HIT);
@@ -34,11 +35,11 @@ public class SoulFlame extends NoLevelsModifier implements MeleeDamageModifierHo
         var target=context.getLivingTarget();
         var player=context.getPlayerAttacker();
         if(target==null||player==null)return;
-
+        if(!context.isFullyCharged())return;
         if(target.fireImmune()||target.hasEffect(MobEffects.FIRE_RESISTANCE)){
             float damageStat=tool.getStats().get(ToolStats.ATTACK_DAMAGE);
             target.invulnerableTime=0;
-            target.hurt(DamageSource.indirectMagic(player,null),damageStat * 0.5f);
+            target.hurt(DamageSource.indirectMagic(player,player),damageStat * 0.7f * modifier.getLevel());
         }
     }
 }

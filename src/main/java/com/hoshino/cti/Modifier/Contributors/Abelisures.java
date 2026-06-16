@@ -66,16 +66,6 @@ public class Abelisures extends ArmorModifier {
         }
     }
 
-    @Override
-    public void MobEffectEvent(MobEffectEvent.Applicable event) {
-        if (event.getEntity().getLastHurtByMob() != null) {
-            if (event.getEntity().getLastHurtByMob() instanceof Player player) {
-                if (player.hasEffect(CtiEffects.ev.get())) {
-                    event.setResult(Event.Result.ALLOW);
-                }
-            }
-        }
-    }
 
     @Override
     public void onFinishUsing(IToolStackView tool, ModifierEntry modifier, LivingEntity entity) {

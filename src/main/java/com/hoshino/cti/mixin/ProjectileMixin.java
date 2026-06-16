@@ -13,7 +13,7 @@ public class ProjectileMixin {
     @Inject(method = "shoot",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/Vec3;horizontalDistance()D"))
     private void modifyArrowDamage(CallbackInfo ci){
         if ((Entity)(Object) this instanceof AbstractArrow arrow){
-            arrow.setBaseDamage(arrow.getBaseDamage()*arrow.getDeltaMovement().length());
+            arrow.setBaseDamage(arrow.getBaseDamage());
         }
     }
 }

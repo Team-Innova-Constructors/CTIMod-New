@@ -94,6 +94,7 @@ public class COEVeinGeneratorItem extends Item {
             } else {
                 localizedName=Component.translatable(mineralId.toLanguageKey());
             }
+            components.add(Component.literal("不要在同一个区块放置多个!!!").withStyle(style -> style.withColor(0xffaaff)));
             components.add(Component.literal("矿脉种类:").append(localizedName));
             components.add(Component.literal("矿脉消耗量:"+getExtractedAmount(nbt)));
         }

@@ -1,5 +1,7 @@
 package com.hoshino.cti.Items;
 
+import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.item.curio.core.CurseCurioItem;
 import dev.xkmc.l2hostility.content.item.curio.core.ISimpleCapItem;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
@@ -13,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
@@ -33,7 +36,7 @@ public class RingOfNibelungen extends CurseCurioItem {
     @Override
     public void inventoryTick(ItemStack stack, Level levelIn, Entity entityIn, int itemSlot, boolean isSelected) {
         super.inventoryTick(stack, levelIn, entityIn, itemSlot, isSelected);
-        if (entityIn instanceof LivingEntity living) {
+        if (entityIn instanceof LivingEntity living&&living.tickCount%20==0) {
             int a = DifficultyLevel.ofAny(living);
             stack.getOrCreateTag().putInt(NAME, a);
         }

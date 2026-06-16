@@ -189,7 +189,7 @@ public class L2LivingEvents {
     }
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onIncreaseLiming(LivingHurtEvent event) {
-        if (event.getSource().getEntity() instanceof Mob mob && event.getEntity() instanceof Player player) {
+        if (event.getSource().getEntity() instanceof Mob mob) {
            if(mob.getPersistentData().contains("cti_liming")){
                event.setAmount(event.getAmount() * 1.3f);
            }

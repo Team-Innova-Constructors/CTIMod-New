@@ -27,11 +27,11 @@ public class AdaptingMixin extends MobTrait {
      */
     @Overwrite(remap = false)
     public void onHurtByOthers(int level, LivingEntity entity, LivingHurtEvent event) {
-        if (event.getSource().isBypassMagic() || event.getSource().isBypassInvul()) return;
+        if (event.getSource().isBypassInvul()) return;
         MobTraitCap cap = MobTraitCap.HOLDER.get(entity);
         AdaptingTrait.Data data = cap.getOrCreateData(this.getRegistryName(), AdaptingTrait.Data::new);
         String id = event.getSource().getMsgId();
-        boolean isBypassArmor=event.getSource().isBypassArmor();
+        boolean isBypassArmor=event.getSource().isBypassMagic();
         int damageTypesAmount = data.memory.size();
         if (data.memory.contains(id)) {
             data.memory.remove(id);

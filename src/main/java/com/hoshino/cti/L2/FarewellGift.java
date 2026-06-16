@@ -29,6 +29,7 @@ public class FarewellGift extends LegendaryTrait {
         if(!(attacker instanceof Player player))return;
         var target = event.getEntity();
         if(event.isCanceled())return;
+        if(player.isCreative()||player.isSpectator())return;
         if (target instanceof Mob mob) {
             LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
             if (optional.resolve().isPresent()) {

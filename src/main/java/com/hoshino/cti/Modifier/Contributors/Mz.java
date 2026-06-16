@@ -64,7 +64,7 @@ public class Mz extends Modifier implements BlockBreakModifierHook , MeleeDamage
             count++;
             n/=10;
         }
-        return count * level;
+        return Math.min(count,level);
     }
 
     @Override
@@ -114,9 +114,6 @@ public class Mz extends Modifier implements BlockBreakModifierHook , MeleeDamage
         if (applyMultiplier) {
             int mizi = miZiPoint(iToolStackView);
             if(mizi<1)return;
-            if(mizi>3){
-                mizi=3;
-            }
             for (ItemStack stack : list) {
                 if (stack.is(targetBlock.getBlock().asItem())) {
                     return;

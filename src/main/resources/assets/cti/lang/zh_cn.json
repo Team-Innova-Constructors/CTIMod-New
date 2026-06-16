@@ -139,12 +139,39 @@
   "modifier.cti.netherback.flavor": "故地重游",
   "modifier.cti.netherback.description":"位于下界时,将会积累怨气,怨气达到一定值(88888tick)会积蓄一次必杀的攻击,此攻击将会提升88888%基础攻击伤害,只能存储一次,存储进度可在tooltip查看",
 
-
   "modifier.cti.thousand_star_bless": "万众一心",
   "modifier.cti.thousand_star_bless.flavor": "周年纪念强化",
   "modifier.cti.thousand_star_bless.description":"根据词条总数量提升伤害",
 
-  "item.cti.awakesaintchef_ingot": "§6觉醒龙皇锭(未完成）",
+  "modifier.cti.shulker_protect": "潜龙在影",
+  "modifier.cti.shulker_protect.flavor": "看不见我看不见我...哦对了潜行是个谎言,你猜需不需潜行才能触发",
+  "modifier.cti.shulker_protect.description":"•潜行时候额外增加25%护甲,10%生命\n•损耗耐久降低90%,增加2000点基础耐久\n•额外获得15%对非穿魔伤害的减免\n•爆炸伤害则减免40%,不论其是否穿魔",
+
+  "modifier.cti.cutter": "切割者",
+  "modifier.cti.cutter.flavor": "碎甲碎甲",
+  "modifier.cti.cutter.description":"完整攻击时候每次攻击减少目标6% * 词条等级的最大护甲值,没有叠满5层的限制,没有时间限制",
+
+  "modifier.cti.nature_power": "自然之力",
+  "modifier.cti.nature_power.flavor": "依旧爱魔tv",
+  "modifier.cti.nature_power.description":"受到魔法伤害会叠加坚定效果\n坚定效果至多获得8层,8层时获得60%魔法免伤和 速度 2 效果,每5秒消散一层",
+
+  "modifier.cti.endless_hatred": "无终恨意",
+  "modifier.cti.endless_hatred.flavor": "要是其他材料能叠钢就好了",
+  "modifier.cti.endless_hatred.description":"每4秒会对附近8格内[所有]非玩家生物造成你自己最大生命6% x 词条等级的灼烧伤害.\n此伤害的50%会转化为回血,周围目标越多回复值越高",
+
+  "modifier.cti.arrogant_person": "狂妄之徒",
+  "modifier.cti.arrogant_person.flavor": "脱战回血",
+  "modifier.cti.arrogant_person.description":"提升12 x 词条等级点最大生命\n当你最大生命值达到600,并且6秒内没有受到任何伤害,则会在接下来的时间内每5秒恢复25%最大生命",
+
+  "modifier.cti.dilapidated_magic": "败魔",
+  "modifier.cti.dilapidated_magic.flavor": "魔法伤害克星",
+  "modifier.cti.dilapidated_magic.description":"获得40%魔法伤害减免\n15秒内没有受到攻击,会获得一层160%最大生命值的护盾,该护盾仅吸收魔法伤害/爆炸伤害",
+
+  "modifier.cti.messengerofdawn": "黎明使者",
+  "modifier.cti.messengerofdawn.flavor": "黎明就在眼前",
+  "modifier.cti.messengerofdawn.description":"跌入半血时候,获得黎明使者效果,4秒内快速恢复80%最大血量并且大幅提升造成的伤害,提升数值为200%,提升伤害效果在10秒后消失\n该技能冷却时长为180秒",
+
+  "item.cti.awakesaintchef_ingot": "§6觉醒龙皇锭",
   "item.cti.molten_awakesaintchef_ingot_bucket": "熔融觉醒龙皇桶",
   "fluid.cti.molten_awakesaintchef": "熔融觉醒龙皇",
   "cti.tooltip.item.awakesaintchef_ingot.desc1": "进化之龙的最终形态,让你亲眼见识一下吧",
@@ -154,11 +181,11 @@
   "material.cti.awakesaintchef": "觉醒龙皇",
   "material.cti.awakesaintchef.flavor": "圣厨锭界限突破了",
   "material.cti.awakesaintchef.encyclopedia": "天宇冰痕贡献者材料\n关注天宇冰痕谢谢喵",
-
+ 
 
   "modifier.cti.chewevolution": "掠食者进化",
   "modifier.cti.chewevolution.flavor": "谁家小圣厨",
-  "modifier.cti.chewevolution.description":"根据你所吃过的食物种类解锁独特的能力\n　　50层：每次攻击造成额外的（食物种类*1.5*词条等级）的魔法伤害\n　　125层：击中目标会使目标产生额外的爆炸，对其与周围敌人造成额外的（食物种类*0.15*词条等级）的伤害\n　　250层：使攻击目标陷入“远古龙焰”状态3秒，每秒对敌方造成敌方总血量3%的三穿伤害\n　　300层：工具正常使用不再损失耐久\n　　500层：攻击目标时，若敌方血量削至百分之（食物种类*0.03*词条等级）下时，直接斩杀。该斩杀血量百分比最高为25%",
+  "modifier.cti.chewevolution.description":"根据你所吃过的食物种类解锁独特的能力\n50层：每次攻击造成额外的（食物种类*1.5*词条等级）的魔法伤害\n　　125层：击中目标会使目标产生额外的爆炸，对其与周围敌人造成额外的（食物种类*0.15*词条等级）的伤害\n　　250层：使攻击目标陷入“远古龙焰”状态3秒，每秒对敌方造成敌方总血量3%的三穿伤害\n　　300层：工具正常使用不再损失耐久\n　　500层：攻击目标时，若敌方血量削至百分之（食物种类*0.03*词条等级）下时，直接斩杀。该斩杀血量百分比最高为25%",
 
 
   "item.cti.uriel_ingot": "乌列尔",
@@ -176,6 +203,9 @@
   "material.cti.buriedocean.flavor": "跟随柯尼利亚船长一同沉入海底的一把随身武器的材料",
   "material.cti.buriedocean.encyclopedia": "绽放着淡蓝色的光芒,明亮但又略显黯淡",
 
+  "modifier.cti.buriedocean": "海葬",
+  "modifier.cti.buriedocean.flavor": "无尽的怨恨",
+  "modifier.cti.buriedocean.description":"此工具在怪物手中可以叠加魔法伤害,至多叠加50层,,每层提高怪物3%最大生命的魔法伤害,玩家使用无效",
 
   "modifier.cti.timetojudge": "审判时刻",
   "modifier.cti.timetojudge.flavor": "自此刻起，下达判决",
@@ -438,6 +468,7 @@
   "death.attack.dementor": "%1$s 被怪物吸干了灵魂。",
   "death.attack.dispell": "%1$s 被怪物用法力浸润了。",
   "death.attack.farewell_gift": "%1$s 被怪物临死的怨念终结了。",
+  "death.attack.keniliyahurt": "%1$s 被科尼利亚手中的直刀的忿恨吞噬了。",
 
   "item.cti.molten_aluminium_glass_bucket": "熔融铝玻璃桶",
   "fluid.cti.molten_aluminium_glass": "熔融铝玻璃",
@@ -718,16 +749,8 @@
   "material.tinkerscalibration.fazelle.encyclopedia": "增加工具2×玩家速度倍的攻击伤害、采掘速度和箭矢初速度。",
 
   "modifier.cti.eventually": "终焉",
-  "modifier.cti.eventually.flavor": "聚...散",
-  "modifier.cti.eventually.description":"获得持久的狩猎状态，主手持有时，处于狩猎状态，你10格以内的所有友善生物和玩家以外的生物会直接化为齑粉",
-
-  "modifier.cti.transmigration": "轮回",
-  "modifier.cti.transmigration.flavor": "1,2,3,4,5,6,7,8,9,0...1,2...",
-  "modifier.cti.transmigration.description":"你身上的狩猎效果无法被牛奶移除",
-
-  "modifier.cti.trauma": "创伤",
-  "modifier.cti.trauma.flavor": "痛苦仅是一瞬",
-  "modifier.cti.trauma.description":"处于狩猎状态你受到的“伤害”会被全部抵消",
+  "modifier.cti.eventually.flavor": "故事的最后，终究是迎来了终幕",
+  "modifier.cti.eventually.description":"当这件装备被穿着/手持时,10格以内的所有友善生物和玩家以外的生物会直接化为齑粉\n攻击会直接彻底移除目标\n免疫受到的伤害",
 
   "modifier.cti.nerf_colossal": "泰坦杀手",
   "modifier.cti.nerf_colossal.flavor": "泰坦杀手",
@@ -845,9 +868,15 @@
   "modifier.cti.anti_stun_goggles.flavor": "指防止屏幕前的你晕眩",
   "modifier.cti.anti_stun_goggles.description": "取消受伤时的屏幕抖动，免疫反胃和失明效果，移除移速造成的视角场效果。",
 
-  "modifier.cti.ragnarok": "诸神黄昏·仿",
-  "modifier.cti.ragnarok.flavor": "史蒂夫对恶意生物的研究成果",
-  "modifier.cti.ragnarok.description": "攻击时有概率移除目标的一个词条并将它掉落出来。",
+
+  "modifier.cti.clean_and_remove": "净除",
+  "modifier.cti.clean_and_remove.flavor": "你,已被剥夺力量",
+  "modifier.cti.clean_and_remove.description": "[当和奇迹锭一起使用时]完整攻击时有10% * 词条等级概率随机移除目标的一个词条并将它掉落出来。掉落数量取决于原词条等级,至多移除2个词条",
+
+  "modifier.cti.xuefeng_play": "心脏不好",
+  "modifier.cti.xuefeng_play.flavor": "你跑不过我你信吗",
+  "modifier.cti.xuefeng_play.description": "减少30%最大生命,增加20%移动速度\n当你持续保持移动状态/3天未睡过觉,可能会直接死亡",
+
 
   "modifier.cti.star_fury": "群星之怒",
   "modifier.cti.star_fury.flavor": "至少你不用去找空岛了",
@@ -1035,7 +1064,7 @@
 
   "modifier.cti.soulflame": "灼魂烈焰",
   "modifier.cti.soulflame.flavor": "透骨魂火",
-  "modifier.cti.soulflame.description":"根据目标着火时长(至多生效118秒)，每多一秒则额外增加4点基础伤害,至多玩家最大生命点伤害\n如果目标本身免疫火焰伤害则每次攻击附带面板攻击的50%点魔法伤害",
+  "modifier.cti.soulflame.description":"根据目标着火时长(至多生效118秒)，每多一秒则额外增加4点基础伤害,至多玩家最大生命点伤害\n如果目标本身免疫火焰伤害则每次完整攻击附带面板攻击的70%的魔法伤害",
 
   "modifier.cti.drflamez": "火博士",
   "modifier.cti.drflamez.flavor": "我仍是石移步",
@@ -1056,6 +1085,10 @@
   "modifier.cti.territoral_sky": "领空",
   "modifier.cti.territoral_sky.flavor": "天空使者",
   "modifier.cti.territoral_sky.description":"对滞空单位每级增加40%伤害，滞空时增加挖掘速度抵消挖掘惩罚。",
+
+  "modifier.cti.infernal": "炼狱",
+  "modifier.cti.infernal.flavor": "炼狱",
+  "modifier.cti.infernal.description":"对50%血量以上的目标每级增加目标3%最大生命值的伤害，但是对50%血量以下的目标每级减少目标1%最大生命值的伤害。",
 
   "modifier.cti.infernal": "炼狱",
   "modifier.cti.infernal.flavor": "炼狱",
@@ -1327,6 +1360,10 @@
   "modifier.cti.distanced_overfill.flavor": "自动化！",
   "modifier.cti.distanced_overfill.description":"Shift-右键容器以绑定容器，黏液罐会自动消耗绑定容器内的物品来恢复黏液覆层。",
 
+  "modifier.cti.breakstone": "石破天惊",
+  "modifier.cti.breakstone.flavor": "别怕，单纯能打石头了而已，不会额外挖方块",
+  "modifier.cti.breakstone.description":"额外增加25%面板挖掘速度,你的工具可以直接伤害到滑行魔石",
+
   "modifier.cti.break_through": "突破",
   "modifier.cti.break_through.flavor": "突破极限！",
   "modifier.cti.break_through.description":"魂戈-15%攻击间隔，+10%攻击伤害和攻击速度，但是攻击时扣除相当于7.5%最大生命的血量。",
@@ -1377,13 +1414,13 @@
   "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
 
   "trait.l2hostility.purify": "净化",
-  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除),当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命，(可被扭曲之魂和星野戒指破除)",
+  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命，(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",
 
   "trait.l2hostility.oracle": "神谕",
   "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
 
   "trait.l2hostility.extreme_damage_reduce": "极端伤害防护",
-  "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少60%，受到的穿甲伤害减少90%。",
+  "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少80%，受到的穿甲伤害减少95%。",
 
   "trait.l2hostility.temporary_armor": "临时护盾",
   "trait.l2hostility.temporary_armor.desc": "使生物获得99%减伤，但是每次受到伤害时该减伤减少1%。穿甲伤害会造成2倍效果（2%）。",

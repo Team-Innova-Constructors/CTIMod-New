@@ -20,16 +20,22 @@ public abstract class HostilityBulletMixin extends ShulkerBullet {
     public HostilityBulletMixin(EntityType<? extends ShulkerBullet> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
-    @Unique
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if(pSource.isExplosion())return false;
-        if(pSource.getDirectEntity() instanceof Projectile){
-            ItemEntity shard=new ItemEntity(this.level,this.getX(),this.getY(),this.getZ(),new ItemStack(LCItems.EXPLOSION_SHARD.get()));
-            this.level.explode(null,this.getX(),this.getY(),this.getZ(),1, Explosion.BlockInteraction.NONE);
-            this.level.addFreshEntity(shard);
+        if (pSource.isExplosion()) {
+            return false;
         }
-        return super.hurt(pSource,pAmount);
+        if (pSource.getDirectEntity() instanceof Projectile) {
+            if (!this.level.isClientSide()) {
+                ItemEntity shard = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), new ItemStack(LCItems.EXPLOSION_SHARD.get()));
+                this.level.addFreshEntity(shard);
+                this.level.explode(null, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.BlockInteraction.NONE);
+            }
+            this.discard();
+            return true;
+        }
+
+        return super.hurt(pSource, pAmount);
     }
     @Unique
     @Override

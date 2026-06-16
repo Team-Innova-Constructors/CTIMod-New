@@ -47,12 +47,12 @@ public class Cti {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         CtiEntity.register(eventBus);
         CtiAttributes.ATTRIBUTES.register(eventBus);
+        CtiEffects.EFFECT.register(eventBus);
         CtiItem.ITEMS.register(eventBus);
         CtiModifiers.MODIFIERS.register(eventBus);
         CtiFluid.FLUIDS.register(eventBus);
         CtiBlock.BLOCK.register(eventBus);
         CtiBlock.BLOCK_EXT.register(eventBus);
-        CtiEffects.EFFECT.register(eventBus);
         CtiBlockEntityType.BLOCK_ENTITIES.register(eventBus);
         CtiInfusetype.INFUSE.register(eventBus);
         CtiItem.ASTRAITEM.init();

@@ -4,8 +4,10 @@ import com.hoshino.cti.content.environmentSystem.EnvironmentalHandler;
 import com.hoshino.cti.content.environmentSystem.IEnvironmentalSource;
 import com.hoshino.cti.mixin.TIMixin.ServerPlayerAccessor;
 import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.ILivingEntityMixin;
 import com.hoshino.cti.util.StrictDamageProcess;
+import com.hoshino.cti.util.method.GetModifierLevel;
 import com.mojang.logging.LogUtils;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.ChatFormatting;
@@ -41,6 +43,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import slimeknights.tconstruct.library.tools.stat.ToolStats;
 
 import javax.annotation.Nullable;
 
@@ -114,10 +117,14 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
 
     @Inject(at = @At(value = "HEAD"), method = "hurt", cancellable = true)
     public void Hurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (hasEffect(CtiEffects.ev.get())) {
-            cir.setReturnValue(false);
-        }else if (source instanceof IEnvironmentalSource){
-            cir.setReturnValue(EnvironmentalHandler.hurtEntity((LivingEntity) (Object) this,source,amount));
+        var living=(LivingEntity) (Object) this;
+        if(living instanceof Player player){
+            if(GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.eventually.getId())){
+                cir.setReturnValue(false);
+            }
+        }
+        else if (source instanceof IEnvironmentalSource) {
+            cir.setReturnValue(EnvironmentalHandler.hurtEntity(living, source, amount));
         }
     }
 
@@ -183,7 +190,6 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
                 if (entity1 instanceof LivingEntity && !pSource.isNoAggro()) {
                     living.setLastHurtByMob((LivingEntity)entity1);
                 }
-
                 if (entity1 instanceof Player) {
                     accessor.setLastHurtByPlayerTime(100);
                     living.setLastHurtByPlayer((Player)entity1);

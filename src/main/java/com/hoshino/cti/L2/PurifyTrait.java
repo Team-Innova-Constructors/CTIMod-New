@@ -6,7 +6,9 @@ import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
+import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import dev.xkmc.l2hostility.init.data.LHConfig;
+import dev.xkmc.l2hostility.init.registrate.LHEffects;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -27,11 +29,9 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.function.IntSupplier;
 
-public class PurifyTrait extends MobTrait {
-    public PurifyTrait(IntSupplier color) {
+public class PurifyTrait extends LegendaryTrait {
+    public PurifyTrait(ChatFormatting color) {
         super((color));
         MinecraftForge.EVENT_BUS.addListener(this::MobEffectEvent);
     }
@@ -75,6 +75,17 @@ public class PurifyTrait extends MobTrait {
             if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 return;
             }
+            if(GetModifierLevel.getTotalArmorModifierlevel(player,CtiModifiers.SHADOW_OF_VIGRID.getId())<3){
+                if(player.getMaxHealth() * 20<mob.getMaxHealth()){
+                    if(!player.isCreative()&&!player.isSpectator()){
+                        if (player.getAbilities().mayfly || player.getAbilities().flying) {
+                            player.getAbilities().flying = false;
+                            player.getAbilities().mayfly = false;
+                            player.onUpdateAbilities();
+                        }
+                    }
+                }
+            }
             LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
             if (handler.resolve().isPresent()) {
                 for (ICurioStacksHandler curios : handler.resolve().get().getCurios().values()) {
@@ -94,7 +105,10 @@ public class PurifyTrait extends MobTrait {
         float healAmount = 0;
         List<MobEffectInstance> copyList = new ArrayList<>(mobEffectInstanceList);
         for (MobEffectInstance instance : copyList) {
+            var effect=instance.getEffect();
             if (instance.getEffect().isBeneficial()) continue;
+            if(effect==LHEffects.GRAVITY.get())continue;
+            if(effect==LHEffects.MOONWALK.get())continue;
             if (instance.getDuration() > level * 7 * 20f) continue;
             mob.removeEffect(instance.getEffect());
             healAmount += instance.getDuration() / 20f;

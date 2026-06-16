@@ -87,7 +87,7 @@
     "plasma_shielding": "#6D29FF",
     "outer_space":"#D65C00",
     "auto_shooting": "#4B00FF",
-    "ragnarok":"#9C36FF",
+    "clean_and_remove":"#9bffff",
     "atheric": "#00A2E8",
     "ambrosium_powered":"#E7E864",
     "stellar_arrow": "#6D29FF",
@@ -141,6 +141,7 @@
     "fixed_celestial": "#A6FFFF",
     "territoral_sky": "#A6FFFF",
     "infernal": "#A4FF9C",
+    "shulker_protect": "#8D5992",
 
 
     "_uriel_": "乌列尔",
@@ -151,8 +152,6 @@
 
     "_hoshino_": "恐怖星野",
     "eventually": "#ff007f",
-    "transmigration": "#ff007f",
-    "trauma": "#ff007f",
 
     "_roxy_": "zehn",
     "roxylightning": "#629df5",
@@ -222,7 +221,15 @@
     "_slot_": "升级槽等",
     "improve": "#f9b5ff",
     "hardcore": "#f9b5ff",
-    "mutation": "#ff3d3d"
+    "mutation": "#ff3d3d",
+
+    "cutter": "#4b4b4b",
+    "endless_hatred": "#a60000",
+    "nature_power": "#6edeff",
+    "arrogant_person": "#6edeff",
+    "dilapidated_magic": "#cf53ff",
+    "messengerofdawn": "#acedff",
+    "breakstone": "#acedff"
 
   },
   "harvest_tier.cti": {

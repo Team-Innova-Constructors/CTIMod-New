@@ -3,12 +3,12 @@ package com.hoshino.cti.mixin.L2;
 import com.hoshino.cti.util.ILivingEntityMixin;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
-import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
 import dev.xkmc.l2hostility.content.traits.legendary.DementorTrait;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
-import dev.xkmc.l2library.init.events.attack.AttackCache;
+import mekanism.common.registries.MekanismItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.damagesource.EntityDamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -30,48 +30,58 @@ public class DementorMixin extends LegendaryTrait {
     @Overwrite
     public void onAttackedByOthers(int level, LivingEntity entity, LivingAttackEvent event) {
     }
+
     /**
      * @author firefly
      * @reason 不让反射伤害被修改
      */
     @Overwrite
     public void onCreateSource(int level, LivingEntity attacker, LivingAttackEvent event) {
-        if(event.getSource().getMsgId().equals("mobattackreflect"))return;
-        if(event.getSource().getMsgId().equals("dispell"))return;
-        if(event.getSource().getMsgId().equals("dementor"))return;
+        if (event.getSource().getMsgId().equals("mobattackreflect")) return;
+        if (event.getSource().getMsgId().equals("dispell")) return;
+        if (event.getSource().getMsgId().equals("dementor")) return;
         event.getSource().bypassArmor();
     }
 
 
     @Override
     public void postHurtImpl(int level, LivingEntity attacker, LivingEntity target) {
-        if(cti_new$shouldHurt(target)){
-            var source=new EntityDamageSource("dementor",attacker);
-            var mobLevel=DifficultyLevel.ofAny(attacker);
-            float scale=cti_new$getScale(target);
-            float totalHurt=mobLevel * 0.02f * level *scale;
-            if(!(totalHurt>0))return;
-            if(target.isDeadOrDying())return;
-            ((ILivingEntityMixin)target).cti$strictHurt(source,totalHurt,false);
+        if (cti_new$shouldHurt(target)) {
+            var source = new EntityDamageSource("dementor", attacker);
+            var mobLevel = DifficultyLevel.ofAny(attacker);
+            float scale = cti_new$getScale(target);
+            float totalHurt = mobLevel * 0.02f * level * scale;
+            if (!(totalHurt > 0)) return;
+            if (target.isDeadOrDying()) return;
+            ((ILivingEntityMixin) target).cti$strictHurt(source, totalHurt, false);
         }
     }
+
     @Unique
-    private boolean cti_new$shouldHurt(LivingEntity living){
-        if(!(living instanceof Player player))return true;
-        if(GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("solidarytinker:bha")))return false;
-        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("tinkers_ingenuity:unmatched")))return false;
-        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("cti:trauma")))return false;
+    private boolean cti_new$shouldHurt(LivingEntity living) {
+        if (!(living instanceof Player player)) return true;
+        if(player.isCreative()||player.isSpectator())return false;
+        if (GetModifierLevel.CurioHasModifierlevel(player, new ModifierId("solidarytinker:bha"))) return false;
+        if (GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("tinkers_ingenuity:unmatched"))) return false;
+        if (GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("cti:eventually"))) return false;
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MekanismItems.MEKASUIT_HELMET.get())
+                || player.getItemBySlot(EquipmentSlot.CHEST).is(MekanismItems.MEKASUIT_BODYARMOR.get())
+                || player.getItemBySlot(EquipmentSlot.LEGS).is(MekanismItems.MEKASUIT_PANTS.get())
+                || player.getItemBySlot(EquipmentSlot.FEET).is(MekanismItems.MEKASUIT_BOOTS.get())) {
+            return false;
+        }
         return !GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("cti:all"));
     }
+
     @Unique
-    private float cti_new$getScale(LivingEntity living){
-        if(!(living instanceof Player player)) return 1;
+    private float cti_new$getScale(LivingEntity living) {
+        if (!(living instanceof Player player)) return 1;
         var relicLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("cti:the_relic"));
         var shadowOfVigridLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
         boolean hashardLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("etshtinker:solidex")) > 0;
         float hasHard = hashardLevel ? 0.8f : 1.0f;
         float relicFactor = Math.max(0.0f, 1.0f - (relicLevel * 0.03f));
-        float shadowFactor = Math.max(0.0f, 1.0f - (shadowOfVigridLevel * 0.08f));
+        float shadowFactor = Math.max(0.0f, 1.0f - (shadowOfVigridLevel * 0.07f));
         return relicFactor * shadowFactor * hasHard;
     }
 }

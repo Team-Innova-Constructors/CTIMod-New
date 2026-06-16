@@ -21,8 +21,9 @@ public class GraMixin {
             if (optional.resolve().isEmpty()) return;
             MobTraitCap cap = optional.resolve().get();
             MobTrait trait = CtiHostilityTrait.PURIFYTRAIT.get();
-            if (!cap.hasTrait(trait))return;
-            ci.cancel();
+            if (cap.hasTrait(trait)){
+                ci.cancel();
+            }
         }
     }
 }

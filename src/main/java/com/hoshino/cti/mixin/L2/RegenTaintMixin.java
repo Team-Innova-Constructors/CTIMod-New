@@ -1,5 +1,8 @@
 package com.hoshino.cti.mixin.L2;
 
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
+import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
@@ -44,15 +47,10 @@ public abstract class RegenTaintMixin extends MobTrait {
                 boolean shouldAdd = !data.contains("cti_liming");
                 if (mob.getHealth() <= mob.getMaxHealth() * 0.5f && shouldAdd) {
                     mob.getLevel().playSound(null, mob.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.AMBIENT, 1, 0.5f);
-                    mob.getPersistentData().putInt("cti_liming", 5);
+                    EntityTickerManager.getInstance(mob).addTicker(new EntityTickerInstance(CtiEntityTickers.DAWN.get(),1,60),Integer::max,Integer::max);
+                    mob.getPersistentData().putInt("cti_liming", 1);
                 }
-                var l = data.getInt("cti_liming");
-                boolean shouldExtraHeal = data.getInt("cti_liming") > 1;
                 float healAmount = 0;
-                if (shouldExtraHeal) {
-                    healAmount += mob.getMaxHealth() * 0.02f * level;
-                    data.putInt("cti_liming", l - 1);
-                }
                 healAmount += 0.005f * mob.getMaxHealth() * level;
                 mob.heal(healAmount);
             }

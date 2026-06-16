@@ -7,6 +7,7 @@ import com.hoshino.cti.Cti;
 import com.hoshino.cti.Entity.Projectiles.StarDragonAmmo;
 import com.hoshino.cti.Items.RandomReward;
 import com.hoshino.cti.util.DragonRewardCategory;
+import com.hoshino.cti.util.ILivingEntityMixin;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -82,15 +83,17 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         var level=attacker.level;
         if(target instanceof EntityIceDragon){
             generateLoot(level,target.getOnPos(),DragonRewardCategory.ice);
+            target.discard();
         }
         if(target instanceof EntityFireDragon){
             generateLoot(level,target.getOnPos(),DragonRewardCategory.fire);
+            target.discard();
         }
         if(target instanceof EntityLightningDragon){
             generateLoot(level,target.getOnPos(),DragonRewardCategory.lightning);
+            target.discard();
         }
-        target.die(DamageSource.playerAttack(attacker));
-        target.discard();
+        ((ILivingEntityMixin)target).cti$strictHurt(DamageSource.playerAttack(attacker),target.getMaxHealth() * 100,true);
     }
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {

@@ -44,7 +44,9 @@ public class ShulkerProtect extends Modifier implements AttributesModifierHook, 
         if(source.isExplosion()){
             amount/=0.6f;
         }
-        if(source.isBypassMagic())return amount;
+        if(source.isBypassMagic()){
+            return amount *0.93f;
+        }
         if(source.isBypassInvul())return amount;
         return amount * 0.85f;
     }

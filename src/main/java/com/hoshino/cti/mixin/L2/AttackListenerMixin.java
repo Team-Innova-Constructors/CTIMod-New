@@ -18,7 +18,7 @@ public class AttackListenerMixin implements AttackListener {
     public void onHurt(AttackCache cache, ItemStack weapon, CallbackInfo ci){
         if(cache.getLivingHurtEvent()!=null&&cache.getLivingHurtEvent().getSource()!=null){
             var damagesource=cache.getLivingHurtEvent().getSource();
-            if(damagesource.getMsgId().contains("mobattackreflect")||damagesource.getMsgId().equals("farewell_gift")||damagesource.getMsgId().equals("")){
+            if(damagesource.getMsgId().equals("mobattackreflect")||damagesource.getMsgId().equals("farewell_gift")){
                 ci.cancel();
             }
         }

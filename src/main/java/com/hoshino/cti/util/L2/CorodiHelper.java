@@ -8,64 +8,47 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 import java.util.UUID;
 
-public class CorodiHelper{
-    public static final UUID CORODI_ARMOR_REMOVER_UUID = UUID.nameUUIDFromBytes("corodi".getBytes());
+public class CorodiHelper {
+    public static final UUID CORODI_ARMOR_REMOVER_UUID = UUID.nameUUIDFromBytes("corrosion".getBytes());
 
     public static void checkAndGiveData(Player player, int traitLevel) {
         if (player.getLevel().isClientSide()) return;
         int levelStep = Math.max(1, Math.min(6, traitLevel));
         int industrialLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:industrial_armor"));
         int refinedLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:refined"));
-        int currentLevel = player.getPersistentData().getInt("corodi_cost_armor");
-        int nextLevel = currentLevel + levelStep;
-
-        double maxDecrease = (-0.16 * levelStep) + (0.8 * industrialLevel) + (0.16 * refinedLevel);
-        if (maxDecrease > 0.0) {
-            maxDecrease = 0.0;
-        }
-        int maxAllowedLevel = (int) (Math.abs(maxDecrease) * 100);
-        if (nextLevel > maxAllowedLevel) {
-            nextLevel = maxAllowedLevel;
-        }
-        player.getPersistentData().putInt("corodi_cost_armor", nextLevel);
-
-        var maxArmorAttr = player.getAttribute(Attributes.ARMOR);
-        if (maxArmorAttr != null) {
-            maxArmorAttr.removeModifier(CORODI_ARMOR_REMOVER_UUID);
-            double decreaseAmount = -0.01 * nextLevel;
-
-            if (decreaseAmount < 0.0) {
-                var modifier = new AttributeModifier(CORODI_ARMOR_REMOVER_UUID, "腐蚀护甲削减", decreaseAmount, AttributeModifier.Operation.MULTIPLY_TOTAL);
-                maxArmorAttr.addTransientModifier(modifier);
-            }
-
-            if (player.getHealth() > player.getMaxHealth()) {
-                player.setHealth(player.getMaxHealth());
-            }
-        }
+        int totalShield = industrialLevel + refinedLevel;
+        int actualAdd = Math.max(0, levelStep - totalShield);
+        int currentLevel = player.getPersistentData().getInt("corrosion_cost_armor");
+        int nextLevel = currentLevel + actualAdd;
+        player.getPersistentData().putInt("corrosion_cost_armor", nextLevel);
+        updateArmorModifier(player);
     }
+
     public static void removeData(Player player) {
         if (player.getLevel().isClientSide()) return;
-        int currentLevel = player.getPersistentData().getInt("corodi_cost_armor");
+        int currentLevel = player.getPersistentData().getInt("corrosion_cost_armor");
         int nextLevel = Math.max(0, currentLevel - 2);
-        player.getPersistentData().putInt("corodi_cost_armor", nextLevel);
-        var maxHealthAttr = player.getAttribute(Attributes.ARMOR);
-        if (maxHealthAttr != null) {
-            maxHealthAttr.removeModifier(CORODI_ARMOR_REMOVER_UUID);
-            if (nextLevel > 0) {
-                double decreaseAmount = -0.01 * nextLevel;
-                if (decreaseAmount <= -0.99) {
-                    decreaseAmount = -0.99;
-                }
-                var modifier = new AttributeModifier(CORODI_ARMOR_REMOVER_UUID, "腐蚀护甲削减", decreaseAmount, AttributeModifier.Operation.MULTIPLY_TOTAL);
-                maxHealthAttr.addTransientModifier(modifier);
+        player.getPersistentData().putInt("corrosion_cost_armor", nextLevel);
+        updateArmorModifier(player);
+    }
+    
+    private static void updateArmorModifier(Player player) {
+        var maxArmorAttr = player.getAttribute(Attributes.ARMOR);
+        if (maxArmorAttr == null) return;
+        maxArmorAttr.removeModifier(CORODI_ARMOR_REMOVER_UUID);
+        int currentLevel = player.getPersistentData().getInt("corrosion_cost_armor");
+        if (currentLevel > 0) {
+            double decreaseAmount = -0.01 * currentLevel;
+            if (decreaseAmount <= -0.99) {
+                decreaseAmount = -0.99;
             }
-            if (player.getHealth() > player.getMaxHealth()) {
-                player.setHealth(player.getMaxHealth());
+            if (decreaseAmount < 0.0) {var modifier = new AttributeModifier(CORODI_ARMOR_REMOVER_UUID, "腐蚀护甲削减", decreaseAmount, AttributeModifier.Operation.MULTIPLY_TOTAL);
+                maxArmorAttr.addTransientModifier(modifier);
             }
         }
     }
-    public static boolean hasBeenCost(Player player){
-        return player.getPersistentData().getInt("corodi_cost_armor")>0;
+
+    public static boolean hasBeenCost(Player player) {
+        return player.getPersistentData().getInt("corrosion_cost_armor") > 0;
     }
 }

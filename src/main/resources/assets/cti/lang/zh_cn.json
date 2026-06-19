@@ -145,7 +145,7 @@
 
   "modifier.cti.shulker_protect": "潜龙在影",
   "modifier.cti.shulker_protect.flavor": "看不见我看不见我...哦对了潜行是个谎言,你猜需不需潜行才能触发",
-  "modifier.cti.shulker_protect.description":"•潜行时候额外增加25%护甲,10%生命\n•损耗耐久降低90%,增加2000点基础耐久\n•额外获得15%对非穿魔伤害的减免\n•爆炸伤害则减免40%,不论其是否穿魔",
+  "modifier.cti.shulker_protect.description":"•潜行时候额外增加25%护甲,10%生命\n•损耗耐久降低90%,增加2000点基础耐久\n•额外获得15%对非穿魔伤害的减免,穿魔效果减半\n•爆炸伤害则减免40%,不论其是否穿魔",
 
   "modifier.cti.cutter": "切割者",
   "modifier.cti.cutter.flavor": "碎甲碎甲",
@@ -448,8 +448,6 @@
   "biome.cti.jupiter":"木星核心",
   "biome.cti.uranus":"天王星核心",
 
-
-
   "death.attack.cti.ionized": "%1$s 体内的正负电荷被永远分离了。",
   "death.attack.cti.ionized.player": "%1$s 体内的正负电荷被永远分离了。",
   "death.attack.cti.scorch": "%1$s 变成了多孔活性炭。",
@@ -469,6 +467,7 @@
   "death.attack.dispell": "%1$s 被怪物用法力浸润了。",
   "death.attack.farewell_gift": "%1$s 被怪物临死的怨念终结了。",
   "death.attack.keniliyahurt": "%1$s 被科尼利亚手中的直刀的忿恨吞噬了。",
+  "death.attack.dispell": "%1$s 被杀戮光环杀死了。",
 
   "item.cti.molten_aluminium_glass_bucket": "熔融铝玻璃桶",
   "fluid.cti.molten_aluminium_glass": "熔融铝玻璃",
@@ -822,15 +821,15 @@
 
   "modifier.cti.commongobberbless": "戈伯恩惠",
   "modifier.cti.commongobberbless.flavor": "旅途的开始",
-  "modifier.cti.commongobberbless.description":"伤害每级增加15%，并且缓慢恢复饱食度.作为盔甲时每级减少6%收到的伤害\n[特殊效果]作为近战武器，对凋灵会附带6%最大生命的伤害",
+  "modifier.cti.commongobberbless.description":"伤害每级增加15%，并且缓慢恢复饱食度.作为盔甲时每级减少6%收到的伤害,每件独立\n[特殊效果]作为近战武器，对凋灵会附带6%最大生命的伤害",
 
   "modifier.cti.nethergobberbless": "下界戈伯恩惠",
   "modifier.cti.nethergobberbless.flavor": "焱狱与苦难",
-  "modifier.cti.nethergobberbless.description":"获得常驻的抗火效果，伤害每级增加25%，并且缓慢恢复饱食度.作为盔甲时每级减少8%收到的伤害\n[特殊效果]作为近战武器，对凋灵骷髅会直接击杀并且必定获得一个头颅。当对应工具为劈刀，会基于肢解等级*抢夺类词条总等级会额外提升头颅获得倍率",
+  "modifier.cti.nethergobberbless.description":"获得常驻的抗火效果，伤害每级增加25%，并且缓慢恢复饱食度.作为盔甲时每级减少9%收到的伤害\n[特殊效果]作为近战武器，对凋灵骷髅会直接击杀并且必定获得一个头颅。当对应工具为劈刀，会基于肢解等级*抢夺类词条总等级会额外提升头颅获得倍率",
 
   "modifier.cti.endergobberbless": "末影戈伯恩惠",
   "modifier.cti.endergobberbless.flavor": "结束了？",
-  "modifier.cti.endergobberbless.description":"获得抗火效果，伤害每级增加35%，并且缓慢恢复饱食度.作为盔甲时每级减少10%收到的伤害\n[特殊效果]作为武器每次对末影龙造成伤害均会额外提升末影龙6%最大生命的伤害,使用劈刀击杀末影龙的时候必定掉落9个末影龙头颅",
+  "modifier.cti.endergobberbless.description":"获得抗火效果，伤害每级增加35%，并且缓慢恢复饱食度.作为盔甲时每级减少12%收到的伤害\n[特殊效果]作为武器每次对末影龙造成伤害均会额外提升末影龙6%最大生命的伤害,使用劈刀击杀末影龙的时候必定掉落9个末影龙头颅",
 
   "modifier.cti.fragment": "破灭之片",
   "modifier.cti.fragment.flavor": "人形火车头",
@@ -888,11 +887,11 @@
 
   "modifier.cti.shadow_of_vigrid": "维格利得之魂",
   "modifier.cti.shadow_of_vigrid.flavor": "终幕战场上的残魂",
-  "modifier.cti.shadow_of_vigrid.description": "当你拥有此词条的工具时候,你身上任何一个物品都不再会被诸神黄昏词条封印\n•依据全身此词条总等级,每级减少7%摄魂和破魔的最终穿刺伤害",
+  "modifier.cti.shadow_of_vigrid.description": "当你拥有此词条的工具时候,你身上任何一个物品都不再会被诸神黄昏词条封印\n•依据全身盔甲此词条总等级,每级减少7%摄魂和破魔的最终穿刺伤害",
 
   "modifier.cti.the_relic": "遗者",
   "modifier.cti.the_relic.flavor": "被遗忘者",
-  "modifier.cti.the_relic.description": "拥有此词条的工具不再会被诸神黄昏词条封印\n•依据全身此词条总等级,每级减少3%摄魂和破魔的最终穿刺伤害",
+  "modifier.cti.the_relic.description": "拥有此词条的工具不再会被诸神黄昏词条封印\n•全身盔甲此词条总等级每+1,减少3%摄魂和破魔的最终穿刺伤害",
 
   "modifier.cti.outer_space": "天外来客",
   "modifier.cti.outer_space.flavor": "人走在路上被陨石砸死的概率很小，但是不为零",
@@ -1000,7 +999,7 @@
 
   "modifier.cti.stable_step": "稳健脚步",
   "modifier.cti.stable_step.flavor": "",
-  "modifier.cti.stable_step.description":"对漂浮、缓降和月步效果免疫。",
+  "modifier.cti.stable_step.description":"对漂浮、缓降和月步,吸引,排斥效果免疫。",
 
   "modifier.cti.light_step": "轻盈步伐",
   "modifier.cti.light_step.flavor": "",
@@ -1414,7 +1413,7 @@
   "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
 
   "trait.l2hostility.purify": "净化",
-  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命，(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",
+  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命,5级净化无视秒数(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",
 
   "trait.l2hostility.oracle": "神谕",
   "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",

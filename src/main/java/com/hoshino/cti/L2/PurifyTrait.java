@@ -75,7 +75,7 @@ public class PurifyTrait extends LegendaryTrait {
             if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 return;
             }
-            if(GetModifierLevel.getTotalArmorModifierlevel(player,CtiModifiers.SHADOW_OF_VIGRID.getId())<3){
+            if(GetModifierLevel.getTotalArmorModifierlevel(player,CtiModifiers.SHADOW_OF_VIGRID.getId())<3&&level>3){
                 if(player.getMaxHealth() * 20<mob.getMaxHealth()){
                     if(!player.isCreative()&&!player.isSpectator()){
                         if (player.getAbilities().mayfly || player.getAbilities().flying) {
@@ -109,7 +109,9 @@ public class PurifyTrait extends LegendaryTrait {
             if (instance.getEffect().isBeneficial()) continue;
             if(effect==LHEffects.GRAVITY.get())continue;
             if(effect==LHEffects.MOONWALK.get())continue;
-            if (instance.getDuration() > level * 7 * 20f) continue;
+            if(level<5){
+                if(instance.getDuration() > level * 7 * 20f) continue;
+            }
             mob.removeEffect(instance.getEffect());
             healAmount += instance.getDuration() / 20f;
         }

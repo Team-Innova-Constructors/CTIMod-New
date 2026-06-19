@@ -7,6 +7,7 @@ import dev.xkmc.l2hostility.content.traits.legendary.DementorTrait;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -50,10 +51,10 @@ public class DementorMixin extends LegendaryTrait {
             var source = new EntityDamageSource("dementor", attacker);
             var mobLevel = DifficultyLevel.ofAny(attacker);
             float scale = cti_new$getScale(target);
-            float totalHurt = mobLevel * 0.02f * level * scale;
-            if (!(totalHurt > 0)) return;
-            if (target.isDeadOrDying()) return;
-            ((ILivingEntityMixin) target).cti$strictHurt(source, totalHurt, false);
+            float totalHurt=mobLevel * 0.02f * level *scale;
+            if(totalHurt==0)return;
+            if(target.isDeadOrDying()||!target.isAlive())return;
+            ((ILivingEntityMixin)target).cti$strictHurt(source,totalHurt,false);
         }
     }
 

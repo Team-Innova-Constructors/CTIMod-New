@@ -65,7 +65,7 @@ public class GetModifierLevel {
 
     public static int getHeadModifierlevel(LivingEntity entity, ModifierId modifierId) {
         if (entity != null) {
-            if (entity instanceof Player player) {
+            if (entity instanceof Player) {
                 ToolStack toolStack = ToolStack.from(entity.getItemBySlot(EquipmentSlot.HEAD));
                 if (!toolStack.isBroken()) {
                     return ModifierUtil.getModifierLevel(entity.getItemBySlot(EquipmentSlot.HEAD), modifierId);

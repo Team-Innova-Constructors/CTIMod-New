@@ -8,9 +8,11 @@ import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2hostility.content.traits.legendary.UndyingTrait;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -38,5 +40,13 @@ public abstract class UndyingTraitMixin {
         else if(entity.hasEffect(SearchTools.findMobEffect("solidarytinker:healhysteresis"))){
             ci.cancel();
         }
+    }
+    /**
+     * @author
+     * @reason
+     */
+    @Overwrite
+    public boolean validTarget(LivingEntity le) {
+        return !(le instanceof EnderDragon);
     }
 }

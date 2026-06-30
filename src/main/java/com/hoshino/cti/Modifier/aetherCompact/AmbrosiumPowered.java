@@ -2,6 +2,7 @@ package com.hoshino.cti.Modifier.aetherCompact;
 
 import com.aetherteam.aether.item.AetherItems;
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.OverAetheric;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.SlotStackModifierHook;
 import com.hoshino.cti.register.CtiModifiers;
@@ -25,6 +26,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.armor.ModifyDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.ToolDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.build.ToolStatsModifierHook;
+import slimeknights.tconstruct.library.modifiers.hook.build.VolatileDataModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.ranged.ProjectileLaunchModifierHook;
@@ -48,9 +50,14 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
     public static final ResourceLocation KEY_AMBROSIUM_POWER = Cti.getResource("ambrosium_power");
 
     @Override
+    public int getPriority() {
+        return 175;
+    }
+
+    @Override
     public boolean overrideOtherStackedOnMe(IToolStackView slotTool, ModifierEntry modifier, ItemStack held, Slot slot, Player player, SlotAccess access) {
         if (held.is(AetherItems.AMBROSIUM_SHARD.get())&&slot.allowModification(player)){
-            if (!player.level.isClientSide&&slotTool.getPersistentData().getInt(KEY_AMBROSIUM_POWER)<getMaxCharge(modifier)){
+            if (!player.level.isClientSide&&slotTool.getPersistentData().getInt(KEY_AMBROSIUM_POWER)<getMaxCharge(slotTool)){
                 held.shrink(1);
                 chargeTool(slotTool);
             }
@@ -59,11 +66,9 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
         return false;
     }
 
-    public static int getMaxCharge(ModifierEntry thisModifier){
-        return thisModifier.getLevel()*32;
-    }
+
     public static int getMaxCharge(IToolStackView tool){
-        return getMaxCharge(tool.getModifier(CtiModifiers.AMBROSIUM_POWERED.getId()));
+        return tool.getModifierLevel(CtiModifiers.AMBROSIUM_POWERED.getId())*32 + OverAetheric.getAetherCount(tool)*32;
     }
 
 
@@ -89,7 +94,7 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
         for(EquipmentSlot slot:EquipmentSlot.values()){
             var stack = living.getItemBySlot(slot);
             if (stack.getItem() instanceof IModifiable){
-                amount-=chargeTool(ToolStack.from(stack));
+                amount-=chargeTool(ToolStack.from(stack),amount);
                 if (amount<=0) break;
             }
         }
@@ -136,7 +141,7 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
 
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
-        damage+=getAndUseCharge(tool)*2;
+        damage+=getAndUseCharge(tool)*4;
         return damage;
     }
 

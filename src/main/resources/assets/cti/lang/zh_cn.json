@@ -283,7 +283,7 @@
 
   "modifier.cti.ambrosium_powered": "圣神光辉",
   "modifier.cti.ambrosium_powered.flavor": "你的工具已注入神的能量",
-  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡/+2近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
+  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡/+4近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
 
   "modifier.cti.stellar_arrow": "星辰箭矢",
   "modifier.cti.stellar_arrow.flavor": "据说能射下天上的星星",
@@ -1274,11 +1274,11 @@
 
   "modifier.cti.slime_strike": "黏液打击",
   "modifier.cti.slime_strike.flavor": "非流顿牛体！",
-  "modifier.cti.slime_strike.description":"每级+50黏液覆层上限，攻击时每级消耗1黏液覆层+10近战伤害。",
+  "modifier.cti.slime_strike.description":"每级+50黏液覆层上限，攻击时每级消耗1黏液覆层+10和5%近战伤害。",
 
   "modifier.cti.slime_shield": "黏液之护",
   "modifier.cti.slime_shield.flavor": "非流顿牛体！",
-  "modifier.cti.slime_shield.description":"每级+50黏液覆层上限，受击时每级消耗2黏液覆层格挡5伤害（护甲前）。",
+  "modifier.cti.slime_shield.description":"每级+50黏液覆层上限，受击时每级消耗2黏液覆层格挡5伤害（护甲后）。",
 
   "modifier.cti.slime_explode": "胶黏爆破",
   "modifier.cti.slime_explode.flavor": "到处都黏糊糊的",
@@ -1286,11 +1286,11 @@
 
   "modifier.cti.replaced_overempire": "黏液帝皇",
   "modifier.cti.replaced_overempire.flavor": "帝国荣光！",
-  "modifier.cti.replaced_overempire.description":"工具每有160黏液覆层+1黏液覆层消耗提供1%的独立减伤，最大每级20%，上限60%。",
+  "modifier.cti.replaced_overempire.description":"工具每有160黏液覆层+1黏液覆层消耗提供2%的独立减伤，最大每级20%，上限60%。",
 
   "modifier.cti.replaced_overarmy": "黏液军团",
   "modifier.cti.replaced_overarmy.flavor": "史莱姆大军！",
-  "modifier.cti.replaced_overarmy.description":"工具每有50黏液覆层在攻击时增加0.01x独立乘算增伤和1黏液覆层消耗，最高每级+2x。",
+  "modifier.cti.replaced_overarmy.description":"工具每有50黏液覆层在攻击时增加0.02x独立乘算增伤和1黏液覆层消耗，最高每级+2x。",
 
   "modifier.cti.super_overslime": "黏液超容EX",
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
@@ -1306,7 +1306,7 @@
 
   "modifier.cti.ender_stiction": "末影黏滞",
   "modifier.cti.ender_stiction.flavor": "黏住了空间",
-  "modifier.cti.ender_stiction.description":"每级+500黏液覆层上限，攻击时每级消耗5黏液覆层+25近战伤害。\n ·攻击时额外消耗5黏液覆层移除无敌帧，消耗5黏液覆层造成末影黏滞效果阻止对方传送。",
+  "modifier.cti.ender_stiction.description":"每级+500黏液覆层上限，攻击时每级消耗5黏液覆层+25和25%近战伤害。\n ·攻击时额外消耗5黏液覆层移除无敌帧，消耗5黏液覆层造成末影黏滞效果阻止对方传送。",
 
   "modifier.cti.ender_suppress": "末影压制",
   "modifier.cti.ender_suppress.flavor": "黏住了空间",
@@ -1314,19 +1314,19 @@
 
   "modifier.cti.replace_overlost": "迷失",
   "modifier.cti.replace_overlost.flavor": "迷途之子",
-  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+15近战伤害。\n ·攻击时目标每级缓慢效果都会增加2.5%伤害和黏液覆层消耗。目标每10秒缓慢时长都会增加10伤害和1黏液覆层消耗。",
+  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+30%近战伤害。\n ·攻击时目标每级缓慢效果都会增加5%伤害和黏液覆层消耗。目标每10秒缓慢时长都会增加20伤害和1黏液覆层消耗。",
 
   "modifier.cti.replace_overlost_armor": "迷失",
   "modifier.cti.replace_overlost_armor.flavor": "迷途之子",
-  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗2黏液覆层+10%独立减伤（最大40%）。\n ·受击时目标每级缓慢效果都会增加10格挡和1黏液覆层消耗。",
+  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗2黏液覆层+15%独立减伤（最大40%）。\n ·受击时目标每级缓慢效果都会增加20格挡和1黏液覆层消耗。",
 
   "modifier.cti.united_overslime": "其利断金",
   "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+25%近战伤害。\n ·全力打击时撕裂目标周围空间，每级造成5%持续伤害并消耗20黏液覆层。",
+  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+50%近战伤害。\n ·全力打击时撕裂目标周围空间，每级造成20%持续伤害并消耗20黏液覆层。",
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_insatiable.description":"每级+48最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·每秒消耗1黏液覆层维持贪婪等级为最大贪婪的一半，贪婪等级超过一半时不生效。",
+  "modifier.cti.united_insatiable.description":"每级+64最大贪婪等级，攻击/防御时每级+8贪婪等级。\n ·每秒消耗1黏液覆层维持贪婪等级为最大贪婪的一半，贪婪等级超过一半时不生效。",
 
   "modifier.cti.overfill": "黏液转置",
   "modifier.cti.overfill.flavor": "就像个充电宝",
@@ -1338,7 +1338,7 @@
 
   "modifier.cti.over_aetheric": "晶能流质学",
   "modifier.cti.over_aetheric.flavor": "活性与产能",
-  "modifier.cti.over_aetheric.description":"每级+250黏液覆层上限，受击时每级消耗10黏液覆层+20和20%的近战伤害/减伤（近战/护甲）。\n ·工具上每有一个天境材料+10%的耐久和黏液覆层上限。\n ·消耗黏液覆层时充入4倍于消耗量的神能晶充能。",
+  "modifier.cti.over_aetheric.description":"每级+250黏液覆层上限，使用时每级消耗10黏液覆层+25和40%的近战伤害/+20和20%的伤害减免（近战/防御）。\n ·工具上每有一个天境材料+10%的耐久和黏液覆层上限，+32神能晶充能上限。\n ·消耗黏液覆层时为全身装备充入16倍于消耗量的神能晶充能。",
 
   "modifier.cti.overtrade": "交易者",
   "modifier.cti.overtrade.flavor": "以物易物！",

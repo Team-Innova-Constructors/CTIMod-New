@@ -23,9 +23,9 @@ public class ReplaceOverempire extends BasicOverslimeModifier implements ModifyD
         var os = TinkerModifiers.overslime.get();
         if (os.getShield(tool)>=160){
             var bonus = os.getShield(tool)/160;
-            bonus = Math.min(bonus,Math.min(20*modifier.getLevel(),60));
+            bonus = Math.min(bonus,Math.min(15*modifier.getLevel(),30));
             os.addOverslime(tool,modifier,-5*bonus);
-            amount-=amount*0.01f*bonus;
+            amount-=amount*0.02f*bonus;
         }
         return amount;
     }

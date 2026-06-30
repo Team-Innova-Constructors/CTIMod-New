@@ -14,12 +14,12 @@ import slimeknights.tconstruct.tools.stats.ToolType;
 public class UnitedInsatiable extends BasicInsatiableModifier{
     @Override
     public float getMaxInsatiableBonus(IToolContext context, ModifierEntry modifier) {
-        return 48*modifier.getLevel();
+        return 64*modifier.getLevel();
     }
 
     @Override
     public int getInsatiableLevel() {
-        return 4;
+        return 8;
     }
 
     @Override

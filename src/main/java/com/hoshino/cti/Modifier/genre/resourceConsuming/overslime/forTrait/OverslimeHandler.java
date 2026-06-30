@@ -48,7 +48,7 @@ public class OverslimeHandler extends Modifier implements MeleeDamageModifierHoo
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
-        hookBuilder.addHook(this, ModifierHooks.MELEE_HIT,ModifierHooks.MELEE_DAMAGE,ModifierHooks.PROTECTION,ModifierHooks.MODIFY_HURT);
+        hookBuilder.addHook(this, ModifierHooks.MELEE_HIT,ModifierHooks.MELEE_DAMAGE,ModifierHooks.PROTECTION,ModifierHooks.MODIFY_DAMAGE);
         hookBuilder.addModule(new ArmorLevelModule(KEY_ARMOR,false,null));
     }
 

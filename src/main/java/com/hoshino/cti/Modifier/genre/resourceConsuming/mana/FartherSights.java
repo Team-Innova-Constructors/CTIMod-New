@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration.botania.modifiers;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana;
 
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
@@ -32,7 +32,6 @@ public class FartherSights extends NoLevelsModifier implements AttributesModifie
     }
     public static final UUID FARTHER_SIGHTS_UUID = UUID.fromString("84ce90d7-45e2-a102-75e1-86867f0e7e1e");
     //当魔力脉冲带有这个Tag时，触发工具攻击/挖掘。
-    //很遗憾这个东西目前我只能做到硬编码。
     public static final String KEY_TRIGGER_TOOL = "trigger_tinker_tool";
 
     @Override

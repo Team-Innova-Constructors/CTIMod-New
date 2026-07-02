@@ -1,7 +1,7 @@
-package com.hoshino.cti.integration.botania.modifiers;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana;
 
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
-import com.hoshino.cti.integration.botania.modifiers.base.BasicBurstModifier;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.BasicBurstModifier;
 import com.hoshino.cti.register.CtiModifiers;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.Nullable;

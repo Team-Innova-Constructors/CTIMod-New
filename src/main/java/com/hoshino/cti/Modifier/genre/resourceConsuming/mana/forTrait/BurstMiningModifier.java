@@ -1,10 +1,10 @@
-package com.hoshino.cti.integration.botania.api.modifierBase;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait;
 
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.BurstHitModifierHook;
 import com.hoshino.cti.integration.botania.api.hook.LensProviderModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
-import com.hoshino.cti.integration.botania.modifiers.FartherSights;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.FartherSights;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

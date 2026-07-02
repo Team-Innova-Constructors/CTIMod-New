@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration.botania.modifiers.specialized;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized;
 
 import cofh.core.client.particle.options.CylindricalParticleOptions;
 import cofh.core.init.CoreParticles;
@@ -7,7 +7,7 @@ import com.hoshino.cti.integration.botania.api.hook.BurstHitModifierHook;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
 import com.hoshino.cti.integration.botania.entity.ThunderBurstEntity;
-import com.hoshino.cti.integration.botania.modifiers.base.SpecializedBurstModifier;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.SpecializedBurstModifier;
 import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
 import com.hoshino.cti.util.ParticleContext;
 import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
@@ -29,7 +29,7 @@ import vazkii.botania.api.mana.BurstProperties;
 
 import java.util.List;
 
-import static com.hoshino.cti.integration.botania.modifiers.FartherSights.KEY_TRIGGER_TOOL;
+import static com.hoshino.cti.Modifier.genre.resourceConsuming.mana.FartherSights.KEY_TRIGGER_TOOL;
 
 public class Thunderstorm extends SpecializedBurstModifier implements BurstHitModifierHook, ModifyBurstModifierHook{
     @Override

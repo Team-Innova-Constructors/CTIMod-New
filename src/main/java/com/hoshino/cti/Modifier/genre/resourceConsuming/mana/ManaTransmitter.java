@@ -1,7 +1,7 @@
-package com.hoshino.cti.integration.botania.modifiers;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana;
 
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
-import com.hoshino.cti.integration.botania.modifiers.base.BasicBurstModifier;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.BasicBurstModifier;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -11,10 +11,12 @@ import vazkii.botania.api.internal.ManaBurst;
 
 import java.util.List;
 
-public class ExtraWarhead extends BasicBurstModifier {
+public class ManaTransmitter extends BasicBurstModifier {
     @Override
     public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
-        burstExtras.addDamageModifier(0.25f*modifier.getLevel());
-        burstExtras.addEntityPerConsumption(25*modifier.getLevel());
+        int bonus = 100*(int) Math.pow(10,modifier.getLevel());
+        burst.setMana(burst.getMana()+bonus);
+        burstExtras.addEntityPerConsumption(bonus);
+        burstExtras.addBlockPerConsumption(bonus);
     }
 }

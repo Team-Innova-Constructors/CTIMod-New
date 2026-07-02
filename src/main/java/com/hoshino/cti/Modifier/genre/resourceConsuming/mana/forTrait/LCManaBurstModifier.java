@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration.botania.api.modifierBase;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait;
 
 import com.hoshino.cti.api.interfaces.IToolProvider;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;

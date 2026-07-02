@@ -1,10 +1,10 @@
-package com.hoshino.cti.integration.botania.modifiers.specialized;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized;
 
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.hook.UpdateBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
-import com.hoshino.cti.integration.botania.modifiers.base.SpecializedBurstModifier;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.SpecializedBurstModifier;
 import com.hoshino.cti.util.EntityInRangeUtil;
 import com.hoshino.cti.util.ProjectileUtil;
 import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
@@ -38,7 +38,7 @@ public class ExcaliburBurst extends SpecializedBurstModifier implements ModifyBu
         burst.entity().setDeltaMovement(burst.entity().getDeltaMovement().scale(1.5));
         burst.setColor(0xFFFF20);
         burst.setMana(burst.getMana()+100);
-        burstExtras.addBaseDamage(16);
+        burstExtras.addDamageModifier(0.5f);
         burstExtras.addEntityPerConsumption(50);
     }
 

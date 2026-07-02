@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration.botania.modifiers;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana;
 
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
@@ -16,7 +16,11 @@ import vazkii.botania.api.internal.ManaBurst;
 
 import java.util.List;
 
-public class TerraBurst extends NoLevelsModifier implements ModifyBurstModifierHook {
+public class AlfBurst extends NoLevelsModifier implements ModifyBurstModifierHook {
+    @Override
+    public int getPriority() {
+        return 80;
+    }
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
@@ -26,6 +30,12 @@ public class TerraBurst extends NoLevelsModifier implements ModifyBurstModifierH
 
     @Override
     public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
-        burstExtras.addBaseDamage(7*modifier.getLevel());
+        burstExtras.addBaseDamage(32*modifier.getLevel());
+        burstExtras.addDamageModifier(0.25f);
+        burstExtras.addEntityPerConsumption(-50);
+        burstExtras.addBlockPerConsumption(-50);
+        burst.setMana(burst.getMana()+50*modifier.getLevel());
+        burst.setManaLossPerTick(burst.getManaLossPerTick()/2);
+        burst.setColor(0xF79100);
     }
 }

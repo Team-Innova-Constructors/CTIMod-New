@@ -1,4 +1,4 @@
-package com.hoshino.cti.integration.botania.modifiers.base;
+package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base;
 
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import net.minecraft.network.chat.Component;

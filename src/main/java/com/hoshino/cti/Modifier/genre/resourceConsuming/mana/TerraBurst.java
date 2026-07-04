@@ -26,7 +26,7 @@ public class TerraBurst extends NoLevelsModifier implements ModifyBurstModifierH
 
     @Override
     public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
-        burstExtras.addBaseDamage(16*modifier.getLevel());
-        burstExtras.addDamageModifier(0.1f);
+        burstExtras.addBaseDamage(20*modifier.getLevel());
+        burstExtras.addDamageModifier(0.25f);
     }
 }

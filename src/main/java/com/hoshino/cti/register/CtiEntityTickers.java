@@ -23,4 +23,5 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> ENDER_SUPPRESS = ENTITY_TICKERS.register("ender_suppress", EnderSuppress::new);
     public static final RegistryObject<EntityTicker> DAWN = ENTITY_TICKERS.register("dawn", Dawn::new);
     public static final RegistryObject<EntityTicker> DAWN_EXTRA_DAMAGE = ENTITY_TICKERS.register("dawn_extra_damage", EmptyTicker::new);
+    public static final RegistryObject<EntityTicker> ECHO_FORM = ENTITY_TICKERS.register("echo_form", EchoFormTicker::new);
 }

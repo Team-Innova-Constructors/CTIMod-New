@@ -1,9 +1,12 @@
 package com.hoshino.cti.integration.botania.entity;
 
+import cofh.core.client.particle.options.BiColorParticleOptions;
+import cofh.core.init.CoreParticles;
 import com.hoshino.cti.api.interfaces.IToolProvider;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
 import com.hoshino.cti.register.CtiEntity;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -13,6 +16,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import vazkii.botania.common.entity.ManaBurstEntity;
@@ -104,27 +108,31 @@ public class ThunderBurstEntity extends ManaBurstEntity implements IManaBurstExt
 
     @Override
     public void particles() {
-        super.particles();
     }
 
-    @Override
-    public int getColor() {
+    public int getRGBA(){
         return switch (random.nextInt(5)){
-            case 1-> 0xBFFFED;
-            case 2-> 0x9CFFEA;
-            case 3-> 0x61FFED;
-            case 4-> 0x34FAFF;
-            default -> 0x7DACFF;
+            case 1-> 0xBFFFEDFF;
+            case 2-> 0x9CFFEAFF;
+            case 3-> 0x61FFEDFF;
+            case 4-> 0x34FAFFFF;
+            default -> 0x7DACFFFF;
         };
     }
 
     @Override
     protected void defineSynchedData() {
-
+        super.m_8097_();
     }
 
     @Override
     public void tick() {
+        if (this.firstTick&&this.level instanceof ServerLevel serverLevel) {
+            var start = new Vec3(this.getX() + random.nextFloat() * 0.05f - 0.1, this.getY() , this.getZ() + random.nextFloat() * 0.05f - 0.1);
+            var end = this.position().add(this.getDeltaMovement().scale(6)).add(random.nextFloat() * 0.05f - 0.1,0,random.nextFloat() * 0.05f - 0.1);
+            serverLevel.sendParticles(new BiColorParticleOptions(CoreParticles.STRAIGHT_ARC.get(), 0.3F, 6.0F, 0.0F, -1, getRGBA()),
+                    start.x,start.y,start.z,0,end.x,end.y,end.z,1);
+        }
         super.tick();
         this.level.getEntitiesOfClass(Entity.class,this.getBoundingBox().expandTowards(this.getDeltaMovement()),this::canHitEntity).forEach(entity ->
                 this.onHitEntity(new EntityHitResult(entity)));
@@ -139,4 +147,6 @@ public class ThunderBurstEntity extends ManaBurstEntity implements IManaBurstExt
         if (pTarget instanceof Projectile) return false;
         return !(pTarget instanceof Player);
     }
+
+
 }

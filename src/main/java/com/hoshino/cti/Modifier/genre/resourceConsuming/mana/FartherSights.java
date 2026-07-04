@@ -48,8 +48,7 @@ public class FartherSights extends NoLevelsModifier implements AttributesModifie
             ToolStack toolStack = ToolStack.from(player.getMainHandItem());
             if (toolStack.getModifierLevel(this)>0){
                 burst.entity().addTag(KEY_TRIGGER_TOOL);
-                burst.setMana(burst.getMana()+100);
-                burstExtras.cti$setPerBlockConsumption(burstExtras.cti$getPerBlockConsumption()+50);
+                burstExtras.addDamageModifier(0.1f);
             }
         }
     }

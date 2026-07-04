@@ -1384,6 +1384,29 @@
   "modifier.cti.ethereal.flavor": "滚木化",
   "modifier.cti.ethereal.description":"穿戴时15%概率免疫伤害,但穿戴时造成的魔法和爆炸伤害和受到的魔法和爆炸均降低50%\n，因为你的身体飘渺化了，所以增加每级40点最大生命值，并且更难被怪物察觉到",
 
+  "modifier.cti.farther_sights": "魔化之刃",
+  "modifier.cti.farther_sights.flavor": "你将魔法能量注入你的武器...",
+  "modifier.cti.farther_sights.description":"将魔力脉冲的伤害判定修改为等同于使用武器进行近战攻击，+10%脉冲伤害倍率。\n ·手持时令触及半径归零并禁用工具的右键行为，近战攻击命中时不再发射魔力脉冲。",
+
+  "modifier.cti.alf_burst": "精灵射线",
+  "modifier.cti.alf_burst.flavor": "更强的脉冲？",
+  "modifier.cti.alf_burst.description":"挥舞武器，发射强化的精灵脉冲，每级+75脉冲基础伤害，+50脉冲携带魔力。\n ·魔力脉冲+40%脉冲伤害倍率，-50实体和方块魔力消耗，x0.5长距魔力损失。",
+
+  "modifier.cti.terra_burst": "泰拉射线",
+  "modifier.cti.terra_burst.flavor": "我说植魔应该跟进一下1.4.4泰拉之刃的改动",
+  "modifier.cti.terra_burst.description":"挥舞武器，发射泰拉魔力脉冲，每级+20脉冲基础伤害。\n ·魔力脉冲+25%脉冲伤害倍率。",
+
+  "modifier.cti.destruction_magic": "破坏法术",
+  "modifier.cti.destruction_magic.flavor": "镐子发明之前的人们belike:",
+  "modifier.cti.destruction_magic.description":"令魔力脉冲能挖掘方块，判定与§o透镜：挖掘§r相同。\n ·有魔化之刃强化时，判定改为等同于使用工具直接进行挖掘。",
+
+  "modifier.cti.echo_form": "回响形态",
+  "modifier.cti.echo_form.flavor": "我已启动！我已启动",
+  "modifier.cti.echo_form.description":"近战武器空挥时触发的效果会额外触发一次，工具的近战伤害和攻击速度x0.75。",
+
+  "modifier.cti.thunderstorm": "雷暴雨",
+  "modifier.cti.thunderstorm.flavor": "我是即将到来的风暴",
+  "modifier.cti.thunderstorm.description":"挥舞武器，发射强力的带电脉冲，+132脉冲基础伤害，+200脉冲携带魔力，+50实体魔力消耗。\n ·脉冲命中实体时分裂成至多8到闪电，每到闪电会携带等同于实体魔力消耗的魔力\n ·闪电视为魔力脉冲，伤害倍率为原脉冲的0.25倍，实体魔力消耗为50。 ",
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

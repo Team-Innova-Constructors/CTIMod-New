@@ -18,6 +18,10 @@ import com.hoshino.cti.Modifier.genre.insatiable.*;
 import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.ShadowSlash;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.AlfBurst;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.DestructionMagic;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.TerraBurst;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.Thunderstorm;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.EnderSuppress;
@@ -215,7 +219,6 @@ public class CtiModifiers {
     public static final StaticModifier<InsatiableDigest> INSATIABLE_DIGEST = MODIFIERS.register("insatiable_digest", InsatiableDigest::new);
     public static final StaticModifier<ArroganceInsatiable> ARROGANCE_INSATIABLE = MODIFIERS.register("arrogance_insatiable", ArroganceInsatiable::new);
     public static final StaticModifier<ShadowSlash> SHADOW_SLASH = MODIFIERS.register("shadow_slash", ShadowSlash::new);
-
     public static final StaticModifier<NonStopInsatiable> NONSTOP_INSATIABLE = MODIFIERS.register("nonstop_insatiable", NonStopInsatiable::new);
     public static final StaticModifier<ReplacedOvergrowth> REPLACED_OVERGROWTH = MODIFIERS.register("replaced_overgrowth", ReplacedOvergrowth::new);
     public static final StaticModifier<SlimeStrike> SLIME_STRIKE = MODIFIERS.register("slime_strike", SlimeStrike::new);
@@ -244,8 +247,8 @@ public class CtiModifiers {
     public static final StaticModifier<ReplaceRingNecrotic> REPLACE_RING_NECROTIC = MODIFIERS.register("replace_ring_necrotic", ReplaceRingNecrotic::new);
     public static final StaticModifier<WitherInhibitor> WITHER_INHIBITOR_STATIC_MODIFIER = MODIFIERS.register("witherinhibitor", WitherInhibitor::new);
     public static final StaticModifier<LCManaBurstModifier> MANA_BURST_HANDLER = MODIFIERS.register("mana_burst_handler", LCManaBurstModifier::new);
-    public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
-    public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);
+    public static final StaticModifier<EchoForm> ECHO_FORM = MODIFIERS.register("echo_form", EchoForm::new);
+
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
     public static final StaticModifier<Fragment> FRAGMENT_STATIC_MODIFIER = MODIFIERS.register("fragment", Fragment::new);
 
@@ -271,4 +274,10 @@ public class CtiModifiers {
     public static final StaticModifier<DilapidatedMagic> DILAPIDATED_MAGIC_STATIC_MODIFIER = MODIFIERS.register("dilapidated_magic", DilapidatedMagic::new);
     public static final StaticModifier<MessengerOfDawn> MESSENGER_OF_DAWN_STATIC_MODIFIER = MODIFIERS.register("messengerofdawn", MessengerOfDawn::new);
 
+    public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
+    public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);
+    public static final StaticModifier<AlfBurst> ALF_BURST = MODIFIERS.register("alf_burst", AlfBurst::new);
+    public static final StaticModifier<TerraBurst> TERRA_BURST = MODIFIERS.register("terra_burst", TerraBurst::new);
+    public static final StaticModifier<DestructionMagic> DESTRUCTION_MAGIC = MODIFIERS.register("destruction_magic", DestructionMagic::new);
+    public static final StaticModifier<Thunderstorm> THUNDERSTORM = MODIFIERS.register("thunderstorm", Thunderstorm::new);
 }

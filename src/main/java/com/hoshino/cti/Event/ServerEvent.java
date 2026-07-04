@@ -4,6 +4,7 @@ import com.hoshino.cti.Cti;
 import com.hoshino.cti.Entity.Projectiles.MeteorEntity;
 import com.hoshino.cti.Event.ModEvents.MeteorSpawnEvent;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.DimensionConstants;
 import com.xiaoyue.tinkers_ingenuity.content.basic.entity.projectile.ShurikenEntity;
 import net.minecraft.core.BlockPos;
@@ -23,11 +24,14 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import thelm.packagedauto.block.entity.CrafterBlockEntity;
 import thelm.packagedauto.block.entity.PackagerBlockEntity;
 import thelm.packagedauto.block.entity.PackagerExtensionBlockEntity;
@@ -104,6 +108,16 @@ public class ServerEvent {
 //                                SlimeCanItem.tick(new SlotContext("slime_can", player, i, stackHandler.hasCosmetic(), stackHandler.isVisible()), stack);
 //                        }
 //                    }));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onItemUse(LivingEntityUseItemEvent.Start event){
+        var item = event.getItem();
+        if (item.getItem() instanceof IModifiable){
+            var tool = ToolStack.from(item);
+            if (tool.getModifierLevel(CtiModifiers.FAR_SIGHTS.getId())>0)
+                event.setCanceled(true);
         }
     }
 

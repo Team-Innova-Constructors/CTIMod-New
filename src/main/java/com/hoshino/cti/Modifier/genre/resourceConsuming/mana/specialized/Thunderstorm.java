@@ -9,6 +9,7 @@ import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
 import com.hoshino.cti.integration.botania.entity.ThunderBurstEntity;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.SpecializedBurstModifier;
 import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.ParticleContext;
 import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
+import slimeknights.tconstruct.library.modifiers.modules.build.ModifierTraitModule;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
@@ -36,12 +38,13 @@ public class Thunderstorm extends SpecializedBurstModifier implements BurstHitMo
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
         hookBuilder.addHook(this, CtiBotModifierHooks.MODIFY_BURST,CtiBotModifierHooks.BURST_HIT);
+        hookBuilder.addModule(new ModifierTraitModule(CtiModifiers.MANA_BURST_HANDLER.getId(),1,true));
     }
 
     @Override
     public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
         burstExtras.addEntityPerConsumption(50);
-        burstExtras.addBaseDamage(16);
+        burstExtras.addBaseDamage(132);
         burst.setMana(burst.getMana()+200);
         burst.setColor(0xABFFE8);
     }
@@ -53,7 +56,7 @@ public class Thunderstorm extends SpecializedBurstModifier implements BurstHitMo
         if (burstExtra.cti$getGeneration()>0) return;
         if (burst.getMana()<burstExtra.cti$getPerConsumption()*2) return;
         if (owner.level instanceof ServerLevel serverLevel) ParticleContext
-                .buildParticle(new CylindricalParticleOptions(CoreParticles.SHOCKWAVE.get(),
+                .buildParticle(new CylindricalParticleOptions(CoreParticles.BLAST_WAVE.get(),
                         5,5,0,0xAEFFFAFF,2))
                 .setVelocity(0,0,0).setPos(target.getBoundingBox().getCenter()).build().sendToClient(serverLevel);
         burst.entity().playSound(SoundEvents.FIREWORK_ROCKET_TWINKLE);
@@ -80,7 +83,7 @@ public class Thunderstorm extends SpecializedBurstModifier implements BurstHitMo
             extras.cti$setGeneration(1);
             extras.cti$setPerConsumption(50);
             extras.cti$setPerBlockConsumption(0);
-            extras.cti$setDamageModifier(0.25f);
+            extras.cti$setDamageModifier(0.25f*burstExtra.cti$getDamageModifier());
             owner.level.addFreshEntity(entity);
             burst.setMana(burst.getMana()-burstExtra.cti$getPerConsumption());
             i++;

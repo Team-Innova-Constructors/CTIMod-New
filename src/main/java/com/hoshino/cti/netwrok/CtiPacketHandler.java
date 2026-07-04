@@ -27,7 +27,6 @@ public class CtiPacketHandler {
         INSTANCE.messageBuilder(PRailgunItemS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT).decoder(PRailgunItemS2C::new).encoder(PRailgunItemS2C::toByte).consumerMainThread(PRailgunItemS2C::handle).add();
         INSTANCE.messageBuilder(PRailgunC2S.class, id++, NetworkDirection.PLAY_TO_SERVER).decoder(PRailgunC2S::new).encoder(PRailgunC2S::toByte).consumerMainThread(PRailgunC2S::handle).add();
         INSTANCE.messageBuilder(PAttackSelfC2S.class, id++, NetworkDirection.PLAY_TO_SERVER).decoder(PAttackSelfC2S::new).encoder(PAttackSelfC2S::toByte).consumerMainThread(PAttackSelfC2S::handle).add();
-        INSTANCE.messageBuilder(PStarFuryC2S.class, id++, NetworkDirection.PLAY_TO_SERVER).decoder(PStarFuryC2S::new).encoder(PStarFuryC2S::toByte).consumerMainThread(PStarFuryC2S::handle).add();
         INSTANCE.messageBuilder(PLeftClickEmptyC2S.class, id++, NetworkDirection.PLAY_TO_SERVER).decoder(PLeftClickEmptyC2S::new).encoder(PLeftClickEmptyC2S::toByte).consumerMainThread(PLeftClickEmptyC2S::handle).add();
 //        INSTANCE.messageBuilder(PStackedOnMeC2S.class, id++, NetworkDirection.PLAY_TO_SERVER).decoder(PStackedOnMeC2S::new).encoder(PStackedOnMeC2S::toByte).consumerMainThread(PStackedOnMeC2S::handle).add();
 //        INSTANCE.messageBuilder(PStackedOnOtherC2S.class, id++, NetworkDirection.PLAY_TO_SERVER).decoder(PStackedOnOtherC2S::new).encoder(PStackedOnOtherC2S::toByte).consumerMainThread(PStackedOnOtherC2S::handle).add();
@@ -76,6 +75,21 @@ public class CtiPacketHandler {
                 .decoder(PParticleRingS2C::new)
                 .encoder(PParticleRingS2C::toByte)
                 .consumerMainThread(PParticleRingS2C::handle)
+                .add();
+        INSTANCE.messageBuilder(PAddTickerToPlayerPacketC2S.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PAddTickerToPlayerPacketC2S::new)
+                .encoder(PAddTickerToPlayerPacketC2S::toByte)
+                .consumerMainThread(PAddTickerToPlayerPacketC2S::handle)
+                .add();
+        INSTANCE.messageBuilder(PClientAttackS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PClientAttackS2C::new)
+                .encoder(PClientAttackS2C::toByte)
+                .consumerMainThread(PClientAttackS2C::handle)
+                .add();
+        INSTANCE.messageBuilder(PClientSwingHandS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PClientSwingHandS2C::new)
+                .encoder(PClientSwingHandS2C::toByte)
+                .consumerMainThread(PClientSwingHandS2C::handle)
                 .add();
     }
 

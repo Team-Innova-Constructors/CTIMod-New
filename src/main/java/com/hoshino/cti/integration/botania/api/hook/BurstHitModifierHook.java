@@ -30,6 +30,8 @@ import vazkii.botania.common.item.lens.LensItem;
 import java.util.Collection;
 import java.util.List;
 
+import static com.hoshino.cti.Modifier.genre.resourceConsuming.mana.FartherSights.KEY_TRIGGER_TOOL;
+
 public interface BurstHitModifierHook {
     default void burstHitBlock(@Nullable IToolStackView tool,ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, Level level, BlockPos blockPos, Direction direction, boolean isManaBlock, boolean shouldKill, ManaBurst burst,IManaBurstExtra burstExtra){}
 
@@ -79,9 +81,9 @@ public interface BurstHitModifierHook {
                 float finalDamage = damage;
                 modifierList.forEach(entry -> entry.getHook(CtiBotModifierHooks.BURST_HIT).beforeBurstHitEntity(actualTool,entry,modifierList,living,entity,burst,(IManaBurstExtra) burst, finalDamage));
                 float legacyHealth = entity instanceof LivingEntity target?target.getHealth():-1;
-                if (burstEntity.getTags().contains(BotConstants.KEY_BURST_TRIGGER_TOOL)&&actualTool!=null){
+                if (burstEntity.getTags().contains(KEY_TRIGGER_TOOL)&&actualTool!=null){
                     if (AttackUtil.attackEntity(actualTool,living, InteractionHand.MAIN_HAND,entity,()->1,false, EquipmentSlot.MAINHAND,
-                            true, tool.getStats().get(ToolStats.ATTACK_DAMAGE)+1+finalDamage,burstExtra.cti$getDamageModifier())){
+                            true, finalDamage,burstExtra.cti$getDamageModifier())){
                         didHitEntity = true;
                     }
                 } else {

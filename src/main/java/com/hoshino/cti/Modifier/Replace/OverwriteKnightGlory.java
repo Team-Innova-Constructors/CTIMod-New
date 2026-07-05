@@ -33,7 +33,7 @@ public class OverwriteKnightGlory extends BattleModifier {
     public void arrowhurt(ModifierNBT modifiers, NamespacedNBT persistentData, int level, Projectile projectile, EntityHitResult hit, AbstractArrow arrow, LivingEntity attacker, LivingEntity target) {
         if (attacker instanceof Player player && target != null) {
             player.setAbsorptionAmount(Mth.clamp(player.getAbsorptionAmount() + player.getMaxHealth() * 0.1F, 0, player.getMaxHealth() * (0.3F * level)));
-            arrow.setBaseDamage(arrow.getBaseDamage() + player.getAbsorptionAmount() * 0.5F * level);
+            arrow.setBaseDamage(arrow.getBaseDamage() + Math.min(attacker.getAbsorptionAmount() * 0.5F * level, attacker.getMaxHealth() * 0.15F * level));
         }
     }
 }

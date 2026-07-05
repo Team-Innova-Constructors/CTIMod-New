@@ -18,9 +18,8 @@ import com.hoshino.cti.Modifier.genre.insatiable.*;
 import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.ShadowSlash;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.AlfBurst;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.DestructionMagic;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.TerraBurst;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.*;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.ExcaliburBurst;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.Thunderstorm;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.*;
@@ -38,7 +37,6 @@ import com.hoshino.cti.Modifier.test;
 import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.BurstMiningModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.LCManaBurstModifier;
-import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.FartherSights;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
@@ -248,6 +246,7 @@ public class CtiModifiers {
     public static final StaticModifier<WitherInhibitor> WITHER_INHIBITOR_STATIC_MODIFIER = MODIFIERS.register("witherinhibitor", WitherInhibitor::new);
     public static final StaticModifier<LCManaBurstModifier> MANA_BURST_HANDLER = MODIFIERS.register("mana_burst_handler", LCManaBurstModifier::new);
     public static final StaticModifier<EchoForm> ECHO_FORM = MODIFIERS.register("echo_form", EchoForm::new);
+    public static final StaticModifier<Coordinator> COORDINATOR = MODIFIERS.register("coordinator", Coordinator::new);
 
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
     public static final StaticModifier<Fragment> FRAGMENT_STATIC_MODIFIER = MODIFIERS.register("fragment", Fragment::new);
@@ -280,4 +279,7 @@ public class CtiModifiers {
     public static final StaticModifier<TerraBurst> TERRA_BURST = MODIFIERS.register("terra_burst", TerraBurst::new);
     public static final StaticModifier<DestructionMagic> DESTRUCTION_MAGIC = MODIFIERS.register("destruction_magic", DestructionMagic::new);
     public static final StaticModifier<Thunderstorm> THUNDERSTORM = MODIFIERS.register("thunderstorm", Thunderstorm::new);
+    public static final StaticModifier<ExcaliburBurst> CHASING_BURST = MODIFIERS.register("chasing_burst", ExcaliburBurst::new);
+    public static final StaticModifier<BurstAccelerate> BURST_ACCELERATE = MODIFIERS.register("burst_accelerate", BurstAccelerate::new);
+    public static final StaticModifier<MoreCapacity> MANA_CAPACITY = MODIFIERS.register("mana_capacity", MoreCapacity::new);
 }

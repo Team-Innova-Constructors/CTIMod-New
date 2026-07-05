@@ -13,7 +13,7 @@
         "options": {
           "type": "etshtinker:electric"
         },
-        "probability": 0.001
+        "probability": 0.0002
       }
     },
     "creature_spawn_probability": 0,

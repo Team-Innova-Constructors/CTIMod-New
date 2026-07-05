@@ -15,6 +15,6 @@ public class BurstAccelerate extends BasicBurstModifier {
     @Override
     public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
         var entity = burst.entity();
-        entity.setDeltaMovement(entity.getDeltaMovement().scale(modifier.getLevel()*0.5));
+        entity.setDeltaMovement(entity.getDeltaMovement().scale(Math.pow(1.2,modifier.getLevel())));
     }
 }

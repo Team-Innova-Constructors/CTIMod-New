@@ -13,7 +13,7 @@
         "options": {
           "type": "minecraft:crimson_spore"
         },
-        "probability": 0.0007
+        "probability": 0.0002
       }
     },
     "creature_spawn_probability": 0,

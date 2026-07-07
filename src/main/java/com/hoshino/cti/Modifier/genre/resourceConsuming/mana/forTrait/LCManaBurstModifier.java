@@ -1,5 +1,7 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait;
 
+import com.c2h6s.etshtinker.Entities.PlasmaSlashEntity;
+import com.c2h6s.etshtinker.hooks.AfterPlasmaSlashHitModifierHook;
 import com.hollingsworth.arsnouveau.api.util.ManaUtil;
 import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry;
 import com.hollingsworth.arsnouveau.common.network.Networking;
@@ -19,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -45,7 +48,7 @@ import java.util.List;
 import static com.hoshino.cti.Modifier.genre.resourceConsuming.mana.ManaResonance.KEY_MANA_RESONANCE;
 
 //用ModifierTraitModule附加这个
-public class LCManaBurstModifier extends Modifier implements LeftClickModifierHook, MeleeHitModifierHook, TooltipModifierHook {
+public class LCManaBurstModifier extends Modifier implements LeftClickModifierHook, MeleeHitModifierHook, TooltipModifierHook, AfterPlasmaSlashHitModifierHook {
     @Override
     public boolean shouldDisplay(boolean advanced) {
         return false;
@@ -141,6 +144,16 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
         burstExtra.cti$setPerBlockConsumption((int) (burstExtra.cti$getPerConsumption()/efficiency));
     }
 
+    @Override
+    public void afterPlasmaSlashHit(ToolStack tool, LivingEntity target, PlasmaSlashEntity slash, boolean isCritical, float slashDamage) {
+        if (tool.getModifierLevel(CtiModifiers.FAR_SIGHTS.get())<=0&&slash.getOwner() instanceof Player player&&slash.hitList.isEmpty()){
+            var burst = getBurst(player, tool);
+            if (ManaItemHandler.instance().requestManaExactForTool(tool.createStack(),player,burst.getMana(),true)
+                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player, (int) Math.ceil(burst.getMana()*0.5f)))){
+                launchBurst(tool,player,burst);
+            }
+        }
+    }
 
     @Override
     public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player, List<Component> tooltip, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {

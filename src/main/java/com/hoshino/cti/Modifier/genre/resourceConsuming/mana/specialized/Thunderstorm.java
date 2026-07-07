@@ -63,9 +63,11 @@ public class Thunderstorm extends SpecializedBurstModifier implements BurstHitMo
         BurstProperties properties = new BurstProperties(burst.getStartingMana(),burst.getMinManaLoss(),
                 burst.getManaLossPerTick(),burst.getBurstGravity(),1,0xFFFFFF);
         int i = 0;
+        var manaConsumption = Math.max(burstExtra.cti$getPerConsumption(),50);
         do {
+
             ThunderBurstEntity entity = new ThunderBurstEntity(player);
-            entity.setMana(burstExtra.cti$getPerConsumption());
+            entity.setMana(manaConsumption);
             entity.setStartingMana(entity.getMana());
             entity.setGravity(properties.gravity);
             entity.setManaLossPerTick(properties.manaLossPerTick);
@@ -85,9 +87,9 @@ public class Thunderstorm extends SpecializedBurstModifier implements BurstHitMo
             extras.cti$setPerBlockConsumption(0);
             extras.cti$setDamageModifier(0.25f*burstExtra.cti$getDamageModifier());
             owner.level.addFreshEntity(entity);
-            burst.setMana(burst.getMana()-burstExtra.cti$getPerConsumption());
+            burst.setMana(burst.getMana()-manaConsumption);
             i++;
-        } while (burst.getMana()>=burstExtra.cti$getPerConsumption()&&i<8);
+        } while (burst.getMana()>=manaConsumption&&i<8);
     }
 
     @Override

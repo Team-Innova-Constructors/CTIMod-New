@@ -1,6 +1,7 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base;
 
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
+import com.hoshino.cti.api.interfaces.IModifierWithSpecialDesc;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -13,7 +14,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecializedBurstModifier extends EtSTBaseModifier implements ValidateModifierHook {
+public class SpecializedBurstModifier extends EtSTBaseModifier implements ValidateModifierHook, IModifierWithSpecialDesc {
     @Override
     public int getPriority() {
         return -100;
@@ -56,5 +57,10 @@ public class SpecializedBurstModifier extends EtSTBaseModifier implements Valida
         var list =new ArrayList<>(super.getDescriptionList());
         list.add(Component.translatable("info.cti.specialized_burst_modifier"));
         return list;
+    }
+
+    @Override
+    public List<String> getDesc() {
+        return List.of("info.cti.manaburst");
     }
 }

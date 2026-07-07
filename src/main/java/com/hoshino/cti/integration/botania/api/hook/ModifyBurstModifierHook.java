@@ -3,6 +3,8 @@ package com.hoshino.cti.integration.botania.api.hook;
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -18,11 +20,11 @@ import java.util.List;
 
 public interface ModifyBurstModifierHook {
     default void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens){}
-
-    static void handleBurstCreation(ManaBurst burst, ItemStack stack,IToolStackView tool){
+    default void burstLaunch(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, Player player, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens){}
+    static void handleBurstCreation(ManaBurst burst, ItemStack stack, IToolStackView tool, Player player){
         ToolStack toolStack = ToolStack.from(stack);
         var burstExtra = (IManaBurstExtra) burst;
-        burstExtra.addBaseDamage(toolStack.getStats().get(ToolStats.ATTACK_DAMAGE)*0.5f);
+        burstExtra.addBaseDamage((float) player.getAttributeValue(Attributes.ATTACK_DAMAGE));
         toolStack.getModifierList().forEach(entry -> entry.getHook(CtiBotModifierHooks.MODIFY_BURST).modifyBurst(tool,entry,tool.getModifierList(),burst.entity().getOwner(),burst,burstExtra,toolStack));
         BurstProperties burstProperties = new BurstProperties(burst.getMana(),burst.getMinManaLoss(),burst.getManaLossPerTick(),burst.getBurstGravity(),1,burst.getColor());
         List<ItemStack> list = LensProviderModifierHook.gatherLens(tool,burst);
@@ -41,6 +43,10 @@ public interface ModifyBurstModifierHook {
         @Override
         public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
             this.modules.forEach(hook->hook.modifyBurst(tool,modifier,modifierList,owner,burst,burstExtras,dummyLens));
+        }
+        @Override
+        public void burstLaunch(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, Player player, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
+            this.modules.forEach(hook->hook.burstLaunch(tool,modifier,modifierList,player,burst,burstExtras,dummyLens));
         }
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
+import slimeknights.tconstruct.library.modifiers.hook.armor.ModifyDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.AttributesModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.ToolDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeDamageModifierHook;
@@ -29,6 +31,7 @@ import slimeknights.tconstruct.library.modifiers.hook.display.DurabilityDisplayM
 import slimeknights.tconstruct.library.modifiers.hook.mining.BreakSpeedModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.ranged.ProjectileLaunchModifierHook;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
+import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.NamespacedNBT;
@@ -40,11 +43,11 @@ import java.util.function.BiConsumer;
 
 import static com.hoshino.cti.Modifier.capability.PressurizableToolCap.AIR_KEY;
 
-public class PressureLoaded extends PressurizableModifier implements ToolDamageModifierHook, BreakSpeedModifierHook, MeleeDamageModifierHook, ProjectileLaunchModifierHook, AttributesModifierHook, DurabilityDisplayModifierHook {
+public class PressureLoaded extends PressurizableModifier implements ToolDamageModifierHook, BreakSpeedModifierHook, MeleeDamageModifierHook, ProjectileLaunchModifierHook, AttributesModifierHook, DurabilityDisplayModifierHook, ModifyDamageModifierHook {
     @Override
     protected void registerHooks(ModuleHookMap.Builder builder) {
         super.registerHooks(builder);
-        builder.addHook(this, ModifierHooks.TOOL_DAMAGE, ModifierHooks.BREAK_SPEED, ModifierHooks.MELEE_DAMAGE, ModifierHooks.PROJECTILE_LAUNCH, ModifierHooks.ATTRIBUTES, ModifierHooks.DURABILITY_DISPLAY);
+        builder.addHook(this, ModifierHooks.TOOL_DAMAGE, ModifierHooks.BREAK_SPEED, ModifierHooks.MELEE_DAMAGE, ModifierHooks.PROJECTILE_LAUNCH, ModifierHooks.ATTRIBUTES, ModifierHooks.DURABILITY_DISPLAY,ModifierHooks.MODIFY_HURT);
     }
 
     @Override
@@ -87,8 +90,8 @@ public class PressureLoaded extends PressurizableModifier implements ToolDamageM
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         float multiplier = 1 + getBonus(tool, modifier);
-        if (PressurizableToolCap.getAir(tool) > 100) {
-            PressurizableToolCap.addAir(tool, -(int) (100 * multiplier));
+        if (PressurizableToolCap.getAir(tool) > 50) {
+            PressurizableToolCap.addAir(tool, -(int) (50 * multiplier));
             return damage * multiplier;
         }
         return damage;
@@ -103,7 +106,7 @@ public class PressureLoaded extends PressurizableModifier implements ToolDamageM
     @Override
     public void onProjectileLaunch(IToolStackView tool, ModifierEntry modifier, LivingEntity livingEntity, Projectile projectile, @Nullable AbstractArrow abstractArrow, NamespacedNBT namespacedNBT, boolean b) {
         float multiplier = 1 + getBonus(tool, modifier);
-        if (PressurizableToolCap.getAir(tool) > 100 && projectile instanceof AbstractArrow arrow) {
+        if (PressurizableToolCap.getAir(tool) > 250 && projectile instanceof AbstractArrow arrow) {
             PressurizableToolCap.addAir(tool, -(int) (100 * multiplier));
             arrow.setBaseDamage(arrow.getBaseDamage() * multiplier);
         }
@@ -132,5 +135,16 @@ public class PressureLoaded extends PressurizableModifier implements ToolDamageM
     @Override
     public int getDurabilityRGB(IToolStackView iToolStackView, ModifierEntry modifierEntry) {
         return 0xffffff;
+    }
+
+    @Override
+    public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
+        float multiplier = 1 + getBonus(tool, modifier);
+        var pressure =Math.min( PressurizableToolCap.getPressure(tool),20);
+        if (PressurizableToolCap.getAir(tool) > 20) {
+            PressurizableToolCap.addAir(tool, -(int) (20 * multiplier));
+            amount-=amount*pressure/50f;
+        }
+        return amount;
     }
 }

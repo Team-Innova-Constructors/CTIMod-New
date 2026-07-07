@@ -1,15 +1,23 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait;
 
+import com.hollingsworth.arsnouveau.api.util.ManaUtil;
+import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry;
+import com.hollingsworth.arsnouveau.common.network.Networking;
+import com.hollingsworth.arsnouveau.common.network.NotEnoughManaPacket;
+import com.hollingsworth.arsnouveau.common.util.PortUtil;
 import com.hoshino.cti.api.interfaces.IToolProvider;
+import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
 import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.register.CtiToolStats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -27,11 +35,14 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import vazkii.botania.api.internal.ManaBurst;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.entity.ManaBurstEntity;
 import vazkii.botania.common.handler.BotaniaSounds;
 
 import java.util.List;
+
+import static com.hoshino.cti.Modifier.genre.resourceConsuming.mana.ManaResonance.KEY_MANA_RESONANCE;
 
 //用ModifierTraitModule附加这个
 public class LCManaBurstModifier extends Modifier implements LeftClickModifierHook, MeleeHitModifierHook, TooltipModifierHook {
@@ -50,9 +61,9 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     public void onLeftClickEmpty(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot) {
         if (player.getAttackStrengthScale(0)>0.9&&!level.isClientSide){
             var burst = getBurst(player, (ToolStack) tool);
-            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)){
-                player.level.addFreshEntity(burst);
-                burst.playSound(BotaniaSounds.terraBlade);
+            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
+                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.5f)))){
+                launchBurst(tool,player,burst);
             }
         }
     }
@@ -61,9 +72,9 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     public void onLeftClickBlock(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, BlockState state, BlockPos pos) {
         if (player.getAttackStrengthScale(0)>0.9&&!level.isClientSide){
             var burst = getBurst(player, (ToolStack) tool);
-            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)){
-                player.level.addFreshEntity(burst);
-                burst.playSound(BotaniaSounds.terraBlade);
+            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
+                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.5f)))){
+                launchBurst(tool,player,burst);
             }
         }
     }
@@ -72,18 +83,41 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     public float beforeMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage, float baseKnockback, float knockback) {
         if (tool.getModifierLevel(CtiModifiers.FAR_SIGHTS.get())<=0&&!context.isExtraAttack()&&context.isFullyCharged()&&context.getAttacker() instanceof Player player){
             var burst = getBurst(player, (ToolStack) tool);
-            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)){
-                player.level.addFreshEntity(burst);
-                burst.playSound(BotaniaSounds.terraBlade);
+            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
+            ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player, (int) Math.ceil(burst.getMana()*0.5f)))){
+                launchBurst(tool,player,burst);
             }
         }
         return knockback;
     }
 
+    public static boolean isSpellManaEnough(Player player,int cost){
+        var totalCost =cost - ManaUtil.getPlayerDiscounts(player,null);
+        var manaCap = CapabilityRegistry.getMana(player).orElse(null);
+        if (manaCap == null)
+            return false;
+        boolean canCast = totalCost <= manaCap.getCurrentMana() || player.isCreative();
+        if (!player.level.isClientSide) {
+            if (!canCast) {
+                PortUtil.sendMessageNoSpam(player, Component.translatable("ars_nouveau.spell.no_mana"));
+                if (player instanceof ServerPlayer serverPlayer)
+                    Networking.sendToPlayerClient(new NotEnoughManaPacket(totalCost), serverPlayer);
+            }
+            else manaCap.removeMana(totalCost);
+        }
+        return canCast;
+    }
+
+    public static void launchBurst(IToolStackView tool,Player player,ManaBurstEntity burst){
+        tool.getModifierList().forEach(entry -> entry.getHook(CtiBotModifierHooks.MODIFY_BURST).burstLaunch(tool,entry,tool.getModifierList(),player, (ManaBurst) burst,(IManaBurstExtra) burst, (ToolStack) tool));
+        player.level.addFreshEntity(burst);
+        burst.playSound(BotaniaSounds.terraBlade);
+    }
+
     public static ManaBurstEntity getBurst(Player player, ToolStack toolStack){
         ManaBurstEntity burst = new ManaBurstEntity(player);
         burst.setColor(2162464);
-        burst.setMana(50);
+        burst.setMana(25);
         burst.setMinManaLoss(40);
         burst.setManaLossPerTick(2.0F);
         burst.setGravity(0.0F);
@@ -91,9 +125,20 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
         ((IToolProvider)burst).cti$setTool(toolStack);
         ItemStack dummyLens = DummyToolManaLens.getDummyLens(toolStack);
         burst.setSourceLens(dummyLens);
-        ModifyBurstModifierHook.handleBurstCreation(burst,dummyLens,toolStack);
+        ModifyBurstModifierHook.handleBurstCreation(burst,dummyLens,toolStack,player);
+        calculatePowerAndEfficiency(burst,toolStack);
         burst.setStartingMana(burst.getMana());
         return burst;
+    }
+
+    public static void calculatePowerAndEfficiency(ManaBurstEntity burst, ToolStack toolStack){
+        float power = toolStack.getStats().get(CtiToolStats.POWER);
+        float efficiency = toolStack.getStats().get(CtiToolStats.EFFICIENCY);
+        burst.setMana((int) (burst.getMana()*power));
+        var burstExtra = (IManaBurstExtra) burst;
+        burstExtra.addDamageModifier(power);
+        burstExtra.cti$setPerConsumption((int) (burstExtra.cti$getPerConsumption()/efficiency));
+        burstExtra.cti$setPerBlockConsumption((int) (burstExtra.cti$getPerConsumption()/efficiency));
     }
 
 

@@ -806,7 +806,7 @@
 
   "modifier.cti.pressure_loaded": "空气装载",
   "modifier.cti.pressure_loaded.flavor": "空气动力学！",
-  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力。",
+  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力，获得2x压力%的独立伤害减免。",
 
   "modifier.cti.fixed_oracular": "神谕",
   "modifier.cti.fixed_oracular.flavor": "洗涤心灵。",
@@ -1390,7 +1390,7 @@
 
   "modifier.cti.terra_burst": "泰拉射线",
   "modifier.cti.terra_burst.flavor": "我说植魔应该跟进一下1.4.4泰拉之刃的改动",
-  "modifier.cti.terra_burst.description":"挥舞武器，发射泰拉魔力脉冲，每级+20脉冲基础伤害，+50脉冲携带魔力。\n §3·§r魔力脉冲+25%脉冲伤害倍率，+25实体和方块魔力消耗。",
+  "modifier.cti.terra_burst.description":"挥舞武器，发射泰拉魔力脉冲，每级+20脉冲基础伤害，+50脉冲携带魔力。\n §3·§r魔力脉冲+25%脉冲伤害倍率，+25实体和方块魔力消耗。\n §3·§r魔力脉冲发射时，每级治疗2生命值。",
 
   "modifier.cti.destruction_magic": "破坏法术",
   "modifier.cti.destruction_magic.flavor": "镐子发明之前的人们belike:",
@@ -1418,15 +1418,15 @@
 
   "modifier.cti.coordinator": "增幅协调剂",
   "modifier.cti.coordinator.flavor": "润滑油！",
-  "modifier.cti.coordinator.description":"每级每有1级工业/精炼词条，+0.05功率，+5%独立黏液减伤（护甲，最大40%），+500最大黏液覆层。\n[工具属性|功率]资源消耗类词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时增加资源消耗量。",
+  "modifier.cti.coordinator.description":"每级每有1级工业/精炼词条，+0.05功率，+5%黏液减伤（护甲，最大40%），+500最大黏液覆层，+1黏液覆层消耗。",
 
   "modifier.cti.mana_resonance": "法力谐振",
   "modifier.cti.mana_resonance.flavor": "魔法互换",
-  "modifier.cti.mana_resonance.description":"挥舞武器，发射魔力脉冲，每级+25脉冲携带魔力。\n §3·§r魔力不足时，尝试消耗新生魔艺的法力来维持脉冲的发射，每10魔力消耗1法力。",
+  "modifier.cti.mana_resonance.description":"挥舞武器，发射魔力脉冲，每级+25脉冲携带魔力。\n §3·§r魔力不足时，尝试消耗新生魔艺的法力来维持脉冲的发射，每2魔力消耗1法力。",
 
   "modifier.cti.mana_overload": "魔力过载",
   "modifier.cti.mana_overload.flavor": "霸气外露！",
-  "modifier.cti.mana_overload.description":"每级+4贪婪叠加，魔力脉冲发射时触发贪婪的等级叠加效果\n §3·§r近战攻击命中时消耗魔力造成额外斩击，每10贪婪等级增加1魔力消耗和10斩击伤害，该伤害被黏液系增伤增幅。",
+  "modifier.cti.mana_overload.description":"+32最大贪婪，每级+4贪婪叠加，魔力脉冲发射时触发贪婪的等级叠加效果。\n §3·§r近战攻击时消耗魔力释放玩家贪婪等级点伤害的斩击，每10伤害消耗1魔力，伤害被黏液系增伤增幅并相应消耗黏液覆层。",
 
   "modifier.cti.enchanted_sword": "附魔剑",
   "modifier.cti.enchanted_sword.flavor": "注：这是近战武器",
@@ -1508,6 +1508,7 @@
   "info.cti.insatiable": "§3[正面效果|贪婪]§r所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25，武器攻击或者护甲被攻击都会为所有者增加等同于贪婪叠加的贪婪等级。",
   "info.cti.overslime": "§3[匠魂机制|黏液覆层]§r一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充，也可以用加压黏液罐补充。",
   "info.cti.manaburst": "§3[工具机制|魔力脉冲]§r左键挥舞武器时，消耗魔力并发射出魔力脉冲，魔力消耗量等同于脉冲魔力携带量。脉冲的魔力携带量、实体/方块消耗初始值均为25，伤害初始值则为玩家伤害属性值。当魔力脉冲与方块/实体碰撞时会消耗脉冲携带的魔力，魔力归零后脉冲会消失。",
+  "info.cti.stat_power": "§3[工具属性|功率]§r资源消耗类（比如黏液、魔力脉冲）词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时成比例增加资源消耗量。",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
   "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",

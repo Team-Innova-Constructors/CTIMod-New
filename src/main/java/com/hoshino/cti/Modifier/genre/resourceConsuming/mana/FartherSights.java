@@ -1,5 +1,6 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.mana;
 
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.BasicBurstModifier;
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
@@ -24,11 +25,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 
-public class FartherSights extends NoLevelsModifier implements AttributesModifierHook, ModifyBurstModifierHook {
+public class FartherSights extends BasicBurstModifier implements AttributesModifierHook {
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
-        hookBuilder.addHook(this, ModifierHooks.ATTRIBUTES, CtiBotModifierHooks.MODIFY_BURST);
+        hookBuilder.addHook(this, ModifierHooks.ATTRIBUTES);
     }
     public static final UUID FARTHER_SIGHTS_UUID = UUID.fromString("84ce90d7-45e2-a102-75e1-86867f0e7e1e");
     //当魔力脉冲带有这个Tag时，触发工具攻击/挖掘。

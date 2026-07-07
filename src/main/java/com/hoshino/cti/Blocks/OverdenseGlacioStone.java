@@ -41,21 +41,22 @@ public class OverdenseGlacioStone extends Block {
                     plasmaexplosionentity entity = new plasmaexplosionentity(etshtinkerEntity.plasmaexplosionentity.get(), pLevel);
                     entity.particle = etshtinkerParticleType.plasmaexplosionpurple.get();
                     entity.special = "entropic";
-                    entity.scale = 1.5f;
-                    entity.damage = 200;
+                    entity.scale = 2f;
+                    entity.damage = 10000;
                     entity.rayVec3 = new Vec3(0, pRandom.nextInt(12) + 4, 0);
                     entity.setPos(blockpos.getX(), blockpos.getY() - 2, blockpos.getZ());
                     pLevel.addFreshEntity(entity);
-                } else if (rnd == 0) {
-                    plasmaexplosionentity entity = new plasmaexplosionentity(etshtinkerEntity.plasmaexplosionentity.get(), pLevel);
-                    entity.particle = etshtinkerParticleType.plasmaexplosionpurple.get();
-                    entity.special = "entropic";
-                    entity.scale = 0.75f;
-                    entity.damage = 30;
-                    entity.rayVec3 = new Vec3(0, pRandom.nextInt(6) + 2, 0);
-                    entity.setPos(blockpos.getX(), blockpos.getY() - 2, blockpos.getZ());
-                    pLevel.addFreshEntity(entity);
                 }
+//                else if (rnd == 0) {
+//                    plasmaexplosionentity entity = new plasmaexplosionentity(etshtinkerEntity.plasmaexplosionentity.get(), pLevel);
+//                    entity.particle = etshtinkerParticleType.plasmaexplosionpurple.get();
+//                    entity.special = "entropic";
+//                    entity.scale = 0.75f;
+//                    entity.damage = 30;
+//                    entity.rayVec3 = new Vec3(0, pRandom.nextInt(6) + 2, 0);
+//                    entity.setPos(blockpos.getX(), blockpos.getY() - 2, blockpos.getZ());
+//                    pLevel.addFreshEntity(entity);
+//                }
             }
         }
     }

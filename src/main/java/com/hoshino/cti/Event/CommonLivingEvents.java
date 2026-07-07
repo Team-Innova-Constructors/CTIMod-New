@@ -359,7 +359,7 @@ public class CommonLivingEvents {
         var target = event.getEntity();
         var attacker = event.getSource().getEntity();
         if (!event.isCanceled()&&attacker instanceof LivingEntity livingAttacker){
-            List.of(ToolType.MELEE, ToolType.ARMOR).forEach(toolType -> {
+            List.of(ToolType.MELEE, ToolType.ARMOR,ToolType.RANGED).forEach(toolType -> {
                 var insatiable = livingAttacker.getEffect(TinkerModifiers.insatiableEffect.get(toolType));
                 if (insatiable!=null) {
                     var bonus = (insatiable.getAmplifier() * 0.25f) + 0.25f;

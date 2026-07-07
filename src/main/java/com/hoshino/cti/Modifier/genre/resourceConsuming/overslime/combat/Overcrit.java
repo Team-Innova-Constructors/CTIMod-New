@@ -1,8 +1,6 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat;
 
-import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.base.BasicOverslimeModifier;
-import com.hoshino.cti.api.interfaces.IModifierWithSpecialDesc;
 import com.hoshino.cti.register.CtiModifiers;
 import com.xiaoyue.tinkers_ingenuity.content.library.events.TinkerToolCriticalEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -10,6 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 import slimeknights.tconstruct.tools.TinkerModifiers;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class Overcrit extends BasicOverslimeModifier {
@@ -29,8 +29,4 @@ public class Overcrit extends BasicOverslimeModifier {
         return 50*modifier.getLevel();
     }
 
-    @Override
-    public String getDesc() {
-        return "info.cti.overslime";
-    }
 }

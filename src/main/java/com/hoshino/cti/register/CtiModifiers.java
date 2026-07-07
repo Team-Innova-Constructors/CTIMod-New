@@ -19,6 +19,7 @@ import com.hoshino.cti.Modifier.genre.insatiable.forTrait.InsatiableHandler;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.ShadowSlash;
 import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.*;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.EnchantedSwordModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.ExcaliburBurst;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.Thunderstorm;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.*;
@@ -282,4 +283,7 @@ public class CtiModifiers {
     public static final StaticModifier<ExcaliburBurst> CHASING_BURST = MODIFIERS.register("chasing_burst", ExcaliburBurst::new);
     public static final StaticModifier<BurstAccelerate> BURST_ACCELERATE = MODIFIERS.register("burst_accelerate", BurstAccelerate::new);
     public static final StaticModifier<MoreCapacity> MANA_CAPACITY = MODIFIERS.register("mana_capacity", MoreCapacity::new);
+    public static final StaticModifier<ManaResonance> MANA_RESONANCE = MODIFIERS.register("mana_resonance", ManaResonance::new);
+    public static final StaticModifier<ManaOverload> MANA_OVERLOAD = MODIFIERS.register("mana_overload", ManaOverload::new);
+    public static final StaticModifier<EnchantedSwordModifier> ENCHANTED_SWORD = MODIFIERS.register("enchanted_sword", EnchantedSwordModifier::new);
 }

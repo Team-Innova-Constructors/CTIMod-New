@@ -5,9 +5,6 @@ import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.forTrait.Overs
 import com.hoshino.cti.api.interfaces.IModifierWithSpecialDesc;
 import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.register.CtiModifiers;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import slimeknights.tconstruct.library.json.LevelingValue;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.modules.build.ModifierTraitModule;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
@@ -15,7 +12,6 @@ import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 import slimeknights.tconstruct.tools.modifiers.slotless.OverslimeModifier;
 
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class BasicOverslimeModifier extends EtSTBaseModifier implements IModifierWithSpecialDesc {
@@ -58,7 +54,7 @@ public abstract class BasicOverslimeModifier extends EtSTBaseModifier implements
     }
 
     @Override
-    public String getDesc() {
-        return "info.cti.overslime";
+    public List<String> getDesc() {
+        return List.of("info.cti.overslime");
     }
 }

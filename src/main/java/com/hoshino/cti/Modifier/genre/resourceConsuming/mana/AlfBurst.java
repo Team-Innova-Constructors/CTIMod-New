@@ -1,5 +1,6 @@
 package com.hoshino.cti.Modifier.genre.resourceConsuming.mana;
 
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.BasicBurstModifier;
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
@@ -16,7 +17,7 @@ import vazkii.botania.api.internal.ManaBurst;
 
 import java.util.List;
 
-public class AlfBurst extends NoLevelsModifier implements ModifyBurstModifierHook {
+public class AlfBurst extends BasicBurstModifier{
     @Override
     public int getPriority() {
         return 80;
@@ -24,7 +25,6 @@ public class AlfBurst extends NoLevelsModifier implements ModifyBurstModifierHoo
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
-        hookBuilder.addHook(this, CtiBotModifierHooks.MODIFY_BURST);
         hookBuilder.addModule(new ModifierTraitModule(CtiModifiers.MANA_BURST_HANDLER.getId(),1,true));
     }
 
@@ -34,7 +34,7 @@ public class AlfBurst extends NoLevelsModifier implements ModifyBurstModifierHoo
         burstExtras.addDamageModifier(0.4f);
         burstExtras.addEntityPerConsumption(-50);
         burstExtras.addBlockPerConsumption(-50);
-        burst.setMana(burst.getMana()+50*modifier.getLevel());
+        burst.setMana(burst.getMana()+100*modifier.getLevel());
         burst.setManaLossPerTick(burst.getManaLossPerTick()/2);
         burst.setColor(0xF79100);
     }

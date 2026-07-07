@@ -36,6 +36,6 @@ public class TerraBurst extends BasicBurstModifier {
 
     @Override
     public void burstLaunch(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, Player player, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
-        player.heal(2);
+        player.heal(2*modifier.getLevel());
     }
 }

@@ -22,6 +22,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import vazkii.botania.api.internal.ManaBurst;
 import vazkii.botania.common.entity.ManaBurstEntity;
+import vazkii.botania.common.entity.PixieEntity;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class ExcaliburBurst extends SpecializedBurstModifier implements ModifyBu
         if (pTarget==entity.getOwner()) return false;
         if (((IManaBurstExtra)entity).cti$getHitEntityIdList().contains(pTarget.getId())) return false;
         if (pTarget instanceof ItemEntity ||pTarget instanceof ExperienceOrb) return false;
-        if (pTarget instanceof Projectile) return false;
+        if (pTarget instanceof Projectile||pTarget instanceof PixieEntity) return false;
         return !(pTarget instanceof Player);
     }
 

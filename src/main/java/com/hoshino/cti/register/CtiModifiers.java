@@ -286,4 +286,5 @@ public class CtiModifiers {
     public static final StaticModifier<ManaResonance> MANA_RESONANCE = MODIFIERS.register("mana_resonance", ManaResonance::new);
     public static final StaticModifier<ManaOverload> MANA_OVERLOAD = MODIFIERS.register("mana_overload", ManaOverload::new);
     public static final StaticModifier<EnchantedSwordModifier> ENCHANTED_SWORD = MODIFIERS.register("enchanted_sword", EnchantedSwordModifier::new);
+    public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
 }

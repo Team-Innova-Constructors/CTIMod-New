@@ -1432,6 +1432,10 @@
   "modifier.cti.enchanted_sword.flavor": "注：这是近战武器",
   "modifier.cti.enchanted_sword.description":"挥舞武器，发射强力的蓝色脉冲，+100脉冲基础伤害，每级+25%脉冲伤害倍率。\n §3·§r每级都会使脉冲携带魔力和初速度叠乘1.4倍。",
 
+  "modifier.cti.burst_bypass_cooldown": "魔力追击",
+  "modifier.cti.burst_bypass_cooldown.flavor": "这下不用担心攻速了",
+  "modifier.cti.burst_bypass_cooldown.description":"魔力脉冲命中时取消敌人无敌帧。",
+
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",
   "dimension.ad_astra.jupiter": "木星",
@@ -1459,6 +1463,9 @@
 
   "item.cti.meteor_shower": "流星雨",
   "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
+
+  "item.cti.elemental_summon": "元素唤起",
+  "cti.ritual_desc.elemental_summon":"随机召唤4~8只烈焰人/狂风人/暴雪人/岩石人。它们会生成在以祭坛为中心正上方的5*5*5范围内。",
 
   "trait.l2hostility.purify": "净化",
   "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命，(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",

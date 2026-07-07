@@ -2,6 +2,7 @@ package com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait;
 
 import com.c2h6s.etshtinker.Entities.PlasmaSlashEntity;
 import com.c2h6s.etshtinker.hooks.AfterPlasmaSlashHitModifierHook;
+import com.c2h6s.etshtinker.init.etshtinkerHook;
 import com.hollingsworth.arsnouveau.api.util.ManaUtil;
 import com.hollingsworth.arsnouveau.common.capability.CapabilityRegistry;
 import com.hollingsworth.arsnouveau.common.network.Networking;
@@ -57,7 +58,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
-        hookBuilder.addHook(this, CtiModifierHook.LEFT_CLICK, ModifierHooks.MELEE_HIT,ModifierHooks.TOOLTIP);
+        hookBuilder.addHook(this, CtiModifierHook.LEFT_CLICK, ModifierHooks.MELEE_HIT,ModifierHooks.TOOLTIP, etshtinkerHook.AFTER_SLASH_HIT);
     }
 
     @Override

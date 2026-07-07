@@ -19,6 +19,7 @@ import com.hoshino.cti.Items.ingots.uriel_ingot;
 import com.hoshino.cti.Items.pncMinigunAmmo.ElectroniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.ProtoniumAmmo;
 import com.hoshino.cti.Items.pncMinigunAmmo.UltraDenseAmmo;
+import com.hoshino.cti.integration.ArsNouveau.ElementalSummonRitual;
 import com.hoshino.cti.integration.ArsNouveau.MeteorShowerRitual;
 import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
 import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
@@ -129,6 +130,11 @@ public class CtiItem {
     public static final RegistryObject<RitualTablet> meteor_shower_tablet = ITEMS.register("meteor_shower_tablet", () -> {
         RitualTablet tablet = new RitualTablet(new Item.Properties().tab(CtiTab.MIXC));
         tablet.ritual = new MeteorShowerRitual();
+        return tablet;
+    });
+    public static final RegistryObject<RitualTablet> ritual_elemental_summon = ITEMS.register("ritual_elemental_summon", () -> {
+        RitualTablet tablet = new RitualTablet(new Item.Properties().tab(CtiTab.MIXC));
+        tablet.ritual = new ElementalSummonRitual();
         return tablet;
     });
 

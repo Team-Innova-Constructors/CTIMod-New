@@ -88,7 +88,7 @@ public interface BurstHitModifierHook {
                     }
                 } else {
                     var source = new IndirectEntityDamageSource("burst_damage",burstEntity,owner);
-                    if (entity.hurt(source,finalDamage))
+                    if (entity.hurt(source,finalDamage*burstExtra.cti$getDamageModifier()))
                         didHitEntity = true;
                 }
                 if (entity instanceof LivingEntity target) {

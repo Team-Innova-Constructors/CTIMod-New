@@ -17,6 +17,7 @@ import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -28,12 +29,14 @@ import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,6 +45,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityMountEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -423,5 +428,20 @@ public class CommonLivingEvents {
                 }
             }
         }
+    }
+    @SubscribeEvent
+    public static void onEntityMount(EntityMountEvent event){
+        if (event.getEntityMounting() instanceof LivingEntity living&&!(living instanceof Player)){
+            living.getCapability(MobTraitCap.CAPABILITY).ifPresent(cap->{
+                if (cap.lv>49) event.setCanceled(true);
+            });
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void cancelEnderBowIfSeating(ProjectileImpactEvent event){
+        Projectile arrow = event.getProjectile();
+        Entity owner = arrow.getOwner();
+        if (owner instanceof Player player&&player.isPassenger())
+            arrow.getPersistentData().remove("twilightforest:ender");
     }
 }

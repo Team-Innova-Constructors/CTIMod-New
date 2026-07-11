@@ -1,5 +1,6 @@
 package com.hoshino.cti.Event;
 
+import cofh.core.init.CoreMobEffects;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.github.alexthe666.iceandfire.entity.EntityDragonBase;
@@ -134,7 +135,9 @@ public class CommonLivingEvents {
     }
 
     @SubscribeEvent
-    public static void onPierceHurt(LivingHurtEvent event) {
+    public static void genericLivingHurt(LivingHurtEvent event) {
+        var source = event.getSource();
+        var attacker = source.getEntity();
         if (event.getEntity() instanceof Player player) {
             MobEffectInstance instance = player.getEffect(CtiEffects.stress.get());
             if (instance != null && instance.getDuration() > 0) {
@@ -142,9 +145,13 @@ public class CommonLivingEvents {
                 float red = Math.max(0.9f, 1 - 0.04f * level);
                 event.setAmount(event.getAmount() * red);
             }
+            if (player.hasEffect(CoreMobEffects.MAGIC_RESISTANCE.get())&&source.isMagic()&&source.isBypassMagic())
+                event.setAmount(event.getAmount()*0.25f);
+            if (player.hasEffect(CoreMobEffects.EXPLOSION_RESISTANCE.get())&&source.isExplosion())
+                event.setAmount(event.getAmount()*0.25f);
         }
         if (event.getEntity() instanceof Warden warden && event.getSource().getMsgId().equals("sonic_boom")) {
-            event.setAmount(warden.getMaxHealth() / 4);
+            event.setAmount(warden.getMaxHealth() * 0.35f);
         }
     }
 

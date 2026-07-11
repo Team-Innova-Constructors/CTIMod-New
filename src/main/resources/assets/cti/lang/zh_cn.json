@@ -1080,7 +1080,7 @@
 
   "modifier.cti.fixed_celestial": "烈风",
   "modifier.cti.fixed_celestial.flavor": "风起！",
-  "modifier.cti.fixed_celestial.description":"穿戴时增加飞行速度",
+  "modifier.cti.fixed_celestial.description":"增加疾跑状态下的飞行速度",
 
   "modifier.cti.territoral_sky": "领空",
   "modifier.cti.territoral_sky.flavor": "天空使者",

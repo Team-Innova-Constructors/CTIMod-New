@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
@@ -48,7 +49,7 @@ public class ToolEvents {
     @SubscribeEvent
     public static void onLeftClick(PlayerInteractEvent.LeftClickEmpty event){
         Player player = event.getEntity();
-        if (player!=null&&player.level.isClientSide) {
+        if (player!=null&&player.level.isClientSide&&!(player instanceof FakePlayer)) {
             ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {
                 EquipmentSlot slot = stack.getEquipmentSlot();
@@ -60,7 +61,7 @@ public class ToolEvents {
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event){
         Player player = event.getEntity();
         BlockPos pos = event.getPos();
-        if (player!=null) {
+        if (player!=null&&!(player instanceof FakePlayer)) {
             BlockState state = player.level.getBlockState(pos);
             ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {

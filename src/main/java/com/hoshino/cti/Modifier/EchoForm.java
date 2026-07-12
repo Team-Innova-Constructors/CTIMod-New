@@ -38,7 +38,7 @@ public class EchoForm extends NoLevelsModifier implements LeftClickModifierHook,
 
     @Override
     public void addToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
-        ToolStats.ATTACK_SPEED.multiply(builder,0.75f);
-        ToolStats.ATTACK_DAMAGE.multiply(builder,0.75f);
+        ToolStats.ATTACK_SPEED.multiply(builder,0.8f);
+        ToolStats.ATTACK_DAMAGE.multiply(builder,0.8f);
     }
 }

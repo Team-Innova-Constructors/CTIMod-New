@@ -4,6 +4,7 @@ import com.c2h6s.etshtinker.Modifiers.Armor.*;
 import com.c2h6s.etshtinker.Modifiers.*;
 import com.hoshino.cti.Modifier.Armor.*;
 import com.hoshino.cti.Modifier.*;
+import com.hoshino.cti.Modifier.Base.EtchedModifier;
 import com.hoshino.cti.Modifier.Contributors.*;
 import com.hoshino.cti.Modifier.Developer.*;
 import com.hoshino.cti.Modifier.Meme.Fbfq;
@@ -38,6 +39,7 @@ import com.hoshino.cti.Modifier.test;
 import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.BurstMiningModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.LCManaBurstModifier;
+import com.hoshino.cti.recipe.EtchingRecipe;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
@@ -287,4 +289,6 @@ public class CtiModifiers {
     public static final StaticModifier<ManaOverload> MANA_OVERLOAD = MODIFIERS.register("mana_overload", ManaOverload::new);
     public static final StaticModifier<EnchantedSwordModifier> ENCHANTED_SWORD = MODIFIERS.register("enchanted_sword", EnchantedSwordModifier::new);
     public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
+
+    public static final StaticModifier<EtchedModifier> GLORY_ETCH = MODIFIERS.register("glory_etch", EtchedModifier::new);
 }

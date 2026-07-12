@@ -1398,7 +1398,7 @@
 
   "modifier.cti.echo_form": "回响形态",
   "modifier.cti.echo_form.flavor": "我已启动！我已启动",
-  "modifier.cti.echo_form.description":"近战武器空挥时触发的效果会额外触发一次，工具的近战伤害和攻击速度x0.75。",
+  "modifier.cti.echo_form.description":"近战武器空挥时触发的效果会额外触发一次，工具的近战伤害和攻击速度x0.8。",
 
   "modifier.cti.thunderstorm": "雷暴雨",
   "modifier.cti.thunderstorm.flavor": "我是即将到来的风暴",
@@ -1435,6 +1435,11 @@
   "modifier.cti.burst_bypass_cooldown": "魔力追击",
   "modifier.cti.burst_bypass_cooldown.flavor": "这下不用担心攻速了",
   "modifier.cti.burst_bypass_cooldown.description":"魔力脉冲命中时取消敌人无敌帧。",
+
+  "modifier.cti.glory_etch": "辉煌刻印",
+  "modifier.cti.glory_etch.flavor": "做大做强，再创辉煌！",
+  "modifier.cti.glory_etch.description":"将强化原料中的部件所带有的词条添加到工具上，部件类型必须与工具兼容。",
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

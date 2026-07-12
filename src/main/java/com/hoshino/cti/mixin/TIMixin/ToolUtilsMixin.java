@@ -16,13 +16,13 @@ import java.util.Objects;
 public class ToolUtilsMixin {
     @Inject(at = {@At("RETURN")}, method = {"hasMetaIn"}, cancellable = true)
     private static void addSplendid(ToolStack tool, String id, CallbackInfoReturnable<Boolean> cir) {
+        if (id.equals("tinkers_ingenuity:splendid")) {
+            cir.setReturnValue(false);
+        }
         Iterator<MaterialVariant> var2 = tool.getMaterials().getList().iterator();
         if (var2.hasNext()) {
             MaterialVariant material = var2.next();
             cir.setReturnValue(material.get().getIdentifier().toString().equals(id));
-        }
-        if (!cir.getReturnValueZ() && Objects.equals(id, "tinkers_ingenuity:splendid") && tool.getModifierLevel(new ModifierId("tinkers_ingenuity:glorious")) > 0) {
-            cir.setReturnValue(true);
         }
     }
 }

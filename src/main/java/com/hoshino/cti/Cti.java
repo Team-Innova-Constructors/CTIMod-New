@@ -7,17 +7,20 @@ import com.hoshino.cti.Modifier.capability.*;
 import com.hoshino.cti.Screen.menu.CtiMenu;
 import com.hoshino.cti.client.CtiParticleType;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
+import com.hoshino.cti.recipe.ctiRecipes;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.BiomeUtil;
 import com.hoshino.cti.util.tier.Roxy;
 import com.hoshino.cti.world.feature.ctiConfiguredFeature;
 import com.hoshino.cti.world.feature.ctiPlacedFeature;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.TierSortingRegistry;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,6 +28,8 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.capability.ToolCapabilityProvider;
@@ -38,7 +43,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 @Mod(Cti.MOD_ID)
-
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Cti {
     public static boolean Mekenabled = ModList.get().isLoaded("mekanism");
     public static final String MOD_ID = "cti";
@@ -76,6 +81,7 @@ public class Cti {
             CtiChemical.GAS.register(eventBus);
         }
         eventBus.addListener(this::commonSetup);
+        ctiRecipes.register(eventBus);
 
     }
 

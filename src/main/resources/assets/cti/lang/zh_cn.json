@@ -1438,7 +1438,19 @@
 
   "modifier.cti.glory_etch": "辉煌刻印",
   "modifier.cti.glory_etch.flavor": "做大做强，再创辉煌！",
-  "modifier.cti.glory_etch.description":"将强化原料中的部件所带有的词条添加到工具上，部件类型必须与工具兼容。",
+  "modifier.cti.glory_etch.description":"将部件所带有的词条刻印到工具上，部件类型必须与工具兼容。",
+
+  "modifier.cti.gobber_etch_1": "戈伯刻印01",
+  "modifier.cti.gobber_etch_1.flavor": "戈伯之力[其一]",
+  "modifier.cti.gobber_etch_1.description":"将部件所带有的第一个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-15%工具的近战/远程属性",
+
+  "modifier.cti.gobber_etch_2": "戈伯刻印02",
+  "modifier.cti.gobber_etch_2.flavor": "戈伯之力[其二]",
+  "modifier.cti.gobber_etch_2.description":"将部件所带有的第二个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-10%工具的近战/远程属性",
+
+  "modifier.cti.gobber_etch_3": "戈伯刻印03",
+  "modifier.cti.gobber_etch_3.flavor": "戈伯之力[其三]",
+  "modifier.cti.gobber_etch_3.description":"将部件所带有的第三个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-5%工具的近战/远程属性",
 
 
   "dimension.ad_astra.infernal": "炼狱",

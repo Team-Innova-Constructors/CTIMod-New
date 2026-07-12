@@ -14,6 +14,11 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 public class EtchedModifier extends NoLevelsModifier implements ModifierTraitHook {
     @Override
+    public int getPriority() {
+        return Integer.MAX_VALUE-10;
+    }
+
+    @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
         hookBuilder.addHook(this, ModifierHooks.MODIFIER_TRAITS);
@@ -31,6 +36,6 @@ public class EtchedModifier extends NoLevelsModifier implements ModifierTraitHoo
     public Component getDisplayName(IToolStackView tool, ModifierEntry entry) {
         var part = ItemStack.of(tool.getPersistentData().getCompound(getId()));
         if (part.isEmpty()) return super.getDisplayName().copy().append(" 刻失败");
-        return super.getDisplayName().copy().append(" 刻印物：").append(part.getDisplayName());
+        return super.getDisplayName().copy().append("  刻印物:").append(part.getDisplayName());
     }
 }

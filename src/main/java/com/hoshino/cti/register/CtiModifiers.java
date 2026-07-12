@@ -291,4 +291,7 @@ public class CtiModifiers {
     public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
 
     public static final StaticModifier<EtchedModifier> GLORY_ETCH = MODIFIERS.register("glory_etch", EtchedModifier::new);
+    public static final StaticModifier<GobberEtchI> GOBBER_ETCH_I = MODIFIERS.register("gobber_etch_1", GobberEtchI::new);
+    public static final StaticModifier<GobberEtchII> GOBBER_ETCH_II = MODIFIERS.register("gobber_etch_2", GobberEtchII::new);
+    public static final StaticModifier<GobberEtchIII> GOBBER_ETCH_III = MODIFIERS.register("gobber_etch_3", GobberEtchIII::new);
 }

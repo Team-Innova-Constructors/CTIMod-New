@@ -23,7 +23,7 @@ public class FixedCelestial extends Modifier {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         var player = event.player;
-        if (player.getAbilities().flying)
+        if (player.getAbilities().flying&&player.isSprinting())
             player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
                 int lvl = cap.get(KEY,0);
                 if (lvl>0){

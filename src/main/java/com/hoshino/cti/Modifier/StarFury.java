@@ -2,31 +2,30 @@ package com.hoshino.cti.Modifier;
 
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.Entity.Projectiles.FriendlyMeteor;
+import com.hoshino.cti.library.modifier.CtiModifierHook;
+import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
-import com.hoshino.cti.netwrok.packet.PStarFuryC2S;
 import com.hoshino.cti.register.CtiModifiers;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
+import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
-import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
-import slimeknights.tconstruct.library.tools.nbt.NamespacedNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 
@@ -35,38 +34,29 @@ import static com.c2h6s.etshtinker.util.vecCalc.getScatteredVec3;
 import static com.hoshino.cti.Cti.MOD_ID;
 
 @Mod.EventBusSubscriber(modid = MOD_ID,bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class StarFury extends EtSTBaseModifier {
+public class StarFury extends EtSTBaseModifier implements LeftClickModifierHook {
+    @Override
+    protected void registerHooks(ModuleHookMap.Builder builder) {
+        super.registerHooks(builder);
+        builder.addHook(this, CtiModifierHook.LEFT_CLICK);
+    }
+
     @Override
     public boolean isNoLevels() {
         return true;
     }
 
-    @SubscribeEvent
-    public static void leftClickBlock(PlayerInteractEvent.LeftClickBlock event){
-        Player player = event.getEntity();
-        if (event.getSide()== LogicalSide.SERVER&&event.getItemStack().getItem() instanceof IModifiable){
-            ToolStack toolStack = ToolStack.from(event.getItemStack());
-            if (toolStack.getModifierLevel(CtiModifiers.STAR_FURY.get())>0){
-                LivingEntity living = getNearestLiEnt(toolStack.getModifierLevel(CtiModifiers.STAR_FURY.get())+4f,player,player.level);
-                if (living!=null) {
-                    float baseDamage = toolStack.getStats().get(ToolStats.ATTACK_DAMAGE);
-                    float damage = baseDamage;
-                    ToolAttackContext context = new ToolAttackContext(player, player, event.getHand(), living, living, false, 1, false);
-                    for (ModifierEntry entry : toolStack.getModifierList()) {
-                        damage = entry.getHook(ModifierHooks.MELEE_DAMAGE).getMeleeDamage(toolStack, entry, context, baseDamage, damage);
-                    }
-                    StarFury.summonMeteor(player, toolStack.getModifierLevel(CtiModifiers.STAR_FURY.get()), living, damage);
-                }
-            }
+    @Override
+    public void onLeftClickEmpty(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot) {
+        if (!level.isClientSide){
+            summonMeteor(player,tool);
         }
     }
-    @SubscribeEvent
-    public static void leftClickEmpty(PlayerInteractEvent.LeftClickEmpty event){
-        if (event.getSide()==LogicalSide.CLIENT&&event.getHand()==InteractionHand.MAIN_HAND&&event.getItemStack().getItem() instanceof IModifiable){
-            ToolStack toolStack = ToolStack.from(event.getItemStack());
-            if (toolStack.getModifierLevel(CtiModifiers.STAR_FURY.get())>0){
-                CtiPacketHandler.sendToServer(new PStarFuryC2S());
-            }
+
+    @Override
+    public void onLeftClickBlock(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, BlockState state, BlockPos pos) {
+        if (!level.isClientSide){
+            summonMeteor(player,tool);
         }
     }
 
@@ -92,14 +82,12 @@ public class StarFury extends EtSTBaseModifier {
             level.addFreshEntity(meteor);
         }
     }
-    public static void summonMeteor(Player player){
-        ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
-        if (player.getAttackStrengthScale(0)>0.8&&stack.getItem() instanceof IModifiable) {
-            ToolStack toolStack = ToolStack.from(stack);
+    public static void summonMeteor(Player player,IToolStackView toolStack){
+        if (player.getAttackStrengthScale(0)>0.8) {
             if (toolStack.getModifierLevel(CtiModifiers.STAR_FURY.get())>0) {
                 LivingEntity living = getNearestLiEnt(toolStack.getModifierLevel(CtiModifiers.STAR_FURY.get()) + 4f, player, player.level);
                 if (living!=null) {
-                    float baseDamage = toolStack.getStats().get(ToolStats.ATTACK_DAMAGE);
+                    float baseDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
                     float damage = baseDamage;
                     ToolAttackContext context = new ToolAttackContext(player, player, InteractionHand.MAIN_HAND, living, living, false, 1, false);
                     for (ModifierEntry entry : toolStack.getModifierList()) {

@@ -1,6 +1,7 @@
 package com.hoshino.cti.L2;
 
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
+import com.c2h6s.etshtinker.init.EtshtinkerModifiers;
 import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiEntityTickers;
@@ -31,7 +32,9 @@ public class OracleTrait extends MobTrait {
         for (EquipmentSlot slot:EquipmentUtil.ARMOR){
             ItemStack stack = target.getItemBySlot(slot);
             if (stack.getItem() instanceof IModifiable){
-                if (ToolStack.from(stack).getModifierLevel(CtiModifiers.ARMOR_ORACLE.get())>0|| GetModifierLevel.getTotalArmorModifierlevel(target,solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())>0){
+                if (ToolStack.from(stack).getModifierLevel(CtiModifiers.ARMOR_ORACLE.get())>0||
+                        ToolStack.from(stack).getModifierLevel(EtshtinkerModifiers.mindprotection_STATIC_MODIFIER.get())>0||
+                        ToolStack.from(stack).getModifierLevel(solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())>0){
                     return;
                 }
             }

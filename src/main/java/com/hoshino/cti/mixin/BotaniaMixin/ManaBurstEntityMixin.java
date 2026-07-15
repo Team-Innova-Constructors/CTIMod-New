@@ -21,11 +21,11 @@ public abstract class ManaBurstEntityMixin extends ThrowableProjectile implement
     @Unique
     private IntOpenHashSet cti$hitEntityIds = new IntOpenHashSet();
     @Unique
-    private float cti$baseDamage;
+    private float cti$baseDamage = 0;
     @Unique
-    private int cti$perConsumption=50;
+    private int cti$perConsumption=25;
     @Unique
-    private int cti$perBlockConsumption=50;
+    private int cti$perBlockConsumption=25;
     @Unique
     private IToolStackView cti$tool;
     @Unique int cti$generation = 0;

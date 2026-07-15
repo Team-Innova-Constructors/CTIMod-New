@@ -17,9 +17,9 @@ public class ReplaceOverarmy extends BasicOverslimeModifier {
         var os = TinkerModifiers.overslime.get();
         if (os.getShield(tool)>=100){
             var bonus = os.getShield(tool)/50;
-            bonus = Math.min(bonus,200*modifier.getLevel());
+            bonus = Math.min(bonus,100*modifier.getLevel());
             os.addOverslime(tool,modifier,-bonus);
-            damage+=damage*0.01f*bonus;
+            damage+=damage*0.02f*bonus;
         }
         return damage;
     }

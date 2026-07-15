@@ -11,6 +11,8 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 
+import java.util.List;
+
 public class BasicInsatiableModifier extends EtSTBaseModifier implements IModifierWithSpecialDesc {
     @Override
     protected void registerHooks(ModuleHookMap.Builder builder) {
@@ -37,7 +39,7 @@ public class BasicInsatiableModifier extends EtSTBaseModifier implements IModifi
     }
 
     @Override
-    public String getDesc() {
-        return "info.cti.insatiable";
+    public List<String> getDesc() {
+        return List.of("info.cti.insatiable");
     }
 }

@@ -66,6 +66,7 @@ public class ClientEventHandler {
             event.register(CtiParticleType.IONIC_EXPLOSION.get(), IonicExplosionParticle.IonicExplosionParticleProvider::new);
             event.register(CtiParticleType.GEL_EXPLOSION.get(), GelExplosionParticle.Provider::new);
             event.register(CtiParticleType.VOID_ARC.get(), new VoidArcParticle.Provider());
+            event.register(CtiParticleType.MANA_STRIKE.get(), ManaStrikeParticle::provider);
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {

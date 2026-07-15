@@ -52,7 +52,7 @@ public class AtmosphereCondensatorBlock extends BaseEntityBlock {
 
     @Override
     public BlockState rotate(BlockState state, LevelAccessor level, BlockPos pos, Rotation direction) {
-        return state.rotate(level, pos, direction);
+        return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
     }
 
     @Override

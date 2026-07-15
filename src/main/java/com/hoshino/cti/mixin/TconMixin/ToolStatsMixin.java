@@ -17,7 +17,7 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float AmodifyMaxValue(float constant) {
-        return 2147483647F;
+        return 131072f;
     }
 
     @ModifyConstant(
@@ -28,7 +28,7 @@ public class ToolStatsMixin {
     )
     @Unique
     private static float BmodifyMaxValue(float constant) {
-        return 2147483647F;
+        return 16384;
     }
 
     @ModifyConstant(

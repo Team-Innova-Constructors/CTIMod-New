@@ -283,7 +283,7 @@
 
   "modifier.cti.ambrosium_powered": "圣神光辉",
   "modifier.cti.ambrosium_powered.flavor": "你的工具已注入神的能量",
-  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡/+2近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
+  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡/+4近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
 
   "modifier.cti.stellar_arrow": "星辰箭矢",
   "modifier.cti.stellar_arrow.flavor": "据说能射下天上的星星",
@@ -805,7 +805,7 @@
 
   "modifier.cti.pressure_loaded": "空气装载",
   "modifier.cti.pressure_loaded.flavor": "空气动力学！",
-  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力。",
+  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力，获得2x压力%的独立伤害减免。",
 
   "modifier.cti.fixed_oracular": "神谕",
   "modifier.cti.fixed_oracular.flavor": "洗涤心灵。",
@@ -1079,7 +1079,7 @@
 
   "modifier.cti.fixed_celestial": "烈风",
   "modifier.cti.fixed_celestial.flavor": "风起！",
-  "modifier.cti.fixed_celestial.description":"穿戴时增加飞行速度",
+  "modifier.cti.fixed_celestial.description":"增加疾跑状态下的飞行速度",
 
   "modifier.cti.territoral_sky": "领空",
   "modifier.cti.territoral_sky.flavor": "天空使者",
@@ -1219,21 +1219,17 @@
   "modifier.cti.fixcurseblade.flavor": "不准回血！",
   "modifier.cti.fixcurseblade.description":"近战攻击和远程攻击每次每级施加10秒诅咒效果",
 
-  "modifier.cti.shadow_slash": "斩影",
-  "modifier.cti.shadow_slash.flavor": "你在砍什么？",
-  "modifier.cti.shadow_slash.description":"近战攻击什么都没砍到时也能+1贪婪等级。",
-
   "modifier.cti.fuckingdeltaforce": "跳一跳",
   "modifier.cti.fuckingdeltaforce.flavor": "666还有鳄鱼组队",
   "modifier.cti.fuckingdeltaforce.description":"当你对等级等于/小于你莱特兰等级的怪物 跳一跳时,有50%概率让其为你而战,成功组队的怪物会跳一下回应,在杀死他的目标后它有78%概率背刺你,每次至多同时对18个怪物发起组队邀请",
 
   "modifier.cti.tricky_insatiable": "技巧贪婪",
   "modifier.cti.tricky_insatiable.flavor": "有技巧地贪",
-  "modifier.cti.tricky_insatiable.description":"暴击时每级额外+2贪婪等级，并临时获得每级+4的最大贪婪等级。",
+  "modifier.cti.tricky_insatiable.description":"暴击时每级额外+2贪婪叠加，并临时获得每级+4的最大贪婪等级。",
 
   "modifier.cti.replaced_insatiable": "贪婪",
   "modifier.cti.replaced_insatiable.flavor": "出识真味，力量无垠！",
-  "modifier.cti.replaced_insatiable.description":"+16最大贪婪等级，攻击/防御时每级+1贪婪等级。",
+  "modifier.cti.replaced_insatiable.description":"+16最大贪婪等级，每级+1贪婪叠加。",
 
   "modifier.cti.stone_cold_replaced": "冷血",
   "modifier.cti.stone_cold_replaced.flavor": "莫得感情",
@@ -1241,11 +1237,11 @@
 
   "modifier.cti.evil_insatiable": "极恶之贪",
   "modifier.cti.evil_insatiable.flavor": "贪婪一切，嫉妒一切，毁灭一切",
-  "modifier.cti.evil_insatiable.description":"+24最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪等级到达上限时使贪婪的增伤效果翻倍。",
+  "modifier.cti.evil_insatiable.description":"+24最大贪婪等级，每级+2贪婪叠加。\n §3·§r贪婪等级到达上限时使贪婪的增伤效果翻倍。",
 
   "modifier.cti.replaced_benthamism": "功利主义",
   "modifier.cti.replaced_benthamism.flavor": "功利至上！",
-  "modifier.cti.replaced_benthamism.description":"+192最大贪婪等级，攻击/防御时每级+4贪婪等级，但是每级令攻击伤害叠乘0.75倍。",
+  "modifier.cti.replaced_benthamism.description":"+192最大贪婪等级，每级+4贪婪叠加，但是每级令攻击伤害叠乘0.75倍。",
 
   "modifier.cti.replaced_well_trained": "训练有素",
   "modifier.cti.replaced_well_trained.flavor": "优雅的爵士",
@@ -1253,19 +1249,19 @@
 
   "modifier.cti.insatiable_digest": "暴食贪婪",
   "modifier.cti.insatiable_digest.flavor": "吞噬万物",
-  "modifier.cti.insatiable_digest.description":"每级+48最大贪婪等级，攻击/防御时每级+2贪婪等级。\n ·贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
+  "modifier.cti.insatiable_digest.description":"每级+48最大贪婪等级，+2贪婪叠加。\n §3·§r贪婪结算伤害时2%概率窃取对方等量生命值并治疗自己，5%概率食用一块来自虚空的九头蛇肉排（对试验假人无效）。",
 
   "modifier.cti.arrogance_insatiable": "傲慢贪婪",
   "modifier.cti.arrogance_insatiable.flavor": "你瞧不起那些凭词条取胜的怪物，并想从它们身上大捞特捞。",
-  "modifier.cti.arrogance_insatiable.description":"每级+96最大贪婪等级，攻击/防御时每级+6贪婪等级。\n 攻击高恶意等级的敌人会有特殊效果：\n  ·256级以上时+16贪婪等级。\n  ·512级以上时+256临时最大贪婪。\n  ·1024级以上时追加64*4伤害。",
+  "modifier.cti.arrogance_insatiable.description":"每级+96最大贪婪等级，+6贪婪叠加。\n 攻击高恶意等级的敌人会有特殊效果：\n  §3·§r256级以上时+16贪婪等级。\n  §3·§r512级以上时+256临时最大贪婪。\n  §3·§r1024级以上时追加64*4伤害。",
 
   "modifier.cti.shadow_slash": "斩影",
   "modifier.cti.shadow_slash.flavor": "你在砍什么？",
-  "modifier.cti.shadow_slash.description":"近战攻击什么都没砍到时也能+1贪婪等级。",
+  "modifier.cti.shadow_slash.description":"+1近战武器未命中时的贪婪叠加。",
 
   "modifier.cti.nonstop_insatiable": "无止之贪",
   "modifier.cti.nonstop_insatiable.flavor": "我生来贪得无厌",
-  "modifier.cti.nonstop_insatiable.description":"+256最大贪婪等级，攻击/防御时每级+1贪婪等级。\n ·溢出上限的贪婪等级会转换成灵魂层数，灵魂层数能近乎无限叠加，每层+1%贪婪结算伤害，但是每10秒会重置层数。",
+  "modifier.cti.nonstop_insatiable.description":"+256最大贪婪等级，+1贪婪叠加。\n §3·§r溢出上限的贪婪等级会转换成灵魂层数，灵魂层数能近乎无限叠加，每层+1%贪婪结算伤害，但是每10秒会重置层数。",
 
   "modifier.cti.replaced_overgrowth": "蔓生",
   "modifier.cti.replaced_overgrowth.flavor": "像菌子一样",
@@ -1273,23 +1269,23 @@
 
   "modifier.cti.slime_strike": "黏液打击",
   "modifier.cti.slime_strike.flavor": "非流顿牛体！",
-  "modifier.cti.slime_strike.description":"每级+50黏液覆层上限，攻击时每级消耗1黏液覆层+10近战伤害。",
+  "modifier.cti.slime_strike.description":"每级+50黏液覆层上限，攻击时每级消耗1黏液覆层+10和5%近战伤害。",
 
   "modifier.cti.slime_shield": "黏液之护",
   "modifier.cti.slime_shield.flavor": "非流顿牛体！",
-  "modifier.cti.slime_shield.description":"每级+50黏液覆层上限，受击时每级消耗2黏液覆层格挡5伤害（护甲前）。",
+  "modifier.cti.slime_shield.description":"每级+50黏液覆层上限，受击时每级消耗2黏液覆层格挡5伤害（护甲后）。",
 
   "modifier.cti.slime_explode": "胶黏爆破",
   "modifier.cti.slime_explode.flavor": "到处都黏糊糊的",
-  "modifier.cti.slime_explode.description":"攻击时消耗20黏液覆层释放黏液爆炸，对附近敌人造成25%伤害并产生一片能造成伤害、削减护甲和施加缓慢的烟雾。\n ·工具每有40黏液覆层会增加1%的爆炸伤害比例，最多增加每级100%。",
+  "modifier.cti.slime_explode.description":"攻击时消耗20黏液覆层释放黏液爆炸，对附近敌人造成25%伤害并产生一片能造成伤害、削减护甲和施加缓慢的烟雾。\n §3·§r工具每有40黏液覆层会增加1%的爆炸伤害比例，最多增加每级100%。",
 
   "modifier.cti.replaced_overempire": "黏液帝皇",
   "modifier.cti.replaced_overempire.flavor": "帝国荣光！",
-  "modifier.cti.replaced_overempire.description":"工具每有160黏液覆层+1黏液覆层消耗提供1%的独立减伤，最大每级20%，上限60%。",
+  "modifier.cti.replaced_overempire.description":"工具每有160黏液覆层+1黏液覆层消耗提供2%的独立减伤，最大每级20%，上限60%。",
 
   "modifier.cti.replaced_overarmy": "黏液军团",
   "modifier.cti.replaced_overarmy.flavor": "史莱姆大军！",
-  "modifier.cti.replaced_overarmy.description":"工具每有50黏液覆层在攻击时增加0.01x独立乘算增伤和1黏液覆层消耗，最高每级+2x。",
+  "modifier.cti.replaced_overarmy.description":"工具每有50黏液覆层在攻击时增加0.02x独立乘算增伤和1黏液覆层消耗，最高每级+2x。",
 
   "modifier.cti.super_overslime": "黏液超容EX",
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
@@ -1305,7 +1301,7 @@
 
   "modifier.cti.ender_stiction": "末影黏滞",
   "modifier.cti.ender_stiction.flavor": "黏住了空间",
-  "modifier.cti.ender_stiction.description":"每级+500黏液覆层上限，攻击时每级消耗5黏液覆层+25近战伤害。\n ·攻击时额外消耗5黏液覆层移除无敌帧，消耗5黏液覆层造成末影黏滞效果阻止对方传送。",
+  "modifier.cti.ender_stiction.description":"每级+500黏液覆层上限，攻击时每级消耗5黏液覆层+25和25%近战伤害。\n §3·§r攻击时额外消耗5黏液覆层移除无敌帧，消耗5黏液覆层造成末影黏滞效果阻止对方传送。",
 
   "modifier.cti.ender_suppress": "末影压制",
   "modifier.cti.ender_suppress.flavor": "黏住了空间",
@@ -1313,19 +1309,19 @@
 
   "modifier.cti.replace_overlost": "迷失",
   "modifier.cti.replace_overlost.flavor": "迷途之子",
-  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+15近战伤害。\n ·攻击时目标每级缓慢效果都会增加2.5%伤害和黏液覆层消耗。目标每10秒缓慢时长都会增加10伤害和1黏液覆层消耗。",
+  "modifier.cti.replace_overlost.description":"每级+100黏液覆层上限，攻击时每级消耗5黏液覆层+30%近战伤害。\n §3·§r攻击时目标每级缓慢效果都会增加5%伤害和黏液覆层消耗。目标每10秒缓慢时长都会增加20伤害和1黏液覆层消耗。",
 
   "modifier.cti.replace_overlost_armor": "迷失",
   "modifier.cti.replace_overlost_armor.flavor": "迷途之子",
-  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗2黏液覆层+10%独立减伤（最大40%）。\n ·受击时目标每级缓慢效果都会增加10格挡和1黏液覆层消耗。",
+  "modifier.cti.replace_overlost_armor.description":"每级+100黏液覆层上限，受击时每级消耗2黏液覆层+15%独立减伤（最大40%）。\n §3·§r受击时目标每级缓慢效果都会增加20格挡和1黏液覆层消耗。",
 
   "modifier.cti.united_overslime": "其利断金",
   "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+25%近战伤害。\n ·全力打击时撕裂目标周围空间，每级造成5%持续伤害并消耗20黏液覆层。",
+  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+50%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，每级造成20%持续伤害并消耗20黏液覆层。",
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_insatiable.description":"每级+48最大贪婪等级，攻击/防御时每级+4贪婪等级。\n ·每秒消耗1黏液覆层维持贪婪等级为最大贪婪的一半，贪婪等级超过一半时不生效。",
+  "modifier.cti.united_insatiable.description":"每级+64最大贪婪等级，+8贪婪叠加。\n §3·§r每秒消耗1黏液覆层维持贪婪等级为最大贪婪的一半，贪婪等级超过一半时不生效。",
 
   "modifier.cti.overfill": "黏液转置",
   "modifier.cti.overfill.flavor": "就像个充电宝",
@@ -1337,7 +1333,7 @@
 
   "modifier.cti.over_aetheric": "晶能流质学",
   "modifier.cti.over_aetheric.flavor": "活性与产能",
-  "modifier.cti.over_aetheric.description":"每级+250黏液覆层上限，受击时每级消耗10黏液覆层+20和20%的近战伤害/减伤（近战/护甲）。\n ·工具上每有一个天境材料+10%的耐久和黏液覆层上限。\n ·消耗黏液覆层时充入4倍于消耗量的神能晶充能。",
+  "modifier.cti.over_aetheric.description":"每级+250黏液覆层上限，使用时每级消耗10黏液覆层+25和40%的近战伤害/+20和20%的伤害减免（近战/防御）。\n §3·§r工具上每有一个天境材料+10%的耐久和黏液覆层上限，+32神能晶充能上限。\n §3·§r消耗黏液覆层时为全身装备充入16倍于消耗量的神能晶充能。",
 
   "modifier.cti.overtrade": "交易者",
   "modifier.cti.overtrade.flavor": "以物易物！",
@@ -1383,6 +1379,78 @@
   "modifier.cti.ethereal.flavor": "滚木化",
   "modifier.cti.ethereal.description":"穿戴时15%概率免疫伤害,但穿戴时造成的魔法和爆炸伤害和受到的魔法和爆炸均降低50%\n，因为你的身体飘渺化了，所以增加每级40点最大生命值，并且更难被怪物察觉到",
 
+  "modifier.cti.farther_sights": "魔化之刃",
+  "modifier.cti.farther_sights.flavor": "你将魔法能量注入你的武器...",
+  "modifier.cti.farther_sights.description":"将魔力脉冲的伤害判定修改为等同于使用武器进行近战攻击，+10%脉冲伤害倍率。\n §3·§r手持时令触及半径归零并禁用工具的右键行为，近战攻击命中时不再发射魔力脉冲。",
+
+  "modifier.cti.alf_burst": "精灵射线",
+  "modifier.cti.alf_burst.flavor": "更强的脉冲？",
+  "modifier.cti.alf_burst.description":"挥舞武器，发射强化的精灵脉冲，每级+75脉冲基础伤害，+100脉冲携带魔力。\n §3·§r魔力脉冲+40%脉冲伤害倍率，-50实体和方块魔力消耗，x0.5长距魔力损失。",
+
+  "modifier.cti.terra_burst": "泰拉射线",
+  "modifier.cti.terra_burst.flavor": "我说植魔应该跟进一下1.4.4泰拉之刃的改动",
+  "modifier.cti.terra_burst.description":"挥舞武器，发射泰拉魔力脉冲，每级+20脉冲基础伤害，+50脉冲携带魔力。\n §3·§r魔力脉冲+25%脉冲伤害倍率，+25实体和方块魔力消耗。\n §3·§r魔力脉冲发射时，每级治疗2生命值。",
+
+  "modifier.cti.destruction_magic": "破坏法术",
+  "modifier.cti.destruction_magic.flavor": "镐子发明之前的人们belike:",
+  "modifier.cti.destruction_magic.description":"令魔力脉冲能挖掘方块，判定与§o透镜：挖掘§r相同。\n §3·§r有魔化之刃强化时，判定改为等同于使用工具直接进行挖掘。",
+
+  "modifier.cti.echo_form": "回响形态",
+  "modifier.cti.echo_form.flavor": "我已启动！我已启动",
+  "modifier.cti.echo_form.description":"近战武器空挥时触发的效果会额外触发一次，工具的近战伤害和攻击速度x0.8。",
+
+  "modifier.cti.thunderstorm": "雷暴雨",
+  "modifier.cti.thunderstorm.flavor": "我是即将到来的风暴",
+  "modifier.cti.thunderstorm.description":"挥舞武器，发射强力的带电脉冲，+132脉冲基础伤害，+200脉冲携带魔力，+50实体魔力消耗。\n §3·§r脉冲命中实体时分裂成至多8到闪电，每到闪电会携带等同于实体魔力消耗的魔力\n §3·§r闪电视为魔力脉冲，伤害倍率为原脉冲的0.25倍，实体魔力消耗为50。 ",
+
+  "modifier.cti.chasing_burst": "追踪之刃",
+  "modifier.cti.chasing_burst.flavor": "传说那是一把必定命中的神剑",
+  "modifier.cti.chasing_burst.description":"挥舞武器，发射会追踪附近敌人的强力脉冲，+100%脉冲伤害倍率，+100脉冲携带魔力，+50实体魔力消耗，x1.5脉冲初速度。 ",
+
+  "modifier.cti.burst_accelerate": "魔力加速",
+  "modifier.cti.burst_accelerate.flavor": "增加魔力脉冲的初速度",
+  "modifier.cti.burst_accelerate.description":"每级使发射的魔力脉冲初速度x1.2。",
+
+  "modifier.cti.mana_capacity": "魔力扩容",
+  "modifier.cti.mana_capacity.flavor": "增加魔力脉冲的携带魔力",
+  "modifier.cti.mana_capacity.description":"魔力脉冲每级+50所携带的魔力。",
+
+  "modifier.cti.coordinator": "增幅协调剂",
+  "modifier.cti.coordinator.flavor": "润滑油！",
+  "modifier.cti.coordinator.description":"每级每有1级工业/精炼词条，+0.05功率，+5%黏液减伤（护甲，最大40%），+500最大黏液覆层，+1黏液覆层消耗。",
+
+  "modifier.cti.mana_resonance": "法力谐振",
+  "modifier.cti.mana_resonance.flavor": "魔法互换",
+  "modifier.cti.mana_resonance.description":"挥舞武器，发射魔力脉冲，每级+25脉冲携带魔力。\n §3·§r魔力不足时，尝试消耗新生魔艺的法力来维持脉冲的发射，每2魔力消耗1法力。",
+
+  "modifier.cti.mana_overload": "魔力过载",
+  "modifier.cti.mana_overload.flavor": "霸气外露！",
+  "modifier.cti.mana_overload.description":"+32最大贪婪，每级+4贪婪叠加，魔力脉冲发射时触发贪婪的等级叠加效果。\n §3·§r近战攻击时消耗魔力释放玩家贪婪等级点伤害的斩击，每10伤害消耗1魔力，伤害被黏液系增伤增幅并相应消耗黏液覆层。",
+
+  "modifier.cti.enchanted_sword": "附魔剑",
+  "modifier.cti.enchanted_sword.flavor": "注：这是近战武器",
+  "modifier.cti.enchanted_sword.description":"挥舞武器，发射强力的蓝色脉冲，+100脉冲基础伤害，每级+25%脉冲伤害倍率。\n §3·§r每级都会使脉冲携带魔力和初速度叠乘1.4倍。",
+
+  "modifier.cti.burst_bypass_cooldown": "魔力追击",
+  "modifier.cti.burst_bypass_cooldown.flavor": "这下不用担心攻速了",
+  "modifier.cti.burst_bypass_cooldown.description":"魔力脉冲命中时取消敌人无敌帧。",
+
+  "modifier.cti.glory_etch": "辉煌刻印",
+  "modifier.cti.glory_etch.flavor": "做大做强，再创辉煌！",
+  "modifier.cti.glory_etch.description":"将部件所带有的词条刻印到工具上，部件类型必须与工具兼容。",
+
+  "modifier.cti.gobber_etch_1": "戈伯刻印01",
+  "modifier.cti.gobber_etch_1.flavor": "戈伯之力[其一]",
+  "modifier.cti.gobber_etch_1.description":"将部件所带有的第一个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-15%工具的近战/远程属性",
+
+  "modifier.cti.gobber_etch_2": "戈伯刻印02",
+  "modifier.cti.gobber_etch_2.flavor": "戈伯之力[其二]",
+  "modifier.cti.gobber_etch_2.description":"将部件所带有的第二个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-10%工具的近战/远程属性",
+
+  "modifier.cti.gobber_etch_3": "戈伯刻印03",
+  "modifier.cti.gobber_etch_3.flavor": "戈伯之力[其三]",
+  "modifier.cti.gobber_etch_3.description":"将部件所带有的第三个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-5%工具的近战/远程属性",
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",
@@ -1411,6 +1479,9 @@
 
   "item.cti.meteor_shower": "流星雨",
   "cti.ritual_desc.meteor_shower":"让雨点般密集的陨石从天上坠落，将你的世界焚烧殆尽。\n注：作用范围为84*84，这些陨石可能会摧毁你的火盆。",
+
+  "item.cti.elemental_summon": "元素唤起",
+  "cti.ritual_desc.elemental_summon":"随机召唤4~8只烈焰人/狂风人/暴雪人/岩石人。它们会生成在以祭坛为中心正上方的5*5*5范围内。",
 
   "trait.l2hostility.purify": "净化",
   "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命,5级净化无视秒数(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",
@@ -1457,8 +1528,10 @@
   "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过350234的dps时产生",
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
-  "info.cti.insatiable": "[正面效果|贪婪]所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25。注意：贪婪效果通常只会存在15秒。",
-  "info.cti.overslime": "[匠魂机制|黏液覆层]一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充。",
+  "info.cti.insatiable": "§3[正面效果|贪婪]§r所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25，武器攻击或者护甲被攻击都会为所有者增加等同于贪婪叠加的贪婪等级。",
+  "info.cti.overslime": "§3[匠魂机制|黏液覆层]§r一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充，也可以用加压黏液罐补充。",
+  "info.cti.manaburst": "§3[工具机制|魔力脉冲]§r左键挥舞武器时，消耗魔力并发射出魔力脉冲，魔力消耗量等同于脉冲魔力携带量。脉冲的魔力携带量、实体/方块消耗初始值均为25，伤害初始值则为玩家伤害属性值。当魔力脉冲与方块/实体碰撞时会消耗脉冲携带的魔力，魔力归零后脉冲会消失。",
+  "info.cti.stat_power": "§3[工具属性|功率]§r资源消耗类（比如黏液、魔力脉冲）词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时成比例增加资源消耗量。",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
   "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",

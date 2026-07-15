@@ -1,6 +1,7 @@
 package com.hoshino.cti.mixin.TconMixin;
 
 import com.hoshino.cti.Modifier.aetherCompact.AmbrosiumPowered;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.OverAetheric;
 import com.hoshino.cti.register.CtiModifiers;
 import net.minecraft.util.Mth;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,7 +32,9 @@ public abstract class OverslimeMixin extends DurabilityShieldModifier {
         var current = getShield(tool);
         var max = getShieldCapacity(tool,entry);
         var actualAmount = Mth.clamp(amount,-current,max);
-        if (actualAmount<0&&tool.getModifierLevel(CtiModifiers.OVER_AETHERIC.getId())>0)
-            AmbrosiumPowered.chargeTool(tool,-actualAmount*4);
+        if (actualAmount<0&&tool.getModifierLevel(CtiModifiers.OVER_AETHERIC.getId())>0) {
+            var data = tool.getPersistentData();
+            data.putInt(OverAetheric.KEY_CHARGE,data.getInt(OverAetheric.KEY_CHARGE)-16*actualAmount);
+        }
     }
 }

@@ -22,6 +22,11 @@ public class EnderStictionModifier extends BasicOverslimeModifier {
     }
 
     @Override
+    public float getDamageMul(IToolContext context, ModifierEntry modifier) {
+        return modifier.getLevel()*0.25f;
+    }
+
+    @Override
     public int getOverslimeBonus(IToolContext context, ModifierEntry modifier) {
         return modifier.getLevel()*500;
     }

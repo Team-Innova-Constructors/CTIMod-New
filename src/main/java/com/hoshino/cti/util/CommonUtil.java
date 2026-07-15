@@ -11,17 +11,23 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.WorldData;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.library.materials.MaterialRegistry;
+import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.part.IToolPart;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -97,5 +103,14 @@ public class CommonUtil {
 
     public static Item itemFromId(String id){
         return ForgeRegistries.ITEMS.getValue(new ResourceLocation(id));
+    }
+
+    public static List<ModifierEntry> getModifiersFromPart(ItemStack stack){
+        if (stack.getItem() instanceof IToolPart part){
+            var statType = part.getStatType();
+            var material = part.getMaterial(stack).getId();
+            return MaterialRegistry.getInstance().getTraits(material,statType);
+        }
+        return List.of();
     }
 }

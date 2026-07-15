@@ -38,9 +38,9 @@ public class ReplaceOverLost extends BasicOverslimeModifier {
                 var os = TinkerModifiers.overslime.get();
                 if (os.getShield(tool)>= boostAdd){
                     os.addOverslime(tool,modifier,-boostAdd);
-                    damage+= boostAdd *10;
+                    damage+= boostAdd *20;
                 }
-                var boostMul = amp*0.025f;
+                var boostMul = amp*0.05f;
                 var consumption = boostAdd*(1+boostMul);
                 consumption += tool.getStats().getInt(GenreManager.OVERSLIME_GENRE.consumption)*boostMul;
                 if (os.getShield(tool)>=consumption){

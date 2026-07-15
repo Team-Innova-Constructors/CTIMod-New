@@ -28,7 +28,7 @@ public class ReplaceOverlostArmor extends BasicOverslimeModifier implements Modi
 
     @Override
     public float getArmorMul(IToolContext context, ModifierEntry modifier) {
-        return modifier.getLevel()*0.10f;
+        return modifier.getLevel()*0.15f;
     }
 
     @Override
@@ -42,11 +42,11 @@ public class ReplaceOverlostArmor extends BasicOverslimeModifier implements Modi
             var slowEffect = living.getEffect(MobEffects.MOVEMENT_SLOWDOWN);
             if (slowEffect!=null){
                 var boost = slowEffect.getAmplifier()+1;
-                boost=Math.min(boost,10);
+                boost=Math.min(boost,20);
                 var os = TinkerModifiers.overslime.get();
                 if (os.getShield(tool)>=boost){
                     os.addOverslime(tool,modifier,-boost);
-                    amount-=boost*10;
+                    amount-=boost*20;
                 }
             }
         }

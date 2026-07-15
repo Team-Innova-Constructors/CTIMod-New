@@ -33,7 +33,7 @@ public class Refined extends EtSTBaseModifier implements VolatileDataModifierHoo
         hookBuilder.addHook(this, ModifierHooks.TOOL_DAMAGE, ModifierHooks.VOLATILE_DATA);
         hookBuilder.addModule(new ArmorLevelModule(KEY_REFINE,false,null));
     }
-    public static final TinkerDataCapability.TinkerDataKey<Integer> KEY_REFINE = TinkerDataCapability.TinkerDataKey.of(Cti.getResource(""));
+    public static final TinkerDataCapability.TinkerDataKey<Integer> KEY_REFINE = TinkerDataCapability.TinkerDataKey.of(Cti.getResource("refined"));
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event){

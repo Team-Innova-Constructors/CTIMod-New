@@ -11,10 +11,12 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.modifiers.slotless.OverslimeModifier;
 
+import java.util.List;
+
 public class ReplacedOvergrowth extends EtSTBaseModifier implements IModifierWithSpecialDesc {
     @Override
-    public String getDesc() {
-        return "info.cti.overslime";
+    public List<String> getDesc() {
+        return List.of("info.cti.overslime");
     }
 
     @Override

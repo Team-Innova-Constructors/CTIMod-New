@@ -4,9 +4,11 @@ import com.hoshino.cti.register.CtiBlock;
 import com.hoshino.cti.register.CtiModifiers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
@@ -49,5 +51,12 @@ public class EntityUtil {
             }
         }
         return false;
+    }
+    public static void constantKill(LivingEntity entity, DamageSource source){
+        var a = (ILivingEntityMixin) entity;
+        entity.invulnerableTime=0;
+        var currentHealth=entity.getHealth();
+        entity.setHealth(1);
+        a.cti$strictHurt(source, currentHealth, true);
     }
 }

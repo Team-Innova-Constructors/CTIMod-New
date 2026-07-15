@@ -321,7 +321,7 @@ public class CtiItem {
     ),Component.literal("非洲之心").withStyle(style -> style.withColor(0xca3c37))));
     public static final RegistryObject<Item> tear_of_sea = ITEMS.register("tear_of_sea", () -> new CollectionItem(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1),List.of(
             DynamicComponentUtil.scrollColorfulText.getColorfulText("混元天成,珠圆玉润的巨大天然珍珠,其通体散发镭射光泽,令人目眩神迷",null,new int[]{0x185d3c,0xad68ca,0x3a61ca},40,40,false),
-            Component.literal("在海洋中击杀溺尸概率获得,冰雪迷阵的深处也可能有它的踪迹").withStyle(style -> style.withColor(0x11ff00)),
+            Component.literal("在海洋中击杀鲑鱼大帝获得,冰雪迷阵的宝箱中也可能开到").withStyle(style -> style.withColor(0x11ff00)),
             Component.literal("隐藏收集品").withStyle(style -> style.withColor(0xff0000))
     ),Component.literal("海洋之泪").withStyle(style -> style.withColor(0x5161ca))));
 

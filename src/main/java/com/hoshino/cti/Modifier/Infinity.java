@@ -1,6 +1,7 @@
 package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.register.CtiToolStats;
+import com.hoshino.cti.util.EntityUtil;
 import com.hoshino.cti.util.ILivingEntityMixin;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Mob;
@@ -56,9 +57,7 @@ public class Infinity extends Modifier implements ToolStatsModifierHook, MeleeDa
         if (!(livingTarget instanceof Mob mob)) return;
         if (!(attacker instanceof Player player)) return;
         if (level >= 3) {
-            var a = (ILivingEntityMixin) mob;
-            mob.setHealth(1);
-            a.cti$strictHurt(DamageSource.playerAttack(player), 100, true);
+            EntityUtil.constantKill(mob,DamageSource.playerAttack(player));
         }
     }
 }

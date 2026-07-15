@@ -275,6 +275,10 @@ public class CtiModifiers {
     public static final StaticModifier<ArrogantPerson> ARROGANT_PERSON_STATIC_MODIFIER = MODIFIERS.register("arrogant_person", ArrogantPerson::new);
     public static final StaticModifier<DilapidatedMagic> DILAPIDATED_MAGIC_STATIC_MODIFIER = MODIFIERS.register("dilapidated_magic", DilapidatedMagic::new);
     public static final StaticModifier<MessengerOfDawn> MESSENGER_OF_DAWN_STATIC_MODIFIER = MODIFIERS.register("messengerofdawn", MessengerOfDawn::new);
+    public static final StaticModifier<GloryEmblem> GLORY_EMBLEM_STATIC_MODIFIER = MODIFIERS.register("glory_emblem", GloryEmblem::new);
+    public static final StaticModifier<ReplaceSinRoot> REPLACE_SIN_ROOT_STATIC_MODIFIER = MODIFIERS.register("replace_sin_root", ReplaceSinRoot::new);
+    public static final StaticModifier<ReplaceSpriteOfGaia> REPLACE_SPRITE_OF_GAIA_STATIC_MODIFIER = MODIFIERS.register("replace_sprite_of_gaia", ReplaceSpriteOfGaia::new);
+    public static final StaticModifier<Magical> MAGICAL_STATIC_MODIFIER = MODIFIERS.register("magical", Magical::new);
 
     public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
     public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);

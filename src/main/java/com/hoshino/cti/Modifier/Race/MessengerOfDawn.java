@@ -49,7 +49,7 @@ public class MessengerOfDawn extends Modifier implements InventoryTickModifierHo
         var entity=equipmentContext.getEntity();
         if(entity.getHealth()<entity.getMaxHealth() * 0.5f&&!EntityTickerManager.getInstance(entity).hasTicker(CtiEntityTickers.DAWN.get())){
             EntityTickerManager.getInstance(entity).addTicker(new EntityTickerInstance(CtiEntityTickers.DAWN.get(),1,60),Integer::max,Integer::max);
-            EntityTickerManager.getInstance(entity).addTicker(new EntityTickerInstance(CtiEntityTickers.DAWN_EXTRA_DAMAGE.get(),modifierEntry.getLevel(),200),Integer::max,Integer::max);
+            EntityTickerManager.getInstance(entity).addTicker(new EntityTickerInstance(CtiEntityTickers.DAWN_EXTRA_DAMAGE.get(),modifierEntry.getLevel(),600),Integer::max,Integer::max);
             setCooldown(tool,180);
         }
     }

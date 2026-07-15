@@ -1,5 +1,6 @@
 package com.hoshino.cti.mixin.L2;
 
+import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.events.MobEvents;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
@@ -7,9 +8,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 @Mixin(MobEvents.class)
 public class MobEventMixin {
@@ -30,6 +31,8 @@ public class MobEventMixin {
     private static boolean cti$addExtraItemCheck(LivingEntity entity, Item item) {
         boolean hasOriginal = CurioCompat.hasItem(entity, item);
         boolean hasNewItem = CurioCompat.hasItem(entity, LHItems.NIDHOGGUR.get());
-        return hasOriginal || hasNewItem;
+        boolean hasRuler= GetModifierLevel.getMainhandModifierlevel(entity,new ModifierId("solidarytinker:reality_ruler"))>0;
+        if(hasOriginal||hasNewItem)return false;
+        return !hasRuler;
     }
 }

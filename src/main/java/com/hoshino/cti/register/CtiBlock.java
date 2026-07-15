@@ -74,15 +74,16 @@ public class CtiBlock {
     public static final RegistryObject<GlassBlock> aluminium_glass = BLOCK.register("aluminium_glass", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS,MaterialColor.COLOR_YELLOW)
             .sound(SoundType.GLASS).strength(5)
             .noOcclusion()
+            .destroyTime(6)
             .isValidSpawn((a,b,c,d)->false)
-            .lightLevel((a)->0)
+            .lightLevel((a)->15)
             .isViewBlocking((a,b,c)->false)
             .isSuffocating((a,b,c)->false)
             .isRedstoneConductor((a,b,c)->true)
     ){
         @Override
         public float getEnchantPowerBonus(BlockState state, LevelReader level, BlockPos pos) {
-            return 350234;
+            return 7355608;
         }
     });
     public static final RegistryObject<Block> qi_yao_matrix = BLOCK.register("qi_yao_matrix", () -> new Block(BlockBehaviour.Properties.of(Material.METAL,MaterialColor.COLOR_BLUE)

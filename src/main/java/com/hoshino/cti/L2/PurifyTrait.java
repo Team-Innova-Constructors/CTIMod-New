@@ -109,9 +109,7 @@ public class PurifyTrait extends LegendaryTrait {
             if (instance.getEffect().isBeneficial()) continue;
             if(effect==LHEffects.GRAVITY.get())continue;
             if(effect==LHEffects.MOONWALK.get())continue;
-            if(level<5){
-                if(instance.getDuration() > level * 7 * 20f) continue;
-            }
+            if(instance.getDuration() > level * 7 * 20f) continue;
             mob.removeEffect(instance.getEffect());
             healAmount += instance.getDuration() / 20f;
         }

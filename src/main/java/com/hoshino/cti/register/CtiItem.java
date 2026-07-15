@@ -271,6 +271,11 @@ public class CtiItem {
             .mod(TAG_AUGMENT_BASE_MOD, 13)
             .mod(TAG_MACHINE_PARALLEL,6)
             .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
+    public static final RegistryObject<Item> UPGRADE_AUGMENTS_9 = ITEMS.register("upgrade_augment_9", () -> new AugmentItem(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
+            .type(TAG_AUGMENT_TYPE_UPGRADE)
+            .mod(TAG_AUGMENT_BASE_MOD, 20)
+            .mod(TAG_MACHINE_PARALLEL,8)
+            .build()).setShowInGroups(getFlag(FLAG_UPGRADE_AUGMENTS)));
 
     //黑雾级别
     //黑雾能源炉插件
@@ -379,7 +384,7 @@ public class CtiItem {
         @Override
         public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
             pTooltip.add(Component.literal("高强度的铝玻璃,他会弱化周围生物的攻击,半径4格内每多一块就会降低1%伤害,至多降低40%").withStyle(style -> style.withColor(0xffaaff)));
-            pTooltip.add(Component.literal("对于穿甲/穿魔伤害无效！").withStyle(style -> style.withColor(0xff557f)));
+            pTooltip.add(Component.literal("同时会压制周4围格内生物的传送和诸神黄昏词条").withStyle(style -> style.withColor(0xff557f)));
         }
     });
     public static final RegistryObject<Item> star_dragon_ingot = ITEMS.register("star_dragon_ingot", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS),List.of(

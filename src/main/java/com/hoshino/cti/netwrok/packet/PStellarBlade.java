@@ -25,7 +25,9 @@ public class PStellarBlade {
         if (supplier.get().getSender() != null) {
             context.enqueueWork(() -> {
                 ServerPlayer serverPlayer = supplier.get().getSender();
-                StellarBlade.summonStars(serverPlayer);
+                if (serverPlayer != null) {
+                    StellarBlade.summonStars(serverPlayer);
+                }
             });
         }
         return true;

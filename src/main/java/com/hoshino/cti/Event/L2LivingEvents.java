@@ -136,6 +136,14 @@ public class L2LivingEvents {
                     event.setCanceled(true);
         }
     }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void nightmareCostPlayerHeal(LivingHealEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if(EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.NIGHTMARE.get())){
+                event.setAmount(event.getAmount() * 0.15f);
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void livingTick(LivingEvent.LivingTickEvent event) {

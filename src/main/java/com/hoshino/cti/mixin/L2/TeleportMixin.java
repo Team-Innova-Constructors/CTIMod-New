@@ -1,6 +1,7 @@
 package com.hoshino.cti.mixin.L2;
 
 import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.util.EntityUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.traits.goals.EnderTrait;
@@ -17,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TeleportMixin {
     @Inject(method = "tick",at = @At(value = "HEAD"), cancellable = true)
     private void mobTick(LivingEntity mob, int level, CallbackInfo ci){
+        if(EntityUtil.hasAlGlass(mob)){
+            ci.cancel();
+            return;
+        }
         if(!mob.level.isClientSide()&&mob instanceof Mob mob1){
             var entity=mob1.getTarget();
             if(entity instanceof ServerPlayer serverPlayer){

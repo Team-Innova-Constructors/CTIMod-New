@@ -6,6 +6,7 @@ import com.hoshino.cti.register.CtiModifiers;
 import com.xiaoyue.tinkers_ingenuity.content.library.helper.BreakLogicHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
@@ -68,7 +69,7 @@ public class FixVoidTouch extends EtSTBaseModifier {
                         ModifierEntry entry = (ModifierEntry) var12.next();
                         entry.getHook(ModifierHooks.BLOCK_HARVEST).finishHarvest(tool, entry, context, true);
                     }
-
+                    if(Registry.BLOCK.getKey(state.getBlock()).getPath().equals("frozen_chest"))return;
                     BreakLogicHelper.dropItems(state, pos, serverLevel);
                 }
             }

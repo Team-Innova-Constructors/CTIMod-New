@@ -4,6 +4,7 @@ import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.c2h6s.etshtinker.init.EtshtinkerModifiers;
 import com.hoshino.cti.register.CtiHostilityTrait;
+import com.hoshino.cti.util.EntityUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import com.marth7th.solidarytinker.util.method.ModifierLevel;
@@ -36,18 +37,6 @@ import static com.hoshino.cti.util.L2.RagnarokHelper.checkAndGiveData;
 public abstract class RagnarokTraitMixin {
     @Inject(at = {@At("HEAD")}, method = {"allowSeal"}, cancellable = true)
     private static void Neutralization(EntitySlotAccess access, CallbackInfoReturnable<Boolean> cir) {
-        //防止自身被封印
-        List<Modifier> sealModifier = new ArrayList<>();
-        sealModifier.add(EtshtinkerModifiers.manaoverload_STATIC_MODIFIER.get());//魔灵皇
-        sealModifier.add(EtshtinkerModifiers.perfectism.get());//魔灵皇
-        sealModifier.add(EtshtinkerModifiers.trinitycurse_STATIC_MODIFIER.get());//三位一体
-
-        sealModifier.add(TIModifiers.SEA_DREAM.get());//海梦
-        for (Modifier modifier : sealModifier) {
-            if (ModifierUtil.getModifierLevel(access.get(), modifier.getId()) > 0) {
-                cir.setReturnValue(false);
-            }
-        }
         if (ModifierUtil.getModifierLevel(access.get(), new ModifierId("cti:the_relic")) > 0) {
             cir.setReturnValue(false);
         }
@@ -63,10 +52,6 @@ public abstract class RagnarokTraitMixin {
                 ci.cancel();
                 return;
             }
-            if (GetModifierLevel.CurioHasModifierlevel(player, new ModifierId("solidarytinker:deepoceanchew"))) {
-                ci.cancel();
-                return;
-            }
             if (attacker instanceof Mob mob) {
                 LazyOptional<MobTraitCap> optional = mob.getCapability(MobTraitCap.CAPABILITY);
                 if (optional.resolve().isPresent()) {
@@ -74,6 +59,10 @@ public abstract class RagnarokTraitMixin {
                     var traitLevel = cap.getTraitLevel(LHTraits.RAGNAROK.get());
                     checkAndGiveData(player, traitLevel);
                 }
+            }
+            if(EntityUtil.hasAlGlass(attacker)){
+                ci.cancel();
+                return;
             }
             //饰品专属
             if (SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)) {
@@ -83,15 +72,6 @@ public abstract class RagnarokTraitMixin {
             if (SuperpositionHandler.hasCurio(player, EnigmaticItems.ENIGMATIC_ITEM)) {
                 ci.cancel();
                 return;
-            }
-            //这个列表里面的是只要身上4盔甲/主副有这个材料就会让诸神黄昏对所有装备都不生效
-            List<Modifier> allowModifier = new ArrayList<>();
-            allowModifier.add(EtshtinkerModifiers.beconcerted_STATIC_MODIFIER.get());//奇迹物质
-            allowModifier.add(EtshtinkerModifiers.unknown_STATIC_MODIFIER.get());//宏原子
-            for (Modifier modifier : allowModifier) {
-                if (ModifierLevel.EquipHasModifierlevel(target, modifier.getId())) {
-                    ci.cancel();
-                }
             }
             if (ModifierLevel.EquipHasModifierlevel(target, new ModifierId("cti:shadow_of_vigrid"))) {
                 ci.cancel();

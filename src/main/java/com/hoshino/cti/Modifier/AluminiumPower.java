@@ -27,10 +27,10 @@ public class AluminiumPower extends Modifier implements ModifyDamageModifierHook
     @Override
     public float modifyDamageTaken(IToolStackView iToolStackView, ModifierEntry modifierEntry, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float v, boolean b) {
         if(damageSource.isExplosion()){
-             v= v*0.2f;
+             v= v*0.4f;
         }
         if(damageSource instanceof EntityDamageSource entityDamageSource&&entityDamageSource.isThorns()){
-            v=v* 0.2f;
+            v=v* 0.4f;
         }
         else if(damageSource.isProjectile()||damageSource.isMagic()||damageSource.isFall()||damageSource.isFire()){
             v=v * 0.6f;
@@ -43,7 +43,7 @@ public class AluminiumPower extends Modifier implements ModifyDamageModifierHook
 
     @Override
     public void addAttributes(IToolStackView iToolStackView, ModifierEntry modifierEntry, EquipmentSlot equipmentSlot, BiConsumer<Attribute, AttributeModifier> biConsumer) {
-        var speedAttribute =new AttributeModifier(UUID.nameUUIDFromBytes((this.getId()+equipmentSlot.getName()).getBytes()), Attributes.MAX_HEALTH.getDescriptionId(),0.05, AttributeModifier.Operation.ADDITION);
+        var speedAttribute =new AttributeModifier(UUID.nameUUIDFromBytes((this.getId()+equipmentSlot.getName()).getBytes()), Attributes.MOVEMENT_SPEED.getDescriptionId(),0.2, AttributeModifier.Operation.MULTIPLY_BASE);
         biConsumer.accept(Attributes.MOVEMENT_SPEED, speedAttribute);
     }
 }

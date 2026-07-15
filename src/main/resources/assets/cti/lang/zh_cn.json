@@ -153,11 +153,11 @@
 
   "modifier.cti.nature_power": "自然之力",
   "modifier.cti.nature_power.flavor": "依旧爱魔tv",
-  "modifier.cti.nature_power.description":"受到魔法伤害会叠加坚定效果\n坚定效果至多获得8层,8层时获得60%魔法免伤和 速度 2 效果,每5秒消散一层",
+  "modifier.cti.nature_power.description":"受到伤害会叠加坚定效果\n坚定效果至多获得8层,8层时获得60%魔法/爆炸免伤和 速度 2 效果,每5秒消散一层",
 
   "modifier.cti.endless_hatred": "无终恨意",
   "modifier.cti.endless_hatred.flavor": "要是其他材料能叠钢就好了",
-  "modifier.cti.endless_hatred.description":"每4秒会对附近8格内[所有]非玩家生物造成你自己最大生命6% x 词条等级的灼烧伤害.\n此伤害的50%会转化为回血,周围目标越多回复值越高",
+  "modifier.cti.endless_hatred.description":"每4秒会对附近8格内[所有]非玩家生物造成你自己最大生命12% x 词条等级的灼烧伤害.\n此伤害的25%会转化为回血,周围目标越多回复值越高,回血至多计算8个目标",
 
   "modifier.cti.arrogant_person": "狂妄之徒",
   "modifier.cti.arrogant_person.flavor": "脱战回血",
@@ -169,7 +169,7 @@
 
   "modifier.cti.messengerofdawn": "黎明使者",
   "modifier.cti.messengerofdawn.flavor": "黎明就在眼前",
-  "modifier.cti.messengerofdawn.description":"跌入半血时候,获得黎明使者效果,4秒内快速恢复80%最大血量并且大幅提升造成的伤害,提升数值为200%,提升伤害效果在10秒后消失\n该技能冷却时长为180秒",
+  "modifier.cti.messengerofdawn.description":"跌入半血时候,获得黎明使者效果,4秒内快速恢复80%最大血量并且大幅提升造成的伤害,提升数值为200%,提升伤害效果在30秒后消失\n该技能冷却时长为180秒",
 
   "item.cti.awakesaintchef_ingot": "§6觉醒龙皇锭",
   "item.cti.molten_awakesaintchef_ingot_bucket": "熔融觉醒龙皇桶",
@@ -353,6 +353,7 @@
   "item.cti.upgrade_augment_6": "钛锆整合组件",
   "item.cti.upgrade_augment_7": "极寒整合组件",
   "item.cti.upgrade_augment_8": "活彩整合组件",
+  "item.cti.upgrade_augment_9": "恶念整合组件",
 
   "item.cti.extereme_dyano_augment": "恶念燃烧室组件",
   "item.cti.extereme_speed_augment": "恶念速度提升组件",
@@ -478,7 +479,7 @@
 
   "modifier.cti.aluminiumpower": "钢化本质",
   "modifier.cti.aluminiumpower.flavor": "我硬的要命，真的",
-  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供50%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低40%,同时也会降低你承受到的40%(魔法,火焰,摔落,弹射物)伤害.对爆炸和反伤类的减免则提升到60%",
+  "modifier.cti.aluminiumpower.description":"穿戴时候每件提供20%移动速度加成.降低2 * 等级点以下的来自生物的伤害\n你造成的(爆炸,魔法,火焰,弹射物伤害)都会降低40%,同时也会降低你承受到的40%(魔法,火焰,摔落,弹射物)伤害.对爆炸和反伤类的减免则提升到60%",
 
   "modifier.cti.electric_protect": "电离防护",
   "modifier.cti.electric_protect.flavor": "电流退散！",
@@ -548,6 +549,10 @@
   "modifier.cti.breeding.flavor": "Good for sex.",
   "modifier.cti.breeding.description":"加速身边动物的生长，并清除它们的繁殖冷却",
 
+  "modifier.cti.magical": "魔能",
+  "modifier.cti.magical.flavor": "紫水晶的共振",
+  "modifier.cti.magical.description":"受到的非穿魔属性的魔法伤害降低28%,其他非穿魔伤害降低12%\n•受击有50%概率短暂禁锢目标,否则则会让目标原地飞起来",
+
   "modifier.cti.knightglory": "骑士辉耀",
   "modifier.cti.knightglory.flavor": "剑与盾！",
   "modifier.cti.knightglory.description":"攻击时，将部分伤害转化为可叠加的伤害吸收，每次10%最大生命，上限等级 * 最大生命30%。并根据伤害吸收提高攻击伤害每级每点1伤害,远程减半",
@@ -563,7 +568,6 @@
   "modifier.cti.double_edged": "双刃剑",
   "modifier.cti.double_edged.flavor": "大动脉撕裂者",
   "modifier.cti.double_edged.description":"满蓄力打击时对敌人造成2.5倍伤害。然而如果未击中或者没有满蓄力，你会打中你自己。",
-
 
   "item.cti.nitro_supersteel": "冰淬高速钢",
   "material.cti.nitro_supersteel": "冰淬高速钢",
@@ -927,7 +931,7 @@
 
   "modifier.cti.supercrithit": "大暴击",
   "modifier.cti.supercrithit.flavor": "超级头槌",
-  "modifier.cti.supercrithit.description":"你生命值比例越高可以提高此次暴击伤害,至高200%",
+  "modifier.cti.supercrithit.description":"你生命值比例越高可以提高此次暴击伤害,每级提高25%",
 
   "modifier.cti.healthboost": "生命洪流",
   "modifier.cti.healthboost.flavor": "生命在我体内流淌",
@@ -940,6 +944,22 @@
   "modifier.cti.eternity": "永恒",
   "modifier.cti.eternity.flavor": "不朽的 ToolStack",
   "modifier.cti.eternity.description":"获得优先级较高的不毁，手持/穿着时获得50%伤害减免（仅生效一次）。",
+
+  "modifier.cti.glory_emblem": "荣耀印记",
+  "modifier.cti.glory_emblem.flavor": "天堂之剑",
+  "modifier.cti.glory_emblem.description":"完整的攻击会积累荣耀印记,在面对高于你最大生命值10倍敌人时,消耗12层印记来使你的攻击额外附带其最大生命15%的穿甲伤害(此伤害上限每级提升500)",
+
+  "modifier.cti.replace_sprite_of_gaia": "盖亚之魄",
+  "modifier.cti.replace_sprite_of_gaia.flavor": "盖亚的意志",
+  "modifier.cti.replace_sprite_of_gaia.description":"拥有魔力时,完整的攻击/箭矢附带30%原伤害的凋零伤害,挖掘速度提升50%",
+
+  "modifier.cti.replace_sin_root": "罪孽根源",
+  "modifier.cti.replace_sin_root.flavor": "客自海外归",
+  "modifier.cti.replace_sin_root.description":"完整的近战攻击附带目标最大生命3%的伤害,此伤害上限词条每级提升100点",
+
+  "modifier.cti.infernal": "炼狱",
+  "modifier.cti.infernal.flavor": "炼狱",
+  "modifier.cti.infernal.description":"对50%血量以上的目标每级提升目标3%最大生命的基础伤害,此数值上限每级提升30点,但是对50%血量以下的目标造成的基础伤害仅有70%",
 
   "modifier.cti.devourer_of_dragons": "龙魂吞噬者",
   "modifier.cti.devourer_of_dragons.flavor": "虽然你不是龙，但你的灵魂依然是我的盛宴！",
@@ -1084,15 +1104,6 @@
   "modifier.cti.territoral_sky": "领空",
   "modifier.cti.territoral_sky.flavor": "天空使者",
   "modifier.cti.territoral_sky.description":"对滞空单位每级增加40%伤害，滞空时增加挖掘速度抵消挖掘惩罚。",
-
-  "modifier.cti.infernal": "炼狱",
-  "modifier.cti.infernal.flavor": "炼狱",
-  "modifier.cti.infernal.description":"对50%血量以上的目标每级增加目标3%最大生命值的伤害，但是对50%血量以下的目标每级减少目标1%最大生命值的伤害。",
-
-  "modifier.cti.infernal": "炼狱",
-  "modifier.cti.infernal.flavor": "炼狱",
-  "modifier.cti.infernal.description":"对50%血量以上的目标每级增加目标3%最大生命值的伤害，但是对50%血量以下的目标每级减少目标1%最大生命值的伤害。",
-
 
 
   "fluid.cti.molten_stellar_manyullyn": "熔融玛玉灵(?)",
@@ -1291,6 +1302,10 @@
   "modifier.cti.super_overslime.flavor": "里面塞了什么中子星物质压缩科技？！",
   "modifier.cti.super_overslime.description":"黏液覆层上限变为100倍。",
 
+  "modifier.cti.definitely_not_good": "一定不好",
+  "modifier.cti.definitely_not_good.flavor": "哦对了,我跟你说一下",
+  "modifier.cti.definitely_not_good.description":"触发死亡时候有概率消耗648SDM商店的钱来复活\n无CD限制,但是这个复活仅有8x8%的概率触发,说不定还不会复活",
+
   "item.cti.feima_ingot": "费马锭",
   "item.cti.molten_feima_bucket": "熔融费马桶",
   "fluid.cti.molten_feima": "熔融费马",
@@ -1484,7 +1499,7 @@
   "cti.ritual_desc.elemental_summon":"随机召唤4~8只烈焰人/狂风人/暴雪人/岩石人。它们会生成在以祭坛为中心正上方的5*5*5范围内。",
 
   "trait.l2hostility.purify": "净化",
-  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命,5级净化无视秒数(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",
+  "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命,(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之魂＞2级/佩戴扭曲之魂时免疫",
 
   "trait.l2hostility.oracle": "神谕",
   "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
@@ -1497,7 +1512,6 @@
 
   "trait.l2hostility.second_phase": "二阶段",
   "trait.l2hostility.second_phase.desc": "当生物血量降至50%时每级使其无敌5秒。",
-
 
 
   "trait.l2hostility.hard_skin": "坚硬表皮",
@@ -1516,7 +1530,6 @@
   "trait.l2hostility.breuddwyd_drwg_braslun.desc": "攻击会对玩家施加等级层的梦魇印记,每层印记增加玩家受到的8%全伤害,当印记满42层时,玩家会直接死亡\n印记每6秒自然消散一层",
 
 
-
   "info.cti.panel_condition.upward": "于世界最高处向上放置",
   "info.cti.panel_condition.downward": "于世界最低处向下放置",
   "info.cti.panel_condition.night": "需要在夜晚",
@@ -1525,7 +1538,7 @@
 
   "info.biomes.cti.disordered_zone": "异常区域位于电离冻土星球，你需要进入主线第三章并且做出五级火箭才能到达这里。在此之前你需要做出一个完整的质子、电子产线。",
 
-  "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过350234的dps时产生",
+  "info.cti.space_shard": "近距离(绝对距离3格内)对训练人偶造成超过735560.8的dps时产生",
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
   "info.cti.insatiable": "§3[正面效果|贪婪]§r所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25，武器攻击或者护甲被攻击都会为所有者增加等同于贪婪叠加的贪婪等级。",

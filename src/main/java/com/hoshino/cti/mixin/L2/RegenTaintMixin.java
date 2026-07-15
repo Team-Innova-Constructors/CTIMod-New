@@ -66,6 +66,6 @@ public abstract class RegenTaintMixin extends MobTrait {
      */
     @Overwrite
     public boolean validTarget(LivingEntity le) {
-        return le instanceof EnderDragon;
+        return !(le instanceof EnderDragon);
     }
 }

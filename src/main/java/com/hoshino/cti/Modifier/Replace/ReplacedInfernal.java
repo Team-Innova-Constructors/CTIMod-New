@@ -9,9 +9,19 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 public class ReplacedInfernal extends EtSTBaseModifier {
     @Override
     public float onGetMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
-        var target = context.getTarget();
-        if (target instanceof LivingEntity living)
-            damage+=(living.getHealth()>0.5f*living.getMaxHealth()?0.03f*living.getMaxHealth():-0.1f*living.getMaxHealth())*modifier.getLevel();
+        var target = context.getLivingTarget();
+        var player = context.getPlayerAttacker();
+        if (target == null || player == null) return damage;
+        if (!context.isFullyCharged()) return damage;
+        int level = modifier.getLevel();
+        if (target.getHealth() > 0.5f * target.getMaxHealth()) {
+            float extraDamage = 0.03f * target.getMaxHealth();
+            float maxBonus = 30.0f * level;
+            damage += Math.min(extraDamage, maxBonus);
+        } else {
+            damage *= 0.7f;
+        }
+
         return damage;
     }
 }

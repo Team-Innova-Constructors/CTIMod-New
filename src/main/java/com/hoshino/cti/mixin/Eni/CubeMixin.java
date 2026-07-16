@@ -26,16 +26,5 @@ public abstract class CubeMixin {
     @SubscribeEvent(priority = EventPriority.LOW)
     @Overwrite
     public void endEntityHurt(LivingHurtEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player && event.getSource().getEntity() != null) {
-            if (event.getAmount() > EnigmaticItems.THE_CUBE.getDamageLimit(player) && SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)) {
-                player.level.playSound(null, player.blockPosition(), SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 1F, 1F);
-                if (event.getSource().getDirectEntity() instanceof LivingEntity living) {
-                    event.setAmount(event.getAmount() * 0.3f);
-                    Vector3 look = new Vector3(living.position()).subtract(new Vector3(player.position())).normalize();
-                    Vector3 dir = look.multiply(1D);
-                    etheriumConfig.knockBack(living, 1.0F, dir.x, dir.z);
-                }
-            }
-        }
     }
 }

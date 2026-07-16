@@ -5,12 +5,16 @@ import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
+import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.common.RegenTrait;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -55,5 +59,13 @@ public abstract class RegenTaintMixin extends MobTrait {
                 mob.heal(healAmount);
             }
         }
+    }
+    /**
+     * @author
+     * @reason
+     */
+    @Overwrite
+    public boolean validTarget(LivingEntity le) {
+        return !(le instanceof EnderDragon);
     }
 }

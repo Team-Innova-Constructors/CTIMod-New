@@ -15,7 +15,7 @@ public class CurseMixin {
     @Inject(method = "onHeal",at = @At("HEAD"), cancellable = true,remap = false)
     private static void chose(LivingHealEvent event, CallbackInfo ci){
         var entity=event.getEntity();
-        var mari=new ModifierId("solidarytinker:heallight");
+        var mari=new ModifierId("solidarytinker:healhalo");
         if(entity instanceof Player player){
             boolean shouldCancel= GetModifierLevel.EquipHasModifierlevel(player,mari);
             if(shouldCancel){

@@ -2,8 +2,13 @@ package com.hoshino.cti.Modifier.Race;
 
 import com.hoshino.cti.Cti;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -30,12 +35,20 @@ public class EndlessHatred extends Modifier implements InventoryTickModifierHook
         livingEntity.getCapability(TinkerDataCapability.CAPABILITY).ifPresent((cap)->{
             var modifierLevel=modifierEntry.getLevel();
             if (modifierLevel>0){
-                var entityList=level.getEntitiesOfClass(Mob.class,livingEntity.getBoundingBox().inflate(8));
+                var entityList=level.getEntitiesOfClass(Mob.class,livingEntity.getBoundingBox().inflate(8),mob ->{
+                    if(mob instanceof Villager)return false;
+                    if(mob instanceof TamableAnimal)return false;
+                    return !(mob instanceof IronGolem);
+                });
                 for (Mob mob : entityList) {
                     mob.invulnerableTime=0;
-                    mob.hurt(DamageSource.indirectMagic(livingEntity,livingEntity),livingEntity.getMaxHealth() * 0.06f * modifierLevel);
+                    mob.hurt(DamageSource.indirectMagic(livingEntity,livingEntity),livingEntity.getMaxHealth() * 0.12f * modifierLevel);
                 }
-                livingEntity.heal((float) (livingEntity.getMaxHealth() * modifierLevel * 0.5f * 0.06f * Math.sqrt(entityList.size())));
+                var size=entityList.size();
+                if(size>8){
+                    size=8;
+                }
+                livingEntity.heal((float)(livingEntity.getMaxHealth() * modifierLevel * 0.25f * 0.12f * Math.sqrt(size)));
             }
         });
     }

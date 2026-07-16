@@ -25,6 +25,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -164,29 +165,44 @@ public class CommonLivingEvents {
     public static void onLivingAttack(LivingAttackEvent event) {
         if (event.getEntity() instanceof EntityDragonBase && event.getSource().getEntity() != null && !(event.getSource().getEntity() instanceof Player))
             event.setCanceled(true);
-        if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.INVULNERABLE.get()))
+        if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.INVULNERABLE.get())&&!event.getEntity().isDeadOrDying())
             event.setCanceled(true);
     }
 
     @SubscribeEvent
     public static void glassWeakDamage(LivingDamageEvent event) {
-        var source = event.getSource();
         var entity = event.getEntity();
-        if (source.isBypassArmor() || source.isBypassMagic() || source.isBypassEnchantments() || source.isBypassInvul() || source.getEntity() == null)
+        var source=event.getSource();
+        var attacker = source.getEntity();
+        boolean isPlayerInvolved = (entity instanceof Player) || (attacker instanceof Player);
+        if (!isPlayerInvolved) {
             return;
-        double x = entity.getX();
-        double y = entity.getY();
-        double z = entity.getZ();
-        var pos1 = new BlockPos(x + 3, y - 1, z + 3);
-        var pos2 = new BlockPos(x - 3, y - 1, z - 3);
-        var stateStream = entity.level.getBlockStates(new AABB(pos1, pos2));
-        var list = stateStream.toList();
-        int count = 0;
-        for (BlockState state : list) {
-            if (state.getBlock() != CtiBlock.aluminium_glass.get()) continue;
-            count++;
         }
-        event.setAmount(event.getAmount() * 1 - (Math.min(40f, count) / 100f));
+        int minX = Mth.floor(entity.getX() - 3);
+        int maxX = Mth.floor(entity.getX() + 3);
+        int minZ = Mth.floor(entity.getZ() - 3);
+        int maxZ = Mth.floor(entity.getZ() + 3);
+        int y = Mth.floor(entity.getY() - 1);
+        int count = 0;
+        var level = entity.level;
+        var targetBlock = CtiBlock.aluminium_glass.get();
+        BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
+        for (int x = minX; x <= maxX; x++) {
+            for (int z = minZ; z <= maxZ; z++) {
+                mutablePos.set(x, y, z);
+                if (level.getBlockState(mutablePos).getBlock() == targetBlock) {
+                    count++;
+                    if (count >= 40) {
+                        break;
+                    }
+                }
+            }
+            if (count == 40) break;
+        }
+        if (count > 0) {
+            float factor = 1.0f - (Math.min(40f, count) / 100f);
+            event.setAmount(event.getAmount() * factor);
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

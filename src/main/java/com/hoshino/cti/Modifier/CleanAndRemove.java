@@ -32,7 +32,7 @@ public class CleanAndRemove extends Modifier implements MeleeHitModifierHook {
     @Override
     public void afterMeleeHit(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
         if (context.getTarget() instanceof LivingEntity living && context.isFullyCharged() && !living.level.isClientSide()) {
-            if(tool.getModifierLevel(new ModifierId("tinkersinnovation:miracle"))>0){
+            if(hasMiracle(tool)){
                 living.getCapability(MobTraitCap.CAPABILITY).ifPresent(cap -> {
                     Set<MobTrait> set = cap.traits.keySet();
                     if (set.isEmpty()) {
@@ -41,7 +41,7 @@ public class CleanAndRemove extends Modifier implements MeleeHitModifierHook {
                     var random = living.getRandom();
                     var data=living.getPersistentData();
                     int ti=data.getInt("ragnarok_drop");
-                    if (random.nextInt(Math.max(1,10-modifier.getLevel())) == 0&&ti<2) {
+                    if (random.nextInt(Math.max(1,5-modifier.getLevel())) == 0&&ti<3) {
                         List<MobTrait> traitList = new ArrayList<>(set);
                         MobTrait trait = traitList.get(random.nextInt(traitList.size()));
                         if (trait != null) {

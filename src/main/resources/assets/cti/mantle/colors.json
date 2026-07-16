@@ -229,8 +229,11 @@
     "arrogant_person": "#6edeff",
     "dilapidated_magic": "#cf53ff",
     "messengerofdawn": "#acedff",
-    "breakstone": "#acedff"
-
+    "breakstone": "#acedff",
+    "glory_emblem": "#cccfdd",
+    "replace_sin_root": "#8effd4",
+    "replace_sprite_of_gaia": "#8effd4",
+    "magical": "#d198ff"
   },
   "harvest_tier.cti": {
     "roxy": "#629df5"

@@ -8,10 +8,12 @@ import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CommonUtil;
 import com.hoshino.cti.util.L2.CorodiHelper;
+import com.hoshino.cti.util.L2.KnlyHelper;
 import com.hoshino.cti.util.L2.RagnarokHelper;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
+import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
@@ -108,7 +110,7 @@ public class L2LivingEvents {
         int uranium = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
         int hoshino = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         ModifierId health = new ModifierId("tinkersinnovation:vitality_armor");
-        int mari = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("solidarytinker:heallight"));
+        int mari = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("solidarytinker:healhalo"));
         int healthLevel = GetModifierLevel.getTotalArmorModifierlevel(player, health);
         return (uranium + hoshino + healthLevel + mari) > 0;
     }
@@ -132,6 +134,14 @@ public class L2LivingEvents {
             if (!player.level.isClientSide)
                 if (EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.STRICT_CURSE.get()))
                     event.setCanceled(true);
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void nightmareCostPlayerHeal(LivingHealEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if(EntityTickerManager.getInstance(player).hasTicker(CtiEntityTickers.NIGHTMARE.get())){
+                event.setAmount(event.getAmount() * 0.15f);
+            }
         }
     }
 
@@ -169,6 +179,11 @@ public class L2LivingEvents {
                     CorodiHelper.removeData(serverPlayer);
                 }
             }
+            if (serverPlayer.tickCount % 400 == 0) {
+                if (KnlyHelper.hasBeenCost(serverPlayer)) {
+                    KnlyHelper.removeData(serverPlayer);
+                }
+            }
         }
     }
 
@@ -185,6 +200,21 @@ public class L2LivingEvents {
                 float finalDamage = originalDamage * (1f + damageBonusScale);
                 event.setAmount(finalDamage);
             });
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onProtectKnly(LivingDamageEvent event) {
+        var entity=event.getEntity();
+        var health=entity.getMaxHealth();
+        if(!(entity instanceof CaptainCornelia))return;
+        if (event.getSource().getEntity() instanceof Mob && event.getEntity() instanceof CaptainCornelia) {
+            event.setAmount(entity.getMaxHealth() * 0.01f);
+        }
+        if(event.getSource().getEntity() instanceof Player){
+            var amount=event.getAmount();
+            if(amount>health * 0.05f&&amount<health * 2){
+                event.setAmount(health * 0.05f);
+            }
         }
     }
     @SubscribeEvent(priority = EventPriority.HIGHEST)

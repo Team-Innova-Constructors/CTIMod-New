@@ -9,12 +9,14 @@ import com.hoshino.cti.library.modifier.hooks.OnHoldingPreventDeathHook;
 import com.hoshino.cti.library.modifier.hooks.SlotStackModifierHook;
 import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.util.EquipmentUtil;
+import com.xiaoyue.tinkers_ingenuity.content.effects.mob.Excited;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -162,6 +164,4 @@ public class ToolEvents {
             });
         }
     }
-
-
 }

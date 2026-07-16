@@ -9,6 +9,7 @@ import dev.xkmc.l2hostility.content.traits.legendary.DispellTrait;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -74,10 +75,11 @@ public class DispellTraitMixin extends LegendaryTrait {
     public void postHurtImpl(int level, LivingEntity attacker, LivingEntity target) {
         if(cti_new$shouldHurt(target)){
             var source=new EntityDamageSource("dispell",attacker);
-            var mobLevel= DifficultyLevel.ofAny(attacker);
-            float scale=cti_new$getScale(target);
+            var mobLevel = DifficultyLevel.ofAny(attacker);
+            float scale = cti_new$getScale(target);
             float totalHurt=mobLevel * 0.02f * level *scale;
-            if(target.isDeadOrDying())return;
+            if(totalHurt==0)return;
+            if(target.isDeadOrDying()||!target.isAlive())return;
             ((ILivingEntityMixin)target).cti$strictHurt(source,totalHurt,false);
         }
     }
@@ -99,9 +101,9 @@ public class DispellTraitMixin extends LegendaryTrait {
     @Unique
     private float cti_new$getScale(LivingEntity living){
         if(!(living instanceof Player player)) return 1;
-        var relicLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("cti:the_relic"));
-        var shadowOfVigridLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
-        boolean hashardLevel = GetModifierLevel.getAllSlotModifierlevel(player, new ModifierId("etshtinker:solidex")) > 0;
+        var relicLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:the_relic"));
+        var shadowOfVigridLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
+        boolean hashardLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("etshtinker:solidex")) > 0;
         boolean hasEtherLevel=GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("cti:ether"));
         float hasHard = hashardLevel ? 0.8f : 1.0f;
         float hasEther=hasEtherLevel?0.9f:1.0f;

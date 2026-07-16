@@ -42,9 +42,11 @@ public class ShulkerProtect extends Modifier implements AttributesModifierHook, 
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
         if(source.isExplosion()){
-            amount/=0.6f;
+            amount*=0.6f;
         }
-        if(source.isBypassMagic())return amount;
+        if(source.isBypassMagic()){
+            return amount *0.93f;
+        }
         if(source.isBypassInvul())return amount;
         return amount * 0.85f;
     }

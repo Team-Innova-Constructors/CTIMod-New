@@ -193,7 +193,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
                 if (entity1 instanceof Player) {
                     accessor.setLastHurtByPlayerTime(100);
                     living.setLastHurtByPlayer((Player)entity1);
-                } else if (entity1 instanceof net.minecraft.world.entity.TamableAnimal tamableEntity) {
+                } else if (entity1 instanceof TamableAnimal tamableEntity) {
                     if (tamableEntity.isTame()) {
                         accessor.setLastHurtByPlayerTime(100);
                         LivingEntity livingentity = tamableEntity.getOwner();
@@ -287,9 +287,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
                     int i = 256;
                     String s = component.getString(256);
                     Component component1 = Component.translatable("death.attack.message_too_long", Component.literal(s).withStyle(ChatFormatting.YELLOW));
-                    Component component2 = Component.translatable("death.attack.even_more_magic", player.getDisplayName()).withStyle((p_143420_) -> {
-                        return p_143420_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, component1));
-                    });
+                    Component component2 = Component.translatable("death.attack.even_more_magic", player.getDisplayName()).withStyle((p_143420_) -> p_143420_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, component1)));
                     return new ClientboundPlayerCombatKillPacket(player.getCombatTracker(), component2);
                 }));
                 Team team = player.getTeam();

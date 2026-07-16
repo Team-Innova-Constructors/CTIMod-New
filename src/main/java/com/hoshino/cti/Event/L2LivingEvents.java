@@ -118,12 +118,10 @@ public class L2LivingEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void curseCostPlayerHeal(LivingHealEvent event) {
         if (event.getEntity() instanceof Player player) {
-
             int painTime = player.getPersistentData().getInt("pain_time");
             int a = Math.round(painTime / 8f);
             float shouldHeal = event.getAmount();
             float antiCurseFactor = 1f / (CommonUtil.getAntiCurseLevel(player) + 1);
-
             if (a > 0) {
                 switch (a) {
                     case 1, 2, 3 -> event.setAmount(Math.max(0.1F, shouldHeal - a * 0.7F * antiCurseFactor));
@@ -148,6 +146,12 @@ public class L2LivingEvents {
     @SubscribeEvent
     public static void livingTick(LivingEvent.LivingTickEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            boolean c = checkEquipment(serverPlayer);
+            if (c){
+                serverPlayer.getPersistentData().remove("pain_time");
+                CtiPacketHandler.sendToPlayer(new CurseTimeUpdatePacket(0, 0), serverPlayer);
+                return;
+            }
             int painTime = serverPlayer.getPersistentData().getInt("pain_time");
             int a = Math.round(painTime / 8f);
             int curseLevelToSend = 0;
@@ -221,7 +225,7 @@ public class L2LivingEvents {
     public static void onIncreaseLiming(LivingHurtEvent event) {
         if (event.getSource().getEntity() instanceof Mob mob) {
            if(mob.getPersistentData().contains("cti_liming")){
-               event.setAmount(event.getAmount() * 1.3f);
+               event.setAmount(event.getAmount() * 1.75f);
            }
         }
     }

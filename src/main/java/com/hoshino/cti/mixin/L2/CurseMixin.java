@@ -2,6 +2,7 @@ package com.hoshino.cti.mixin.L2;
 
 import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2complements.events.MagicEventHandler;
+import dev.xkmc.l2complements.init.registrate.LCEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,8 +20,12 @@ public class CurseMixin {
         if(entity instanceof Player player){
             boolean shouldCancel= GetModifierLevel.EquipHasModifierlevel(player,mari);
             if(shouldCancel){
-                ci.cancel();
+                return;
             }
         }
+        if (event.getEntity().hasEffect(LCEffects.CURSE.get())) {
+            event.setAmount(event.getAmount() * 0.2f);
+        }
+        ci.cancel();
     }
 }

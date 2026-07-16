@@ -55,8 +55,9 @@ public class EntityUtil {
     public static void constantKill(LivingEntity entity, DamageSource source){
         var a = (ILivingEntityMixin) entity;
         entity.invulnerableTime=0;
-        var currentHealth=entity.getHealth();
+        var currentHealth=entity.getMaxHealth();
+        if(entity.getHealth()<=2)return;
         entity.setHealth(1);
-        a.cti$strictHurt(source, currentHealth, true);
+        a.cti$strictHurt(source, Math.max(100,currentHealth * 0.1f), true);
     }
 }

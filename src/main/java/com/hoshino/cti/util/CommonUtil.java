@@ -3,13 +3,16 @@ package com.hoshino.cti.util;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.google.common.collect.Lists;
 import com.hoshino.cti.Modifier.Armor.AntiCurse;
+import com.hoshino.cti.mixin.LivingEntityAccessor;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.repository.PackRepository;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -112,5 +115,13 @@ public class CommonUtil {
             return MaterialRegistry.getInstance().getTraits(material,statType);
         }
         return List.of();
+    }
+
+    public static float getPlayerAttackDelay(Player player){
+        float delay = player.getCurrentItemAttackStrengthDelay();
+        if (delay < 10) {
+            return delay * 0.7f + 3f;
+        }
+        return delay;
     }
 }

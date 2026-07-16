@@ -5,6 +5,7 @@ import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.register.CtiEntityTickers;
+import com.hoshino.cti.util.CommonUtil;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -30,7 +31,7 @@ public class EchoForm extends NoLevelsModifier implements LeftClickModifierHook,
         if (!level.isClientSide&&player.getAttackStrengthScale(0)>0.8){
             var manager = EntityTickerManager.getInstance(player);
             if (!manager.hasTicker(CtiEntityTickers.ECHO_FORM.get())){
-                manager.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.ECHO_FORM.get(),player.attackStrengthTicker, (int) (player.getCurrentItemAttackStrengthDelay()*0.5f)));
+                manager.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.ECHO_FORM.get(),player.attackStrengthTicker, (int) (CommonUtil.getPlayerAttackDelay(player) *0.5f)));
             }
         }
     }

@@ -15,9 +15,9 @@ public class ReplaceOverarmy extends BasicOverslimeModifier {
     @Override
     public float onGetMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         var os = TinkerModifiers.overslime.get();
-        if (os.getShield(tool)>=100){
-            var bonus = os.getShield(tool)/50;
-            bonus = Math.min(bonus,100*modifier.getLevel());
+        if (os.getShield(tool)>=40){
+            var bonus = os.getShield(tool)/20;
+            bonus = Math.min(bonus,30*modifier.getLevel());
             os.addOverslime(tool,modifier,-bonus);
             damage+=damage*0.02f*bonus;
         }

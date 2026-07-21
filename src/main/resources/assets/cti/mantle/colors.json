@@ -166,6 +166,7 @@
     "donotsplit": "#98ff78",
     "fragment": "#4b2e4c",
     "reforged": "#4b2e4c",
+    "refined": "#A48DFF",
 
     "nanobee": "#3e9a8b",
     "nanomachine": "#cbcbcb",
@@ -233,7 +234,8 @@
     "glory_emblem": "#cccfdd",
     "replace_sin_root": "#8effd4",
     "replace_sprite_of_gaia": "#8effd4",
-    "magical": "#d198ff"
+    "magical": "#d198ff",
+    "advanced_igneous": "#8332a3"
   },
   "harvest_tier.cti": {
     "roxy": "#629df5"

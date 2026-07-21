@@ -11,8 +11,8 @@ import com.hoshino.cti.util.L2.CorodiHelper;
 import com.hoshino.cti.util.L2.KnlyHelper;
 import com.hoshino.cti.util.L2.RagnarokHelper;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.SolidarytinkerModifiers;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
-import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
@@ -107,7 +107,7 @@ public class L2LivingEvents {
     }
 
     private static boolean checkEquipment(Player player) {
-        int uranium = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
+        int uranium = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, SolidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
         int hoshino = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         ModifierId health = new ModifierId("tinkersinnovation:vitality_armor");
         int mari = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("solidarytinker:healhalo"));

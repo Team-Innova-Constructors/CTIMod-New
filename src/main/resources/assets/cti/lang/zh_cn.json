@@ -46,6 +46,10 @@
   "item.cti.distillationtower_generator": "蒸馏塔生成器",
   "item.cti.hydrotreater_generator": "高压精炼装置生成器",
 
+  "modifier.cti.refined": "精炼",
+  "modifier.cti.refined.flavor": "由最先进的科技炼成，有着至强的效用。",
+  "modifier.cti.refined.description": "•每级提供大部分面板属性(魂戈,刺剑,电棍的专有属性提升至多生效5级)\n•提供能力槽,升级槽,防御槽各1个,增加25%（最大100%）不消耗耐久的概率。\n\n•作为护甲时基于全身词条等级获得每级8%，最大80%的伤害减免\n•该减免对穿魔伤害具有一半的效力.对穿透无敌无效",
+
 
   "effect.cti.ev": "狩猎",
   "effect.cti.ancientdragonflame": "远古龙焰",
@@ -125,7 +129,7 @@
 
   "modifier.cti.bloodgodbless": "血神赐福",
   "modifier.cti.bloodgodbless.flavor": "血祭血神，颅献颅座",
-  "modifier.cti.bloodgodbless.description":"你每失去一点生命提升0.8%的伤害。当你拥有红温效果时，你的攻击(包括远程)额外附带8%当前生命值与黄心的伤害；你每次攻击回复8%的已损失生命值",
+  "modifier.cti.bloodgodbless.description":"当你拥有红温效果时，你的攻击(包括远程)额外附带8%当前生命值与黄心的伤害(上限计算888);你每次攻击回复8%的已损失生命值",
 
   "modifier.cti.bloodthirsty": "渴血",
   "modifier.cti.bloodthirsty.flavor": "不要放过任何猎物，否则你将会成为血神的猎物",
@@ -889,7 +893,7 @@
   "modifier.cti.plasma_shielding.flavor": "离子护盾",
   "modifier.cti.plasma_shielding.description": "免疫弹射物和爆炸伤害，获得压强以外的1点全环境抗性。获得一面能格挡4次伤害的护盾，护盾破碎后会冷却30秒然后重新充能。",
 
-  "modifier.cti.shadow_of_vigrid": "维格利得之魂",
+  "modifier.cti.shadow_of_vigrid": "维格利得之影",
   "modifier.cti.shadow_of_vigrid.flavor": "终幕战场上的残魂",
   "modifier.cti.shadow_of_vigrid.description": "当你拥有此词条的工具时候,你身上任何一个物品都不再会被诸神黄昏词条封印\n•依据全身盔甲此词条总等级,每级减少7%摄魂和破魔的最终穿刺伤害",
 
@@ -995,19 +999,19 @@
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
-  "modifier.cti.industrial.description":"增加升级槽和能力槽各一个。每级增加5%攻击伤害、挖掘速度、弹射物伤害、耐久和耐久修补量，增加5%（最大80%）不消耗耐久的概率。",
+  "modifier.cti.industrial.description":"•增加升级槽和能力槽各一个\n•每级增加5%面板 攻击伤害,攻击速度,挖掘速度,弹射物伤害,耐久和耐久修补量\n•增加5%（最大80%）不消耗耐久的概率。",
 
   "modifier.cti.industrial_armor": "工业",
   "modifier.cti.industrial_armor.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
-  "modifier.cti.industrial_armor.description":"增加防御槽和能力槽各一个。每级增加5%护甲值、护甲韧性、耐久和耐久修补量，增加5%（最大80%）不消耗耐久的概率，基于全身等级获得5%（最大80%）的非穿甲伤害减免。无论承受多高的伤害都至多消耗2耐久。",
+  "modifier.cti.industrial_armor.description":"•增加防御槽和能力槽各一个\n•每级增加5%护甲值,护甲韧性,耐久和耐久修补量\n•增加5%（最大80%）不消耗耐久的概率\n•基于全身等级获得5%（最大80%）的非穿魔伤害减免(伤害穿甲这个效益减半,上限不变)\n•无论承受多高的伤害都至多消耗2耐久。",
 
   "modifier.cti.carcinogenic": "永久创伤",
   "modifier.cti.carcinogenic.flavor": "小心职业暴露！",
-  "modifier.cti.carcinogenic.description":"在两次攻击时，移除两次攻击之间目标恢复的生命值并依此治疗自己（最大恢复10生命值）。",
+  "modifier.cti.carcinogenic.description":"在两次攻击时，移除两次攻击之间目标恢复的生命值并依此治疗自己(最大恢复10生命值).",
 
   "modifier.cti.piercing_immune": "双层护甲",
   "modifier.cti.piercing_immune.flavor": "没想到吧，我还有隐藏护甲！",
-  "modifier.cti.piercing_immune.description":"使你的护甲能格挡一次穿甲伤害，每件带有此特性的护甲都会对非穿甲伤害额外生效一次护甲值减伤。",
+  "modifier.cti.piercing_immune.description":"使你的护甲能格挡一次穿甲伤害，每件带有此特性的护甲都会对非穿甲伤害额外生效一次护甲值减伤.",
 
   "modifier.cti.permanent_scar": "永久创伤",
   "modifier.cti.permanent_scar.flavor": "小心职业暴露！",
@@ -1015,7 +1019,7 @@
 
   "modifier.cti.neutron_collect": "中子凝聚",
   "modifier.cti.neutron_collect.flavor": "简并态物质的同化作用",
-  "modifier.cti.neutron_collect.description":"击杀生物后随机将掉落物中的一个物品替换成中子态素尘埃，幸运值影响概率，词条等级影响数量。",
+  "modifier.cti.neutron_collect.description":"击杀生物后随机将掉落物中的一个物品替换成中子态素尘埃，幸运值影响概率，词条等级影响数量.",
 
   "modifier.cti.stable_step": "稳健脚步",
   "modifier.cti.stable_step.flavor": "",
@@ -1465,6 +1469,10 @@
   "modifier.cti.gobber_etch_3": "戈伯刻印03",
   "modifier.cti.gobber_etch_3.flavor": "戈伯之力[其三]",
   "modifier.cti.gobber_etch_3.description":"将部件所带有的第三个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-5%工具的近战/远程属性",
+
+  "modifier.cti.advanced_igneous": "熔火者",
+  "modifier.cti.advanced_igneous.flavor": "黑曜石家族特有的耐烧",
+  "modifier.cti.advanced_igneous.description":"•着火时增加熔火点数\n•每10点增加1护甲,1%免伤和1点格挡(此格挡在本词条减伤后结算)\n•格挡在伤害低于格挡值时会取消受击判定\n•上限词条等级 * 70",
 
 
   "dimension.ad_astra.infernal": "炼狱",

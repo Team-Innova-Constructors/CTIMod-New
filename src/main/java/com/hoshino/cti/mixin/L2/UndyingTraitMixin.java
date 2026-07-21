@@ -42,8 +42,7 @@ public abstract class UndyingTraitMixin extends LegendaryTrait {
     public void onDeath(int level, LivingEntity entity, LivingDeathEvent event) {
         if (!entity.getLevel().isClientSide()) {
             if(!cti_new$shouldRespawn(entity,event.getSource()))return;
-            float health = ForgeEventFactory.onLivingHeal(entity, entity.getMaxHealth());
-            entity.setHealth(health);
+            entity.setHealth(entity.getMaxHealth());
             if (entity.isAlive()) {
                 event.setCanceled(true);
                 L2Hostility.HANDLER.toTrackingPlayers(new TraitEffectToClient(entity, this, TraitEffects.UNDYING), entity);

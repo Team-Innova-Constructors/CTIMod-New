@@ -1,19 +1,25 @@
 package com.hoshino.cti.mixin;
 
-import com.marth7th.solidarytinker.entity.tinkertrident;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.ThrownTrident;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.UUID;
+
 @Mixin(AbstractArrow.class)
-public class AbstractArrowMixin {
+public abstract class AbstractArrowMixin extends Projectile {
+    protected AbstractArrowMixin(EntityType<? extends Projectile> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+    }
+    @Unique
+    private UUID cti_new$targetUUID =null;
 //
 //    @Unique private Vec3 cti$deltaMovement;
 //
@@ -42,5 +48,19 @@ public class AbstractArrowMixin {
 //        nbt.remove("cti_basedamage");
 //        arrow.setBaseDamage(0);
 //    }
+    @Inject(method = "onHitEntity",at = @At("HEAD"))
+    private void setFirstTarget(EntityHitResult pResult, CallbackInfo ci){
+        var entity=pResult.getEntity();
+        if(cti_new$targetUUID==null){
+            cti_new$targetUUID=entity.getUUID();
+        }
+    }
+    @Inject(at = @At("HEAD"),method = "setBaseDamage", cancellable = true)
+    private void set(double pBaseDamage, CallbackInfo ci){
+        if(cti_new$targetUUID!=null){
+            ci.cancel();
+        }
+    }
+
 
 }

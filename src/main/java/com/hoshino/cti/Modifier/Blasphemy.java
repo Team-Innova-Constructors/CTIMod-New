@@ -2,11 +2,9 @@ package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
-import com.hoshino.cti.content.environmentSystem.EDamageSource;
-import com.hoshino.cti.content.environmentSystem.EnvironmentalHandler;
 import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
-import com.marth7th.solidarytinker.register.solidarytinkerToolstats;
+import com.marth7th.solidarytinker.register.SolidarytinkerToolstats;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -42,7 +40,7 @@ public class Blasphemy extends NoLevelsModifier implements MeleeHitModifierHook,
 
     @Override
     public void addToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
-        solidarytinkerToolstats.ATTACK_FREQUENCY.percent(builder,-0.25);
+        SolidarytinkerToolstats.ATTACK_FREQUENCY.percent(builder,-0.25);
         ToolStats.ATTACK_DAMAGE.percent(builder,0.1);
         ToolStats.ATTACK_SPEED.percent(builder,0.1);
     }

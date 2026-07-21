@@ -1,6 +1,7 @@
 package com.hoshino.cti.mixin.L2;
 
 import com.hoshino.cti.util.ILivingEntityMixin;
+import com.hoshino.cti.util.L2.ExHurtHelper;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import com.xiaoyue.tinkers_ingenuity.utils.ToolUtils;
@@ -73,42 +74,16 @@ public class DispellTraitMixin extends LegendaryTrait {
 
     @Override
     public void postHurtImpl(int level, LivingEntity attacker, LivingEntity target) {
-        if(cti_new$shouldHurt(target)){
+        if(ExHurtHelper.shouldHurt(target)){
             var source=new EntityDamageSource("dispell",attacker);
             var mobLevel = DifficultyLevel.ofAny(attacker);
-            float scale = cti_new$getScale(target);
+            float scale = ExHurtHelper.getScale(target);
             float totalHurt=mobLevel * 0.02f * level *scale;
             if(totalHurt==0)return;
             if(target.isDeadOrDying()||!target.isAlive())return;
+            target.invulnerableTime=0;
             ((ILivingEntityMixin)target).cti$strictHurt(source,totalHurt,false);
         }
     }
-    @Unique
-    private boolean cti_new$shouldHurt(LivingEntity living){
-        if(!(living instanceof Player player))return true;
-        if(player.isCreative()||player.isSpectator())return false;
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MekanismItems.MEKASUIT_HELMET.get())
-                || player.getItemBySlot(EquipmentSlot.CHEST).is(MekanismItems.MEKASUIT_BODYARMOR.get())
-                || player.getItemBySlot(EquipmentSlot.LEGS).is(MekanismItems.MEKASUIT_PANTS.get())
-                || player.getItemBySlot(EquipmentSlot.FEET).is(MekanismItems.MEKASUIT_BOOTS.get())) {
-            return false;
-        }
-        if(GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("solidarytinker:bha")))return false;
-        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("tinkers_ingenuity:unmatched")))return false;
-        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("cti:eventually")))return false;
-        return !GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("cti:all"));
-    }
-    @Unique
-    private float cti_new$getScale(LivingEntity living){
-        if(!(living instanceof Player player)) return 1;
-        var relicLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:the_relic"));
-        var shadowOfVigridLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
-        boolean hashardLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("etshtinker:solidex")) > 0;
-        boolean hasEtherLevel=GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("cti:ether"));
-        float hasHard = hashardLevel ? 0.8f : 1.0f;
-        float hasEther=hasEtherLevel?0.9f:1.0f;
-        float relicFactor = Math.max(0.0f, 1.0f - (relicLevel * 0.03f));
-        float shadowFactor = Math.max(0.0f, 1.0f - (shadowOfVigridLevel * 0.07f));
-        return relicFactor * shadowFactor * hasHard * hasEther;
-    }
+
 }

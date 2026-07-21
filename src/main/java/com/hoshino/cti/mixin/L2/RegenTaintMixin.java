@@ -32,14 +32,15 @@ public abstract class RegenTaintMixin extends MobTrait {
     /**
      * @author firefly
      * @reason 最新更改:
-     * <br><h5>I.大幅度降低了基础恢复(每秒1.5%x等级->0.5%x等级)
+     * <br><h5>I.提升了基础恢复(每秒0.5%x等级->1.5%x等级)
      * <br>II.现在首次进入半血会附带黎明效果,快速恢复一部分生命,只触发一次
-     * <br>III.触发黎明后怪物造成的伤害提升30%</h5>
+     * <br>III.触发黎明后怪物造成的伤害提升75%</h5>
      */
     @Overwrite
     public void tick(LivingEntity mob, int level) {
         if (!mob.getLevel().isClientSide()) {
-            if (mob.tickCount % 20 == 0) {
+            if (mob.tickCount % 30 == 0) {
+                if(mob.getHealth()>=mob.getMaxHealth())return;
                 if(mob instanceof Mob mob1){
                     if(mob1.getTarget() instanceof Player player){
                         if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
@@ -55,7 +56,7 @@ public abstract class RegenTaintMixin extends MobTrait {
                     mob.getPersistentData().putInt("cti_liming", 1);
                 }
                 float healAmount = 0;
-                healAmount += 0.005f * mob.getMaxHealth() * level;
+                healAmount += 0.015f * mob.getMaxHealth() * level;
                 mob.heal(healAmount);
             }
         }

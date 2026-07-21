@@ -13,6 +13,7 @@
     "LivingEntityAccessor",
     "LivingEntityMixin",
     "MasticatorMixin",
+    "MobEffectMixin",
     "MobMixin",
     "PlayerMixin",
     "PlayerSkullMixin",

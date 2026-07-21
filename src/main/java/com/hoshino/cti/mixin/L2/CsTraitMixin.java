@@ -1,5 +1,6 @@
 package com.hoshino.cti.mixin.L2;
 
+import com.hoshino.cti.util.EntityUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import dev.xkmc.l2hostility.content.traits.goals.CounterStrikeTrait;
@@ -20,8 +21,12 @@ public class CsTraitMixin {
             if(mob.getTarget() instanceof Player player){
                 if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||mob.hasEffect(MobEffects.WEAKNESS)){
                     ci.cancel();
+                    return;
                 }
             }
+        }
+        if(EntityUtil.hasAlGlass(le)){
+            ci.cancel();
         }
     }
 }

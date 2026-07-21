@@ -6,7 +6,7 @@ import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
-import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
+import com.marth7th.solidarytinker.register.SolidarytinkerModifiers;
 import earth.terrarium.ad_astra.common.util.OxygenUtils;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -93,40 +93,6 @@ public class CommonLivingHurt {
             if(GetModifierLevel.EquipHasModifierlevel(player,CtiModifiers.ETHEREAL_STATIC_MODIFIER.getId())){
                 if(source.isMagic()||source.isExplosion()){
                     event.setAmount(event.getAmount() * 0.5f);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onLivingJumpFDF(LivingEvent.LivingJumpEvent event) {
-        if (event.getEntity() instanceof Player player) {
-            if (GetModifierLevel.getTotalArmorModifierlevel(player, solidarytinkerModifiers.COLDFETTERS_STATIC_MODIFIER.getId())>0) {
-                var amount =player.getPersistentData().getInt("tiao_yi_tiao");
-                if(amount<3){
-                    player.getPersistentData().putInt("tiao_yi_tiao",amount+1);
-                }
-                else {
-                    var mobList=player.getLevel().getEntitiesOfClass(Mob.class,new AABB(player.getOnPos()).inflate(6));
-                    for(Mob mob:mobList){
-                        boolean shouldTeam=player.getRandom().nextInt(10)>4;
-                        if(mob.getPersistentData().contains("player_teamed"))continue;
-                        if(shouldTeam){
-                            if(mob.getTarget()==player){
-                                mob.setTarget(null);
-                            }
-                            mob.setDeltaMovement(new Vec3(0,0.5,0));
-                            mob.getPersistentData().putBoolean("player_teamed",true);
-                            double d0 = mob.getRandom().nextGaussian() * 0.02;
-                            double d1 = mob.getRandom().nextGaussian() * 0.02;
-                            double d2 = mob.getRandom().nextGaussian() * 0.02;
-                            mob.level.addParticle(ParticleTypes.HEART, mob.getRandomX(1.0F), mob.getRandomY() + (double)0.5F, mob.getRandomZ(1.0F), d0, d1, d2);
-                        }
-                        else {
-                            mob.getPersistentData().putBoolean("player_teamed",false);
-                        }
-                    }
-                    player.getPersistentData().remove("tiao_yi_tiao");
                 }
             }
         }

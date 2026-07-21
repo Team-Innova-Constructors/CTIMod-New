@@ -1,7 +1,11 @@
 package com.hoshino.cti.Modifier;
 
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
+import com.hoshino.cti.util.DynamicColorEnum;
+import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
@@ -51,5 +55,9 @@ public class Industrial extends EtSTBaseModifier implements VolatileDataModifier
     @Override
     public float getRepairFactor(IToolStackView tool, ModifierEntry entry, float factor) {
         return factor*(1+entry.getLevel()*0.05f);
+    }
+    @Override
+    public @NotNull Component getDisplayName(int level) {
+        return DynamicColorEnum.INDUSTRIAL.buildComponent(getTranslationKey(),null,true);
     }
 }

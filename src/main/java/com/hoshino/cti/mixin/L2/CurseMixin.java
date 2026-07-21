@@ -24,7 +24,7 @@ public class CurseMixin {
             }
         }
         if (event.getEntity().hasEffect(LCEffects.CURSE.get())) {
-            event.setAmount(event.getAmount() * 0.2f);
+            event.setAmount(event.getAmount() * 0.45f);
         }
         ci.cancel();
     }

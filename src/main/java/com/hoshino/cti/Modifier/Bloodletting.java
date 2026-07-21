@@ -3,7 +3,7 @@ package com.hoshino.cti.Modifier;
 import com.hoshino.cti.content.environmentSystem.EDamageSource;
 import com.hoshino.cti.content.environmentSystem.EnvironmentalHandler;
 import com.hoshino.cti.register.CtiModifiers;
-import com.marth7th.solidarytinker.register.solidarytinkerToolstats;
+import com.marth7th.solidarytinker.register.SolidarytinkerToolstats;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -34,7 +34,7 @@ public class Bloodletting extends NoLevelsModifier implements MeleeHitModifierHo
 
     @Override
     public void addToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
-        solidarytinkerToolstats.ATTACK_FREQUENCY.percent(builder,-0.1);
+        SolidarytinkerToolstats.ATTACK_FREQUENCY.percent(builder,-0.1);
         ToolStats.ATTACK_DAMAGE.percent(builder,0.2);
         ToolStats.ATTACK_SPEED.percent(builder,0.2);
     }

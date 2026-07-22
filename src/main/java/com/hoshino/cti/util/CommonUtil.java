@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -141,6 +142,18 @@ public class CommonUtil {
             }
         });
         return list;
+    }
+
+    public static int applyOreFortuneBonus(RandomSource pRandom, int pOriginalCount, int pEnchantmentLevel) {
+        if (pEnchantmentLevel > 0) {
+            int i = pRandom.nextInt(pEnchantmentLevel + 2) - 1;
+            if (i < 0) {
+                i = 0;
+            }
+            return pOriginalCount * (i + 1);
+        } else {
+            return pOriginalCount;
+        }
     }
 
 }

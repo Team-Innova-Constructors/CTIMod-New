@@ -267,6 +267,7 @@ public class CtiModifiers {
     public static final StaticModifier<Ethereal> ETHEREAL_STATIC_MODIFIER = MODIFIERS.register("ethereal", Ethereal::new);
     public static final StaticModifier<Cutter> CUTTER_STATIC_MODIFIER = MODIFIERS.register("cutter", Cutter::new);
     public static final StaticModifier<BreakStone> BREAK_STONE_STATIC_MODIFIER = MODIFIERS.register("breakstone", BreakStone::new);
+    public static final StaticModifier<AmberTouch> GOLDEN_AMBER_TOUCH = MODIFIERS.register("golden_amber_touch", AmberTouch::new);
 
     public static final StaticModifier<ActuallyMutation> ACTUALLY_MUTATION_STATIC_MODIFIER = MODIFIERS.register("actually_mutation", ActuallyMutation::new);
     public static final StaticModifier<ShulkerProtect> SHULKER_PROTECT_STATIC_MODIFIER = MODIFIERS.register("shulker_protect", ShulkerProtect::new);

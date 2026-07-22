@@ -1474,6 +1474,11 @@
   "modifier.cti.advanced_igneous.flavor": "黑曜石家族特有的耐烧",
   "modifier.cti.advanced_igneous.description":"•着火时增加熔火点数\n•每10点增加1护甲,1%免伤和1点格挡(此格挡在本词条减伤后结算)\n•格挡在伤害低于格挡值时会取消受击判定\n•上限词条等级 * 70",
 
+  "modifier.cti.golden_amber_touch": "金琥珀之触",
+  "modifier.cti.golden_amber_touch.flavor": "镶上紫晶，取下琥珀",
+  "modifier.cti.golden_amber_touch.description":"令工具挖掘金琥珀原木时获得金琥珀，就像紫晶石工具一样。",
+
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

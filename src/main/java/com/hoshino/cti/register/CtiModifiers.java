@@ -256,8 +256,8 @@ public class CtiModifiers {
 
     public static final StaticModifier<DRFlamez> DR_FLAMEZ_STATIC_MODIFIER = MODIFIERS.register("drflamez", DRFlamez::new);
     public static final StaticModifier<SoulFlame> SOUL_FLAME_STATIC_MODIFIER = MODIFIERS.register("soulflame", SoulFlame::new);
-    public static final StaticModifier<Modifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", Modifier::new);
-    public static final StaticModifier<Modifier> THE_RELIC = MODIFIERS.register("the_relic", Modifier::new);
+    public static final StaticModifier<Modifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", ShadowOfVigrid::new);
+    public static final StaticModifier<Modifier> THE_RELIC = MODIFIERS.register("the_relic", TheRelic::new);
     public static final StaticModifier<WeightUnstable> WEIGHT_UNSTABLE = MODIFIERS.register("weight_unstable", WeightUnstable::new);
     public static final StaticModifier<OverProperty> OVER_PROPERTY = MODIFIERS.register("over_property", OverProperty::new);
     public static final StaticModifier<FloatingHandler> FLOATING_HANDLER = MODIFIERS.register("floating_handler", FloatingHandler::new);

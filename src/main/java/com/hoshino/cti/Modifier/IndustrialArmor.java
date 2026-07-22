@@ -3,7 +3,6 @@ package com.hoshino.cti.Modifier;
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.util.DynamicColorEnum;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -13,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
-import slimeknights.tconstruct.library.modifiers.hook.armor.ModifyDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.RepairFactorModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.ToolDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.build.VolatileDataModifierHook;
@@ -80,6 +78,6 @@ public class IndustrialArmor extends EtSTBaseModifier implements VolatileDataMod
     }
     @Override
     public @NotNull Component getDisplayName(int level) {
-        return DynamicColorEnum.INDUSTRIAL.buildComponent(getTranslationKey(),null,true);
+        return DynamicColorEnum.INDUSTRIAL.buildNameComponent(getTranslationKey(),level,null, true);
     }
 }

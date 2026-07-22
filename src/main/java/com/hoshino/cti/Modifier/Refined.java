@@ -6,7 +6,6 @@ import com.hoshino.cti.Cti;
 import com.hoshino.cti.util.DynamicColorEnum;
 import com.marth7th.solidarytinker.register.SolidarytinkerItem;
 import com.marth7th.solidarytinker.register.SolidarytinkerToolstats;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -22,7 +21,6 @@ import slimeknights.tconstruct.library.modifiers.modules.technical.ArmorLevelMod
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.SlotType;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
-import slimeknights.tconstruct.library.tools.capability.fluid.ToolTankHelper;
 import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
@@ -50,8 +48,8 @@ public class Refined extends EtSTBaseModifier implements VolatileDataModifierHoo
                 int level = cap.get(KEY_REFINE, 0);
                 if (level > 0) {
                     float reduce = level * 0.08f * (event.getSource().isBypassMagic() ? 0.5f : 1f);
-                    if(reduce>0.8f){
-                        reduce=0.8f;
+                    if (reduce > 0.8f) {
+                        reduce = 0.8f;
                     }
                     event.setAmount(event.getAmount() * (1 - reduce));
                 }
@@ -81,27 +79,27 @@ public class Refined extends EtSTBaseModifier implements VolatileDataModifierHoo
         etshtinkerToolStats.FLUID_EFFICIENCY.multiply(modifierStatsBuilder, 1 + 0.1 * modifier.getLevel());
 
         if (iToolContext.getItem() == SolidarytinkerItem.soulge.get()) {
-            SolidarytinkerToolstats.ATTACK_FREQUENCY.multiply(modifierStatsBuilder, 1 + (-0.15f* specialWeaponLevel));
-            SolidarytinkerToolstats.EXERT_TIMES.multiply(modifierStatsBuilder, 1 + (0.1f* specialWeaponLevel));
+            SolidarytinkerToolstats.ATTACK_FREQUENCY.multiply(modifierStatsBuilder, 1 + (-0.15f * specialWeaponLevel));
+            SolidarytinkerToolstats.EXERT_TIMES.multiply(modifierStatsBuilder, 1 + (0.1f * specialWeaponLevel));
             SolidarytinkerToolstats.KILLTHRESHOLD.multiply(modifierStatsBuilder, 1 + (0.08f * specialWeaponLevel));
         }
-        if(iToolContext.getItem()==SolidarytinkerItem.perception_rapier.get()){
-            SolidarytinkerToolstats.MAX_LEVEL.multiply(modifierStatsBuilder, 1 + (0.15f* specialWeaponLevel));
-            SolidarytinkerToolstats.PERCEPTION_COUNT.multiply(modifierStatsBuilder, 1+(0.1f* specialWeaponLevel));
+        if (iToolContext.getItem() == SolidarytinkerItem.perception_rapier.get()) {
+            SolidarytinkerToolstats.MAX_LEVEL.multiply(modifierStatsBuilder, 1 + (0.15f * specialWeaponLevel));
+            SolidarytinkerToolstats.PERCEPTION_COUNT.multiply(modifierStatsBuilder, 1 + (0.1f * specialWeaponLevel));
         }
-        if(iToolContext.getItem()==SolidarytinkerItem.ElectricBatons.get()){
-            SolidarytinkerToolstats.DETECTION_RANGE.multiply(modifierStatsBuilder, 1 + (0.2f* specialWeaponLevel));
+        if (iToolContext.getItem() == SolidarytinkerItem.ElectricBatons.get()) {
+            SolidarytinkerToolstats.DETECTION_RANGE.multiply(modifierStatsBuilder, 1 + (0.2f * specialWeaponLevel));
         }
-        SolidarytinkerToolstats.ENERGY_CAPACITY.multiply(modifierStatsBuilder,1+0.25 * modifierLevel);
+        SolidarytinkerToolstats.ENERGY_CAPACITY.multiply(modifierStatsBuilder, 1 + 0.25 * modifierLevel);
     }
 
 
     @Override
     public void addVolatileData(IToolContext iToolContext, ModifierEntry modifierEntry, ModDataNBT modDataNBT) {
-        var level=modifierEntry.getLevel();
-        modDataNBT.addSlots(SlotType.UPGRADE,level);
-        modDataNBT.addSlots(SlotType.ABILITY,level);
-        modDataNBT.addSlots(SlotType.DEFENSE,level);
+        var level = modifierEntry.getLevel();
+        modDataNBT.addSlots(SlotType.UPGRADE, level);
+        modDataNBT.addSlots(SlotType.ABILITY, level);
+        modDataNBT.addSlots(SlotType.DEFENSE, level);
     }
 
     @Override
@@ -111,9 +109,10 @@ public class Refined extends EtSTBaseModifier implements VolatileDataModifierHoo
         }
         return amount;
     }
+
     @Override
     public @NotNull Component getDisplayName(int level) {
-        return DynamicColorEnum.REFINED.buildComponent(getTranslationKey(),null,true);
+        return DynamicColorEnum.REFINED.buildNameComponent(getTranslationKey(), level, null, true);
     }
 
     public record StatsGroup(FloatToolStat toolStat, float number) {

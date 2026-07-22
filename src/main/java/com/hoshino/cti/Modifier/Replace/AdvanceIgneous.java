@@ -67,7 +67,7 @@ public class AdvanceIgneous extends Modifier implements ModifyDamageModifierHook
         ModDataNBT persistentData = tool.getPersistentData();
         if(holder.tickCount%30!=0)return;
         var currentCount=persistentData.getInt(KEY);
-        if(currentCount<=70 * modifierLevel){
+        if(currentCount<70 * modifierLevel){
             persistentData.putInt(KEY,currentCount+1);
         }
     }

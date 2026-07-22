@@ -78,10 +78,10 @@ public class DeepOceanEcho extends BattleModifier {
         if (player != null) {
             ItemStack stack = player.getMainHandItem();
             int level = modifier.getLevel();
-            DynamicColor.MAGIC_ICE.buildComponent("当前回声点数",String.valueOf(this.EchoAmount(player)),false);
-            DynamicColor.MAGIC_ICE.buildComponent("额外生效的海洋系词条等级",String.valueOf(this.SeaLevel(stack)),false);
-            DynamicColor.MAGIC_ICE.buildComponent("每点回声所增幅的伤害",0.1f * level * ((this.SeaLevel(stack) + 1) * 2F) * (this.DeepAndDeepLevel(stack) + 1) + "攻击力",false);
-            DynamicColor.MAGIC_ICE.buildComponent("实际提升的总伤害",this.DamageAddAmount(player, stack, level) + "攻击力",false);
+            list.add(DynamicColor.MAGIC_ICE.buildComponent("当前回声点数",String.valueOf(this.EchoAmount(player)),false));
+            list.add(DynamicColor.MAGIC_ICE.buildComponent("额外生效的海洋系词条等级",String.valueOf(this.SeaLevel(stack)),false));
+            list.add(DynamicColor.MAGIC_ICE.buildComponent("每点回声所增幅的伤害",0.1f * level * ((this.SeaLevel(stack) + 1) * 2F) * (this.DeepAndDeepLevel(stack) + 1) + "攻击力",false));
+            list.add(DynamicColor.MAGIC_ICE.buildComponent("实际提升的总伤害",this.DamageAddAmount(player, stack, level) + "攻击力",false));
         }
     }
 }

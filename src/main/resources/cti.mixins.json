@@ -126,6 +126,7 @@
     "TconMixin.ModifierMixin",
     "TconMixin.OverslimeMixin",
     "TconMixin.OverslimeModifierRecipeAccessor",
+    "TconMixin.RomanNumberHelperAccessor",
     "TconMixin.TankItemFluidHandlerMixin",
     "TconMixin.TinkerStationMixin",
     "TconMixin.ToolPartItemMixin",

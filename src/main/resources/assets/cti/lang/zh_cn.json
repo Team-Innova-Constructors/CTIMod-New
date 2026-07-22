@@ -1436,7 +1436,7 @@
 
   "modifier.cti.mana_resonance": "法力谐振",
   "modifier.cti.mana_resonance.flavor": "魔法互换",
-  "modifier.cti.mana_resonance.description":"挥舞武器，发射魔力脉冲，每级+25脉冲携带魔力。\n §3·§r魔力不足时，尝试消耗新生魔艺的法力来维持脉冲的发射，每2魔力消耗1法力。",
+  "modifier.cti.mana_resonance.description":"挥舞武器，发射魔力脉冲，每级+25脉冲携带魔力。\n §3·§r魔力不足时，尝试消耗新生魔艺的法力来维持脉冲的发射，每4魔力消耗1法力。",
 
   "modifier.cti.mana_overload": "魔力过载",
   "modifier.cti.mana_overload.flavor": "霸气外露！",

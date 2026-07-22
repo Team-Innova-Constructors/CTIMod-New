@@ -22,16 +22,20 @@ import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
+import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
+import slimeknights.tconstruct.library.tools.SlotType;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.nbt.DummyToolStack;
+import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
+import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
 import slimeknights.tconstruct.library.tools.part.IToolPart;
+import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.item.ArmorSlotType;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CommonUtil {
@@ -124,4 +128,19 @@ public class CommonUtil {
         }
         return delay;
     }
+    public static List<SlotType> getResultSlotTypes(ModifierEntry result) {
+        ModDataNBT persistentData = new ModDataNBT();
+        ModDataNBT volatileData = new ModDataNBT();
+        result.getHook(ModifierHooks.VOLATILE_DATA).addVolatileData(new DummyToolStack(TinkerTools.sword.get(), ModifierNBT.EMPTY, persistentData), result, volatileData);
+        result.getHook(ModifierHooks.VOLATILE_DATA).addVolatileData(new DummyToolStack(TinkerTools.plateArmor.get(ArmorSlotType.CHESTPLATE), ModifierNBT.EMPTY, persistentData), result, volatileData);
+        ArrayList<SlotType> list = new ArrayList<>();
+        SlotType.getAllSlotTypes().forEach(type -> {
+            int count = volatileData.getSlots(type);
+            if (count > 0) {
+                list.add(type);
+            }
+        });
+        return list;
+    }
+
 }

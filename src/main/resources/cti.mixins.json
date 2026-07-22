@@ -123,6 +123,7 @@
     "TconMixin.MeltingModuleMixin",
     "TconMixin.MeltingRecipeMixin",
     "TconMixin.ModifierMixin",
+    "TconMixin.ModifierRecipeCategoryMixin",
     "TconMixin.OverslimeMixin",
     "TconMixin.OverslimeModifierRecipeAccessor",
     "TconMixin.TankItemFluidHandlerMixin",

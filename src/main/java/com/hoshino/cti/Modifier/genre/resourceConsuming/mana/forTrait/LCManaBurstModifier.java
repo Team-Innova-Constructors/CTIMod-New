@@ -67,7 +67,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
         if (player.getAttackStrengthScale(0)>0.9&&!level.isClientSide){
             var burst = getBurst(player, (ToolStack) tool);
             if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
-                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.5f)))){
+                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.25f)))){
                 launchBurst(tool,player,burst);
             }
         }
@@ -78,7 +78,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
         if (player.getAttackStrengthScale(0)>0.9&&!level.isClientSide){
             var burst = getBurst(player, (ToolStack) tool);
             if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
-                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.5f)))){
+                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.25f)))){
                 launchBurst(tool,player,burst);
             }
         }
@@ -89,7 +89,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
         if (tool.getModifierLevel(CtiModifiers.FAR_SIGHTS.get())<=0&&!context.isExtraAttack()&&context.isFullyCharged()&&context.getAttacker() instanceof Player player&&!(player instanceof FakePlayer)){
             var burst = getBurst(player, (ToolStack) tool);
             if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
-            ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player, (int) Math.ceil(burst.getMana()*0.5f)))){
+            ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player, (int) Math.ceil(burst.getMana()*0.25f)))){
                 launchBurst(tool,player,burst);
             }
         }

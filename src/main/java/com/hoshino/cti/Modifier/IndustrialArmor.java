@@ -2,14 +2,16 @@ package com.hoshino.cti.Modifier;
 
 import com.c2h6s.etshtinker.Modifiers.modifiers.EtSTBaseModifier;
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.util.DynamicColorEnum;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
-import slimeknights.tconstruct.library.modifiers.hook.armor.ModifyDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.RepairFactorModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.ToolDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.build.VolatileDataModifierHook;
@@ -33,11 +35,15 @@ public class IndustrialArmor extends EtSTBaseModifier implements VolatileDataMod
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event){
-        if (event.getEntity()!=null&&!event.getSource().isBypassArmor()) event.getEntity().getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
+        if (event.getEntity()!=null&&!event.getSource().isBypassMagic()) event.getEntity().getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->{
             int level = cap.get(KEY_INDUSTRIAL,0);
             if (level>0){
-                level = Math.min(16,level);
-                event.setAmount(event.getAmount()*(1-level*0.05f));
+                var scale=0.05f;
+                if(event.getSource().isBypassArmor()){
+                    scale=scale*0.5f;
+                }
+                float cost=(float) Math.min(0.8,level * scale);
+                event.setAmount(event.getAmount()*(1-cost));
             }
         });
     }
@@ -69,5 +75,9 @@ public class IndustrialArmor extends EtSTBaseModifier implements VolatileDataMod
         if (RANDOM.nextFloat()>Math.min(0.8,modifier.getLevel()*0.05)) return 0;
         if (amount>2) amount=2;
         return amount;
+    }
+    @Override
+    public @NotNull Component getDisplayName(int level) {
+        return DynamicColorEnum.INDUSTRIAL.buildNameComponent(getTranslationKey(),level,null, true);
     }
 }

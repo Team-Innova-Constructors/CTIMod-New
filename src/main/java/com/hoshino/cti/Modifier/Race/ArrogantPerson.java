@@ -40,7 +40,7 @@ public class ArrogantPerson extends Modifier implements AttributesModifierHook, 
     public void onInventoryTick(IToolStackView iToolStackView, ModifierEntry modifierEntry, Level level, LivingEntity livingEntity, int i, boolean b, boolean b1, ItemStack itemStack) {
         if(!b1)return;
         if(livingEntity.tickCount%20!=0)return;
-        if(isNotCompacting(iToolStackView)){
+        if(isNotCompacting(iToolStackView)&&livingEntity.getMaxHealth()>600){
             if(livingEntity.tickCount%100==0){
                 livingEntity.heal(livingEntity.getMaxHealth() * 0.25f);
             }

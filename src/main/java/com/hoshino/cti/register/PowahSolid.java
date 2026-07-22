@@ -1,12 +1,12 @@
 package com.hoshino.cti.register;
 
-import com.marth7th.solidarytinker.register.solidarytinkerItem;
+import com.marth7th.solidarytinker.register.SolidarytinkerItem;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import owmii.powah.api.PowahAPI;
 
 public class PowahSolid {
     public static void init() {
-        PowahAPI.registerSolidCoolant(solidarytinkerItem.extremelycoldsteel_ingot.get(), 1981, -206);
+        PowahAPI.registerSolidCoolant(SolidarytinkerItem.extremelycoldsteel_ingot.get(), 1981, -206);
         PowahAPI.registerSolidCoolant(LCItems.HARD_ICE.get(), 1131, -138);
     }
 }

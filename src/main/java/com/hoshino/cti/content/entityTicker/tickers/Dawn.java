@@ -15,6 +15,8 @@ public class Dawn extends EntityTicker {
                 player.heal(player.getMaxHealth() * 0.066f);
             }
             else {
+                if(living.isDeadOrDying())return true;
+                if(!living.isAlive())return true;
                 var healAmount=living.getMaxHealth() * 0.08f;
                 ForgeEventFactory.onLivingHeal(living, healAmount);
                 living.setHealth(Math.min(living.getMaxHealth(),living.getHealth()+healAmount));

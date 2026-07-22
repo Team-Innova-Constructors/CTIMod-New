@@ -1,8 +1,8 @@
 package com.hoshino.cti.Modifier.Contributors;
 
 import com.c2h6s.etshtinker.init.etshtinkerEffects;
+import com.marth7th.solidarytinker.Solidarytinker;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
-import com.marth7th.solidarytinker.solidarytinker;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,7 +19,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 
 public class RoxyLightning extends BattleModifier {
-    private static ResourceLocation KEY = solidarytinker.getResource("key");
+    private static ResourceLocation KEY = Solidarytinker.getResource("key");
 
     @Override
     public @Nullable Component onRemoved(IToolStackView iToolStackView, Modifier modifier) {

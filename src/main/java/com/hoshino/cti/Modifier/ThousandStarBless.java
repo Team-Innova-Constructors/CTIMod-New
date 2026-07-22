@@ -62,13 +62,13 @@ public class ThousandStarBless extends Modifier implements TooltipModifierHook  
         String currentMessage=PLAYER_LEAVE_MESSAGE[index];
 
 
-        var two=DynamicComponentUtil.BreathColorfulText.getColorfulText("对制作组其他成员",null,new int[]{0xffaaff},60,2000,false);
+        var two=DynamicComponentUtil.BreathColorfulText.getColorfulText("对制作组其他成员",null,new int[]{0xffaaff},60,2000,0.4f,false);
         var three=DynamicComponentUtil.scrollColorfulText.getColorfulText(for_member,null,for_member_color,40,30,false);
 
-        var four=DynamicComponentUtil.BreathColorfulText.getColorfulText("对玩家说的话",null,new int[]{0x1fa5fd},60,2000,false);
+        var four=DynamicComponentUtil.BreathColorfulText.getColorfulText("对玩家说的话",null,new int[]{0x1fa5fd},60,2000,0.4f,false);
         var five=DynamicComponentUtil.scrollColorfulText.getColorfulText(for_player,null,for_player_color,40,30,false);
 
-        var six=DynamicComponentUtil.BreathColorfulText.getColorfulText(description,null,new int[]{0x1fa5fd},60,2000,false);
+        var six=DynamicComponentUtil.BreathColorfulText.getColorfulText(description,null,new int[]{0x1fa5fd},60,2000,0.4f,false);
         var seven=DynamicComponentUtil.scrollColorfulText.getColorfulText(currentMessage,null,originColor,40,30,false);
 
         list.add(one);

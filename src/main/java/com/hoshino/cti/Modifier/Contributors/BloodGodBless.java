@@ -14,15 +14,4 @@ public class BloodGodBless extends ArmorModifier {
     public boolean havenolevel() {
         return true;
     }
-
-    public BloodGodBless() {
-        MinecraftForge.EVENT_BUS.addListener(this::LivingDamageBoost);
-    }
-
-    private void LivingDamageBoost(LivingDamageEvent event) {
-        if (event.getSource().getEntity() instanceof Player player && GetModifierLevel.EquipHasModifierlevel(player, this.getId())) {
-            float bonus = (player.getMaxHealth() - player.getHealth()) * 0.008f;
-            event.setAmount(event.getAmount() * (1 + bonus));
-        }
-    }
 }

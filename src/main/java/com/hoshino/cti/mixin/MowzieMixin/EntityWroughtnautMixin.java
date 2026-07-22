@@ -4,7 +4,7 @@ import com.bobmowzie.mowziesmobs.server.entity.MowzieEntity;
 import com.bobmowzie.mowziesmobs.server.entity.MowzieLLibraryEntity;
 import com.bobmowzie.mowziesmobs.server.entity.wroughtnaut.EntityWroughtnaut;
 import com.hoshino.cti.util.method.GetModifierLevel;
-import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
+import com.marth7th.solidarytinker.register.SolidarytinkerModifiers;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Enemy;
@@ -36,7 +36,7 @@ public abstract class EntityWroughtnautMixin extends MowzieLLibraryEntity implem
             cti$passInvulTick =80;
             this.setNoAi(true);
         }
-        if(source.getEntity()instanceof Player player&& GetModifierLevel.getEachHandsTotalModifierlevel(player, solidarytinkerModifiers.CORRODE_STATIC_MODIFIER.getId())>0){
+        if(source.getEntity()instanceof Player player&& GetModifierLevel.getEachHandsTotalModifierlevel(player, SolidarytinkerModifiers.CORRODE_STATIC_MODIFIER.getId())>0){
             cti$corrodeTime++;
         }
         if(cti$corrodeTime >20){

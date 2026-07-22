@@ -68,9 +68,7 @@ public class NetherGobberBless extends Modifier implements MeleeDamageModifierHo
     @Override
     public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
         if (entity instanceof Player player && isCorrectSlot && player.tickCount % 60 == 0) {
-            if (!player.hasEffect(MobEffects.FIRE_RESISTANCE)) {
-                player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 280, 0, false, false, true));
-            }
+
             for (ItemStack itemStack1 : player.getAllSlots()) {
                 if (ModifierUtil.getModifierLevel(itemStack1, this.getId()) > 0) {
                     float saturationLevel = player.getFoodData().getSaturationLevel();
@@ -79,6 +77,9 @@ public class NetherGobberBless extends Modifier implements MeleeDamageModifierHo
                     player.getFoodData().setSaturation(Math.min(20, saturationLevel + 1));
                 }
             }
+        }
+        if (entity.tickCount % 200 == 0) {
+            entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 280, 0, false, false, true));
         }
     }
 

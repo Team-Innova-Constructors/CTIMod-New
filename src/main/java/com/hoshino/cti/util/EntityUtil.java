@@ -57,7 +57,7 @@ public class EntityUtil {
         entity.invulnerableTime=0;
         var currentHealth=entity.getMaxHealth();
         if(entity.getHealth()<=2)return;
-        entity.setHealth(1);
-        a.cti$strictHurt(source, Math.max(100,currentHealth * 0.1f), true);
+        entity.setHealth(0);
+        entity.die(source);
     }
 }

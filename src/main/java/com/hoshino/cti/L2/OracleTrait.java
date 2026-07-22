@@ -8,8 +8,8 @@ import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.EquipmentUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.marth7th.solidarytinker.register.SolidarytinkerModifiers;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
-import com.marth7th.solidarytinker.register.solidarytinkerModifiers;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -34,7 +34,7 @@ public class OracleTrait extends MobTrait {
             if (stack.getItem() instanceof IModifiable){
                 if (ToolStack.from(stack).getModifierLevel(CtiModifiers.ARMOR_ORACLE.get())>0||
                         ToolStack.from(stack).getModifierLevel(EtshtinkerModifiers.mindprotection_STATIC_MODIFIER.get())>0||
-                        ToolStack.from(stack).getModifierLevel(solidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())>0){
+                        ToolStack.from(stack).getModifierLevel(SolidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())>0){
                     return;
                 }
             }

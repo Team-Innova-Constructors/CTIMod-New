@@ -37,7 +37,7 @@ public class ReflectTraitMixin {
                 return;
             }
             float Magnification = level * 0.3F;
-            float reflectAmount =Math.min(event.getEntity().getHealth() * Magnification,event.getAmount() *0.1f*level);
+            float reflectAmount =Math.min(event.getEntity().getHealth() * Magnification,event.getAmount() *0.08f*level);
             EntityDamageSource mobAttackReflect=new EntityDamageSource("mobattackreflect",entity).setThorns();
             mobAttackReflect.setScalesWithDifficulty().setMagic().bypassArmor();
             lv.hurt(mobAttackReflect,reflectAmount);

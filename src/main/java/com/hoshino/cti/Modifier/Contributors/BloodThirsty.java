@@ -1,7 +1,7 @@
 package com.hoshino.cti.Modifier.Contributors;
 
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
-import com.marth7th.solidarytinker.register.solidarytinkerEffects;
+import com.marth7th.solidarytinker.register.SolidarytinkerEffects;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -51,6 +51,7 @@ public class BloodThirsty extends BattleModifier {
     public float staticdamage(IToolStackView tool, int level, ToolAttackContext context, LivingEntity attacker, LivingEntity livingTarget, float baseDamage, float damage) {
         if (livingTarget != null && attacker instanceof Player player) {
             float amount = DamageBoost(livingTarget);
+            var multiple=Math.min(88,(player.getMaxHealth()-player.getHealth())) * 0.008f;
             if (player.getHealth() > 8) {
                 player.setHealth(player.getHealth() - 8);
                 return damage + amount;
@@ -62,7 +63,7 @@ public class BloodThirsty extends BattleModifier {
 
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
-        if (context.getAttacker() instanceof Player player && player.hasEffect(solidarytinkerEffects.bloodanger.get()) && context.getLivingTarget() != null) {
+        if (context.getAttacker() instanceof Player player && player.hasEffect(SolidarytinkerEffects.bloodanger.get()) && context.getLivingTarget() != null) {
             context.getLivingTarget().hurt(DamageSource.playerAttack(player), player.getAbsorptionAmount() + player.getHealth() * 0.08F);
             player.heal(player.getMaxHealth() - player.getHealth() * 0.08F);
         }
@@ -70,7 +71,7 @@ public class BloodThirsty extends BattleModifier {
 
     @Override
     public void arrowhurt(ModifierNBT modifiers, NamespacedNBT persistentData, int level, Projectile projectile, EntityHitResult hit, AbstractArrow arrow, LivingEntity attacker, LivingEntity target) {
-        if (attacker instanceof Player player && player.hasEffect(solidarytinkerEffects.bloodanger.get())) {
+        if (attacker instanceof Player player && player.hasEffect(SolidarytinkerEffects.bloodanger.get())) {
             target.hurt(DamageSource.playerAttack(player), player.getAbsorptionAmount() + player.getHealth() * 0.08F);
             player.heal((player.getMaxHealth() - player.getHealth()) * 0.08F);
         }

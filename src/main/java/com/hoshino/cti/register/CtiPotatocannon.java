@@ -1,7 +1,7 @@
 package com.hoshino.cti.register;
 
 
-import com.marth7th.solidarytinker.register.solidarytinkerItem;
+import com.marth7th.solidarytinker.register.SolidarytinkerItem;
 import com.mojang.authlib.GameProfile;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.potatoCannon.BuiltinPotatoProjectileTypes;
@@ -47,7 +47,7 @@ public class CtiPotatocannon extends BuiltinPotatoProjectileTypes {
             .sticky()
             .soundPitch(1.0f)
             .drag(2)
-            .registerAndAssign(solidarytinkerItem.violane.get());
+            .registerAndAssign(SolidarytinkerItem.violane.get());
     public static final PotatoCannonProjectileType ANTI = create("anti")
             .damage(9999999)
             .reloadTicks(15)

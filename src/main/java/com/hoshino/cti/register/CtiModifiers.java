@@ -256,8 +256,8 @@ public class CtiModifiers {
 
     public static final StaticModifier<DRFlamez> DR_FLAMEZ_STATIC_MODIFIER = MODIFIERS.register("drflamez", DRFlamez::new);
     public static final StaticModifier<SoulFlame> SOUL_FLAME_STATIC_MODIFIER = MODIFIERS.register("soulflame", SoulFlame::new);
-    public static final StaticModifier<Modifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", Modifier::new);
-    public static final StaticModifier<Modifier> THE_RELIC = MODIFIERS.register("the_relic", Modifier::new);
+    public static final StaticModifier<Modifier> SHADOW_OF_VIGRID = MODIFIERS.register("shadow_of_vigrid", ShadowOfVigrid::new);
+    public static final StaticModifier<Modifier> THE_RELIC = MODIFIERS.register("the_relic", TheRelic::new);
     public static final StaticModifier<WeightUnstable> WEIGHT_UNSTABLE = MODIFIERS.register("weight_unstable", WeightUnstable::new);
     public static final StaticModifier<OverProperty> OVER_PROPERTY = MODIFIERS.register("over_property", OverProperty::new);
     public static final StaticModifier<FloatingHandler> FLOATING_HANDLER = MODIFIERS.register("floating_handler", FloatingHandler::new);
@@ -279,6 +279,7 @@ public class CtiModifiers {
     public static final StaticModifier<ReplaceSinRoot> REPLACE_SIN_ROOT_STATIC_MODIFIER = MODIFIERS.register("replace_sin_root", ReplaceSinRoot::new);
     public static final StaticModifier<ReplaceSpriteOfGaia> REPLACE_SPRITE_OF_GAIA_STATIC_MODIFIER = MODIFIERS.register("replace_sprite_of_gaia", ReplaceSpriteOfGaia::new);
     public static final StaticModifier<Magical> MAGICAL_STATIC_MODIFIER = MODIFIERS.register("magical", Magical::new);
+    public static final StaticModifier<AdvanceIgneous> ADVANCE_IGNEOUS_STATIC_MODIFIER = MODIFIERS.register("advanced_igneous", AdvanceIgneous::new);
 
     public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
     public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);

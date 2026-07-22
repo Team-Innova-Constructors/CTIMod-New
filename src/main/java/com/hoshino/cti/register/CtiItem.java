@@ -293,7 +293,7 @@ public class CtiItem {
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.1F)
             .mod(TAG_AUGMENT_RF_STORAGE, 10F)
             .mod(TAG_AUGMENT_RF_XFER, 40.0F)
-            .mod(TAG_MACHINE_PARALLEL,4)
+            .mod(TAG_MACHINE_PARALLEL,2)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
     //黑雾深度催化
     public static final RegistryObject<Item> extereme_output_augment = ITEMS.register("extereme_output_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
@@ -301,7 +301,7 @@ public class CtiItem {
             .mod(TAG_AUGMENT_MACHINE_PRIMARY, 1F)
             .mod(TAG_AUGMENT_MACHINE_SECONDARY, 1F)
             .mod(TAG_AUGMENT_MACHINE_ENERGY, 1.25F)
-            .mod(TAG_MACHINE_PARALLEL,4)
+            .mod(TAG_MACHINE_PARALLEL,2)
             .build()).setShowInGroups(getFlag(FLAG_MACHINE_AUGMENTS)));
 
 
@@ -315,12 +315,12 @@ public class CtiItem {
     public static final RegistryObject<Item> COE_Vein_Remove_Tool = ITEMS.register("coe_vein_remove_tool", COEVeinRemoveTool::new);
     //收藏品
     public static final RegistryObject<Item> heart_of_africa = ITEMS.register("heart_of_africa", () -> new CollectionItem(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1),List.of(
-            DynamicComponentUtil.BreathColorfulText.getColorfulText("世界上最大的钻石,象征着永恒的爱",null,new int[]{0xff3030},40,2000,false),
+            Component.literal("世界上最大的钻石,象征着永恒的爱").withStyle(style -> style.withColor(0xe0f6ff)),
             Component.literal("在真玩家在主世界挖掘钻石矿时候概率产出,也可能在某些高级战利品箱子中").withStyle(style -> style.withColor(0x11ff00)),
             Component.literal("隐藏收集品").withStyle(style -> style.withColor(0xff0000))
     ),Component.literal("非洲之心").withStyle(style -> style.withColor(0xca3c37))));
     public static final RegistryObject<Item> tear_of_sea = ITEMS.register("tear_of_sea", () -> new CollectionItem(new Item.Properties().tab(CtiTab.MIXC).stacksTo(1),List.of(
-            DynamicComponentUtil.scrollColorfulText.getColorfulText("混元天成,珠圆玉润的巨大天然珍珠,其通体散发镭射光泽,令人目眩神迷",null,new int[]{0x185d3c,0xad68ca,0x3a61ca},40,40,false),
+            Component.literal("混元天成,珠圆玉润的巨大天然珍珠,其通体散发镭射光泽,令人目眩神迷").withStyle(style -> style.withColor(0x4d828a)),
             Component.literal("在海洋中击杀鲑鱼大帝获得,冰雪迷阵的宝箱中也可能开到").withStyle(style -> style.withColor(0x11ff00)),
             Component.literal("隐藏收集品").withStyle(style -> style.withColor(0xff0000))
     ),Component.literal("海洋之泪").withStyle(style -> style.withColor(0x5161ca))));

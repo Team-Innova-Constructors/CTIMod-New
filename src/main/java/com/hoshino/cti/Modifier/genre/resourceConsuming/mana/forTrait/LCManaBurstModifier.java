@@ -141,7 +141,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
         float efficiency = toolStack.getStats().get(CtiToolStats.EFFICIENCY);
         burst.setMana((int) (burst.getMana()*power));
         var burstExtra = (IManaBurstExtra) burst;
-        burstExtra.addDamageModifier(power);
+        burstExtra.addDamageModifier(power-1);
         burstExtra.cti$setPerConsumption((int) (burstExtra.cti$getPerConsumption()/efficiency));
         burstExtra.cti$setPerBlockConsumption((int) (burstExtra.cti$getPerConsumption()/efficiency));
     }

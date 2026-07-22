@@ -1348,7 +1348,7 @@
 
   "modifier.cti.overcrit": "黏液下砸",
   "modifier.cti.overcrit.flavor": "暴击！",
-  "modifier.cti.overcrit.description":"每级+50黏液覆层上限，近战攻击时消耗5黏液覆层使攻击必定暴击。",
+  "modifier.cti.overcrit.description":"每级+50黏液覆层上限，暴击时每级消耗5黏液覆层+50%造成的伤害。",
 
   "modifier.cti.over_aetheric": "晶能流质学",
   "modifier.cti.over_aetheric.flavor": "活性与产能",

@@ -16,6 +16,6 @@ public class BlowPipeMixin {
     @Inject(method = "m_7203_", at = @At(value = "RETURN"))
     public void addCooldown(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         ItemStack itemStack = player.getItemInHand(hand);
-        player.getCooldowns().addCooldown(itemStack.getItem(), 2);
+        player.getCooldowns().addCooldown(itemStack.getItem(), 5);
     }
 }

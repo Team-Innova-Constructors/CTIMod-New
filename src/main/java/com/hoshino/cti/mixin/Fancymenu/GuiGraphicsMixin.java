@@ -22,7 +22,8 @@ public abstract class GuiGraphicsMixin {
     private static final List<String> cti$BLACKLISTED_SCREEN_PREFIXES = Arrays.asList(
             "de.mari_023.ae2wtlib.",
             "com.simibubi.create.",
-            "appeng.client.gui."
+            "appeng.client.gui.",
+            "xaero."
     );
 
     @Shadow

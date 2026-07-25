@@ -32,7 +32,7 @@ public class ManaResonance extends BasicBurstModifier implements VolatileDataMod
     @Override
     public void modifyBurst(IToolStackView tool, ModifierEntry modifier, List<ModifierEntry> modifierList, @Nullable Entity owner, ManaBurst burst, IManaBurstExtra burstExtras, ToolStack dummyLens) {
         burst.setColor(0xE679FF);
-        burst.setMana(burst.getMana()+25);
+        burst.setMana(burst.getMana()+25*modifier.getLevel());
     }
 
     @Override

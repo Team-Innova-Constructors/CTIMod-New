@@ -1336,7 +1336,7 @@
 
   "modifier.cti.united_overslime": "其利断金",
   "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+50%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，每级造成20%持续伤害并消耗20黏液覆层。",
+  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+125和+50%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，每级造成20%持续伤害并消耗20黏液覆层。",
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
@@ -1424,7 +1424,7 @@
 
   "modifier.cti.chasing_burst": "追踪之刃",
   "modifier.cti.chasing_burst.flavor": "传说那是一把必定命中的神剑",
-  "modifier.cti.chasing_burst.description":"挥舞武器，发射会追踪附近敌人的强力脉冲，+100%脉冲伤害倍率，+100脉冲携带魔力，+50实体魔力消耗，x1.5脉冲初速度。 ",
+  "modifier.cti.chasing_burst.description":"挥舞武器，发射会追踪附近敌人的强力脉冲，+25%脉冲伤害倍率，+100脉冲携带魔力，+50实体魔力消耗，x1.5脉冲初速度。 ",
 
   "modifier.cti.burst_accelerate": "魔力加速",
   "modifier.cti.burst_accelerate.flavor": "增加魔力脉冲的初速度",

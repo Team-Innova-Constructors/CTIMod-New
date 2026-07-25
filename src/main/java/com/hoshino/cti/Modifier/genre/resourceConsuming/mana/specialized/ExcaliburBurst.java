@@ -39,7 +39,7 @@ public class ExcaliburBurst extends SpecializedBurstModifier implements ModifyBu
         burst.entity().setDeltaMovement(burst.entity().getDeltaMovement().scale(1.5));
         burst.setColor(0xFFFF20);
         burst.setMana(burst.getMana()+100);
-        burstExtras.addDamageModifier(1f);
+        burstExtras.addDamageModifier(0.25f);
         burstExtras.addEntityPerConsumption(50);
     }
 

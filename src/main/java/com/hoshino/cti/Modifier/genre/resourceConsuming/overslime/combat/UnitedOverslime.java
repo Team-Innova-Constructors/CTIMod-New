@@ -31,6 +31,11 @@ public class UnitedOverslime extends BasicOverslimeModifier {
     }
 
     @Override
+    public float getDamageBase(IToolContext context, ModifierEntry modifier) {
+        return 125*modifier.getLevel();
+    }
+
+    @Override
     public int getPriority() {
         return OverslimeHandler.OVERSLIME_MODIFIER_PRIORITY-1;
     }

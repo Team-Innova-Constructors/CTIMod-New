@@ -51,10 +51,10 @@ public class ToolEvents {
     @SubscribeEvent
     public static void onLeftClick(PlayerInteractEvent.LeftClickEmpty event){
         Player player = event.getEntity();
-        if (player!=null&&player.level.isClientSide&&!(player instanceof FakePlayer)) {
+        if (player!=null&&!(player instanceof FakePlayer)) {
             ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {
-                EquipmentSlot slot = stack.getEquipmentSlot();
+                EquipmentSlot slot = EquipmentSlot.MAINHAND;
                 LeftClickModifierHook.handleLeftClick(stack,player,slot);
             }
         }
@@ -67,7 +67,7 @@ public class ToolEvents {
             BlockState state = player.level.getBlockState(pos);
             ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
             if (stack.getItem() instanceof IModifiable) {
-                EquipmentSlot slot = stack.getEquipmentSlot();
+                EquipmentSlot slot = EquipmentSlot.MAINHAND;
                 LeftClickModifierHook.handleLeftClickBlock(stack,player,slot,state,pos);
             }
         }

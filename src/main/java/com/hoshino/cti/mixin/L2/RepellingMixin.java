@@ -32,7 +32,7 @@ public abstract class RepellingMixin {
                     return;
                 }
             }
-            if (GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.STABLE_STEP.getId())) {
+            if (GetModifierLevel.equipHasModifierLevel(player, CtiModifiers.STABLE_STEP.getId())) {
                 return;
             }
         }

@@ -16,10 +16,10 @@ public class SplitTraitMixin {
     @Inject(method = "onDeath",at = @At(value = "INVOKE", target = "Ldev/xkmc/l2hostility/content/traits/highlevel/SplitTrait;add(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
     private void onDeath(int lv, LivingEntity entity, LivingDeathEvent event, CallbackInfo ci){
         if(event.getSource().getEntity() instanceof LivingEntity living) {
-            if (GetModifierLevel.HandsHaveModifierlevel(living, CtiModifiers.doNotSplitStaticModifier.getId())) {
+            if (GetModifierLevel.handsHaveModifierLevel(living, CtiModifiers.doNotSplitStaticModifier.getId())) {
                 ci.cancel();
             }
-            if (GetModifierLevel.CurioHasModifierlevel(living, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+            if (GetModifierLevel.curioHasModifierLevel(living, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 ci.cancel();
             }
         }

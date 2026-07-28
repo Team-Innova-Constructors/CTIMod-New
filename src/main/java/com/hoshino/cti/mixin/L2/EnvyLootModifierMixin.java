@@ -27,11 +27,11 @@ public abstract class EnvyLootModifierMixin {
         if (context.hasParam(LootContextParams.KILLER_ENTITY)) {
             var killer = context.getParam(LootContextParams.KILLER_ENTITY);
             if (killer instanceof Player player) {
-                if (GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("solidarytinker:littlecat"))) {
-                    base +=0.05;
+                if (GetModifierLevel.equipHasModifierLevel(player, new ModifierId("solidarytinker:littlecat"))) {
+                    base +=0.18;
                 }
-                if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
-                    base += 0.1;
+                if (GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+                    base += 0.3;
                 }
                 if (CurioCompat.hasItem(player, CtiItem.ring_of_nibelungen.get())) {
                     int level = DifficultyLevel.ofAny(player);

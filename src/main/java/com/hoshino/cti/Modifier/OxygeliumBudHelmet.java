@@ -59,7 +59,7 @@ public class OxygeliumBudHelmet extends OxygenConsumeModifier {
     public void LivingHurtEvent(LivingHurtEvent event) {
         var entity = event.getEntity();
         if (!(entity instanceof Player player)) return;
-        if (event.getSource().getEntity() != null && GetModifierLevel.EquipHasModifierlevel(player, this.getId()) && ModUtils.isPlanet(player.level)) {
+        if (event.getSource().getEntity() != null && GetModifierLevel.equipHasModifierLevel(player, this.getId()) && ModUtils.isPlanet(player.level)) {
             event.setAmount(event.getAmount() * 0.72f);
         }
     }

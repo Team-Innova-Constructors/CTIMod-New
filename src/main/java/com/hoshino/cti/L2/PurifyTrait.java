@@ -47,7 +47,7 @@ public class PurifyTrait extends LegendaryTrait {
         }
         var target = mob.getTarget();
         if (target instanceof Player player) {
-            if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ARMOR_ORACLE.getId()) > 0) {
+            if (GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.getTotalArmorModifierlevel(player, CtiModifiers.ARMOR_ORACLE.getId()) > 0) {
                 return;
             }
             LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
@@ -72,7 +72,7 @@ public class PurifyTrait extends LegendaryTrait {
         var target = mob.getTarget();
         var list = mob.getActiveEffects();
         if (target instanceof Player player) {
-            if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+            if (GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 return;
             }
             if(GetModifierLevel.getTotalArmorModifierlevel(player,CtiModifiers.SHADOW_OF_VIGRID.getId())<3&&level>3){

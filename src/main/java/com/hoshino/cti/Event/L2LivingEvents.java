@@ -49,10 +49,10 @@ public class L2LivingEvents {
                 .filter(cap -> cap.hasTrait(LHTraits.INVISIBLE.get()) && mob.hasEffect(MobEffects.INVISIBILITY))
                 .ifPresent(cap -> {
                     if (event.getSource().getEntity() instanceof Player player) {
-                        if (GetModifierLevel.EachHandsHaveModifierlevel(player, CtiModifiers.end_slayer.getId())) {
+                        if (GetModifierLevel.handsHaveModifierLevel(player, CtiModifiers.end_slayer.getId())) {
                             return;
                         }
-                        if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+                        if (GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                             return;
                         }
                         var damageSource = event.getSource();
@@ -107,8 +107,8 @@ public class L2LivingEvents {
     }
 
     private static boolean checkEquipment(Player player) {
-        int uranium = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, SolidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
-        int hoshino = GetModifierLevel.CurioModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
+        int uranium = GetModifierLevel.curioModifierLevel(player, TinkerCuriosModifier.CleanCurio.getId()) + GetModifierLevel.getTotalArmorModifierlevel(player, SolidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId());
+        int hoshino = GetModifierLevel.curioModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         ModifierId health = new ModifierId("tinkersinnovation:vitality_armor");
         int mari = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("solidarytinker:healhalo"));
         int healthLevel = GetModifierLevel.getTotalArmorModifierlevel(player, health);

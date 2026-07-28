@@ -19,7 +19,7 @@ public class CsTraitMixin {
     private void tick(LivingEntity le, int level, CallbackInfo ci){
         if(le instanceof Mob mob){
             if(mob.getTarget() instanceof Player player){
-                if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||mob.hasEffect(MobEffects.WEAKNESS)){
+                if(GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||mob.hasEffect(MobEffects.WEAKNESS)){
                     ci.cancel();
                     return;
                 }

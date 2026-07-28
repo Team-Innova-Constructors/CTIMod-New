@@ -25,7 +25,7 @@ public class TeleportMixin {
         if(!mob.level.isClientSide()&&mob instanceof Mob mob1){
             var entity=mob1.getTarget();
             if(entity instanceof ServerPlayer serverPlayer){
-               if(GetModifierLevel.CurioHasModifierlevel(serverPlayer, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||GetModifierLevel.EquipHasModifierlevel(serverPlayer, CtiModifiers.qcfStaticModifier.getId())){
+               if(GetModifierLevel.curioHasModifierLevel(serverPlayer, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||GetModifierLevel.equipHasModifierLevel(serverPlayer, CtiModifiers.qcfStaticModifier.getId())){
                    ci.cancel();
                }
             }
@@ -35,7 +35,7 @@ public class TeleportMixin {
     private void onAttack(int level, LivingEntity entity, LivingAttackEvent event, CallbackInfo ci){
         var entity1=event.getSource().getEntity();
         if(entity1 instanceof LivingEntity lv){
-            if(GetModifierLevel.CurioHasModifierlevel(lv, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||GetModifierLevel.EquipHasModifierlevel(lv, CtiModifiers.qcfStaticModifier.getId())){
+            if(GetModifierLevel.curioHasModifierLevel(lv, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||GetModifierLevel.equipHasModifierLevel(lv, CtiModifiers.qcfStaticModifier.getId())){
                 ci.cancel();
             }
         }

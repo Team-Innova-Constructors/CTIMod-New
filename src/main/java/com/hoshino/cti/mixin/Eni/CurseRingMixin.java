@@ -85,7 +85,7 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
             ci.cancel();
             return;
         }
-        boolean shouldNotBeAngry = player.getLevel().isDay() || GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.end_slayer.getId()) || this.cti$isInfancy(player)||GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
+        boolean shouldNotBeAngry = player.getLevel().isDay() || GetModifierLevel.equipHasModifierLevel(player, CtiModifiers.end_slayer.getId()) || this.cti$isInfancy(player)||GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         if (shouldNotBeAngry) {
             ci.cancel();
         }
@@ -98,7 +98,7 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
             ci.cancel();
             return;
         }
-        boolean shouldNotBeAngry = player.getLevel().isDay() || this.cti$isInfancy(player)||GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
+        boolean shouldNotBeAngry = player.getLevel().isDay() || this.cti$isInfancy(player)||GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
         if (shouldNotBeAngry) {
             ci.cancel();
         }

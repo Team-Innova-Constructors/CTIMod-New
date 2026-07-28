@@ -2,13 +2,9 @@ package com.hoshino.cti.mixin.L2;
 
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
-import com.c2h6s.etshtinker.init.EtshtinkerModifiers;
-import com.hoshino.cti.register.CtiHostilityTrait;
 import com.hoshino.cti.util.EntityUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
-import com.xiaoyue.tinkers_ingenuity.register.TIModifiers;
 import dev.xkmc.l2hostility.compat.curios.EntitySlotAccess;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.legendary.RagnarokTrait;
@@ -24,12 +20,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.hoshino.cti.util.L2.RagnarokHelper.checkAndGiveData;
 
@@ -48,7 +40,7 @@ public abstract class RagnarokTraitMixin {
     @Inject(at = {@At("HEAD")}, method = {"postHurtImpl"}, cancellable = true)
     private void ignore(int level, LivingEntity attacker, LivingEntity target, CallbackInfo ci) {
         if (target instanceof Player player) {
-            if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+            if (GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 ci.cancel();
                 return;
             }
@@ -73,7 +65,7 @@ public abstract class RagnarokTraitMixin {
                 ci.cancel();
                 return;
             }
-            if (ModifierLevel.EquipHasModifierlevel(target, new ModifierId("cti:shadow_of_vigrid"))) {
+            if (GetModifierLevel.equipHasModifierLevel(target, new ModifierId("cti:shadow_of_vigrid"))) {
                 ci.cancel();
             }
             if (player.getItemBySlot(EquipmentSlot.HEAD).is(MekanismItems.MEKASUIT_HELMET.get()) || player.getItemBySlot(EquipmentSlot.CHEST).is(MekanismItems.MEKASUIT_BODYARMOR.get()) || player.getItemBySlot(EquipmentSlot.LEGS).is(MekanismItems.MEKASUIT_PANTS.get()) || player.getItemBySlot(EquipmentSlot.FEET).is(MekanismItems.MEKASUIT_BOOTS.get())) {

@@ -321,7 +321,7 @@ public class CommonLivingEvents {
     @SubscribeEvent
     public static void cancelFallDamage(LivingAttackEvent event) {
         if (event.getSource().isFall() && event.getEntity() instanceof Player player) {
-            if (GetModifierLevel.HandsHaveModifierlevel(player, CtiModifiers.NKSSZS_STATIC_MODIFIER.getId())) {
+            if (GetModifierLevel.handsHaveModifierLevel(player, CtiModifiers.NKSSZS_STATIC_MODIFIER.getId())) {
                 event.setCanceled(true);
             }
         }
@@ -371,7 +371,6 @@ public class CommonLivingEvents {
             if (serverLevel.dimension().equals(ServerLevel.OVERWORLD)) {
                 if (event.getState().is(Tags.Blocks.ORES_DIAMOND)) {
                     var randomSource = player.getRandom();
-
                     int currentNumber = randomSource.nextInt(4000);
                     if (currentNumber> 3998) {
                         var fzzx = new ItemEntity(player.level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(CtiItem.heart_of_africa.get(), 1));

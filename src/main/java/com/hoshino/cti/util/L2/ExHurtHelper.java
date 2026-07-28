@@ -11,10 +11,12 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 public class ExHurtHelper {
     public static float getScale(LivingEntity living){
         if(!(living instanceof Player player)) return 1;
-        var relicLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:the_relic"));
-        var shadowOfVigridLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
+        var relicID=new ModifierId("cti:the_relic");
+        var shadowOfVigridID= new ModifierId("cti:shadow_of_vigrid");
+        var relicLevel = GetModifierLevel.getTotalArmorModifierlevel(player,relicID)+GetModifierLevel.getTotalHandsModifierLevelWithShield(player,relicID);
+        var shadowOfVigridLevel = GetModifierLevel.getTotalArmorModifierlevel(player,shadowOfVigridID)+GetModifierLevel.getTotalHandsModifierLevelWithShield(player,shadowOfVigridID);
         boolean hashardLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("etshtinker:solidex")) > 0;
-        boolean hasEtherLevel=GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("solidarytinker:ether"));
+        boolean hasEtherLevel=GetModifierLevel.curioHasModifierLevel(player,new ModifierId("solidarytinker:ether"));
         float hasHard = hashardLevel ? 0.8f : 1.0f;
         float hasEther=hasEtherLevel?0.9f:1.0f;
         float relicFactor = Math.max(0.0f, 1.0f - (relicLevel * 0.03f));
@@ -30,9 +32,16 @@ public class ExHurtHelper {
                 || player.getItemBySlot(EquipmentSlot.FEET).is(MekanismItems.MEKASUIT_BOOTS.get())) {
             return false;
         }
-        if(GetModifierLevel.CurioHasModifierlevel(player,new ModifierId("solidarytinker:bha")))return false;
-        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("tinkers_ingenuity:unmatched")))return false;
-        if(GetModifierLevel.EquipHasModifierlevel(player,new ModifierId("cti:eventually")))return false;
-        return !GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("cti:all"));
+        if(GetModifierLevel.curioHasModifierLevel(player,new ModifierId("solidarytinker:bha")))return false;
+        if(GetModifierLevel.equipHasModifierLevel(player,new ModifierId("tinkers_ingenuity:unmatched")))return false;
+        if(GetModifierLevel.equipHasModifierLevel(player,new ModifierId("cti:eventually")))return false;
+        var relicLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:the_relic"));
+        var shadowOfVigridLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
+
+        float relicFactor = Math.max(0.0f, 1.0f - (relicLevel * 0.03f));
+        float shadowFactor = Math.max(0.0f, 1.0f - (shadowOfVigridLevel * 0.07f));
+
+        if(!GetModifierLevel.equipHasModifierLevel(player, new ModifierId("cti:all")))return false;
+        return relicFactor != 0 && shadowFactor != 0;
     }
 }

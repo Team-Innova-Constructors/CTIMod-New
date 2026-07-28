@@ -70,7 +70,7 @@ public class All extends EtSTBaseModifier implements DamageBlockModifierHook,Too
 
     @Override
     public float onGetMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
-        return (float) (damage*Math.pow(10,GetModifierLevel.getAllSlotModifierlevel(context.getAttacker(),modifier.getId())+GetModifierLevel.CurioModifierLevel(context.getAttacker(),modifier.getId())));
+        return (float) (damage*Math.pow(10,GetModifierLevel.getAllSlotModifierLevel(context.getAttacker(),modifier.getId())+GetModifierLevel.curioModifierLevel(context.getAttacker(),modifier.getId())));
     }
 
     public static void gatherEffects(Player player, LivingEntity target, float amount){

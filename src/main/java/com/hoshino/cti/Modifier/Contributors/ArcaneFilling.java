@@ -1,7 +1,7 @@
 package com.hoshino.cti.Modifier.Contributors;
 
+import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -22,7 +22,7 @@ public class ArcaneFilling extends BattleModifier {
     @Override
     public void LivingHurtEvent(LivingHurtEvent event) {
         if (event.getSource().isMagic() && event.getSource().getEntity() instanceof Player player) {
-            if (ModifierLevel.EquipHasModifierlevel(player, this.getId())) {
+            if (GetModifierLevel.equipHasModifierLevel(player, this.getId())) {
                 event.setAmount(event.getAmount() * 2F);
             }
         }

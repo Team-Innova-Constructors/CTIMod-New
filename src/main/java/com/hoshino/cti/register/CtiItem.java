@@ -384,7 +384,7 @@ public class CtiItem {
         @Override
         public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
             pTooltip.add(Component.literal("高强度的铝玻璃,他会弱化周围生物的攻击,半径4格内每多一块就会降低1%伤害,至多降低40%").withStyle(style -> style.withColor(0xffaaff)));
-            pTooltip.add(Component.literal("同时会压制周4围格内生物的传送和诸神黄昏词条").withStyle(style -> style.withColor(0xff557f)));
+            pTooltip.add(Component.literal("同时会压制周围6格内生物的传送和诸神黄昏词条").withStyle(style -> style.withColor(0xff557f)));
         }
     });
     public static final RegistryObject<Item> star_dragon_ingot = ITEMS.register("star_dragon_ingot", () -> new TooltipedItem(new Item.Properties().tab(CtiTab.MATERIALS),List.of(

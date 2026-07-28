@@ -16,7 +16,7 @@ public class ShulkerMixin {
     private void mobTick(LivingEntity e, int level, CallbackInfo ci){
         if(e instanceof Mob mob){
             var entity=mob.getTarget();
-            if(GetModifierLevel.CurioHasModifierlevel(entity,TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+            if(GetModifierLevel.curioHasModifierLevel(entity,TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
                 ci.cancel();
             }
         }

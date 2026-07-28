@@ -60,7 +60,7 @@ public abstract class UndyingTraitMixin extends LegendaryTrait {
         if (living.getPersistentData().contains("atomic_dec") || living.getPersistentData().contains("quark_disassemble")) return false;
         var attacker=source.getEntity();
         if (attacker instanceof Player player) {
-            if (GetModifierLevel.CurioHasModifierlevel(player, new ModifierId("solidarytinker:bha"))) {
+            if (GetModifierLevel.curioHasModifierLevel(player, new ModifierId("solidarytinker:bha"))) {
                 return false;
             }
         }
@@ -71,7 +71,7 @@ public abstract class UndyingTraitMixin extends LegendaryTrait {
         }
         if (living.hasEffect(SearchTools.findMobEffect("solidarytinker:healhysteresis"))) return false;
         if(attacker instanceof Player player){
-            if (GetModifierLevel.getEachHandsTotalModifierlevel(player, TinkersInnovationModifiers.L2ComplementsModifier.curse_blade.getId()) > 0 || GetModifierLevel.getEachHandsTotalModifierlevel(player, CtiModifiers.CURSED_ARROW.getId()) > 0) {
+            if (GetModifierLevel.getEachHandsTotalModifierLevel(player, TinkersInnovationModifiers.L2ComplementsModifier.curse_blade.getId()) > 0 || GetModifierLevel.getEachHandsTotalModifierLevel(player, CtiModifiers.CURSED_ARROW.getId()) > 0) {
                 return false;
             }
         }

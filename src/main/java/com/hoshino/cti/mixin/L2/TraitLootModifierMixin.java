@@ -64,7 +64,7 @@ public abstract class TraitLootModifierMixin extends LootModifier {
                         }
                         int lv = this.trait == null ? 0 : mobCap.getTraitLevel(this.trait);
                         double rate = this.chance + (double) lv * this.rankBonus;
-                        if (GetModifierLevel.EquipHasModifierlevel(player, new ModifierId("solidarytinker:littlecat"))) {
+                        if (GetModifierLevel.equipHasModifierLevel(player, new ModifierId("solidarytinker:littlecat"))) {
                             rate *= 2.5;
                         }
                         int count = 0;
@@ -82,7 +82,7 @@ public abstract class TraitLootModifierMixin extends LootModifier {
                             }
                         }
                         if (count > 0) {
-                            if (GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
+                            if (GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                                 count *= 4;
                             }
                         }

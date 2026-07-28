@@ -1,7 +1,7 @@
 package com.hoshino.cti.Modifier.Contributors;
 
+import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.extend.superclass.ArmorModifier;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +21,7 @@ public class CelestialLight extends ArmorModifier {
 
     @Override
     public void LivingHurtEvent(LivingHurtEvent event) {
-        if (event.getEntity() != null && ModifierLevel.getMainhandModifierlevel(event.getEntity(), this.getId()) > 0 && ModifierLevel.EquipHasModifierlevel(event.getEntity(), this.getId())) {
+        if (event.getEntity() != null && GetModifierLevel.getSlotModifierLevel(event.getEntity(), this.getId(),EquipmentSlot.MAINHAND) > 0 && GetModifierLevel.equipHasModifierLevel(event.getEntity(), this.getId())) {
             if (event.getEntity() instanceof Player player) {
                 if (event.getAmount() > player.getHealth() && !player.getCooldowns().isOnCooldown(player.getItemBySlot(EquipmentSlot.MAINHAND).getItem())) {
                     event.setCanceled(true);

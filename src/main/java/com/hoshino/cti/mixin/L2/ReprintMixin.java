@@ -1,8 +1,8 @@
 package com.hoshino.cti.mixin.L2;
 
 import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import com.xiaoyue.tinkers_ingenuity.utils.ToolUtils;
 import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
 import dev.xkmc.l2hostility.content.traits.highlevel.ReprintTrait;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ReprintMixin {
     @Inject(at = {@At("HEAD")}, method = {"onHurtTarget"}, cancellable = true)
     private void print(int level, LivingEntity attacker, AttackCache cache, TraitEffectCache traitCache, CallbackInfo ci) {
-        if (ModifierLevel.EquipHasModifierlevel(cache.getAttackTarget(), CtiModifiers.encryptStaticModifier.getId())) {
+        if (GetModifierLevel.equipHasModifierLevel(cache.getAttackTarget(), CtiModifiers.encryptStaticModifier.getId())) {
             ci.cancel();
         }
         List<ItemStack> curio = ToolUtils.Curios.getStacks(cache.getAttackTarget());

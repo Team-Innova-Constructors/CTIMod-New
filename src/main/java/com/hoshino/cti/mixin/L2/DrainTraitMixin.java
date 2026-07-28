@@ -4,7 +4,6 @@ import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.SolidarytinkerModifiers;
 import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
 import dev.xkmc.l2hostility.content.traits.highlevel.DrainTrait;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class DrainTraitMixin {
     @Inject(at = {@At("HEAD")}, method = {"postHurtImpl"}, cancellable = true)
     private void RemoveEffect(int level, LivingEntity attacker, LivingEntity target, CallbackInfo ci) {
-        if (ModifierLevel.EquipHasModifierlevel(target, SolidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())) {
+        if (GetModifierLevel.equipHasModifierLevel(target, SolidarytinkerModifiers.CLEAN_STATIC_MODIFIER.getId())) {
             ci.cancel();
         }
-        if(GetModifierLevel.CurioHasModifierlevel(target, TinkerCuriosModifier.CleanCurio.getId())||GetModifierLevel.CurioHasModifierlevel(target, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+        if(GetModifierLevel.curioHasModifierLevel(target, TinkerCuriosModifier.CleanCurio.getId())||GetModifierLevel.curioHasModifierLevel(target, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
             ci.cancel();
         }
     }

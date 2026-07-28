@@ -8,6 +8,7 @@ import slimeknights.tconstruct.library.utils.RomanNumeralHelper;
 
 import javax.annotation.Nullable;
 
+@Getter
 public enum DynamicColorEnum {
     HOSHINO_SCROLL(Type.SCROLL, new int[]{0xffea95, 0xffaaff, 0x55c4ff}, 20, 20),
     MAGIC_ICE(Type.BREATH, new int[]{0x99b1ff}, 60, 1000, 0.3f),
@@ -21,31 +22,25 @@ public enum DynamicColorEnum {
         SCROLL, BREATH, REMIX
     }
 
-    @Getter
     private final Type type;
-    @Getter
     private final int[] colorArray;
 
-    @Getter
     private final int scrollSteps;
-    @Getter
     private final int scrollDelayMs;
 
-    @Getter
     private final int breathSteps;
-    @Getter
     private final int breathCycleMs;
-    @Getter
     private final float minBrightness;
 
+    //滚动的
     DynamicColorEnum(Type type, int[] colorArray, int scrollSteps, int scrollDelayMs) {
-        this(type, colorArray, scrollSteps, scrollDelayMs, 60, 1000, 0.2f);
+        this(type, colorArray, scrollSteps, scrollDelayMs, 0, 0, 0);
     }
-
+    //呼吸的
     DynamicColorEnum(Type type, int[] colorArray, int breathSteps, int breathCycleMs, float minBrightness) {
-        this(type, colorArray, 20, 20, breathSteps, breathCycleMs, minBrightness);
+        this(type, colorArray, 0, 0, breathSteps, breathCycleMs, minBrightness);
     }
-
+    //复合的
     DynamicColorEnum(Type type, int[] colorArray, int scrollSteps, int scrollDelayMs, int breathSteps, int breathCycleMs, float minBrightness) {
         this.type = type;
         this.colorArray = colorArray;
@@ -74,27 +69,4 @@ public enum DynamicColorEnum {
         }
         return baseComponent;
     }
-
-//    public static Component getDynamicNumeral(int value, DynamicColorEnum.Type type, int[] color, int scrollSteps, int scrollDelayMs, int breathSteps, int breathCycleMs, float minBrightness) {
-//        Int2ObjectMap<Component> cache = RomanNumberHelperAccessor.getNumeralCache();
-//        if (cache.containsKey(value)) {
-//            return cache.get(value);
-//        }
-//        String key = RomanNumberHelperAccessor.getTranslationKeyPrefix() + value;
-//        boolean canTranslate = Util.canTranslate(key);
-//        String targetStr = canTranslate ? key : RomanNumberHelperAccessor.invokeIntToRomanNumeral(value);
-//        Component component = switch (type) {
-//            case SCROLL -> DynamicComponentUtil.scrollColorfulText.getColorfulText(
-//                    targetStr, null, color, scrollSteps, scrollDelayMs, canTranslate
-//            );
-//            case BREATH -> DynamicComponentUtil.BreathColorfulText.getColorfulText(
-//                    targetStr, null, color, breathSteps, breathCycleMs, minBrightness, canTranslate
-//            );
-//            case REMIX -> DynamicComponentUtil.BreathAndScrollColorfulText.getColorfulText(
-//                    targetStr, null, color, scrollSteps, scrollDelayMs, breathSteps, breathCycleMs, minBrightness, canTranslate
-//            );
-//        };
-//        cache.put(value, component);
-//        return component;
-//    }
 }

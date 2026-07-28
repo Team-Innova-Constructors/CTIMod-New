@@ -37,23 +37,23 @@ public class Industrial extends EtSTBaseModifier implements VolatileDataModifier
 
     @Override
     public void addToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
-        super.addToolStats(context, modifier, builder);
-        ToolStats.DURABILITY.percent(builder, 0.05);
-        ToolStats.ATTACK_DAMAGE.percent(builder, 0.05);
-        ToolStats.MINING_SPEED.percent(builder, 0.05);
-        ToolStats.PROJECTILE_DAMAGE.percent(builder, 0.05);
+        var modifierLevel=modifier.getLevel();
+        ToolStats.DURABILITY.percent(builder, 0.08 *modifierLevel);
+        ToolStats.ATTACK_DAMAGE.percent(builder, 0.08*modifierLevel);
+        ToolStats.MINING_SPEED.percent(builder, 0.08*modifierLevel);
+        ToolStats.PROJECTILE_DAMAGE.percent(builder, 0.08*modifierLevel);
     }
 
 
     @Override
     public int onDamageTool(IToolStackView tool, ModifierEntry modifier, int amount, @Nullable LivingEntity holder) {
-        if (RANDOM.nextFloat() > Math.min(0.8, modifier.getLevel() * 0.05)) return 0;
+        if (RANDOM.nextFloat() > Math.min(0.8, modifier.getLevel() * 0.08)) return 0;
         return amount;
     }
 
     @Override
     public float getRepairFactor(IToolStackView tool, ModifierEntry entry, float factor) {
-        return factor * (1 + entry.getLevel() * 0.05f);
+        return factor * (1 + entry.getLevel() * 0.08f);
     }
 
     @Override

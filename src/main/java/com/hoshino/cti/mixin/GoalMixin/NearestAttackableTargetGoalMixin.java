@@ -3,7 +3,7 @@ package com.hoshino.cti.mixin.GoalMixin;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.SearchTools;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
+import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -77,7 +77,7 @@ public abstract class NearestAttackableTargetGoalMixin<T extends LivingEntity> e
             if(player.hasEffect(CtiEffects.covert.get())&&player.distanceTo(this.mob)>3){
                 cir.setReturnValue(false);
             }
-            else if(ModifierLevel.EquipHasModifierlevel(player, CtiModifiers.starBlessStaticModifier.getId())){
+            else if(GetModifierLevel.equipHasModifierLevel(player, CtiModifiers.starBlessStaticModifier.getId())){
                 int mobLevel= DifficultyLevel.ofAny(mob);
                 if(mobLevel<player.getArmorValue()+player.getMaxHealth()){
                     cir.setReturnValue(false);

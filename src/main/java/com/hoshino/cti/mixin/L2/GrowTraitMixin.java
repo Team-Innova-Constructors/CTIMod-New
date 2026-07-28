@@ -38,7 +38,7 @@ public abstract class GrowTraitMixin extends MobTrait {
     private void setSize(LivingEntity mob, int level, CallbackInfo ci){
         if(mob instanceof Slime slime){
             if(slime.getTarget() instanceof Player player){
-                if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+                if(GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
                     ci.cancel();
                     return;
                 }

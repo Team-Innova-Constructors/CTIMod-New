@@ -13,7 +13,7 @@ public class Subspace extends ArmorModifier {
 
     @Override
     public void LivingHurtEvent(LivingHurtEvent event) {
-        if (event.getEntity() instanceof Player player && GetModifierLevel.EquipHasModifierlevel(player, this.getId())) {
+        if (event.getEntity() instanceof Player player && GetModifierLevel.equipHasModifierLevel(player, this.getId())) {
             if (event.getSource().isMagic() || event.getSource().isProjectile()) {
                 event.setAmount(event.getAmount() * 0.4f);
             }

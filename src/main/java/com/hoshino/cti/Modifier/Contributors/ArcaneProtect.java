@@ -37,7 +37,7 @@ public class ArcaneProtect extends ArmorModifier {
     }
 
     private void LivingMagicDamage(LivingDamageEvent event) {
-        if (event.getEntity() instanceof Player player && GetModifierLevel.EquipHasModifierlevel(player, this.getId())) {
+        if (event.getEntity() instanceof Player player && GetModifierLevel.equipHasModifierLevel(player, this.getId())) {
             if (event.getSource().isMagic()) {
                 event.setAmount(1);
             }
@@ -55,7 +55,7 @@ public class ArcaneProtect extends ArmorModifier {
             if (entity instanceof Player player) {
                 if (getfakeInvurabletime(player) < 60) {
                     setfakeInvurabletime(getfakeInvurabletime(player) + 1, player);
-                } else if (getfakeInvurabletime(player) == 60 && !GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.NATIVED_STATIC_MODIFIER.getId())) {
+                } else if (getfakeInvurabletime(player) == 60 && !GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.NATIVED_STATIC_MODIFIER.getId())) {
                     entity.setInvulnerable(false);
                 }
             }

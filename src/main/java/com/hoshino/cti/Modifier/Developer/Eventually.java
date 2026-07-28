@@ -2,7 +2,7 @@ package com.hoshino.cti.Modifier.Developer;
 
 import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.register.CtiToolStats;
-import com.marth7th.solidarytinker.util.method.ModifierLevel;
+import com.hoshino.cti.util.method.GetModifierLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
@@ -71,7 +71,7 @@ public class Eventually extends Modifier implements MeleeDamageModifierHook , Me
     @Override
     public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity entity, int index, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
         if (entity instanceof Player player) {
-            if (ModifierLevel.EquipHasModifierlevel(entity, this.getId())) {
+            if (GetModifierLevel.equipHasModifierLevel(entity, this.getId())) {
                 double x = player.getX();
                 double y = player.getY();
                 double z = player.getZ();

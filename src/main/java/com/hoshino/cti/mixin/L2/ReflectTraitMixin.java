@@ -33,7 +33,7 @@ public class ReflectTraitMixin {
             if (CurioCompat.hasItem(lv, LHItems.ABRAHADABRA.get())) {
                 return;
             }
-            if(lv instanceof Player player&& GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+            if(lv instanceof Player player&& GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
                 return;
             }
             float Magnification = level * 0.3F;

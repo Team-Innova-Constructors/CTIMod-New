@@ -119,7 +119,7 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
     public void Hurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         var living=(LivingEntity) (Object) this;
         if(living instanceof Player player){
-            if(GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.eventually.getId())){
+            if(GetModifierLevel.equipHasModifierLevel(player, CtiModifiers.eventually.getId())){
                 cir.setReturnValue(false);
             }
         }

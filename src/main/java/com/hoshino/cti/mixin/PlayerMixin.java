@@ -18,8 +18,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 
-import static com.hoshino.cti.util.method.GetModifierLevel.EquipHasModifierlevel;
-
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
     protected PlayerMixin(EntityType<? extends LivingEntity> pEntityType, Level pLevel) {

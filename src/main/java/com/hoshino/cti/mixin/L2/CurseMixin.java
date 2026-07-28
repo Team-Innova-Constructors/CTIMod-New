@@ -18,7 +18,7 @@ public class CurseMixin {
         var entity=event.getEntity();
         var mari=new ModifierId("solidarytinker:healhalo");
         if(entity instanceof Player player){
-            boolean shouldCancel= GetModifierLevel.EquipHasModifierlevel(player,mari);
+            boolean shouldCancel= GetModifierLevel.equipHasModifierLevel(player,mari);
             if(shouldCancel){
                 return;
             }

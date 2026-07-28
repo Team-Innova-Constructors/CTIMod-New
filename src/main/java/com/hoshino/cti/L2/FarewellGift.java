@@ -2,6 +2,7 @@ package com.hoshino.cti.L2;
 
 import com.hoshino.cti.register.CtiHostilityTrait;
 import com.hoshino.cti.register.CtiSounds;
+import com.hoshino.cti.util.ILivingEntityMixin;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
@@ -47,8 +48,21 @@ public class FarewellGift extends LegendaryTrait {
                 var extraScale=1+mobLevel * 0.005f;
                 var distance=player.distanceTo(target);
                 if (distance>15)return;
-                cap.traitEvent((k, v) -> k.postHurtImpl(level, mob, player));
+
                 var scale=Math.max(1,15-distance)/15f;
+                boolean shouldCost=true;
+                float percentage = 0.07f - (distance * 0.01f);
+                if (percentage < 0.01f) {
+                    shouldCost=false;
+                }
+                if(shouldCost){
+                    var finalPercentage = percentage * level;
+                    var healthCost = finalPercentage * player.getMaxHealth();
+                    player.setHealth(Math.max(0.1f, player.getHealth() - healthCost));
+                }
+                cap.traitEvent((k, v) -> k.postHurtImpl(level, mob, player));
+
+                player.invulnerableTime=0;
                 player.hurt(gift,mob.getMaxHealth() * 0.05f * level * scale* extraScale);
                 player.level.playSound(null,player.getOnPos(), CtiSounds.farewell_gift.get(), SoundSource.VOICE,1,1);
             }

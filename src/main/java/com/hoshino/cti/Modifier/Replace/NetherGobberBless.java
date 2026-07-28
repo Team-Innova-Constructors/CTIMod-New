@@ -89,7 +89,7 @@ public class NetherGobberBless extends Modifier implements MeleeDamageModifierHo
         Entity target = lootContext.getParamOrNull(LootContextParams.THIS_ENTITY);
         ItemStack skull = new ItemStack(Items.WITHER_SKELETON_SKULL);
         if (player != null && target instanceof WitherSkeleton && player.getMainHandItem().getItem() == TinkerTools.cleaver.get()) {
-            int SeveringLevel = GetModifierLevel.getMainhandModifierlevel(player, TinkerModifiers.severing.getId());
+            int SeveringLevel = GetModifierLevel.getSlotModifierLevel(player, TinkerModifiers.severing.getId(),EquipmentSlot.MAINHAND);
             int LootLevel = lootContext.getLootingModifier();
             skull.setCount(SeveringLevel * LootLevel);
             target.spawnAtLocation(skull);

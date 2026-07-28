@@ -50,7 +50,7 @@ public class CommonLivingHurt {
         if (event.getExplosion().getSourceMob() instanceof Creeper creeper) {
             List<Player> playerlist = creeper.level.getEntitiesOfClass(Player.class, new AABB(creeper.getX() + 10, creeper.getY() + 10, creeper.getZ() + 10, creeper.getX() - 10, creeper.getY() - 10, creeper.getZ() - 10));
             for (Player player : playerlist) {
-                if (GetModifierLevel.EquipHasModifierlevel(player, CtiModifiers.ExplosionPrevent.getId())) {
+                if (GetModifierLevel.equipHasModifierLevel(player, CtiModifiers.ExplosionPrevent.getId())) {
                     if (creeper.level instanceof ServerLevel level) {
                         level.playSound(null, player.getOnPos(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1, 1);
                         level.sendParticles(ParticleTypes.EXPLOSION, creeper.getX(), creeper.getY() + 0.5 * creeper.getBbHeight(), creeper.getZ(), 1, 0, 0, 0, 0);
@@ -90,7 +90,7 @@ public class CommonLivingHurt {
     public static void playerCauseDamage(LivingDamageEvent event) {
         var source = event.getSource();
         if (source.getEntity() instanceof ServerPlayer player) {
-            if(GetModifierLevel.EquipHasModifierlevel(player,CtiModifiers.ETHEREAL_STATIC_MODIFIER.getId())){
+            if(GetModifierLevel.equipHasModifierLevel(player,CtiModifiers.ETHEREAL_STATIC_MODIFIER.getId())){
                 if(source.isMagic()||source.isExplosion()){
                     event.setAmount(event.getAmount() * 0.5f);
                 }

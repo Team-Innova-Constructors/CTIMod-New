@@ -43,7 +43,7 @@ public abstract class RegenTaintMixin extends MobTrait {
                 if(mob.getHealth()>=mob.getMaxHealth())return;
                 if(mob instanceof Mob mob1){
                     if(mob1.getTarget() instanceof Player player){
-                        if(GetModifierLevel.CurioHasModifierlevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
+                        if(GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())){
                             return;
                         }
                     }

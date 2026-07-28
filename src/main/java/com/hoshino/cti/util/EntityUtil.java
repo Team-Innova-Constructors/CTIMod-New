@@ -32,10 +32,10 @@ public class EntityUtil {
         projectile.setDeltaMovement(newMovement);
     }
     public static boolean hasAlGlass(LivingEntity entity) {
-        int minX = Mth.floor(entity.getX() - 3);
-        int maxX = Mth.floor(entity.getX() + 3);
-        int minZ = Mth.floor(entity.getZ() - 3);
-        int maxZ = Mth.floor(entity.getZ() + 3);
+        int minX = Mth.floor(entity.getX() - 6);
+        int maxX = Mth.floor(entity.getX() + 6);
+        int minZ = Mth.floor(entity.getZ() - 6);
+        int maxZ = Mth.floor(entity.getZ() + 6);
         int y = Mth.floor(entity.getY() - 1);
 
         var level = entity.level;

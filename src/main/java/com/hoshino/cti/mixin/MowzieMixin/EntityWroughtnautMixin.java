@@ -36,7 +36,7 @@ public abstract class EntityWroughtnautMixin extends MowzieLLibraryEntity implem
             cti$passInvulTick =80;
             this.setNoAi(true);
         }
-        if(source.getEntity()instanceof Player player&& GetModifierLevel.getEachHandsTotalModifierlevel(player, SolidarytinkerModifiers.CORRODE_STATIC_MODIFIER.getId())>0){
+        if(source.getEntity()instanceof Player player&& GetModifierLevel.getEachHandsTotalModifierLevel(player, SolidarytinkerModifiers.CORRODE_STATIC_MODIFIER.getId())>0){
             cti$corrodeTime++;
         }
         if(cti$corrodeTime >20){

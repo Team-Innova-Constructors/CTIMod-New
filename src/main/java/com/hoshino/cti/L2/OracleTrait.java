@@ -39,7 +39,7 @@ public class OracleTrait extends MobTrait {
                 }
             }
         }
-        if(GetModifierLevel.CurioHasModifierlevel(target, TinkerCuriosModifier.CleanCurio.getId())){
+        if(GetModifierLevel.curioHasModifierLevel(target, TinkerCuriosModifier.CleanCurio.getId())){
             return;
         }
         EntityTickerManager.getInstance(target).addTicker(

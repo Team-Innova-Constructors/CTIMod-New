@@ -40,7 +40,7 @@ public class OxygenS {
         };
 
         for(ModifierId modifierId:modifierIDs){
-            if(GetModifierLevel.EquipHasModifierlevel(serverPlayer,modifierId)){
+            if(GetModifierLevel.equipHasModifierLevel(serverPlayer,modifierId)){
                 return false;
             }
         }

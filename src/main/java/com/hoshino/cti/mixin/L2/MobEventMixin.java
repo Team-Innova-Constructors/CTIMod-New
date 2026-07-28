@@ -4,6 +4,7 @@ import com.hoshino.cti.util.method.GetModifierLevel;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.events.MobEvents;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,7 +32,7 @@ public class MobEventMixin {
     private static boolean cti$addExtraItemCheck(LivingEntity entity, Item item) {
         boolean hasOriginal = CurioCompat.hasItem(entity, item);
         boolean hasNewItem = CurioCompat.hasItem(entity, LHItems.NIDHOGGUR.get());
-        boolean hasRuler= GetModifierLevel.getMainhandModifierlevel(entity,new ModifierId("solidarytinker:reality_ruler"))>0;
+        boolean hasRuler= GetModifierLevel.getSlotModifierLevel(entity,new ModifierId("solidarytinker:reality_ruler"), EquipmentSlot.MAINHAND)>0;
         if(hasOriginal||hasNewItem)return false;
         return !hasRuler;
     }

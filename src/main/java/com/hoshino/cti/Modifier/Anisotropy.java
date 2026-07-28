@@ -14,7 +14,7 @@ public class Anisotropy extends NoLevelsModifier {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event){
         LivingEntity living = event.getEntity();
-        if(GetModifierLevel.EquipHasModifierlevel(living, CtiModifiers.ANISOTROPY.getId())){
+        if(GetModifierLevel.equipHasModifierLevel(living, CtiModifiers.ANISOTROPY.getId())){
             event.setAmount(event.getAmount()>10?event.getAmount()*0.7f:event.getAmount()-7);
         }
     }

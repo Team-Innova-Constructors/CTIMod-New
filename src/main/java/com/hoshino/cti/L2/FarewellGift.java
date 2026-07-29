@@ -3,6 +3,7 @@ package com.hoshino.cti.L2;
 import com.hoshino.cti.register.CtiHostilityTrait;
 import com.hoshino.cti.register.CtiSounds;
 import com.hoshino.cti.util.ILivingEntityMixin;
+import com.hoshino.cti.util.L2.ExHurtHelper;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
@@ -55,7 +56,7 @@ public class FarewellGift extends LegendaryTrait {
                 if (percentage < 0.01f) {
                     shouldCost=false;
                 }
-                if(shouldCost){
+                if(shouldCost&&ExHurtHelper.shouldHurt(player)){
                     var finalPercentage = percentage * level;
                     var healthCost = finalPercentage * player.getMaxHealth();
                     player.setHealth(Math.max(0.1f, player.getHealth() - healthCost));

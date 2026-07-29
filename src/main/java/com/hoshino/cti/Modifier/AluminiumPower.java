@@ -27,7 +27,7 @@ public class AluminiumPower extends Modifier implements ModifyDamageModifierHook
     @Override
     public float modifyDamageTaken(IToolStackView iToolStackView, ModifierEntry modifierEntry, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float v, boolean b) {
         if(damageSource.isExplosion()){
-             v= v*0.4f;
+            v= v*0.4f;
         }
         if(damageSource instanceof EntityDamageSource entityDamageSource&&entityDamageSource.isThorns()){
             v=v* 0.4f;

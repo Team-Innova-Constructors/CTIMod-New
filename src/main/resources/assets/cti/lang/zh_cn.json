@@ -998,11 +998,11 @@
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
-  "modifier.cti.industrial.description":"•增加升级槽和能力槽各一个\n•每级增加8%面板 攻击伤害,攻击速度,挖掘速度,弹射物伤害,耐久和耐久修补量\n•增加5%（最大80%）不消耗耐久的概率。",
+  "modifier.cti.industrial.description":"•增加升级槽和能力槽 词条等级个(不会超过3个)\n•每级增加8%面板 攻击伤害,攻击速度,挖掘速度,弹射物伤害,耐久和耐久修补量\n•增加5%（最大80%）不消耗耐久的概率。",
 
   "modifier.cti.industrial_armor": "工业",
   "modifier.cti.industrial_armor.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
-  "modifier.cti.industrial_armor.description":"•增加防御槽和能力槽各一个\n•每级增加8%护甲值,护甲韧性,耐久和耐久修补量\n•增加8%（最大80%）不消耗耐久的概率\n•基于全身等级获得8%（最大80%）的非穿魔伤害减免(伤害穿甲这个效益减半,上限不变)\n•无论承受多高的伤害都至多消耗2耐久。",
+  "modifier.cti.industrial_armor.description":"•增加防御槽和能力槽 词条等级个(不会超过3个)\n•每级增加8%护甲值,护甲韧性,耐久和耐久修补量\n•增加8%（最大80%）不消耗耐久的概率\n•基于全身等级获得8%（最大80%）的非穿魔伤害减免(伤害穿甲这个效益减半,上限不变)\n•无论承受多高的伤害都至多消耗2耐久。",
 
   "modifier.cti.carcinogenic": "永久创伤",
   "modifier.cti.carcinogenic.flavor": "小心职业暴露！",

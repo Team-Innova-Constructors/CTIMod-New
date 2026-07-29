@@ -59,8 +59,12 @@ public class IndustrialArmor extends EtSTBaseModifier implements VolatileDataMod
 
     @Override
     public void addVolatileData(IToolContext context, ModifierEntry modifier, ModDataNBT volatileData) {
-        volatileData.addSlots(SlotType.ABILITY,1);
-        volatileData.addSlots(SlotType.DEFENSE,1);
+        var level=modifier.getLevel();
+        if(level>3){
+            level=3;
+        }
+        volatileData.addSlots(SlotType.ABILITY,level);
+        volatileData.addSlots(SlotType.DEFENSE,level);
     }
 
     @Override

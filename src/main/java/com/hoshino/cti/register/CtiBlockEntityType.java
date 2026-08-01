@@ -4,6 +4,9 @@ import com.hoshino.cti.Blocks.BlockEntity.*;
 import com.hoshino.cti.Blocks.BlockEntity.botania.ReactiveFLowerBE;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.refinery.RefineryControllerBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulBrickHeatConductorBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulForgeControllerBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulValveBlockEntity;
 import com.hoshino.cti.Cti;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -58,6 +61,23 @@ public class CtiBlockEntityType {
     public static final RegistryObject<BlockEntityType<RefineryControllerBlockEntity>> REFINERY =
             BLOCK_ENTITIES.register("refinery_be",()->
                     BlockEntityType.Builder.of(RefineryControllerBlockEntity::new, CtiBlock.REFINERY.get())
+                            .build(null));
+
+    public static final RegistryObject<BlockEntityType<SoulForgeControllerBlockEntity>> SOUL_FORGE =
+            BLOCK_ENTITIES.register("soul_forge_be",()->
+                    BlockEntityType.Builder.of(SoulForgeControllerBlockEntity::new, CtiBlock.SOUL_FORGE.get())
+                            .build(null));
+
+    public static final RegistryObject<BlockEntityType<SoulBrickHeatConductorBlockEntity>> SOUL_BRICK_HEAT_CONDUCTOR =
+            BLOCK_ENTITIES.register("soul_brick_heat_conductor_be", () ->
+                    BlockEntityType.Builder.of(SoulBrickHeatConductorBlockEntity::new,
+                                    CtiBlock.SOUL_BRICK_HEAT_CONDUCTOR.get())
+                            .build(null));
+
+    public static final RegistryObject<BlockEntityType<SoulValveBlockEntity>> SOUL_VALVE =
+            BLOCK_ENTITIES.register("soul_valve", () ->
+                    BlockEntityType.Builder.of(SoulValveBlockEntity::new,
+                                    CtiBlock.SOUL_VALVE.get())
                             .build(null));
 
     public static final RegistryObject<BlockEntityType<CtiTankBlockEntity>> TANK =

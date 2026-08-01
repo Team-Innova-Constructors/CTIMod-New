@@ -103,6 +103,9 @@
   "tooltip.cti.zirconium_alloy_casting2": "温度小于250℃时，每下降25℃增加1x冷却速度，小于-50℃时，每下降1℃增加2x冷却速度。",
   "tooltip.cti.zirconium_alloy_casting3": "会主动将输出弹射到下方的容器。",
   "tooltip.cti.silicated_brick": "构造精炼炉的建材",
+  "tooltip.cti.soul_forge_controller": "熔炼实体产出额外产物，可接入魂碳气阀抽真空、用魂砖导热件与气动工艺热系统交换热量。顶面须以魂砖导热件封顶。",
+  "tooltip.cti.soul_brick_heat_conductor": "作为熔魂炉结构壁，将控制器的热腔透传到外侧与热系统方块交换热量。",
+  "tooltip.cti.soul_valve": "熔魂炉专用气阀，接入熔魂炉结构作为壁面，可用于抽真空。",
 
   "cti.tooltip.modifier.piority": "§a运算优先级：",
 
@@ -441,6 +444,9 @@
   "block.cti.silicated_chute": "硅碳滑槽",
   "block.cti.silicated_valve": "硅碳气阀",
   "block.cti.refinery_controller": "精炼炉控制器",
+  "block.cti.soul_forge_controller": "熔魂炉控制器",
+  "block.cti.soul_brick_heat_conductor": "魂砖导热件",
+  "block.cti.soul_valve": "魂碳气阀",
   "block.cti.silicated_ingot_gauge": "硅碳材料量器",
   "block.cti.silicated_fuel_gauge": "硅碳燃料量器",
 
@@ -1147,6 +1153,9 @@
   "cti.gui.environmental.pressure_value": "压强值",
 
   "gui.cti.tooltip.pressure": "压力",
+  "gui.cti.tooltip.soul_forge_multiplier": "当前实体熔炼倍率",
+  "gui.cti.tooltip.soul_forge_temperature": "当前温度",
+  "gui.cti.tooltip.soul_forge_cool_hint": "将温度降低至0℃以最大化熔炼产量",
   "gui.cti.tooltip.refinery_pressure_boost": "降至-0.5 bar后获得产出和熔炼速度加成。",
 
   "cti.message.environmental.freeze": "霜冻抗性",
@@ -1175,6 +1184,7 @@
   "cti.gui.missing_input": "缺少输入",
   "cti.gui.normal": "正常工作",
   "gui.cti.refinery": "精炼炉",
+  "gui.cti.soul_forge": "熔魂炉",
 
   "cti.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "cti.tooltip.liquid.amount": "%s mB",

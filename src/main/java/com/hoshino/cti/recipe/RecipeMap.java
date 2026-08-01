@@ -355,7 +355,7 @@ public class RecipeMap {
                     new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("etshtinker:protonium")), 3)),
             new ReactorNeutronCollectorRecipe(Cti.getResource("electronium"),
                     new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("avaritia:neutron_nugget")), 1),
-                    3.95f,
+                    0.35f,
                     0.00f,
                     new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("etshtinker:electronium")), 1)),
             new ReactorNeutronCollectorRecipe(Cti.getResource("violium_alloy"),

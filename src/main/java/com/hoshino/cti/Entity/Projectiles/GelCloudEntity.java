@@ -49,7 +49,7 @@ public class GelCloudEntity extends Projectile {
         this.tickCount++;
         if (tickCount>200) this.discard();
         if (!this.isRemoved()){
-            if (this.tickCount%5==0&&!level.isClientSide&&this.damage>0&&this.getOwner() instanceof LivingEntity living){
+            if (this.tickCount%10==0&&!level.isClientSide&&this.damage>0&&this.getOwner() instanceof LivingEntity living){
                 this.level.getEntitiesOfClass(LivingEntity.class,new AABB(this.getX()-visualRadius,this.getY()-1,this.getZ()-visualRadius, this.getX()+visualRadius,this.getY()+1,this.getZ()+visualRadius),entity->
                         entity!=living&&!(entity instanceof Player)&&entity.isAlive()).forEach(living1 -> {
                             living1.forceAddEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,200,lvl),living);
@@ -63,7 +63,7 @@ public class GelCloudEntity extends Projectile {
                 });
             }
             if (this.level instanceof ServerLevel serverLevel){
-                serverLevel.sendParticles(new FluidParticleData(TinkerCommons.fluidParticle.get(), new FluidStack(TinkerFluids.skySlime.get(),1)),this.getX(),this.getY(),this.getZ(),this.tickCount<10?20:6,visualRadius,1,visualRadius,0.05);
+                serverLevel.sendParticles(new FluidParticleData(TinkerCommons.fluidParticle.get(), new FluidStack(TinkerFluids.skySlime.get(),1)),this.getX(),this.getY(),this.getZ(),this.tickCount<10?10:2,visualRadius,1,visualRadius,0.05);
             }
         }
     }

@@ -45,6 +45,8 @@
     "bugFix.MobTraitCapMixin",
     "CMMixin.BlockStructureMixin",
     "COEMixin.OreDataAccessor",
+    "CreateMixin.DeployerBlockEntityMixin",
+    "CreateMixin.DeployerBlockMixin",
     "CreateMixin.SeatBlockMixin",
     "DietMixin.EffectMixin",
     "Dummy.TargetDummyMixin",

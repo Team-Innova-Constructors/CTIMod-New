@@ -25,7 +25,7 @@ public class BuffedAnger extends EtSTBaseModifier {
     public float onGetMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         LivingEntity living = context.getAttacker();
         float percentage = (living.getMaxHealth()-living.getHealth())/living.getMaxHealth();
-        if (percentage>0.7) percentage*=2;
+        if (percentage>0.67) percentage*=2;
         if (living.getMaxHealth()>100) percentage/=2;
         return damage*(1+percentage);
     }

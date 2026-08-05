@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MinecraftMixin {
     @Unique
     private int attack$waitTime =0;
+    @Unique
+    private int use$waitTime =0;
     @Inject(
             method = "startAttack",
             at = @At(
@@ -27,10 +29,28 @@ public class MinecraftMixin {
     private void c(CallbackInfoReturnable<Boolean> cir){
         attack$waitTime=2;
     }
+    @Inject(method = "startUseItem",at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;onClickInput(ILnet/minecraft/client/KeyMapping;Lnet/minecraft/world/InteractionHand;)Lnet/minecraftforge/client/event/InputEvent$InteractionKeyMappingTriggered;"),remap = false)
+    private void addCooldown(CallbackInfo ci){
+        use$waitTime = 1;
+    }
+    @Inject(
+            method = "startUseItem",
+            at = @At(
+                    value = "HEAD"
+            ),
+            cancellable = true)
+    private void enforceDelayAfterRC(CallbackInfo ci) {
+        if(use$waitTime !=0){
+            ci.cancel();
+        }
+    }
+
     @Inject(method = "tick",at = @At("HEAD"))
     private void tick(CallbackInfo ci){
         if(attack$waitTime>0){
             attack$waitTime--;
         }
+        if (use$waitTime>0)
+            use$waitTime--;
     }
 }

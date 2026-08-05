@@ -853,7 +853,7 @@
 
   "modifier.cti.fixsanguine": "血染",
   "modifier.cti.fixsanguine.flavor": "血肉之躯，燃烧一次足矣！",
-  "modifier.cti.fixsanguine.description":"降低该工具15%的耐久，每次受到伤害时，若伤害大于5点则有概率为该工具附加一层血印，每层血印提高1%攻击伤害与1%攻击速度或初速度，每级至多附加50层血印。",
+  "modifier.cti.fixsanguine.description":"降低该工具15%的耐久，每次受到伤害时，若伤害大于5点则有50%概率为该工具附加一层血印，血印每20秒衰减一层。\n  [独立乘算]每层血印提高1%伤害（对远程效果减半）和0.5%攻击速度，每级至多附加50层血印。",
 
   "modifier.cti.combustor_modifier": "加力燃烧室",
   "modifier.cti.combustor_modifier.flavor": "内置四缸发动机。",
@@ -1443,7 +1443,7 @@
 
   "modifier.cti.mana_overload": "魔力过载",
   "modifier.cti.mana_overload.flavor": "霸气外露！",
-  "modifier.cti.mana_overload.description":"+32最大贪婪，每级+4贪婪叠加，魔力脉冲发射时触发贪婪的等级叠加效果。\n §3·§r近战攻击时消耗魔力释放玩家贪婪等级点伤害的斩击，每10伤害消耗1魔力，伤害被黏液系增伤增幅并相应消耗黏液覆层。",
+  "modifier.cti.mana_overload.description":"+32最大贪婪，每级+4贪婪叠加，魔力脉冲发射时触发贪婪的等级叠加效果。\n §3·§r具备魔化之刃词条的魔力脉冲首次命中目标时释放10%伤害的穿甲穿魔斩击，此斩击伤害被黏液系增伤增幅。\n §3·§r近战攻击时消耗魔力释放玩家贪婪等级点伤害的斩击，每10伤害消耗1魔力。",
 
   "modifier.cti.enchanted_sword": "附魔剑",
   "modifier.cti.enchanted_sword.flavor": "注：这是近战武器",
@@ -1476,6 +1476,10 @@
   "modifier.cti.golden_amber_touch": "金琥珀之触",
   "modifier.cti.golden_amber_touch.flavor": "镶上紫晶，取下琥珀",
   "modifier.cti.golden_amber_touch.description":"令工具挖掘金琥珀原木时获得金琥珀，就像紫晶石工具一样。",
+
+  "modifier.cti.slimy_mana": "黏糊魔力",
+  "modifier.cti.slimy_mana.flavor": "粘球草！",
+  "modifier.cti.slimy_mana.description":"脉冲携带魔力增加2*工具黏液覆层上限。\n §3·§r魔力不足时，消耗黏液覆层维持脉冲的发射，每200魔力需要1黏液覆层。",
 
 
 

@@ -22,6 +22,7 @@ import com.hoshino.cti.Modifier.genre.insatiable.upgrades.TrickyInsatiable;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.EnchantedSwordModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.ExcaliburBurst;
+import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.SlimyMana;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.specialized.Thunderstorm;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.combat.*;
@@ -296,6 +297,7 @@ public class CtiModifiers {
     public static final StaticModifier<ManaOverload> MANA_OVERLOAD = MODIFIERS.register("mana_overload", ManaOverload::new);
     public static final StaticModifier<EnchantedSwordModifier> ENCHANTED_SWORD = MODIFIERS.register("enchanted_sword", EnchantedSwordModifier::new);
     public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
+    public static final StaticModifier<SlimyMana> SLIMY_MANA = MODIFIERS.register("slimy_mana", SlimyMana::new);
 
     public static final StaticModifier<EtchedModifier> GLORY_ETCH = MODIFIERS.register("glory_etch", EtchedModifier::new);
     public static final StaticModifier<GobberEtchI> GOBBER_ETCH_I = MODIFIERS.register("gobber_etch_1", GobberEtchI::new);

@@ -49,16 +49,17 @@ public class DeployerBlockMixin {
 
                 ItemStack mainItemStack = ((IDeployerBlockEntityMixin)be).cti$getHeldItem();
                 if (!mainItemStack.isEmpty()) {
-                    cti$cachedPlayer.getInventory().placeItemBackInInventory(mainItemStack);
+                    cti$cachedPlayer.setItemInHand(cti$cachedHand, mainItemStack);
                     ((IDeployerBlockEntityMixin)be).cti$setHeldItem(ItemStack.EMPTY);
                     if (be.getLevel() != null) {
                         be.getLevel().playSound(null, be.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, .2f,
                                 1f + Create.RANDOM.nextFloat());
                     }
+                } else {
+                    cti$cachedPlayer.setItemInHand(cti$cachedHand, ItemStack.EMPTY);
                 }
                 if (!wasEmptyHanded) {
                     ((IDeployerBlockEntityMixin)be).cti$setHeldItem(heldItem);
-                    cti$cachedPlayer.setItemInHand(cti$cachedHand, ItemStack.EMPTY);
                     AllSoundEvents.DEPOT_SLIDE.playOnServer(be.getLevel(), be.getBlockPos());
                 }
             }

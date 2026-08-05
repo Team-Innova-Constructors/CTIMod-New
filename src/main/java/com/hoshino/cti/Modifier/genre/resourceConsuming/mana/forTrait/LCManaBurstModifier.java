@@ -40,6 +40,7 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 import vazkii.botania.api.internal.ManaBurst;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.entity.ManaBurstEntity;
@@ -66,10 +67,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     public void onLeftClickEmpty(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot) {
         if (player.getAttackStrengthScale(0)>0.9&&!level.isClientSide){
             var burst = getBurst(player, (ToolStack) tool);
-            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
-                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.25f)))){
-                launchBurst(tool,player,burst);
-            }
+            if (consumeManaForBurst((ToolStack) tool,burst.getMana(),player)) launchBurst(tool, player, burst);
         }
     }
 
@@ -77,10 +75,7 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     public void onLeftClickBlock(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, BlockState state, BlockPos pos) {
         if (player.getAttackStrengthScale(0)>0.9&&!level.isClientSide){
             var burst = getBurst(player, (ToolStack) tool);
-            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
-                    ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player,(int) Math.ceil(burst.getMana()*0.25f)))){
-                launchBurst(tool,player,burst);
-            }
+            if (consumeManaForBurst((ToolStack) tool,burst.getMana(),player)) launchBurst(tool, player, burst);
         }
     }
 
@@ -88,13 +83,23 @@ public class LCManaBurstModifier extends Modifier implements LeftClickModifierHo
     public float beforeMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage, float baseKnockback, float knockback) {
         if (tool.getModifierLevel(CtiModifiers.FAR_SIGHTS.get())<=0&&!context.isExtraAttack()&&context.isFullyCharged()&&context.getAttacker() instanceof Player player&&!(player instanceof FakePlayer)){
             var burst = getBurst(player, (ToolStack) tool);
-            if (ManaItemHandler.instance().requestManaExactForTool(((ToolStack) tool).createStack(),player,burst.getMana(),true)
-            ||(tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)&&isSpellManaEnough(player, (int) Math.ceil(burst.getMana()*0.25f)))
-            ){
-                launchBurst(tool,player,burst);
-            }
+            if (consumeManaForBurst((ToolStack) tool,burst.getMana(),player)) launchBurst(tool, player, burst);
         }
         return knockback;
+    }
+
+    public static boolean consumeManaForBurst(ToolStack tool,int amount,Player player){
+        if (tool.getModifierLevel(CtiModifiers.SLIMY_MANA.getId())>0){
+            var overslime = TinkerModifiers.overslime.get();
+            if (overslime.getShield(tool)>amount*0.005f){
+                overslime.addOverslime(tool,tool.getModifier(CtiModifiers.SLIMY_MANA.getId()), (int) Math.ceil(amount*0.005f));
+                return true;
+            }
+        }
+        if (tool.getVolatileData().getBoolean(KEY_MANA_RESONANCE)){
+            return isSpellManaEnough(player, (int) Math.ceil(amount*0.25f));
+        }
+        return ManaItemHandler.instance().requestManaExactForTool(tool.createStack(),player,amount,true);
     }
 
     public static boolean isSpellManaEnough(Player player,int cost){

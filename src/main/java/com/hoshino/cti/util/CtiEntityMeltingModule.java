@@ -43,20 +43,17 @@ public class CtiEntityMeltingModule {
     private final MantleBlockEntity parent;
     private final IFluidHandler tank;
     private final BooleanSupplier canMeltEntities;
-    private final Function<ItemStack, ItemStack> insertFunction;
     private final Supplier<AABB> bounds;
     /** 产物数量倍率供应商，允许根据多方块大小/状态动态调整 */
     private final IntSupplier multiplierSupplier;
 
     public CtiEntityMeltingModule(MantleBlockEntity parent, IFluidHandler tank,
                                   BooleanSupplier canMeltEntities,
-                                  Function<ItemStack, ItemStack> insertFunction,
                                   Supplier<AABB> bounds,
                                   IntSupplier multiplierSupplier) {
         this.parent = parent;
         this.tank = tank;
         this.canMeltEntities = canMeltEntities;
-        this.insertFunction = insertFunction;
         this.bounds = bounds;
         this.multiplierSupplier = multiplierSupplier;
     }
@@ -94,7 +91,7 @@ public class CtiEntityMeltingModule {
                     canMelt = canMeltEntities.getAsBoolean();
                 }
                 if (canMelt) {
-                    if (temp>=7000&&living.getHealth()<5000)
+                    if (temp>=7000&&living.getHealth()<5000&&!(living instanceof Player))
                         EntityTickerManager.getInstance(living).addTickerSimple(new EntityTickerInstance(CtiEntityTickers.EMP.get(), 1,20));
                     // 直接复用 Tinkers 的 EntityMeltingRecipe
                     EntityMeltingRecipe recipe = EntityMeltingRecipeCache.findRecipe(getLevel().getRecipeManager(), type);

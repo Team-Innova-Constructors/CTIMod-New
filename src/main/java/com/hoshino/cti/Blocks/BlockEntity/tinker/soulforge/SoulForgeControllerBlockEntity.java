@@ -76,7 +76,7 @@ public class SoulForgeControllerBlockEntity extends HeatingStructureBlockEntity 
      *  物品实体的吸取能力被刻意关闭（传一个总是返回输入栈的 no-op 插入函数），
      *  走 ItemEntity 分支时只会丢弃空栈而不会把掉落物塞进熔炼物品栏。 */
     protected final CtiEntityMeltingModule ctiEntityModule =
-            new CtiEntityMeltingModule(this, tank, this::canMeltEntities, stack -> stack, () -> structure == null ? null : structure.getBounds(), () -> entityMeltingMultiplier);
+            new CtiEntityMeltingModule(this, tank, this::canMeltEntities, () -> structure == null ? null : structure.getBounds(), () -> entityMeltingMultiplier);
 
     /** 气罐：绞硅气阀通过 {@link IMachineAirHandlerProvider} 包装并向外暴露。 */
     protected final MachineAirHandler machineAirHandler = new MachineAirHandler(PressureTier.TIER_ONE_HALF, 5000) {

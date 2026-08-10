@@ -1,8 +1,0 @@
-{
-  "parent": "tconstruct:block/template/io",
-  "textures": {
-    "drain": "cti:block/refinery/io/valve_front_inactive",
-    "bricks": "cti:block/refinery/silicated/bricks",
-    "back": "cti:block/refinery/io/back"
-  }
-}

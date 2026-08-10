@@ -147,7 +147,6 @@
     "TIMixin.ShurikenMixin",
     "TIMixin.Sin_RootMixin",
     "TIMixin.ToolUtilsMixin",
-    "TweakergeMixin.ConfigBooleanMixin",
     "TwiMixin.BossSpawnerBlockEntityMixin",
     "TwiMixin.HydraMixin",
     "TwiMixin.LampMixin",

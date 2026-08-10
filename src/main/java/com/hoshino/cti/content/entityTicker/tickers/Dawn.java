@@ -1,12 +1,18 @@
 package com.hoshino.cti.content.entityTicker.tickers;
 
 import com.hoshino.cti.content.entityTicker.EntityTicker;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.jetbrains.annotations.Nullable;
 
 public class Dawn extends EntityTicker {
+    public Dawn() {
+        super(MobEffectCategory.BENEFICIAL);
+    }
+
     @Override
     public boolean tick(int duration, int level, Entity entity) {
         if(entity.tickCount%5==0){

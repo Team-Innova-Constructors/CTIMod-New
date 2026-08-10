@@ -9,6 +9,9 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.List;
 
 public class Oracle extends EntityTicker {
+    public Oracle(){
+        super(MobEffectCategory.HARMFUL);
+    }
     @Override
     public boolean tick(int duration, int level, Entity entity) {
         if (entity instanceof LivingEntity living){

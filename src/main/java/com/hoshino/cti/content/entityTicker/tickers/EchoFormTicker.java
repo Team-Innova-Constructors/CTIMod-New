@@ -4,10 +4,16 @@ import com.c2h6s.etshtinker.tools.item.tinker.ConstrainedPlasmaSaber;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import org.jetbrains.annotations.Nullable;
 
 public class EchoFormTicker extends EntityTicker {
+    public EchoFormTicker() {
+        super(MobEffectCategory.BENEFICIAL);
+    }
+
     @Override
     public void onTickerEnd(int level, Entity entity) {
         if (entity instanceof ServerPlayer serverPlayer) {

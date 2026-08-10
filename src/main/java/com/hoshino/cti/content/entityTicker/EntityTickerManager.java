@@ -13,14 +13,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 
 //EntityTicker的总控，可以很方便的来添加/减少Ticker。
 public class EntityTickerManager {
     public static final ConcurrentHashMap<UUID, ConcurrentHashMap<EntityTicker, EntityTickerInstance>> TICKER_MAP = new ConcurrentHashMap<>();
+    public static final ConcurrentHashMap<UUID,ConcurrentHashMap<UUID,ConcurrentHashMap<EntityTicker,EntityTickerInstance>>> PLAYER_SPECIFIC_TICKER_MAP = new ConcurrentHashMap<>();
 
     public static EntityTickerManagerInstance getInstance(Entity entity) {
         return new EntityTickerManagerInstance(entity);
+    }
+    public static EntityTickerManagerInstance getInstancePlayerSpecific(Entity entity,UUID playerUUID) {
+        return new EntityTickerManagerInstance(entity,playerUUID);
     }
 
     public static boolean tick(Entity entity) {
@@ -29,9 +34,13 @@ public class EntityTickerManager {
             TICKER_MAP.remove(uuid);
             return true;
         }
-        if (entity.getPersistentData().contains("cti_tickers")) {
+        if (entity.getPersistentData().contains("cti_tickers")||entity.getPersistentData().contains("cti_player_tickers")) {
             load(entity);
         }
+        return tickCommon(entity,uuid)&&tickPlayerSpecific(entity,uuid);
+    }
+
+    public static boolean tickCommon(Entity entity,UUID uuid){
         if (!TICKER_MAP.containsKey(uuid)) return true;
         ConcurrentHashMap<EntityTicker, EntityTickerInstance> entityTickers = TICKER_MAP.get(uuid);
         if (entityTickers == null || entityTickers.isEmpty()) {
@@ -39,7 +48,7 @@ public class EntityTickerManager {
             return true;
         }
         boolean doTick = true;
-        EntityTickerManagerInstance managerInstance = new EntityTickerManagerInstance(entity);
+        EntityTickerManagerInstance managerInstance = getInstance(entity);
         List<EntityTickerInstance> instancesCopy = List.copyOf(entityTickers.values());
         for (EntityTickerInstance instance : instancesCopy) {
             EntityTicker ticker = instance.ticker;
@@ -50,6 +59,41 @@ public class EntityTickerManager {
             } else {
                 managerInstance.removeTicker(ticker);
             }
+        }
+        if (entity instanceof Player) return true;
+        return doTick;
+    }
+    public static boolean tickPlayerSpecific(Entity entity,UUID uuid){
+        if (!PLAYER_SPECIFIC_TICKER_MAP.containsKey(uuid)) return true;
+        var map = PLAYER_SPECIFIC_TICKER_MAP.get(uuid);
+        if (map == null||map.isEmpty()){
+            PLAYER_SPECIFIC_TICKER_MAP.remove(uuid);
+            return true;
+        }
+        var uuids = List.copyOf(map.keySet());
+        boolean doTick = true;
+        for (UUID playerID:uuids){
+            var entityTickers = map.get(playerID);
+            if (entityTickers == null || entityTickers.isEmpty()) {
+                map.remove(playerID);
+                continue;
+            }
+            EntityTickerManagerInstance managerInstance = getInstancePlayerSpecific(entity,playerID);
+            List<EntityTickerInstance> instancesCopy = List.copyOf(entityTickers.values());
+            for (EntityTickerInstance instance : instancesCopy) {
+                EntityTicker ticker = instance.ticker;
+                if (!ticker.isInfinite()) instance.duration--;
+                if (entity.getServer()!=null) {
+                    var player = entity.getServer().getPlayerList().getPlayer(playerID);
+                    if (player!=null) doTick = doTick && ticker.tickPlayerSpecific(instance.duration, instance.level, entity,player);
+                }
+                if (instance.duration > 0) {
+                    managerInstance.setTicker(instance);
+                } else {
+                    managerInstance.removeTicker(ticker);
+                }
+            }
+
         }
         if (entity instanceof Player) return true;
         return doTick;
@@ -67,6 +111,11 @@ public class EntityTickerManager {
     }
 
     public static void load(Entity entity) {
+        if (entity.getPersistentData().contains("cti_tickers"))
+            loadCommon(entity);
+    }
+
+    public static void loadCommon(Entity entity){
         CompoundTag nbt = entity.getPersistentData().getCompound("cti_tickers");
         ConcurrentHashMap<EntityTicker, EntityTickerInstance> instances = new ConcurrentHashMap<>();
         if (!nbt.isEmpty()) {
@@ -82,6 +131,10 @@ public class EntityTickerManager {
     }
 
     public static void save(Entity entity) {
+        saveCommon(entity);
+    }
+
+    public static void saveCommon(Entity entity){
         if (entity == null) return;
         CompoundTag nbt = new CompoundTag();
         ConcurrentHashMap<EntityTicker, EntityTickerInstance> instances = TICKER_MAP.get(entity.getUUID());
@@ -96,11 +149,25 @@ public class EntityTickerManager {
         protected @Nullable ConcurrentHashMap<EntityTicker, EntityTickerInstance> instanceMap;
         public final Entity entity;
         public final UUID uuid;
+        public final @Nullable UUID playerUUID;
 
-        public EntityTickerManagerInstance(Entity entity) {
+        protected EntityTickerManagerInstance(Entity entity) {
             this.entity = entity;
             this.uuid = entity.getUUID();
             this.instanceMap = TICKER_MAP.get(this.uuid);
+            this.playerUUID = null;
+        }
+        protected EntityTickerManagerInstance(Entity entity,@NotNull UUID playerUUID) {
+            this.entity = entity;
+            this.uuid = entity.getUUID();
+            if (!PLAYER_SPECIFIC_TICKER_MAP.containsKey(this.uuid))
+                PLAYER_SPECIFIC_TICKER_MAP.put(this.uuid,new ConcurrentHashMap<>());
+            this.instanceMap = PLAYER_SPECIFIC_TICKER_MAP.get(this.uuid).get(playerUUID);
+            this.playerUUID = playerUUID;
+        }
+
+        public boolean isPlayerSpecific(){
+            return this.playerUUID!=null;
         }
 
         public boolean hasTicker(EntityTicker ticker) {
@@ -122,7 +189,9 @@ public class EntityTickerManager {
             if (this.instanceMap == null) {
                 this.instanceMap = new ConcurrentHashMap<>();
                 this.instanceMap.put(instance.ticker, instance);
-                TICKER_MAP.put(this.uuid, this.instanceMap);
+                if (this.isPlayerSpecific())
+                    PLAYER_SPECIFIC_TICKER_MAP.get(this.uuid).put(this.playerUUID,this.instanceMap);
+                else TICKER_MAP.put(this.uuid, this.instanceMap);
             } else {
                 this.instanceMap.put(instance.ticker, instance);
             }
@@ -131,7 +200,9 @@ public class EntityTickerManager {
         public void addTicker(EntityTickerInstance instance, BiFunction<Integer, Integer, Integer> levelFunction, BiFunction<Integer, Integer, Integer> timeFunction) {
             if (this.instanceMap == null) {
                 this.instanceMap = new ConcurrentHashMap<>();
-                TICKER_MAP.put(this.uuid, this.instanceMap);
+                if (this.isPlayerSpecific())
+                    PLAYER_SPECIFIC_TICKER_MAP.get(this.uuid).put(this.playerUUID,this.instanceMap);
+                else TICKER_MAP.put(this.uuid, this.instanceMap);
             }
             EntityTickerInstance existing = this.instanceMap.get(instance.ticker);
             int existingLevel = existing != null ? existing.level : 0;

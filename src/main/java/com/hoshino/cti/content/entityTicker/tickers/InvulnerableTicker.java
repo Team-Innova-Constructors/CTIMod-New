@@ -3,9 +3,13 @@ package com.hoshino.cti.content.entityTicker.tickers;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 
 public class InvulnerableTicker extends EntityTicker {
+    public InvulnerableTicker(){
+        super(MobEffectCategory.BENEFICIAL);
+    }
     @Override
     public void onTickerStart(int duration, int level, Entity entity) {
         entity.setGlowingTag(true);

@@ -2,13 +2,19 @@ package com.hoshino.cti.content.entityTicker.tickers;
 
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 
 import static com.hoshino.cti.Modifier.genre.resourceConsuming.overslime.defense.EnderSuppress.KEY_TARGET_ID;
 
 public class EnderSuppress extends EntityTicker {
+    public EnderSuppress() {
+        super(MobEffectCategory.BENEFICIAL);
+    }
+
     @Override
     public void onTickerEnd(int level, Entity entity) {
         if (entity instanceof ServerPlayer player&&player.getMainHandItem().getItem() instanceof IModifiable

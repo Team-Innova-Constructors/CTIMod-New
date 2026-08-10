@@ -4,9 +4,10 @@ import com.hoshino.cti.content.registry.CtiRegistry;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.Nullable;
 
 //EntityTicker的基础类，你的Ticker需要继承这个
 public abstract class EntityTicker {
@@ -14,6 +15,13 @@ public abstract class EntityTicker {
     @Getter
     @Setter
     private boolean infinite = false;
+    @Nullable
+    public final MobEffectCategory category;
+
+    public EntityTicker(@Nullable MobEffectCategory category) {
+        this.category = category;
+    }
+
     public ResourceLocation getId(){
         if (this.id==null) this.id = CtiRegistry.ENTITY_TICKER_REGISTRY.getKey(this);
         return this.id;
@@ -25,6 +33,9 @@ public abstract class EntityTicker {
     public boolean tick(int duration,int level,Entity entity){
         return true;
     }
+    public boolean tickPlayerSpecific(int duration, int level, Entity entity, Player player){
+        return this.tick(duration,level,entity);
+    }
     //当EntityTickerInstance通过EntityTickerManagerInstance的方法添加的时候调用
     public void onTickerStart(int duration,int level,Entity entity){
 
@@ -34,4 +45,7 @@ public abstract class EntityTicker {
 
     }
 
+    public MobEffectCategory getCategory(){
+        return MobEffectCategory.NEUTRAL;
+    }
 }

@@ -79,7 +79,6 @@ public class ZirconiumCastingBlockEntity extends CastingBlockEntity implements I
     @Override
     public void onServerTickEnd() {
         this.syncedTemperature.tick();
-        this.heatExchanger.tick();
     }
 
     @Override
@@ -103,6 +102,10 @@ public class ZirconiumCastingBlockEntity extends CastingBlockEntity implements I
     @Override
     public @Nullable IHeatExchangerLogic getHeatExchanger(Direction direction) {
         return this.heatExchanger;
+    }
+
+    public LazyOptional<IHeatExchangerLogic> getHeatCap() {
+        return this.heatCap;
     }
 
     @Override

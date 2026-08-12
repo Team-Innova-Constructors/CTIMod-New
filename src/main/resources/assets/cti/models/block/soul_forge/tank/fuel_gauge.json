@@ -1,0 +1,7 @@
+{
+  "parent": "tconstruct:block/template/tank",
+  "textures": {
+    "top":  "cti:block/soulforge/tank/guage_top",
+    "side": "cti:block/soulforge/tank/fuel_guage"
+  }
+}

@@ -54,12 +54,12 @@ public class SoulForgeControllerBlockEntity extends HeatingStructureBlockEntity 
     /** 真空阈值（bar）：低于此值视为抽真空，启用 4 倍基础熔炼并产出压缩空气 */
     private static final float VACUUM_THRESHOLD = -0.5f;
     /** 温度倍率区间（摄氏度） */
-    private static final double TEMP_COLD_C = 0.0;
-    private static final double TEMP_WARM_C = 50.0;
+    private static final double TEMP_COLD_C = -50;
+    private static final double TEMP_WARM_C = 100;
     private static final double KELVIN_OFFSET = 273.15;
     /** 温度倍率区间端点 */
-    private static final double TEMP_MULT_WARM = 0.5;
-    private static final double TEMP_MULT_COLD = 2.0;
+    private static final double TEMP_MULT_WARM = 0;
+    private static final double TEMP_MULT_COLD = 4.0;
     /** 每次熔炼实体产出的压缩空气量（仅在真空时） */
     private static final int AIR_PER_MELT = 10;
     /** 每次熔炼实体产出的热量（任意单位，会按热容折算为温升） */
@@ -79,7 +79,7 @@ public class SoulForgeControllerBlockEntity extends HeatingStructureBlockEntity 
             new CtiEntityMeltingModule(this, tank, this::canMeltEntities, () -> structure == null ? null : structure.getBounds(), () -> entityMeltingMultiplier);
 
     /** 气罐：绞硅气阀通过 {@link IMachineAirHandlerProvider} 包装并向外暴露。 */
-    protected final MachineAirHandler machineAirHandler = new MachineAirHandler(PressureTier.TIER_ONE_HALF, 5000) {
+    protected final MachineAirHandler machineAirHandler = new MachineAirHandler(PressureTier.TIER_TWO, 5000) {
         @Override
         public @Nullable Direction getSideLeaking() {
             return null;
@@ -135,7 +135,7 @@ public class SoulForgeControllerBlockEntity extends HeatingStructureBlockEntity 
     /** 依据当前压力与温度实时计算实体熔炼倍率 */
     private void updateEntityMeltingMultiplier() {
         float pressure = machineAirHandler.getPressure();
-        int base = pressure < VACUUM_THRESHOLD ? 4 : 1;
+        int base = pressure < VACUUM_THRESHOLD ? 2 : 1;
         double tempK = heatExchanger.getTemperature();
         double tempC = tempK - KELVIN_OFFSET;
         double clampedC = Mth.clamp(tempC, TEMP_COLD_C, TEMP_WARM_C);
@@ -193,6 +193,7 @@ public class SoulForgeControllerBlockEntity extends HeatingStructureBlockEntity 
             fuelRate = 1 + ((2 * (dx * dy) + 2 * (dy * dz) + (dx * dz))) / BLOCKS_PER_FUEL;
             //热容随炉子内部体积增加
             heatExchanger.setThermalCapacity(HEAT_CAPACITY_BASE + Math.max(0, size) * HEAT_CAPACITY_PER_BLOCK);
+            heatExchanger.setThermalResistance((double) 40 /(dx*dz));
         }
     }
 

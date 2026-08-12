@@ -78,6 +78,7 @@ public class ClientEventHandler {
             MenuScreens.register(CtiMenu.SOUL_FORGE_MENU.get(), SoulForgeScreen::new);
             event.enqueueWork(CtiEntity::registerEntityRenderers);
             ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(CtiBlock.SOUL_FORGE_GLASS.get(), RenderType.cutout());
         }
 
         @SubscribeEvent

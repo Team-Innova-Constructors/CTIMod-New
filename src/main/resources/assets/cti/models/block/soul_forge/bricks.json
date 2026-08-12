@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "cti:block/soulforge/io/conductor"
+    "all": "cti:block/soulforge/soul/bricks"
   }
 }

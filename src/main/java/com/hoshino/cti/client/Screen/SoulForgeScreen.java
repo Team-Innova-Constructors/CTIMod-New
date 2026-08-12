@@ -149,25 +149,20 @@ private void renderPressureTooltip(PoseStack matrices, int mouseX, int mouseY) {
         int x0 = leftPos + PRESSURE_X;
         int y0 = topPos + PRESSURE_Y;
         if (mouseX >= x0 && mouseX < x0 + 63 && mouseY >= y0 && mouseY < y0 + PRESSURE_H) {
+            double tempC = blockEntity.getTemperature() - 273.15;
             java.util.List<Component> tooltips = new java.util.ArrayList<>();
             tooltips.add(Component.translatable("gui.cti.tooltip.pressure")
-                    .append(": " + String.format("%.2f", blockEntity.getPressure()) + " bar"));
+                    .append(": " + String.format("%.1f", blockEntity.getPressure()) + " bar | ")
+                    .append(Component.translatable("gui.cti.tooltip.soul_forge_temperature"))
+                    .append(": " + String.format("%.1f", tempC) + "°C"));
             tooltips.add(Component.translatable("gui.cti.tooltip.refinery_pressure_boost")
                     .withStyle(ChatFormatting.GRAY));
-            // 温度显示（开尔文→摄氏度）
-            double tempC = blockEntity.getTemperature() - 273.15;
-            tooltips.add(Component.translatable("gui.cti.tooltip.soul_forge_temperature")
-                    .append(": " + String.format("%.1f", tempC) + "\u00b0C")
-                    .withStyle(ChatFormatting.YELLOW));
+            tooltips.add(Component.translatable("gui.cti.tooltip.soul_forge_cool_hint")
+                    .withStyle(ChatFormatting.GRAY));
             // 当前实体熔炼倍率
             tooltips.add(Component.translatable("gui.cti.tooltip.soul_forge_multiplier")
                     .append(": x" + getMenu().getEntityMeltingMultiplier())
                     .withStyle(ChatFormatting.AQUA));
-            // 温度高于 0℃ 时给出提示
-            if (tempC > 0.0) {
-                tooltips.add(Component.translatable("gui.cti.tooltip.soul_forge_cool_hint")
-                        .withStyle(ChatFormatting.RED));
-            }
             this.renderComponentTooltip(matrices, tooltips, mouseX, mouseY);
         }
     }

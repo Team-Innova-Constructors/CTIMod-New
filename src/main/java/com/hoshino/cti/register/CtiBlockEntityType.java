@@ -83,7 +83,9 @@ public class CtiBlockEntityType {
     public static final RegistryObject<BlockEntityType<CtiTankBlockEntity>> TANK =
             BLOCK_ENTITIES.register("tank",()->
                     BlockEntityType.Builder.of(CtiTankBlockEntity::new, CtiBlock.SILICATED_TANK.get(SearedTankBlock.TankType.FUEL_GAUGE),
-                                    CtiBlock.SILICATED_TANK.get(SearedTankBlock.TankType.INGOT_GAUGE))
+                                    CtiBlock.SILICATED_TANK.get(SearedTankBlock.TankType.INGOT_GAUGE),
+                                    CtiBlock.SOUL_FORGE_TANK.get(SearedTankBlock.TankType.FUEL_GAUGE),
+                                    CtiBlock.SOUL_FORGE_TANK.get(SearedTankBlock.TankType.INGOT_GAUGE))
                             .build(null));
     public static final RegistryObject<BlockEntityType<ValveBlockEntity>> VAULT =
             BLOCK_ENTITIES.register("vault",()->

@@ -415,6 +415,11 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> SILICATED_VAULT = registerBlockItem(CtiBlock.SILICATED_VALVE);
     public static final RegistryObject<BlockItem> SOUL_BRICK_HEAT_CONDUCTOR = registerBlockItem(CtiBlock.SOUL_BRICK_HEAT_CONDUCTOR);
     public static final RegistryObject<BlockItem> SOUL_VALVE = registerBlockItem(CtiBlock.SOUL_VALVE);
+    public static final RegistryObject<BlockItem> SOUL_FORGE_BRICKS = registerBlockItem(CtiBlock.SOUL_FORGE_BRICK);
+    public static final RegistryObject<BlockItem> SOUL_FORGE_GLASS = registerBlockItem(CtiBlock.SOUL_FORGE_GLASS);
+    public static final RegistryObject<BlockItem> SOUL_FORGE_DRAIN = registerBlockItem(CtiBlock.SOUL_FORGE_DRAIN);
+    public static final RegistryObject<BlockItem> SOUL_FORGE_DUCT = registerBlockItem(CtiBlock.SOUL_FORGE_DUCT);
+    public static final RegistryObject<BlockItem> SOUL_FORGE_CHUTE = registerBlockItem(CtiBlock.SOUL_FORGE_CHUTE);
 
     public static final RegistryObject<SlimeCanItem> SLIME_CAN = ITEMS.register("slime_can",SlimeCanItem::new);
 

@@ -1,6 +1,5 @@
 package com.hoshino.cti.register;
 
-import cofh.core.init.CoreMobEffects;
 import com.hoshino.cti.Blocks.*;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.Machine.*;
@@ -8,6 +7,7 @@ import com.hoshino.cti.Cti;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
@@ -39,13 +39,15 @@ import slimeknights.tconstruct.smeltery.block.CastingTableBlock;
 import slimeknights.tconstruct.smeltery.block.component.*;
 import slimeknights.tconstruct.smeltery.block.controller.AlloyerBlock;
 import slimeknights.tconstruct.smeltery.block.entity.component.SmelteryInputOutputBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulBrickHeatConductorBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulValveBlockEntity;
+import com.hoshino.cti.Blocks.BlockEntity.tinker.ValveBlockEntity;
 import slimeknights.tconstruct.smeltery.item.TankItem;
 import slimeknights.tconstruct.world.block.CrystalClusterBlock;
 import vazkii.botania.api.block_entity.SpecialFlowerBlockEntity;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.block.FloatingSpecialFlowerBlock;
 import vazkii.botania.forge.block.ForgeSpecialFlowerBlock;
-import vazkii.botania.xplat.XplatAbstractions;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -233,6 +235,122 @@ public class CtiBlock {
 
     public static final RegistryObject<Block> REFINERY = BLOCK.register("refinery_controller", () ->
             new RefineryControllerBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.AMETHYST)));
+    public static final RegistryObject<Block> SOUL_FORGE = BLOCK.register("soul_forge_controller", () ->
+            new SoulForgeControllerBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.SOUL_SAND).lightLevel(s -> 7)));
+    public static final RegistryObject<Block> SOUL_BRICK_HEAT_CONDUCTOR = BLOCK.register("soul_brick_heat_conductor", () ->
+            new RetexturedOrientableSmelteryBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.SOUL_SAND), SoulBrickHeatConductorBlockEntity::new) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_brick_heat_conductor").withStyle(ChatFormatting.GRAY));
+                }
+
+                @Override
+                public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+                    return SoulBrickHeatConductorBlockEntity.getTicker(pLevel,pBlockEntityType,CtiBlockEntityType.SOUL_BRICK_HEAT_CONDUCTOR.get());
+                }
+
+                @Override
+                public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+                    var be = pLevel.getBlockEntity(pPos);
+                    if (be instanceof SoulBrickHeatConductorBlockEntity entity&&!pLevel.isClientSide)
+                        entity.initializeHeatExchangers(pLevel,pPos);
+                }
+            });
+    public static final RegistryObject<Block> SOUL_VALVE = BLOCK.register("soul_valve", () ->
+            new RetexturedOrientableSmelteryBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.SOUL_SAND), SoulValveBlockEntity::new) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_valve").withStyle(ChatFormatting.GRAY));
+                }
+
+                @Override
+                public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+                    return ValveBlockEntity.getTicker(level, type, CtiBlockEntityType.SOUL_VALVE.get());
+                }
+            });
+    public static final RegistryObject<Block> SOUL_FORGE_BRICK = BLOCK.register("soul_forge_bricks", () ->
+            new SearedBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.SOUL_SAND), false) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_forge_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SOUL_FORGE_GLASS = BLOCK.register("soul_forge_glass", () ->
+            new SearedGlassBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedGlass.get()).sound(SoundType.SOUL_SAND)) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_forge_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final EnumObject<SearedTankBlock.TankType, SearedTankBlock> SOUL_FORGE_TANK = BLOCK_EXT
+            .registerEnum("soul_forge", new SearedTankBlock.TankType[]{SearedTankBlock.TankType.FUEL_GAUGE, SearedTankBlock.TankType.INGOT_GAUGE}, tankType ->
+                    new SearedTankBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedGlass.get()).sound(SoundType.SOUL_SAND), tankType.getCapacity() * 4) {
+                        @Override
+                        public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+                            return new CtiTankBlockEntity(pPos, pState);
+                        }
+
+                        @Override
+                        public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+                            return List.of(new ItemStack(this.asItem()));
+                        }
+                    }, searedTankBlock -> new TankItem(searedTankBlock, new Item.Properties().tab(CtiTab.MACHINE), true));
+    public static final RegistryObject<Block> SOUL_FORGE_DRAIN = BLOCK.register("soul_forge_drain", () ->
+            new SearedDrainBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.SOUL_SAND)) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_forge_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SOUL_FORGE_DUCT = BLOCK.register("soul_forge_duct", () ->
+            new SearedDuctBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.SOUL_SAND)) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_forge_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
+    public static final RegistryObject<Block> SOUL_FORGE_CHUTE = BLOCK.register("soul_forge_chute", () ->
+            new RetexturedOrientableSmelteryBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedDrain.get()).sound(SoundType.SOUL_SAND), SmelteryInputOutputBlockEntity.ChuteBlockEntity::new) {
+                @Override
+                public List<ItemStack> getDrops(BlockState p_60537_, LootContext.Builder p_60538_) {
+                    return List.of(new ItemStack(this.asItem()));
+                }
+
+                @Override
+                public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+                    pTooltip.add(Component.translatable("tooltip.cti.soul_forge_brick").withStyle(ChatFormatting.GRAY));
+                }
+            });
     public static final RegistryObject<Block> SILICATED_BRICK = BLOCK.register("silicated_bricks", () ->
             new SearedBlock(BlockBehaviour.Properties.copy(TinkerSmeltery.scorchedBricks.get()).sound(SoundType.AMETHYST),false) {
                 @Override

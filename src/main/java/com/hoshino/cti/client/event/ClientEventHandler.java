@@ -10,6 +10,7 @@ import com.hoshino.cti.client.CtiParticleType;
 import com.hoshino.cti.client.InitPartModel;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.client.Screen.RefineryScreen;
+import com.hoshino.cti.client.Screen.SoulForgeScreen;
 import com.hoshino.cti.client.hud.CurseInfoHud;
 import com.hoshino.cti.client.hud.EnvironmentalHud;
 import com.hoshino.cti.client.hud.FoxExposedOverlay;
@@ -74,8 +75,10 @@ public class ClientEventHandler {
             MenuScreens.register(CtiMenu.ATMOSPHERE_CON_MENU.get(), AtmosphereCondensatorScreen::new);
             MenuScreens.register(CtiMenu.NEUT_COL_MENU.get(), ReactorNeutronCollectorScreen::new);
             MenuScreens.register(CtiMenu.REFINERY_MENU.get(), RefineryScreen::new);
+            MenuScreens.register(CtiMenu.SOUL_FORGE_MENU.get(), SoulForgeScreen::new);
             event.enqueueWork(CtiEntity::registerEntityRenderers);
             ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(CtiBlock.SOUL_FORGE_GLASS.get(), RenderType.cutout());
         }
 
         @SubscribeEvent
@@ -95,6 +98,7 @@ public class ClientEventHandler {
             event.registerBlockEntityRenderer(CtiBlockEntityType.ADVANCED_ALLOYER.get(), TankBlockEntityRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.REFINERY.get(), HeatingStructureBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(CtiBlockEntityType.SOUL_FORGE.get(), HeatingStructureBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.TANK.get(), TankBlockEntityRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.REACTIVE_FLOWER.get(), SpecialFlowerBlockEntityRenderer::new);

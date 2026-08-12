@@ -1,0 +1,9 @@
+{
+  "parent": "tconstruct:block/template/chute",
+  "textures": {
+    "top": "cti:block/soulforge/io/chute_top_active",
+    "back": "cti:block/soulforge/io/back",
+    "bricks": "cti:block/soulforge/soul/bricks",
+    "side": "cti:block/soulforge/io/chute_side_active"
+  }
+}

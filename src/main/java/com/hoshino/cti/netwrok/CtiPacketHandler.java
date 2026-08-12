@@ -66,6 +66,11 @@ public class CtiPacketHandler {
                 .encoder(PAirHandlerSyncS2C::encode)
                 .consumerMainThread(PAirHandlerSyncS2C::handle)
                 .add();
+        INSTANCE.messageBuilder(PHeatSyncS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PHeatSyncS2C::new)
+                .encoder(PHeatSyncS2C::encode)
+                .consumerMainThread(PHeatSyncS2C::handle)
+                .add();
         INSTANCE.messageBuilder(PAddParticleS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PAddParticleS2C::new)
                 .encoder(PAddParticleS2C::toByte)

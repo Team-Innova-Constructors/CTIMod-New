@@ -11,4 +11,5 @@ public class GenreManager {
     public static final MaterialGenre.ResourceConsumingGenre OVERSLIME_GENRE = new MaterialGenre.ResourceConsumingGenre("overslime");
     public static final MaterialGenre INSATIABLE_GENRE = new MaterialGenre("insatiable");
     public static final MaterialGenre FLOATING_GENRE = new MaterialGenre("floating");
+    public static final MaterialGenre BURNT_GENRE = new MaterialGenre("burnt");
 }

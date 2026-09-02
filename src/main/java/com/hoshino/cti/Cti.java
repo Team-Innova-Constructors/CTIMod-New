@@ -13,6 +13,7 @@ import com.hoshino.cti.util.BiomeUtil;
 import com.hoshino.cti.util.tier.Roxy;
 import com.hoshino.cti.world.feature.ctiConfiguredFeature;
 import com.hoshino.cti.world.feature.ctiPlacedFeature;
+import dev.xkmc.l2library.base.tabs.contents.AttributeEntry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -111,6 +112,12 @@ public class Cti {
 
 
         TierSortingRegistry.registerTier(Roxy.instance, new ResourceLocation("cti:roxy"), List.of(Tiers.NETHERITE), List.of());
+
+        event.enqueueWork(()->{
+            AttributeEntry.add(CtiAttributes.BURNT_INFLICT,false,20000);
+            AttributeEntry.add(CtiAttributes.BURNT_ATTACK_SPEED,false,20000);
+            AttributeEntry.add(CtiAttributes.MAX_INSATIABLE,false,30000);
+        });
     }
 
     public static <T> TinkerDataCapability.TinkerDataKey<T> createKey(String name) {

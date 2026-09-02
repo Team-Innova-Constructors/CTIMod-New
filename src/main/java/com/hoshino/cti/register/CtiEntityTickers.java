@@ -26,4 +26,6 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> DAWN = ENTITY_TICKERS.register("dawn", Dawn::new);
     public static final RegistryObject<EntityTicker> DAWN_EXTRA_DAMAGE = ENTITY_TICKERS.register("dawn_extra_damage", EmptyTicker::new);
     public static final RegistryObject<EntityTicker> ECHO_FORM = ENTITY_TICKERS.register("echo_form", EchoFormTicker::new);
+    public static final RegistryObject<EntityTicker> FIERY_TOUCH_CD = ENTITY_TICKERS.register("fiery_touch_cd", EmptyTicker::new);
+    public static final RegistryObject<EntityTicker> RUBY_LASER_CD = ENTITY_TICKERS.register("ruby_laser_cd", EmptyTicker::new);
 }

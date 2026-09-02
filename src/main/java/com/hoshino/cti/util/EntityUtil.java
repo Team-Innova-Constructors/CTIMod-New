@@ -1,6 +1,11 @@
 package com.hoshino.cti.util;
 
+import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
+import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiBlock;
+import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -11,8 +16,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+
+import java.util.Random;
 
 public class EntityUtil {
     public static boolean isAntiStun(LivingEntity living) {
@@ -59,5 +68,30 @@ public class EntityUtil {
         if(entity.getHealth()<=2)return;
         entity.setHealth(0);
         entity.die(source);
+    }
+
+    public static int inflictBurnt(Player cause, LivingEntity target, @Nullable IToolStackView tool,float totalBurnt){
+        int maxValue = (int) cause.getAttributeValue(CtiAttributes.BURNT_INFLICT.get());
+        if (tool!=null&&totalBurnt>0){
+            if (Exothermic.getFuelTemp(tool,cause)>0){
+                totalBurnt+=totalBurnt*Exothermic.getFuelTemp(tool,cause)/4000f;
+            }
+        }
+        int toInflict = (int) Math.floor(totalBurnt);
+        float extraChance = totalBurnt-toInflict;
+        var random = new Random();
+        if (random.nextFloat()<=extraChance) toInflict++;
+
+        if (maxValue<=0||toInflict<=0) return 0;
+        var playerId = cause.getUUID();
+        var instance = EntityTickerManager.getInstancePlayerSpecific(target,playerId);
+        var tickerInstance = instance.getTicker(CtiEntityTickers.FIERY.get());
+        int originalValue = tickerInstance!=null ? tickerInstance.level : 0;
+        instance.addTicker(new EntityTickerInstance(CtiEntityTickers.FIERY.get(), toInflict,600),
+                (i1,i2)-> Math.min(i1+i2,maxValue),
+                (i1,i2)-> i1>0?i1:i2);
+        tickerInstance = instance.getTicker(CtiEntityTickers.FIERY.get());
+        int finalValue = tickerInstance!=null ? tickerInstance.level : 0;
+        return finalValue-originalValue;
     }
 }

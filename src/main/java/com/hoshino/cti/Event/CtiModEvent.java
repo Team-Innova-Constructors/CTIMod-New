@@ -29,6 +29,8 @@ public class CtiModEvent {
     @SubscribeEvent
     public static void addEntityAttributer(EntityAttributeModificationEvent event){
         event.add(EntityType.PLAYER, CtiAttributes.MAX_INSATIABLE.get());
+        event.add(EntityType.PLAYER, CtiAttributes.BURNT_INFLICT.get());
+        event.add(EntityType.PLAYER, CtiAttributes.BURNT_ATTACK_SPEED.get());
     }
     @SubscribeEvent
     public static void onIMC(InterModEnqueueEvent event){

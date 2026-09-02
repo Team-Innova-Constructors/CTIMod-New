@@ -8,13 +8,19 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
@@ -159,5 +165,12 @@ public class RenderUtil {
                 }
             }
         }
+    }
+    public static TextureAtlasSprite getFluidStillSprite(FluidStack fluidStack) {
+        Fluid fluid = fluidStack.getFluid();
+        IClientFluidTypeExtensions renderProperties = IClientFluidTypeExtensions.of(fluid);
+        ResourceLocation fluidStill = renderProperties.getStillTexture();
+        Minecraft mc = Minecraft.getInstance();
+        return mc.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(fluidStill);
     }
 }

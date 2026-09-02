@@ -96,6 +96,11 @@ public class CtiPacketHandler {
                 .encoder(PClientSwingHandS2C::toByte)
                 .consumerMainThread(PClientSwingHandS2C::handle)
                 .add();
+        INSTANCE.messageBuilder(PSyncAttackTickerS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PSyncAttackTickerS2C::new)
+                .encoder(PSyncAttackTickerS2C::toByte)
+                .consumerMainThread(PSyncAttackTickerS2C::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg) {

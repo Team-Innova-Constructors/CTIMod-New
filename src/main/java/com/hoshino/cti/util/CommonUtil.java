@@ -4,6 +4,9 @@ import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.google.common.collect.Lists;
 import com.hoshino.cti.Modifier.Armor.AntiCurse;
 import com.hoshino.cti.mixin.LivingEntityAccessor;
+import com.hoshino.cti.register.CtiAttributes;
+import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiModifiers;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -31,6 +34,7 @@ import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.DummyToolStack;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.part.IToolPart;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.item.ArmorSlotType;
@@ -124,6 +128,12 @@ public class CommonUtil {
 
     public static float getPlayerAttackDelay(Player player){
         float delay = player.getCurrentItemAttackStrengthDelay();
+        var itemStack = player.getMainHandItem();
+        if (itemStack.getItem() instanceof IModifiable){
+            ToolStack tool = ToolStack.from(itemStack);
+            if (player.hasEffect(CtiEffects.OVERHEAT.get())&&tool.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId())>0)
+                return (float) (20f/player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get()));
+        }
         if (delay < 10) {
             return delay * 0.7f + 3f;
         }

@@ -30,6 +30,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -69,6 +70,17 @@ public class ToolEvents {
             if (stack.getItem() instanceof IModifiable) {
                 EquipmentSlot slot = EquipmentSlot.MAINHAND;
                 LeftClickModifierHook.handleLeftClickBlock(stack,player,slot,state,pos);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void onPlayerAttack(AttackEntityEvent event){
+        Player player = event.getEntity();
+        if (player!=null&&!(player instanceof FakePlayer)) {
+            ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
+            if (stack.getItem() instanceof IModifiable) {
+                EquipmentSlot slot = EquipmentSlot.MAINHAND;
+                LeftClickModifierHook.handleLeftClickEntity(stack,player,slot,event.getTarget());
             }
         }
     }

@@ -34,5 +34,6 @@ public class CtiEffects {
     public static final RegistryObject<MobEffect> INSATIABLE_BOOST = EFFECT.register("insatiable_boost",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0x9546C9).addAttributeModifier(
             CtiAttributes.MAX_INSATIABLE.get(),"f74c192d-4d5c-e9e6-a8ea-c7db8f8280b5",4, AttributeModifier.Operation.ADDITION
     ));
+    public static final RegistryObject<MobEffect> OVERHEAT = EFFECT.register("overheat",()->new StaticEffect(MobEffectCategory.BENEFICIAL,0xFF761B));
 
 }

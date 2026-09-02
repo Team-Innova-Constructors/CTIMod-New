@@ -1,6 +1,7 @@
 package com.hoshino.cti.client.event;
 
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
+import com.hoshino.cti.Modifier.genre.elemental.fiery.ReplacedHeatSword;
 import com.hoshino.cti.Screen.AtmosphereCondensatorScreen;
 import com.hoshino.cti.Screen.AtmosphereExtractorScreen;
 import com.hoshino.cti.Screen.ReactorNeutronCollectorScreen;
@@ -17,15 +18,17 @@ import com.hoshino.cti.client.hud.FoxExposedOverlay;
 import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
 import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
+import com.hoshino.cti.client.util.RenderUtil;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.NksszsPacket;
 import com.hoshino.cti.netwrok.packet.StarHitPacket;
-import com.hoshino.cti.register.CtiBlock;
-import com.hoshino.cti.register.CtiBlockEntityType;
-import com.hoshino.cti.register.CtiEntity;
+import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.Vec3Helper;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import me.desht.pneumaticcraft.client.ColorHandlers;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -33,17 +36,25 @@ import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.IItemDecorator;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.ForgeRegistries;
+import slimeknights.mantle.client.SafeClientAccess;
+import slimeknights.tconstruct.library.tools.capability.fluid.ToolTankHelper;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.smeltery.client.render.CastingBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.FaucetBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.HeatingStructureBlockEntityRenderer;
 import slimeknights.tconstruct.smeltery.client.render.TankBlockEntityRenderer;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 import vazkii.botania.client.render.block_entity.SpecialFlowerBlockEntityRenderer;
+
+import static slimeknights.tconstruct.library.tools.capability.fluid.ToolTankHelper.TANK_HELPER;
 
 
 public class ClientEventHandler {
@@ -144,6 +155,38 @@ public class ClientEventHandler {
 //                poseStack.popPose();
 //            }
 //        }
+
+        @SubscribeEvent
+        public static void addDeco(RegisterItemDecorationsEvent event){
+            ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof IModifiable).forEach(item -> {
+                event.register(item, (font, stack, xOffset, yOffset, blitOffset) -> {
+                    ToolStack toolStack = ToolStack.from(stack);
+                    var poseStack = new PoseStack();
+                    var matrix4f = poseStack.last().pose();
+                    if (toolStack.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId())>0){
+                        var player = SafeClientAccess.getPlayer();
+                        int heat = toolStack.getPersistentData().getInt(ReplacedHeatSword.KEY_HEAT);
+                        if (player!=null){
+                            var overHeatInstance = player.getEffect(CtiEffects.OVERHEAT.get());
+                            if (overHeatInstance!=null){
+                                heat = Math.min(100,overHeatInstance.getDuration());
+                            }
+                        }
+                        if (heat>0){
+                            int height = (int) (heat*16/100f);
+                            RenderSystem.setShaderTexture(0,Cti.getResource("textures/gui/gui_fire.png"));
+                            GuiComponent.blit(poseStack, xOffset, yOffset-height, 0, 16-height, 16, height, 16, 16);
+                        }
+                    }
+                    if (TANK_HELPER.getCapacity(toolStack)>0&&!TANK_HELPER.getFluid(toolStack).isEmpty()){
+                        var fluid = TANK_HELPER.getFluid(toolStack);
+                        int height = (int) (fluid.getAmount()*16f/TANK_HELPER.getCapacity(toolStack));
+                        GuiComponent.blit(poseStack, xOffset, yOffset+16-height, (int) (blitOffset-100),16, height, RenderUtil.getFluidStillSprite(fluid));
+                    }
+                    return true;
+                });
+            });
+        }
 
 
     }

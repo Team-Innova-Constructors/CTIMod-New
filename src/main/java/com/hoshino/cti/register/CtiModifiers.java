@@ -13,6 +13,7 @@ import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Race.*;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
+import com.hoshino.cti.Modifier.genre.elemental.fiery.*;
 import com.hoshino.cti.Modifier.genre.floating.FloatingHandler;
 import com.hoshino.cti.Modifier.genre.floating.ReplacedTerritoralSky;
 import com.hoshino.cti.Modifier.genre.insatiable.*;
@@ -40,7 +41,6 @@ import com.hoshino.cti.Modifier.test;
 import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.BurstMiningModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.LCManaBurstModifier;
-import com.hoshino.cti.recipe.EtchingRecipe;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
@@ -298,6 +298,16 @@ public class CtiModifiers {
     public static final StaticModifier<EnchantedSwordModifier> ENCHANTED_SWORD = MODIFIERS.register("enchanted_sword", EnchantedSwordModifier::new);
     public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
     public static final StaticModifier<SlimyMana> SLIMY_MANA = MODIFIERS.register("slimy_mana", SlimyMana::new);
+
+    public static final StaticModifier<BurntHandler> BURNT_HANDLER = MODIFIERS.register("burnt_handler", BurntHandler::new);
+    public static final StaticModifier<ReplacedConducting> REPLACED_CONDUCTING = MODIFIERS.register("replaced_conducting", ReplacedConducting::new);
+    public static final StaticModifier<ReplacedFiery> REPLACED_FIERY = MODIFIERS.register("replaced_fiery", ReplacedFiery::new);
+    public static final StaticModifier<Scorched> SCORCHED = MODIFIERS.register("scorched", Scorched::new);
+    public static final StaticModifier<ReplacedHeatSword> REPLACED_HEAT_SWORD = MODIFIERS.register("replaced_heat_sword", ReplacedHeatSword::new);
+    public static final StaticModifier<Exothermic> EXOTHERMIC = MODIFIERS.register("exothermic", Exothermic::new);
+    public static final StaticModifier<RubyLaserModifier> RUBY_LASER = MODIFIERS.register("ruby_laser", RubyLaserModifier::new);
+    public static final StaticModifier<HighHeat> HIGH_HEAT = MODIFIERS.register("high_heat", HighHeat::new);
+
 
     public static final StaticModifier<EtchedModifier> GLORY_ETCH = MODIFIERS.register("glory_etch", EtchedModifier::new);
     public static final StaticModifier<GobberEtchI> GOBBER_ETCH_I = MODIFIERS.register("gobber_etch_1", GobberEtchI::new);

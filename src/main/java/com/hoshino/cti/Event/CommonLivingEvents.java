@@ -459,4 +459,11 @@ public class CommonLivingEvents {
         if (owner instanceof Player player&&player.isPassenger())
             arrow.getPersistentData().remove("twilightforest:ender");
     }
+
+    @SubscribeEvent
+    public static void onEffectAdded(MobEffectEvent.Added event){
+        if (event.getEffectInstance().getEffect()==CtiEffects.OVERHEAT.get()){
+            event.getEntity().level.playSound(null,event.getEntity(),SoundEvents.BLAZE_SHOOT,SoundSource.PLAYERS,1,0.5f);
+        }
+    }
 }

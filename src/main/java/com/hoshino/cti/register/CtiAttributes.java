@@ -15,4 +15,6 @@ public class CtiAttributes {
     public static final RegistryObject<Attribute> PRESSURE_RESISTANCE = ATTRIBUTES.register("pressure_resistance",()->new RangedAttribute("attribute.cti.pressure_resistance",0,-1024,1024D).setSyncable(true));
     public static final RegistryObject<Attribute> IONIZE_RESISTANCE = ATTRIBUTES.register("ionize_resistance",()->new RangedAttribute("attribute.cti.ionize_resistance",0,-1024,1024D).setSyncable(true));
     public static final RegistryObject<Attribute> MAX_INSATIABLE = ATTRIBUTES.register("max_insatiable",()->new RangedAttribute("attribute.cti.max_insatiable",0,0,Short.MAX_VALUE).setSyncable(true));
+    public static final RegistryObject<Attribute> BURNT_INFLICT = ATTRIBUTES.register("burnt_inflict",()->new RangedAttribute("attribute.cti.burnt_inflict",0,0,Integer.MAX_VALUE).setSyncable(true));
+    public static final RegistryObject<Attribute> BURNT_ATTACK_SPEED = ATTRIBUTES.register("burnt_attack_speed",()->new RangedAttribute("attribute.cti.burnt_attack_speed",2,0.1,20).setSyncable(true));
 }

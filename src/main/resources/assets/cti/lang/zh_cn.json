@@ -530,7 +530,7 @@
 
   "modifier.cti.fiery_capable": "好暑",
   "modifier.cti.fiery_capable.flavor": "太烧了",
-  "modifier.cti.fiery_capable.description":"给予使用者抗火，使用者在熔岩中时缓慢恢复耐久",
+  "modifier.cti.fiery_capable.description":"每级+16最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
 
   "modifier.cti.all": "宇宙之源",
   "modifier.cti.all.flavor": "宇宙万法的那个源头，它是——",
@@ -550,11 +550,11 @@
 
   "modifier.cti.ionize_induced": "电离附加",
   "modifier.cti.ionize_induced.flavor": "电荷解离！！！",
-  "modifier.cti.ionize_induced.description":"攻击时附带一定量电离伤害，穿透敌人的绝大部分防御手段，并施加少量电离值。",
+  "modifier.cti.ionize_induced.description":"真近战攻击时附带玩家近战伤害50%的电离伤害，穿透敌人的绝大部分防御手段，并施加少量电离值。",
 
   "modifier.cti.pressure_induced": "压强附加",
   "modifier.cti.pressure_induced.flavor": "别压力我了😰😰😰",
-  "modifier.cti.pressure_induced.description":"攻击时附带一定量压强伤害并施加少量压强值。",
+  "modifier.cti.pressure_induced.description":"攻击时附带16.7%压强伤害，真近战攻击时施加少量压强值。",
 
   "modifier.cti.disorder": "异常",
   "modifier.cti.disorder.flavor": "其产生的磁场扰乱了空间中能量的分布",
@@ -1500,6 +1500,33 @@
   "modifier.cti.slimy_mana.flavor": "粘球草！",
   "modifier.cti.slimy_mana.description":"脉冲携带魔力增加2*工具黏液覆层上限。\n §3·§r魔力不足时，消耗黏液覆层维持脉冲的发射，每200魔力需要1黏液覆层。",
 
+  "modifier.cti.replaced_conducting": "导热",
+  "modifier.cti.replaced_conducting.flavor": "热学之力",
+  "modifier.cti.replaced_conducting.description":"对着火/灼伤的目标，每有1秒燃烧时间+5%近战伤害，最大20%+每级25%。",
+
+  "modifier.cti.replaced_fiery": "怒火",
+  "modifier.cti.replaced_fiery.flavor": "烈焰灌注！",
+  "modifier.cti.replaced_fiery.description":"每级+10最大灼伤叠加，近战攻击附加每级20%的火焰伤害。",
+
+  "modifier.cti.replaced_heat_sword": "热斩刀",
+  "modifier.cti.replaced_heat_sword.flavor": "一刀一刀燃烧刀",
+  "modifier.cti.replaced_heat_sword.description":"灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，造成20%伤害并叠加每级5灼伤等级。",
+
+  "modifier.cti.scorched": "焦土",
+  "modifier.cti.scorched.flavor": "烧至焦黑！",
+  "modifier.cti.scorched.description":"每级+0.75灼伤攻击速度，+1最大灼伤叠加。",
+
+  "modifier.cti.exothermic": "放热反应",
+  "modifier.cti.exothermic.flavor": "燃料小伙能量巨大",
+  "modifier.cti.exothermic.description":"真近战攻击时，消耗冶炼炉燃料点燃武器，持续时间和消耗量取决于燃料属性。\n §3·§r消耗的燃料每有1000℃，增加10%灼伤伤害量和25%武器来源的灼伤叠加量\n §3·§r过热效果期间：燃料消耗速度和燃烧温度均翻倍，真近战命中消耗燃烧时间重置灼伤持续时间。",
+
+  "modifier.cti.ruby_laser": "红宝石激光",
+  "modifier.cti.ruby_laser.flavor": "最早的激光器之一",
+  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+350最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成20%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
+
+  "modifier.cti.high_heat": "高热",
+  "modifier.cti.high_heat.flavor": "远离可燃物！",
+  "modifier.cti.high_heat.description":"每级+5最大灼伤叠加。近战攻击时，每级叠加1灼伤等级。",
 
 
   "dimension.ad_astra.infernal": "炼狱",
@@ -1577,15 +1604,19 @@
   "info.cti.explosion_shard": "箭矢命中榴弹词条产生的恶意子弹时产生",
 
   "info.cti.insatiable": "§3[正面效果|贪婪]§r所有来源自你的伤害在成功造成时都会于护甲之后每级+0.25，武器攻击或者护甲被攻击都会为所有者增加等同于贪婪叠加的贪婪等级。",
-  "info.cti.overslime": "§3[匠魂机制|黏液覆层]§r一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充，也可以用加压黏液罐补充。",
+  "info.cti.overslime": "§3[工具机制|黏液覆层]§r一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充，也可以用加压黏液罐补充。",
   "info.cti.manaburst": "§3[工具机制|魔力脉冲]§r左键挥舞武器时，消耗魔力并发射出魔力脉冲，魔力消耗量等同于脉冲魔力携带量。脉冲的魔力携带量、实体/方块消耗初始值均为25，伤害初始值则为玩家伤害属性值。当魔力脉冲与方块/实体碰撞时会消耗脉冲携带的魔力，魔力归零后脉冲会消失。",
   "info.cti.stat_power": "§3[工具属性|功率]§r资源消耗类（比如黏液、魔力脉冲）词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时成比例增加资源消耗量。",
+  "info.cti.burnt": "§3[工具机制|灼伤]§r一种靠叠层出伤的持续伤害，会不断对目标造成等同于灼伤层数的穿甲伤害，有最大灼伤叠加和灼伤攻击速度两个属性，持续时间30秒。玩家造成非灼伤伤害的火伤时会叠加1级灼伤，冷却0.25秒。灼伤叠加时不会重置持续时间。",
+  "info.cti.true_melee": "§3[机制设定|真近战]§r满蓄力下由左键攻击直接命中目标的行为视为真近战攻击。",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
   "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",
   "info.cti.requirement_blasphemy": "渎神强化需要 突破 为前置。",
 
   "attribute.cti.max_insatiable": "最大贪婪",
+  "attribute.cti.burnt_inflict": "最大灼伤叠加",
+  "attribute.cti.burnt_attack_speed": "灼伤攻击速度",
 
   "info.cti.container_bind": "绑定容器",
   "info.cti.container_disbound": "解绑容器",

@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.mantle.client.SafeClientAccess;
 import slimeknights.mantle.client.TooltipKey;
 
@@ -40,6 +41,16 @@ public class PlayerLocalEvent {
             var osV = SlimeCanItem.getOverslimeValues(player.level);
             if (osV.containsKey(item))
                 event.getToolTip().add(Component.translatable("info.cti.overslime_value").append("§a"+osV.get(item)));
+        }
+        var id = ForgeRegistries.ITEMS.getKey(item);
+        if (id!=null&& id.getNamespace().equals("immersiveengineering")){
+            var path = id.getPath();
+            if (path.contains("standard"))
+                event.getToolTip().add(Component.literal("标准型").withStyle(style -> style.withColor(0x00FF9A)));
+            if (path.contains("grate_top"))
+                event.getToolTip().add(Component.literal("格栅顶").withStyle(style -> style.withColor(0x00FF9A)));
+            if (path.contains("wooden_top"))
+                event.getToolTip().add(Component.literal("木制顶").withStyle(style -> style.withColor(0x00FF9A)));
         }
     }
 

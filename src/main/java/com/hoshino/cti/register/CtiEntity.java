@@ -59,6 +59,19 @@ public class CtiEntity {
                     .setTrackingRange(8)
                     .setShouldReceiveVelocityUpdates(true)
                     .updateInterval(4).build("thunder_burst"));
+    public static final RegistryObject<EntityType<FierySlashProjectile>> FIERY_SLASH = ENTITIES.register("fiery_slash", () ->
+            EntityType.Builder.of(FierySlashProjectile::new, MobCategory.MISC)
+                    .sized(8F, 1F)
+                    .setTrackingRange(4)
+                    .setUpdateInterval(10)
+                    .setCustomClientFactory((spawnEntity, world) -> new FierySlashProjectile(CtiEntity.FIERY_SLASH.get(), world))
+                    .setShouldReceiveVelocityUpdates(true));
+    public static final RegistryObject<EntityType<RubyLaserEntity>> RUBY_LASER = ENTITIES.register("plasma_beam",()->EntityType.Builder.<RubyLaserEntity>of(RubyLaserEntity::new, MobCategory.MISC)
+            .sized(0.01f,0.01f)
+            .setCustomClientFactory(((spawnEntity, level) -> new RubyLaserEntity(CtiEntity.RUBY_LASER.get(),level)))
+            .setTrackingRange(8)
+            .setShouldReceiveVelocityUpdates(true)
+            .setUpdateInterval(4));
 
     public static void registerEntityRenderers() {
         ClientHooks.registerEntityRenderer(CtiEntity.TIER_5_ROCKET, RocketRendererTier5::new);
@@ -74,6 +87,9 @@ public class CtiEntity {
         ClientHooks.registerEntityRenderer(CtiEntity.FIERY_JAVELIN, FieryJavelinRender::new);
         ClientHooks.registerEntityRenderer(CtiEntity.HOMING_SUNSTRIKE, RenderSunstrike::new);
         ClientHooks.registerEntityRenderer(CtiEntity.THUNDER_BURST, NoopRenderer::new);
+        ClientHooks.registerEntityRenderer(CtiEntity.FIERY_SLASH,pContext ->
+                new SweepingSlashRenderer(pContext,255,118,27,4));
+        ClientHooks.registerEntityRenderer(CtiEntity.RUBY_LASER, RubyLaserRenderer::new);
     }
     public static void register(IEventBus bus){
         ENTITIES.register(bus);

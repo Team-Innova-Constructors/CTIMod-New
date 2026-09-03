@@ -2,6 +2,7 @@ package com.hoshino.cti.content.elementalSystem;
 
 import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
+import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiEntityTickers;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
@@ -27,8 +28,15 @@ public class ElementalHandler{
             if (attacker instanceof Player player) {
                 var playerInstance = EntityTickerManager.getInstance(player);
                 if (triggerFiery(source)&&!playerInstance.hasTicker(CtiEntityTickers.FIERY_TOUCH_CD.get())) {
-                    inflictBurnt(player,target,null,1);
-                    playerInstance.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.FIERY_TOUCH_CD.get(), 1,5));
+                    var oxidizingFlame = player.getEffect(CtiEffects.OXIDIZE_FLAME.get());
+                    if (oxidizingFlame!=null){
+                        inflictBurnt(player,target,null,oxidizingFlame.getAmplifier()+1);
+                        playerInstance.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.FIERY_TOUCH_CD.get(), 1,30));
+                    }
+                    else {
+                        inflictBurnt(player,target,null,1);
+                        playerInstance.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.FIERY_TOUCH_CD.get(), 1,5));
+                    }
                 }
             }
         }

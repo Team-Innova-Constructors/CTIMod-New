@@ -102,7 +102,8 @@ public class OxygeliumBudHelmet extends OxygenConsumeModifier {
             if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
                 FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidReservoirItem;
                 container.useDrainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
-                player.heal(player.getMaxHealth() * 0.05f);
+                if (player.getHealth()<player.getMaxHealth())
+                    player.heal(player.getMaxHealth() * 0.01f);
             }
         }
     }

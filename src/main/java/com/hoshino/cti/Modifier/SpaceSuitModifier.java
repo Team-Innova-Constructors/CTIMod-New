@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -93,15 +94,23 @@ public class SpaceSuitModifier extends OxygenConsumeModifier implements ToolStat
 
     @Override
     public void consumeTankOxygen(LivingEntity living, ModifierEntry modifier) {
+        consumeTankOxygen(living,modifier,1);
+    }
+
+    public static boolean consumeTankOxygen(LivingEntity living, ModifierEntry modifier, int amount) {
         if (living instanceof Player player) {
             var fluidContainerStack = FluidContainerHelper.findFluidContainerCurio(player);
-            if (fluidContainerStack == null) return;
+            if (fluidContainerStack == null) return false;
             if (fluidContainerStack.getItem() instanceof FluidReservoirItem fluidReservoirItem) {
                 FluidReservoirItemMixin container=(FluidReservoirItemMixin)fluidReservoirItem;
-                container.useDrainInternal(fluidContainerStack,1, IFluidHandler.FluidAction.EXECUTE);
-                player.heal(player.getMaxHealth() * 0.05f);
+                if (container.useDrainInternal(fluidContainerStack,amount, IFluidHandler.FluidAction.SIMULATE).getAmount()>=amount){
+                    container.useDrainInternal(fluidContainerStack,amount, IFluidHandler.FluidAction.EXECUTE);
+                    return true;
+                }
+                return false;
             }
         }
+        return false;
     }
 
     @Override

@@ -27,7 +27,7 @@ import java.util.List;
 public class RubyLaserModifier extends BasicOverHeatModifier {
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return 350*modifierEntry.getLevel();
+        return 100*modifierEntry.getLevel();
     }
 
     @Override

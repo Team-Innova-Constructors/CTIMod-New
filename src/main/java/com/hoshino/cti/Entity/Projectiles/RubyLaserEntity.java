@@ -11,6 +11,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -98,7 +99,7 @@ public class RubyLaserEntity extends Projectile {
                     for (Entity entity:entities){
                         if (entity instanceof LivingEntity living){
                             if (player.hasEffect(CtiEffects.OVERHEAT.get()))
-                                AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,true, EquipmentSlot.MAINHAND,false,0,0.2f);
+                                AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,false, EquipmentSlot.MAINHAND,true, (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE)*2f),0.75f);
                             inflictBurnt(player,living,tool,burnt);
                             var burnt = EntityTickerManager.getInstancePlayerSpecific(living,player.getUUID()).getTicker(CtiEntityTickers.FIERY.get());
                             if (burnt!=null){
@@ -113,9 +114,8 @@ public class RubyLaserEntity extends Projectile {
                 if (hitResult.getType()== HitResult.Type.MISS){
                     Vec3 path = direction.scale(distance);
                     Vec3 offset = player.getLookAngle().cross(new Vec3(0,1,0)).normalize().scale(0.6f);
-                    if (OffHand){
-                        offset = offset.reverse();
-                    }
+                    Vec3 randomOffset = offset.cross(player.getLookAngle()).normalize().scale(random.nextFloat()*0.3f-0.15f);
+                    offset = offset.add(randomOffset);
                     Vec3 newDirection = path.subtract(offset).normalize();
                     this.setDeltaMovement(newDirection);
                     this.setPos(initialPos.add(offset));
@@ -127,10 +127,9 @@ public class RubyLaserEntity extends Projectile {
                     Vec3 path;
                     if (end!=null) path = end.subtract(initialPos);
                     else path = hitResult.getLocation().subtract(initialPos);
-                    Vec3 offset = player.getLookAngle().cross(new Vec3(0,1,0)).normalize().scale(0.6f);
-                    if (OffHand){
-                        offset = offset.reverse();
-                    }
+                    Vec3 offset = player.getLookAngle().cross(new Vec3(0.01,1,0.01)).normalize().scale(0.6f);
+                    Vec3 randomOffset = offset.cross(player.getLookAngle()).normalize().scale(random.nextFloat()*0.3f-0.15f);
+                    offset = offset.add(randomOffset);
                     Vec3 newDirection = path.subtract(offset).normalize();
                     this.setDeltaMovement(newDirection);
                     this.setPos(initialPos.add(offset));

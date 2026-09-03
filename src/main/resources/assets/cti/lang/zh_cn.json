@@ -63,6 +63,7 @@
   "effect.cti.covert": "月隐糖",
   "effect.cti.nakshatra": "夜叉戮糖",
   "effect.cti.blood_angry": "血怒",
+  "effect.cti.oxidize_flame": "氧化焰",
 
   "cti.tooltip.item.shift": "按下 Shift 以获取信息",
   "cti.tooltip.item.ultradense_ammo": "这种高密度材料制成的特种机关枪弹药具有较高的伤害，命中时能无视敌人无敌帧。",
@@ -1009,7 +1010,7 @@
 
   "modifier.cti.sunstrike": "耀斑打击",
   "modifier.cti.sunstrike.flavor": "侦测到在途轨道打击。",
-  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。耀斑打击造成10%的两段伤害，白天时威力翻2倍。词条等级会增加耀斑打击的生效次数。",
+  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2灼伤，造成20%x2的火焰伤害并触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
@@ -1510,7 +1511,7 @@
 
   "modifier.cti.replaced_heat_sword": "热斩刀",
   "modifier.cti.replaced_heat_sword.flavor": "一刀一刀燃烧刀",
-  "modifier.cti.replaced_heat_sword.description":"灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，造成20%伤害并叠加每级5灼伤等级。",
+  "modifier.cti.replaced_heat_sword.description":"灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，攻击敌人并叠加每级5灼伤等级。",
 
   "modifier.cti.scorched": "焦土",
   "modifier.cti.scorched.flavor": "烧至焦黑！",
@@ -1522,11 +1523,19 @@
 
   "modifier.cti.ruby_laser": "红宝石激光",
   "modifier.cti.ruby_laser.flavor": "最早的激光器之一",
-  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+350最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成20%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
+  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+100最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
 
   "modifier.cti.high_heat": "高热",
   "modifier.cti.high_heat.flavor": "远离可燃物！",
   "modifier.cti.high_heat.description":"每级+5最大灼伤叠加。近战攻击时，每级叠加1灼伤等级。",
+
+  "modifier.cti.oxidizing_flame": "氧化焰",
+  "modifier.cti.oxidizing_flame.flavor": "加氧，点火！",
+  "modifier.cti.oxidizing_flame.description":"每级+75最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
+
+  "modifier.cti.searing_blow": "灼热攻击",
+  "modifier.cti.searing_blow.flavor": "能被多次升级",
+  "modifier.cti.searing_blow.description":"增加最大灼伤叠加。",
 
 
   "dimension.ad_astra.infernal": "炼狱",

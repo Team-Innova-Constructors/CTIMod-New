@@ -54,11 +54,10 @@ public class FierySlashProjectile extends Projectile {
                 if (tool!=null) {
                     inflictBurnt(player,entity,tool,this.burntLevel);
                     entity.invulnerableTime = 0;
-                    AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,true, EquipmentSlot.MAINHAND,false,0,0.2f);
+                    AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,false, EquipmentSlot.MAINHAND,false,0,1f);
                     entity.invulnerableTime =0;
                     hitList.add(entity);
                 }
-
                 entity.forceAddEffect(new MobEffectInstance(CoreMobEffects.SHOCKED.get(),1000,3,false,false),player);
             }
         }

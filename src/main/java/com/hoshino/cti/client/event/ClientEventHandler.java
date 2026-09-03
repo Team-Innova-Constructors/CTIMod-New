@@ -1,6 +1,8 @@
 package com.hoshino.cti.client.event;
 
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
+import com.hoshino.cti.Modifier.genre.elemental.fiery.BasicOverHeatModifier;
+import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.ReplacedHeatSword;
 import com.hoshino.cti.Screen.AtmosphereCondensatorScreen;
 import com.hoshino.cti.Screen.AtmosphereExtractorScreen;
@@ -33,6 +35,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.NoopRenderer;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -121,6 +124,29 @@ public class ClientEventHandler {
                 event.registerAboveAll("ionize", EnvironmentalHud.ENVIRONMENT_OVERLAY);
                 event.registerAboveAll("curse", CurseInfoHud.CurseHUD);
                 event.registerAboveAll("exposed", FoxExposedOverlay.EXPOSED_OVERLAY);
+                event.registerAboveAll("overheat",(gui, poseStack, partialTick, screenWidth, screenHeight) -> {
+                    var player = SafeClientAccess.getPlayer();
+                    if (player!=null){
+                        var mainHandItem = player.getMainHandItem();
+                        if (mainHandItem.getItem() instanceof IModifiable){
+                            ToolStack toolStack = ToolStack.from(mainHandItem);
+                            var toolData = toolStack.getPersistentData();
+                            if (toolData.contains(BasicOverHeatModifier.KEY_HEAT, Tag.TAG_INT)||player.hasEffect(CtiEffects.OVERHEAT.get())){
+                                int heat = toolData.getInt(BasicOverHeatModifier.KEY_HEAT);
+                                var ovheatEffect = player.getEffect(CtiEffects.OVERHEAT.get());
+                                if (ovheatEffect!=null){
+                                    heat = Math.min(100,ovheatEffect.getDuration());
+                                }
+                                int length = (int) (heat*16f/100);
+                                int x = screenWidth/2;
+                                int y = screenHeight/2;
+                                int ARGB = ovheatEffect!=null?0xFFFF6C00:0x80FF6C00;
+                                GuiComponent.fill(poseStack,x-8,y+16,x+8,y+15,0x20000000);
+                                GuiComponent.fill(poseStack,x-8,y+16,x-8+length,y+15,ARGB);
+                            }
+                        }
+                    }
+                });
             }
         }
 
@@ -163,25 +189,18 @@ public class ClientEventHandler {
                     ToolStack toolStack = ToolStack.from(stack);
                     var poseStack = new PoseStack();
                     var matrix4f = poseStack.last().pose();
-                    if (toolStack.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId())>0){
-                        var player = SafeClientAccess.getPlayer();
-                        int heat = toolStack.getPersistentData().getInt(ReplacedHeatSword.KEY_HEAT);
-                        if (player!=null){
-                            var overHeatInstance = player.getEffect(CtiEffects.OVERHEAT.get());
-                            if (overHeatInstance!=null){
-                                heat = Math.min(100,overHeatInstance.getDuration());
-                            }
-                        }
-                        if (heat>0){
-                            int height = (int) (heat*16/100f);
-                            RenderSystem.setShaderTexture(0,Cti.getResource("textures/gui/gui_fire.png"));
-                            GuiComponent.blit(poseStack, xOffset, yOffset-height, 0, 16-height, 16, height, 16, 16);
-                        }
-                    }
                     if (TANK_HELPER.getCapacity(toolStack)>0&&!TANK_HELPER.getFluid(toolStack).isEmpty()){
                         var fluid = TANK_HELPER.getFluid(toolStack);
                         int height = (int) (fluid.getAmount()*16f/TANK_HELPER.getCapacity(toolStack));
-                        GuiComponent.blit(poseStack, xOffset, yOffset+16-height, (int) (blitOffset-100),16, height, RenderUtil.getFluidStillSprite(fluid));
+                        GuiComponent.blit(poseStack, xOffset, yOffset+16-height, (int) (blitOffset-10),16, height, RenderUtil.getFluidStillSprite(fluid));
+                    }
+                    if (toolStack.getModifierLevel(CtiModifiers.EXOTHERMIC.getId())>0){
+                        int heat = toolStack.getPersistentData().getInt(Exothermic.KEY_TICKS);
+                        if (heat>0){
+                            int height = (int) (heat*16/200f);
+                            RenderSystem.setShaderTexture(0,Cti.getResource("textures/gui/gui_fire.png"));
+                            GuiComponent.blit(poseStack, xOffset, yOffset-height, (int) (blitOffset+500), 0, 16-height, 16, height, 16, 16);
+                        }
                     }
                     return true;
                 });

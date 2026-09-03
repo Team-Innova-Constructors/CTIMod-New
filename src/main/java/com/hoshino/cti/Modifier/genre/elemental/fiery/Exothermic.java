@@ -42,7 +42,7 @@ public class Exothermic extends BasicBurntModifier implements LeftClickModifierH
         super.registerHooks(builder);
         builder.addHook(this, CtiModifierHook.LEFT_CLICK);
         builder.addModule(ToolTankHelper.TANK_HANDLER);
-        builder.addModule(StatBoostModule.add(ToolTankHelper.CAPACITY_STAT).eachLevel(FluidType.BUCKET_VOLUME));
+        builder.addModule(StatBoostModule.add(ToolTankHelper.CAPACITY_STAT).eachLevel(FluidType.BUCKET_VOLUME*10));
     }
 
     @Override

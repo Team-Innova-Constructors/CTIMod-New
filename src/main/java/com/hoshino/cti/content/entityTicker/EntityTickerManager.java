@@ -6,6 +6,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,6 +26,8 @@ public class EntityTickerManager {
         return new EntityTickerManagerInstance(entity);
     }
     public static EntityTickerManagerInstance getInstancePlayerSpecific(Entity entity,UUID playerUUID) {
+        if (entity.getServer()!=null&&entity.getServer().getPlayerList().getPlayer(playerUUID) instanceof FakePlayer)
+            return new FakePlayerTickerManagerInstance(entity);
         return new EntityTickerManagerInstance(entity,playerUUID);
     }
 
@@ -221,6 +224,30 @@ public class EntityTickerManager {
                 ticker.onTickerEnd(this.instanceMap.get(ticker).level, this.entity);
                 this.instanceMap.remove(ticker);
             }
+        }
+    }
+    public static class FakePlayerTickerManagerInstance extends EntityTickerManagerInstance{
+        protected FakePlayerTickerManagerInstance(Entity entity) {
+            super(entity);
+        }
+        public boolean hasTicker(EntityTicker ticker) {
+            return false;
+        }
+
+        public @Nullable EntityTickerInstance getTicker(EntityTicker type) {
+            return null;
+        }
+
+        public void setTicker(EntityTickerInstance instance) {
+        }
+
+        public void addTicker(EntityTickerInstance instance, BiFunction<Integer, Integer, Integer> levelFunction, BiFunction<Integer, Integer, Integer> timeFunction) {
+        }
+
+        public void addTickerSimple(EntityTickerInstance instance) {
+        }
+
+        public void removeTicker(EntityTicker ticker) {
         }
     }
 }

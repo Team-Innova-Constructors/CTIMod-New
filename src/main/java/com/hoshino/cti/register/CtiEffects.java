@@ -35,5 +35,7 @@ public class CtiEffects {
             CtiAttributes.MAX_INSATIABLE.get(),"f74c192d-4d5c-e9e6-a8ea-c7db8f8280b5",4, AttributeModifier.Operation.ADDITION
     ));
     public static final RegistryObject<MobEffect> OVERHEAT = EFFECT.register("overheat",()->new StaticEffect(MobEffectCategory.BENEFICIAL,0xFF761B));
-
+    public static final RegistryObject<MobEffect> OXIDIZE_FLAME = EFFECT.register("oxidize_flame",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0xFFC172).addAttributeModifier(
+            CtiAttributes.BURNT_ATTACK_SPEED.get(),"174a4bee-f1f6-01c4-6df1-8151b7e10952",0.1, AttributeModifier.Operation.ADDITION
+    ));
 }

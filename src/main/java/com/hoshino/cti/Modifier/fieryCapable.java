@@ -20,10 +20,6 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import static com.c2h6s.etshtinker.etshtinker.EtSHrnd;
 
 public class fieryCapable extends BasicBurntModifier {
-    @Override
-    public boolean isNoLevels() {
-        return true;
-    }
 
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {

@@ -1537,6 +1537,10 @@
   "modifier.cti.searing_blow.flavor": "能被多次升级",
   "modifier.cti.searing_blow.description":"增加最大灼伤叠加。",
 
+  "modifier.cti.slash_colorize": "离子染色",
+  "modifier.cti.slash_colorize.flavor": "更换跃迁辐射波长",
+  "modifier.cti.slash_colorize.description":"将约束等离子阔剑斩击的颜色替换成对应约束场发生器的颜色。",
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

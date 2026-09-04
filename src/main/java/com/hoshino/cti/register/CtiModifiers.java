@@ -283,6 +283,7 @@ public class CtiModifiers {
     public static final StaticModifier<ReplaceSpriteOfGaia> REPLACE_SPRITE_OF_GAIA_STATIC_MODIFIER = MODIFIERS.register("replace_sprite_of_gaia", ReplaceSpriteOfGaia::new);
     public static final StaticModifier<Magical> MAGICAL_STATIC_MODIFIER = MODIFIERS.register("magical", Magical::new);
     public static final StaticModifier<AdvanceIgneous> ADVANCE_IGNEOUS_STATIC_MODIFIER = MODIFIERS.register("advanced_igneous", AdvanceIgneous::new);
+    public static final StaticModifier<SlashColorize> SLASH_COLORIZE = MODIFIERS.register("slash_colorize", SlashColorize::new);
 
     public static final StaticModifier<FartherSights> FAR_SIGHTS = MODIFIERS.register("farther_sights", FartherSights::new);
     public static final StaticModifier<BurstMiningModifier> BURST_MINING = MODIFIERS.register("burst_mining", BurstMiningModifier::new);

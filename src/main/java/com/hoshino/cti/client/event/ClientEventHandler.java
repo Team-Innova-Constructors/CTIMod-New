@@ -28,16 +28,20 @@ import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.Vec3Helper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
 import me.desht.pneumaticcraft.client.ColorHandlers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.NoopRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.IItemDecorator;
 import net.minecraftforge.client.event.*;
@@ -192,19 +196,61 @@ public class ClientEventHandler {
                     if (TANK_HELPER.getCapacity(toolStack)>0&&!TANK_HELPER.getFluid(toolStack).isEmpty()){
                         var fluid = TANK_HELPER.getFluid(toolStack);
                         int height = (int) (fluid.getAmount()*16f/TANK_HELPER.getCapacity(toolStack));
-                        GuiComponent.blit(poseStack, xOffset, yOffset+16-height, (int) (blitOffset-10),16, height, RenderUtil.getFluidStillSprite(fluid));
+                        if (height > 0) {
+                            int z = (int) blitOffset;
+                            TextureAtlasSprite sprite = RenderUtil.getFluidStillSprite(fluid);
+                            if (stack.isBarVisible()) {
+                                //耐久条占 列2~14、行13~14，流体拆块绕开该区域
+                                int top = 16 - height;
+                                if (top < 13)
+                                    blitFluidPart(poseStack, xOffset, yOffset, z, sprite, 0, top, 16, 13 - top, height);
+                                if (top <= 13) {
+                                    blitFluidPart(poseStack, xOffset, yOffset, z, sprite, 0, 13, 2, 2, height);
+                                    blitFluidPart(poseStack, xOffset, yOffset, z, sprite, 15, 13, 1, 2, height);
+                                }
+                                blitFluidPart(poseStack, xOffset, yOffset, z, sprite, 0, 15, 16, 1, height);
+                            } else {
+                                blitFluidPart(poseStack, xOffset, yOffset, z, sprite, 0, 16 - height, 16, height, height);
+                            }
+                        }
                     }
                     if (toolStack.getModifierLevel(CtiModifiers.EXOTHERMIC.getId())>0){
                         int heat = toolStack.getPersistentData().getInt(Exothermic.KEY_TICKS);
                         if (heat>0){
                             int height = (int) (heat*16/200f);
                             RenderSystem.setShaderTexture(0,Cti.getResource("textures/gui/gui_fire.png"));
-                            GuiComponent.blit(poseStack, xOffset, yOffset-height, (int) (blitOffset+500), 0, 16-height, 16, height, 16, 16);
+                            GuiComponent.blit(poseStack, xOffset, yOffset+16-height, (int) (blitOffset+300), 0, 16-height, 16, height, 16, 16);
                         }
                     }
                     return true;
                 });
             });
+        }
+
+        /**
+         * 与 GuiComponent.blit(PoseStack,int,int,int,int,int,TextureAtlasSprite) 的整图映射一致
+         * （getU0→getU1 横向、getV0→getV1 纵向压缩到流体柱），仅按子矩形位置对 UV 做线性插值，
+         * 用于绕开耐久条区域分块渲染。坐标均为槽位内 16x16 像素坐标。
+         */
+        private static void blitFluidPart(PoseStack poseStack, int slotX, int slotY, int z,
+                                          TextureAtlasSprite sprite, int pxX, int pxY, int w, int h, int fluidHeight) {
+            RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            float u0 = sprite.getU0(), u1 = sprite.getU1();
+            float v0 = sprite.getV0(), v1 = sprite.getV1();
+            float uA = u0 + (u1 - u0) * pxX / 16f;
+            float uB = u0 + (u1 - u0) * (pxX + w) / 16f;
+            float vA = v0 + (v1 - v0) * (pxY + fluidHeight - 16) / fluidHeight;
+            float vB = v0 + (v1 - v0) * (pxY + h + fluidHeight - 16) / fluidHeight;
+            Tesselator tesselator = Tesselator.getInstance();
+            BufferBuilder builder = tesselator.getBuilder();
+            builder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+            Matrix4f matrix = poseStack.last().pose();
+            builder.vertex(matrix, slotX + pxX, slotY + pxY, z).uv(uA, vA).endVertex();
+            builder.vertex(matrix, slotX + pxX, slotY + pxY + h, z).uv(uA, vB).endVertex();
+            builder.vertex(matrix, slotX + pxX + w, slotY + pxY + h, z).uv(uB, vB).endVertex();
+            builder.vertex(matrix, slotX + pxX + w, slotY + pxY, z).uv(uB, vA).endVertex();
+            BufferUploader.drawWithShader(builder.end());
         }
 
 

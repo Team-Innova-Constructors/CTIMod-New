@@ -310,6 +310,7 @@ public class CtiModifiers {
     public static final StaticModifier<HighHeat> HIGH_HEAT = MODIFIERS.register("high_heat", HighHeat::new);
     public static final StaticModifier<OxidizingFlame> OXIDIZING_FLAME = MODIFIERS.register("oxidizing_flame", OxidizingFlame::new);
     public static final StaticModifier<SearingBlow> SEARING_BLOW = MODIFIERS.register("searing_blow", SearingBlow::new);
+    public static final StaticModifier<MeleeFieryJavelinModifier> MELEE_FIERY_JAVELIN = MODIFIERS.register("melee_fiery_javelin", MeleeFieryJavelinModifier::new);
 
 
     public static final StaticModifier<EtchedModifier> GLORY_ETCH = MODIFIERS.register("glory_etch", EtchedModifier::new);

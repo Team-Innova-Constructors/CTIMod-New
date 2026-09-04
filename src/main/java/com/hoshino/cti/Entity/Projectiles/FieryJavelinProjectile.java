@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -80,12 +81,17 @@ public class FieryJavelinProjectile extends AbstractArrow {
         Vec3 velocity = this.getDeltaMovement();
         EntityHitResult hitResult = ProjectileUtil.getEntityHitResult(this.level, this, this.position(),this.position().add(this.getDeltaMovement().scale(5)), this.getBoundingBox().expandTowards(this.getDeltaMovement().scale(5)).inflate(1.0D), entity -> entity != this.getOwner() && this.canHitEntity(entity));
         if (hitResult!=null){
-            net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, hitResult);
             this.onHit(hitResult);
         }
         this.setDeltaMovement(velocity);
-        this.setPos(this.position().add(this.getDeltaMovement().scale(2)));
+        this.setPos(this.position().add(this.getDeltaMovement().scale(5)));
         this.level.addParticle(CtiParticleType.FIERY_LINE.get(),this.getX(),this.getY()+0.5*this.getBbHeight(),this.getZ(),this.getDeltaMovement().x*5,this.getDeltaMovement().y*5,this.getDeltaMovement().z*5);
+    }
+
+    @Override
+    protected void onHit(HitResult pResult) {
+        net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, pResult);
+        super.onHit(pResult);
     }
 
     @Override

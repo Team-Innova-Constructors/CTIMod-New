@@ -72,6 +72,13 @@ public class CtiEntity {
             .setTrackingRange(8)
             .setShouldReceiveVelocityUpdates(true)
             .setUpdateInterval(4));
+    public static final RegistryObject<EntityType<MeleeFieryJavelinProjectile>> MELEE_FIERY_JAVELIN = ENTITIES.register("melee_fiery_javelin", () -> EntityType.Builder
+            .<MeleeFieryJavelinProjectile>of(MeleeFieryJavelinProjectile::new, MobCategory.MISC)
+            .sized(0.25F, 0.25F)
+            .setTrackingRange(4)
+            .setUpdateInterval(1)
+            .setCustomClientFactory((spawnEntity, world) -> new MeleeFieryJavelinProjectile(CtiEntity.FIERY_JAVELIN.get(),world))
+            .setShouldReceiveVelocityUpdates(true));
 
     public static void registerEntityRenderers() {
         ClientHooks.registerEntityRenderer(CtiEntity.TIER_5_ROCKET, RocketRendererTier5::new);
@@ -90,6 +97,7 @@ public class CtiEntity {
         ClientHooks.registerEntityRenderer(CtiEntity.FIERY_SLASH,pContext ->
                 new SweepingSlashRenderer(pContext,255,118,27,4));
         ClientHooks.registerEntityRenderer(CtiEntity.RUBY_LASER, RubyLaserRenderer::new);
+        ClientHooks.registerEntityRenderer(CtiEntity.MELEE_FIERY_JAVELIN, FieryJavelinRender::new);
     }
     public static void register(IEventBus bus){
         ENTITIES.register(bus);

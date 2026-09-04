@@ -1541,6 +1541,10 @@
   "modifier.cti.slash_colorize.flavor": "更换跃迁辐射波长",
   "modifier.cti.slash_colorize.description":"将约束等离子阔剑斩击的颜色替换成对应约束场发生器的颜色。",
 
+  "modifier.cti.melee_fiery_javelin": "索利斯·坎塔娜",
+  "modifier.cti.melee_fiery_javelin.flavor": "异世界邪教徒使用的炽热能量剑",
+  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并触发目标的灼伤效果。+75最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射三发，命中时额外造成10%武器伤害。",
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

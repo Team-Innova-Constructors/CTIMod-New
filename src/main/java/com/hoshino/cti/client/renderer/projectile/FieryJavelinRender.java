@@ -37,7 +37,7 @@ public class FieryJavelinRender extends EntityRenderer<Projectile> {
             PoseStack.Pose pose = pPoseStack.last();
             Matrix4f poseMatrix = pose.pose();
             Matrix3f normalMatrix = pose.normal();
-            float distance = (float) pEntity.getDeltaMovement().length();
+            float distance = (float) pEntity.getDeltaMovement().length()*5;
 
             VertexConsumer consumer = pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(pEntity),false));
             drawPipe(pPoseStack,consumer,poseMatrix,0.06f,distance,255,255,255,255,normalMatrix);

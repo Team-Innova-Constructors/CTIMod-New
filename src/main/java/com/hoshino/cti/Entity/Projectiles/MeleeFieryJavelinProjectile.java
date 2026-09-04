@@ -83,7 +83,7 @@ public class MeleeFieryJavelinProjectile extends FieryJavelinProjectile{
                         Fiery.burntDamage(entity,player,entityTickerInstance.level));
                 if (player.hasEffect(CtiEffects.OVERHEAT.get())){
                     entity.invulnerableTime = 0;
-                    AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,false, EquipmentSlot.MAINHAND,false,0,0.1f);
+                    AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,true, EquipmentSlot.MAINHAND,false,0,0.1f);
                 }
             });
             this.playSound(SoundEvents.FIRECHARGE_USE);

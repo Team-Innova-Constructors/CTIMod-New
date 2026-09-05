@@ -1545,6 +1545,15 @@
   "modifier.cti.melee_fiery_javelin.flavor": "异世界邪教徒使用的炽热能量剑",
   "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并触发目标的灼伤效果。+75最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射三发，命中时额外造成10%武器伤害。",
 
+  "modifier.cti.luck_charming": "命运之眷",
+  "modifier.cti.luck_charming.flavor": "这是我的<铁之王牌>",
+  "modifier.cti.luck_charming.description":"获得幸运值*1%的独立闪避率，最大25%。",
+
+  "modifier.cti.phantom_forged": "灵质之锻",
+  "modifier.cti.phantom_forged.flavor": "魂锻之艺",
+  "modifier.cti.phantom_forged.description":"挥舞武器时，令幻灵剑从敌人头顶坠落，造成25%玩家攻击伤害的穿甲伤害。\n §3·§r真近战攻击时，增加召唤幻灵剑的数量。",
+
+
 
   "dimension.ad_astra.infernal": "炼狱",
   "dimension.ad_astra.uranus": "天王星",

@@ -171,7 +171,7 @@ public class HomingSunStrike extends EntitySunstrike {
                 living.hurt(ElementalDamageSource.fiery(this.owner),this.damage);
                 var fiery = EntityTickerManager.getInstancePlayerSpecific(living,player.getUUID()).getTicker(CtiEntityTickers.FIERY.get());
                 if (fiery!=null){
-                    Fiery.burntDamage(living,player,fiery.duration);
+                    Fiery.burntDamage(living,player,fiery.level);
                 }
             });
     }

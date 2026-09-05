@@ -114,7 +114,8 @@ public class RubyLaserEntity extends Projectile {
                 if (hitResult.getType()== HitResult.Type.MISS){
                     Vec3 path = direction.scale(distance);
                     Vec3 offset = player.getLookAngle().cross(new Vec3(0,1,0)).normalize().scale(0.6f);
-                    Vec3 randomOffset = offset.cross(player.getLookAngle()).normalize().scale(random.nextFloat()*0.3f-0.15f);
+                    if (random.nextBoolean()) offset = offset.reverse();
+                    Vec3 randomOffset = offset.cross(player.getLookAngle()).normalize().scale(random.nextFloat()*0.5f-0.25f);
                     offset = offset.add(randomOffset);
                     Vec3 newDirection = path.subtract(offset).normalize();
                     this.setDeltaMovement(newDirection);
@@ -128,7 +129,8 @@ public class RubyLaserEntity extends Projectile {
                     if (end!=null) path = end.subtract(initialPos);
                     else path = hitResult.getLocation().subtract(initialPos);
                     Vec3 offset = player.getLookAngle().cross(new Vec3(0.01,1,0.01)).normalize().scale(0.6f);
-                    Vec3 randomOffset = offset.cross(player.getLookAngle()).normalize().scale(random.nextFloat()*0.3f-0.15f);
+                    if (random.nextBoolean()) offset = offset.reverse();
+                    Vec3 randomOffset = offset.cross(player.getLookAngle()).normalize().scale(random.nextFloat()*0.5f-0.25f);
                     offset = offset.add(randomOffset);
                     Vec3 newDirection = path.subtract(offset).normalize();
                     this.setDeltaMovement(newDirection);

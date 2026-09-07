@@ -14,6 +14,7 @@ public class CtiHostilityTrait {
     public static final RegistryEntry<SecondPhase> SECOND_PHASE = L2Hostility.REGISTRATE.regTrait("second_phase", () -> new SecondPhase(ChatFormatting.GOLD), (rl) -> new TraitConfig(rl, 200, 10, 3, 750)).desc("Grant %s seconds of invulnerable time when health drops over 50%.").lang("Second Phase").register();
     public static final RegistryEntry<HardSkin> HARD_SKIN = L2Hostility.REGISTRATE.regTrait("hard_skin", HardSkin::new, (rl) -> new TraitConfig(rl, 50, 50, 5, 100)).desc("Monsters will block damage equal to their level multiplier times the sum of 5% of their maximum health and their armor value. If the damage penetrates armor, the block value is reduced by 75%. If it bypasses invincibility, the block is ignored.").lang("Hard Skin").register();
     public static final RegistryEntry<FarewellGift> FAREWELL_GIFT = L2Hostility.REGISTRATE.regTrait("farewell_gift", FarewellGift::new, (rl) -> new TraitConfig(rl, 400, 80, 5, 500)).desc("The monster will deal high damage to the player when it dies.").lang("Farewell Gift").register();
+    public static final RegistryEntry<EmberOfChamp> EMBER_OF_CHAMP = L2Hostility.REGISTRATE.regTrait("ember_of_champ", EmberOfChamp::new, (rl) -> new TraitConfig(rl, 0, 160, 1, 200)).desc("Won't targeted by none-players.").lang("Ember of Champ").register();
 
     public static void register() {
     }

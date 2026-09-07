@@ -1618,6 +1618,9 @@
   "trait.l2hostility.breuddwyd_drwg_braslun": "梦魇印记",
   "trait.l2hostility.breuddwyd_drwg_braslun.desc": "攻击会对玩家施加等级层的梦魇印记,每层印记增加玩家受到的8%全伤害,当印记满42层时,玩家会直接死亡\n印记每6秒自然消散一层",
 
+  "trait.l2hostility.ember_of_champ": "冠军之证",
+  "trait.l2hostility.ember_of_champ.desc": "不会锁定非玩家单位，无法被其它生物锁定，无法被非玩家生物伤害。",
+
 
   "info.cti.panel_condition.upward": "于世界最高处向上放置",
   "info.cti.panel_condition.downward": "于世界最低处向下放置",

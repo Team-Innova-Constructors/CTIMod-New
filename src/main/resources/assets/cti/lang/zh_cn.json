@@ -1186,6 +1186,7 @@
   "block.cti.reactor_neutron_collector": "反应堆中子素收集器",
   "block.cti.alloy_centrifuge": "气动合金离心机",
   "block.cti.sodium_cooler": "微型裂变反应堆",
+  "block.cti.creative_energy_cell_4k": "4k ME创造能源元件",
 
 
   "cti.gui.biome.null": "null",
@@ -1635,6 +1636,7 @@
   "info.cti.stat_power": "§3[工具属性|功率]§r资源消耗类（比如黏液、魔力脉冲）词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时成比例增加资源消耗量。",
   "info.cti.burnt": "§3[工具机制|灼伤]§r一种靠叠层出伤的持续伤害，会不断对目标造成等同于灼伤层数的穿甲伤害，有最大灼伤叠加和灼伤攻击速度两个属性，持续时间30秒。玩家造成非灼伤伤害的火伤时会叠加1级灼伤，冷却0.25秒。灼伤叠加时不会重置持续时间。",
   "info.cti.true_melee": "§3[机制设定|真近战]§r满蓄力下由左键攻击直接命中目标的行为视为真近战攻击。",
+  "info.cti.creative_energy_cell_4k": "无限供应§e4kAE/t§r的能量",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
   "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",

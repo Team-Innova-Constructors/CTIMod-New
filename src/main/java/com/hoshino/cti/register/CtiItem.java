@@ -182,6 +182,14 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> MANA_INTERFACE = ITEMS.register("mana_interface", () -> new BlockItem(CtiBlock.MANA_INTERFACE.get(), new Item.Properties().tab(CtiTab.MACHINE)));
     public static final RegistryObject<BlockItem> REACTIVE_FLOWER = ITEMS.register("reactive_flower", () -> new BlockItem(CtiBlock.REACTIVE_FLOWER.get(), new Item.Properties().tab(CtiTab.MACHINE)));
     public static final RegistryObject<BlockItem> FLOATING_REACTIVE_FLOWER = ITEMS.register("floating_reactive_flower", () -> new BlockItem(CtiBlock.FLOATING_REACTIVE_FLOWER.get(), new Item.Properties().tab(CtiTab.MACHINE)));
+    public static final RegistryObject<BlockItem> CREATIVE_ENERGY_CELL_4K = ITEMS.register("creative_energy_cell_4k", () -> new BlockItem(CtiBlock.CREATIVE_ENERGY_CELL_4K.get(), new Item.Properties().tab(CtiTab.MACHINE)){
+        @Override
+        public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+            pTooltip.add(
+                    Component.translatable("info.cti.creative_energy_cell_4k")
+            );
+        }
+    });
 
 
 

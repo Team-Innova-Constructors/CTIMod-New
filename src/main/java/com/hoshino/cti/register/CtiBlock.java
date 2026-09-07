@@ -449,6 +449,9 @@ public class CtiBlock {
                 }
             });
 
+    public static final RegistryObject<CreativeEnergyCell4kBlock> CREATIVE_ENERGY_CELL_4K = BLOCK.register("creative_energy_cell_4k", CreativeEnergyCell4kBlock::new);
+
+
 
 
 

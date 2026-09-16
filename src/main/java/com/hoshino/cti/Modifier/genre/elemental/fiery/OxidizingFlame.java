@@ -26,7 +26,7 @@ public class OxidizingFlame extends BasicBurntModifier implements LeftClickModif
 
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return modifierEntry.getLevel()*75;
+        return modifierEntry.getLevel()*45;
     }
 
     @Override

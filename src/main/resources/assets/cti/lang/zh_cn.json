@@ -1010,7 +1010,7 @@
 
   "modifier.cti.sunstrike": "耀斑打击",
   "modifier.cti.sunstrike.flavor": "侦测到在途轨道打击。",
-  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2灼伤，造成20%x2的火焰伤害并触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
+  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2灼伤，造成10%x2的火焰伤害并触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
@@ -1524,7 +1524,7 @@
 
   "modifier.cti.ruby_laser": "红宝石激光",
   "modifier.cti.ruby_laser.flavor": "最早的激光器之一",
-  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+100最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
+  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+75最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
 
   "modifier.cti.high_heat": "高热",
   "modifier.cti.high_heat.flavor": "远离可燃物！",
@@ -1532,7 +1532,7 @@
 
   "modifier.cti.oxidizing_flame": "氧化焰",
   "modifier.cti.oxidizing_flame.flavor": "加氧，点火！",
-  "modifier.cti.oxidizing_flame.description":"每级+75最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
+  "modifier.cti.oxidizing_flame.description":"每级+45最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
 
   "modifier.cti.searing_blow": "灼热攻击",
   "modifier.cti.searing_blow.flavor": "能被多次升级",

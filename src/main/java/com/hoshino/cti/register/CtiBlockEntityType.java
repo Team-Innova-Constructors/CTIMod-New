@@ -1,5 +1,6 @@
 package com.hoshino.cti.register;
 
+import appeng.api.config.Actionable;
 import com.hoshino.cti.Blocks.BlockEntity.*;
 import com.hoshino.cti.Blocks.BlockEntity.ae2.CreativeEnergyCell4kBE;
 import com.hoshino.cti.Blocks.BlockEntity.botania.ReactiveFLowerBE;
@@ -105,7 +106,13 @@ public class CtiBlockEntityType {
             BLOCK_ENTITIES.register("creative_energy_cell_4k",()-> {
                 var type = BlockEntityType.Builder.of(CreativeEnergyCell4kBE::new, CtiBlock.CREATIVE_ENERGY_CELL_4K.get())
                         .build(null);
-                CtiBlock.CREATIVE_ENERGY_CELL_4K.get().setBlockEntity(CreativeEnergyCell4kBE.class, type, null, null);
+                CtiBlock.CREATIVE_ENERGY_CELL_4K.get().setBlockEntity(CreativeEnergyCell4kBE.class, type, null, (pLevel, pPos, pState, pBlockEntity) ->
+                {
+                    var grid = pBlockEntity.getGridNode();
+                    if (grid!=null&&grid.getGrid()!=null&&grid.getGrid().getEnergyService()!=null){
+                        grid.getGrid().getEnergyService().injectPower(pBlockEntity.getAEMaxPower(), Actionable.MODULATE);
+                    }
+                });
                 return type;
             });
 

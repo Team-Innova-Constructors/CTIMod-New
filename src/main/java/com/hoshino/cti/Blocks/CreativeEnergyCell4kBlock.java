@@ -27,4 +27,6 @@ public class CreativeEnergyCell4kBlock extends AEBaseEntityBlock<CreativeEnergyC
     public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
         return List.of(new ItemStack(this.asItem()));
     }
+
+
 }

@@ -21,6 +21,7 @@ public abstract class EntityTicker {
     public EntityTicker(@Nullable MobEffectCategory category) {
         this.category = category;
     }
+    public EntityTicker(){this.category = null;}
 
     public ResourceLocation getId(){
         if (this.id==null) this.id = CtiRegistry.ENTITY_TICKER_REGISTRY.getKey(this);

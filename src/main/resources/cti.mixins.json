@@ -120,6 +120,7 @@
     "MowzieMixin.EntityWroughtnautMixin",
     "PnCMixin.AirGrateMixin",
     "PnCMixin.PlayerExperienceHandlerMixin",
+    "PnCMixin.PNC2MekHeatAdapterMixin",
     "PnCMixin.VacuumTrapBlockEntityMixin",
     "PowahMixin.EnergizingOrbTileMixin",
     "PowahMixin.EnergizingRecipeMixin",

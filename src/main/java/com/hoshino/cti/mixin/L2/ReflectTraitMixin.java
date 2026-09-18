@@ -30,6 +30,7 @@ public class ReflectTraitMixin {
      * <br><h5>I.取消掉了莱特兰本身等级增幅对于反射伤害的增幅
      * <br>II.视为魔法伤害
      * <br>III.不会超过怪物最大生命 x 倍率</h5>
+     * <br>IV.限制了触发频率,为僵尸施加了一个ticker,ticker施加时候把怪物UUID,攻击者UUID,伤害量,词条等级的Record存入map,在ticker结束时候读取这个map施加伤害</h5>
      * <br>监听器mixin在这边{@link AttackListenerMixin#onHurt(AttackCache, ItemStack, CallbackInfo)}
      */
     @Overwrite
@@ -42,13 +43,13 @@ public class ReflectTraitMixin {
             if (lv instanceof Player player && GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())) {
                 return;
             }
-            UUID suffer = entity.getUUID();
+            UUID sufferUUID = entity.getUUID();
             UUID attackerUuid = lv.getUUID();
             float damageAmount = event.getAmount();
             if (!EntityTickerManager.getInstance(entity).hasTicker(CtiEntityTickers.REFLECT_TICKER.get())) {
                 EntityTickerManager.getInstance(entity).addTicker(new EntityTickerInstance(CtiEntityTickers.REFLECT_TICKER.get(), 1, 20), Integer::max, Integer::max);
             }
-            ReflectTicker.DAMAGE_MAP.compute(suffer, (uuid, record) -> {
+            ReflectTicker.DAMAGE_MAP.compute(sufferUUID, (uuid, record) -> {
                 if (record == null || !record.attacker().equals(attackerUuid)) {
                     return new DelayDamageTickerRecord(attackerUuid, damageAmount, level);
                 } else {

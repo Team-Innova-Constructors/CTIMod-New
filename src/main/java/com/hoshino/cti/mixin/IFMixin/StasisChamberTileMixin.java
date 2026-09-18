@@ -1,6 +1,5 @@
 package com.hoshino.cti.mixin.IFMixin;
 
-import com.buuz135.industrial.block.misc.StasisChamberBlock;
 import com.buuz135.industrial.block.misc.tile.StasisChamberTile;
 import com.buuz135.industrial.block.tile.IndustrialAreaWorkingTile;
 import com.buuz135.industrial.block.tile.IndustrialWorkingTile;
@@ -41,7 +40,10 @@ public abstract class StasisChamberTileMixin extends IndustrialAreaWorkingTile<S
     @Overwrite
     public IndustrialWorkingTile.WorkAction work() {
         if (hasEnergy(this.getPowerPerOperation)) {
-            List<Mob> entities = this.level.getEntitiesOfClass(Mob.class, getWorkingArea().bounds());
+            List<Mob> entities = null;
+            if (this.level != null) {
+                entities = this.level.getEntitiesOfClass(Mob.class, getWorkingArea().bounds());
+            }
             for (Mob entity : entities) {
                 if (entity.getType().is(IndustrialTags.EntityTypes.MOB_IMPRISONMENT_TOOL_BLACKLIST)) continue;
                 entity.setNoAi(true);

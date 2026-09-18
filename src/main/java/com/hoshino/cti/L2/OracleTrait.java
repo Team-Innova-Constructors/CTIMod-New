@@ -50,6 +50,6 @@ public class OracleTrait extends MobTrait {
 
     @Override
     public boolean allow(LivingEntity le, int difficulty, int maxModLv) {
-        return le.level.dimension()== AetherDimensions.AETHER_LEVEL||le.level.dimension()== UGDimensions.UNDERGARDEN_LEVEL;
+        return (le.level.dimension()== AetherDimensions.AETHER_LEVEL||le.level.dimension()== UGDimensions.UNDERGARDEN_LEVEL);
     }
 }

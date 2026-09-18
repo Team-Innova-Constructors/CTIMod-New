@@ -158,11 +158,11 @@
 
   "modifier.cti.cutter": "切割者",
   "modifier.cti.cutter.flavor": "碎甲碎甲",
-  "modifier.cti.cutter.description":"完整攻击时候每次攻击减少目标6% * 词条等级的最大护甲值,没有叠满5层的限制,没有时间限制",
+  "modifier.cti.cutter.description":"•当目标护甲大于10时,完整攻击时候每次攻击减少目标6% * 词条等级的最大护甲值\n•没有叠满5层的限制\n•没有时间限制",
 
   "modifier.cti.nature_power": "自然之力",
   "modifier.cti.nature_power.flavor": "依旧爱魔tv",
-  "modifier.cti.nature_power.description":"受到伤害会叠加坚定效果\n坚定效果至多获得8层,8层时获得60%魔法/爆炸免伤和 速度 2 效果,每5秒消散一层",
+  "modifier.cti.nature_power.description":"•获得基础的20%魔法伤害减免\n•受到伤害会叠加坚定效果•\n坚定效果至多获得8层,8层时获得60%魔法/爆炸免伤和 速度 2 效果,每5秒消散一层",
 
   "modifier.cti.endless_hatred": "无终恨意",
   "modifier.cti.endless_hatred.flavor": "要是其他材料能叠钢就好了",
@@ -170,7 +170,7 @@
 
   "modifier.cti.arrogant_person": "狂妄之徒",
   "modifier.cti.arrogant_person.flavor": "脱战回血",
-  "modifier.cti.arrogant_person.description":"提升12 x 词条等级点最大生命\n当你最大生命值达到600,并且6秒内没有受到任何伤害,则会在接下来的时间内每5秒恢复25%最大生命",
+  "modifier.cti.arrogant_person.description":"提升12 x 词条等级点最大生命\n当你最大生命值达到200,并且6秒内没有受到任何伤害,则会在接下来的时间内每5秒恢复25%最大生命",
 
   "modifier.cti.dilapidated_magic": "败魔",
   "modifier.cti.dilapidated_magic.flavor": "魔法伤害克星",
@@ -339,8 +339,8 @@
   "modifier.cti.stardragonhit.description": "武器的基础伤害每级提高提高850,对于18%以及以下生命值的目标会直接吞噬其灵魂,并且转化为1星尘,远程攻击不会吞噬目标\n[主动技能]当星尘数量满10层,对着你的目标按下绑定按键/射出箭矢命中,会从天空中生成一颗巨型的流星向你的目标位置砸去\n•被锁定的目标终身受到的任何伤害提高5倍\n•内圈(10格内)会造成3.5倍于你当前武器基础伤害的双穿伤害,随后会引发一道涟漪,逐渐蔓延至周围半径100格的区域,触碰到的敌人会受到高额的双穿伤害并且被大幅度击退\n命中生命值低于21%/此次伤害大于目标最大生命10倍,会直接抹除掉目标,并且存储为星尘在你的主手武器中\n每存有100星尘提高1%斩杀线,至高提升到78%\n每次释放技能消耗10星尘,冷却时间10秒",
 
   "modifier.cti.starbless": "星界压制",
-  "modifier.cti.starbless.flavor": "畏惧么",
-  "modifier.cti.starbless.description": "你在外太空不再需要氧气\n大部分目标的莱特兰等级低于你生命和护甲之合将不再敢把你视为目标,并且免疫其造成的额外伤害,同时你也会免疫掉大部分的无来源和全部的魔法伤害,以及自己造成的直接伤害\n受到的单次伤害不会超过最大生命20%",
+  "modifier.cti.starbless.flavor": "群星亦为之颤抖",
+  "modifier.cti.starbless.description": "你在外太空不再需要氧气\n大部分目标的莱特兰等级低于你生命和护甲之合将不再敢把你视为目标(最高5000级),并且免疫其造成的伤害,同时你也会免疫掉大部分的无来源和全部的魔法伤害,以及自己造成的直接伤害\n受到的单次伤害不会超过最大生命20%",
 
   "modifier.cti.cursed_arrow": "诅咒之箭",
   "modifier.cti.cursed_arrow.flavor": "禁止回血",
@@ -934,7 +934,7 @@
 
   "modifier.cti.qcf": "引力场约束",
   "modifier.cti.qcf.flavor": "引力展开",
-  "modifier.cti.qcf.description":"当怪物目标为你时候，不会再触发'传送'词条导致的传送,你的攻击不会在被'传送'词条所闪避",
+  "modifier.cti.qcf.description":"当怪物目标为你时候，不会再触发'传送'词条导致的传送,你的攻击不会在被'传送'词条所闪避,攻击后也会永远废除目标传送词条",
 
   "modifier.cti.donotsplit": "分裂抑制",
   "modifier.cti.donotsplit.flavor": "不准分裂",
@@ -963,6 +963,10 @@
   "modifier.cti.eternity": "永恒",
   "modifier.cti.eternity.flavor": "不朽的 ToolStack",
   "modifier.cti.eternity.description":"获得优先级较高的不毁，手持/穿着时获得50%伤害减免（仅生效一次）。",
+
+  "modifier.cti.immortal": "不朽",
+  "modifier.cti.immortal.flavor": "\n画外人易朽😎\n似浓淡相间色相构\n🖊️染冰雪先批琉璃胄❄\n蘸朱紫将登金银楼",
+  "modifier.cti.immortal.description":"•你的工具会无限自愈,直至时间尽头\n•",
 
   "modifier.cti.glory_emblem": "荣耀印记",
   "modifier.cti.glory_emblem.flavor": "天堂之剑",
@@ -1014,11 +1018,11 @@
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
-  "modifier.cti.industrial.description":"•增加升级槽和能力槽 词条等级个(不会超过3个)\n•每级增加8%面板 攻击伤害,攻击速度,挖掘速度,弹射物伤害,耐久和耐久修补量\n•增加5%（最大80%）不消耗耐久的概率。",
+  "modifier.cti.industrial.description":"•增加升级槽和能力槽 词条等级个(不会超过3个)\n•每级增加8%面板 攻击伤害,攻击速度,挖掘速度,弹射物伤害,耐久和耐久修补量\n•增加8%（最大80%）不消耗耐久的概率。",
 
   "modifier.cti.industrial_armor": "工业",
   "modifier.cti.industrial_armor.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
-  "modifier.cti.industrial_armor.description":"•增加防御槽和能力槽 词条等级个(不会超过3个)\n•每级增加8%护甲值,护甲韧性,耐久和耐久修补量\n•增加8%（最大80%）不消耗耐久的概率\n•基于全身等级获得8%（最大80%）的非穿魔伤害减免(伤害穿甲这个效益减半,上限不变)\n•无论承受多高的伤害都至多消耗2耐久。",
+  "modifier.cti.industrial_armor.description":"•增加防御槽和能力槽 词条等级个(不会超过3个)\n•每级增加8%面板 护甲值,护甲韧性,耐久和耐久修补量\n•增加8%（最大80%）不消耗耐久的概率\n•基于全身等级获得5%（最大80%）的非穿魔伤害减免(伤害穿甲这个效益减半,上限不变)\n•无论承受多高的伤害都至多消耗2耐久。",
 
   "modifier.cti.carcinogenic": "永久创伤",
   "modifier.cti.carcinogenic.flavor": "小心职业暴露！",
@@ -1492,7 +1496,7 @@
 
   "modifier.cti.advanced_igneous": "熔火者",
   "modifier.cti.advanced_igneous.flavor": "黑曜石家族特有的耐烧",
-  "modifier.cti.advanced_igneous.description":"•着火时增加熔火点数\n•每10点增加1护甲,1%免伤和1点格挡(此格挡在本词条减伤后结算)\n•格挡在伤害低于格挡值时会取消受击判定\n•上限词条等级 * 70",
+  "modifier.cti.advanced_igneous.description":"•着火时增加熔火点数\n•每10点增加1护甲,1%免伤和1点格挡(此格挡在本词条减伤后结算)\n•上限词条等级 * 70",
 
   "modifier.cti.golden_amber_touch": "金琥珀之触",
   "modifier.cti.golden_amber_touch.flavor": "镶上紫晶，取下琥珀",

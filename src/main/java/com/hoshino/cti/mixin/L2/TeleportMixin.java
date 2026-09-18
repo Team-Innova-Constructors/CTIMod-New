@@ -14,28 +14,45 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = EnderTrait.class,remap = false)
+@Mixin(value = EnderTrait.class, remap = false)
 public class TeleportMixin {
-    @Inject(method = "tick",at = @At(value = "HEAD"), cancellable = true)
-    private void mobTick(LivingEntity mob, int level, CallbackInfo ci){
-        if(EntityUtil.hasAlGlass(mob)){
+    @Inject(method = "tick", at = @At(value = "HEAD"), cancellable = true)
+    private void mobTick(LivingEntity mob, int level, CallbackInfo ci) {
+        if (EntityUtil.hasAlGlass(mob)) {
             ci.cancel();
             return;
         }
-        if(!mob.level.isClientSide()&&mob instanceof Mob mob1){
-            var entity=mob1.getTarget();
-            if(entity instanceof ServerPlayer serverPlayer){
-               if(GetModifierLevel.curioHasModifierLevel(serverPlayer, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||GetModifierLevel.equipHasModifierLevel(serverPlayer, CtiModifiers.qcfStaticModifier.getId())){
-                   ci.cancel();
-               }
+        if (mob.getPersistentData().getInt("emp") > 0) {
+            ci.cancel();
+            return;
+        }
+        if (mob.getPersistentData().contains("cti:teleport_banner")) {
+            ci.cancel();
+            return;
+        }
+        if (!mob.level.isClientSide() && mob instanceof Mob mob1) {
+            var entity = mob1.getTarget();
+            if (entity instanceof ServerPlayer serverPlayer) {
+                if (GetModifierLevel.curioHasModifierLevel(serverPlayer, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.equipHasModifierLevel(serverPlayer, CtiModifiers.qcfStaticModifier.getId())) {
+                    ci.cancel();
+                }
             }
         }
     }
-    @Inject(method = "onAttackedByOthers",at = @At("HEAD"), cancellable = true)
-    private void onAttack(int level, LivingEntity entity, LivingAttackEvent event, CallbackInfo ci){
-        var entity1=event.getSource().getEntity();
-        if(entity1 instanceof LivingEntity lv){
-            if(GetModifierLevel.curioHasModifierLevel(lv, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||GetModifierLevel.equipHasModifierLevel(lv, CtiModifiers.qcfStaticModifier.getId())){
+
+    @Inject(method = "onAttackedByOthers", at = @At("HEAD"), cancellable = true)
+    private void onAttack(int level, LivingEntity entity, LivingAttackEvent event, CallbackInfo ci) {
+        if (entity.getPersistentData().contains("cti:teleport_banner")) {
+            ci.cancel();
+            return;
+        }
+        if (entity.getPersistentData().getInt("emp") > 0) {
+            ci.cancel();
+            return;
+        }
+        var attacker = event.getSource().getEntity();
+        if (attacker instanceof LivingEntity lv) {
+            if (GetModifierLevel.curioHasModifierLevel(lv, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId()) || GetModifierLevel.equipHasModifierLevel(lv, CtiModifiers.qcfStaticModifier.getId())) {
                 ci.cancel();
             }
         }

@@ -6,15 +6,19 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
 @Mixin(AbstractArrow.class)
 public abstract class AbstractArrowMixin extends Projectile {
+    @Shadow public abstract double getBaseDamage();
+
     protected AbstractArrowMixin(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -54,6 +58,10 @@ public abstract class AbstractArrowMixin extends Projectile {
         if(cti_new$targetUUID==null){
             cti_new$targetUUID=entity.getUUID();
         }
+    }
+    @ModifyArg(method = "onHitEntity" ,at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Mth;clamp(DDD)D"),index = 0)
+    private double set(double pValue){
+        return getBaseDamage();
     }
     @Inject(at = @At("HEAD"),method = "setBaseDamage", cancellable = true)
     private void set(double pBaseDamage, CallbackInfo ci){

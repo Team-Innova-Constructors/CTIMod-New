@@ -32,7 +32,11 @@ public class StarBless extends Modifier implements DamageBlockModifierHook , Mod
         var owner=equipmentContext.getEntity();
         if(!(attacker instanceof LivingEntity living))return false;
         int level=DifficultyLevel.ofAny(living);
-        return level < owner.getArmorValue() + owner.getMaxHealth();
+        var total=owner.getArmorValue() + owner.getMaxHealth();
+        if(total>5000){
+            total=5000;
+        }
+        return level < total;
     }
 
     @Override

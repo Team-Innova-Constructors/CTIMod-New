@@ -13,6 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.ToolDamageModifierHook;
@@ -36,7 +37,7 @@ public class Refined extends EtSTBaseModifier implements VolatileDataModifierHoo
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
         hookBuilder.addHook(this, ModifierHooks.TOOL_DAMAGE, ModifierHooks.VOLATILE_DATA);
-        hookBuilder.addModule(new ArmorLevelModule(KEY_REFINE, false, null));
+        hookBuilder.addModule(new ArmorLevelModule(KEY_REFINE, false, TinkerTags.Items.HELD));
     }
 
     public static final TinkerDataCapability.TinkerDataKey<Integer> KEY_REFINE = TinkerDataCapability.TinkerDataKey.of(Cti.getResource("refined"));

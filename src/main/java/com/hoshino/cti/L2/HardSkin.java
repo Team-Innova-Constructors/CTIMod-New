@@ -6,7 +6,7 @@ import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import net.minecraft.world.entity.Mob;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 
 public class HardSkin extends MobTrait {
@@ -15,7 +15,7 @@ public class HardSkin extends MobTrait {
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGHEST, this::LivingDamageEvent);
     }
 
-    private void LivingDamageEvent(LivingDamageEvent event) {
+    private void LivingDamageEvent(LivingHurtEvent event) {
         var source = event.getSource();
         var target = event.getEntity();
         if (target instanceof Mob mob) {
@@ -27,6 +27,9 @@ public class HardSkin extends MobTrait {
                 if(level==0)return;
                 if (source.isBypassArmor()) {
                     blockAmount /= 4;
+                }
+                if(blockAmount>500){
+                    blockAmount=500;
                 }
                 event.setAmount(Math.max(0,event.getAmount() - blockAmount));
             }

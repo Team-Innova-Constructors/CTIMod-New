@@ -10,6 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.behavior.RepairFactorModifierHook;
@@ -54,7 +55,7 @@ public class IndustrialArmor extends EtSTBaseModifier implements VolatileDataMod
         builder.addHook(this, ModifierHooks.VOLATILE_DATA);
         builder.addHook(this,ModifierHooks.TOOL_DAMAGE);
         builder.addHook(this,ModifierHooks.REPAIR_FACTOR);
-        builder.addModule(new ArmorLevelModule(KEY_INDUSTRIAL,false,null));
+        builder.addModule(new ArmorLevelModule(KEY_INDUSTRIAL,false, TinkerTags.Items.HELD));
     }
 
     @Override

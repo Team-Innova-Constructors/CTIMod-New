@@ -67,6 +67,7 @@
     "IPMixin.ProjectorItemMixin",
     "L2.AdaptingMixin",
     "L2.AttackListenerMixin",
+    "L2.BulletTypeMixin",
     "L2.CorrosionTraitMixin",
     "L2.CsTraitMixin",
     "L2.CurseMixin",

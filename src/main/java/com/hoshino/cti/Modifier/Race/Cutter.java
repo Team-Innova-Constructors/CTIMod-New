@@ -20,10 +20,11 @@ public class Cutter extends Modifier implements MeleeHitModifierHook{
 
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
-        if(context.isFullyCharged()){
-            var target=context.getLivingTarget();
-            var attacker=context.getPlayerAttacker();
-            if(target==null||attacker==null)return;
+        if (context.isFullyCharged()) {
+            var target = context.getLivingTarget();
+            var attacker = context.getPlayerAttacker();
+            if (target == null || attacker == null) return;
+            if(target.getArmorValue()<10)return;
             var maxArmorAttr = target.getAttribute(Attributes.ARMOR);
             if (maxArmorAttr != null) {
                 var modifierId = CommonUtil.UUIDFromAnyString("cutter");
@@ -31,10 +32,13 @@ public class Cutter extends Modifier implements MeleeHitModifierHook{
                 int currentStacks = nbt.getInt("CutterArmorDebuffStacks") + modifier.getLevel();
                 nbt.putInt("CutterArmorDebuffStacks", currentStacks);
                 double totalReduction = -0.06 * currentStacks;
-                var attModifier = new AttributeModifier(modifierId, "cutter", totalReduction, AttributeModifier.Operation.MULTIPLY_TOTAL);
-                if (maxArmorAttr.hasModifier(attModifier)) {
-                    maxArmorAttr.removeModifier(attModifier);
+                if(totalReduction<-1){
+                    totalReduction=-1;
                 }
+                if (maxArmorAttr.getModifier(modifierId) != null) {
+                    maxArmorAttr.removeModifier(modifierId);
+                }
+                var attModifier = new AttributeModifier(modifierId, "cutter", totalReduction, AttributeModifier.Operation.MULTIPLY_TOTAL);
                 maxArmorAttr.addTransientModifier(attModifier);
             }
         }

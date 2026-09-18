@@ -18,6 +18,10 @@ public class CsTraitMixin {
     @Inject(method = "tick",at = @At(value = "INVOKE", target = "Ljava/util/UUID;equals(Ljava/lang/Object;)Z"), cancellable = true,remap = false)
     private void tick(LivingEntity le, int level, CallbackInfo ci){
         if(le instanceof Mob mob){
+            if(mob.getPersistentData().getInt("emp")>0){
+                ci.cancel();
+                return;
+            }
             if(mob.getTarget() instanceof Player player){
                 if(GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId())||mob.hasEffect(MobEffects.WEAKNESS)){
                     ci.cancel();

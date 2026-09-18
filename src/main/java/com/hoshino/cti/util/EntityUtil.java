@@ -41,21 +41,24 @@ public class EntityUtil {
         projectile.setDeltaMovement(newMovement);
     }
     public static boolean hasAlGlass(LivingEntity entity) {
-        int minX = Mth.floor(entity.getX() - 6);
-        int maxX = Mth.floor(entity.getX() + 6);
-        int minZ = Mth.floor(entity.getZ() - 6);
-        int maxZ = Mth.floor(entity.getZ() + 6);
-        int y = Mth.floor(entity.getY() - 1);
-
+        int radius = 6;
+        int verticalRange = 6;
+        int minX = Mth.floor(entity.getX() - radius);
+        int maxX = Mth.floor(entity.getX() + radius);
+        int minZ = Mth.floor(entity.getZ() - radius);
+        int maxZ = Mth.floor(entity.getZ() + radius);
+        int minY = Mth.floor(entity.getY() - verticalRange);
+        int maxY = Mth.floor(entity.getY() + verticalRange);
         var level = entity.level;
         var targetBlock = CtiBlock.aluminium_glass.get();
-
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
         for (int x = minX; x <= maxX; x++) {
-            for (int z = minZ; z <= maxZ; z++) {
-                mutablePos.set(x, y, z);
-                if (level.getBlockState(mutablePos).getBlock() == targetBlock) {
-                    return true;
+            for (int y = minY; y <= maxY; y++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    mutablePos.set(x, y, z);
+                    if (level.getBlockState(mutablePos).getBlock() == targetBlock) {
+                        return true;
+                    }
                 }
             }
         }

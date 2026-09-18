@@ -57,8 +57,11 @@ public class NaturePower extends Modifier implements InventoryTickModifierHook, 
 
     @Override
     public float modifyDamageTaken(IToolStackView iToolStackView, ModifierEntry modifierEntry, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float v, boolean b) {
-        if (getNaturePower(iToolStackView) > 40 && (damageSource.isMagic() || damageSource.isExplosion())) {
-            return 0.4f * v;
+        if ((damageSource.isMagic() || damageSource.isExplosion())) {
+            return 0.8f * v;
+        }
+        if (getNaturePower(iToolStackView) > 40) {
+            return v * 0.4f;
         }
         return v;
     }

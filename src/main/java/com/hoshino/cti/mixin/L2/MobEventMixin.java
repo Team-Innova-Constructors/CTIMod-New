@@ -30,10 +30,6 @@ public class MobEventMixin {
             remap = false
     )
     private static boolean cti$addExtraItemCheck(LivingEntity entity, Item item) {
-        boolean hasOriginal = CurioCompat.hasItem(entity, item);
-        boolean hasNewItem = CurioCompat.hasItem(entity, LHItems.NIDHOGGUR.get());
-        boolean hasRuler= GetModifierLevel.getSlotModifierLevel(entity,new ModifierId("solidarytinker:reality_ruler"), EquipmentSlot.MAINHAND)>0;
-        if(hasOriginal||hasNewItem)return false;
-        return !hasRuler;
+       return true;
     }
 }

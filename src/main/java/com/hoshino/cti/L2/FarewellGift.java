@@ -48,7 +48,9 @@ public class FarewellGift extends LegendaryTrait {
                 var mobLevel= DifficultyLevel.ofAny(mob);
                 var extraScale=1+mobLevel * 0.005f;
                 var distance=player.distanceTo(target);
-                if (distance>15)return;
+                if(distance<0){
+                    distance=0;
+                }
 
                 var scale=Math.max(1,15-distance)/15f;
                 boolean shouldCost=true;
@@ -62,7 +64,7 @@ public class FarewellGift extends LegendaryTrait {
                     player.setHealth(Math.max(0.1f, player.getHealth() - healthCost));
                 }
                 cap.traitEvent((k, v) -> k.postHurtImpl(level, mob, player));
-
+                if (distance>15)return;
                 player.invulnerableTime=0;
                 player.hurt(gift,mob.getMaxHealth() * 0.05f * level * scale* extraScale);
                 player.level.playSound(null,player.getOnPos(), CtiSounds.farewell_gift.get(), SoundSource.VOICE,1,1);

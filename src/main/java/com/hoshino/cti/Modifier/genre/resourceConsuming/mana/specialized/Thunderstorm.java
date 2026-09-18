@@ -11,7 +11,7 @@ import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.SpecializedBur
 import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.ParticleContext;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;

@@ -4,7 +4,7 @@ import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.SpecializedBur
 import com.hoshino.cti.integration.botania.api.CtiBotModifierHooks;
 import com.hoshino.cti.integration.botania.api.hook.ModifyBurstModifierHook;
 import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;

@@ -4,7 +4,7 @@ package com.hoshino.cti.Modifier.Contributors;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiEffects;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

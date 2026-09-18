@@ -2,8 +2,6 @@ package com.hoshino.cti.Modifier.Replace;
 
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.util.CommonUtil;
-import com.james.tinkerscalibration.TinkersCalibration;
-import com.marth7th.solidarytinker.util.MathUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;

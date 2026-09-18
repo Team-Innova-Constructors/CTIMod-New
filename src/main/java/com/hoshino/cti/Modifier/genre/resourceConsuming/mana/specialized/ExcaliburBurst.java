@@ -7,7 +7,7 @@ import com.hoshino.cti.integration.botania.api.interfaces.IManaBurstExtra;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.base.SpecializedBurstModifier;
 import com.hoshino.cti.util.EntityInRangeUtil;
 import com.hoshino.cti.util.ProjectileUtil;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;

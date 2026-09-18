@@ -3,9 +3,8 @@ package com.hoshino.cti.Modifier.Contributors;
 
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiEffects;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -32,7 +30,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.hoshino.cti.register.CtiModifiers.curvemapping;
-import static com.hoshino.cti.register.CtiModifiers.kingdomofnumbers;
 
 public class CurveMapping extends BattleModifier {
     public CurveMapping() {

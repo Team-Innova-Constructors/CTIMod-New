@@ -2,14 +2,11 @@ package com.hoshino.cti.Modifier.Replace;
 
 import com.hoshino.cti.register.CtiItem;
 import com.marth7th.solidarytinker.extend.superclass.BattleModifier;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 

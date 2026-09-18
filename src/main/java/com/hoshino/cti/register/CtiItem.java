@@ -22,7 +22,7 @@ import com.hoshino.cti.Items.pncMinigunAmmo.UltraDenseAmmo;
 import com.hoshino.cti.integration.ArsNouveau.ElementalSummonRitual;
 import com.hoshino.cti.integration.ArsNouveau.MeteorShowerRitual;
 import com.hoshino.cti.integration.botania.tool.DummyToolManaLens;
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistries;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistry;

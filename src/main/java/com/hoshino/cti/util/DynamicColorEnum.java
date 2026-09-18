@@ -1,6 +1,6 @@
 package com.hoshino.cti.util;
 
-import com.marth7th.solidarytinker.util.compound.DynamicComponentUtil;
+import com.marth7th.solidarytinker.Util.Compound.DynamicComponentUtil;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

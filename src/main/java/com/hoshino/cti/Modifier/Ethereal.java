@@ -1,7 +1,6 @@
 package com.hoshino.cti.Modifier;
 
 import com.hoshino.cti.util.CommonUtil;
-import com.marth7th.solidarytinker.util.MathUtil;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;

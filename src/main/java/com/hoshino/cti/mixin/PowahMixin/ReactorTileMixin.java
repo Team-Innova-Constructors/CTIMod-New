@@ -90,7 +90,7 @@ public abstract class ReactorTileMixin extends AbstractEnergyProvider<ReactorBlo
             }
         }
         if (!this.solidCoolant.isEmpty()) {
-            if (!this.tank.isEmpty() && generating && this.ticks % 40 == 0) {
+            if (generating && this.ticks % 40 == 0) {
                 this.solidCoolant.back();
                 if (this.solidCoolant.isEmpty()) this.solidCoolant.setMax(0.0F);
                 flag = true;

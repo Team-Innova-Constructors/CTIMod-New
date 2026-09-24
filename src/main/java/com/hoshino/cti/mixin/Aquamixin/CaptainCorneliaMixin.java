@@ -44,7 +44,7 @@ public abstract class CaptainCorneliaMixin extends Monster {
     @Unique
     private static EntityDamageSource cti_new$KNLY(LivingEntity entity) {
         var s = new EntityDamageSource("keniliyahurt", entity);
-        s.bypassArmor().bypassMagic().bypassEnchantments().bypassInvul();
+        s.bypassArmor().bypassMagic();
         return s;
     }
 

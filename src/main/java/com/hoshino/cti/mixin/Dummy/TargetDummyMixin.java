@@ -16,6 +16,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.util.FakePlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -44,7 +45,7 @@ public abstract class TargetDummyMixin extends Mob {
     }
     @Inject(method = "tick",at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;displayClientMessage(Lnet/minecraft/network/chat/Component;Z)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void summon(CallbackInfo ci, BlockPos onPos, BlockState onState, CombatTracker tracker, float combatDuration, CommonConfigs.DpsMode dpsMode, boolean dynamic, float seconds, float dps, List outOfCombat, Iterator var10, Map.Entry e, ServerPlayer p, int timer, boolean showMessage){
-        if (this.lastHurtByPlayer != null && dps > 735560.8 && this.lastHurtByPlayer.distanceTo(this) < 4) {
+        if (this.lastHurtByPlayer != null&& !(this.lastHurtByPlayer instanceof FakePlayer) && dps > 735560.8 && this.lastHurtByPlayer.distanceTo(this) < 4) {
             var count=(int) (Math.min(128,dps/735560.8));
             var stack=new ItemStack(LCItems.SPACE_SHARD.get(),count);
             ItemEntity shard = new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), stack);

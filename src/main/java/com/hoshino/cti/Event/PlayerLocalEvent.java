@@ -1,5 +1,6 @@
 package com.hoshino.cti.Event;
 
+import cofh.thermal.lib.item.AugmentItem;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Items.SlimeCanItem;
 import com.hoshino.cti.client.cache.ExposedDelay;
@@ -18,6 +19,8 @@ import slimeknights.mantle.client.TooltipKey;
 
 import java.util.List;
 
+import static com.hoshino.cti.util.CommonUtil.TAG_MACHINE_PARALLEL;
+
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class PlayerLocalEvent {
     @SubscribeEvent
@@ -34,6 +37,11 @@ public class PlayerLocalEvent {
             } else {
                 event.getToolTip().add(Component.translatable("etshtinker.item.tooltip.shift").withStyle(ChatFormatting.YELLOW));
             }
+        }
+        if (event.getItemStack().getItem() instanceof AugmentItem augmentItem){
+            var data = augmentItem.getAugmentData(event.getItemStack());
+            if (data!=null&&data.contains(TAG_MACHINE_PARALLEL))
+                event.getToolTip().add(Component.literal("不要在机器与pipez管道相连时更换此组件，否则会导致崩溃！").withStyle(ChatFormatting.RED));
         }
         var item = event.getItemStack().getItem();
         var player = event.getEntity();

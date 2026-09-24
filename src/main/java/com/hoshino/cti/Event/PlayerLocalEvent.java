@@ -1,5 +1,6 @@
 package com.hoshino.cti.Event;
 
+import cofh.core.item.IAugmentItem;
 import cofh.thermal.lib.item.AugmentItem;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Items.SlimeCanItem;
@@ -38,7 +39,7 @@ public class PlayerLocalEvent {
                 event.getToolTip().add(Component.translatable("etshtinker.item.tooltip.shift").withStyle(ChatFormatting.YELLOW));
             }
         }
-        if (event.getItemStack().getItem() instanceof AugmentItem augmentItem){
+        if (event.getItemStack().getItem() instanceof IAugmentItem augmentItem){
             var data = augmentItem.getAugmentData(event.getItemStack());
             if (data!=null&&data.contains(TAG_MACHINE_PARALLEL))
                 event.getToolTip().add(Component.literal("不要在机器与pipez管道相连时更换此组件，否则会导致崩溃！").withStyle(ChatFormatting.RED));

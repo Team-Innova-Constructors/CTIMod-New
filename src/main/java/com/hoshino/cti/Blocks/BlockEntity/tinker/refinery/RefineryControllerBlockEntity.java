@@ -9,6 +9,8 @@ import com.hoshino.cti.register.CtiBlockEntityType;
 import com.hoshino.cti.util.ConditionalOreRate;
 import com.hoshino.cti.util.ICtiMeltingModule;
 import com.hoshino.cti.util.ICtiMeltingRecipe;
+import lombok.Getter;
+import lombok.Setter;
 import me.desht.pneumaticcraft.api.PNCCapabilities;
 import me.desht.pneumaticcraft.api.pressure.PressureTier;
 import me.desht.pneumaticcraft.common.capabilities.MachineAirHandler;
@@ -19,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -39,7 +42,11 @@ import slimeknights.tconstruct.smeltery.block.entity.module.MeltingModuleInvento
 import slimeknights.tconstruct.smeltery.block.entity.multiblock.HeatingStructureMultiblock;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity implements IMachineAirHandlerProvider {
     protected RefineryControllerBlockEntity(BlockEntityType<? extends HeatingStructureBlockEntity> type, BlockPos pos, BlockState state, Component name) {
@@ -50,6 +57,7 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
     }
     public static final String KEY_AIR = "air";
     public float lastPressure = 0;
+    public Map<Item,RefineryRecipeCache> cacheMap = new HashMap<>();
 
 
 
@@ -128,14 +136,33 @@ public class RefineryControllerBlockEntity extends HeatingStructureBlockEntity i
                 }
             }
         }
+
+        @Override
+        public void setStackInSlot(int slot, ItemStack stack) {
+            super.setStackInSlot(slot, stack);
+        }
     }
+    public static class RefineryMeltingModule extends MeltingModule {
+        public RefineryMeltingModule(MantleBlockEntity parent, Predicate<IMeltingRecipe> outputFunction, IOreRate oreRate, int slotIndex) {
+            super(parent, outputFunction, oreRate, slotIndex);
+        }
+    }
+
+    public record RefineryRecipeCache(IMeltingRecipe recipe,long timeStamp){}
 
     @Override
     protected void serverTick(Level level, BlockPos pos, BlockState state) {
         super.serverTick(level, pos, state);
         this.machineAirHandler.tick(this);
-        if (level.getGameTime()%10==0)
+        if (level.getGameTime()%20==0){
             PAirHandlerSyncS2C.syncAirToClient(this);
+            List.copyOf(this.cacheMap.keySet()).forEach(item ->{
+                Optional.ofNullable(this.cacheMap.get(item)).ifPresent(refineryRecipeCache ->{
+                    if (refineryRecipeCache.timeStamp()-level.getGameTime()>100)
+                        this.cacheMap.remove(item);
+                });
+            });
+        }
     }
 
     @Override

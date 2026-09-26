@@ -253,6 +253,8 @@ public class CtiModifiers {
     public static final StaticModifier<Coordinator> COORDINATOR = MODIFIERS.register("coordinator", Coordinator::new);
     public static final StaticModifier<ReplacedPhantomForged> PHANTOM_FORGED = MODIFIERS.register("phantom_forged", ReplacedPhantomForged::new);
     public static final StaticModifier<LuckCharming> LUCK_CHARMING = MODIFIERS.register("luck_charming", LuckCharming::new);
+    public static final StaticModifier<PlateSmashing> PLATE_SMASHING = MODIFIERS.register("plate_smashing", PlateSmashing::new);
+
 
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
     public static final StaticModifier<Fragment> FRAGMENT_STATIC_MODIFIER = MODIFIERS.register("fragment", Fragment::new);

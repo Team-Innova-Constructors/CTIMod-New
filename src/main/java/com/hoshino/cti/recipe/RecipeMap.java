@@ -475,4 +475,25 @@ public class RecipeMap {
         }
         return REACTIVE_FLOWER_RECIPE_HASH_MAP;
     }
+
+    public static final HashMap<Item,PlateSmashRecipe> PLATE_SMASH_RECIPE_HASH_MAP = new HashMap<>();
+
+    private static PlateSmashRecipe createPlateSmashRecipe(String itemId, String outputItem){
+        var itemLocation = new ResourceLocation(itemId);
+        return new PlateSmashRecipe(Cti.getResource("tool_plate_smash_"+itemLocation.getNamespace()+"_"+itemLocation.getPath()),itemFromId(outputItem),itemFromId(itemId));
+    }
+    private static void addPlateSmashRecipe(String itemId, String outputItem){
+        PLATE_SMASH_RECIPE_HASH_MAP.put(itemFromId(itemId),createPlateSmashRecipe(itemId,outputItem));
+    }
+
+    public static HashMap<Item,PlateSmashRecipe> getPlateSmashRecipes(){
+        if (PLATE_SMASH_RECIPE_HASH_MAP.isEmpty()){
+            List.of("tin","nickel","silver","electrum","invar","bronze","lead","constantan","signalum","lumium","enderium").forEach(str->
+                    addPlateSmashRecipe("thermal:"+str+"_block","thermal:"+str+"_plate"));
+            List.of("gold","iron","copper","netherite").forEach(str->
+                    addPlateSmashRecipe("minecraft:"+str+"_block","thermal:"+str+"_plate"));
+            addPlateSmashRecipe("immersiveengineering:storage_steel","thermal:steel_plate");
+        }
+        return PLATE_SMASH_RECIPE_HASH_MAP;
+    }
 }

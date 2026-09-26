@@ -10,7 +10,9 @@ import com.hoshino.cti.Cti;
 import com.hoshino.cti.integration.jei.*;
 import com.hoshino.cti.recipe.*;
 import com.hoshino.cti.register.CtiItem;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.BiomeUtil;
+import com.hoshino.cti.util.CommonUtil;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -21,11 +23,15 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.recipe.fuel.MeltingFuel;
+import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 import slimeknights.tconstruct.plugin.jei.TConstructJEIConstants;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tools.TinkerTools;
 
 import java.util.List;
 
@@ -39,6 +45,8 @@ public class JEIPlugin implements IModPlugin {
     public static RecipeType<MeltingFuel> MELTING_FUEL = new RecipeType<>(MeltingFuelRecipeCategory.UID, MeltingFuel.class);
     public static RecipeType<AnnihilationPanelRecipe> PANEL_RECIPE = new RecipeType<>(AnnihilationPanelRecipeCategory.UID, AnnihilationPanelRecipe.class);
     public static RecipeType<ReactiveFlowerRecipe> REACTIVE_FLOWER = new RecipeType<>(ReactiveFlowerRecipeCategory.UID, ReactiveFlowerRecipe.class);
+    public static RecipeType<CursedDropRecipe> CURSED_DROPS = new RecipeType<>(CursedDropRecipeCategory.UID, CursedDropRecipe.class);
+    public static RecipeType<PlateSmashRecipe> PLATE_SMASH = new RecipeType<>(ToolPlateSmashRecipeCategory.UID, PlateSmashRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -55,6 +63,8 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new MeltingFuelRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new AnnihilationPanelRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ReactiveFlowerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new CursedDropRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ToolPlateSmashRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -72,6 +82,8 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(NEUTRON_COLLECTING, neutronCollecting);
         registration.addRecipes(PANEL_RECIPE,panelRecipes);
         registration.addRecipes(REACTIVE_FLOWER,reactiveFlowerRecipes);
+        registration.addRecipes(CURSED_DROPS,CursedDropRecipe.createAll());
+        registration.addRecipes(PLATE_SMASH,List.copyOf(RecipeMap.getPlateSmashRecipes().values()));
 
         if (Minecraft.getInstance().level != null) {
             List<MineralMix> mineralMixes = Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(IERecipeTypes.MINERAL_MIX.get());
@@ -107,8 +119,14 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(etshtinkerItems.constrained_plasma_saber.get()), MELTING_FUEL);
         registration.addRecipeCatalyst(new ItemStack(CtiItem.meteorium_plane.get()), PANEL_RECIPE);
         registration.addRecipeCatalyst(new ItemStack(AEParts.ANNIHILATION_PLANE.m_5456_()), PANEL_RECIPE);
+        Item cursedRing = CommonUtil.itemFromId("enigmaticlegacy:cursed_ring");
+        if (cursedRing != null) {
+            registration.addRecipeCatalyst(new ItemStack(cursedRing), CURSED_DROPS);
+        }
         registration.addRecipeCatalyst(new ItemStack(CtiItem.REFINER_CONTROLLER.get()),MELTING_FUEL);
         registration.addRecipeCatalyst(new ItemStack(CtiItem.REFINER_CONTROLLER.get()), TConstructJEIConstants.FOUNDRY);
+        registration.addRecipeCatalyst(IModifiableDisplay.getDisplayStack(TinkerTools.sledgeHammer.asItem()),PLATE_SMASH);
+        registration.addRecipeCatalyst(TConstructJEIConstants.MODIFIER_TYPE,new ModifierEntry(CtiModifiers.PLATE_SMASHING,1),PLATE_SMASH);
     }
 
 

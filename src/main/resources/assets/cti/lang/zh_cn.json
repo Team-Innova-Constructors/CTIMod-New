@@ -1558,6 +1558,10 @@
   "modifier.cti.phantom_forged.flavor": "魂锻之艺",
   "modifier.cti.phantom_forged.description":"挥舞武器时，令幻灵剑从敌人头顶坠落，造成25%玩家攻击伤害的穿甲伤害。\n §3·§r真近战攻击时，增加召唤幻灵剑的数量。",
 
+  "modifier.cti.plate_smashing": "工程师大锤",
+  "modifier.cti.plate_smashing.flavor": "大锤80小锤40",
+  "modifier.cti.plate_smashing.description":"挖掘金属方块时，将其砸成板",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",

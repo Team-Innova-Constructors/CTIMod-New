@@ -67,7 +67,6 @@ public class FlatWorldTabletItem extends Item {
     @Override
     public void appendHoverText(ItemStack p_40572_, @Nullable Level p_40573_, List<Component> list, TooltipFlag p_40575_) {
         list.add(Component.literal("长按右键时将你传送至一个只有一层基岩的永夜超平坦维度，再次长按右键传送回主世界。").withStyle(ChatFormatting.AQUA));
-        list.add(Component.literal("你会被传送至高空，如果没有任何防护措施的话你会摔死！").withStyle(ChatFormatting.RED));
         super.appendHoverText(p_40572_, p_40573_, list, p_40575_);
     }
 }

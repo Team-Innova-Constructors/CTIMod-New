@@ -88,7 +88,6 @@ public class TrinityBlessing extends EtSTBaseModifier implements ToolStatsModifi
             ToolStats.ATTACK_DAMAGE.multiply(builder, Math.pow(1.67, modifier.getLevel()));
             ToolStats.ACCURACY.multiply(builder, Math.pow(1.67, modifier.getLevel()));
             ToolStats.DRAW_SPEED.multiply(builder, Math.pow(1.67, modifier.getLevel()));
-            ToolStats.VELOCITY.multiply(builder, Math.pow(1.67, modifier.getLevel()));
             ToolStats.MINING_SPEED.multiply(builder, Math.pow(1.67, modifier.getLevel()));
             ToolStats.ARMOR.multiply(builder, Math.pow(1.67, modifier.getLevel()));
             ToolStats.ARMOR_TOUGHNESS.multiply(builder, Math.pow(1.67, modifier.getLevel()));
@@ -106,7 +105,6 @@ public class TrinityBlessing extends EtSTBaseModifier implements ToolStatsModifi
             ToolStats.ATTACK_DAMAGE.multiply(builder, Math.pow(3.33, modifier.getLevel()));
             ToolStats.ACCURACY.multiply(builder, Math.pow(3.33, modifier.getLevel()));
             ToolStats.DRAW_SPEED.multiply(builder, Math.pow(3.33, modifier.getLevel()));
-            ToolStats.VELOCITY.multiply(builder, Math.pow(3.33, modifier.getLevel()));
             ToolStats.MINING_SPEED.multiply(builder, Math.pow(3.33, modifier.getLevel()));
             ToolStats.ARMOR.multiply(builder, Math.pow(3.33, modifier.getLevel()));
             ToolStats.ARMOR_TOUGHNESS.multiply(builder, Math.pow(3.33, modifier.getLevel()));

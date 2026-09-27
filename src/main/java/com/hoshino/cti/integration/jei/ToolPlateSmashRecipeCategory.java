@@ -14,6 +14,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import static com.hoshino.cti.Plugin.JEIPlugin.PLATE_SMASH;
@@ -31,9 +32,12 @@ public class ToolPlateSmashRecipeCategory implements IRecipeCategory<PlateSmashR
     private final IDrawable background;
     @Getter
     private final IDrawable icon;
-    public ToolPlateSmashRecipeCategory(IGuiHelper helper) {
+    public ToolPlateSmashRecipeCategory(IGuiHelper helper,ItemStack icon) {
         this.background = helper.createDrawable(BACKGROUND_LOC, 0, 78, 100, 38);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, TinkerTools.sledgeHammer.get().getRenderTool());
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, icon);
+    }
+    public ToolPlateSmashRecipeCategory(IGuiHelper helper){
+        this(helper, IModifiableDisplay.getDisplayStack(TinkerTools.sledgeHammer.asItem()));
     }
 
     @Override

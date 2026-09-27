@@ -476,6 +476,7 @@ public class RecipeMap {
         return REACTIVE_FLOWER_RECIPE_HASH_MAP;
     }
 
+
     public static final HashMap<Item,PlateSmashRecipe> PLATE_SMASH_RECIPE_HASH_MAP = new HashMap<>();
 
     private static PlateSmashRecipe createPlateSmashRecipe(String itemId, String outputItem){
@@ -495,5 +496,25 @@ public class RecipeMap {
             addPlateSmashRecipe("immersiveengineering:storage_steel","thermal:steel_plate");
         }
         return PLATE_SMASH_RECIPE_HASH_MAP;
+    }
+
+
+    public static final HashMap<Item,PlateSmashRecipe> CIRCUIT_CUTTING_RECIPE = new HashMap<>();
+    private static PlateSmashRecipe createCircuitCuttingRecipe(String itemId, String outputItem){
+        var itemLocation = new ResourceLocation(itemId);
+        return new PlateSmashRecipe(Cti.getResource("tool_circuit_cut_"+itemLocation.getNamespace()+"_"+itemLocation.getPath()),itemFromId(outputItem),itemFromId(itemId));
+    }
+    private static void addCircuitCuttingRecipe(String itemId, String outputItem){
+        CIRCUIT_CUTTING_RECIPE.put(itemFromId(itemId),createPlateSmashRecipe(itemId,outputItem));
+    }
+    public static HashMap<Item,PlateSmashRecipe> getCircuitCuttingRecipes(){
+        if (CIRCUIT_CUTTING_RECIPE.isEmpty()){
+            addCircuitCuttingRecipe("kubejs:silicon_block","ae2:printed_silicon");
+            addCircuitCuttingRecipe("kubejs:dense_certus_block","ae2:printed_calculation_processor");
+            addCircuitCuttingRecipe("minecraft:diamond_block","ae2:printed_engineering_processor");
+            addCircuitCuttingRecipe("minecraft:gold_block","ae2:printed_logic_processor");
+            addCircuitCuttingRecipe("mekanism:block_osmium","mekanism:basic_control_circuit");
+        }
+        return CIRCUIT_CUTTING_RECIPE;
     }
 }

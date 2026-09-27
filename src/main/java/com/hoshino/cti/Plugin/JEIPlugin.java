@@ -47,6 +47,7 @@ public class JEIPlugin implements IModPlugin {
     public static RecipeType<ReactiveFlowerRecipe> REACTIVE_FLOWER = new RecipeType<>(ReactiveFlowerRecipeCategory.UID, ReactiveFlowerRecipe.class);
     public static RecipeType<CursedDropRecipe> CURSED_DROPS = new RecipeType<>(CursedDropRecipeCategory.UID, CursedDropRecipe.class);
     public static RecipeType<PlateSmashRecipe> PLATE_SMASH = new RecipeType<>(ToolPlateSmashRecipeCategory.UID, PlateSmashRecipe.class);
+    public static RecipeType<PlateSmashRecipe> CIRCUIT_CUTTING = new RecipeType<>(ToolCircuitCuttingRecipeCategory.UID, PlateSmashRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -65,6 +66,7 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new ReactiveFlowerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CursedDropRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ToolPlateSmashRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ToolCircuitCuttingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -84,6 +86,7 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(REACTIVE_FLOWER,reactiveFlowerRecipes);
         registration.addRecipes(CURSED_DROPS,CursedDropRecipe.createAll());
         registration.addRecipes(PLATE_SMASH,List.copyOf(RecipeMap.getPlateSmashRecipes().values()));
+        registration.addRecipes(CIRCUIT_CUTTING,List.copyOf(RecipeMap.getCircuitCuttingRecipes().values()));
 
         if (Minecraft.getInstance().level != null) {
             List<MineralMix> mineralMixes = Minecraft.getInstance().level.getRecipeManager().getAllRecipesFor(IERecipeTypes.MINERAL_MIX.get());
@@ -127,6 +130,8 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(CtiItem.REFINER_CONTROLLER.get()), TConstructJEIConstants.FOUNDRY);
         registration.addRecipeCatalyst(IModifiableDisplay.getDisplayStack(TinkerTools.sledgeHammer.asItem()),PLATE_SMASH);
         registration.addRecipeCatalyst(TConstructJEIConstants.MODIFIER_TYPE,new ModifierEntry(CtiModifiers.PLATE_SMASHING,1),PLATE_SMASH);
+        registration.addRecipeCatalyst(IModifiableDisplay.getDisplayStack(etshtinkerItems.constrained_plasma_saber.get()),CIRCUIT_CUTTING);
+        registration.addRecipeCatalyst(TConstructJEIConstants.MODIFIER_TYPE,new ModifierEntry(CtiModifiers.CIRCUIT_CUTTING,1),CIRCUIT_CUTTING);
     }
 
 

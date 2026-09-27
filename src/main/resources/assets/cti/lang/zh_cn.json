@@ -1562,6 +1562,10 @@
   "modifier.cti.plate_smashing.flavor": "大锤80小锤40",
   "modifier.cti.plate_smashing.description":"挖掘金属方块时，将其砸成板",
 
+  "modifier.cti.circuit_cutting": "电路板切割机",
+  "modifier.cti.circuit_cutting.flavor": "一直切一直切",
+  "modifier.cti.circuit_cutting.description":"左键置物台，将其上摆放的块状原料切割为电路板",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",
@@ -1671,5 +1675,8 @@
   "info.cti.elemental.earth": "大地",
   "info.cti.elemental.blaze": "烈焰",
   "info.cti.elemental.aerial": "狂风",
-  "info.cti.elemental.ice": "凛冰"
+  "info.cti.elemental.ice": "凛冰",
+
+  "info.cti.tool_crafting.tool_plate_smashing": "工具砸板",
+  "info.cti.tool_crafting.circuit_cutting": "工具砸板"
 }

@@ -33,6 +33,6 @@ public class SlimyMana extends SpecializedBurstModifier implements ModifyBurstMo
     @Override
     public @NotNull Component getDisplayName(int level) {
         return DynamicComponentUtil.scrollColorfulText.getColorfulText(getTranslationKey(),null,
-                new int[]{0x8FFF91,0x8FFCFF,0xC78EFF,0xFFB889},10,150,true);
+                new int[]{0x8FFF91,0x8FFCFF,0xC78EFF,0xFFB889},25,100,true);
     }
 }

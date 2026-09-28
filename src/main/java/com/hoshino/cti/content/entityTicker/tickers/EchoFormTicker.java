@@ -3,7 +3,10 @@ package com.hoshino.cti.content.entityTicker.tickers;
 import com.c2h6s.etshtinker.tools.item.tinker.ConstrainedPlasmaSaber;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
+import com.obscuria.aquamirae.registry.AquamiraeSounds;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -23,6 +26,7 @@ public class EchoFormTicker extends EntityTicker {
             if (serverPlayer.getMainHandItem().getItem() instanceof ConstrainedPlasmaSaber)
                 ConstrainedPlasmaSaber.createSlash(serverPlayer);
             serverPlayer.attackStrengthTicker = strength;
+            serverPlayer.getLevel().playSound(null,serverPlayer, AquamiraeSounds.ENTITY_GOLDEN_MOTH_CATCH.get(), SoundSource.PLAYERS,1,1.2f);
         }
     }
 }

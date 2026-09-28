@@ -31,7 +31,7 @@ public class EchoForm extends NoLevelsModifier implements LeftClickModifierHook,
         if (!level.isClientSide&&player.getAttackStrengthScale(0)>0.8){
             var manager = EntityTickerManager.getInstance(player);
             if (!manager.hasTicker(CtiEntityTickers.ECHO_FORM.get())){
-                manager.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.ECHO_FORM.get(),player.attackStrengthTicker, (int) (CommonUtil.getPlayerAttackDelay(player) *0.5f)));
+                manager.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.ECHO_FORM.get(),player.attackStrengthTicker, (int) (CommonUtil.getPlayerAttackDelay(player) *0.33f)));
             }
         }
     }

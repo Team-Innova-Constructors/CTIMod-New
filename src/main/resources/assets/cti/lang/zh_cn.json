@@ -1566,6 +1566,10 @@
   "modifier.cti.circuit_cutting.flavor": "一直切一直切",
   "modifier.cti.circuit_cutting.description":"左键置物台，将其上摆放的块状原料切割为电路板",
 
+  "modifier.cti.birefringent": "双折",
+  "modifier.cti.birefringent.flavor": "魔法折射",
+  "modifier.cti.birefringent.description":"真近战攻击时有80%概率触发近战空挥时触发的效果，工具的近战伤害和攻击速度x0.9。",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",

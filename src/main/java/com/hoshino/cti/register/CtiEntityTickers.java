@@ -29,5 +29,5 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> FIERY_TOUCH_CD = ENTITY_TICKERS.register("fiery_touch_cd", EmptyTicker::new);
     public static final RegistryObject<EntityTicker> RUBY_LASER_CD = ENTITY_TICKERS.register("ruby_laser_cd", EmptyTicker::new);
     public static final RegistryObject<EntityTicker> REFLECT_TICKER = ENTITY_TICKERS.register("reflect_ticker", ReflectTicker::new);
-
+    public static final RegistryObject<EntityTicker> BIREFRINGENT_TICKER = ENTITY_TICKERS.register("birefringent_ticker", EchoFormTicker::new);
 }

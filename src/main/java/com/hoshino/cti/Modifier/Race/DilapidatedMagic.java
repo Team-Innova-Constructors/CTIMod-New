@@ -8,51 +8,54 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
-import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.armor.ModifyDamageModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.armor.OnAttackedModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.display.TooltipModifierHook;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.InventoryTickModifierHook;
+import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 import java.util.List;
 
-public class DilapidatedMagic extends Modifier implements ModifyDamageModifierHook, OnAttackedModifierHook , InventoryTickModifierHook , TooltipModifierHook {
-    private static final ResourceLocation COMPACT_TIME= Cti.getResource("compact_time_dilapidated");
+public class DilapidatedMagic extends NoLevelsModifier implements ModifyDamageModifierHook, OnAttackedModifierHook, InventoryTickModifierHook, TooltipModifierHook {
+    private static final ResourceLocation COMPACT_TIME = Cti.getResource("compact_time_dilapidated");
     private static final ResourceLocation DAMAGE_AB_AMOUNT = Cti.getResource("dilapidated_damage_ab_amount");
+
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
-        hookBuilder.addHook(this,ModifierHooks.MODIFY_DAMAGE,ModifierHooks.ON_ATTACKED,ModifierHooks.INVENTORY_TICK,ModifierHooks.TOOLTIP);
+        hookBuilder.addHook(this, ModifierHooks.MODIFY_DAMAGE, ModifierHooks.ON_ATTACKED, ModifierHooks.INVENTORY_TICK, ModifierHooks.TOOLTIP);
     }
+
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifierEntry, EquipmentContext equipmentContext, EquipmentSlot equipmentSlot, DamageSource damageSource, float amount, boolean isDirectDamage) {
-        if (damageSource.isMagic()) {
-            amount *= 0.6f;
+        var abAmount = amount;
+        if (damageSource.isMagic() || damageSource.isExplosion()) {
+            amount *= 0.88f;
+            abAmount = amount;
+            abAmount /= 2.5f;
         }
-        if(!damageSource.isMagic())return amount;
         var living = equipmentContext.getEntity();
         if (canProtect(tool, living)) {
             float lastAmount = getLastAmount(tool, living);
             float currentDamageAB = getDamageAB(tool);
-            if(damageSource.isMagic()||damageSource.isExplosion()){
-                amount/=4;
-            }
-            if (lastAmount > amount) {
-                setDamageAbAmount(tool, currentDamageAB + amount);
+            if (lastAmount > abAmount) {
+                setDamageAbAmount(tool, currentDamageAB + abAmount);
                 return 0;
             } else {
-                setDamageAbAmount(tool, living.getMaxHealth() * 1.6f);
-                living.level.playSound(null,living.getOnPos(), SoundEvents.ITEM_BREAK, SoundSource.AMBIENT,1,1.5f);
+                living.level.playSound(null, living.getOnPos(), SoundEvents.ITEM_BREAK, SoundSource.AMBIENT, 1, 1.5f);
+                setDamageAbAmount(tool, living.getMaxHealth() * 0.75f);
                 return amount - lastAmount;
             }
         }
@@ -76,6 +79,7 @@ public class DilapidatedMagic extends Modifier implements ModifyDamageModifierHo
             }
         }
     }
+
     private int getCooldown(IToolStackView view) {
         return view.getPersistentData().getInt(COMPACT_TIME);
     }
@@ -83,11 +87,13 @@ public class DilapidatedMagic extends Modifier implements ModifyDamageModifierHo
     private void setCooldown(IToolStackView view, int amount) {
         view.getPersistentData().putInt(COMPACT_TIME, amount);
     }
+
     private float getDamageAB(IToolStackView view) {
         return view.getPersistentData().getFloat(DAMAGE_AB_AMOUNT);
     }
-    private float getLastAmount(IToolStackView view ,LivingEntity living){
-        return living.getMaxHealth() * 1.6f-getDamageAB(view);
+
+    private float getLastAmount(IToolStackView view, LivingEntity living) {
+        return living.getMaxHealth() * 0.75f - getDamageAB(view);
     }
 
     private void setDamageAbAmount(IToolStackView view, float amount) {
@@ -95,13 +101,13 @@ public class DilapidatedMagic extends Modifier implements ModifyDamageModifierHo
     }
 
     private boolean canProtect(IToolStackView view, LivingEntity living) {
-        return !(getDamageAB(view) >= living.getMaxHealth() * 1.8f);
+        return !(getDamageAB(view) >= living.getMaxHealth() * 0.75f);
     }
 
     @Override
     public void addTooltip(IToolStackView iToolStackView, ModifierEntry modifierEntry, @Nullable Player player, List<Component> list, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
-        if(player==null)return;
-        float amount=getLastAmount(iToolStackView,player);
-        list.add(Component.literal("败魔护盾剩余量:"+amount));
+        if (player == null) return;
+        float amount = getLastAmount(iToolStackView, player);
+        list.add(Component.literal("败魔护盾剩余量:" + amount));
     }
 }

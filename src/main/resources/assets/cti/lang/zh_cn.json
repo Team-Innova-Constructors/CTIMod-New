@@ -174,7 +174,7 @@
 
   "modifier.cti.dilapidated_magic": "败魔",
   "modifier.cti.dilapidated_magic.flavor": "魔法伤害克星",
-  "modifier.cti.dilapidated_magic.description":"获得40%魔法伤害减免\n15秒内没有受到攻击,会获得一层160%最大生命值的护盾,该护盾仅吸收魔法伤害/爆炸伤害",
+  "modifier.cti.dilapidated_magic.description":"•获得12%魔法伤害/爆炸伤害减免\n•15秒内没有受到攻击,会获得一层75% * 词条等级 最大生命值的护盾\n•该护盾对魔法伤害/爆炸伤害的吸收率为250%,对其他伤害则为100%",
 
   "modifier.cti.messengerofdawn": "黎明使者",
   "modifier.cti.messengerofdawn.flavor": "黎明就在眼前",

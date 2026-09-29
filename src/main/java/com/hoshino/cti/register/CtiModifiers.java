@@ -254,6 +254,7 @@ public class CtiModifiers {
     public static final StaticModifier<ReplacedPhantomForged> PHANTOM_FORGED = MODIFIERS.register("phantom_forged", ReplacedPhantomForged::new);
     public static final StaticModifier<LuckCharming> LUCK_CHARMING = MODIFIERS.register("luck_charming", LuckCharming::new);
     public static final StaticModifier<PlateSmashing> PLATE_SMASHING = MODIFIERS.register("plate_smashing", PlateSmashing::new);
+    public static final StaticModifier<CircuitCuttingModifier> CIRCUIT_CUTTING = MODIFIERS.register("circuit_cutting", CircuitCuttingModifier::new);
 
 
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
@@ -303,6 +304,7 @@ public class CtiModifiers {
     public static final StaticModifier<EnchantedSwordModifier> ENCHANTED_SWORD = MODIFIERS.register("enchanted_sword", EnchantedSwordModifier::new);
     public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
     public static final StaticModifier<SlimyMana> SLIMY_MANA = MODIFIERS.register("slimy_mana", SlimyMana::new);
+    public static final StaticModifier<ReplaceBirefringent> REPLACE_BIREFRINGENT = MODIFIERS.register("birefringent", ReplaceBirefringent::new);
 
     public static final StaticModifier<BurntHandler> BURNT_HANDLER = MODIFIERS.register("burnt_handler", BurntHandler::new);
     public static final StaticModifier<ReplacedConducting> REPLACED_CONDUCTING = MODIFIERS.register("replaced_conducting", ReplacedConducting::new);

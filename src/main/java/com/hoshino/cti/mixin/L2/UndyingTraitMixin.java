@@ -27,12 +27,12 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 @Mixin(value = UndyingTrait.class, remap = false)
 public abstract class UndyingTraitMixin extends LegendaryTrait {
-    @Unique
-    private String cti_new$DEATH = "undying_has_dead";
 
     public UndyingTraitMixin(ChatFormatting format) {
         super(format);
     }
+    @Unique
+    private static final String cti_new$RESPAWN_COUNT = "undying_respawn_count";
 
     /**
      * @author
@@ -58,34 +58,29 @@ public abstract class UndyingTraitMixin extends LegendaryTrait {
         if (source.isBypassInvul()) return false;
         if (source instanceof IEnvironmentalSource) return false;
         if (living.getPersistentData().contains("atomic_dec") || living.getPersistentData().contains("quark_disassemble")) return false;
-        var attacker=source.getEntity();
+
+        var attacker = source.getEntity();
         if (attacker instanceof Player player) {
             if (GetModifierLevel.curioHasModifierLevel(player, new ModifierId("solidarytinker:bha"))) {
                 return false;
             }
         }
-        boolean hasDead = cti_new$hadRespawned(living);
-        if (!hasDead) {
-            cti_new$writeNbt(living);
-            return true;
-        }
-        if (living.hasEffect(SearchTools.findMobEffect("solidarytinker:healhysteresis"))) return false;
-        if(attacker instanceof Player player){
-            if (GetModifierLevel.getEachHandsTotalModifierLevel(player, TinkersInnovationModifiers.L2ComplementsModifier.curse_blade.getId()) > 0 || GetModifierLevel.getEachHandsTotalModifierLevel(player, CtiModifiers.CURSED_ARROW.getId()) > 0) {
-                return false;
+        boolean isCursed = living.hasEffect(SearchTools.findMobEffect("solidarytinker:healhysteresis")) || living.hasEffect(LCEffects.CURSE.get());
+        if (attacker instanceof Player player) {
+            if (GetModifierLevel.getEachHandsTotalModifierLevel(player, TinkersInnovationModifiers.L2ComplementsModifier.curse_blade.getId()) > 0
+                    || GetModifierLevel.getEachHandsTotalModifierLevel(player, CtiModifiers.CURSED_ARROW.getId()) > 0) {
+                isCursed = true;
             }
         }
-        return !living.hasEffect(LCEffects.CURSE.get());
-    }
+        int maxRespawns = isCursed ? 1 : 9;
+        var persistentData = living.getPersistentData();
+        int currentRespawns = persistentData.getInt(cti_new$RESPAWN_COUNT);
 
-    @Unique
-    private boolean cti_new$hadRespawned(LivingEntity living) {
-        return living.getPersistentData().contains(cti_new$DEATH);
-    }
-
-    @Unique
-    private void cti_new$writeNbt(LivingEntity living) {
-        living.getPersistentData().putBoolean(cti_new$DEATH, true);
+        if (currentRespawns < maxRespawns) {
+            persistentData.putInt(cti_new$RESPAWN_COUNT, currentRespawns + 1);
+            return true;
+        }
+        return false;
     }
 
     /**

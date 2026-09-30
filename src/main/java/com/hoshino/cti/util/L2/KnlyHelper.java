@@ -34,7 +34,7 @@ public class KnlyHelper {
         maxHealthAttr.removeModifier(KNLY_HEALTH_REMOVER_UUID);
         int level = living.getPersistentData().getInt("knly_cost_health");
         if (level > 0) {
-            double decreaseAmount = Math.pow(0.8, level) - 1.0;
+            double decreaseAmount = Math.pow(0.75, level) - 1.0;
             if (decreaseAmount <= -0.99) {
                 decreaseAmount = -0.99;
             }

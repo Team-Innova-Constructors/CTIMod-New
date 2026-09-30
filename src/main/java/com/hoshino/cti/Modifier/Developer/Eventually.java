@@ -8,7 +8,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -33,33 +32,35 @@ import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 
 import java.util.List;
 
-public class Eventually extends Modifier implements MeleeDamageModifierHook , MeleeHitModifierHook , InventoryTickModifierHook, ToolStatsModifierHook {
+public class Eventually extends Modifier implements MeleeDamageModifierHook, MeleeHitModifierHook, InventoryTickModifierHook, ToolStatsModifierHook {
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
-        hookBuilder.addHook(this, ModifierHooks.MELEE_DAMAGE,ModifierHooks.MELEE_HIT,ModifierHooks.INVENTORY_TICK,ModifierHooks.TOOL_STATS);
+        hookBuilder.addHook(this, ModifierHooks.MELEE_DAMAGE, ModifierHooks.MELEE_HIT, ModifierHooks.INVENTORY_TICK, ModifierHooks.TOOL_STATS);
     }
 
     @Override
     public int getPriority() {
         return 600;
     }
+
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
-        var target=context.getLivingTarget();
-        var player=context.getPlayerAttacker();
-        if (target!= null && player!= null) {
+        var target = context.getLivingTarget();
+        var player = context.getPlayerAttacker();
+        if (target != null && player != null) {
             if (target instanceof Player) {
                 return;
             }
-            StarDragonHit.runSpecialKill(target,player);
+            StarDragonHit.runSpecialKill(target, player, true);
         }
     }
 
     @Override
     public float getMeleeDamage(IToolStackView iToolStackView, ModifierEntry modifierEntry, ToolAttackContext toolAttackContext, float v, float v1) {
-        if (toolAttackContext.getLivingTarget() instanceof Player)return v1;
-        return Float.MAX_VALUE/1000;
+        if (toolAttackContext.getLivingTarget() instanceof Player) return v1;
+        return Float.MAX_VALUE / 1000;
     }
+
     @Override
     public void addToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
         CtiToolStats.ELECTRIC_RESISTANCE.add(builder, 14.5F);
@@ -82,8 +83,7 @@ public class Eventually extends Modifier implements MeleeDamageModifierHook , Me
                             slime.setSize(1, false);
                         }
                         BlockPos posA = player.getOnPos();
-                        targets.hurt(DamageSource.playerAttack(player).bypassMagic().bypassArmor().bypassInvul(), Float.MAX_VALUE);
-                        targets.die(DamageSource.playerAttack(player));
+                        StarDragonHit.runSpecialKill(targets, player, true);
                         player.level.playSound(null, posA, SoundEvents.ZOMBIE_VILLAGER_CURE, SoundSource.PLAYERS, 1F, 1F);
                         targets.remove(Entity.RemovalReason.KILLED);
                         if (player instanceof ServerPlayer serverPlayer) {

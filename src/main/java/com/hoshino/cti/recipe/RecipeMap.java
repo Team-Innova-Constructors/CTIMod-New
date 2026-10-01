@@ -361,7 +361,7 @@ public class RecipeMap {
             new ReactorNeutronCollectorRecipe(Cti.getResource("violium_alloy"),
                     new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("avaritia:neutron_nugget")), 4),
                     32.198f,
-                    0.002f,
+                    0.062f,
                     new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("kubejs:violium_alloy")), 2)),
             new ReactorNeutronCollectorRecipe(Cti.getResource("atherium_alloy"),
                     new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("avaritia:neutron_nugget")), 16),

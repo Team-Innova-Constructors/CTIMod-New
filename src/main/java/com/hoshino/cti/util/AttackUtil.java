@@ -1,8 +1,6 @@
 package com.hoshino.cti.util;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -28,7 +26,6 @@ import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.definition.module.weapon.MeleeHitToolHook;
 import slimeknights.tconstruct.library.tools.helper.ModifierLootingHandler;
-import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
@@ -36,7 +33,6 @@ import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.DoubleSupplier;
 
 import static slimeknights.tconstruct.library.tools.helper.ToolAttackUtil.*;

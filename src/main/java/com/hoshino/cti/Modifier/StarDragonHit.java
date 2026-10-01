@@ -1,16 +1,10 @@
 package com.hoshino.cti.Modifier;
 
-import com.github.alexthe666.iceandfire.entity.EntityFireDragon;
-import com.github.alexthe666.iceandfire.entity.EntityIceDragon;
-import com.github.alexthe666.iceandfire.entity.EntityLightningDragon;
+import com.github.alexthe666.iceandfire.entity.EntityDragonBase;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Entity.Projectiles.StarDragonAmmo;
-import com.hoshino.cti.Items.RandomReward;
-import com.hoshino.cti.util.DragonRewardCategory;
 import com.hoshino.cti.util.EntityUtil;
-import com.hoshino.cti.util.ILivingEntityMixin;
 import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -18,7 +12,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -69,32 +62,19 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         if(target.isDeadOrDying())return;
         if(!target.isAlive())return;
         if(target.getHealth()/target.getMaxHealth()<0.18f){
-            runSpecialKill(target,player);
-            tool.getPersistentData().putInt(STAR_DUST,tool.getPersistentData().getInt(STAR_DUST)+1);
+            runSpecialKill(target,player,false);
             player.getLevel().playSound(null,player,SoundEvents.ENDER_DRAGON_AMBIENT, SoundSource.AMBIENT,0.3f,1f);
         }
     }
-    public static void runSpecialKill(LivingEntity target,Player attacker){
+    public static void runSpecialKill(LivingEntity target,Player attacker,boolean shouldRemove){
         if(target instanceof Player)return;
         if(target instanceof TargetDummyEntity)return;
-        if(target instanceof EnderDragon enderDragon){
-            EntityUtil.constantKill(enderDragon,DamageSource.playerAttack(attacker));
-            return;
-        }
-        var level=attacker.level;
-        if(target instanceof EntityIceDragon){
-            generateLoot(level,target.getOnPos(),DragonRewardCategory.ice);
+        if(shouldRemove&&!(target instanceof EnderDragon)&&!(target instanceof EntityDragonBase)){
+            EntityUtil.constantKill(target,DamageSource.playerAttack(attacker).bypassArmor().bypassMagic().bypassInvul());
             target.discard();
+        }else {
+            EntityUtil.constantKill(target,DamageSource.playerAttack(attacker).bypassArmor().bypassMagic().bypassInvul());
         }
-        if(target instanceof EntityFireDragon){
-            generateLoot(level,target.getOnPos(),DragonRewardCategory.fire);
-            target.discard();
-        }
-        if(target instanceof EntityLightningDragon){
-            generateLoot(level,target.getOnPos(),DragonRewardCategory.lightning);
-            target.discard();
-        }
-        EntityUtil.constantKill(target,DamageSource.playerAttack(attacker));
     }
     @Override
     public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
@@ -137,14 +117,6 @@ public class StarDragonHit extends Modifier implements MeleeHitModifierHook , Me
         if(livingEntity.tickCount%20!=0)return;
         if(getFreezeTick(iToolStackView)>0){
             setFreezeTick(iToolStackView,getFreezeTick(iToolStackView)-1);
-        }
-    }
-    public static void generateLoot(Level level, BlockPos pos,DragonRewardCategory category){
-        for(RandomReward reward: category.getReward()){
-            ItemStack stack = reward.roll(level.getRandom());
-            ItemEntity itemEntity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-            itemEntity.setDeltaMovement(level.random.nextGaussian() * 0.05D, 0.2D, level.random.nextGaussian() * 0.05D);
-            level.addFreshEntity(itemEntity);
         }
     }
 }

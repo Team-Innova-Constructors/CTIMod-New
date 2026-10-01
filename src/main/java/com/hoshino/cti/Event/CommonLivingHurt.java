@@ -41,7 +41,7 @@ public class CommonLivingHurt {
             event.setAmount(event.getAmount() * 2);
         }
         if (entity.getPersistentData().getBoolean("star_extra_hurt")) {
-            event.setAmount(event.getAmount() * 5f);
+            event.setAmount(event.getAmount() * 9f);
         }
     }
 

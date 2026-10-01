@@ -249,7 +249,7 @@ public class BasicFlyingSwordEntity extends Projectile{
             level.playSound(null, attackerLiving.getX(), attackerLiving.getY(), attackerLiving.getZ(), sound, attackerLiving.getSoundSource(), 1.0F, 1.0F);
         }
         if (damageDealt > 2.0F && level instanceof ServerLevel server) {
-            int particleCount = (int)(damageDealt * 0.5f);
+            int particleCount = Math.min(10,(int)(damageDealt * 0.5f));
             server.sendParticles(ParticleTypes.DAMAGE_INDICATOR, targetEntity.getX(), targetEntity.getY(0.5), targetEntity.getZ(), particleCount, 0.1, 0, 0.1, 0.2);
         }
         attackerLiving.setLastHurtMob(targetEntity);

@@ -65,9 +65,7 @@ public class EntityUtil {
         return false;
     }
     public static void constantKill(LivingEntity entity, DamageSource source){
-        var a = (ILivingEntityMixin) entity;
         entity.invulnerableTime=0;
-        var currentHealth=entity.getMaxHealth();
         if(entity.getHealth()<=2)return;
         entity.setHealth(0);
         entity.die(source);

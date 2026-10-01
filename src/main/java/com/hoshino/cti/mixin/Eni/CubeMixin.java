@@ -26,5 +26,6 @@ public abstract class CubeMixin {
     @SubscribeEvent(priority = EventPriority.LOW)
     @Overwrite
     public void endEntityHurt(LivingHurtEvent event) {
+
     }
 }

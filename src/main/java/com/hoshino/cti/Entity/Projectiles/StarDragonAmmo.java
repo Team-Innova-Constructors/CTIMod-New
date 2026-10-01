@@ -42,23 +42,20 @@ public class StarDragonAmmo extends BaseFallenAmmo {
 
     @Override
     protected void shockWaveHurt(Mob mob, Player player) {
-        mob.hurt(starHit(player),this.getHurtDamage());
+        mob.hurt(starHit(player),this.getHurtDamage() * 3.5f);
         Vec3 knock = mob.position().subtract(getVec3TargetPosition()).normalize().scale(3);
         Vec3 finalKnock = new Vec3(knock.x()/4, 0.8, knock.z()/4);
         mob.setDeltaMovement(finalKnock);
         if(mob.getHealth()<mob.getMaxHealth() * this.getKillThreshold()||getHurtDamage()>mob.getMaxHealth() * 10f){
             if(mob instanceof TargetDummyEntity)return;
-            StarDragonHit.runSpecialKill(mob,player);
-            var data= ToolStack.from(player.getMainHandItem()).getPersistentData();
-            var currentAmount=data.getInt(StarDragonHit.STAR_DUST);
-            data.putInt(StarDragonHit.STAR_DUST,currentAmount + 1);
+            StarDragonHit.runSpecialKill(mob,player,true);
         }
     }
 
     @Override
     protected void onArrived(ServerPlayer player) {
         super.onArrived(player);
-        this.directHurtLiving(starHit(player), this.getHurtDamage() * 5, 5);
+        this.directHurtLiving(starHit(player), this.getHurtDamage() * 12, 5);
         if (!this.level.isClientSide) {
             var particle = new StarFallParticleType(true, 1, 0xf8ffb2, 1, 1, 10, getVec3TargetPosition());
             player.getLevel().sendParticles(particle, getVec3TargetPosition().x(), getVec3TargetPosition().y() + 0.05, getVec3TargetPosition().z(), 1, 0, 0, 0, 0.25);

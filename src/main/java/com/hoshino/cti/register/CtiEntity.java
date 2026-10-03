@@ -16,6 +16,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -80,25 +82,7 @@ public class CtiEntity {
             .setCustomClientFactory((spawnEntity, world) -> new MeleeFieryJavelinProjectile(CtiEntity.FIERY_JAVELIN.get(),world))
             .setShouldReceiveVelocityUpdates(true));
 
-    public static void registerEntityRenderers() {
-        ClientHooks.registerEntityRenderer(CtiEntity.TIER_5_ROCKET, RocketRendererTier5::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.star_blaze, LargeBrightItemProjectile::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.star_ionize, LargeBrightItemProjectile::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.star_frozen, LargeBrightItemProjectile::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.star_pressure, LargeBrightItemProjectile::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.tinker_railgun, TinkerRaligunRenderer::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.meteor_entity, MeteorEntityRenderer::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.FRIENDLY_METEOR, FriendlyMeteorRenderer::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.AETHERIC_METEOR, FriendlyMeteorRenderer::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.PLASMA_WAVE_SLASH, renderSlash::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.FIERY_JAVELIN, FieryJavelinRender::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.HOMING_SUNSTRIKE, RenderSunstrike::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.THUNDER_BURST, NoopRenderer::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.FIERY_SLASH,pContext ->
-                new SweepingSlashRenderer(pContext,255,118,27,4));
-        ClientHooks.registerEntityRenderer(CtiEntity.RUBY_LASER, RubyLaserRenderer::new);
-        ClientHooks.registerEntityRenderer(CtiEntity.MELEE_FIERY_JAVELIN, FieryJavelinRender::new);
-    }
+
     public static void register(IEventBus bus){
         ENTITIES.register(bus);
         ENTITY.register(bus);

@@ -76,7 +76,7 @@ public class ReactorNeutronCollectorRecipeCategory implements IRecipeCategory<Re
     @Override
     public void draw(ReactorNeutronCollectorRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         Component efficiency = Component.literal("基础效率: +").withStyle(ChatFormatting.LIGHT_PURPLE).append(String.format("%.2f", recipe.getEfficiency())).append("×");
-        Component ConsumptionRate = Component.literal("催化剂消耗: ").withStyle(ChatFormatting.RED).append(String.format("%.2f", recipe.getConsumptionRate() * 1000)).append("‰");
+        Component ConsumptionRate = Component.literal("催化剂消耗: ").withStyle(ChatFormatting.RED).append(String.format("%.2f", recipe.getConsumptionRate() * 10)).append("‰");
         Minecraft.getInstance().font.draw(stack, efficiency, 8, 10, 0);
         Minecraft.getInstance().font.draw(stack, ConsumptionRate, 8, 18, 0);
         IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);

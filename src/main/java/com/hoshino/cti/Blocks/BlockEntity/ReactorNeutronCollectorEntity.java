@@ -299,7 +299,7 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
                 entity.lastOutput = output.getItem();
                 entity.PROGRESS = 0;
             }
-            notConsume = recipe.getConsumptionRate()<0.0001f;
+            notConsume = recipe.getConsumptionRate()<0.001f;
         }
         if (good) {
             SodiumAmplifier *= 2f;
@@ -350,8 +350,10 @@ public class ReactorNeutronCollectorEntity extends GeneralMachineEntity implemen
         if (entity.PROGRESS < entity.MAX_PROGRESS_STORAGE) {
             entity.ENERGY_STORAGE.receiveEnergy((int) (entity.getEnergyPerTick() * fe), false);
             entity.PROGRESS = (int) Math.min(entity.MAX_PROGRESS_STORAGE,(long)entity.PROGRESS + amount);
-            if (!notConsume&&EtSHrnd().nextDouble() <= chanceConsume) {
-                entity.itemStackHandler.extractItem(0, 1, false);
+            if (EtSHrnd().nextInt(100)==1) {
+                if (!notConsume && EtSHrnd().nextDouble() <= chanceConsume) {
+                    entity.itemStackHandler.extractItem(0, 1, false);
+                }
             }
             entity.setChanged();
         }

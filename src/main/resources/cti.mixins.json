@@ -99,6 +99,8 @@
     "L2.TraitLootModifierMixin",
     "L2.UndyingTraitMixin",
     "MekMixin.ChemicalStackRendererMixin",
+    "MekMixin.FissionReactorMultiblockDataMixin",
+    "MekMixin.FissionReactorValidatorMixin",
     "MekMixin.ItemUpgradeMixin",
     "MekMixin.MekanismUtilMixin",
     "MekMixin.MekasuitMixin",

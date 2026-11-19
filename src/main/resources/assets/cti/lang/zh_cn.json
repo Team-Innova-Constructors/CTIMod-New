@@ -438,6 +438,7 @@
   "block.cti.mana_interface": "ME集魔接口",
   "block.cti.reactive_flower": "对消花",
   "block.cti.floating_reactive_flower": "浮空对消花",
+  "block.cti.fission_nano_fix_port": "裂变堆纳米修复端口",
 
   "block.cti.silicated_bricks": "硅碳砖块",
   "block.cti.silicated_glass": "硅碳玻璃",
@@ -1589,6 +1590,7 @@
   "item.cti.anti_upgrade_speed_kit": "速度升级套件T3",
   "item.cti.upgrade_energy_kit_2": "高级无限能量升级安装器",
   "item.cti.upgrade_energy_kit_3": "高高高高高级无限能量升级安装器",
+  "item.cti.nanomachine": "纳米机器人",
 
   "item.cti.flat_tablet": "全息永夜世界投影板",
   "item.cti.flat_tablet_day": "全息永昼世界投影板",
@@ -1682,5 +1684,6 @@
   "info.cti.elemental.ice": "凛冰",
 
   "info.cti.tool_crafting.tool_plate_smashing": "工具砸板",
-  "info.cti.tool_crafting.circuit_cutting": "工具砸板"
+  "info.cti.tool_crafting.circuit_cutting": "工具砸板",
+  "cti.tooltip.fission_nano_fix_port": "一种能修复裂变反应堆的接口，需要消耗纳米机器人来工作。每个纳米机器人提供100%修复量，单个接口最大修复速率10%/s。"
 }

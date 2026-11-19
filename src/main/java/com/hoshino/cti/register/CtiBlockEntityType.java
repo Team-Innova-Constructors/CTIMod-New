@@ -4,17 +4,33 @@ import appeng.api.config.Actionable;
 import com.hoshino.cti.Blocks.BlockEntity.*;
 import com.hoshino.cti.Blocks.BlockEntity.ae2.CreativeEnergyCell4kBE;
 import com.hoshino.cti.Blocks.BlockEntity.botania.ReactiveFLowerBE;
+import com.hoshino.cti.Blocks.BlockEntity.mek.FissionNanoFixPortBlockEntity;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.refinery.RefineryControllerBlockEntity;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulBrickHeatConductorBlockEntity;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulForgeControllerBlockEntity;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.soulforge.SoulValveBlockEntity;
 import com.hoshino.cti.Cti;
+import mekanism.common.block.interfaces.IHasDescription;
+import mekanism.common.block.prefab.BlockBasicMultiblock;
+import mekanism.common.content.blocktype.BlockTypeTile;
+import mekanism.common.item.block.ItemBlockTooltip;
+import mekanism.common.registration.impl.BlockDeferredRegister;
+import mekanism.common.registration.impl.BlockRegistryObject;
+import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
+import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
+import mekanism.common.tile.base.TileEntityMekanism;
+import mekanism.generators.common.GeneratorsLang;
+import mekanism.generators.common.registries.GeneratorsContainerTypes;
+import mekanism.generators.common.registries.GeneratorsSounds;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock;
+
+import java.util.function.Supplier;
 
 public class CtiBlockEntityType {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Cti.MOD_ID);
@@ -119,4 +135,27 @@ public class CtiBlockEntityType {
     public static final RegistryObject<BlockEntityType<ReactiveFLowerBE>> REACTIVE_FLOWER =
             BLOCK_ENTITIES.register("reactive_flower",()-> BlockEntityType.Builder.of(ReactiveFLowerBE::new, CtiBlock.REACTIVE_FLOWER.get(),CtiBlock.FLOATING_REACTIVE_FLOWER.get())
                     .build(null));
+    public static class MekBE{
+        public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(Cti.MOD_ID);
+        public static final TileEntityTypeRegistryObject<FissionNanoFixPortBlockEntity> FISSION_NANO_FIX_PORT = TILE_ENTITY_TYPES.register(MekBlock.FISSION_NANO_FIX_PORT_BLOCK, FissionNanoFixPortBlockEntity::new);
+
+    }
+    public static class MekBlock{
+        public static final BlockDeferredRegister MEKANISM_BLOCKS = new BlockDeferredRegister(Cti.MOD_ID);
+        private static <BLOCK extends Block & IHasDescription> BlockRegistryObject<BLOCK, ItemBlockTooltip<BLOCK>> registerTooltipBlock(String name, Supplier<BLOCK> blockCreator) {
+            return MEKANISM_BLOCKS.registerDefaultProperties(name, blockCreator, ItemBlockTooltip::new);
+        }
+        public static final BlockRegistryObject<BlockBasicMultiblock<FissionNanoFixPortBlockEntity>,ItemBlockTooltip<BlockBasicMultiblock<FissionNanoFixPortBlockEntity>>> FISSION_NANO_FIX_PORT_BLOCK = registerTooltipBlock("fission_nano_fix_port",()->new BlockBasicMultiblock<>(MekBEType.FISSION_NANO_FIX_PORT_BE_TYPE));
+    }
+    public static class MekBEType{
+        public static final BlockTypeTile<FissionNanoFixPortBlockEntity> FISSION_NANO_FIX_PORT_BE_TYPE = BlockTypeTile.BlockTileBuilder
+                .createBlock(() -> MekBE.FISSION_NANO_FIX_PORT, () -> "cti.tooltip.fission_nano_fix_port")
+                .withGui(() -> GeneratorsContainerTypes.FISSION_REACTOR, GeneratorsLang.FISSION_REACTOR)
+                .withSound(GeneratorsSounds.FISSION_REACTOR)
+                .externalMultiblock()
+                .build();
+    }
+
+
+
 }

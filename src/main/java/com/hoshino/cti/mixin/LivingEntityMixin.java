@@ -65,6 +65,9 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
 
     @Shadow public abstract boolean hasEffect(MobEffect pEffect);
 
+    @Shadow
+    private float absorptionAmount;
+
     @Inject(at = @At(value = "HEAD"), method = "checkTotemDeathProtection", cancellable = true)
     private void checkTotemDeathProtection(DamageSource pDamageSource, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity living = (LivingEntity) (Object) this;
@@ -83,6 +86,12 @@ public abstract class LivingEntityMixin implements ILivingEntityMixin {
             }
             ci.cancel();
         }
+    }
+
+    @Inject(method = "setAbsorptionAmount",at = @At("HEAD"))
+    public void crashWhenOverAbsorb(float pAbsorptionAmount, CallbackInfo ci){
+        if (this.absorptionAmount<5000&&pAbsorptionAmount>=5000)
+            throw new RuntimeException("Abnormal Absorption amount");
     }
 
 

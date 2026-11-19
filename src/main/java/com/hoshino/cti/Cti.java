@@ -83,7 +83,8 @@ public class Cti {
         }
         eventBus.addListener(this::commonSetup);
         ctiRecipes.register(eventBus);
-
+        CtiBlockEntityType.MekBE.TILE_ENTITY_TYPES.register(eventBus);
+        CtiBlockEntityType.MekBlock.MEKANISM_BLOCKS.register(eventBus);
     }
 
     public static ResourceLocation getResource(String id) {

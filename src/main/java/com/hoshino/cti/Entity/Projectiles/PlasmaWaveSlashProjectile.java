@@ -32,7 +32,7 @@ public class PlasmaWaveSlashProjectile extends ItemProjectile {
 
     @Override
     protected Item getDefaultItem() {
-        return null;
+        return etshtinkerItems.plasmawaveslash.get();
     }
 
     @Override

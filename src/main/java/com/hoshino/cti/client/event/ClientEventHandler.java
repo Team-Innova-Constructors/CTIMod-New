@@ -94,7 +94,7 @@ public class ClientEventHandler {
             MenuScreens.register(CtiMenu.NEUT_COL_MENU.get(), ReactorNeutronCollectorScreen::new);
             MenuScreens.register(CtiMenu.REFINERY_MENU.get(), RefineryScreen::new);
             MenuScreens.register(CtiMenu.SOUL_FORGE_MENU.get(), SoulForgeScreen::new);
-            event.enqueueWork(CtiEntity::registerEntityRenderers);
+            event.enqueueWork(CtiEntityRenderer::registerEntityRenderers);
             ItemBlockRenderTypes.setRenderLayer(CtiBlock.SILICATED_GLASS.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(CtiBlock.SOUL_FORGE_GLASS.get(), RenderType.cutout());
         }

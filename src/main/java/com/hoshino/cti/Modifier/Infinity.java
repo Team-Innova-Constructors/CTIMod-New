@@ -39,11 +39,10 @@ public class Infinity extends Modifier implements ToolStatsModifierHook, MeleeDa
         var livingTarget = toolAttackContext.getLivingTarget();
         var attacker = toolAttackContext.getAttacker();
         var level = modifierEntry.getLevel();
-        if (livingTarget instanceof Mob mob && attacker instanceof Player player) {
+        if (livingTarget instanceof Mob mob && attacker instanceof Player) {
             mob.invulnerableTime = 0;
             if(level<=2){
-                mob.hurt(DamageSource.playerAttack(player).bypassArmor().bypassMagic().bypassInvul(), 131072);
-                return damage + 131072;
+                return damage + 131072 * modifierEntry.getLevel();
             }
         }
         return damage;

@@ -16,9 +16,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.hoshino.cti.client.util.RenderUtil.drawPipe;
 
+@OnlyIn(Dist.CLIENT)
 public class RubyLaserRenderer extends EntityRenderer<RubyLaserEntity> {
     public RubyLaserRenderer(EntityRendererProvider.Context pContext) {
         super(pContext);

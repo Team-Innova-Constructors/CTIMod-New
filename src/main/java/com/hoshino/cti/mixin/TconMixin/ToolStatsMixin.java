@@ -23,17 +23,6 @@ public class ToolStatsMixin {
     @ModifyConstant(
             method = "<clinit>",
             constant = {
-                    @Constant(floatValue = 1024.0F)
-            }
-    )
-    @Unique
-    private static float BmodifyMaxValue(float constant) {
-        return 16384;
-    }
-
-    @ModifyConstant(
-            method = "<clinit>",
-            constant = {
                     @Constant(floatValue = 30.0F)
             }
     )

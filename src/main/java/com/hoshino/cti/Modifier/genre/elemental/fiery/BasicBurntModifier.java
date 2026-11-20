@@ -23,8 +23,14 @@ public class BasicBurntModifier extends EtSTBaseModifier implements IModifierWit
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
         return 0;
     }
-
     public float getBurntAttackSpeedBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return 0;
+    }
+
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return 0;
+    }
+    public float getReleasedBurntAttackSpeedBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
         return 0;
     }
 
@@ -38,5 +44,7 @@ public class BasicBurntModifier extends EtSTBaseModifier implements IModifierWit
         super.modifierAddToolStats(context, modifier, builder);
         GenreManager.BURNT_GENRE.baseStat.add(builder,getMaxBurntBonus(context,modifier));
         GenreManager.BURNT_GENRE.mulStat.add(builder,getBurntAttackSpeedBonus(context,modifier));
+        GenreManager.BURNT_GENRE.baseArmorStat.add(builder,getReleasedBurntBonus(context,modifier));
+        GenreManager.BURNT_GENRE.mulArmorStat.add(builder,getReleasedBurntAttackSpeedBonus(context,modifier));
     }
 }

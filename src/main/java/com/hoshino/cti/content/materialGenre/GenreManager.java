@@ -12,4 +12,9 @@ public class GenreManager {
     public static final MaterialGenre INSATIABLE_GENRE = new MaterialGenre("insatiable");
     public static final MaterialGenre FLOATING_GENRE = new MaterialGenre("floating");
     public static final MaterialGenre BURNT_GENRE = new MaterialGenre("burnt");
+
+    public static float calculateElementalRelease(int level,float val1,float val2){
+        float percentage = Math.min(level,4f)*0.25f;
+        return val1*(1-percentage)+val2*percentage;
+    }
 }

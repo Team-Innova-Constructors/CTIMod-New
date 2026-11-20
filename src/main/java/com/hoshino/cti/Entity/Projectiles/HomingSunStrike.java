@@ -3,9 +3,11 @@ package com.hoshino.cti.Entity.Projectiles;
 import com.bobmowzie.mowziesmobs.MowziesMobs;
 import com.bobmowzie.mowziesmobs.client.particle.ParticleOrb;
 import com.bobmowzie.mowziesmobs.server.entity.effects.EntitySunstrike;
+import com.hoshino.cti.Modifier.genre.elemental.ElementalRelease;
 import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.content.entityTicker.tickers.Fiery;
+import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.util.ISunStrikeMixin;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,8 +22,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 
 import javax.annotation.Nullable;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.hoshino.cti.util.EntityUtil.inflictBurnt;
 
@@ -164,14 +169,16 @@ public class HomingSunStrike extends EntitySunstrike {
         AABB aabb = new AABB(this.getX()-radius,this.getY()-0.5,this.getZ()-radius,this.getX()+radius,this.getY()+20,this.getZ()+radius);
         if (this.owner instanceof Player player)
             this.level.getEntitiesOfClass(LivingEntity.class,aabb,living -> living!=this.owner).forEach(living -> {
-                inflictBurnt(player,living,null,2);
+                AtomicInteger elementalReleaseLv = new AtomicInteger(0);
+                player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
+                inflictBurnt(player,living,null, GenreManager.calculateElementalRelease(elementalReleaseLv.get(),2,0));
                 living.invulnerableTime = 0;
                 living.hurt(ElementalDamageSource.fiery(this.owner),this.damage);
                 living.invulnerableTime = 0;
                 living.hurt(ElementalDamageSource.fiery(this.owner),this.damage);
                 var fiery = EntityTickerManager.getInstancePlayerSpecific(living,player.getUUID()).getTicker(CtiEntityTickers.FIERY.get());
                 if (fiery!=null){
-                    Fiery.burntDamage(living,player,fiery.level);
+                    Fiery.burntDamage(living,player, (int) (fiery.level*GenreManager.calculateElementalRelease(elementalReleaseLv.get(),1f,0.2f)));
                 }
             });
     }

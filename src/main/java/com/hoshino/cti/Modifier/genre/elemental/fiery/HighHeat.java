@@ -12,7 +12,12 @@ import static com.hoshino.cti.util.EntityUtil.inflictBurnt;
 public class HighHeat extends BasicBurntModifier{
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return modifierEntry.getLevel()*5;
+        return modifierEntry.getLevel()*10;
+    }
+
+    @Override
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return modifierEntry.getLevel()*2;
     }
 
     @Override

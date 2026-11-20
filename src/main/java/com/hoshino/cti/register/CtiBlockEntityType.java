@@ -2,7 +2,7 @@ package com.hoshino.cti.register;
 
 import appeng.api.config.Actionable;
 import com.hoshino.cti.Blocks.BlockEntity.*;
-import com.hoshino.cti.Blocks.BlockEntity.ae2.CreativeEnergyCell4kBE;
+import com.hoshino.cti.Blocks.BlockEntity.ae2.CreativeEnergyCell16kBE;
 import com.hoshino.cti.Blocks.BlockEntity.botania.ReactiveFLowerBE;
 import com.hoshino.cti.Blocks.BlockEntity.mek.FissionNanoFixPortBlockEntity;
 import com.hoshino.cti.Blocks.BlockEntity.tinker.*;
@@ -19,7 +19,6 @@ import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
-import mekanism.common.tile.base.TileEntityMekanism;
 import mekanism.generators.common.GeneratorsLang;
 import mekanism.generators.common.registries.GeneratorsContainerTypes;
 import mekanism.generators.common.registries.GeneratorsSounds;
@@ -118,11 +117,11 @@ public class CtiBlockEntityType {
                         return type;
                     });
 
-    public static final RegistryObject<BlockEntityType<CreativeEnergyCell4kBE>> CREATIVE_ENERGY_CELL_4K_BE =
-            BLOCK_ENTITIES.register("creative_energy_cell_4k",()-> {
-                var type = BlockEntityType.Builder.of(CreativeEnergyCell4kBE::new, CtiBlock.CREATIVE_ENERGY_CELL_4K.get())
+    public static final RegistryObject<BlockEntityType<CreativeEnergyCell16kBE>> CREATIVE_ENERGY_CELL_16K_BE =
+            BLOCK_ENTITIES.register("creative_energy_cell_16k",()-> {
+                var type = BlockEntityType.Builder.of(CreativeEnergyCell16kBE::new, CtiBlock.CREATIVE_ENERGY_CELL_16K.get())
                         .build(null);
-                CtiBlock.CREATIVE_ENERGY_CELL_4K.get().setBlockEntity(CreativeEnergyCell4kBE.class, type, null, (pLevel, pPos, pState, pBlockEntity) ->
+                CtiBlock.CREATIVE_ENERGY_CELL_16K.get().setBlockEntity(CreativeEnergyCell16kBE.class, type, null, (pLevel, pPos, pState, pBlockEntity) ->
                 {
                     var grid = pBlockEntity.getGridNode();
                     if (grid!=null&&grid.getGrid()!=null&&grid.getGrid().getEnergyService()!=null){

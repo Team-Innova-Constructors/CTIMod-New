@@ -8,6 +8,7 @@ import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiEntityTickers;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CommonUtil;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
@@ -90,6 +91,7 @@ public class Exothermic extends BasicBurntModifier implements LeftClickModifierH
         }
     }
     public static int getFuelTemp(IToolStackView tool,@Nullable Player player){
+        if (tool.getModifierLevel(CtiModifiers.EXOTHERMIC.getId())<=0) return 0;
         int temp = tool.getPersistentData().getInt(KEY_TEMP);
         if (player!=null&&player.hasEffect(CtiEffects.OVERHEAT.get()))
             temp*=2;

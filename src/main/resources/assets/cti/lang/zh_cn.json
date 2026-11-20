@@ -1015,7 +1015,7 @@
 
   "modifier.cti.sunstrike": "耀斑打击",
   "modifier.cti.sunstrike.flavor": "侦测到在途轨道打击。",
-  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2灼伤，造成10%x2的火焰伤害并触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
+  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2(0)灼伤，造成0%(20%)x2的火焰伤害并以100%(20%)的等级触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
@@ -1191,7 +1191,7 @@
   "block.cti.reactor_neutron_collector": "反应堆中子素收集器",
   "block.cti.alloy_centrifuge": "气动合金离心机",
   "block.cti.sodium_cooler": "微型裂变反应堆",
-  "block.cti.creative_energy_cell_4k": "4k ME创造能源元件",
+  "block.cti.creative_energy_cell_16k": "16k ME产能元件",
 
 
   "cti.gui.biome.null": "null",
@@ -1517,11 +1517,11 @@
 
   "modifier.cti.replaced_heat_sword": "热斩刀",
   "modifier.cti.replaced_heat_sword.flavor": "一刀一刀燃烧刀",
-  "modifier.cti.replaced_heat_sword.description":"灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，攻击敌人并叠加每级5灼伤等级。",
+  "modifier.cti.replaced_heat_sword.description":"-25(+100)最大灼伤叠加，每级-0.1(+0.25)灼伤攻击速度。\n §3·§r灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，攻击敌人并叠加每级5灼伤等级。",
 
   "modifier.cti.scorched": "焦土",
   "modifier.cti.scorched.flavor": "烧至焦黑！",
-  "modifier.cti.scorched.description":"每级+0.75灼伤攻击速度，+1最大灼伤叠加。",
+  "modifier.cti.scorched.description":"每级+0.75(0)灼伤攻击速度，+4(1)最大灼伤叠加。",
 
   "modifier.cti.exothermic": "放热反应",
   "modifier.cti.exothermic.flavor": "燃料小伙能量巨大",
@@ -1529,15 +1529,15 @@
 
   "modifier.cti.ruby_laser": "红宝石激光",
   "modifier.cti.ruby_laser.flavor": "最早的激光器之一",
-  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+75最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
+  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r+50(175)最大灼伤叠加和每级+0.1(0.3)灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
 
   "modifier.cti.high_heat": "高热",
   "modifier.cti.high_heat.flavor": "远离可燃物！",
-  "modifier.cti.high_heat.description":"每级+5最大灼伤叠加。近战攻击时，每级叠加1灼伤等级。",
+  "modifier.cti.high_heat.description":"每级+10(2)最大灼伤叠加。近战攻击时，每级叠加1灼伤等级。",
 
   "modifier.cti.oxidizing_flame": "氧化焰",
   "modifier.cti.oxidizing_flame.flavor": "加氧，点火！",
-  "modifier.cti.oxidizing_flame.description":"每级+45最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
+  "modifier.cti.oxidizing_flame.description":"每级+45(-15)最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
 
   "modifier.cti.searing_blow": "灼热攻击",
   "modifier.cti.searing_blow.flavor": "能被多次升级",
@@ -1549,7 +1549,7 @@
 
   "modifier.cti.melee_fiery_javelin": "索利斯·坎塔娜",
   "modifier.cti.melee_fiery_javelin.flavor": "异世界邪教徒使用的炽热能量剑",
-  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并触发目标的灼伤效果。+75最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射三发，命中时额外造成10%武器伤害。",
+  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并触发目标的灼伤效果。-45(+150)最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射三发，命中时额外造成10%武器伤害。",
 
   "modifier.cti.luck_charming": "命运之眷",
   "modifier.cti.luck_charming.flavor": "这是我的<铁之王牌>",
@@ -1570,6 +1570,22 @@
   "modifier.cti.birefringent": "双折",
   "modifier.cti.birefringent.flavor": "魔法折射",
   "modifier.cti.birefringent.description":"真近战攻击时有80%概率触发近战空挥时触发的效果，工具的近战伤害和攻击速度x0.9。",
+
+  "modifier.cti.ranged_limited": "矢速禁锢",
+  "modifier.cti.ranged_limited.flavor": "弹射物速度受限",
+  "modifier.cti.ranged_limited.description":"武器的初始初速度属性限制为每级2.5",
+
+  "modifier.cti.elemental_release": "属性解放",
+  "modifier.cti.elemental_release.flavor": "属性解放",
+  "modifier.cti.elemental_release.description":"每级解放25%词条所蕴含的隐藏属性。",
+
+  "modifier.cti.atomic_plasma_slash": "物质解离斩",
+  "modifier.cti.atomic_plasma_slash.flavor": "斩裂一切，分解原子！",
+  "modifier.cti.atomic_plasma_slash.description":"约束等离子阔剑的弧光命中时为目标叠加1级原子分裂，若弧光暴击则叠加2级。",
+
+  "modifier.cti.plasma_activation": "离子活性",
+  "modifier.cti.plasma_activation.flavor": "活化元素能量",
+  "modifier.cti.plasma_activation.description":"造成武器伤害后缩短元素之触的冷却时间。",
 
 
 
@@ -1655,9 +1671,12 @@
   "info.cti.overslime": "§3[工具机制|黏液覆层]§r一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充，也可以用加压黏液罐补充。",
   "info.cti.manaburst": "§3[工具机制|魔力脉冲]§r左键挥舞武器时，消耗魔力并发射出魔力脉冲，魔力消耗量等同于脉冲魔力携带量。脉冲的魔力携带量、实体/方块消耗初始值均为25，伤害初始值则为玩家伤害属性值。当魔力脉冲与方块/实体碰撞时会消耗脉冲携带的魔力，魔力归零后脉冲会消失。",
   "info.cti.stat_power": "§3[工具属性|功率]§r资源消耗类（比如黏液、魔力脉冲）词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时成比例增加资源消耗量。",
-  "info.cti.burnt": "§3[工具机制|灼伤]§r一种靠叠层出伤的持续伤害，会不断对目标造成等同于灼伤层数的穿甲伤害，有最大灼伤叠加和灼伤攻击速度两个属性，持续时间30秒。玩家造成非灼伤伤害的火伤时会叠加1级灼伤，冷却0.25秒。灼伤叠加时不会重置持续时间。",
+  "info.cti.burnt": "§3[工具机制|灼伤]§r一种靠叠层出伤的持续伤害，会不断对目标造成等同于灼伤层数的穿甲伤害，持续时间30秒。灼伤叠加时不会重置持续时间。玩家造成非灼伤伤害的火伤时会叠加1级灼伤，冷却0.25秒。",
   "info.cti.true_melee": "§3[机制设定|真近战]§r满蓄力下由左键攻击直接命中目标的行为视为真近战攻击。",
-  "info.cti.creative_energy_cell_4k": "无限供应§e4kAE/t§r的能量",
+  "info.cti.elemental_touch": "§3[工具机制|元素之触]§r由元素伤害叠加对应异常的行为的总称，比如火焰伤害叠加灼伤。",
+  "info.cti.chaotic_damage": "§3[工具机制|混沌伤害]§r能同时触发冰、火、风、地的元素之触的伤害，通常有一定百分比的伤害量无视大部分伤害抗性。",
+  "info.cti.draconic_damage": "§3[工具机制|龙属性伤害]§r能叠加龙属性异常，使目标承受的非物理伤害增加，造成的非物理伤害减少。",
+  "info.cti.creative_energy_cell_16k": "无限供应§e16kAE/t§r的能量",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
   "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",

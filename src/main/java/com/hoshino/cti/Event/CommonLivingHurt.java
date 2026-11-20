@@ -1,6 +1,7 @@
 package com.hoshino.cti.Event;
 
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
@@ -18,10 +19,7 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -103,6 +101,28 @@ public class CommonLivingHurt {
             if (OxygenUtils.levelHasOxygen(serverPlayer.getLevel())) {
                 OxygenS.checkAndRecoverOxygen(serverPlayer);
             }
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void livingAttackLowest(LivingAttackEvent event){
+        if (event.getSource() instanceof ElementalDamageSource damageSource&&damageSource.isChaotic()){
+            event.setCanceled(false);
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void livingHurtLowest(LivingHurtEvent event){
+        if (event.getSource() instanceof ElementalDamageSource damageSource&&damageSource.isChaotic()){
+            event.setCanceled(false);
+            if (event.getAmount()< damageSource.getChaoticMinDamage())
+                event.setAmount(damageSource.getChaoticMinDamage());
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void livingDamageLow(LivingDamageEvent event){
+        if (event.getSource() instanceof ElementalDamageSource damageSource&&damageSource.isChaotic()){
+            event.setCanceled(false);
+            if (event.getAmount()< damageSource.getChaoticMinDamage())
+                event.setAmount(damageSource.getChaoticMinDamage());
         }
     }
 }

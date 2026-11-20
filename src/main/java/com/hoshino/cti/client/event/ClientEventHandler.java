@@ -141,7 +141,7 @@ public class ClientEventHandler {
                                 if (ovheatEffect!=null){
                                     heat = Math.min(100,ovheatEffect.getDuration());
                                 }
-                                int length = (int) (heat*16f/100);
+                                int length = (int) Math.floor(heat*16f/100);
                                 int x = screenWidth/2;
                                 int y = screenHeight/2;
                                 int ARGB = ovheatEffect!=null?0xFFFF6C00:0x80FF6C00;

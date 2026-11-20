@@ -2,8 +2,7 @@ package com.hoshino.cti.Blocks;
 
 import appeng.block.AEBaseEntityBlock;
 import appeng.helpers.AEMaterials;
-import com.hoshino.cti.Blocks.BlockEntity.ae2.CreativeEnergyCell4kBE;
-import com.hoshino.cti.register.CtiBlockEntityType;
+import com.hoshino.cti.Blocks.BlockEntity.ae2.CreativeEnergyCell16kBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,14 +12,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CreativeEnergyCell4kBlock extends AEBaseEntityBlock<CreativeEnergyCell4kBE> {
-    public CreativeEnergyCell4kBlock() {
+public class CreativeEnergyCell16kBlock extends AEBaseEntityBlock<CreativeEnergyCell16kBE> {
+    public CreativeEnergyCell16kBlock() {
         super(defaultProps(AEMaterials.GLASS));
     }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new CreativeEnergyCell4kBE(pPos,pState);
+        return new CreativeEnergyCell16kBE(pPos,pState);
     }
 
     @Override

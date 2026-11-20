@@ -24,7 +24,12 @@ public class MeleeFieryJavelinModifier extends BasicOverHeatModifier{
     }
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return 75;
+        return -45;
+    }
+
+    @Override
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return 150;
     }
 
     @Override

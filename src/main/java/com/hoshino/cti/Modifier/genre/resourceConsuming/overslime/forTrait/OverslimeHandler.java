@@ -96,7 +96,7 @@ public class OverslimeHandler extends Modifier implements MeleeDamageModifierHoo
     @Override
     public float getProtectionModifier(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float modifierValue) {
         var needed = ProtectionModifierHook.getProtectionCap(context.getEntity().getCapability(TinkerDataCapability.CAPABILITY))-modifierValue;
-        var base = tool.getStats().get(OVERSLIME_GENRE.mulArmorStat)/0.04f;
+        var base = Math.min(tool.getStats().get(OVERSLIME_GENRE.mulArmorStat),0.4f)/0.04f;
         var consumption = tool.getStats().getInt(OVERSLIME_GENRE.consumption);
         var os = TinkerModifiers.overslime.get();
         var remain = os.getShield(tool);

@@ -68,11 +68,21 @@ public class ReplacedHeatSword extends BasicOverHeatModifier {
 
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return modifierEntry.getLevel()*30;
+        return -25;
+    }
+
+    @Override
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return 100;
     }
 
     @Override
     public float getBurntAttackSpeedBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return modifierEntry.getLevel()*0.25f;
+        return -0.1f*modifierEntry.getLevel();
+    }
+
+    @Override
+    public float getReleasedBurntAttackSpeedBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return 0.25f*modifierEntry.getLevel();
     }
 }

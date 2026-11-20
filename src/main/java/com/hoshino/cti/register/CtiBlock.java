@@ -7,7 +7,6 @@ import com.hoshino.cti.Cti;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
@@ -449,7 +448,7 @@ public class CtiBlock {
                 }
             });
 
-    public static final RegistryObject<CreativeEnergyCell4kBlock> CREATIVE_ENERGY_CELL_4K = BLOCK.register("creative_energy_cell_4k", CreativeEnergyCell4kBlock::new);
+    public static final RegistryObject<CreativeEnergyCell16kBlock> CREATIVE_ENERGY_CELL_16K = BLOCK.register("creative_energy_cell_16k", CreativeEnergyCell16kBlock::new);
 
 
 

@@ -24,6 +24,7 @@ import net.minecraft.world.level.storage.WorldData;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
@@ -164,6 +165,18 @@ public class CommonUtil {
         } else {
             return pOriginalCount;
         }
+    }
+
+    public static boolean validateEquipmentChange(ItemStack original,ItemStack replacement){
+        var toolOriginal = ToolStack.from(original);
+        var toolReplacement = ToolStack.from(replacement);
+        return !original.is(replacement.getItem())||(toolOriginal.getModifierList()!=toolReplacement.getModifierList());
+    }
+    public static boolean validateSlot(EquipmentSlot slot,ItemStack itemStack){
+        if (!(itemStack.getItem() instanceof IModifiable)) return false;
+        return (slot.getType()== EquipmentSlot.Type.ARMOR&&itemStack.is(TinkerTags.Items.ARMOR))||
+                (slot==EquipmentSlot.OFFHAND&&itemStack.is(TinkerTags.Items.SHIELDS))||
+                (slot==EquipmentSlot.MAINHAND&&itemStack.is(TinkerTags.Items.HELD));
     }
 
 }

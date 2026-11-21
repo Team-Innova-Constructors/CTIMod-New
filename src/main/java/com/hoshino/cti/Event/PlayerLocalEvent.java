@@ -5,11 +5,15 @@ import cofh.thermal.lib.item.AugmentItem;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.Items.SlimeCanItem;
 import com.hoshino.cti.client.cache.ExposedDelay;
+import com.marth7th.solidarytinker.register.SolidarytinkerItem;
 import com.xiaoyue.tinkers_ingenuity.register.TIItems;
 import dev.xkmc.l2complements.init.registrate.LCItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,6 +21,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.mantle.client.SafeClientAccess;
 import slimeknights.mantle.client.TooltipKey;
+import slimeknights.tconstruct.common.TinkerTags;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 
 import java.util.List;
 
@@ -80,6 +86,19 @@ public class PlayerLocalEvent {
         if (event.phase == TickEvent.Phase.START) return;
         if (ExposedDelay.getExposedTick() > 0) {
             ExposedDelay.setExposedTick(ExposedDelay.getExposedTick() - 1);
+        }
+    }
+
+    //禁用除了电棍和盾牌以外副手匠魂武器在主手有别的武器时使用
+    @SubscribeEvent
+    public static void onPlayerUse(LivingEntityUseItemEvent.Start event){
+        var entity = event.getEntity();
+        var mainHandItem = entity.getMainHandItem();
+        var offHandItem = entity.getItemInHand(InteractionHand.OFF_HAND);
+        if (entity instanceof Player&&event.getItem()==offHandItem&&mainHandItem.getItem() instanceof IModifiable&&offHandItem.getItem() instanceof IModifiable){
+            if (offHandItem.is(TinkerTags.Items.SHIELDS)||offHandItem.is(SolidarytinkerItem.ElectricBatons.get()))
+                return;
+            event.setCanceled(true);
         }
     }
 }

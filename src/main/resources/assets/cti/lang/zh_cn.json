@@ -1513,11 +1513,11 @@
 
   "modifier.cti.replaced_fiery": "怒火",
   "modifier.cti.replaced_fiery.flavor": "烈焰灌注！",
-  "modifier.cti.replaced_fiery.description":"每级+10最大灼伤叠加，近战攻击附加每级20%的火焰伤害。",
+  "modifier.cti.replaced_fiery.description":"每级+20(5)最大灼伤叠加，近战攻击附加每级10%(20%)的火焰伤害。",
 
-  "modifier.cti.replaced_heat_sword": "热斩刀",
-  "modifier.cti.replaced_heat_sword.flavor": "一刀一刀燃烧刀",
-  "modifier.cti.replaced_heat_sword.description":"-25(+100)最大灼伤叠加，每级-0.1(+0.25)灼伤攻击速度。\n §3·§r灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，攻击敌人并叠加每级5灼伤等级。",
+  "modifier.cti.replaced_heat_sword": "斩热之刃",
+  "modifier.cti.replaced_heat_sword.flavor": "我已解放至尊红刃",
+  "modifier.cti.replaced_heat_sword.description":"+125(75)最大灼伤叠加，每级+0.15(0.25)灼伤攻击速度。\n §3·§r过热效果期间：近战攻击附加每级5%(55%)火焰伤害，但是随时间流逝令武器生锈并减少攻击伤害。\n §3·§r过热效果结束后：可蓄力除去武器上的锈并施展强力大回旋斩击。若除锈前生锈明显则额外发射火球。",
 
   "modifier.cti.scorched": "焦土",
   "modifier.cti.scorched.flavor": "烧至焦黑！",
@@ -1549,7 +1549,7 @@
 
   "modifier.cti.melee_fiery_javelin": "索利斯·坎塔娜",
   "modifier.cti.melee_fiery_javelin.flavor": "异世界邪教徒使用的炽热能量剑",
-  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并触发目标的灼伤效果。-45(+150)最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射三发，命中时额外造成10%武器伤害。",
+  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并15%(100%)概率触发目标的灼伤效果。-45(+250)最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射3发，命中时额外造成5%(20%)武器伤害。",
 
   "modifier.cti.luck_charming": "命运之眷",
   "modifier.cti.luck_charming.flavor": "这是我的<铁之王牌>",
@@ -1586,6 +1586,14 @@
   "modifier.cti.plasma_activation": "离子活性",
   "modifier.cti.plasma_activation.flavor": "活化元素能量",
   "modifier.cti.plasma_activation.description":"造成武器伤害后缩短元素之触的冷却时间。",
+
+  "modifier.cti.stellar_fiery": "天辉耀炎",
+  "modifier.cti.stellar_fiery.flavor": "宇宙的炽热蕴含其中",
+  "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加，近战攻击附带25%(80%)火焰伤害。",
+
+  "modifier.cti.thermal_thrust": "热动力学",
+  "modifier.cti.thermal_thrust.flavor": "说的不是那些管道！",
+  "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得1(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n§3·§r过热效果期间：0%(100%)的灼伤攻速会转化为玩家近战攻击速度。",
 
 
 

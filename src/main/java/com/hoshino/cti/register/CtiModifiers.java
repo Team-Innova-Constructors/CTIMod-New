@@ -323,6 +323,8 @@ public class CtiModifiers {
     public static final StaticModifier<OxidizingFlame> OXIDIZING_FLAME = MODIFIERS.register("oxidizing_flame", OxidizingFlame::new);
     public static final StaticModifier<SearingBlow> SEARING_BLOW = MODIFIERS.register("searing_blow", SearingBlow::new);
     public static final StaticModifier<MeleeFieryJavelinModifier> MELEE_FIERY_JAVELIN = MODIFIERS.register("melee_fiery_javelin", MeleeFieryJavelinModifier::new);
+    public static final StaticModifier<StellarFiery> STELLAR_FIERY = MODIFIERS.register("stellar_fiery", StellarFiery::new);
+    public static final StaticModifier<BasicOverHeatModifier> THERMAL_THRUST = MODIFIERS.register("thermal_thrust", BasicOverHeatModifier::new);
 
     public static final StaticModifier<Immortal> IMMORTAL_STATIC_MODIFIER = MODIFIERS.register("immortal", Immortal::new);
     public static final StaticModifier<RangedLimited> RANGED_LIMITED = MODIFIERS.register("ranged_limited", RangedLimited::new);

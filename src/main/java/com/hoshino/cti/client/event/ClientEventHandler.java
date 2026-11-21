@@ -1,5 +1,6 @@
 package com.hoshino.cti.client.event;
 
+import com.github.alexthe666.iceandfire.client.render.entity.RenderDragonFireCharge;
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.BasicOverHeatModifier;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
@@ -19,6 +20,7 @@ import com.hoshino.cti.client.hud.EnvironmentalHud;
 import com.hoshino.cti.client.hud.FoxExposedOverlay;
 import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
+import com.hoshino.cti.client.renderer.projectile.FieryCircleSlashRenderer;
 import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
 import com.hoshino.cti.client.util.RenderUtil;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
@@ -104,6 +106,8 @@ public class ClientEventHandler {
             event.registerEntityRenderer(CtiEntity.star_dragon_ammo.get(), StarDragonAmmoRenderer::new);
             event.registerEntityRenderer(CtiEntity.GEL_CLOUD.get(), NoopRenderer::new);
             event.registerEntityRenderer(CtiEntity.VOID_ARC.get(), NoopRenderer::new);
+            event.registerEntityRenderer(CtiEntity.RUSTED_FIREBALL.get(),pContext -> new RenderDragonFireCharge(pContext,true));
+            event.registerEntityRenderer(CtiEntity.FIERY_CIRCLE_SLASH.get(), FieryCircleSlashRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);

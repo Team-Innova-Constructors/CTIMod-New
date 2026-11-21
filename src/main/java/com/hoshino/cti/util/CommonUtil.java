@@ -3,6 +3,8 @@ package com.hoshino.cti.util;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.google.common.collect.Lists;
 import com.hoshino.cti.Modifier.Armor.AntiCurse;
+import com.hoshino.cti.Modifier.genre.elemental.ElementalRelease;
+import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.mixin.LivingEntityAccessor;
 import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiEffects;
@@ -16,6 +18,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -132,8 +135,11 @@ public class CommonUtil {
         var itemStack = player.getMainHandItem();
         if (itemStack.getItem() instanceof IModifiable){
             ToolStack tool = ToolStack.from(itemStack);
-            if (player.hasEffect(CtiEffects.OVERHEAT.get())&&tool.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId())>0)
-                return (float) (20f/player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get()));
+            if (player.hasEffect(CtiEffects.OVERHEAT.get())&&tool.getModifierLevel(CtiModifiers.THERMAL_THRUST.getId())>0) {
+                AtomicInteger elementalReleaseLv = new AtomicInteger(0);
+                player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
+                return 20f / GenreManager.calculateElementalRelease(elementalReleaseLv.get(), (float) player.getAttributeValue(Attributes.ATTACK_SPEED), (float) player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get()));
+            }
         }
         if (delay < 10) {
             return delay * 0.7f + 3f;

@@ -11,12 +11,15 @@ import com.hoshino.cti.content.environmentSystem.EDamageSource;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.register.CtiEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.module.ModuleHookMap;
@@ -31,7 +34,6 @@ public class PlasmaWaveSlashEx extends EtSTBaseModifier implements LeftClickModi
         super.registerHooks(builder);
         builder.addHook(this, CtiModifierHook.LEFT_CLICK, etshtinkerHook.PLASMA_EXPLOSION_HIT);
     }
-    public static float cacheDamage = 0;
 
     @Override
     public int getPriority() {
@@ -51,20 +53,27 @@ public class PlasmaWaveSlashEx extends EtSTBaseModifier implements LeftClickModi
     }
 
     @Override
-    public float beforeMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage, float baseKnockback, float knockback) {
-        cacheDamage = damage;
-        return knockback;
+    public void onLeftClickBlock(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, BlockState state, BlockPos pos) {
+        if (!level.isClientSide){
+            createslash(player,tool);
+        }
+    }
+
+    @Override
+    public void onLeftClickEntity(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, Entity target) {
+        if (!level.isClientSide){
+            createslash(player,tool);
+        }
     }
 
     @Override
     public void postMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage) {
-        if (!context.isExtraAttack() && context.isFullyCharged() && context.getAttacker() instanceof Player player) {
-            createslash(player, tool);
-        } else if (context.isExtraAttack()&&cacheDamage>0) {
+        if (context.isExtraAttack()) {
             DamageSource source = new EntityDamageSource("cti.ionized",context.getAttacker()).bypassArmor().bypassMagic();
-            context.getTarget().hurt(IafDamageRegistry.causeIndirectDragonLightningDamage(context.getAttacker(), context.getAttacker()), cacheDamage / 2);
-            context.getTarget().hurt(source, cacheDamage / 3);
-            cacheDamage = 0;
+            context.getTarget().invulnerableTime = 0;
+            context.getTarget().hurt(IafDamageRegistry.causeIndirectDragonLightningDamage(context.getAttacker(), context.getAttacker()), damage*0.5f);
+            context.getTarget().invulnerableTime = 0;
+            context.getTarget().hurt(source, damage*0.5f);
         }
     }
 

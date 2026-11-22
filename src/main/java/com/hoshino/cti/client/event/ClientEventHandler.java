@@ -88,6 +88,7 @@ public class ClientEventHandler {
             event.register(CtiParticleType.GEL_EXPLOSION.get(), GelExplosionParticle.Provider::new);
             event.register(CtiParticleType.VOID_ARC.get(), new VoidArcParticle.Provider());
             event.register(CtiParticleType.MANA_STRIKE.get(), ManaStrikeParticle::provider);
+            event.register(CtiParticleType.WHITE_SPARK.get(), WhiteSparkParticle::provider);
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
@@ -151,6 +152,23 @@ public class ClientEventHandler {
                                 int ARGB = ovheatEffect!=null?0xFFFF6C00:0x80FF6C00;
                                 GuiComponent.fill(poseStack,x-8,y+16,x+8,y+15,0x20000000);
                                 GuiComponent.fill(poseStack,x-8,y+16,x-8+length,y+15,ARGB);
+                            }
+                        }
+                    }
+                });
+                event.registerAboveAll("double_edged",(gui, poseStack, partialTick, screenWidth, screenHeight) -> {
+                    var player = SafeClientAccess.getPlayer();
+                    if (player!=null){
+                        var mainHandItem = player.getMainHandItem();
+                        if (mainHandItem.getItem() instanceof IModifiable){
+                            ToolStack toolStack = ToolStack.from(mainHandItem);
+                            if (toolStack.getModifierLevel(CtiModifiers.double_edged.getId())>0){
+                                if (0.6<=player.getAttackStrengthScale(0)&&0.75>player.getAttackStrengthScale(0)){
+                                    int j = screenHeight / 2 + 13;
+                                    int k = screenWidth / 2 - 1;
+                                    RenderSystem.setShaderTexture(0,Cti.getResource("textures/gui/plus.png"));
+                                    GuiComponent.blit(poseStack,k,j,0,0,3,3,3,3);
+                                }
                             }
                         }
                     }

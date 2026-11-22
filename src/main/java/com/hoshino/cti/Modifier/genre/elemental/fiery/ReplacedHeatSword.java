@@ -10,6 +10,7 @@ import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.PClientSwingHandS2C;
+import com.hoshino.cti.netwrok.packet.PSyncAttackTickerS2C;
 import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiEntity;
@@ -190,8 +191,11 @@ public class ReplacedHeatSword extends BasicOverHeatModifier implements GeneralI
         fierySlash.burntLevel = modifier.getLevel();
         fierySlash.setPos(player.position().add(0,player.getBbHeight()/2,0));
         player.level.addFreshEntity(fierySlash);
-        if (player instanceof ServerPlayer serverPlayer)
-            CtiPacketHandler.sendToPlayer(new PClientSwingHandS2C(InteractionHand.MAIN_HAND),serverPlayer);
+        if (player instanceof ServerPlayer serverPlayer) {
+            CtiPacketHandler.sendToPlayer(new PClientSwingHandS2C(InteractionHand.MAIN_HAND), serverPlayer);
+            CtiPacketHandler.sendToPlayer(new PSyncAttackTickerS2C(0),serverPlayer);
+            serverPlayer.resetAttackStrengthTicker();
+        }
         if (rust>=12){
             for (int i =0;i<rust/12;i++){
                 var fireBall = new RustedFireballEntity(player.getLevel());

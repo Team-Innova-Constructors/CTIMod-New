@@ -1,6 +1,7 @@
 package com.hoshino.cti.register;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.Modifier.DoubleEdged;
 import com.hoshino.cti.content.entityTicker.tickers.EnderStiction;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
 import com.hoshino.cti.content.entityTicker.tickers.*;
@@ -31,4 +32,6 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> REFLECT_TICKER = ENTITY_TICKERS.register("reflect_ticker", ReflectTicker::new);
     public static final RegistryObject<EntityTicker> BIREFRINGENT_TICKER = ENTITY_TICKERS.register("birefringent_ticker", EchoFormTicker::new);
     public static final RegistryObject<EntityTicker> ATOMIC_DECOMPOSE = ENTITY_TICKERS.register("atomic_decompose", AtomicDecompose::new);
+    public static final RegistryObject<EntityTicker> DOUBLE_EDGED = ENTITY_TICKERS.register("double_edged", EmptyTicker::new);
+    public static final RegistryObject<EntityTicker> DOUBLE_EDGED_RECOVERY = ENTITY_TICKERS.register("double_edged_recovery", DoubleEdgedRecovery::new);
 }

@@ -101,6 +101,11 @@ public class CtiPacketHandler {
                 .encoder(PSyncAttackTickerS2C::toByte)
                 .consumerMainThread(PSyncAttackTickerS2C::handle)
                 .add();
+        INSTANCE.messageBuilder(PFreezeAttackTickerS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PFreezeAttackTickerS2C::new)
+                .encoder(PFreezeAttackTickerS2C::toByte)
+                .consumerMainThread(PFreezeAttackTickerS2C::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg) {

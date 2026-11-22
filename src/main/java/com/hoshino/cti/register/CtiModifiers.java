@@ -309,6 +309,7 @@ public class CtiModifiers {
     public static final StaticModifier<ReplaceBirefringent> REPLACE_BIREFRINGENT = MODIFIERS.register("birefringent", ReplaceBirefringent::new);
     public static final StaticModifier<AtomicPlasmaSlash> ATOMIC_PLASMA_SLASH = MODIFIERS.register("atomic_plasma_slash", AtomicPlasmaSlash::new);
     public static final StaticModifier<PlasmaActivation> PLASMA_ACTIVATION = MODIFIERS.register("plasma_activation", PlasmaActivation::new);
+    public static final StaticModifier<UnacceptableWeight> UNACCEPTABLE_WEIGHT = MODIFIERS.register("unacceptable_weight", UnacceptableWeight::new);
 
     public static final StaticModifier<ElementalRelease> ELEMENTAL_RELEASE = MODIFIERS.register("elemental_release", ElementalRelease::new);
 

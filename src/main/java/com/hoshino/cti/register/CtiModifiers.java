@@ -44,6 +44,7 @@ import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.BurstMiningModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.LCManaBurstModifier;
 import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
@@ -257,6 +258,9 @@ public class CtiModifiers {
     public static final StaticModifier<LuckCharming> LUCK_CHARMING = MODIFIERS.register("luck_charming", LuckCharming::new);
     public static final StaticModifier<PlateSmashing> PLATE_SMASHING = MODIFIERS.register("plate_smashing", PlateSmashing::new);
     public static final StaticModifier<CircuitCuttingModifier> CIRCUIT_CUTTING = MODIFIERS.register("circuit_cutting", CircuitCuttingModifier::new);
+    public static final StaticModifier<WarpEngineModifier> WARP_ENGINE = MODIFIERS.register("warp_engine", WarpEngineModifier::new);
+    public static final StaticModifier<NoLevelsModifier> WARP_ENGINE_STRIKE = MODIFIERS.register("warp_engine_strike", NoLevelsModifier::new);
+    public static final StaticModifier<NoLevelsModifier> WARP_ENGINE_TURNBACK = MODIFIERS.register("warp_engine_turnback", NoLevelsModifier::new);
 
 
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);

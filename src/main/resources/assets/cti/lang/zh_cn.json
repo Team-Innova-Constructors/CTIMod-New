@@ -1599,6 +1599,18 @@
   "modifier.cti.unacceptable_weight.flavor": "重到连武器都举不起来！",
   "modifier.cti.unacceptable_weight.description":"攻速类属性x0.2，攻击伤害x10。",
 
+  "modifier.cti.warp_engine": "曲速引擎",
+  "modifier.cti.warp_engine.flavor": "“曲速引擎启动”",
+  "modifier.cti.warp_engine.description":"右键进入曲速引擎模式，无视重力并朝前方快速飞行。左键攻击或使用任意物品可退出曲速引擎模式。",
+
+  "modifier.cti.warp_engine_strike": "曲速突击",
+  "modifier.cti.warp_engine_strike.flavor": "折跃——进攻",
+  "modifier.cti.warp_engine_strike.description":"左键退出曲速引擎模式的时候，若正好以真近战命中生物，则在其身上释放额外斩击。",
+
+  "modifier.cti.warp_engine_turnback": "曲速折返",
+  "modifier.cti.warp_engine_turnback.flavor": "进攻——返回",
+  "modifier.cti.warp_engine_turnback.description":"曲速突击触发的时候，自动将你的视角拉回。",
+
 
 
   "dimension.ad_astra.infernal": "炼狱",

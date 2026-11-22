@@ -21,6 +21,7 @@ import com.hoshino.cti.client.hud.FoxExposedOverlay;
 import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
 import com.hoshino.cti.client.renderer.projectile.FieryCircleSlashRenderer;
+import com.hoshino.cti.client.renderer.projectile.PlasmaCircleSlashRenderer;
 import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
 import com.hoshino.cti.client.util.RenderUtil;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
@@ -89,6 +90,7 @@ public class ClientEventHandler {
             event.register(CtiParticleType.VOID_ARC.get(), new VoidArcParticle.Provider());
             event.register(CtiParticleType.MANA_STRIKE.get(), ManaStrikeParticle::provider);
             event.register(CtiParticleType.WHITE_SPARK.get(), WhiteSparkParticle::provider);
+            event.register(CtiParticleType.NORMAL_SLASH.get(), NormalSlashParticle::provider);
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
@@ -109,6 +111,7 @@ public class ClientEventHandler {
             event.registerEntityRenderer(CtiEntity.VOID_ARC.get(), NoopRenderer::new);
             event.registerEntityRenderer(CtiEntity.RUSTED_FIREBALL.get(),pContext -> new RenderDragonFireCharge(pContext,true));
             event.registerEntityRenderer(CtiEntity.FIERY_CIRCLE_SLASH.get(), FieryCircleSlashRenderer::new);
+            event.registerEntityRenderer(CtiEntity.PLASMA_CIRCLE_SLASH.get(), PlasmaCircleSlashRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);

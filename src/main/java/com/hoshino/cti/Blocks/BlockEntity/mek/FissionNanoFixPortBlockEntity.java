@@ -35,7 +35,7 @@ public class FissionNanoFixPortBlockEntity extends TileEntityFissionReactorCasin
     protected boolean onUpdateServer(FissionReactorMultiblockData multiblock) {
         boolean needsPacket = super.onUpdateServer(multiblock);
         if (multiblock.isFormed()&&level!=null&&level.getGameTime()%2==0) {
-            if (multiblock.reactorDamage > -FIX_COUNT_PER_ITEM && fixCount > 0) {
+            if (multiblock.reactorDamage > -MAX_FIX_COUNT && fixCount > 0) {
                 fixCount -= 1;
                 multiblock.reactorDamage -= 1;
             }

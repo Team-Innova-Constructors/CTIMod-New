@@ -1,6 +1,7 @@
 package com.hoshino.cti.register;
 
 import com.bobmowzie.mowziesmobs.client.render.entity.RenderSunstrike;
+import com.c2h6s.etshtinker.Entities.PlasmaSlashEntity;
 import com.c2h6s.etshtinker.client.render.renderSlash;
 import com.hoshino.cti.Entity.Projectiles.*;
 import com.hoshino.cti.Entity.vehicles.rocketTier5;
@@ -95,6 +96,9 @@ public class CtiEntity {
                     .setUpdateInterval(10)
                     .setCustomClientFactory((spawnEntity, world) -> new FieryCircleSlashEntity(CtiEntity.FIERY_CIRCLE_SLASH.get(), world))
                     .setShouldReceiveVelocityUpdates(true));
+    public static final RegistryObject<EntityType<PlasmaCircleSlashEntity>> PLASMA_CIRCLE_SLASH = ENTITIES.register("plasma_circle_slash", () ->
+            EntityType.Builder.<PlasmaCircleSlashEntity>of(PlasmaCircleSlashEntity::new, MobCategory.MISC).sized(3F, 0.1F)
+                    .setTrackingRange(4).setUpdateInterval(10).setCustomClientFactory((spawnEntity, world) -> new PlasmaCircleSlashEntity(world)).setShouldReceiveVelocityUpdates(true));
 
 
     public static void register(IEventBus bus){

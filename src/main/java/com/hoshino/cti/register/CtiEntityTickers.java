@@ -33,5 +33,6 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> BIREFRINGENT_TICKER = ENTITY_TICKERS.register("birefringent_ticker", EchoFormTicker::new);
     public static final RegistryObject<EntityTicker> ATOMIC_DECOMPOSE = ENTITY_TICKERS.register("atomic_decompose", AtomicDecompose::new);
     public static final RegistryObject<EntityTicker> DOUBLE_EDGED = ENTITY_TICKERS.register("double_edged", EmptyTicker::new);
-    public static final RegistryObject<EntityTicker> DOUBLE_EDGED_RECOVERY = ENTITY_TICKERS.register("double_edged_recovery", DoubleEdgedRecovery::new);
+    public static final RegistryObject<EntityTicker> DOUBLE_EDGED_RECOVERY = ENTITY_TICKERS.register("double_edged_recovery", EmptyTicker::new);
+    public static final RegistryObject<EntityTicker> WARP_ENGINE = ENTITY_TICKERS.register("warp_engine", WarpEngineTicker::new);
 }

@@ -17,10 +17,12 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import java.util.Collection;
 
 public interface SlotStackModifierHook {
+    //用工具右键背包内其它物品
     default boolean overrideStackedOnOther(IToolStackView heldTool, ModifierEntry modifier, Slot slot, Player player) {
         return false;
     }
 
+    //用其它物品右键背包内工具
     default boolean overrideOtherStackedOnMe(IToolStackView slotTool, ModifierEntry modifier, ItemStack held, Slot slot, Player player, SlotAccess access) {
         return false;
     }

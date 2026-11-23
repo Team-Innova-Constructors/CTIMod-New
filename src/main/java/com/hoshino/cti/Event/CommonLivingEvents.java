@@ -13,6 +13,7 @@ import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
 import com.hoshino.cti.Modifier.genre.insatiable.InsatiableDigest;
 import com.hoshino.cti.Modifier.genre.insatiable.ReplacedWellTrained;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
@@ -61,6 +62,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.ModifierManager;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
@@ -71,6 +73,8 @@ import twilightforest.init.TFItems;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+import static com.hoshino.cti.Modifier.genre.elemental.fiery.ReplacedHeatSword.increaseRust;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class CommonLivingEvents {
@@ -111,6 +115,30 @@ public class CommonLivingEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onOverHeatStart(MobEffectEvent.Applicable event) {
+        if (event.getEffectInstance().getEffect()==CtiEffects.OVERHEAT.get()&&event.getEntity() instanceof ServerPlayer player){
+            var itemStack = player.getMainHandItem();
+            if (itemStack.getItem() instanceof IModifiable){
+                var tool = ToolStack.from(itemStack);
+                tool.getModifierList().forEach(modifierEntry -> {
+                    if (modifierEntry.getId().equals(CtiModifiers.REPLACED_HEAT_SWORD.getId())){
+                        increaseRust(tool,1);
+                    }
+                    if (modifierEntry.getId().equals(CtiModifiers.STELLAR_FIERY.getId())){
+                        int maxStacks = 5;
+                        EntityTickerManager.getInstance(player).addTicker(
+                                new EntityTickerInstance(CtiEntityTickers.STELLAR_FIERY.get(),1,400),
+                                (existing,add)->Math.min(existing+add,maxStacks),
+                                Integer::max);
+                    }
+
+                });
+
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEffectApplyHigh(MobEffectEvent.Applicable event) {
         if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
             if (event.getEntity() instanceof Player player && (SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)))
@@ -131,6 +159,10 @@ public class CommonLivingEvents {
         } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
             event.setResult(Event.Result.DENY);
         }
+    }
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onEffectApplicableHigest(MobEffectEvent.Applicable event){
+
     }
 
     @SubscribeEvent

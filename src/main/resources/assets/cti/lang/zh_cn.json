@@ -830,7 +830,7 @@
 
   "modifier.cti.pressure_loaded": "空气装载",
   "modifier.cti.pressure_loaded.flavor": "空气动力学！",
-  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力，获得2x压力%的独立伤害减免。",
+  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力，获得压力*2%（最高生效12.5bar）的独立伤害减免。",
 
   "modifier.cti.fixed_oracular": "神谕",
   "modifier.cti.fixed_oracular.flavor": "洗涤心灵。",
@@ -1483,15 +1483,15 @@
   "modifier.cti.glory_etch.flavor": "做大做强，再创辉煌！",
   "modifier.cti.glory_etch.description":"将部件所带有的词条刻印到工具上，部件类型必须与工具兼容。",
 
-  "modifier.cti.gobber_etch_1": "戈伯刻印01",
+  "modifier.cti.gobber_etch_1": "戈伯刻印阿尔法",
   "modifier.cti.gobber_etch_1.flavor": "戈伯之力[其一]",
   "modifier.cti.gobber_etch_1.description":"将部件所带有的第一个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-15%工具的近战/远程属性",
 
-  "modifier.cti.gobber_etch_2": "戈伯刻印02",
+  "modifier.cti.gobber_etch_2": "戈伯刻印贝塔",
   "modifier.cti.gobber_etch_2.flavor": "戈伯之力[其二]",
   "modifier.cti.gobber_etch_2.description":"将部件所带有的第二个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-10%工具的近战/远程属性",
 
-  "modifier.cti.gobber_etch_3": "戈伯刻印03",
+  "modifier.cti.gobber_etch_3": "戈伯刻印伽马",
   "modifier.cti.gobber_etch_3.flavor": "戈伯之力[其三]",
   "modifier.cti.gobber_etch_3.description":"将部件所带有的第三个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-5%工具的近战/远程属性",
 
@@ -1589,11 +1589,11 @@
 
   "modifier.cti.stellar_fiery": "天辉耀炎",
   "modifier.cti.stellar_fiery.flavor": "宇宙的炽热蕴含其中",
-  "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加，近战攻击附带25%(80%)火焰伤害。",
+  "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加。近战攻击附带每级25%(80%)火焰伤害，过热效果期间该伤害减半。\n §3·§r每次获得过热效果时都会令增加100%本词条的近战火焰附伤，持续20秒，最大叠加5次。",
 
   "modifier.cti.thermal_thrust": "热动力学",
   "modifier.cti.thermal_thrust.flavor": "说的不是那些管道！",
-  "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得1(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n§3·§r过热效果期间：0%(100%)的灼伤攻速会转化为玩家近战攻击速度。",
+  "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得15(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：0%(100%)的灼伤攻速会转化为玩家近战攻击速度。",
 
   "modifier.cti.unacceptable_weight": "无法承受之重",
   "modifier.cti.unacceptable_weight.flavor": "重到连武器都举不起来！",

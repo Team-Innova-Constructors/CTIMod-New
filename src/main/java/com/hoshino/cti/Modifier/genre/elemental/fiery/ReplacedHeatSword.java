@@ -86,21 +86,6 @@ public class ReplacedHeatSword extends BasicOverHeatModifier implements GeneralI
         toolData.putInt(KEY_RUST, Mth.clamp(toolData.getInt(KEY_RUST)+amount,0,100));
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onEffectApplicable(MobEffectEvent.Applicable event){
-        if (event.getEffectInstance().getEffect()==CtiEffects.OVERHEAT.get()&&event.getEntity() instanceof Player player){
-            var itemStack = player.getMainHandItem();
-            if (itemStack.getItem() instanceof IModifiable){
-                var tool = ToolStack.from(itemStack);
-                if (tool.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId())>0){
-                    increaseRust(tool,1);
-                }
-            }
-        }
-    }
-
-
-
     @Override
     public void postMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damage) {
         if (context.getAttacker() instanceof Player player&&context.getTarget() instanceof LivingEntity target&&player.hasEffect(CtiEffects.OVERHEAT.get())){

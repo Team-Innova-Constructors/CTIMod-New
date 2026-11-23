@@ -156,6 +156,7 @@
     "TIMixin.ToolUtilsMixin",
     "TwiMixin.BossSpawnerBlockEntityMixin",
     "TwiMixin.HydraMixin",
+    "TwiMixin.KnightPhantomMixin",
     "TwiMixin.LampMixin",
     "TwiMixin.UrGhastMixin"
   ],

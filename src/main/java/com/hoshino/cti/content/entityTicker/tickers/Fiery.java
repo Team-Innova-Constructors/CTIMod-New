@@ -53,7 +53,7 @@ public class Fiery extends EntityTicker {
             if (modifierLevel >0&&!player.hasEffect(CtiEffects.OVERHEAT.get())){
                 AtomicInteger elementalReleaseLv = new AtomicInteger(0);
                 player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
-                toolData.putInt(ReplacedHeatSword.KEY_HEAT,Math.min(100, toolData.getInt(ReplacedHeatSword.KEY_HEAT) + (int) (modifierLevel * GenreManager.calculateElementalRelease(elementalReleaseLv.get(),1,5))));
+                toolData.putInt(ReplacedHeatSword.KEY_HEAT,Math.min(100, toolData.getInt(ReplacedHeatSword.KEY_HEAT) + (int) (modifierLevel * GenreManager.calculateElementalRelease(elementalReleaseLv.get(),15,5))));
             }
             modifierLevel = tool.getModifierLevel(CtiModifiers.RUBY_LASER.getId());
             if (modifierLevel>0&&player.hasEffect(CtiEffects.OVERHEAT.get())){

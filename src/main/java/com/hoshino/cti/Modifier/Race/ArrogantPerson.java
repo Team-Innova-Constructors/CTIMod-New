@@ -24,7 +24,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import java.util.function.BiConsumer;
 
 public class ArrogantPerson extends Modifier implements AttributesModifierHook, InventoryTickModifierHook , OnAttackedModifierHook {
-    private static ResourceLocation COMPACT_TIME= Cti.getResource("compact_time");
+    private static final ResourceLocation COMPACT_TIME= Cti.getResource("compact_time");
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         hookBuilder.addHook(this, ModifierHooks.ATTRIBUTES,ModifierHooks.INVENTORY_TICK,ModifierHooks.ON_ATTACKED);

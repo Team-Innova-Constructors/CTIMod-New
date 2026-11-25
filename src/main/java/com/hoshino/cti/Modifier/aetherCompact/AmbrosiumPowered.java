@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.client.TooltipKey;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
@@ -34,6 +35,7 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
 import slimeknights.tconstruct.library.tools.nbt.*;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
@@ -154,7 +156,12 @@ public class AmbrosiumPowered extends Modifier implements SlotStackModifierHook,
 
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
-        amount-=getAndUseChargeWithMax(tool, (int) amount)*3;
+        if(tool.getItem() instanceof ModifiableArmorItem||tool.hasTag(TinkerTags.Items.SHIELDS)){
+            amount-=Math.min(getAndUseChargeWithMax(tool, (int) amount)*3,30);
+            if(amount<0){
+                amount=0;
+            }
+        }
         return amount;
     }
 }

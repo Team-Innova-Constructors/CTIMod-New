@@ -1,17 +1,12 @@
 package com.hoshino.cti.mixin.L2;
 
-import com.hoshino.cti.util.method.GetModifierLevel;
-import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.events.MobEvents;
-import dev.xkmc.l2hostility.init.registrate.LHItems;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 @Mixin(MobEvents.class)
 public class MobEventMixin {

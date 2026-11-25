@@ -17,14 +17,14 @@ public class Dawn extends EntityTicker {
     public boolean tick(int duration, int level, Entity entity) {
         if(entity.tickCount%5==0){
             if(!(entity instanceof LivingEntity living))return true;
+            if(living.isDeadOrDying())return true;
+            if(!living.isAlive())return true;
             if(living instanceof Player player){
                 var healAmount=player.getMaxHealth() * 0.066f;
                 ForgeEventFactory.onLivingHeal(player, healAmount);
                 player.setHealth(Math.min(player.getMaxHealth(),player.getHealth()+healAmount));
                 return true;
             } else {
-                if(living.isDeadOrDying())return true;
-                if(!living.isAlive())return true;
                 var healAmount=living.getMaxHealth() * 0.08f;
                 ForgeEventFactory.onLivingHeal(living, healAmount);
                 living.setHealth(Math.min(living.getMaxHealth(),living.getHealth()+healAmount));

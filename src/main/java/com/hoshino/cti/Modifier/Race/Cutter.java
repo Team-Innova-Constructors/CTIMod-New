@@ -47,6 +47,6 @@ public class Cutter extends Modifier implements MeleeHitModifierHook , MeleeDama
 
     @Override
     public float getMeleeDamage(IToolStackView iToolStackView, ModifierEntry modifierEntry, ToolAttackContext toolAttackContext, float v, float v1) {
-        return v1+10 * modifierEntry.getLevel();
+        return v1+15 * modifierEntry.getLevel();
     }
 }

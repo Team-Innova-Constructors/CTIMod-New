@@ -85,7 +85,6 @@ public class Eventually extends Modifier implements MeleeDamageModifierHook, Mel
                         BlockPos posA = player.getOnPos();
                         StarDragonHit.runSpecialKill(targets, player, true);
                         player.level.playSound(null, posA, SoundEvents.ZOMBIE_VILLAGER_CURE, SoundSource.PLAYERS, 1F, 1F);
-                        targets.remove(Entity.RemovalReason.KILLED);
                         if (player instanceof ServerPlayer serverPlayer) {
                             serverPlayer.getLevel().sendParticles(ParticleTypes.TOTEM_OF_UNDYING, targets.getX(), targets.getY() + targets.getBbHeight(), targets.getZ(), 40, 0.25, 0.5, 0.25, 0.25);
                         }

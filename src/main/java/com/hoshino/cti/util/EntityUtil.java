@@ -13,6 +13,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -65,8 +66,20 @@ public class EntityUtil {
         return false;
     }
     public static void constantKill(LivingEntity entity, DamageSource source){
-        entity.invulnerableTime=0;
-        if(entity.getHealth()<=2)return;
+        if (entity.level.isClientSide || entity.isRemoved()) return;
+        Entity attacker = source.getEntity();
+        entity.invulnerableTime = 0;
+        if (!entity.hurt(source, 7355608)) {
+            if (attacker instanceof LivingEntity living && !source.isNoAggro()) {
+                entity.setLastHurtByMob(living);
+            }
+            if (attacker instanceof Player player) {
+                entity.setLastHurtByPlayer(player);
+            } else if (attacker instanceof TamableAnimal tamable && tamable.isTame()) {
+                LivingEntity owner = tamable.getOwner();
+                entity.setLastHurtByPlayer(owner instanceof Player p ? p : null);
+            }
+        }
         entity.setHealth(0);
         entity.die(source);
     }

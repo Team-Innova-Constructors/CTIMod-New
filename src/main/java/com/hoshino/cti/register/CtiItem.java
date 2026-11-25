@@ -212,15 +212,15 @@ public class CtiItem {
             .type(TAG_AUGMENT_TYPE_DYNAMO)
             .mod(TAG_AUGMENT_FLUID_STORAGE, 4)
             .mod(TAG_AUGMENT_DYNAMO_THROTTLE, 1)
-            .mod(TAG_AUGMENT_DYNAMO_POWER, 40.0F)
-            .mod(TAG_AUGMENT_DYNAMO_ENERGY, 2.0F)
+            .mod(TAG_AUGMENT_DYNAMO_POWER, 25.0F)
+            .mod(TAG_AUGMENT_DYNAMO_ENERGY, 1.5F)
             .build()).setShowInGroups(getFlag(FLAG_DYNAMO_AUGMENTS)));
     public static final RegistryObject<Item> Secondary_dyano_augment = ITEMS.register("secondary_dyano_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
             .type(TAG_AUGMENT_TYPE_DYNAMO)
             .mod(TAG_AUGMENT_FLUID_STORAGE, 2)
             .mod(TAG_AUGMENT_DYNAMO_THROTTLE, 1)
-            .mod(TAG_AUGMENT_DYNAMO_POWER, 25.0F)
-            .mod(TAG_AUGMENT_DYNAMO_ENERGY, 1.5F)
+            .mod(TAG_AUGMENT_DYNAMO_POWER, 10.0F)
+            .mod(TAG_AUGMENT_DYNAMO_ENERGY, 1.25F)
             .build()).setShowInGroups(getFlag(FLAG_DYNAMO_AUGMENTS)));
 
     public static final RegistryObject<Item> advanced_range_augment = ITEMS.register("advanced_range_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()
@@ -291,8 +291,8 @@ public class CtiItem {
             .type(TAG_AUGMENT_TYPE_DYNAMO)
             .mod(TAG_AUGMENT_FLUID_STORAGE, 8)
             .mod(TAG_AUGMENT_DYNAMO_THROTTLE, 1)
-            .mod(TAG_AUGMENT_DYNAMO_POWER, 100.0F)
-            .mod(TAG_AUGMENT_DYNAMO_ENERGY, 3.0F)
+            .mod(TAG_AUGMENT_DYNAMO_POWER, 30.0F)
+            .mod(TAG_AUGMENT_DYNAMO_ENERGY, 2.1F)
             .build()).setShowInGroups(getFlag(FLAG_DYNAMO_AUGMENTS)));
     //黑雾速度插件
     public static final RegistryObject<Item> extereme_speed_augment = ITEMS.register("extereme_speed_augment", () -> new ThermalAugment(new Item.Properties().tab(CtiTab.MIXC), AugmentDataHelper.builder()

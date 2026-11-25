@@ -158,7 +158,7 @@
 
   "modifier.cti.cutter": "切割者",
   "modifier.cti.cutter.flavor": "碎甲碎甲",
-  "modifier.cti.cutter.description":"•当目标护甲大于10时,完整攻击时候每次攻击减少目标6% * 词条等级的最大护甲值\n•没有叠满5层的限制\n•没有时间限制",
+  "modifier.cti.cutter.description":"•当目标护甲大于10时,完整攻击时候每次攻击减少目标6% * 词条等级的最大护甲值\n•没有叠满5层的限制\n•没有时间限制\n每级额外提供15点基础增伤",
 
   "modifier.cti.nature_power": "自然之力",
   "modifier.cti.nature_power.flavor": "依旧爱魔tv",
@@ -248,11 +248,11 @@
 
   "modifier.cti.arcaneprotect": "奥法•魔力加护",
   "modifier.cti.arcaneprotect.flavor": "纵使相逢应不识,牢署模组几时实",
-  "modifier.cti.arcaneprotect.description":"你收到的所有为魔法类型的伤害变为1点,并且受伤获得短暂无敌效果.每5秒获得6秒生命恢复5",
+  "modifier.cti.arcaneprotect.description":"你收到的所有为魔法类型的伤害变为1点,并且受伤获得短暂无敌效果.\n[在背包中]每5秒获得6秒生命恢复5",
 
   "modifier.cti.arcanetough": "奥法•坚韧",
   "modifier.cti.arcanetough.flavor": "门前冷落鞍马稀,牢署大饼积又积",
-  "modifier.cti.arcanetough.description":"工具会吸收魔力来修复自己,并且每次修复10耐久,每次修复还会给与玩家100经验点数.但是工具正常使用不再消耗耐久",
+  "modifier.cti.arcanetough.description":"[在背包中]工具会吸收魔力来修复自己,并且每次修复10耐久,每次修复还会给与玩家100经验点数.但是工具正常使用不再消耗耐久",
 
   "modifier.cti.arcanefilling": "奥法•充盈",
   "modifier.cti.arcanefilling.flavor": "白日放歌须纵酒,署观教程愁又愁",
@@ -292,7 +292,7 @@
 
   "modifier.cti.ambrosium_powered": "圣神光辉",
   "modifier.cti.ambrosium_powered.flavor": "你的工具已注入神的能量",
-  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡/+4近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
+  "modifier.cti.ambrosium_powered.description": "在背包中用神能晶右键充能，获得每级50%攻防属性加成并抵消耐久损耗，每级最大充能32点。每点充能提供+3甲后格挡(至高30)/+4近战伤害/+1远程伤害（护甲/近战/远程），但是使用时额外消耗1/16于当前充能的充能",
 
   "modifier.cti.stellar_arrow": "星辰箭矢",
   "modifier.cti.stellar_arrow.flavor": "据说能射下天上的星星",

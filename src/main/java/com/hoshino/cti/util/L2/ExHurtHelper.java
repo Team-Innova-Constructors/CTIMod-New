@@ -35,6 +35,7 @@ public class ExHurtHelper {
         if(GetModifierLevel.curioHasModifierLevel(player,new ModifierId("solidarytinker:bha")))return false;
         if(GetModifierLevel.equipHasModifierLevel(player,new ModifierId("tinkers_ingenuity:unmatched")))return false;
         if(GetModifierLevel.equipHasModifierLevel(player,new ModifierId("cti:eventually")))return false;
+
         var relicLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:the_relic"));
         var shadowOfVigridLevel = GetModifierLevel.getTotalArmorModifierlevel(player, new ModifierId("cti:shadow_of_vigrid"));
 

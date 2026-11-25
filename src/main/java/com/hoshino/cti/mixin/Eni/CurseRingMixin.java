@@ -1,31 +1,27 @@
 package com.hoshino.cti.mixin.Eni;
 
-import com.aizistral.enigmaticlegacy.api.capabilities.IPlaytimeCounter;
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
 import com.aizistral.enigmaticlegacy.items.generic.ItemBaseCurio;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
+import com.hoshino.cti.Modifier.Race.DemonBloodline;
 import com.hoshino.cti.client.cache.SevenCurse;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
 import com.hoshino.cti.netwrok.packet.ServerCursePacket;
-import com.hoshino.cti.register.CtiEffects;
-import com.hoshino.cti.register.CtiModifiers;
-import com.hoshino.cti.util.CurseStage;
 import com.hoshino.cti.util.CurseUtil;
-import com.hoshino.cti.util.SearchTools;
-import com.hoshino.cti.util.method.GetModifierLevel;
-import com.marth7th.solidarytinker.register.TinkerCuriosModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
-import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -36,12 +32,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import slimeknights.tconstruct.library.modifiers.ModifierId;
 import top.theillusivec4.curios.api.SlotContext;
 
 import javax.annotation.Nullable;
@@ -73,74 +66,80 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
     @Shadow
     public static Omniconfig.BooleanParameter enableLore;
 
+    @Shadow
+    public static Omniconfig.DoubleParameter neutralAngerRange;
+
+    @Shadow
+    public static Omniconfig.DoubleParameter neutralXRayRange;
+
+    @Shadow
+    public static Omniconfig.DoubleParameter endermenRandomportRange;
+
+    @Shadow
+    public static Omniconfig.DoubleParameter endermenRandomportFrequency;
 
     /**
-     * @reason <h5>现在风起云涌阶段前不会再激怒末影人</h5>
-     * @author firefly
+     * @author
+     * @reason 在原版七咒之戒的 curioTick 基础上整合惩罚时间/坚毅层数逻辑、取消末影人强制传送
+     * 并新增"恶魔血统"词条判定：携带该词条时不执行强制仇恨。
      */
-    @Inject(method = "curioTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan;m_6710_(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
-    private void angryEnderMan(SlotContext context, ItemStack stack, CallbackInfo ci) {
+    @Overwrite
+    public void curioTick(SlotContext context, ItemStack stack) {
         if (!(context.entity() instanceof Player player)) return;
-        if(player.hasEffect(CtiEffects.covert.get())||player.hasEffect(SearchTools.findMobEffect("solidarytinker:lurk"))){
-            ci.cancel();
-            return;
-        }
-        boolean shouldNotBeAngry = player.getLevel().isDay() || GetModifierLevel.equipHasModifierLevel(player, CtiModifiers.end_slayer.getId()) || this.cti$isInfancy(player)||GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
-        if (shouldNotBeAngry) {
-            ci.cancel();
-        }
-    }
 
-    @Inject(method = "curioTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/NeutralMob;m_6710_(Lnet/minecraft/world/entity/LivingEntity;)V"), cancellable = true)
-    private void angryOtherMob(SlotContext context, ItemStack stack, CallbackInfo ci) {
-        if (!(context.entity() instanceof Player player))return;
-        if(player.hasEffect(CtiEffects.covert.get())||player.hasEffect(SearchTools.findMobEffect("solidarytinker:lurk"))){
-            ci.cancel();
-            return;
-        }
-        boolean shouldNotBeAngry = player.getLevel().isDay() || this.cti$isInfancy(player)||GetModifierLevel.curioHasModifierLevel(player, TinkerCuriosModifier.BHA_STATIC_MODIFIER.getId());
-        if (shouldNotBeAngry) {
-            ci.cancel();
-        }
-    }
-
-    @Inject(method = "curioTick", at = @At(value = "HEAD"))
-    private void curioTick(SlotContext context, ItemStack stack, CallbackInfo ci) {
         var data = stack.getOrCreateTag();
-        if (context.entity() instanceof Player player) {
-            int time = CurseUtil.getPunishTime(player);
-            if (time > 0) {
-                if (player.tickCount % 20 == 0) {
-                    data.putInt("punish_time", time - 1);
-                }
-            } else {
-                var worldIn = context.entity().getLevel();
-                var worldTime = worldIn.getGameTime();
-                int resoluteTime = data.getInt("resolute");
-                if (worldTime % 24000 == 0) {
-                    data.putInt("resolute", Math.min(3, resoluteTime + 1));
-                }
+        int time = CurseUtil.getPunishTime(player);
+        if (time > 0) {
+            if (player.tickCount % 20 == 0) {
+                data.putInt("punish_time", time - 1);
             }
-            if(player instanceof ServerPlayer serverPlayer){
-                int punishTime = CurseUtil.getPunishTime(player);
-                int deathFre = CurseUtil.getDeathFrequency(player);
-                int resoluteTime = CurseUtil.getResoluteTime(player);
-                long curseTime=CurseUtil.curseTime(player);
-                CtiPacketHandler.sendToPlayer(new ServerCursePacket(punishTime,deathFre,resoluteTime),serverPlayer);
-                cti$CheckStage(curseTime,serverPlayer);
+        } else {
+            Level worldIn = player.getLevel();
+            long worldTime = worldIn.getGameTime();
+            int resoluteTime = data.getInt("resolute");
+            if (worldTime % 24000 == 0) {
+                data.putInt("resolute", Math.min(3, resoluteTime + 1));
             }
         }
-    }
-    @Unique
-    private void cti$CheckStage(long curseTime, ServerPlayer serverPlayer){
-        if(curseTime%24000!=0)return;
-        var array= CurseStage.values();
-        for(CurseStage stage:array){
-            if(curseTime==stage.curseTime){
-                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(stage.title));
-                serverPlayer.connection.send(new ClientboundSetSubtitleTextPacket(stage.subTitle));
-                serverPlayer.sendSystemMessage(Component.literal(serverPlayer.getName()+",你已进入"+ stage.title.getString()+"阶段") );
-                serverPlayer.sendSystemMessage(stage.description);
+        if (player instanceof ServerPlayer serverPlayer) {
+            int punishTime = CurseUtil.getPunishTime(player);
+            int deathFre = CurseUtil.getDeathFrequency(player);
+            int resoluteTime = CurseUtil.getResoluteTime(player);
+            CtiPacketHandler.sendToPlayer(new ServerCursePacket(punishTime, deathFre, resoluteTime), serverPlayer);
+        }
+
+        if (DemonBloodline.hasBloodline(player)) return;
+
+        if (player.isCreative() || player.isSpectator()) return;
+
+        Level level = player.getLevel();
+
+        for (EnderMan enderman : level.getEntitiesOfClass(EnderMan.class,
+                SuperpositionHandler.getBoundingBoxAroundEntity(player, endermenRandomportRange.getValue()))) {
+            if (!(random.nextDouble() <= 0.002 * endermenRandomportFrequency.getValue())
+                    || !player.hasLineOfSight(enderman)) continue;
+            enderman.setTarget(player);
+        }
+
+        if (!SuperpositionHandler.hasCurio(player, EnigmaticItems.AVARICE_SCROLL)) {
+            for (Mob mob : level.getEntitiesOfClass(Mob.class,
+                    SuperpositionHandler.getBoundingBoxAroundEntity(player, neutralAngerRange.getValue()))) {
+                if (!(mob instanceof Piglin) && !(mob instanceof ZombifiedPiglin)) continue;
+
+                double visibility = player.getVisibilityPercent(mob);
+                double angerDistance = Math.max(neutralAngerRange.getValue() * visibility, neutralXRayRange.getValue());
+                if (mob.distanceToSqr(player.getX(), player.getY(), player.getZ()) > angerDistance * angerDistance) continue;
+                if (mob.getTarget() != null && mob.getTarget().isAlive()) continue;
+                if (!player.hasLineOfSight(mob) && (double) player.distanceTo(mob) > neutralXRayRange.getValue()) continue;
+
+                if (mob instanceof Piglin piglin) {
+                    PiglinAiAccessor.cti$wasHurtBy(piglin, player);
+                } else {
+                    ZombifiedPiglin zombifiedPiglin = (ZombifiedPiglin) mob;
+                    zombifiedPiglin.setPersistentAngerTarget(player.getUUID());
+                    zombifiedPiglin.startPersistentAngerTimer();
+                    zombifiedPiglin.setTarget(player);
+                }
             }
         }
     }
@@ -171,9 +170,9 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
                 int time = SevenCurse.getPunishTime();
                 int frequency = SevenCurse.getPunishFre();
                 int resoluteTime = SevenCurse.getResoluteTime();
-                var attackWeakValue=Math.round((1-(1f/Math.max(frequency-2,1))) * 1000)/10;
+                var attackWeakValue = Math.round((1 - (1f / Math.max(frequency - 2, 1))) * 1000) / 10;
                 var string1 = "当前你已经累计死亡" + (frequency) + "次";
-                var string2 = "由于你的死亡,你受到的伤害额外增加" + Math.max((frequency - 3) * 0.5f * 100, 0) + "%,造成的伤害降低"+attackWeakValue+"%" ;
+                var string2 = "由于你的死亡,你受到的伤害额外增加" + Math.max((frequency - 3) * 0.5f * 100, 0) + "%,造成的伤害降低" + attackWeakValue + "%";
                 var string3 = "在" + (time) + "秒后,会结束灵魂破碎对你的影响";
                 var string7 = "灵魂破碎影响已结束，暂时的";
 
@@ -191,15 +190,15 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
                 list.add(Component.literal(string4).withStyle(style -> style.withColor(0xffaa7f)));
                 list.add(Component.literal(string5).withStyle(style -> style.withColor(0xffaa7f)));
                 if (resoluteTime < 3) {
-                    if(time>0){
+                    if (time > 0) {
                         list.add(Component.literal("在你的死亡惩罚结束前无法获得坚毅层数!").withStyle(style -> style.withColor(0xff435c)));
-                    }
-                    else list.add(Component.literal(string6).withStyle(style -> style.withColor(0xffaa7f)));
+                    } else
+                        list.add(Component.literal(string6).withStyle(style -> style.withColor(0xffaa7f)));
                 }
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing11");
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing12", ChatFormatting.GOLD, lootingBonus.getValue()-1+resoluteTime);
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing13", ChatFormatting.GOLD, fortuneBonus.getValue()-1+resoluteTime);
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing12", ChatFormatting.GOLD, lootingBonus.getValue() - 1 + resoluteTime);
+                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing13", ChatFormatting.GOLD, fortuneBonus.getValue() - 1 + resoluteTime);
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing14", ChatFormatting.GOLD, experienceBonus + "%");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing15", ChatFormatting.GOLD, enchantingBonus);
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.cursedRing16");
@@ -230,24 +229,15 @@ public abstract class CurseRingMixin extends ItemBaseCurio {
         }
     }
 
-    @Unique
-    private boolean cti$isInfancy(Player player) {
-        IPlaytimeCounter counter = IPlaytimeCounter.get(player);
-        return counter.getTimeWithCurses() < 96000;
-    }
-    @Unique
-    private long cti$getCurseTime(Player player) {
-        IPlaytimeCounter counter = IPlaytimeCounter.get(player);
-        return counter.getTimeWithCurses();
-    }
-    @Inject(method = "getFortuneLevel",at = @At("RETURN"), cancellable = true)
-    private void fortuneLevel(SlotContext slotContext, LootContext lootContext, ItemStack curio, CallbackInfoReturnable<Integer> cir){
-        var resoluteTime=curio.getOrCreateTag().getInt("resolute");
+    @Inject(method = "getFortuneLevel", at = @At("RETURN"), cancellable = true)
+    private void fortuneLevel(SlotContext slotContext, LootContext lootContext, ItemStack curio, CallbackInfoReturnable<Integer> cir) {
+        var resoluteTime = curio.getOrCreateTag().getInt("resolute");
         cir.setReturnValue(super.getFortuneLevel(slotContext, lootContext, curio) + fortuneBonus.getValue() - 1 + resoluteTime);
     }
-    @Inject(method = "getLootingLevel",at = @At("RETURN"),cancellable = true)
-    private void lootLevel(SlotContext slotContext, DamageSource source, LivingEntity target, int baseLooting, ItemStack curio, CallbackInfoReturnable<Integer> cir){
-        var resoluteTime=curio.getOrCreateTag().getInt("resolute");
-        cir.setReturnValue(super.getLootingLevel(slotContext, source, target,baseLooting,curio) + lootingBonus.getValue() - 1 + resoluteTime);
+
+    @Inject(method = "getLootingLevel", at = @At("RETURN"), cancellable = true)
+    private void lootLevel(SlotContext slotContext, DamageSource source, LivingEntity target, int baseLooting, ItemStack curio, CallbackInfoReturnable<Integer> cir) {
+        var resoluteTime = curio.getOrCreateTag().getInt("resolute");
+        cir.setReturnValue(super.getLootingLevel(slotContext, source, target, baseLooting, curio) + lootingBonus.getValue() - 1 + resoluteTime);
     }
 }

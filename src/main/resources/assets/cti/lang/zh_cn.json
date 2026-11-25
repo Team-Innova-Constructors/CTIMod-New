@@ -524,7 +524,7 @@
 
   "modifier.cti.end_slayer": "弑末者",
   "modifier.cti.end_slayer.flavor": "-仅在七咒模式下生效-",
-  "modifier.cti.end_slayer.description":"(作为工具时)对末影人、末影螨、潜影贝造成的伤害翻倍\n(作为护甲时)末影人不会主动攻击你，抑制对你有敌意的末影生物的瞬移（只需一件就能生效）",
+  "modifier.cti.end_slayer.description":"(作为工具时)对末影人、末影螨、潜影贝造成的伤害翻倍\n(作为护甲时)降低末影人/末影螨/潜影贝对你的35%伤害",
 
   "modifier.cti.stellar_blade": "斩星",
   "modifier.cti.stellar_blade.flavor": "昔日工匠的辉煌，传说中能斩断星辰的材料...",
@@ -1686,6 +1686,8 @@
   "trait.l2hostility.ember_of_champ": "冠军之证",
   "trait.l2hostility.ember_of_champ.desc": "不会锁定非玩家单位，无法被其它生物锁定，无法被非玩家生物伤害。",
 
+  "trait.l2hostility.ejian": "厄茧",
+  "trait.l2hostility.ejian.desc": "当生物生命值降至50%时，会尝试为仇恨自己的玩家施加厄茧效果。厄茧施加时立即扣除玩家30%最大生命(不致死)。\n厄茧持续期间，玩家造成的所有伤害降低95%，受到的治疗量降低50%。\n玩家生命值恢复至95%或以上时，厄茧会破碎，并获得15秒高额伤害加成\n若120秒内仍未破除，厄茧自动消散。\n每只生物施放一次厄茧后，60秒内无法再次为任何玩家施加厄茧。",
 
   "info.cti.panel_condition.upward": "于世界最高处向上放置",
   "info.cti.panel_condition.downward": "于世界最低处向下放置",

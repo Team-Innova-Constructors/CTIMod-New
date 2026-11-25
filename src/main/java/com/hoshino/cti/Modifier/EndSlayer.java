@@ -102,7 +102,7 @@ public class EndSlayer extends EtSTBaseModifier {
         LivingEntity living = context.getEntity();
         Entity entity = damageSource.getEntity();
         if (living instanceof Player player && SuperpositionHandler.isTheCursedOne(player) && (entity instanceof Endermite || entity instanceof EnderMan || entity instanceof Shulker)) {
-            return 0.5f * v;
+            return 0.65f * v;
         }
         return v;
     }

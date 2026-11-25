@@ -18,6 +18,7 @@ import com.hoshino.cti.client.Screen.SoulForgeScreen;
 import com.hoshino.cti.client.hud.CurseInfoHud;
 import com.hoshino.cti.client.hud.EnvironmentalHud;
 import com.hoshino.cti.client.hud.FoxExposedOverlay;
+import com.hoshino.cti.client.hud.EjianOverlay;
 import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
 import com.hoshino.cti.client.renderer.projectile.FieryCircleSlashRenderer;
@@ -137,6 +138,7 @@ public class ClientEventHandler {
                 event.registerAboveAll("ionize", EnvironmentalHud.ENVIRONMENT_OVERLAY);
                 event.registerAboveAll("curse", CurseInfoHud.CurseHUD);
                 event.registerAboveAll("exposed", FoxExposedOverlay.EXPOSED_OVERLAY);
+                event.registerAboveAll("ejian", EjianOverlay.VIGNETTE_OVERLAY);
                 event.registerAboveAll("overheat",(gui, poseStack, partialTick, screenWidth, screenHeight) -> {
                     var player = SafeClientAccess.getPlayer();
                     if (player!=null){

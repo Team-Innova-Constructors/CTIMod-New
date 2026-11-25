@@ -1,13 +1,11 @@
 package com.hoshino.cti.Event;
 
-import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
-import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
 import com.marth7th.solidarytinker.register.SolidarytinkerModifiers;
 import earth.terrarium.ad_astra.common.util.OxygenUtils;
@@ -70,23 +68,6 @@ public class CommonLivingHurt {
         }
     }
 
-    @SubscribeEvent
-    public static void playerHurt(LivingDamageEvent event) {
-        var source = event.getSource();
-        if (event.getEntity() instanceof ServerPlayer player) {
-            long time = CurseUtil.curseTime(player);
-            if (!SuperpositionHandler.isTheCursedOne(player)) return;
-            if (time < 288000) {
-                if (source.getMsgId().equals("drown") || source.getMsgId().equals("inWall")) {
-                    event.setCanceled(true);
-                    return;
-                }
-            }
-            if (time < 192000) {
-                event.setAmount(event.getAmount() * 0.5f);
-            }
-        }
-    }
     @SubscribeEvent
     public static void playerCauseDamage(LivingDamageEvent event) {
         var source = event.getSource();

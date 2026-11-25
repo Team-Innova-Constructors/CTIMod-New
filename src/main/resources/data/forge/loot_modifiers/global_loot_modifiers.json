@@ -1,7 +1,8 @@
 {
   "entries": [
     "l2hostility:purify_drop_cursed_etherium_nuggets",
-    "l2hostility:purify_drop_etherium_ingot"
+    "l2hostility:purify_drop_etherium_ingot",
+    "l2hostility:ejian_drop_orb_of_curse"
   ],
   "replace": false
 }

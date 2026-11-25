@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class SoulSpell extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity living) {
+    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity living) {
         if(living instanceof Player player){
             int fre=CurseUtil.getDeathFrequency(player);
             int time=CurseUtil.getPunishTime(player);

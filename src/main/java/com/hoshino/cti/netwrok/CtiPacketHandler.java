@@ -121,6 +121,11 @@ public class CtiPacketHandler {
                 .encoder(PSyncPlayerMovementS2C::toByte)
                 .consumerMainThread(PSyncPlayerMovementS2C::handle)
                 .add();
+        INSTANCE.messageBuilder(PEjianS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PEjianS2C::new)
+                .encoder(PEjianS2C::toByte)
+                .consumerMainThread(PEjianS2C::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg) {
@@ -129,6 +134,10 @@ public class CtiPacketHandler {
 
     public static <MSG> void sendToPlayer(MSG msg, ServerPlayer player) {
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), msg);
+    }
+
+    public static <MSG> void sendToTrackingAndPlayer(MSG msg, ServerPlayer player) {
+        INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> player), msg);
     }
 
     public static <MSG> void sendToClient(MSG msg) {

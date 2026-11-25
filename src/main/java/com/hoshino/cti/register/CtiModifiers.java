@@ -69,6 +69,7 @@ public class CtiModifiers {
     public static final StaticModifier<Archangelwings> archangelwings = MODIFIERS.register("archangelwings", Archangelwings::new);
     public static final StaticModifier<GoldSimulate> gold_simulate = MODIFIERS.register("gold_simulate", GoldSimulate::new);
     public static final StaticModifier<EndSlayer> end_slayer = MODIFIERS.register("end_slayer", EndSlayer::new);
+    public static final StaticModifier<DemonBloodline> demon_bloodline = MODIFIERS.register("demon_bloodline", DemonBloodline::new);
     public static final StaticModifier<StellarBlade> stellar_blade = MODIFIERS.register("stellar_blade", StellarBlade::new);
     public static final StaticModifier<All> all = MODIFIERS.register("all", All::new);
     public static final StaticModifier<StressModifier> stress = MODIFIERS.register("stress", StressModifier::new);

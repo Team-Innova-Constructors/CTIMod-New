@@ -89,10 +89,10 @@ public class ElementalDamageSource extends EntityDamageSource {
         super(pDamageTypeId, pEntity);
     }
     public static ElementalDamageSource fiery(Entity entity){
-        return new ElementalDamageSource(DamageSource.ON_FIRE.msgId,entity).setFiery();
+        return new ElementalDamageSource("cti.scorch",entity).setFiery();
     }
     public static ElementalDamageSource burnt(Entity entity){
-        return new ElementalDamageSource(DamageSource.IN_FIRE.msgId,entity).setBurnt();
+        return new ElementalDamageSource("cti.scorch",entity).setBurnt();
     }
     public static ElementalDamageSource frozen(Entity entity){
         return new ElementalDamageSource(DamageSource.FREEZE.msgId,entity).setFrozen();

@@ -332,7 +332,7 @@
 
   "modifier.cti.armor_oracle": "神谕",
   "modifier.cti.armor_oracle.flavor": "神不让你加buff，你加吗？",
-  "modifier.cti.armor_oracle.description": "清除穿戴者负面效果，阻止其它生物对自己施加神谕效果。",
+  "modifier.cti.armor_oracle.description": "免疫神谕异常状态。",
 
   "modifier.cti.stardragonhit": "天瀑",
   "modifier.cti.stardragonhit.flavor": "始与终",
@@ -532,7 +532,7 @@
 
   "modifier.cti.fiery_capable": "好暑",
   "modifier.cti.fiery_capable.flavor": "太烧了",
-  "modifier.cti.fiery_capable.description":"每级+16最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
+  "modifier.cti.fiery_capable.description":"每级+16(16)最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，每级额外+32(0)最大灼伤叠加，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
 
   "modifier.cti.all": "宇宙之源",
   "modifier.cti.all.flavor": "宇宙万法的那个源头，它是——",
@@ -834,7 +834,7 @@
 
   "modifier.cti.fixed_oracular": "神谕",
   "modifier.cti.fixed_oracular.flavor": "洗涤心灵。",
-  "modifier.cti.fixed_oracular.description":"每级施加10s神谕，使目标免疫正面效果并失去对负面效果的免疫。",
+  "modifier.cti.fixed_oracular.description":"每级施加10s神谕异常状态，使目标免疫正面效果并失去对负面效果的免疫。",
 
   "modifier.cti.fixed_purify": "净化",
   "modifier.cti.fixed_purify.flavor": "纯净之躯。",
@@ -1361,7 +1361,7 @@
 
   "modifier.cti.united_overslime": "其利断金",
   "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+125和+50%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，每级造成20%持续伤害并消耗20黏液覆层。",
+  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+125和+30%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，造成10%持续伤害并消耗20黏液覆层。",
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
@@ -1516,8 +1516,8 @@
   "modifier.cti.replaced_fiery.description":"每级+20(5)最大灼伤叠加，近战攻击附加每级10%(20%)的火焰伤害。",
 
   "modifier.cti.replaced_heat_sword": "斩热之刃",
-  "modifier.cti.replaced_heat_sword.flavor": "我已解放至尊红刃",
-  "modifier.cti.replaced_heat_sword.description":"+125(75)最大灼伤叠加，每级+0.15(0.25)灼伤攻击速度。\n §3·§r过热效果期间：近战攻击附加每级5%(55%)火焰伤害，但是随时间流逝令武器生锈并减少攻击伤害。\n §3·§r过热效果结束后：可蓄力除去武器上的锈并施展强力大回旋斩击。若除锈前生锈明显则额外发射火球。",
+  "modifier.cti.replaced_heat_sword.flavor": "磨至红热，斩断一切",
+  "modifier.cti.replaced_heat_sword.description":"每级+25(125)最大灼伤叠加，+0.25(-0.25)灼伤攻击速度。\n §3·§r过热效果期间：近战攻击附加每级45%(5%)火焰伤害，但是随时间流逝令武器生锈并减少攻击伤害。\n §3·§r过热效果结束后：可蓄力除去武器上的锈并施展强力大回旋斩击。若除锈前生锈明显则额外发射火球。",
 
   "modifier.cti.scorched": "焦土",
   "modifier.cti.scorched.flavor": "烧至焦黑！",
@@ -1593,7 +1593,7 @@
 
   "modifier.cti.thermal_thrust": "热动力学",
   "modifier.cti.thermal_thrust.flavor": "说的不是那些管道！",
-  "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得15(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：0%(100%)的灼伤攻速会转化为玩家近战攻击速度。",
+  "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得15(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：0%(80%)的灼伤攻速会转化为玩家近战攻击速度。",
 
   "modifier.cti.unacceptable_weight": "无法承受之重",
   "modifier.cti.unacceptable_weight.flavor": "重到连武器都举不起来！",
@@ -1611,6 +1611,13 @@
   "modifier.cti.warp_engine_turnback.flavor": "进攻——返回",
   "modifier.cti.warp_engine_turnback.description":"曲速突击触发的时候，自动将你的视角拉回。",
 
+  "modifier.cti.turn_bad_to_blessing": "转祸为福",
+  "modifier.cti.turn_bad_to_blessing.flavor": "扭转乾坤！",
+  "modifier.cti.turn_bad_to_blessing.description":"近战攻击时，清除玩家身上所有药水效果和异常状态。根据所有药水效果的时长与等级之积的总和增幅下一次满蓄力近战攻击的伤害。\n §3·§r清除部分流派核心效果（贪婪、过热等）时获得更多增幅。",
+
+  "modifier.cti.narrow_escape": "死里逃生",
+  "modifier.cti.narrow_escape.flavor": "扭转乾坤！",
+  "modifier.cti.narrow_escape.description":"玩家身上每有一个负面效果或者异常状态，获得1级死里逃生效果，增加玩家的幸运值和各项攻击属性并获得25%独立闪避率。",
 
 
   "dimension.ad_astra.infernal": "炼狱",
@@ -1649,7 +1656,7 @@
   "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命,(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之影＞2级/佩戴扭曲之魂时免疫",
 
   "trait.l2hostility.oracle": "神谕",
-  "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
+  "trait.l2hostility.oracle.desc": "怪物攻击时施加10秒神谕异常状态,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
 
   "trait.l2hostility.extreme_damage_reduce": "极端伤害防护",
   "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少80%，受到的穿甲伤害减少95%。",
@@ -1699,7 +1706,7 @@
   "info.cti.true_melee": "§3[机制设定|真近战]§r满蓄力下由左键攻击直接命中目标的行为视为真近战攻击。",
   "info.cti.elemental_touch": "§3[工具机制|元素之触]§r由元素伤害叠加对应异常的行为的总称，比如火焰伤害叠加灼伤。",
   "info.cti.chaotic_damage": "§3[工具机制|混沌伤害]§r能同时触发冰、火、风、地的元素之触的伤害，通常有一定百分比的伤害量无视大部分伤害抗性。",
-  "info.cti.draconic_damage": "§3[工具机制|龙属性伤害]§r能叠加龙属性异常，使目标承受的非物理伤害增加，造成的非物理伤害减少。",
+  "info.cti.draconic_damage": "§3[工具机制|龙属性伤害]§r当目标累积受到超过自身血上限1%的龙属性伤害后，会陷入30秒龙属性异常状态，期间目标受到的元素伤害、爆炸伤害、魔法伤害和贪婪增伤翻倍，造成的这些类型的伤害减半。Boss类生物在进入龙属性异常状态后会对龙属性伤害产生抗性。",
   "info.cti.creative_energy_cell_16k": "无限供应§e16kAE/t§r的能量",
 
   "info.cti.overslime_value": "黏液覆层补充量：",

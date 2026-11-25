@@ -13,6 +13,7 @@ import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
 import com.hoshino.cti.Modifier.genre.insatiable.InsatiableDigest;
 import com.hoshino.cti.Modifier.genre.insatiable.ReplacedWellTrained;
+import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
@@ -27,6 +28,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -191,10 +193,23 @@ public class CommonLivingEvents {
         if (event.getEntity() instanceof Warden warden && event.getSource().getMsgId().equals("sonic_boom")) {
             event.setAmount(warden.getMaxHealth() * 0.35f);
         }
+        if (attacker instanceof LivingEntity) {
+            float damage = event.getAmount();
+            if (event.getSource() instanceof ElementalDamageSource || event.getSource().isMagic() || event.getSource().isExplosion() || event.getSource().isFire() || event.getSource().msgId.equals(DamageSource.LIGHTNING_BOLT.getMsgId()) || event.getSource().msgId.equals(DamageSource.FREEZE.msgId)) {
+                if (EntityTickerManager.getInstance(attacker).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                    damage *= 0.5f;
+                if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                    damage *= 2f;
+                event.setAmount(damage);
+            }
+        }
     }
 
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
+        Random random = new Random();
+        if (event.getEntity().hasEffect(CtiEffects.NARROW_ESCAPE.get())&&random.nextFloat()<=0.25f)
+            event.setCanceled(true);
         if (event.getEntity() instanceof EntityDragonBase && event.getSource().getEntity() != null && !(event.getSource().getEntity() instanceof Player))
             event.setCanceled(true);
         if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.INVULNERABLE.get())&&!event.getEntity().isDeadOrDying())
@@ -292,6 +307,10 @@ public class CommonLivingEvents {
                 event.setCanceled(true);
             }
         }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingHealLowest(LivingHealEvent event){
+        if (event.getAmount()<0) event.setAmount(0);
     }
 
     @SubscribeEvent
@@ -447,6 +466,10 @@ public class CommonLivingEvents {
                             }
                         }
                     });
+                    if (EntityTickerManager.getInstance(livingAttacker).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                        bonus*=0.5f;
+                    if (EntityTickerManager.getInstance(target).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                        bonus*=2f;
                     event.setAmount(event.getAmount() + bonus);
                 }
             });

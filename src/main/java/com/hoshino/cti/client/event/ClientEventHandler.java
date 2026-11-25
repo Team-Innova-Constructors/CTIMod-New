@@ -91,6 +91,7 @@ public class ClientEventHandler {
             event.register(CtiParticleType.MANA_STRIKE.get(), ManaStrikeParticle::provider);
             event.register(CtiParticleType.WHITE_SPARK.get(), WhiteSparkParticle::provider);
             event.register(CtiParticleType.NORMAL_SLASH.get(), NormalSlashParticle::provider);
+            event.register(CtiParticleType.DRAGON_DISORDER.get(), new DragonDisorderParticle.Provider());
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {

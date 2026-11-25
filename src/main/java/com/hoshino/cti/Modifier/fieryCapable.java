@@ -12,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolContext;
@@ -23,6 +24,11 @@ public class fieryCapable extends BasicBurntModifier {
 
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return 16*modifierEntry.getLevel()+(iToolContext.hasTag(TinkerTags.Items.ARMOR)?32*modifierEntry.getLevel():0);
+    }
+
+    @Override
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
         return 16*modifierEntry.getLevel();
     }
 

@@ -92,29 +92,29 @@ public class ReplacedHeatSword extends BasicOverHeatModifier implements GeneralI
             AtomicInteger elementalReleaseLv = new AtomicInteger(0);
             player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
             target.invulnerableTime = 0;
-            target.hurt(ElementalDamageSource.burnt(player),damage* GenreManager.calculateElementalRelease(elementalReleaseLv.get(),0.05f,0.55f) *modifier.getLevel());
+            target.hurt(ElementalDamageSource.burnt(player),damage* GenreManager.calculateElementalRelease(elementalReleaseLv.get(),0.45f,0.05f) *modifier.getLevel());
             target.invulnerableTime = 0;
         }
     }
 
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return 125;
+        return 25*modifierEntry.getLevel();
     }
 
     @Override
     public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return 75;
+        return 125*modifierEntry.getLevel();
     }
 
     @Override
     public float getBurntAttackSpeedBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return 0.15f*modifierEntry.getLevel();
+        return 0.25f*modifierEntry.getLevel();
     }
 
     @Override
     public float getReleasedBurntAttackSpeedBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
-        return 0.25f*modifierEntry.getLevel();
+        return -0.25f*modifierEntry.getLevel();
     }
 
 

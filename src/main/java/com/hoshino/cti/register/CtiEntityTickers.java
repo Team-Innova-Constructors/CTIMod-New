@@ -36,4 +36,7 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> DOUBLE_EDGED_RECOVERY = ENTITY_TICKERS.register("double_edged_recovery", DoubleEdgedRecovery::new);
     public static final RegistryObject<EntityTicker> WARP_ENGINE = ENTITY_TICKERS.register("warp_engine", WarpEngineTicker::new);
     public static final RegistryObject<EntityTicker> STELLAR_FIERY = ENTITY_TICKERS.register("stellar_fiery", EmptyTicker::new);
+    public static final RegistryObject<EntityTicker> DRAGON_DISORDER = ENTITY_TICKERS.register("dragon_disorder", DragenDisorder::new);
+    public static final RegistryObject<EntityTicker> OVERHEAT_DELAY = ENTITY_TICKERS.register("overheat_delay", OverHeatDelay::new);
+
 }

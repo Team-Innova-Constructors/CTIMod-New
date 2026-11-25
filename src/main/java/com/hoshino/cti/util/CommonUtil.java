@@ -142,7 +142,7 @@ public class CommonUtil {
             if (player.hasEffect(CtiEffects.OVERHEAT.get())&&tool.getModifierLevel(CtiModifiers.THERMAL_THRUST.getId())>0) {
                 AtomicInteger elementalReleaseLv = new AtomicInteger(0);
                 player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
-                return 20f / GenreManager.calculateElementalRelease(elementalReleaseLv.get(), (float) player.getAttributeValue(Attributes.ATTACK_SPEED), (float) player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get()));
+                return 20f / GenreManager.calculateElementalRelease(elementalReleaseLv.get(), (float) player.getAttributeValue(Attributes.ATTACK_SPEED), (float) (player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get())*0.8f+player.getAttributeValue(Attributes.ATTACK_SPEED)*0.2f));
             }
         }
         if (delay < 10) {

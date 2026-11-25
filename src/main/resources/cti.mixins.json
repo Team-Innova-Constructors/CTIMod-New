@@ -164,6 +164,7 @@
     "AbstractClientPlayerMixin",
     "CameraMixin",
     "GameRendererMixin",
+    "LightTextureMixin",
     "MinecraftMixin",
     "AdAstraMixin.CustomButtonMixin",
     "AdAstraMixin.PlanetSelectionScreenMixin",

@@ -35,7 +35,14 @@ public class CtiEffects {
             CtiAttributes.MAX_INSATIABLE.get(),"f74c192d-4d5c-e9e6-a8ea-c7db8f8280b5",4, AttributeModifier.Operation.ADDITION
     ));
     public static final RegistryObject<MobEffect> OVERHEAT = EFFECT.register("overheat",()->new StaticEffect(MobEffectCategory.BENEFICIAL,0xFF761B));
-    public static final RegistryObject<MobEffect> OXIDIZE_FLAME = EFFECT.register("oxidize_flame",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0xFFC172).addAttributeModifier(
-            CtiAttributes.BURNT_ATTACK_SPEED.get(),"174a4bee-f1f6-01c4-6df1-8151b7e10952",0.1, AttributeModifier.Operation.ADDITION
-    ));
+    public static final RegistryObject<MobEffect> OXIDIZE_FLAME = EFFECT.register("oxidize_flame",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0xFFC172)
+            .addAttributeModifier(CtiAttributes.BURNT_ATTACK_SPEED.get(),"174a4bee-f1f6-01c4-6df1-8151b7e10952",0.2, AttributeModifier.Operation.ADDITION));
+    public static final RegistryObject<MobEffect> NARROW_ESCAPE = EFFECT.register("narrow_escape",()-> new StaticEffect(MobEffectCategory.BENEFICIAL,0xBC57FF)
+            .addAttributeModifier(CtiAttributes.BURNT_ATTACK_SPEED.get(),"a3134ce1-0036-bb68-ccaa-2a5f6b703cb7",0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+            .addAttributeModifier(CtiAttributes.BURNT_INFLICT.get(),"bc11b1bc-5ac9-96f6-9059-7c28e8b8c7b8",0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+            .addAttributeModifier(CtiAttributes.MAX_INSATIABLE.get(),"30c48b90-d3e0-323d-22e9-6b489f9d8207",0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+            .addAttributeModifier(Attributes.ATTACK_DAMAGE,"26e48275-22c4-5409-e326-3a21c7537863",0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+            .addAttributeModifier(Attributes.MOVEMENT_SPEED,"557c40a1-bdea-2685-5663-e29094b1019c",0.2, AttributeModifier.Operation.MULTIPLY_BASE)
+            .addAttributeModifier(Attributes.LUCK,"1fa0affb-8297-ad42-71aa-5923ab7eb0d8",5, AttributeModifier.Operation.ADDITION)
+    );
 }

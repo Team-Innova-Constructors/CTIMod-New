@@ -2,7 +2,9 @@ package com.hoshino.cti.Entity.Projectiles;
 
 import cofh.core.init.CoreMobEffects;
 import com.hoshino.cti.Modifier.genre.elemental.ElementalRelease;
+import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.materialGenre.GenreManager;
+import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.AttackUtil;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -11,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
@@ -61,6 +64,8 @@ public class FieryCircleSlashEntity extends Projectile {
                     entity.invulnerableTime = 0;
                     AttackUtil.attackEntity(tool,player, InteractionHand.MAIN_HAND,entity,()->1,false, EquipmentSlot.MAINHAND,false,0, GenreManager.calculateElementalRelease(elementalReleaseLv.get(),4,16));
                     entity.invulnerableTime =0;
+                    entity.hurt(ElementalDamageSource.burnt(player), (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE)*tool.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId()));
+                    entity.invulnerableTime = 0;
                     hitList.add(entity);
                 }
             }

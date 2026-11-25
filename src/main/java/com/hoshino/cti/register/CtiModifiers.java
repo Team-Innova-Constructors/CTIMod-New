@@ -314,6 +314,9 @@ public class CtiModifiers {
     public static final StaticModifier<AtomicPlasmaSlash> ATOMIC_PLASMA_SLASH = MODIFIERS.register("atomic_plasma_slash", AtomicPlasmaSlash::new);
     public static final StaticModifier<PlasmaActivation> PLASMA_ACTIVATION = MODIFIERS.register("plasma_activation", PlasmaActivation::new);
     public static final StaticModifier<UnacceptableWeight> UNACCEPTABLE_WEIGHT = MODIFIERS.register("unacceptable_weight", UnacceptableWeight::new);
+    public static final StaticModifier<BrightnessBoostModifier> BRIGHTNESS_BOOST = MODIFIERS.register("brightness_boost", BrightnessBoostModifier::new);
+    public static final StaticModifier<TurnBadToBlessing> TURN_BAD_TO_BLESSING = MODIFIERS.register("turn_bad_to_blessing", TurnBadToBlessing::new);
+    public static final StaticModifier<NarrowEscapeModifier> NARROW_ESCAPE = MODIFIERS.register("narrow_escape", NarrowEscapeModifier::new);
 
     public static final StaticModifier<ElementalRelease> ELEMENTAL_RELEASE = MODIFIERS.register("elemental_release", ElementalRelease::new);
 

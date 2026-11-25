@@ -45,6 +45,10 @@ import java.util.List;
 
 @Mod.EventBusSubscriber
 public class DoubleEdged extends NoLevelsModifier implements MeleeDamageModifierHook,MeleeHitModifierHook {
+    @Override
+    public int getPriority() {
+        return -100;
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPlayerAttack(AttackEntityEvent event){

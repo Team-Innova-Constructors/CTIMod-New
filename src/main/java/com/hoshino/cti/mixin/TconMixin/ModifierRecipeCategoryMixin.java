@@ -23,5 +23,7 @@ public class ModifierRecipeCategoryMixin {
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStack(ModifierCrystalItem.withModifier(recipe.getModifier().getId()));
         CommonUtil.getResultSlotTypes(recipe.getDisplayResult()).forEach(slotType ->
                 builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStack(CreativeSlotItem.withSlot(new ItemStack(TinkerModifiers.creativeSlotItem.get(),1),slotType)));
+        if (recipe.getSlotType()!=null)
+            builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStack(CreativeSlotItem.withSlot(new ItemStack(TinkerModifiers.creativeSlotItem.get(),1),recipe.getSlotType()));
     }
 }

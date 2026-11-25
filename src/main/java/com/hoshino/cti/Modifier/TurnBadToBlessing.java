@@ -27,7 +27,7 @@ public class TurnBadToBlessing extends EtSTBaseModifier {
     private static final Map<MobEffect,Float> SPECIAL_EFFECT_MAP = new HashMap<>();
     public static Map<MobEffect,Float> getSpecialEffectMap(){
         if (SPECIAL_EFFECT_MAP.isEmpty()){
-            SPECIAL_EFFECT_MAP.put(CtiEffects.OVERHEAT.get(),20f);
+            SPECIAL_EFFECT_MAP.put(CtiEffects.OVERHEAT.get(),50f);
             SPECIAL_EFFECT_MAP.put(CtiEffects.NARROW_ESCAPE.get(),100f);
             SPECIAL_EFFECT_MAP.put(TinkerModifiers.insatiableEffect.get(ToolType.MELEE), 1.25f);
             SPECIAL_EFFECT_MAP.put(TinkerModifiers.insatiableEffect.get(ToolType.RANGED), 1.25f);
@@ -38,7 +38,7 @@ public class TurnBadToBlessing extends EtSTBaseModifier {
 
     @Override
     public float onGetMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
-        if (context.getAttacker() instanceof Player player&&context.isFullyCharged()){
+        if (context.getAttacker() instanceof Player player&&context.isFullyCharged()&&!context.isExtraAttack()){
             if (tool.getPersistentData().contains(KEY_TBTB, Tag.TAG_FLOAT)){
                 damage+=damage*tool.getPersistentData().getFloat(KEY_TBTB)*(0.75f+0.25f*modifier.getLevel());
                 tool.getPersistentData().remove(KEY_TBTB);
@@ -54,9 +54,9 @@ public class TurnBadToBlessing extends EtSTBaseModifier {
             for (var effectInstance: List.copyOf(player.getActiveEffects())){
                 var effect = effectInstance.getEffect();
                 float points = effectInstance.getDuration()*(1+effectInstance.getAmplifier());
-                if (SPECIAL_EFFECT_MAP.containsKey(effect))
-                    points*=SPECIAL_EFFECT_MAP.get(effect);
-                points*=0.00001f;
+                if (getSpecialEffectMap().containsKey(effect))
+                    points*=getSpecialEffectMap().get(effect);
+                points*=0.0001f;
                 total+=points;
                 ((LivingEntity)player).onEffectRemoved(effectInstance);
                 player.activeEffects.remove(effect);

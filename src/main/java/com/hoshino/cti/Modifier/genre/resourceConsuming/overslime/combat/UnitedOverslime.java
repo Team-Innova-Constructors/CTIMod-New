@@ -27,7 +27,7 @@ public class UnitedOverslime extends BasicOverslimeModifier {
 
     @Override
     public float getDamageMul(IToolContext context, ModifierEntry modifier) {
-        return 0.5f*modifier.getLevel();
+        return 0.3f*modifier.getLevel();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class UnitedOverslime extends BasicOverslimeModifier {
                 VoidArcEntity entity = new VoidArcEntity(level);
                 entity.setPos(targetCenter);
                 entity.setRadius(1.25f+0.75f*modifier.getLevel());
-                entity.setDamage(0.2f*damage*modifier.getLevel());
+                entity.setDamage(0.1f*damage);
                 entity.setLvl(modifier.getLevel()+1);
                 entity.setOwner(attacker);
                 entity.setHomingEntity(target);

@@ -1,5 +1,6 @@
 package com.hoshino.cti.client.event;
 
+import com.github.alexthe666.iceandfire.client.render.entity.RenderDragonFireCharge;
 import com.hoshino.cti.Modifier.Contributors.Nkssdtt;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.BasicOverHeatModifier;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
@@ -19,6 +20,8 @@ import com.hoshino.cti.client.hud.EnvironmentalHud;
 import com.hoshino.cti.client.hud.FoxExposedOverlay;
 import com.hoshino.cti.client.particle.*;
 import com.hoshino.cti.client.particle.ParticleType.StarFallParticleProvider;
+import com.hoshino.cti.client.renderer.projectile.FieryCircleSlashRenderer;
+import com.hoshino.cti.client.renderer.projectile.PlasmaCircleSlashRenderer;
 import com.hoshino.cti.client.renderer.projectile.StarDragonAmmoRenderer;
 import com.hoshino.cti.client.util.RenderUtil;
 import com.hoshino.cti.netwrok.CtiPacketHandler;
@@ -86,6 +89,9 @@ public class ClientEventHandler {
             event.register(CtiParticleType.GEL_EXPLOSION.get(), GelExplosionParticle.Provider::new);
             event.register(CtiParticleType.VOID_ARC.get(), new VoidArcParticle.Provider());
             event.register(CtiParticleType.MANA_STRIKE.get(), ManaStrikeParticle::provider);
+            event.register(CtiParticleType.WHITE_SPARK.get(), WhiteSparkParticle::provider);
+            event.register(CtiParticleType.NORMAL_SLASH.get(), NormalSlashParticle::provider);
+            event.register(CtiParticleType.DRAGON_DISORDER.get(), new DragonDisorderParticle.Provider());
         }
         @SubscribeEvent
         public static void clientSetup(FMLClientSetupEvent event) {
@@ -104,6 +110,9 @@ public class ClientEventHandler {
             event.registerEntityRenderer(CtiEntity.star_dragon_ammo.get(), StarDragonAmmoRenderer::new);
             event.registerEntityRenderer(CtiEntity.GEL_CLOUD.get(), NoopRenderer::new);
             event.registerEntityRenderer(CtiEntity.VOID_ARC.get(), NoopRenderer::new);
+            event.registerEntityRenderer(CtiEntity.RUSTED_FIREBALL.get(),pContext -> new RenderDragonFireCharge(pContext,true));
+            event.registerEntityRenderer(CtiEntity.FIERY_CIRCLE_SLASH.get(), FieryCircleSlashRenderer::new);
+            event.registerEntityRenderer(CtiEntity.PLASMA_CIRCLE_SLASH.get(), PlasmaCircleSlashRenderer::new);
 
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_BASIN.get(), CastingBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(CtiBlockEntityType.HEPATIZON_TABLE.get(), CastingBlockEntityRenderer::new);
@@ -141,12 +150,29 @@ public class ClientEventHandler {
                                 if (ovheatEffect!=null){
                                     heat = Math.min(100,ovheatEffect.getDuration());
                                 }
-                                int length = (int) (heat*16f/100);
+                                int length = (int) Math.floor(heat*16f/100);
                                 int x = screenWidth/2;
                                 int y = screenHeight/2;
                                 int ARGB = ovheatEffect!=null?0xFFFF6C00:0x80FF6C00;
                                 GuiComponent.fill(poseStack,x-8,y+16,x+8,y+15,0x20000000);
                                 GuiComponent.fill(poseStack,x-8,y+16,x-8+length,y+15,ARGB);
+                            }
+                        }
+                    }
+                });
+                event.registerAboveAll("double_edged",(gui, poseStack, partialTick, screenWidth, screenHeight) -> {
+                    var player = SafeClientAccess.getPlayer();
+                    if (player!=null){
+                        var mainHandItem = player.getMainHandItem();
+                        if (mainHandItem.getItem() instanceof IModifiable){
+                            ToolStack toolStack = ToolStack.from(mainHandItem);
+                            if (toolStack.getModifierLevel(CtiModifiers.double_edged.getId())>0){
+                                if (0.6<=player.getAttackStrengthScale(0)&&0.75>player.getAttackStrengthScale(0)){
+                                    int j = screenHeight / 2 + 13;
+                                    int k = screenWidth / 2 - 1;
+                                    RenderSystem.setShaderTexture(0,Cti.getResource("textures/gui/plus.png"));
+                                    GuiComponent.blit(poseStack,k,j,0,0,3,3,3,3);
+                                }
                             }
                         }
                     }

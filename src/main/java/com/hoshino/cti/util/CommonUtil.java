@@ -3,19 +3,26 @@ package com.hoshino.cti.util;
 import com.aetherteam.aether.data.resources.registries.AetherDimensions;
 import com.google.common.collect.Lists;
 import com.hoshino.cti.Modifier.Armor.AntiCurse;
+import com.hoshino.cti.Modifier.genre.elemental.ElementalRelease;
+import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.mixin.LivingEntityAccessor;
+import com.hoshino.cti.netwrok.CtiPacketHandler;
+import com.hoshino.cti.netwrok.packet.PFreezeAttackTickerS2C;
 import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
+import com.hoshino.cti.util.mixin.IPlayerMixin;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,6 +31,7 @@ import net.minecraft.world.level.storage.WorldData;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
@@ -131,8 +139,11 @@ public class CommonUtil {
         var itemStack = player.getMainHandItem();
         if (itemStack.getItem() instanceof IModifiable){
             ToolStack tool = ToolStack.from(itemStack);
-            if (player.hasEffect(CtiEffects.OVERHEAT.get())&&tool.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId())>0)
-                return (float) (20f/player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get()));
+            if (player.hasEffect(CtiEffects.OVERHEAT.get())&&tool.getModifierLevel(CtiModifiers.THERMAL_THRUST.getId())>0) {
+                AtomicInteger elementalReleaseLv = new AtomicInteger(0);
+                player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
+                return 20f / GenreManager.calculateElementalRelease(elementalReleaseLv.get(), (float) player.getAttributeValue(Attributes.ATTACK_SPEED), (float) (player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get())*0.8f+player.getAttributeValue(Attributes.ATTACK_SPEED)*0.2f));
+            }
         }
         if (delay < 10) {
             return delay * 0.7f + 3f;
@@ -163,6 +174,25 @@ public class CommonUtil {
             return pOriginalCount * (i + 1);
         } else {
             return pOriginalCount;
+        }
+    }
+
+    public static boolean validateEquipmentChange(ItemStack original,ItemStack replacement){
+        var toolOriginal = ToolStack.from(original);
+        var toolReplacement = ToolStack.from(replacement);
+        return !original.is(replacement.getItem())||(toolOriginal.getModifierList()!=toolReplacement.getModifierList());
+    }
+    public static boolean validateSlot(EquipmentSlot slot,ItemStack itemStack){
+        if (!(itemStack.getItem() instanceof IModifiable)) return false;
+        return (slot.getType()== EquipmentSlot.Type.ARMOR&&itemStack.is(TinkerTags.Items.ARMOR))||
+                (slot==EquipmentSlot.OFFHAND&&itemStack.is(TinkerTags.Items.SHIELDS))||
+                (slot==EquipmentSlot.MAINHAND&&itemStack.is(TinkerTags.Items.HELD));
+    }
+
+    public static void freezeAttackStrengthTicker(Player player){
+        ((IPlayerMixin)player).cti$preventNextAttackTickerReset();
+        if (player instanceof ServerPlayer serverPlayer){
+            CtiPacketHandler.sendToPlayer(new PFreezeAttackTickerS2C(),serverPlayer);
         }
     }
 

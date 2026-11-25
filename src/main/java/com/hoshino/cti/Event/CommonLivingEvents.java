@@ -13,6 +13,8 @@ import com.hoshino.cti.Modifier.StarDragonHit;
 import com.hoshino.cti.Modifier.genre.insatiable.EvilInsatiable;
 import com.hoshino.cti.Modifier.genre.insatiable.InsatiableDigest;
 import com.hoshino.cti.Modifier.genre.insatiable.ReplacedWellTrained;
+import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.*;
 import com.hoshino.cti.util.CurseUtil;
@@ -26,6 +28,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -61,6 +64,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.ModifierManager;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
+import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
@@ -71,6 +75,8 @@ import twilightforest.init.TFItems;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+import static com.hoshino.cti.Modifier.genre.elemental.fiery.ReplacedHeatSword.increaseRust;
 
 @Mod.EventBusSubscriber(modid = Cti.MOD_ID)
 public class CommonLivingEvents {
@@ -111,6 +117,30 @@ public class CommonLivingEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onOverHeatStart(MobEffectEvent.Applicable event) {
+        if (event.getEffectInstance().getEffect()==CtiEffects.OVERHEAT.get()&&event.getEntity() instanceof ServerPlayer player){
+            var itemStack = player.getMainHandItem();
+            if (itemStack.getItem() instanceof IModifiable){
+                var tool = ToolStack.from(itemStack);
+                tool.getModifierList().forEach(modifierEntry -> {
+                    if (modifierEntry.getId().equals(CtiModifiers.REPLACED_HEAT_SWORD.getId())){
+                        increaseRust(tool,1);
+                    }
+                    if (modifierEntry.getId().equals(CtiModifiers.STELLAR_FIERY.getId())){
+                        int maxStacks = 5;
+                        EntityTickerManager.getInstance(player).addTicker(
+                                new EntityTickerInstance(CtiEntityTickers.STELLAR_FIERY.get(),1,400),
+                                (existing,add)->Math.min(existing+add,maxStacks),
+                                Integer::max);
+                    }
+
+                });
+
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEffectApplyHigh(MobEffectEvent.Applicable event) {
         if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL) {
             if (event.getEntity() instanceof Player player && (SuperpositionHandler.hasCurio(player, EnigmaticItems.THE_CUBE)))
@@ -131,6 +161,10 @@ public class CommonLivingEvents {
         } else if (event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.BENEFICIAL && EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.ORACLE.get())) {
             event.setResult(Event.Result.DENY);
         }
+    }
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onEffectApplicableHigest(MobEffectEvent.Applicable event){
+
     }
 
     @SubscribeEvent
@@ -159,10 +193,23 @@ public class CommonLivingEvents {
         if (event.getEntity() instanceof Warden warden && event.getSource().getMsgId().equals("sonic_boom")) {
             event.setAmount(warden.getMaxHealth() * 0.35f);
         }
+        if (attacker instanceof LivingEntity) {
+            float damage = event.getAmount();
+            if (event.getSource() instanceof ElementalDamageSource || event.getSource().isMagic() || event.getSource().isExplosion() || event.getSource().isFire() || event.getSource().msgId.equals(DamageSource.LIGHTNING_BOLT.getMsgId()) || event.getSource().msgId.equals(DamageSource.FREEZE.msgId)) {
+                if (EntityTickerManager.getInstance(attacker).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                    damage *= 0.5f;
+                if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                    damage *= 2f;
+                event.setAmount(damage);
+            }
+        }
     }
 
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
+        Random random = new Random();
+        if (event.getEntity().hasEffect(CtiEffects.NARROW_ESCAPE.get())&&random.nextFloat()<=0.25f)
+            event.setCanceled(true);
         if (event.getEntity() instanceof EntityDragonBase && event.getSource().getEntity() != null && !(event.getSource().getEntity() instanceof Player))
             event.setCanceled(true);
         if (EntityTickerManager.getInstance(event.getEntity()).hasTicker(CtiEntityTickers.INVULNERABLE.get())&&!event.getEntity().isDeadOrDying())
@@ -260,6 +307,10 @@ public class CommonLivingEvents {
                 event.setCanceled(true);
             }
         }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingHealLowest(LivingHealEvent event){
+        if (event.getAmount()<0) event.setAmount(0);
     }
 
     @SubscribeEvent
@@ -415,6 +466,10 @@ public class CommonLivingEvents {
                             }
                         }
                     });
+                    if (EntityTickerManager.getInstance(livingAttacker).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                        bonus*=0.5f;
+                    if (EntityTickerManager.getInstance(target).hasTicker(CtiEntityTickers.DRAGON_DISORDER.get()))
+                        bonus*=2f;
                     event.setAmount(event.getAmount() + bonus);
                 }
             });

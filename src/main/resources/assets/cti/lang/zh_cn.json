@@ -332,7 +332,7 @@
 
   "modifier.cti.armor_oracle": "神谕",
   "modifier.cti.armor_oracle.flavor": "神不让你加buff，你加吗？",
-  "modifier.cti.armor_oracle.description": "清除穿戴者负面效果，阻止其它生物对自己施加神谕效果。",
+  "modifier.cti.armor_oracle.description": "免疫神谕异常状态。",
 
   "modifier.cti.stardragonhit": "天瀑",
   "modifier.cti.stardragonhit.flavor": "始与终",
@@ -438,6 +438,7 @@
   "block.cti.mana_interface": "ME集魔接口",
   "block.cti.reactive_flower": "对消花",
   "block.cti.floating_reactive_flower": "浮空对消花",
+  "block.cti.fission_nano_fix_port": "裂变堆纳米修复端口",
 
   "block.cti.silicated_bricks": "硅碳砖块",
   "block.cti.silicated_glass": "硅碳玻璃",
@@ -531,7 +532,7 @@
 
   "modifier.cti.fiery_capable": "好暑",
   "modifier.cti.fiery_capable.flavor": "太烧了",
-  "modifier.cti.fiery_capable.description":"每级+16最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
+  "modifier.cti.fiery_capable.description":"每级+16(16)最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，每级额外+32(0)最大灼伤叠加，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
 
   "modifier.cti.all": "宇宙之源",
   "modifier.cti.all.flavor": "宇宙万法的那个源头，它是——",
@@ -586,8 +587,8 @@
   "modifier.cti.witherinhibitor.description":"你的电磁脉冲会对凋灵的大脑造成不可逆的损伤，使其永远无法自由移动",
 
   "modifier.cti.double_edged": "双刃剑",
-  "modifier.cti.double_edged.flavor": "大动脉撕裂者",
-  "modifier.cti.double_edged.description":"满蓄力打击时对敌人造成2.5倍伤害。然而如果未击中或者没有满蓄力，你会打中你自己。",
+  "modifier.cti.double_edged.flavor": "正着砍，反着砍，都有伤害。",
+  "modifier.cti.double_edged.description":"攻击冷却条在60%~75%间打出的左键攻击修正为满蓄力攻击。\n §3·§r效果触发且命中目标时不重置攻击冷却，并让下一次满蓄力近战攻击伤害变为3倍。",
 
   "item.cti.nitro_supersteel": "冰淬高速钢",
   "material.cti.nitro_supersteel": "冰淬高速钢",
@@ -829,11 +830,11 @@
 
   "modifier.cti.pressure_loaded": "空气装载",
   "modifier.cti.pressure_loaded.flavor": "空气动力学！",
-  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力，获得2x压力%的独立伤害减免。",
+  "modifier.cti.pressure_loaded.description":"你的工具获得每级5000mL的压缩空气基础容量，优先消耗压缩空气而非耐久。根据压力增加伤害、挖掘速度和防御力，获得压力*2%（最高生效12.5bar）的独立伤害减免。",
 
   "modifier.cti.fixed_oracular": "神谕",
   "modifier.cti.fixed_oracular.flavor": "洗涤心灵。",
-  "modifier.cti.fixed_oracular.description":"每级施加10s神谕，使目标免疫正面效果并失去对负面效果的免疫。",
+  "modifier.cti.fixed_oracular.description":"每级施加10s神谕异常状态，使目标免疫正面效果并失去对负面效果的免疫。",
 
   "modifier.cti.fixed_purify": "净化",
   "modifier.cti.fixed_purify.flavor": "纯净之躯。",
@@ -1014,7 +1015,7 @@
 
   "modifier.cti.sunstrike": "耀斑打击",
   "modifier.cti.sunstrike.flavor": "侦测到在途轨道打击。",
-  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2灼伤，造成10%x2的火焰伤害并触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
+  "modifier.cti.sunstrike.description":"令追踪的耀斑打击从天而降，惩戒你的敌人。\n §3·§r耀斑打击叠加2(0)灼伤，造成0%(20%)x2的火焰伤害并以100%(20%)的等级触发目标的灼伤效果。\n §3·§r词条等级会增加耀斑打击的生效次数，对灼伤时间超过15秒的生物打击次数+1。",
 
   "modifier.cti.industrial": "工业",
   "modifier.cti.industrial.flavor": "工业化量产的材料，品质稳定的同时效力也不错。",
@@ -1190,7 +1191,7 @@
   "block.cti.reactor_neutron_collector": "反应堆中子素收集器",
   "block.cti.alloy_centrifuge": "气动合金离心机",
   "block.cti.sodium_cooler": "微型裂变反应堆",
-  "block.cti.creative_energy_cell_4k": "4k ME创造能源元件",
+  "block.cti.creative_energy_cell_16k": "16k ME产能元件",
 
 
   "cti.gui.biome.null": "null",
@@ -1360,7 +1361,7 @@
 
   "modifier.cti.united_overslime": "其利断金",
   "modifier.cti.united_overslime.flavor": "贪婪和黏液，意想不到的组合。",
-  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+125和+50%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，每级造成20%持续伤害并消耗20黏液覆层。",
+  "modifier.cti.united_overslime.description":"每级+20%黏液覆层上限，攻击时每级消耗5黏液覆层+125和+30%近战伤害。\n §3·§r全力打击时撕裂目标周围空间，造成10%持续伤害并消耗20黏液覆层。",
 
   "modifier.cti.united_insatiable": "兄弟齐心",
   "modifier.cti.united_insatiable.flavor": "贪婪和黏液，意想不到的组合。",
@@ -1482,15 +1483,15 @@
   "modifier.cti.glory_etch.flavor": "做大做强，再创辉煌！",
   "modifier.cti.glory_etch.description":"将部件所带有的词条刻印到工具上，部件类型必须与工具兼容。",
 
-  "modifier.cti.gobber_etch_1": "戈伯刻印01",
+  "modifier.cti.gobber_etch_1": "戈伯刻印阿尔法",
   "modifier.cti.gobber_etch_1.flavor": "戈伯之力[其一]",
   "modifier.cti.gobber_etch_1.description":"将部件所带有的第一个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-15%工具的近战/远程属性",
 
-  "modifier.cti.gobber_etch_2": "戈伯刻印02",
+  "modifier.cti.gobber_etch_2": "戈伯刻印贝塔",
   "modifier.cti.gobber_etch_2.flavor": "戈伯之力[其二]",
   "modifier.cti.gobber_etch_2.description":"将部件所带有的第二个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-10%工具的近战/远程属性",
 
-  "modifier.cti.gobber_etch_3": "戈伯刻印03",
+  "modifier.cti.gobber_etch_3": "戈伯刻印伽马",
   "modifier.cti.gobber_etch_3.flavor": "戈伯之力[其三]",
   "modifier.cti.gobber_etch_3.description":"将部件所带有的第三个词条刻印到工具上，部件类型必须与工具兼容。\n §3·§r-5%工具的近战/远程属性",
 
@@ -1512,15 +1513,15 @@
 
   "modifier.cti.replaced_fiery": "怒火",
   "modifier.cti.replaced_fiery.flavor": "烈焰灌注！",
-  "modifier.cti.replaced_fiery.description":"每级+10最大灼伤叠加，近战攻击附加每级20%的火焰伤害。",
+  "modifier.cti.replaced_fiery.description":"每级+20(5)最大灼伤叠加，近战攻击附加每级10%(20%)的火焰伤害。",
 
-  "modifier.cti.replaced_heat_sword": "热斩刀",
-  "modifier.cti.replaced_heat_sword.flavor": "一刀一刀燃烧刀",
-  "modifier.cti.replaced_heat_sword.description":"灼伤造成伤害时每级获得5过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：玩家攻速固定为灼伤攻击速度，近战攻击附加每级20%灼伤伤害。挥舞武器时发射烈火斩击，攻击敌人并叠加每级5灼伤等级。",
+  "modifier.cti.replaced_heat_sword": "斩热之刃",
+  "modifier.cti.replaced_heat_sword.flavor": "磨至红热，斩断一切",
+  "modifier.cti.replaced_heat_sword.description":"每级+25(125)最大灼伤叠加，+0.25(-0.25)灼伤攻击速度。\n §3·§r过热效果期间：近战攻击附加每级45%(5%)火焰伤害，但是随时间流逝令武器生锈并减少攻击伤害。\n §3·§r过热效果结束后：可蓄力除去武器上的锈并施展强力大回旋斩击。若除锈前生锈明显则额外发射火球。",
 
   "modifier.cti.scorched": "焦土",
   "modifier.cti.scorched.flavor": "烧至焦黑！",
-  "modifier.cti.scorched.description":"每级+0.75灼伤攻击速度，+1最大灼伤叠加。",
+  "modifier.cti.scorched.description":"每级+0.75(0)灼伤攻击速度，+4(1)最大灼伤叠加。",
 
   "modifier.cti.exothermic": "放热反应",
   "modifier.cti.exothermic.flavor": "燃料小伙能量巨大",
@@ -1528,15 +1529,15 @@
 
   "modifier.cti.ruby_laser": "红宝石激光",
   "modifier.cti.ruby_laser.flavor": "最早的激光器之一",
-  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r每级+75最大灼伤叠加和0.25灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
+  "modifier.cti.ruby_laser.description":"挥舞武器时，消耗5kFE发射红宝石激光。激光对命中的目标叠加每级10灼伤并触发灼伤的伤害效果。\n §3·§r+50(175)最大灼伤叠加和每级+0.1(0.3)灼伤攻击速度。\n §3·§r真近战攻击时，每级获得5层过热层数，冷却1秒，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：红宝石激光造成150%的武器伤害，灼伤伤害每级增加玩家近战伤害的25%。",
 
   "modifier.cti.high_heat": "高热",
   "modifier.cti.high_heat.flavor": "远离可燃物！",
-  "modifier.cti.high_heat.description":"每级+5最大灼伤叠加。近战攻击时，每级叠加1灼伤等级。",
+  "modifier.cti.high_heat.description":"每级+10(2)最大灼伤叠加。近战攻击时，每级叠加1灼伤等级。",
 
   "modifier.cti.oxidizing_flame": "氧化焰",
   "modifier.cti.oxidizing_flame.flavor": "加氧，点火！",
-  "modifier.cti.oxidizing_flame.description":"每级+45最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
+  "modifier.cti.oxidizing_flame.description":"每级+45(-15)最大灼伤叠加，真近战攻击时消耗贮液器内10mB氧气叠加氧化焰效果，每级最大叠加10级。\n §3·§r氧化焰效果：每级+0.1灼伤攻击速度，火焰伤害叠加的灼伤增加效果等级点但是冷却延长为1.5秒。",
 
   "modifier.cti.searing_blow": "灼热攻击",
   "modifier.cti.searing_blow.flavor": "能被多次升级",
@@ -1548,7 +1549,7 @@
 
   "modifier.cti.melee_fiery_javelin": "索利斯·坎塔娜",
   "modifier.cti.melee_fiery_javelin.flavor": "异世界邪教徒使用的炽热能量剑",
-  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并触发目标的灼伤效果。+75最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射三发，命中时额外造成10%武器伤害。",
+  "modifier.cti.melee_fiery_javelin.description":"挥舞武器，发射火焰标枪，命中时叠加5灼伤并15%(100%)概率触发目标的灼伤效果。-45(+250)最大灼伤叠加。\n §3·§r过热效果期间：火焰标枪变为散射3发，命中时额外造成5%(20%)武器伤害。",
 
   "modifier.cti.luck_charming": "命运之眷",
   "modifier.cti.luck_charming.flavor": "这是我的<铁之王牌>",
@@ -1570,6 +1571,53 @@
   "modifier.cti.birefringent.flavor": "魔法折射",
   "modifier.cti.birefringent.description":"真近战攻击时有80%概率触发近战空挥时触发的效果，工具的近战伤害和攻击速度x0.9。",
 
+  "modifier.cti.ranged_limited": "矢速禁锢",
+  "modifier.cti.ranged_limited.flavor": "弹射物速度受限",
+  "modifier.cti.ranged_limited.description":"武器的初始初速度属性限制为每级2.5",
+
+  "modifier.cti.elemental_release": "属性解放",
+  "modifier.cti.elemental_release.flavor": "属性解放",
+  "modifier.cti.elemental_release.description":"每级解放25%词条所蕴含的隐藏属性。",
+
+  "modifier.cti.atomic_plasma_slash": "物质解离斩",
+  "modifier.cti.atomic_plasma_slash.flavor": "斩裂一切，分解原子！",
+  "modifier.cti.atomic_plasma_slash.description":"约束等离子阔剑的弧光命中时为目标叠加1级原子分裂，若弧光暴击则叠加2级。",
+
+  "modifier.cti.plasma_activation": "离子活性",
+  "modifier.cti.plasma_activation.flavor": "活化元素能量",
+  "modifier.cti.plasma_activation.description":"造成武器伤害后缩短元素之触的冷却时间。",
+
+  "modifier.cti.stellar_fiery": "天辉耀炎",
+  "modifier.cti.stellar_fiery.flavor": "宇宙的炽热蕴含其中",
+  "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加。近战攻击附带每级25%(80%)火焰伤害，过热效果期间该伤害减半。\n §3·§r每次获得过热效果时都会令增加100%本词条的近战火焰附伤，持续20秒，最大叠加5次。",
+
+  "modifier.cti.thermal_thrust": "热动力学",
+  "modifier.cti.thermal_thrust.flavor": "说的不是那些管道！",
+  "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得15(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：0%(80%)的灼伤攻速会转化为玩家近战攻击速度。",
+
+  "modifier.cti.unacceptable_weight": "无法承受之重",
+  "modifier.cti.unacceptable_weight.flavor": "重到连武器都举不起来！",
+  "modifier.cti.unacceptable_weight.description":"攻速类属性x0.2，攻击伤害x10。",
+
+  "modifier.cti.warp_engine": "曲速引擎",
+  "modifier.cti.warp_engine.flavor": "“曲速引擎启动”",
+  "modifier.cti.warp_engine.description":"右键进入曲速引擎模式，无视重力并朝前方快速飞行。左键攻击或使用任意物品可退出曲速引擎模式。",
+
+  "modifier.cti.warp_engine_strike": "曲速突击",
+  "modifier.cti.warp_engine_strike.flavor": "折跃——进攻",
+  "modifier.cti.warp_engine_strike.description":"左键退出曲速引擎模式的时候，若正好以真近战命中生物，则在其身上释放额外斩击。",
+
+  "modifier.cti.warp_engine_turnback": "曲速折返",
+  "modifier.cti.warp_engine_turnback.flavor": "进攻——返回",
+  "modifier.cti.warp_engine_turnback.description":"曲速突击触发的时候，自动将你的视角拉回。",
+
+  "modifier.cti.turn_bad_to_blessing": "转祸为福",
+  "modifier.cti.turn_bad_to_blessing.flavor": "扭转乾坤！",
+  "modifier.cti.turn_bad_to_blessing.description":"近战攻击时，清除玩家身上所有药水效果和异常状态。根据所有药水效果的时长与等级之积的总和增幅下一次满蓄力近战攻击的伤害。\n §3·§r清除部分流派核心效果（贪婪、过热等）时获得更多增幅。",
+
+  "modifier.cti.narrow_escape": "死里逃生",
+  "modifier.cti.narrow_escape.flavor": "扭转乾坤！",
+  "modifier.cti.narrow_escape.description":"玩家身上每有一个负面效果或者异常状态，获得1级死里逃生效果，增加玩家的幸运值和各项攻击属性并获得25%独立闪避率。",
 
 
   "dimension.ad_astra.infernal": "炼狱",
@@ -1589,6 +1637,7 @@
   "item.cti.anti_upgrade_speed_kit": "速度升级套件T3",
   "item.cti.upgrade_energy_kit_2": "高级无限能量升级安装器",
   "item.cti.upgrade_energy_kit_3": "高高高高高级无限能量升级安装器",
+  "item.cti.nanomachine": "纳米机器人",
 
   "item.cti.flat_tablet": "全息永夜世界投影板",
   "item.cti.flat_tablet_day": "全息永昼世界投影板",
@@ -1607,7 +1656,7 @@
   "trait.l2hostility.purify.desc": "怪物会免疫掉负面药水状态效果(可被神谕和扭曲戒指破除)\n•当怪物被强制施加负面药水时,每3tick触发一次如下效果,检查药水效果＜7 * 词条等级的负面药水，将其移除并且怪物恢复等同于秒数的生命,(可被扭曲之魂和星野戒指破除)\n•当此词条大于3级并且最大生命大于玩家20倍时,会取消玩家的飞行,维格利得之影＞2级/佩戴扭曲之魂时免疫",
 
   "trait.l2hostility.oracle": "神谕",
-  "trait.l2hostility.oracle.desc": "怪物攻击后10秒内,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
+  "trait.l2hostility.oracle.desc": "怪物攻击时施加10秒神谕异常状态,阻止玩家获得正面效果,并且玩家对负面效果免疫的能力失效",
 
   "trait.l2hostility.extreme_damage_reduce": "极端伤害防护",
   "trait.l2hostility.extreme_damage_reduce.desc": "令生物受到的极端伤害减少80%，受到的穿甲伤害减少95%。",
@@ -1653,9 +1702,12 @@
   "info.cti.overslime": "§3[工具机制|黏液覆层]§r一种可以抵消工具耐久损耗的护盾，通过在工匠砧上用黏液球与工具合成来补充，也可以用加压黏液罐补充。",
   "info.cti.manaburst": "§3[工具机制|魔力脉冲]§r左键挥舞武器时，消耗魔力并发射出魔力脉冲，魔力消耗量等同于脉冲魔力携带量。脉冲的魔力携带量、实体/方块消耗初始值均为25，伤害初始值则为玩家伤害属性值。当魔力脉冲与方块/实体碰撞时会消耗脉冲携带的魔力，魔力归零后脉冲会消失。",
   "info.cti.stat_power": "§3[工具属性|功率]§r资源消耗类（比如黏液、魔力脉冲）词条的一个独立增伤乘区，基础值1。增加增伤幅度的同时成比例增加资源消耗量。",
-  "info.cti.burnt": "§3[工具机制|灼伤]§r一种靠叠层出伤的持续伤害，会不断对目标造成等同于灼伤层数的穿甲伤害，有最大灼伤叠加和灼伤攻击速度两个属性，持续时间30秒。玩家造成非灼伤伤害的火伤时会叠加1级灼伤，冷却0.25秒。灼伤叠加时不会重置持续时间。",
+  "info.cti.burnt": "§3[工具机制|灼伤]§r一种靠叠层出伤的持续伤害，会不断对目标造成等同于灼伤层数的穿甲伤害，持续时间30秒。灼伤叠加时不会重置持续时间。玩家造成非灼伤伤害的火伤时会叠加1级灼伤，冷却0.25秒。",
   "info.cti.true_melee": "§3[机制设定|真近战]§r满蓄力下由左键攻击直接命中目标的行为视为真近战攻击。",
-  "info.cti.creative_energy_cell_4k": "无限供应§e4kAE/t§r的能量",
+  "info.cti.elemental_touch": "§3[工具机制|元素之触]§r由元素伤害叠加对应异常的行为的总称，比如火焰伤害叠加灼伤。",
+  "info.cti.chaotic_damage": "§3[工具机制|混沌伤害]§r能同时触发冰、火、风、地的元素之触的伤害，通常有一定百分比的伤害量无视大部分伤害抗性。",
+  "info.cti.draconic_damage": "§3[工具机制|龙属性伤害]§r当目标累积受到超过自身血上限1%的龙属性伤害后，会陷入30秒龙属性异常状态，期间目标受到的元素伤害、爆炸伤害、魔法伤害和贪婪增伤翻倍，造成的这些类型的伤害减半。Boss类生物在进入龙属性异常状态后会对龙属性伤害产生抗性。",
+  "info.cti.creative_energy_cell_16k": "无限供应§e16kAE/t§r的能量",
 
   "info.cti.overslime_value": "黏液覆层补充量：",
   "info.cti.requirement_bloodletting": "放血强化需要 突破 为前置。",
@@ -1682,5 +1734,6 @@
   "info.cti.elemental.ice": "凛冰",
 
   "info.cti.tool_crafting.tool_plate_smashing": "工具砸板",
-  "info.cti.tool_crafting.circuit_cutting": "工具砸板"
+  "info.cti.tool_crafting.circuit_cutting": "工具砸板",
+  "cti.tooltip.fission_nano_fix_port": "一种能修复裂变反应堆的接口，需要消耗纳米机器人来工作。每个纳米机器人提供100%修复量，单个接口最大修复速率10%/s。"
 }

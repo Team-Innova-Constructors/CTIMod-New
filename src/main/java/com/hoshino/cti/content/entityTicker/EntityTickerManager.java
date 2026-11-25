@@ -10,6 +10,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -183,6 +184,9 @@ public class EntityTickerManager {
 
         public @Nullable EntityTickerInstance getTicker(EntityTicker type) {
             return (this.instanceMap == null) ? null : this.instanceMap.get(type);
+        }
+        public Collection<EntityTickerInstance> getAllTickers(){
+            return this.instanceMap!=null?this.instanceMap.values():List.of();
         }
 
         public void setTicker(EntityTickerInstance instance) {

@@ -140,10 +140,11 @@ public class PressureLoaded extends PressurizableModifier implements ToolDamageM
     @Override
     public float modifyDamageTaken(IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
         float multiplier = 1 + getBonus(tool, modifier);
-        var pressure =Math.min( PressurizableToolCap.getPressure(tool),20);
+        float pressure =Math.min( PressurizableToolCap.getPressure(tool),12.5f);
+        float reducePerBar = 0.02f;
         if (PressurizableToolCap.getAir(tool) > 20) {
             PressurizableToolCap.addAir(tool, -(int) (20 * multiplier));
-            amount-=amount*pressure/50f;
+            amount-=amount*pressure*reducePerBar;
         }
         return amount;
     }

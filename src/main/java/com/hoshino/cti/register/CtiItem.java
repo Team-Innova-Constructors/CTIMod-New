@@ -138,6 +138,11 @@ public class CtiItem {
         return tablet;
     });
 
+    public static final RegistryObject<Item> NANOMACHINE = ITEMS.register("nanomachine",()->new TooltipedItem(new Item.Properties().tab(CtiTab.MACHINE),List.of(
+            Component.literal("纳米机器，小子！"),
+            Component.literal("与反应堆纳米修复端口搭配可以自动修复损坏的裂变反应堆").withStyle(ChatFormatting.AQUA)
+    )));
+
     public static final RegistryObject<BlockItem> alloy_centrifuge = ITEMS.register("alloy_centrifuge", () -> new TooltipedBlockItem(CtiBlock.alloy_centrifuge_block.get(), new Item.Properties().tab(CtiTab.MACHINE), List.of(
             Component.translatable("cti.tooltip.item.alloy_centrifuge").withStyle(ChatFormatting.AQUA),
             Component.translatable("cti.tooltip.item.alloy_centrifuge2").withStyle(ChatFormatting.GOLD),
@@ -182,11 +187,11 @@ public class CtiItem {
     public static final RegistryObject<BlockItem> MANA_INTERFACE = ITEMS.register("mana_interface", () -> new BlockItem(CtiBlock.MANA_INTERFACE.get(), new Item.Properties().tab(CtiTab.MACHINE)));
     public static final RegistryObject<BlockItem> REACTIVE_FLOWER = ITEMS.register("reactive_flower", () -> new BlockItem(CtiBlock.REACTIVE_FLOWER.get(), new Item.Properties().tab(CtiTab.MACHINE)));
     public static final RegistryObject<BlockItem> FLOATING_REACTIVE_FLOWER = ITEMS.register("floating_reactive_flower", () -> new BlockItem(CtiBlock.FLOATING_REACTIVE_FLOWER.get(), new Item.Properties().tab(CtiTab.MACHINE)));
-    public static final RegistryObject<BlockItem> CREATIVE_ENERGY_CELL_4K = ITEMS.register("creative_energy_cell_4k", () -> new BlockItem(CtiBlock.CREATIVE_ENERGY_CELL_4K.get(), new Item.Properties().tab(CtiTab.MACHINE)){
+    public static final RegistryObject<BlockItem> CREATIVE_ENERGY_CELL_16K = ITEMS.register("creative_energy_cell_16k", () -> new BlockItem(CtiBlock.CREATIVE_ENERGY_CELL_16K.get(), new Item.Properties().tab(CtiTab.MACHINE)){
         @Override
         public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
             pTooltip.add(
-                    Component.translatable("info.cti.creative_energy_cell_4k")
+                    Component.translatable("info.cti.creative_energy_cell_16k")
             );
         }
     });

@@ -4,6 +4,7 @@ import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiEntityTickers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.player.Player;
@@ -30,7 +31,7 @@ public class ElementalHandler{
                 if (triggerFiery(source)&&!playerInstance.hasTicker(CtiEntityTickers.FIERY_TOUCH_CD.get())) {
                     var oxidizingFlame = player.getEffect(CtiEffects.OXIDIZE_FLAME.get());
                     if (oxidizingFlame!=null){
-                        inflictBurnt(player,target,null,oxidizingFlame.getAmplifier()+1);
+                        inflictBurnt(player,target,null,oxidizingFlame.getAmplifier()+2);
                         playerInstance.addTickerSimple(new EntityTickerInstance(CtiEntityTickers.FIERY_TOUCH_CD.get(), 1,30));
                     }
                     else {
@@ -43,11 +44,15 @@ public class ElementalHandler{
     }
     public static List<String> FIERY_TRIGGER_IDS = List.of(
             DamageSource.ON_FIRE.msgId, DamageSource.IN_FIRE.msgId,
-            DamageSource.LAVA.msgId, "cti.scorch"
+            DamageSource.LAVA.msgId, "cti.scorch","cti.chaotic"
     );
     public static boolean triggerFiery(EntityDamageSource source){
-        if (source instanceof ElementalDamageSource ds)
-            return ds.isFiery;
-        else return FIERY_TRIGGER_IDS.contains(source.msgId);
+        if (source instanceof ElementalDamageSource ds){
+            if (ds.isBurnt()) return false;
+        }
+        return FIERY_TRIGGER_IDS.contains(source.msgId);
+    }
+    public static boolean isChaotic(EntityDamageSource source){
+        return source instanceof ElementalDamageSource ds && ds.isChaotic();
     }
 }

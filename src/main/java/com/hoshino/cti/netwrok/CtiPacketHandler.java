@@ -101,6 +101,26 @@ public class CtiPacketHandler {
                 .encoder(PSyncAttackTickerS2C::toByte)
                 .consumerMainThread(PSyncAttackTickerS2C::handle)
                 .add();
+        INSTANCE.messageBuilder(PFreezeAttackTickerS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PFreezeAttackTickerS2C::new)
+                .encoder(PFreezeAttackTickerS2C::toByte)
+                .consumerMainThread(PFreezeAttackTickerS2C::handle)
+                .add();
+        INSTANCE.messageBuilder(PStopWarpEngineC2S.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PStopWarpEngineC2S::new)
+                .encoder(PStopWarpEngineC2S::toByte)
+                .consumerMainThread(PStopWarpEngineC2S::handle)
+                .add();
+        INSTANCE.messageBuilder(PTurnPlayerBackS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PTurnPlayerBackS2C::new)
+                .encoder(PTurnPlayerBackS2C::toByte)
+                .consumerMainThread(PTurnPlayerBackS2C::handle)
+                .add();
+        INSTANCE.messageBuilder(PSyncPlayerMovementS2C.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(PSyncPlayerMovementS2C::new)
+                .encoder(PSyncPlayerMovementS2C::toByte)
+                .consumerMainThread(PSyncPlayerMovementS2C::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG msg) {

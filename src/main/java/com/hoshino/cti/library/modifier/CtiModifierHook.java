@@ -12,9 +12,13 @@ import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 public class CtiModifierHook {
+    //处理左键行为
     public static final ModuleHook<LeftClickModifierHook> LEFT_CLICK = ModifierHooks.register(Cti.getResource("left_click"), LeftClickModifierHook.class, LeftClickModifierHook.AllMerger::new, new LeftClickModifierHook() {});
+    //决定效果免疫
     public static final ModuleHook<EffectApplicableModifierHook> EFFECT_APPLICABLE = ModifierHooks.register(Cti.getResource("effect_applicable"), EffectApplicableModifierHook.class, EffectApplicableModifierHook.AllMerger::new,(tool, entry, equipmentSlot, instance, applicable)->applicable);
+    //生物死亡时
     public static final ModuleHook<OnDeathModifierHook> ON_DEATH = ModifierHooks.register(Cti.getResource("on_death"), OnDeathModifierHook.class, OnDeathModifierHook.AllMerger::new, (tool, modifier, context, slotType, source, victim, isAliveSource) -> {});
+    //尝试免死
     public static final ModuleHook<OnHoldingPreventDeathHook> PREVENT_DEATH = ModifierHooks.register(Cti.getResource("holding_death"), OnHoldingPreventDeathHook.class, OnHoldingPreventDeathHook.FirstMerger::new, new OnHoldingPreventDeathHook() {
         @Override
         public float onHoldingPreventDeath(LivingEntity livingEntity, IToolStackView tool, ModifierEntry modifier, EquipmentContext context, EquipmentSlot slotType, DamageSource source) {
@@ -26,5 +30,6 @@ public class CtiModifierHook {
             return false;
         }
     });
+    //在背包中右键
     public static final ModuleHook<SlotStackModifierHook> SLOT_STACK = ModifierHooks.register(Cti.getResource("slot_stack"), SlotStackModifierHook.class, SlotStackModifierHook.FirstMerger::new, new SlotStackModifierHook(){});
 }

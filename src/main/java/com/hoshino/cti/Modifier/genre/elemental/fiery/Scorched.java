@@ -6,6 +6,11 @@ import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 public class Scorched extends BasicBurntModifier{
     @Override
     public int getMaxBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return modifierEntry.getLevel()*4;
+    }
+
+    @Override
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
         return modifierEntry.getLevel();
     }
 

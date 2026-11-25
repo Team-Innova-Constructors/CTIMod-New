@@ -4,6 +4,7 @@ import com.hoshino.cti.Cti;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CommonUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
+import com.hoshino.cti.util.mixin.IPlayerMixin;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 @Mixin(Player.class)
-public abstract class PlayerMixin extends LivingEntity {
+public abstract class PlayerMixin extends LivingEntity implements IPlayerMixin {
+    @Unique private boolean cti$keepAttackStrengthTicker = false;
     protected PlayerMixin(EntityType<? extends LivingEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -39,5 +41,23 @@ public abstract class PlayerMixin extends LivingEntity {
             return true;
         }
         return super.fireImmune();
+    }
+
+    @Inject(at = @At("HEAD"),method = "resetAttackStrengthTicker",cancellable = true)
+    private void keepStrength(CallbackInfo ci){
+        if (this.cti$keepAttackStrengthTicker){
+            this.cti$keepAttackStrengthTicker = false;
+            ci.cancel();
+        }
+    }
+
+    @Override
+    public void cti$preventNextAttackTickerReset() {
+        this.cti$keepAttackStrengthTicker = true;
+    }
+
+    @Override
+    public boolean cti$isNextAttackTickerResetPrevented() {
+        return this.cti$keepAttackStrengthTicker;
     }
 }

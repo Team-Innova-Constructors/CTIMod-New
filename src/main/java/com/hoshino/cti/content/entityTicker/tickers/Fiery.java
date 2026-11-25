@@ -1,9 +1,11 @@
 package com.hoshino.cti.content.entityTicker.tickers;
 
+import com.hoshino.cti.Modifier.genre.elemental.ElementalRelease;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.ReplacedHeatSword;
 import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
+import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiEffects;
 import com.hoshino.cti.register.CtiModifiers;
@@ -13,10 +15,12 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Fiery extends EntityTicker {
     public Fiery() {
@@ -45,9 +49,11 @@ public class Fiery extends EntityTicker {
         if (mainHandStack.getItem() instanceof IModifiable){
             ToolStack tool = ToolStack.from(mainHandStack);
             var toolData = tool.getPersistentData();
-            var modifierLevel = tool.getModifierLevel(CtiModifiers.REPLACED_HEAT_SWORD.getId());
+            var modifierLevel = tool.getModifierLevel(CtiModifiers.THERMAL_THRUST.getId());
             if (modifierLevel >0&&!player.hasEffect(CtiEffects.OVERHEAT.get())){
-                toolData.putInt(ReplacedHeatSword.KEY_HEAT,Math.min(100, toolData.getInt(ReplacedHeatSword.KEY_HEAT)+ modifierLevel *5));
+                AtomicInteger elementalReleaseLv = new AtomicInteger(0);
+                player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
+                toolData.putInt(ReplacedHeatSword.KEY_HEAT,Math.min(100, toolData.getInt(ReplacedHeatSword.KEY_HEAT) + (int) (modifierLevel * GenreManager.calculateElementalRelease(elementalReleaseLv.get(),15,5))));
             }
             modifierLevel = tool.getModifierLevel(CtiModifiers.RUBY_LASER.getId());
             if (modifierLevel>0&&player.hasEffect(CtiEffects.OVERHEAT.get())){

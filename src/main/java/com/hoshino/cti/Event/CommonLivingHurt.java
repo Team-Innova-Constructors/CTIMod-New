@@ -1,8 +1,11 @@
 package com.hoshino.cti.Event;
 
 import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
+import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.CurseUtil;
 import com.hoshino.cti.util.method.GetModifierLevel;
@@ -13,15 +16,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -103,6 +104,37 @@ public class CommonLivingHurt {
             if (OxygenUtils.levelHasOxygen(serverPlayer.getLevel())) {
                 OxygenS.checkAndRecoverOxygen(serverPlayer);
             }
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void livingAttackLowest(LivingAttackEvent event){
+        if (event.getSource() instanceof ElementalDamageSource damageSource&&damageSource.isChaotic()){
+            event.setCanceled(false);
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void livingAttackHighest(LivingAttackEvent event){
+        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if (event.getSource().msgId.equals(DamageSource.IN_WALL.getMsgId()) || event.getSource().msgId.equals(DamageSource.DROWN.msgId)) {
+                if (EntityTickerManager.getInstance(serverPlayer).hasTicker(CtiEntityTickers.WARP_ENGINE.get()))
+                    event.setCanceled(true);
+            }
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void livingHurtLowest(LivingHurtEvent event){
+        if (event.getSource() instanceof ElementalDamageSource damageSource&&damageSource.isChaotic()){
+            event.setCanceled(false);
+            if (event.getAmount()< damageSource.getChaoticMinDamage())
+                event.setAmount(damageSource.getChaoticMinDamage());
+        }
+    }
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void livingDamageLow(LivingDamageEvent event){
+        if (event.getSource() instanceof ElementalDamageSource damageSource&&damageSource.isChaotic()){
+            event.setCanceled(false);
+            if (event.getAmount()< damageSource.getChaoticMinDamage())
+                event.setAmount(damageSource.getChaoticMinDamage());
         }
     }
 }

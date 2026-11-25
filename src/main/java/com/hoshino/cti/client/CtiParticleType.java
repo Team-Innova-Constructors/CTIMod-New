@@ -21,5 +21,8 @@ public class CtiParticleType {
     public static final RegistryObject<SimpleParticleType> GEL_EXPLOSION = PARTICLES.register("gel_explosion", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> VOID_ARC = PARTICLES.register("void_arc", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> MANA_STRIKE = PARTICLES.register("mana_strike", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> WHITE_SPARK = PARTICLES.register("spark_white", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> NORMAL_SLASH = PARTICLES.register("normal_slash", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> DRAGON_DISORDER = PARTICLES.register("dragon_disorder", () -> new SimpleParticleType(false));
 
 }

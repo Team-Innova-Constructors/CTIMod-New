@@ -13,6 +13,8 @@ import com.hoshino.cti.Modifier.Mob.BuriedOcean;
 import com.hoshino.cti.Modifier.Race.*;
 import com.hoshino.cti.Modifier.Replace.*;
 import com.hoshino.cti.Modifier.aetherCompact.*;
+import com.hoshino.cti.Modifier.genre.elemental.ElementalRelease;
+import com.hoshino.cti.Modifier.genre.elemental.common.PlasmaActivation;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.*;
 import com.hoshino.cti.Modifier.genre.floating.FloatingHandler;
 import com.hoshino.cti.Modifier.genre.floating.ReplacedTerritoralSky;
@@ -42,6 +44,7 @@ import com.hoshino.cti.Modifier.underGardenCompact.*;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.BurstMiningModifier;
 import com.hoshino.cti.Modifier.genre.resourceConsuming.mana.forTrait.LCManaBurstModifier;
 import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.modifiers.impl.NoLevelsModifier;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
@@ -255,6 +258,9 @@ public class CtiModifiers {
     public static final StaticModifier<LuckCharming> LUCK_CHARMING = MODIFIERS.register("luck_charming", LuckCharming::new);
     public static final StaticModifier<PlateSmashing> PLATE_SMASHING = MODIFIERS.register("plate_smashing", PlateSmashing::new);
     public static final StaticModifier<CircuitCuttingModifier> CIRCUIT_CUTTING = MODIFIERS.register("circuit_cutting", CircuitCuttingModifier::new);
+    public static final StaticModifier<WarpEngineModifier> WARP_ENGINE = MODIFIERS.register("warp_engine", WarpEngineModifier::new);
+    public static final StaticModifier<NoLevelsModifier> WARP_ENGINE_STRIKE = MODIFIERS.register("warp_engine_strike", NoLevelsModifier::new);
+    public static final StaticModifier<NoLevelsModifier> WARP_ENGINE_TURNBACK = MODIFIERS.register("warp_engine_turnback", NoLevelsModifier::new);
 
 
     public static final StaticModifier<Reforge> REFORGE_STATIC_MODIFIER = MODIFIERS.register("reforge", Reforge::new);
@@ -305,6 +311,14 @@ public class CtiModifiers {
     public static final StaticModifier<BurstBypassCooldown> BURST_BYPASS_COOLDOWN = MODIFIERS.register("burst_bypass_cooldown", BurstBypassCooldown::new);
     public static final StaticModifier<SlimyMana> SLIMY_MANA = MODIFIERS.register("slimy_mana", SlimyMana::new);
     public static final StaticModifier<ReplaceBirefringent> REPLACE_BIREFRINGENT = MODIFIERS.register("birefringent", ReplaceBirefringent::new);
+    public static final StaticModifier<AtomicPlasmaSlash> ATOMIC_PLASMA_SLASH = MODIFIERS.register("atomic_plasma_slash", AtomicPlasmaSlash::new);
+    public static final StaticModifier<PlasmaActivation> PLASMA_ACTIVATION = MODIFIERS.register("plasma_activation", PlasmaActivation::new);
+    public static final StaticModifier<UnacceptableWeight> UNACCEPTABLE_WEIGHT = MODIFIERS.register("unacceptable_weight", UnacceptableWeight::new);
+    public static final StaticModifier<BrightnessBoostModifier> BRIGHTNESS_BOOST = MODIFIERS.register("brightness_boost", BrightnessBoostModifier::new);
+    public static final StaticModifier<TurnBadToBlessing> TURN_BAD_TO_BLESSING = MODIFIERS.register("turn_bad_to_blessing", TurnBadToBlessing::new);
+    public static final StaticModifier<NarrowEscapeModifier> NARROW_ESCAPE = MODIFIERS.register("narrow_escape", NarrowEscapeModifier::new);
+
+    public static final StaticModifier<ElementalRelease> ELEMENTAL_RELEASE = MODIFIERS.register("elemental_release", ElementalRelease::new);
 
     public static final StaticModifier<BurntHandler> BURNT_HANDLER = MODIFIERS.register("burnt_handler", BurntHandler::new);
     public static final StaticModifier<ReplacedConducting> REPLACED_CONDUCTING = MODIFIERS.register("replaced_conducting", ReplacedConducting::new);
@@ -317,7 +331,11 @@ public class CtiModifiers {
     public static final StaticModifier<OxidizingFlame> OXIDIZING_FLAME = MODIFIERS.register("oxidizing_flame", OxidizingFlame::new);
     public static final StaticModifier<SearingBlow> SEARING_BLOW = MODIFIERS.register("searing_blow", SearingBlow::new);
     public static final StaticModifier<MeleeFieryJavelinModifier> MELEE_FIERY_JAVELIN = MODIFIERS.register("melee_fiery_javelin", MeleeFieryJavelinModifier::new);
+    public static final StaticModifier<StellarFiery> STELLAR_FIERY = MODIFIERS.register("stellar_fiery", StellarFiery::new);
+    public static final StaticModifier<BasicOverHeatModifier> THERMAL_THRUST = MODIFIERS.register("thermal_thrust", BasicOverHeatModifier::new);
+
     public static final StaticModifier<Immortal> IMMORTAL_STATIC_MODIFIER = MODIFIERS.register("immortal", Immortal::new);
+    public static final StaticModifier<RangedLimited> RANGED_LIMITED = MODIFIERS.register("ranged_limited", RangedLimited::new);
 
 
     public static final StaticModifier<EtchedModifier> GLORY_ETCH = MODIFIERS.register("glory_etch", EtchedModifier::new);

@@ -1,9 +1,12 @@
 package com.hoshino.cti.Modifier.genre.elemental.fiery;
 
 import com.hoshino.cti.Cti;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.library.modifier.CtiModifierHook;
 import com.hoshino.cti.library.modifier.hooks.LeftClickModifierHook;
 import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiEntityTickers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -29,7 +32,7 @@ public class BasicOverHeatModifier extends BasicBurntModifier implements LeftCli
     public void onLeftClickEntity(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, Entity target) {
         if (player.getAttackStrengthScale(0)>0.8&&!level.isClientSide){
             if (tool.getPersistentData().getInt(KEY_HEAT)>=100){
-                player.addEffect(new MobEffectInstance(CtiEffects.OVERHEAT.get(),200,0,false,false));
+                EntityTickerManager.getInstance(player).addTickerSimple(new EntityTickerInstance(CtiEntityTickers.OVERHEAT_DELAY.get(), 1,1));
                 tool.getPersistentData().remove(KEY_HEAT);
             }
         }
@@ -39,7 +42,7 @@ public class BasicOverHeatModifier extends BasicBurntModifier implements LeftCli
     public void onLeftClickEmpty(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot) {
         if (player.getAttackStrengthScale(0)>0.8&&!level.isClientSide){
             if (tool.getPersistentData().getInt(KEY_HEAT)>=100){
-                player.addEffect(new MobEffectInstance(CtiEffects.OVERHEAT.get(),200,0,false,false));
+                EntityTickerManager.getInstance(player).addTickerSimple(new EntityTickerInstance(CtiEntityTickers.OVERHEAT_DELAY.get(), 1,1));
                 tool.getPersistentData().remove(KEY_HEAT);
             }
         }
@@ -49,7 +52,7 @@ public class BasicOverHeatModifier extends BasicBurntModifier implements LeftCli
     public void onLeftClickBlock(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, BlockState state, BlockPos pos) {
         if (player.getAttackStrengthScale(0)>0.8&&!level.isClientSide){
             if (tool.getPersistentData().getInt(KEY_HEAT)>=100){
-                player.addEffect(new MobEffectInstance(CtiEffects.OVERHEAT.get(),200,0,false,false));
+                EntityTickerManager.getInstance(player).addTickerSimple(new EntityTickerInstance(CtiEntityTickers.OVERHEAT_DELAY.get(), 1,1));
                 tool.getPersistentData().remove(KEY_HEAT);
             }
         }

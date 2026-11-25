@@ -30,6 +30,11 @@ public class OxidizingFlame extends BasicBurntModifier implements LeftClickModif
     }
 
     @Override
+    public int getReleasedBurntBonus(IToolContext iToolContext, ModifierEntry modifierEntry) {
+        return -15*modifierEntry.getLevel();
+    }
+
+    @Override
     public void onLeftClickEntity(IToolStackView tool, ModifierEntry entry, Player player, Level level, EquipmentSlot equipmentSlot, Entity target) {
         if (player.getAttackStrengthScale(0)>0.8&&!level.isClientSide){
             if (SpaceSuitModifier.consumeTankOxygen(player,entry,10*entry.getLevel())) {

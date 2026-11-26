@@ -1,6 +1,7 @@
 package com.hoshino.cti.Event;
 
 import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
+import com.hoshino.cti.content.elementalSystem.ElementalHandler;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.library.modifier.OxygenS;
 import com.hoshino.cti.register.CtiEffects;
@@ -15,6 +16,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
@@ -41,6 +43,11 @@ public class CommonLivingHurt {
         }
         if (entity.getPersistentData().getBoolean("star_extra_hurt")) {
             event.setAmount(event.getAmount() * 9f);
+        }
+        if (event.getSource() instanceof EntityDamageSource source && ElementalHandler.triggerFiery(source)) {
+            if (EntityTickerManager.getInstance(entity).getTicker(CtiEntityTickers.CRITICAL_BOOST_BURNT.get()) != null) {
+                event.setAmount(event.getAmount() * 1.4f);
+            }
         }
     }
 

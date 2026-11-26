@@ -40,5 +40,6 @@ public class CtiEntityTickers {
     public static final RegistryObject<EntityTicker> DRAGON_DISORDER = ENTITY_TICKERS.register("dragon_disorder", DragenDisorder::new);
     public static final RegistryObject<EntityTicker> OVERHEAT_DELAY = ENTITY_TICKERS.register("overheat_delay", OverHeatDelay::new);
     public static final RegistryObject<EntityTicker> EJIAN = ENTITY_TICKERS.register("ejian", Ejian::new);
+    public static final RegistryObject<EntityTicker> CRITICAL_BOOST_BURNT = ENTITY_TICKERS.register("critical_boost_burnt", ()->new EmptyTicker(MobEffectCategory.HARMFUL));
 
 }

@@ -1,13 +1,13 @@
 {
   "type": "l2hostility:trait_scaled",
-  "chance": 0.15,
+  "chance": 0.45,
   "conditions": [
     {
       "condition": "minecraft:killed_by_player"
     },
     {
       "condition": "l2hostility:trait_and_level",
-      "maxLevel": 5,
+      "maxLevel": 1,
       "minLevel": 1,
       "trait": "l2hostility:ejian"
     }

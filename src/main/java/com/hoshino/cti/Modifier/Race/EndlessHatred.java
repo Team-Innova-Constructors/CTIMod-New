@@ -45,8 +45,8 @@ public class EndlessHatred extends Modifier implements InventoryTickModifierHook
                     mob.hurt(DamageSource.indirectMagic(livingEntity,livingEntity),livingEntity.getMaxHealth() * 0.12f * modifierLevel);
                 }
                 var size=entityList.size();
-                if(size>8){
-                    size=8;
+                if(size>4){
+                    size=4;
                 }
                 livingEntity.heal((float)(livingEntity.getMaxHealth() * modifierLevel * 0.25f * 0.12f * Math.sqrt(size)));
             }

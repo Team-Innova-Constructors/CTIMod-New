@@ -166,7 +166,7 @@
 
   "modifier.cti.endless_hatred": "无终恨意",
   "modifier.cti.endless_hatred.flavor": "要是其他材料能叠钢就好了",
-  "modifier.cti.endless_hatred.description":"每4秒会对附近8格内[所有]非玩家生物造成你自己最大生命12% x 词条等级的灼烧伤害.\n此伤害的25%会转化为回血,周围目标越多回复值越高,回血至多计算8个目标",
+  "modifier.cti.endless_hatred.description":"每4秒会对附近8格内[所有]非玩家生物造成你自己最大生命12% x 词条等级的灼烧伤害.\n此伤害的25%会转化为回血,周围目标越多回复值越高,回血至多计算4个目标",
 
   "modifier.cti.arrogant_person": "狂妄之徒",
   "modifier.cti.arrogant_person.flavor": "脱战回血",
@@ -1417,7 +1417,7 @@
 
   "modifier.cti.replace_ring_necrotic": "噬生",
   "modifier.cti.replace_ring_necrotic.flavor": "吞噬生灵",
-  "modifier.cti.replace_ring_necrotic.description":"攻击时每级恢复你5%伤害的生命值，不超过你最大生命的5%。",
+  "modifier.cti.replace_ring_necrotic.description":"攻击时恢复你6%最大生命的生命值，每5秒至多触发一次，当佩戴吸血护符时候共用cd",
 
   "modifier.cti.ethereal": "飘渺",
   "modifier.cti.ethereal.flavor": "秀丽化",

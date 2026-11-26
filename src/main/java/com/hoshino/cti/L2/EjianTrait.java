@@ -5,6 +5,7 @@ import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.content.entityTicker.tickers.Ejian;
 import com.hoshino.cti.register.CtiEntityTickers;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
+import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,7 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 
 
-public class EjianTrait extends MobTrait {
+public class EjianTrait extends LegendaryTrait {
 
     public static final String KEY_ARMED = "cti_ejian_armed";
     public static final String KEY_COOLDOWN = "cti_ejian_cooldown";
@@ -23,7 +24,7 @@ public class EjianTrait extends MobTrait {
     public static final float HEALTH_COST = 0.3F;
 
     public EjianTrait() {
-        super(ChatFormatting.DARK_PURPLE);
+        super(ChatFormatting.RED);
     }
 
     @Override
@@ -70,7 +71,6 @@ public class EjianTrait extends MobTrait {
         float remaining = player.getHealth() - player.getMaxHealth() * HEALTH_COST;
         player.setHealth(Math.max(1.0F, remaining));
         player.getPersistentData().putLong(Ejian.KEY_END, player.level.getGameTime() + DURATION);
-        EntityTickerManager.getInstance(player).addTickerSimple(
-                new EntityTickerInstance(CtiEntityTickers.EJIAN.get(), Math.max(1, level), DURATION));
+        EntityTickerManager.getInstance(player).addTickerSimple(new EntityTickerInstance(CtiEntityTickers.EJIAN.get(), Math.max(1, level), DURATION));
     }
 }

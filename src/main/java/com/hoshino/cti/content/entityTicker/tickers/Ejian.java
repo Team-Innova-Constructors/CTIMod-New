@@ -58,11 +58,6 @@ public class Ejian extends EntityTicker {
             return;
         }
         CtiPacketHandler.sendToTrackingAndPlayer(new PEjianS2C(player.getUUID(), false, 0), player);
-        if (player.isAlive() && player.getHealth() >= player.getMaxHealth() * BREAK_HEALTH_RATIO) {
-            EntityTickerManager.getInstance(player).addTicker(
-                    new EntityTickerInstance(CtiEntityTickers.DAWN_EXTRA_DAMAGE.get(), Math.max(1, level), DAWN_EXTRA_DAMAGE_DURATION),
-                    Integer::max, Integer::max);
-        }
     }
 
     @Override
@@ -75,6 +70,9 @@ public class Ejian extends EntityTicker {
             return true;
         }
         if (player.getHealth() >= player.getMaxHealth() * BREAK_HEALTH_RATIO) {
+            EntityTickerManager.getInstance(player).addTicker(
+                    new EntityTickerInstance(CtiEntityTickers.DAWN_EXTRA_DAMAGE.get(), Math.max(1, level), DAWN_EXTRA_DAMAGE_DURATION),
+                    Integer::max, Integer::max);
             end(player);
         }
         return true;
@@ -125,7 +123,7 @@ public class Ejian extends EntityTicker {
         if (restored || player.tickCount % SYNC_INTERVAL == 0) {
             sync(player, (int) Math.max(1L, end - now));
         }
-        if (player.getHealth() >= player.getMaxHealth() * BREAK_HEALTH_RATIO || now >= end) {
+        if (now >= end) {
             EntityTickerManager.getInstance(player).removeTicker(CtiEntityTickers.EJIAN.get());
         }
     }

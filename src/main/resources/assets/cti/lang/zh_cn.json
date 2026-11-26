@@ -532,7 +532,7 @@
 
   "modifier.cti.fiery_capable": "好暑",
   "modifier.cti.fiery_capable.flavor": "太烧了",
-  "modifier.cti.fiery_capable.description":"每级+16(16)最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，每级额外+32(0)最大灼伤叠加，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
+  "modifier.cti.fiery_capable.description":"每级+16最大灼伤叠加，给予使用者抗火，使用者在熔岩中时缓慢恢复耐久。\n §3·§r作为护甲时，每级额外+32(0)最大灼伤叠加，对来自着火/灼伤的敌人的伤害每级减伤5%，最大40%（独立减伤）。",
 
   "modifier.cti.all": "宇宙之源",
   "modifier.cti.all.flavor": "宇宙万法的那个源头，它是——",
@@ -1591,9 +1591,17 @@
   "modifier.cti.stellar_fiery.flavor": "宇宙的炽热蕴含其中",
   "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加。近战攻击附带每级25%(80%)火焰伤害，过热效果期间该伤害减半。\n §3·§r每次获得过热效果时都会令增加100%本词条的近战火焰附伤，持续20秒，最大叠加5次。",
 
+  "modifier.cti.coronation_burnt": "星冕烧蚀",
+  "modifier.cti.coronation_burnt.flavor": "恒星风爆发",
+  "modifier.cti.coronation_burnt.description":"对灼伤层数已达上限的目标施加灼伤时，扣除目标25%(10%)灼伤层数，并为自身叠加一层星冕增幅。\n §3·§r每层星冕增幅使灼伤自然出伤+50%(10%)，最高每级叠加10层，持续60秒。",
+
   "modifier.cti.thermal_thrust": "热动力学",
   "modifier.cti.thermal_thrust.flavor": "说的不是那些管道！",
   "modifier.cti.thermal_thrust.description":"灼伤造成伤害时每级获得15(5)过热层数，过热层数达到100时挥舞武器消耗层数并获得10秒过热效果。\n §3·§r过热效果期间：0%(80%)的灼伤攻速会转化为玩家近战攻击速度。",
+
+  "modifier.cti.thermal_unstable": "热不稳定",
+  "modifier.cti.thermal_unstable.flavor": "再看一眼就会爆炸",
+  "modifier.cti.thermal_unstable.description":"近战暴击时，消耗命中目标身上25%的灼伤层数产生爆炸，造成消耗层数x20(2)点灼伤伤害。",
 
   "modifier.cti.unacceptable_weight": "无法承受之重",
   "modifier.cti.unacceptable_weight.flavor": "重到连武器都举不起来！",
@@ -1618,6 +1626,14 @@
   "modifier.cti.narrow_escape": "死里逃生",
   "modifier.cti.narrow_escape.flavor": "扭转乾坤！",
   "modifier.cti.narrow_escape.description":"玩家身上每有一个负面效果或者异常状态，获得1级死里逃生效果，增加玩家的幸运值和各项攻击属性并获得25%独立闪避率。",
+
+  "modifier.cti.heatup": "极热",
+  "modifier.cti.heatup.flavor": "热情似火",
+  "modifier.cti.heatup.description":"+80(20)最大灼伤叠加，每级+20%最大灼伤叠加。",
+
+  "modifier.cti.shine_flame": "曜焰",
+  "modifier.cti.shine_flame.flavor": "热情似火",
+  "modifier.cti.shine_flame.description":"+60%最大灼伤叠加。",
 
 
   "dimension.ad_astra.infernal": "炼狱",

@@ -333,7 +333,11 @@ public class CtiModifiers {
     public static final StaticModifier<SearingBlow> SEARING_BLOW = MODIFIERS.register("searing_blow", SearingBlow::new);
     public static final StaticModifier<MeleeFieryJavelinModifier> MELEE_FIERY_JAVELIN = MODIFIERS.register("melee_fiery_javelin", MeleeFieryJavelinModifier::new);
     public static final StaticModifier<StellarFiery> STELLAR_FIERY = MODIFIERS.register("stellar_fiery", StellarFiery::new);
+    public static final StaticModifier<CoronationBurnt> CORONATION_BURNT = MODIFIERS.register("coronation_burnt", CoronationBurnt::new);
     public static final StaticModifier<BasicOverHeatModifier> THERMAL_THRUST = MODIFIERS.register("thermal_thrust", BasicOverHeatModifier::new);
+    public static final StaticModifier<Heatup> HEATUP = MODIFIERS.register("heatup", Heatup::new);
+    public static final StaticModifier<ShineFlame> SHINE_FLAME = MODIFIERS.register("shine_flame", ShineFlame::new);
+    public static final StaticModifier<ThermalUnstable> THERMAL_UNSTABLE = MODIFIERS.register("thermal_unstable", ThermalUnstable::new);
 
     public static final StaticModifier<Immortal> IMMORTAL_STATIC_MODIFIER = MODIFIERS.register("immortal", Immortal::new);
     public static final StaticModifier<RangedLimited> RANGED_LIMITED = MODIFIERS.register("ranged_limited", RangedLimited::new);

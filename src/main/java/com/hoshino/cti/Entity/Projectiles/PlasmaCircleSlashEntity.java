@@ -89,7 +89,7 @@ public class PlasmaCircleSlashEntity extends PlasmaSlashEntity {
         if (this.tool==null&&this.getOwner() instanceof Player player){
             this.tool= ToolStack.from( player.getMainHandItem());
         }
-        super.tick();
+        super.baseTick();
         if (this.tickCount>=5){
             this.onSlashLifeEnds();
             return;
@@ -102,19 +102,16 @@ public class PlasmaCircleSlashEntity extends PlasmaSlashEntity {
             return;
         }
         if (entity instanceof Player player) {
-            if (this.followUser) {
-                Vec3 vec3 = new Vec3(rayVec3.x, rayVec3.y, rayVec3.z);
-                double x = player.getX();
-                double y = player.getY() + 0.5 * player.getBbHeight();
-                double z = player.getZ();
-                double dx = vec3.x * getScale() + offset.x;
-                double dy = vec3.y * getScale() + offset.y;
-                double dz = vec3.z * getScale() + offset.z;
-                this.setPos(x + dx, y + dy, z + dz);
-            }
             AABB aabb = this.getAttackRange();
             List<Entity> ls0 = this.level.getEntitiesOfClass(Entity.class, aabb,this::canHitEntity);
             float overCrit =Math.max( CriticalRate -1,0);
+            boolean isCritical = this.isCritical;
+            if (this.getEchoCount()==1) {
+                this.isCritical = true;
+                if (overCrit<=0)
+                    overCrit+=this.CriticalRate+1;
+                else overCrit+=2;
+            }
             this.hitRemain=16;
             if (this.tickCount==3){
                 if (this.getEchoCount()==1&&this.tool!=null&&this.getOwner() instanceof ServerPlayer serverPlayer&&this.tool.getModifierLevel(EtshtinkerModifiers.WAVE_REFRACTION.getId())>0){
@@ -125,20 +122,15 @@ public class PlasmaCircleSlashEntity extends PlasmaSlashEntity {
                 }
             }
             for (Entity targets : ls0) {
-                if (targets instanceof LivingEntity living) {
+                if (targets instanceof LivingEntity living&&this.tool!=null) {
                     for (ModifierEntry modifier : this.tool.getModifierList()) {
                         modifier.getHook(etshtinkerHook.BEFORE_SLASH_HIT).beforePlasmaSlashHit(this.tool, living, this, this.isCritical);
                     }
                     targets.invulnerableTime = 0;
                     if (!isEcho||EtSHrnd().nextFloat()<=echoTriggerChance) {
                         float damage = this.damage;
-                        if (this.getEcho()==1) {
-                            this.isCritical = true;
-                            if (overCrit<=0)
-                                overCrit+=this.CriticalRate;
-                            else overCrit+=1;
-                        }
-                        else damage*=0.75f;
+                        if (this.getEchoCount()!=1) damage*=0.75f;
+                        else damage*=1.25f;
                         float attackDamage = damage;
                         ToolAttackContext context = new ToolAttackContext(player, player, InteractionHand.MAIN_HAND, living, living, this.isCritical, 1.0F, true);
                         if (etshtinker.EtSHrnd().nextFloat() <= this.echoTriggerChance - 1.0F && this.isEcho) {
@@ -147,7 +139,6 @@ public class PlasmaCircleSlashEntity extends PlasmaSlashEntity {
                             }
                         }
                         attackUtil.attackEntity(this.tool, player, InteractionHand.MAIN_HAND, targets, () -> (double)1.0F, true, Util.getSlotType(InteractionHand.MAIN_HAND), attackDamage, this.isCritical, true, true, true, overCrit);
-                        this.isCritical = false;
                     }
                     else {
                         float criticalModifier = this.isCritical ? 1.5f+overCrit : 1.0f;
@@ -173,6 +164,7 @@ public class PlasmaCircleSlashEntity extends PlasmaSlashEntity {
                     targets.invulnerableTime=0;
                 }
             }
+            this.isCritical = isCritical;
         }
     }
 

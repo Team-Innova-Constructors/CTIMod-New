@@ -1,5 +1,6 @@
 package com.hoshino.cti.util;
 
+import com.hoshino.cti.Modifier.genre.elemental.fiery.CoronationBurnt;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
 import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
 import com.hoshino.cti.content.entityTicker.EntityTickerManager;
@@ -101,6 +102,7 @@ public class EntityUtil {
         var instance = EntityTickerManager.getInstancePlayerSpecific(target,playerId);
         var tickerInstance = instance.getTicker(CtiEntityTickers.FIERY.get());
         int originalValue = tickerInstance!=null ? tickerInstance.level : 0;
+        CoronationBurnt.tryAblate(cause,tickerInstance,maxValue,tool);
         instance.addTicker(new EntityTickerInstance(CtiEntityTickers.FIERY.get(), toInflict,600),
                 (i1,i2)-> Math.min(i1+i2,maxValue),
                 (i1,i2)-> i1>0?i1:i2);

@@ -5,11 +5,15 @@ import com.hoshino.cti.Modifier.genre.elemental.fiery.Exothermic;
 import com.hoshino.cti.Modifier.genre.elemental.fiery.ReplacedHeatSword;
 import com.hoshino.cti.content.elementalSystem.ElementalDamageSource;
 import com.hoshino.cti.content.entityTicker.EntityTicker;
+import com.hoshino.cti.content.entityTicker.EntityTickerInstance;
+import com.hoshino.cti.content.entityTicker.EntityTickerManager;
 import com.hoshino.cti.content.materialGenre.GenreManager;
 import com.hoshino.cti.register.CtiAttributes;
 import com.hoshino.cti.register.CtiEffects;
+import com.hoshino.cti.register.CtiEntityTickers;
 import com.hoshino.cti.register.CtiModifiers;
 import flaxbeard.immersivepetroleum.client.particle.IPParticleTypes;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -37,7 +41,16 @@ public class Fiery extends EntityTicker {
         var attackSpeed = player.getAttributeValue(CtiAttributes.BURNT_ATTACK_SPEED.get());
         int spacing = (int) Math.ceil(20/attackSpeed);
         if (duration%spacing==0){
-            burntDamage(entity,player,level);
+            var coronation = EntityTickerManager.getInstance(player).getTicker(CtiEntityTickers.CORONATION_BURNT.get());
+            if (coronation!=null&&coronation.level>0){
+                AtomicInteger elementalReleaseLv = new AtomicInteger(0);
+                player.getCapability(TinkerDataCapability.CAPABILITY).ifPresent(cap->elementalReleaseLv.set(cap.get(ElementalRelease.KEY_ELEMENTAL_RELEASE,0)));
+                level += (int) (level*coronation.level* GenreManager.calculateElementalRelease(elementalReleaseLv.get(),0.5f,0.1f));
+                burntDamage(entity,player,level);
+                Random random = new Random();
+                if (player.getLevel() instanceof ServerLevel serverLevel&&random.nextDouble()<Math.min(coronation.level,10)*0.1)
+                    serverLevel.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, entity.getRandomX(1),entity.getY()+random.nextFloat()*entity.getBbHeight(),entity.getRandomZ(1),1,0,0,0,0);
+            } else burntDamage(entity,player,level);
         }
         return true;
     }

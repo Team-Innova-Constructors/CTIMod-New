@@ -186,7 +186,7 @@ public class CommonUtil {
         if (!(itemStack.getItem() instanceof IModifiable)) return false;
         return (slot.getType()== EquipmentSlot.Type.ARMOR&&itemStack.is(TinkerTags.Items.ARMOR))||
                 (slot==EquipmentSlot.OFFHAND&&itemStack.is(TinkerTags.Items.SHIELDS))||
-                (slot==EquipmentSlot.MAINHAND&&itemStack.is(TinkerTags.Items.HELD));
+                (slot==EquipmentSlot.MAINHAND&&itemStack.is(TinkerTags.Items.MELEE));
     }
 
     public static void freezeAttackStrengthTicker(Player player){

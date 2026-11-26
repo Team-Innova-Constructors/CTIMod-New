@@ -42,7 +42,7 @@ public class SlimeExplode extends EtSTBaseModifier {
                 if (level instanceof ServerLevel serverLevel) {
                     serverLevel.sendParticles(CtiParticleType.GEL_EXPLOSION.get(), targetCenter.x, targetCenter.y, targetCenter.z, 1, 0, 0, 0, 0);
                     GelCloudEntity entity = new GelCloudEntity(level);
-                    entity.damage = 0.05f * modifier.getLevel() * damage;
+                    entity.damage = 0.05f * (modifier.getLevel()*0.125f+0.875f) * damage;
                     entity.radius = 3 + modifier.getLevel();
                     entity.lvl = modifier.getLevel();
                     entity.setOwner(attacker);

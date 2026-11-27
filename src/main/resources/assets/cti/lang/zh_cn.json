@@ -328,7 +328,7 @@
 
   "modifier.cti.phoenix": "凤凰",
   "modifier.cti.phoenix.flavor": "从烈火中诞生",
-  "modifier.cti.phoenix.description": "穿着时缓缓恢复全身装备的神能晶充能，移除流体的迷雾视觉效果。对提供50%对冰、火、电龙的伤害减免。",
+  "modifier.cti.phoenix.description": "穿着时缓缓恢复全身装备的神能晶充能，移除流体的迷雾视觉效果。\n §3·§r每级+32(128)最大灼伤叠加和+0.02(0.1)灼伤攻击速度，来自受到灼伤影响的生物的伤害独立减少10%。\n §3·§r减少50%冰、火、电龙龙息造成的伤害，加速冰龙龙息冻结的消退速度。",
 
   "modifier.cti.armor_oracle": "神谕",
   "modifier.cti.armor_oracle.flavor": "神不让你加buff，你加吗？",
@@ -1589,7 +1589,7 @@
 
   "modifier.cti.stellar_fiery": "天辉耀炎",
   "modifier.cti.stellar_fiery.flavor": "宇宙的炽热蕴含其中",
-  "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加。近战攻击附带每级25%(80%)火焰伤害，过热效果期间该伤害减半。\n §3·§r每次获得过热效果时都会令增加100%本词条的近战火焰附伤，持续20秒，最大叠加5次。",
+  "modifier.cti.stellar_fiery.description":"每级+75(15)最大灼伤叠加。近战攻击附带每级25%(80%)火焰伤害，过热效果期间该伤害减半。\n §3·§r每次获得过热效果时都会让本词条的近战火焰附伤伤害+1倍，持续20秒，最大叠加8次。",
 
   "modifier.cti.coronation_burnt": "星冕烧蚀",
   "modifier.cti.coronation_burnt.flavor": "恒星风爆发",
@@ -1638,6 +1638,10 @@
   "modifier.cti.shine_flame": "曜焰",
   "modifier.cti.shine_flame.flavor": "热情似火",
   "modifier.cti.shine_flame.description":"+60%最大灼伤叠加。",
+
+  "modifier.cti.fiery_slash": "炽炎斩击",
+  "modifier.cti.fiery_slash.flavor": "以火为刃",
+  "modifier.cti.fiery_slash.description":"每级+25(75)最大灼伤叠加和+0(0.25)灼伤攻击速度。\n §3·§r过热期间：挥舞武器发射烈火斩击，造成50%武器伤害并叠加5灼伤。",
 
 
   "dimension.ad_astra.infernal": "炼狱",

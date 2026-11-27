@@ -339,6 +339,7 @@ public class CtiModifiers {
     public static final StaticModifier<ShineFlame> SHINE_FLAME = MODIFIERS.register("shine_flame", ShineFlame::new);
     public static final StaticModifier<ThermalUnstable> THERMAL_UNSTABLE = MODIFIERS.register("thermal_unstable", ThermalUnstable::new);
     public static final StaticModifier<CriticalBoostBurnt> CRITICAL_BOOST_BURNT = MODIFIERS.register("critical_boost_burnt", CriticalBoostBurnt::new);
+    public static final StaticModifier<FierySlashModifier> FIERY_SLASH = MODIFIERS.register("fiery_slash", FierySlashModifier::new);
 
     public static final StaticModifier<Immortal> IMMORTAL_STATIC_MODIFIER = MODIFIERS.register("immortal", Immortal::new);
     public static final StaticModifier<RangedLimited> RANGED_LIMITED = MODIFIERS.register("ranged_limited", RangedLimited::new);

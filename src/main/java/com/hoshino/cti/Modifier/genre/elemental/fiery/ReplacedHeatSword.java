@@ -69,18 +69,6 @@ public class ReplacedHeatSword extends BasicOverHeatModifier implements GeneralI
         builder.addHook(this, ModifierHooks.ATTRIBUTES,ModifierHooks.GENERAL_INTERACT);
     }
 
-    public static void shootSlash(IToolStackView tool, Player shooter, ModifierEntry modifier){
-        var fierySlash = new FierySlashProjectile(CtiEntity.FIERY_SLASH.get(),shooter.getLevel());
-        fierySlash.setDeltaMovement(shooter.getLookAngle().scale(7f));
-        fierySlash.setOwner(shooter);
-        fierySlash.tool = tool;
-        fierySlash.burntLevel = modifier.getLevel();
-        fierySlash.setPos(shooter.position().add(0,shooter.getBbHeight()/2,0));
-        shooter.level.addFreshEntity(fierySlash);
-        shooter.level.playSound(null,shooter, SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS,1,0.75f);
-        shooter.level.playSound(null,shooter, BotaniaSounds.endoflame, SoundSource.PLAYERS,2,1.5f);
-    }
-
     public static void increaseRust(IToolStackView tool,int amount){
         var toolData = tool.getPersistentData();
         toolData.putInt(KEY_RUST, Mth.clamp(toolData.getInt(KEY_RUST)+amount,0,100));

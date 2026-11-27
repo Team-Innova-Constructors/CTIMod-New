@@ -127,7 +127,7 @@ public class CommonLivingEvents {
                         increaseRust(tool,1);
                     }
                     if (modifierEntry.getId().equals(CtiModifiers.STELLAR_FIERY.getId())){
-                        int maxStacks = 5;
+                        int maxStacks = 8;
                         EntityTickerManager.getInstance(player).addTicker(
                                 new EntityTickerInstance(CtiEntityTickers.STELLAR_FIERY.get(),1,400),
                                 (existing,add)->Math.min(existing+add,maxStacks),

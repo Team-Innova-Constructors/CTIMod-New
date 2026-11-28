@@ -58,6 +58,7 @@ public abstract class ArmorStatsCategoryMixin {
         mailleOptional.ifPresent(presentStats::add);
         List<TConJEITraitHelper.TraitLine> traitLines = TConJEITraitHelper.buildTraitLines(wrapper, presentStats);
         TConJEITraitHelper.drawTraitLines(stack, traitLines, lineNumber);
+        lineNumber++;
 
         List<String[]> armorStats = new ArrayList<>();
         helmetOptional.ifPresent(stats -> armorStats.add(TConJEITraitHelper.armorRow(stats)));
@@ -165,6 +166,7 @@ public abstract class ArmorStatsCategoryMixin {
         if (!traitTooltips.isEmpty()) {
             return traitTooltips;
         }
+        lineNumber++;
 
         Optional<PlatingMaterialStats> platingStats = Stream.of(helmetOptional, chestplateOptional, leggingsOptional, bootsOptional, shieldOptional)
                 .filter(Optional::isPresent)

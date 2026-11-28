@@ -70,6 +70,7 @@ public final class TConJEITraitHelper {
             if (traits.isEmpty()) {
                 continue;
             }
+            traits = traits.stream().filter(ModifierEntry::isBound).toList();
             String partName = stats.getLocalizedName().getString().split(" ")[0];
             int group = -1;
             for (int i = 0; i < traitGroups.size(); i++) {
@@ -130,14 +131,13 @@ public final class TConJEITraitHelper {
     public static List<Component> getTraitLineTooltips(List<TraitLine> lines, double mouseX, double mouseY, float lineNumber) {
         Font font = font();
         for (TraitLine line : lines) {
-            if (line.trait() != null) {
+            if (line.trait() != null&&line.trait().isBound()) {
                 int width = font.width(line.trait().getDisplayName());
                 if (Utils.inBox(mouseX, mouseY, WIDTH - width, lineNumber * LINE_HEIGHT - 1, width, LINE_HEIGHT)) {
                     String key = Util.makeTranslationKey("modifier", line.trait().getId());
                     var list = new ArrayList<>(List.of((Component)Component.translatable(key + ".flavor").withStyle(ChatFormatting.ITALIC),
                             Component.translatable(key + ".description")));
-                    if (line.trait().isBound())
-                        list.add(Component.translatable("cti.tooltip.modifier.piority").append("§b" + line.trait().getModifier().getPriority()));
+                    list.add(Component.translatable("cti.tooltip.modifier.piority").append("§b" + line.trait().getModifier().getPriority()));
                     if (line.trait().getModifier() instanceof IModifierWithSpecialDesc specialDesc)
                         specialDesc.getDesc().forEach(s -> list.add(Component.translatable(s)));
                     return list;
@@ -192,7 +192,8 @@ public final class TConJEITraitHelper {
     public static void drawStatComponent(PoseStack stack, Component component, float lineNumber) {
         final Font font = font();
         Component sibling = component.getSiblings().get(0);
-        drawComponent(stack, sibling.plainCopy(), font.width(component.plainCopy()), lineNumber, sibling.getStyle().getColor().getValue(), true);
+        var color = sibling.getStyle().getColor();
+        drawComponent(stack, sibling.plainCopy(), font.width(component.plainCopy()), lineNumber, color!=null?color.getValue():ColorManager.TEXT_COLOR, true);
         drawComponent(stack, component.plainCopy(), 0, lineNumber, ColorManager.TEXT_COLOR, false);
     }
 

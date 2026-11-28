@@ -5,6 +5,8 @@ import blusunrize.immersiveengineering.api.crafting.IERecipeTypes;
 import blusunrize.immersiveengineering.api.excavator.MineralMix;
 import blusunrize.immersiveengineering.common.register.IEBlocks;
 import com.c2h6s.etshtinker.init.ItemReg.etshtinkerItems;
+import com.c2h6s.etshtinker.tools.stats.PlasmaGeneratorMaterialStats;
+import com.c2h6s.etshtinker.tools.stats.ionizerMaterialStats;
 import com.hoshino.cti.Items.BiomeInfoItem;
 import com.hoshino.cti.Cti;
 import com.hoshino.cti.integration.jei.*;
@@ -13,10 +15,18 @@ import com.hoshino.cti.register.CtiItem;
 import com.hoshino.cti.register.CtiModifiers;
 import com.hoshino.cti.util.BiomeUtil;
 import com.hoshino.cti.util.CommonUtil;
+import com.marth7th.solidarytinker.tools.Stats.PerceptionCoreStats;
+import com.marth7th.solidarytinker.tools.Stats.SoulGeHeartMaterialStats;
+import com.xiaoyue.tinkers_ingenuity.content.library.tools.TIMaterialStats;
+import com.xiaoyue.tinkers_ingenuity.content.tools.stats.CurioMainMaterialStats;
+import com.xiaoyue.tinkers_ingenuity.content.tools.stats.TIExtraMaterialStats;
+import me.paypur.tconjei.Utils;
+import me.paypur.tconjei.jei.MaterialStatsWrapper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -31,6 +41,7 @@ import slimeknights.tconstruct.library.recipe.fuel.MeltingFuel;
 import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 import slimeknights.tconstruct.plugin.jei.TConstructJEIConstants;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tables.TinkerTables;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import java.util.List;
@@ -48,6 +59,9 @@ public class JEIPlugin implements IModPlugin {
     public static RecipeType<CursedDropRecipe> CURSED_DROPS = new RecipeType<>(CursedDropRecipeCategory.UID, CursedDropRecipe.class);
     public static RecipeType<PlateSmashRecipe> PLATE_SMASH = new RecipeType<>(ToolPlateSmashRecipeCategory.UID, PlateSmashRecipe.class);
     public static RecipeType<PlateSmashRecipe> CIRCUIT_CUTTING = new RecipeType<>(ToolCircuitCuttingRecipeCategory.UID, PlateSmashRecipe.class);
+    public static RecipeType<MaterialStatsWrapper> CURIO_STATS = RecipeType.create("cti", "curio_stats", MaterialStatsWrapper.class);
+    public static RecipeType<MaterialStatsWrapper> ST_STATS = RecipeType.create("cti", "st_stats", MaterialStatsWrapper.class);
+    public static RecipeType<MaterialStatsWrapper> ETST_STATS = RecipeType.create("cti", "etst_stats", MaterialStatsWrapper.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -67,6 +81,9 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new CursedDropRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ToolPlateSmashRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ToolCircuitCuttingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new TinkerCurioStatsCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new TinkerEtSTStatsCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new TinkerSTStatsCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -102,6 +119,14 @@ public class JEIPlugin implements IModPlugin {
             stack.getOrCreateTag().putString(BiomeInfoItem.KEY_BIOMES,string);
             registration.addIngredientInfo(stack, VanillaTypes.ITEM_STACK, Component.translatable("info.biomes."+location.toLanguageKey()));
         });
+
+        List<MaterialStatsWrapper> statsWrappers = Utils.getMaterialWrappers();
+        registration.addRecipes(CURIO_STATS, statsWrappers.stream().filter((w) ->
+                w.hasStats(List.of(TIExtraMaterialStats.CURIO_EXTRA.getIdentifier(), CurioMainMaterialStats.ID))).toList());
+        registration.addRecipes(ETST_STATS, statsWrappers.stream().filter((w) ->
+                w.hasStats(List.of(PlasmaGeneratorMaterialStats.ID, ionizerMaterialStats.ID))).toList());
+        registration.addRecipes(ST_STATS, statsWrappers.stream().filter((w) ->
+                w.hasStats(List.of(SoulGeHeartMaterialStats.ID, PerceptionCoreStats.ID))).toList());
     }
 
     @Override
@@ -132,6 +157,10 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(TConstructJEIConstants.MODIFIER_TYPE,new ModifierEntry(CtiModifiers.PLATE_SMASHING,1),PLATE_SMASH);
         registration.addRecipeCatalyst(IModifiableDisplay.getDisplayStack(etshtinkerItems.constrained_plasma_saber.get()),CIRCUIT_CUTTING);
         registration.addRecipeCatalyst(TConstructJEIConstants.MODIFIER_TYPE,new ModifierEntry(CtiModifiers.CIRCUIT_CUTTING,1),CIRCUIT_CUTTING);
+
+        registration.addRecipeCatalyst(new ItemStack(TinkerTables.tinkerStation.asItem()), new RecipeType[]{CURIO_STATS,ETST_STATS,ST_STATS});
+        registration.addRecipeCatalyst(new ItemStack(TinkerTables.tinkersAnvil.asItem()), new RecipeType[]{CURIO_STATS,ETST_STATS,ST_STATS});
+        registration.addRecipeCatalyst(new ItemStack(TinkerTables.scorchedAnvil.asItem()), new RecipeType[]{CURIO_STATS,ETST_STATS,ST_STATS});
     }
 
 

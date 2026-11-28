@@ -1,5 +1,6 @@
 package com.hoshino.cti.mixin.TconMixin;
 
+import com.hoshino.cti.api.interfaces.IModifierWithSpecialDesc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -17,11 +18,13 @@ import slimeknights.tconstruct.library.materials.definition.IMaterial;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 import slimeknights.tconstruct.library.tools.part.MaterialItem;
 import slimeknights.tconstruct.library.tools.part.ToolPartItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.hoshino.cti.util.CommonUtil.MISSING_MATERIAL_KEY;
@@ -69,7 +72,12 @@ public abstract class ToolPartItemMixin extends MaterialItem {
                     // holding control shows descriptions for traits
                     if (key == TooltipKey.CONTROL) {
                         // skip the flavor line, trait name will take its spot instead
-                        List<Component> description = entry.getModifier().getDescriptionList(entry.getLevel());
+                        var modifier = entry.getModifier();
+                        List<Component> description = new ArrayList<>(List.of(
+                                Component.translatable( modifier.getTranslationKey() + ".flavor").withStyle(ChatFormatting.ITALIC),
+                                Component.translatable(modifier.getTranslationKey() + ".description")));
+                        if (modifier instanceof IModifierWithSpecialDesc specialDesc)
+                            specialDesc.getDesc().forEach(s -> description.add(Component.translatable(s)));
                         for (int i = 1; i < description.size(); i++) {
                             tooltip.add(description.get(i).plainCopy().withStyle(ChatFormatting.GRAY));
                         }

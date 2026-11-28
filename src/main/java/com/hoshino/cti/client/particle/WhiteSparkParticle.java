@@ -24,7 +24,7 @@ public class WhiteSparkParticle extends TextureSheetParticle {
 
     WhiteSparkParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites){
         super(pLevel,pX,pY,pZ,pXSpeed,pYSpeed,pZSpeed);
-        this.lifetime = 20 + this.random.nextInt(10);
+        this.lifetime = 10;
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
@@ -68,7 +68,8 @@ public class WhiteSparkParticle extends TextureSheetParticle {
     @Override
     public void tick() {
         this.age++;
-        this.alpha = Math.max(this.alpha-0.2f,0);
+        if (this.age>2)
+            this.alpha = Math.max(this.alpha-0.2f,0);
         this.xdo = this.xd;
         this.ydo = this.yd;
         this.zdo = this.zd;

@@ -76,8 +76,8 @@ public abstract class ToolPartItemMixin extends MaterialItem {
                         List<Component> description = new ArrayList<>(List.of(
                                 Component.translatable( modifier.getTranslationKey() + ".flavor").withStyle(ChatFormatting.ITALIC),
                                 Component.translatable(modifier.getTranslationKey() + ".description")));
-                        if (modifier instanceof IModifierWithSpecialDesc specialDesc)
-                            specialDesc.getDesc().forEach(s -> description.add(Component.translatable(s)));
+//                        if (modifier instanceof IModifierWithSpecialDesc specialDesc)
+//                            specialDesc.getDesc().forEach(s -> description.add(Component.translatable(s)));
                         for (int i = 1; i < description.size(); i++) {
                             tooltip.add(description.get(i).plainCopy().withStyle(ChatFormatting.GRAY));
                         }
